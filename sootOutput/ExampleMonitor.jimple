@@ -1,0 +1,73 @@
+public class ExampleMonitor extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] a;
+        java.util.ArrayList s, temp$0;
+        boolean temp$1;
+        java.lang.Integer[] arr, temp$5, temp$12, temp$18;
+        java.lang.Integer i, temp$6, temp$8, temp$11, temp$15, x, y, b, temp$20;
+        int temp$2, temp$3, temp$4, temp$7, temp$9, temp$10, temp$13, temp$14, temp$16, temp$17, temp$19, temp$21, temp$22, temp$23;
+
+        a := @parameter0: java.lang.String[];
+        temp$0 = new java.util.ArrayList;
+        specialinvoke temp$0.<java.util.ArrayList: void <init>()>();
+        s = temp$0;
+        temp$1 = virtualinvoke s.<java.util.ArrayList: boolean add(java.lang.Object)>("a");
+        arr = newarray (java.lang.Integer)[10];
+        temp$2 = 0;
+        i = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(temp$2);
+
+     label0:
+        nop;
+        temp$3 = virtualinvoke i.<java.lang.Integer: int intValue()>();
+        temp$4 = lengthof arr;
+        if temp$3 < temp$4 goto label1;
+
+        goto label2;
+
+     label1:
+        nop;
+        temp$5 = arr;
+        temp$6 = i;
+        temp$7 = 1;
+        temp$8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(temp$7);
+        temp$5[temp$6] = temp$8;
+        nop;
+        temp$9 = virtualinvoke i.<java.lang.Integer: int intValue()>();
+        temp$10 = temp$9 + 1;
+        temp$11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(temp$10);
+        i = temp$11;
+        goto label0;
+
+     label2:
+        nop;
+        temp$12 = arr;
+        temp$13 = 5;
+        temp$14 = 3;
+        temp$15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(temp$14);
+        temp$12[temp$13] = temp$15;
+        temp$16 = 10;
+        x = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(temp$16);
+        temp$17 = 5;
+        y = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(temp$17);
+        temp$18 = arr;
+        temp$19 = 2;
+        temp$20 = temp$18[temp$19];
+        temp$21 = virtualinvoke x.<java.lang.Integer: int intValue()>();
+        temp$22 = virtualinvoke temp$20.<java.lang.Integer: int intValue()>();
+        temp$23 = temp$21 / temp$22;
+        b = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(temp$23);
+        return;
+    }
+
+    public void <init>()
+    {
+        ExampleMonitor this;
+
+        this := @this: ExampleMonitor;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}
