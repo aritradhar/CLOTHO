@@ -6,7 +6,7 @@ public class Test1
 	{
 		int []array ={1,2,3,4};
 		int a = 2;
-		int b = 3;
+		int b = 0;
 		int c = -1;
 		int out = new Test1().fun(array, a, b, c);
 		System.out.println(out);
@@ -20,6 +20,6 @@ public class Test1
 		int index1 = a / b;
 		int x = array[index];
 		int y = array[a-b];
-		return x;
+		return index1;
 	}
 }

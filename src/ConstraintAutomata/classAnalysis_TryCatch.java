@@ -47,6 +47,25 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		return nextStmt;
 	}
 	
+	public Value getLeftHandFromDivision(Unit unit)
+	{
+		 List<ValueBox> boxl = unit.getUseAndDefBoxes();
+		 Iterator<ValueBox> itbox = boxl.iterator();
+		 Value v_patch_candidate = null;
+		 
+		 while(itbox.hasNext())
+		 {
+			 ValueBox tempBox = itbox.next();			 
+			 if(tempBox.toString().contains("LinkedVariableBox"))
+			 {
+				 v_patch_candidate = tempBox.getValue();
+				 break;
+			 }			 
+		 }
+		 
+		 return v_patch_candidate;
+	}
+	
 	protected void internalTransform(Body jbody, String phaseName, Map options) 
 	{
 		 // this is to analyze potential ArrayIndexOutofBoundException and other RuntimeException
@@ -105,10 +124,15 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 Iterator it_box  = usedefbox.iterator();
 	    	 int flag=0;
 	    	 
-	    	 if(unit.toString().contains("@parameter") || unit.toString().contains("newarray"))
-	    		 continue;
+	    	 if(unit.toString().contains("@parameter")) 
+	    		 continue; //handle new array separately
+	    	 if(unit.toString().contains("newarray"))
+	    	 {
+	    		 flag = 4;
+	    	 }
+	    		 
 	    	 //handle non-Invoke expressions
-	    	 if (!stmt.containsInvokeExpr())
+	    	 if (!stmt.containsInvokeExpr() && flag!=4)
 	    	 {
 	    		 while(it_box.hasNext())
 	    		 { 
@@ -149,14 +173,17 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 
 	    	    
 	    			 if(str.contains("/"))
+	    			 {
 	    				 flag = 2;
+	    				 continue;
+	    			 }
 	    	    
 	    			 //System.out.print(str + ":::");
 	    		 }
 	    	 }
 	    	 
 	    	 //handle invoke expressions
-	    	 else
+	    	 else if(flag!=4)
 	    	 {
 	    		//check for NoSuchElementException
 	    		 InvokeExpr expr = (InvokeExpr)stmt.getInvokeExpr();
@@ -282,13 +309,47 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 
 	    	 if (flag == 2)
 	    	 {
-	    		 System.out.println(stmt.toString());
 	    		 System.out.println("#### Divide by Zero Exception may happen ####");
+	    		 //System.out.println("unit  "+unit.toString());
+	    		 Value v = getLeftHandFromDivision(unit);
+	    		 Local l1 =(Local) v;
+	    		 Local lhs_to_patched = null;
+	    		 if(string_localmap.containsKey(l1.toString()))
+	    			 lhs_to_patched = string_localmap.get(l1.toString());
+	    		 	    		 
+	    		 
+	    		 //instrument try catch
+	    		 try_start_stmt = stmt;
+    			 try_end_stmt = (Stmt) ch.getLast();
+    			 List<Stmt> probe = new ArrayList<Stmt>();
+    	    	 SootClass thrwCls = Scene.v().getSootClass("java.lang.ArithmeticException");
+    	    	 Stmt sGotoLast = Jimple.v().newGotoStmt(try_end_stmt);
+    	    	 probe.add(sGotoLast);
+    	    	 
+    	    	 //prepare for catch block
+    	    	 Local lException1 = UtilInstrum.getCreateLocal(jbody, "<ex2>", RefType.v(thrwCls));
+    	    	 Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
+    	    	 probe.add(sCatch);
+    	    	 
+    	    	 
+    	    	 //stmt for catch block
+    	    	 AssignStmt oneAssign = Jimple.v().newAssignStmt(lhs_to_patched, IntConstant.v(1));
+	    		 probe.add(oneAssign);
+	    		 
+	    		 InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
+	    		 //instr
+	    		 jbody.getTraps().add(Jimple.v().newTrap(thrwCls, try_start_stmt, sGotoLast, sCatch));
+    	    	 jbody.validate();
+	    		 
+	    		 //System.out.println(oneAssign);
+	    		 	    		 
 	    	 }
 	    	 
 	    	 if(flag == 3)
 	    		 System.out.println("#### No Such Elemet Found Exception may happen####");
 
+	    	 if(flag == 4)
+	    		 System.out.println("#### Negative array size exception may happen####");
 	    	 //System.out.println(unit+" : "+s);
 	     }
 	     
