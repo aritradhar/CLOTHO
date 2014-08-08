@@ -89,6 +89,28 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		 
 	}
 	
+	public boolean isLocalArryIndex(HashMap<String, Local> string_localmap, Unit unit)
+	{
+		 List<ValueBox> boxl = unit.getUseAndDefBoxes();
+		 Iterator<ValueBox> itbox = boxl.iterator();
+		 Value v_patch_candidate = null;
+		 
+		 while(itbox.hasNext())
+		 {
+			 ValueBox tempBox = itbox.next();
+			 System.out.println(tempBox.toString());
+			 if(tempBox.toString().contains("LinkedRValueBox"))
+			 {
+				 v_patch_candidate = tempBox.getValue();
+				 //break;
+			 }	
+		 }
+		 ValueBox vb = (ValueBox) v_patch_candidate.getUseBoxes().get(0);
+		 Value ret = vb.getValue();
+		 
+		 return string_localmap.containsKey(ret.toString());
+	}
+	
 	protected void internalTransform(Body jbody, String phaseName, Map options) 
 	{
 		 // this is to analyze potential ArrayIndexOutofBoundException and other RuntimeException
@@ -151,11 +173,14 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 continue; //handle new array separately
 	    	 if(unit.toString().contains("newarray"))
 	    	 {
-	    		 flag = 4;
+	    		 if(isLocalArryIndex(string_localmap, unit))
+	    			 flag = 4;
+	    		 else
+	    			 flag = 99;
 	    	 }
 	    		 
 	    	 //handle non-Invoke expressions
-	    	 if (!stmt.containsInvokeExpr() && flag!=4)
+	    	 if (!stmt.containsInvokeExpr() && flag!=4 && flag!=99)
 	    	 {
 	    		 while(it_box.hasNext())
 	    		 { 
@@ -206,7 +231,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 }
 	    	 
 	    	 //handle invoke expressions
-	    	 else if(flag!=4)
+	    	 else if(flag != 4 && flag != 99)
 	    	 {
 	    		//check for NoSuchElementException
 	    		 InvokeExpr expr = (InvokeExpr)stmt.getInvokeExpr();
@@ -373,13 +398,13 @@ public class classAnalysis_TryCatch extends BodyTransformer
 
 	    	 if(flag == 4)
 	    	 {
-	    		 Value v_temp = getIndexFromArrayExpr(unit);
+	    		// Value v_temp = getIndexFromArrayExpr(unit);
 	    		
-	    		 Local index_to_patched = null;
-	    		 if(string_localmap.containsKey(v_temp.toString()))
-	    			 index_to_patched = string_localmap.get(v_temp.toString());
+	    		// Local index_to_patched = null;
+	    		// if(string_localmap.containsKey(v_temp.toString()))
+	    		//	 index_to_patched = string_localmap.get(v_temp.toString());
 	    		 
-	    		 System.out.println("!!! "+index_to_patched.toString());
+	    		// System.out.println("!!! "+index_to_patched.toString());
 	    		 
 	    		 System.out.println("#### Negative array size exception may happen####");
 	    	 }
@@ -413,5 +438,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	     
 	}
 	     //System.out.println(ch.toString());
+
 }
+
 
