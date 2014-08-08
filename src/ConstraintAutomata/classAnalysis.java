@@ -246,7 +246,10 @@ public class classAnalysis extends BodyTransformer
 	    	 }
 	    	 
 	    	 if (flag == 2)
-	    		 System.out.println("#### Divide by Zero Exception may happen ####");
+	    	 {
+	    		 System.out.println("@@@@"+stmt.toString());
+	    		 System.out.println("####Divide by Zero Exception may happen ####");
+	    	 }
 	    	 
 	    	 if(flag == 3)
 	    		 System.out.println("#### No Such Elemet Found Exception may happen####");
