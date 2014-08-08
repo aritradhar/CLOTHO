@@ -308,7 +308,9 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 //make the throwable probing clause	    			 
 	    			 //setting the start of the try probe at the statement
 	    			 try_start_stmt = stmt;
-	    			 try_end_stmt = (Stmt) ch.getLast();
+	    			 //Maybe the right idea
+	    			 //try_end_stmt = (Stmt) ch.getLast();
+	    			 try_end_stmt = (Stmt) ch.getSuccOf(stmt);
 	    			 //try_end_stmt = getNextStmt(jbody, stmt_counter);
 	    			 ////////////////////////////////////////////////////////////////////////////////////////////
 	    			 
@@ -359,6 +361,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 {
 	    		 System.out.println("#### Divide by Zero Exception may happen ####");
 	    		 //System.out.println("unit  "+unit.toString());
+	    		 //get local///////////////////////////////
 	    		 Value v = getLeftHandFromDivision(unit);
 	    		 Local l1 =(Local) v;
 	    		 Local lhs_to_patched = null;
@@ -368,7 +371,12 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 
 	    		 //instrument try catch
 	    		 try_start_stmt = stmt;
-    			 try_end_stmt = (Stmt) ch.getLast();
+	    		 
+	    		 //Maybe the right idea
+    			 //try_end_stmt = (Stmt) ch.getLast();
+    			 try_end_stmt = (Stmt) ch.getSuccOf(stmt);
+    			 
+    			 
     			 List<Stmt> probe = new ArrayList<Stmt>();
     	    	 SootClass thrwCls = Scene.v().getSootClass("java.lang.ArithmeticException");
     	    	 Stmt sGotoLast = Jimple.v().newGotoStmt(try_end_stmt);
@@ -398,15 +406,48 @@ public class classAnalysis_TryCatch extends BodyTransformer
 
 	    	 if(flag == 4)
 	    	 {
-	    		// Value v_temp = getIndexFromArrayExpr(unit);
-	    		
-	    		// Local index_to_patched = null;
-	    		// if(string_localmap.containsKey(v_temp.toString()))
-	    		//	 index_to_patched = string_localmap.get(v_temp.toString());
-	    		 
-	    		// System.out.println("!!! "+index_to_patched.toString());
-	    		 
 	    		 System.out.println("#### Negative array size exception may happen####");
+	    		 
+	    		//get local///////////////////////////////
+	    		 Value v_temp = getIndexFromArrayExpr(unit);
+	    		
+	    		 Local index_to_patched = null;
+	    		 if(string_localmap.containsKey(v_temp.toString()))
+	    			index_to_patched = string_localmap.get(v_temp.toString());
+	    		 
+	    		 
+	    		 
+	    		//instrument try catch
+	    		 try_start_stmt = stmt;
+	    		 
+	    		 //take the next one -----> Question??
+    			 try_end_stmt = (Stmt) ch.getSuccOf(stmt);
+    			 
+    			 List<Stmt> probe = new ArrayList<Stmt>();
+    	    	 SootClass thrwCls = Scene.v().getSootClass("java.lang.NegativeArraySizeException");
+    	    	 Stmt sGotoLast = Jimple.v().newGotoStmt(try_end_stmt);
+    	    	 probe.add(sGotoLast);
+    	    	 
+    	    	 //prepare for catch block
+    	    	 Local lException1 = UtilInstrum.getCreateLocal(jbody, "<ex3>", RefType.v(thrwCls));
+    	    	 Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
+    	    	 probe.add(sCatch);
+    	    	 
+    	    	 
+    	    	 //stmt for catch block
+    	    	 //assign the index val
+    	    	 AssignStmt oneAssign_1 = Jimple.v().newAssignStmt(index_to_patched, IntConstant.v(1));
+	    		 probe.add(oneAssign_1);
+	    		 
+	    		 InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
+	    		 //instr
+	    		 jbody.getTraps().add(Jimple.v().newTrap(thrwCls, try_start_stmt, sGotoLast, sCatch));
+    	    	 jbody.validate();
+	    		 
+	    		 
+	    		 
+	    		 
+	    		 //System.out.println("!!! "+index_to_patched.toString());	    		 	    		 
 	    	 }
 	    	 //System.out.println(unit+" : "+s);
 	     }

@@ -20,6 +20,6 @@ public class Test1
 		int index1 = a / b;
 		int x = array[index];
 		int y = array[a-b];
-		return index1;
+		return index;
 	}
 }
