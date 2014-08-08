@@ -66,6 +66,29 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		 return v_patch_candidate;
 	}
 	
+	public Value getIndexFromArrayExpr(Unit unit)
+	{
+		 List<ValueBox> boxl = unit.getUseAndDefBoxes();
+		 Iterator<ValueBox> itbox = boxl.iterator();
+		 Value v_patch_candidate = null;
+		 
+		 while(itbox.hasNext())
+		 {
+			 ValueBox tempBox = itbox.next();
+			 System.out.println(tempBox.toString());
+			 if(tempBox.toString().contains("LinkedRValueBox"))
+			 {
+				 v_patch_candidate = tempBox.getValue();
+				 //break;
+			 }	
+		 }
+		 ValueBox vb = (ValueBox) v_patch_candidate.getUseBoxes().get(0);
+		 Value ret = vb.getValue();
+		 //System.out.println("$$   "+vb.getValue().toString());
+		 return ret;
+		 
+	}
+	
 	protected void internalTransform(Body jbody, String phaseName, Map options) 
 	{
 		 // this is to analyze potential ArrayIndexOutofBoundException and other RuntimeException
@@ -349,7 +372,17 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 System.out.println("#### No Such Elemet Found Exception may happen####");
 
 	    	 if(flag == 4)
+	    	 {
+	    		 Value v_temp = getIndexFromArrayExpr(unit);
+	    		
+	    		 Local index_to_patched = null;
+	    		 if(string_localmap.containsKey(v_temp.toString()))
+	    			 index_to_patched = string_localmap.get(v_temp.toString());
+	    		 
+	    		 System.out.println("!!! "+index_to_patched.toString());
+	    		 
 	    		 System.out.println("#### Negative array size exception may happen####");
+	    	 }
 	    	 //System.out.println(unit+" : "+s);
 	     }
 	     
