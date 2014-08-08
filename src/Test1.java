@@ -15,6 +15,7 @@ public class Test1
 	public int fun(int[] array, int a, int b,int c)
 	{
 		int []arr = new int[c];
+		//int p = arr.length;
 		System.out.println(a+" "+b);
 		int index = a + b;
 		int index1 = a / b;

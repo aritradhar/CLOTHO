@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import profile.InstrumManager;
 import profile.UtilInstrum;
@@ -323,8 +324,11 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	    	 Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
 	    	    	 probe.add(sCatch);
 	    		 
-	    	    	 //stmt for catch block	    	    	 	    	    	 
+	    	    	 //stmt for catch block	    
+	    	    	 
+	    	    	 
 	    	    	 SootMethod string_length_method = Scene.v().getMethod("<java.lang.String: int length()>");
+	    	    	 
 	    			 //System.out.println(string_length.toString());
 	    			 VirtualInvokeExpr s_len_check_expr = Jimple.v().newVirtualInvokeExpr(base_array_local, string_length_method.makeRef());
 	    			 //System.out.println("::"+s_len_check_expr.toString());	    			 
@@ -357,8 +361,11 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 }
 	    	 }
 	    	 
+	    	 
+	    	 
 	    	 if (flag == 2)
 	    	 {
+	    		 //Handles by making the lhs to 1
 	    		 System.out.println("#### Divide by Zero Exception may happen ####");
 	    		 //System.out.println("unit  "+unit.toString());
 	    		 //get local///////////////////////////////
