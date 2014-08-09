@@ -27,6 +27,7 @@ import profile.UtilInstrum;
 import soot.*;
 import soot.javaToJimple.LocalGenerator;
 import soot.jimple.*;
+import soot.jimple.internal.JNewArrayExpr;
 import soot.util.*;
 
 public class classAnalysis_TryCatch extends BodyTransformer
@@ -156,37 +157,78 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		Local arg = null;
 		String stype = type.toString();
 		
-		
 		//handle basic types
 		if(stype.equals("int[]"))
 			 arg = generateNewLocal(jbody, ArrayType.v(IntType.v(), ARRAY_SIZE));
-		
-		if(stype.equals("float[]"))
+
+		else if(stype.equals("float[]"))
 			arg = generateNewLocal(jbody, ArrayType.v(FloatType.v(), ARRAY_SIZE));
 		
-		if(stype.equals("double[]"))
+		else if(stype.equals("double[]"))
 			arg = generateNewLocal(jbody, ArrayType.v(DoubleType.v(), ARRAY_SIZE));
 		
-		if(stype.equals("char[]"))
+		else if(stype.equals("char[]"))
 			arg = generateNewLocal(jbody, ArrayType.v(CharType.v(), ARRAY_SIZE));
 		
-		if(stype.equals("long[]"))
+		else if(stype.equals("long[]"))
 			arg = generateNewLocal(jbody, ArrayType.v(LongType.v(), ARRAY_SIZE));
 		
-		if(stype.equals("short[]"))
+		else if(stype.equals("short[]"))
 			arg = generateNewLocal(jbody, ArrayType.v(ShortType.v(), ARRAY_SIZE));
 		
-		if(stype.equals("byte[]"))
+		else if(stype.equals("byte[]"))
 			arg = generateNewLocal(jbody, ArrayType.v(ByteType.v(), ARRAY_SIZE));
 		
-		if(stype.equals("boolean[]"))
+		else if(stype.equals("boolean[]"))
 			arg = generateNewLocal(jbody, ArrayType.v(BooleanType.v(), ARRAY_SIZE));
 		
 		//else resolve from class
 		else
 		{
-			stype = stype.substring(0,stype.indexOf('['));
-			arg = generateNewLocal(jbody, ArrayType.v(RefType.v(stype), ARRAY_SIZE));
+			String stype_t = stype.substring(0,stype.indexOf('['));
+			//System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%"+stype_t);
+			arg = generateNewLocal(jbody, ArrayType.v(RefType.v(stype_t), ARRAY_SIZE));
+		}
+		return arg;
+	}
+	
+	
+	public JNewArrayExpr getNewArrayExpr(Type type, Value ARRAY_SIZE)
+	{
+		JNewArrayExpr arg = null;
+		String stype = type.toString();
+		
+		//handle basic types
+		if(stype.equals("int[]"))
+			 arg = new JNewArrayExpr(IntType.v(), ARRAY_SIZE);
+
+		else if(stype.equals("float[]"))
+			arg = new JNewArrayExpr(FloatType.v(), ARRAY_SIZE);
+		
+		else if(stype.equals("double[]"))
+			arg = new JNewArrayExpr(DoubleType.v(), ARRAY_SIZE);
+		
+		else if(stype.equals("char[]"))
+			arg = new JNewArrayExpr(CharType.v(), ARRAY_SIZE);
+		
+		else if(stype.equals("long[]"))
+			arg = new JNewArrayExpr(LongType.v(), ARRAY_SIZE);
+		
+		else if(stype.equals("short[]"))
+			arg = new JNewArrayExpr(ShortType.v(), ARRAY_SIZE);
+		
+		else if(stype.equals("byte[]"))
+			arg = new JNewArrayExpr(ByteType.v(), ARRAY_SIZE);
+		
+		else if(stype.equals("boolean[]"))
+			arg = new JNewArrayExpr(BooleanType.v(), ARRAY_SIZE);
+		
+		//else resolve from class
+		else
+		{
+			String stype_t = stype.substring(0,stype.indexOf('['));
+			//System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%"+stype_t);
+			arg = new JNewArrayExpr(RefType.v(stype_t), ARRAY_SIZE);
 		}
 		return arg;
 	}
@@ -324,7 +366,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 if(expr instanceof InterfaceInvokeExpr)
 	    		 {
 	    			 SootMethod expMethod = expr.getMethod();
-	    			 if(expMethod.getName().toString().equals("next") && expMethod.getDeclaringClass().toString().equals("java.util.Iterator"))
+	    			 if(expMethod.getName().toString().equals("next") || expMethod.getName().toString().equals("nextLine"))// && expMethod.getDeclaringClass().toString().equals("java.util.Iterator"))
 	    				 flag = 3;
 	    		 }
 	    	 }
@@ -499,11 +541,22 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 }
 	    	 
 	    	 if(flag == 3)
+	    	 {
 	    		 System.out.println("#### No Such Elemet Found Exception may happen####");
-
+	    		 
+	    		 try_start_stmt = stmt;
+    			 try_end_stmt = (Stmt) ch.getSuccOf(stmt);
+    			 
+    			 List<Stmt> probe = new ArrayList<Stmt>();
+    	    	 SootClass thrwCls = Scene.v().getSootClass("java.lang.ArithmeticException");
+    	    	 Stmt sGotoLast = Jimple.v().newGotoStmt(try_end_stmt);
+    	    	 probe.add(sGotoLast);
+	    		 
+	    	 }
 	    	 if(flag == 4)
 	    	 {
 	    		 System.out.println("#### Negative array size exception may happen####");
+	    		 
 	    		 
 	    		//get local///////////////////////////////
 	    		 Value v_temp = getIndexFromArrayExpr(unit);
@@ -514,7 +567,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 
 	    		 //array type to be passed in the catch probe
 	    		 Type array_type = local_array.getType();
-	    		 System.out.println("$$$ " + array_type);
+	    		 //System.out.println("$$$ " + array_type);
 	    		 
 	    		 Local index_to_patched = string_localmap.containsKey(v_temp.toString()) ? string_localmap.get(v_temp.toString()) : null;
 	    		 
@@ -544,11 +597,13 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 probe.add(oneAssign_1);
 	    		 
 	    		 //array reassign
-	    		 int ARRAY_SIZE = 1; //hard-coded array size
-	    		 Local arg = getNewArray(array_type, ARRAY_SIZE, jbody); 
+	    		 Value ARRAY_SIZE = IntConstant.v(1); //hard-coded array size
+	    		 
+	    		 NewArrayExpr arg = getNewArrayExpr(array_type, ARRAY_SIZE); 
 	    		 
 	    		 AssignStmt array_Assign = Jimple.v().newAssignStmt(local_array, arg);
 	    		 probe.add(array_Assign);
+	    		 
 	    		 //System.out.println(arg);
 
 	    		 
