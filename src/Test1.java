@@ -14,7 +14,19 @@ public class Test1
 	
 	public int fun(int[] array, int a, int b,int c)
 	{
-		int []arr = new int[c];
+		Object obj = new Integer(0);
+	    try{
+		System.out.println((String)obj);
+	    }
+	    catch(ClassCastException e)
+	    {
+	    	System.err.println("cast");
+	    	System.out.println(obj);
+	    }
+	    
+	    
+	    int []arr = new int[c];
+		
 		//int p = arr.length;
 		System.out.println(a+" "+b);
 		int index = a + b;

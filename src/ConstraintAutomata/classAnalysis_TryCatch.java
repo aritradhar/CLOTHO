@@ -172,6 +172,10 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 
 	    	 if(unit.toString().contains("@parameter")) 
 	    		 continue; //handle new array separately
+	    	 
+	    	 //handle GotoStmt separately
+	    	 if(stmt instanceof GotoStmt)
+	    		 continue;
 	    	 if(unit.toString().contains("newarray"))
 	    	 {
 	    		 if(isLocalArryIndex(string_localmap, unit))
