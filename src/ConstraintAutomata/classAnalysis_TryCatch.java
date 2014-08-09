@@ -354,6 +354,34 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 flag = 99;
 	    	 }
 	    	 
+	    	 if(stmt instanceof AssignStmt)
+	    	 {
+	    		 Iterator<ValueBox> itv =unit.getUseAndDefBoxes().iterator();
+	    		 while(itv.hasNext())
+	    		 {
+	    			 ValueBox vBox = itv.next();
+	    			 String strBox = vBox.toString();
+	    			 if(strBox.contains("LinkedRValueBox"))
+	    			 {
+	    				 Value castValue= vBox.getValue();
+	    				 String []str_values = vBox.getValue().toString().split(" ");
+	    				 
+	    				 boolean potentialCast = (str_values.length == 2) ? true : false;
+	    				 
+	    				 if(potentialCast && str_values[0].contains("(") && str_values[0].contains(")"))
+	    				 {
+	    					 String castClassStr = str_values[0].replace("(", "").replace(")", "");
+	    					 SootClass castClass = Scene.v().getSootClass(castClassStr);
+;	    					 String castedLocalString = str_values[1];
+	    					 //safe check
+	    					 Local castedLocal = (string_localmap.containsKey(castedLocalString)) ? string_localmap.get(castedLocalString) : null; 
+	    					 
+	    					 System.out.println(castClass);
+	    				 }
+	    			 }
+	    		 }
+	    	 }
+	    	 
 	    	 //check for class casting operation in the statements
 	    		 
 	    	 
