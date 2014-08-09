@@ -361,6 +361,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 {
 	    			 ValueBox vBox = itv.next();
 	    			 String strBox = vBox.toString();
+	    			 System.out.println(strBox);
 	    			 if(strBox.contains("LinkedRValueBox"))
 	    			 {
 	    				 Value castValue= vBox.getValue();
@@ -376,7 +377,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    					 //safe check
 	    					 Local castedLocal = (string_localmap.containsKey(castedLocalString)) ? string_localmap.get(castedLocalString) : null; 
 	    					 
-	    					 System.out.println(castClass);
+	    					 //System.out.println(castClass);
 	    				 }
 	    			 }
 	    		 }
