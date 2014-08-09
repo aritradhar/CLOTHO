@@ -281,6 +281,49 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	}
 	
 	
+	public Object[] processCastStamt(Unit unit, HashMap<String, Local> string_localmap)
+	{
+		 Object []output = new Object[3];
+		
+		 Iterator<ValueBox> itv =unit.getUseAndDefBoxes().iterator();
+		 HashMap<String, Value> valbox_mp = new HashMap<>();
+		 
+		 while(itv.hasNext())
+		 {
+			 ValueBox vBox = itv.next();
+			 String strBox = vBox.toString();
+			 //System.out.println(strBox);
+			 
+			 valbox_mp.put(strBox.substring(0,strBox.indexOf("(")), vBox.getValue());
+			 
+			 if(strBox.contains("LinkedVariableBox"))
+			 {
+				 Value lhs= vBox.getValue();
+				 Local lhs_local = (string_localmap.containsKey(lhs.toString())) ? string_localmap.get(lhs.toString()) : null;
+			 }
+			 if(strBox.contains("LinkedRValueBox"))
+			 {
+				 Value castValue= vBox.getValue();
+				 String []str_values = vBox.getValue().toString().split(" ");
+				 
+				 boolean potentialCast = (str_values.length == 2) ? true : false;
+				 
+				 if(potentialCast && str_values[0].contains("(") && str_values[0].contains(")"))
+				 {
+					 String castClassStr = str_values[0].replace("(", "").replace(")", "");
+					 SootClass castClass = Scene.v().getSootClass(castClassStr);
+;	    					 String castedLocalString = str_values[1];
+					 //safe check
+					 Local castedLocal = (string_localmap.containsKey(castedLocalString)) ? string_localmap.get(castedLocalString) : null; 
+					 
+					 //System.out.println(castClass);
+				 }
+			 }
+		 }
+		
+		return output;
+	}
+	
 	
 	protected void internalTransform(Body jbody, String phaseName, Map options) 
 	{
@@ -362,6 +405,12 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 ValueBox vBox = itv.next();
 	    			 String strBox = vBox.toString();
 	    			 System.out.println(strBox);
+	    			 
+	    			 if(strBox.contains("LinkedVariableBox"))
+	    			 {
+	    				 Value lhs= vBox.getValue();
+	    				 Local lhs_local = (string_localmap.containsKey(lhs.toString())) ? string_localmap.get(lhs.toString()) : null;
+	    			 }
 	    			 if(strBox.contains("LinkedRValueBox"))
 	    			 {
 	    				 Value castValue= vBox.getValue();
