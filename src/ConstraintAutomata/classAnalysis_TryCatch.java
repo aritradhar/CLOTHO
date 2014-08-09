@@ -1,3 +1,19 @@
+//*************************************************************************************
+//*********************************************************************************** *
+//author Aritra Dhar																* *
+//MT12004																			* *
+//M.TECH CSE																		* * 
+//INFORMATION SECURITY																* *
+//IIIT-Delhi																		* *	 
+//---------------------------------------------------------------------------------	* *																				* *
+/////////////////////////////////////////////////									* *
+//The program will do the following::::         //									* *
+/////////////////////////////////////////////////									* *
+//version 1.0																		* *
+//*********************************************************************************** * 
+//*************************************************************************************
+
+
 package ConstraintAutomata;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,7 +60,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 			}
 		}
 		
-		System.out.println("^^^^" + nextStmt.toString());
+		//System.out.println("^^^^" + nextStmt.toString());
 		return nextStmt;
 	}
 	
@@ -76,7 +92,8 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		 while(itbox.hasNext())
 		 {
 			 ValueBox tempBox = itbox.next();
-			 System.out.println(tempBox.toString());
+			 //test
+			 //System.out.println(tempBox.toString());
 			 if(tempBox.toString().contains("LinkedRValueBox"))
 			 {
 				 v_patch_candidate = tempBox.getValue();
@@ -99,7 +116,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		 while(itbox.hasNext())
 		 {
 			 ValueBox tempBox = itbox.next();
-			 System.out.println(tempBox.toString());
+			 //System.out.println(tempBox.toString());
 			 if(tempBox.toString().contains("LinkedRValueBox"))
 			 {
 				 v_patch_candidate = tempBox.getValue();

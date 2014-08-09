@@ -17,12 +17,19 @@ public class Test1
 		Object obj = new Integer(0);
 	    try{
 		System.out.println((String)obj);
+		
 	    }
 	    catch(ClassCastException e)
 	    {
 	    	System.err.println("cast");
 	    	System.out.println(obj);
 	    }
+	    
+	    /*
+	    Integer a1 =10;
+		Object a2 = (Object) a1;
+		Double a3 = (Double) a2;
+	    */
 	    
 	    
 	    int []arr = new int[c];
