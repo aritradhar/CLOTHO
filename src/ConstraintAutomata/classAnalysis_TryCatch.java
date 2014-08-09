@@ -84,6 +84,53 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		 return v_patch_candidate;
 	}
 	
+	
+	
+	public Local getDenomFromDivision(Unit unit, HashMap<String, Local> string_localmap)
+	{
+		 Iterator<ValueBox> vbox_it = unit.getUseAndDefBoxes().iterator();
+		 
+		 Local denom = null;
+		 
+		 while(vbox_it.hasNext())
+		 {
+
+			 ValueBox temp = vbox_it.next();
+			 String temp_s = temp.toString();
+			 
+			 if(temp_s.contains("LinkedRValueBox"))
+			 {
+				 // blank space after division operator 
+				 temp_s = temp_s.substring(temp_s.indexOf("/")+2, temp_s.indexOf(")")); 
+				 denom = (string_localmap.containsKey(temp_s)) ? string_localmap.get(temp_s) : null;
+			 }
+		 }
+		 
+		 return denom;
+	}
+	
+	
+	public Local getNumorFromDivision(Unit unit, HashMap<String, Local> string_localmap)
+	{
+		Iterator<ValueBox> vbox_it = unit.getUseAndDefBoxes().iterator();
+		 Local numar = null;
+		 while(vbox_it.hasNext())
+		 {
+			 ValueBox temp = vbox_it.next();
+			 String temp_s = temp.toString();
+			 if(temp_s.contains("LinkedRValueBox"))
+			 {
+				 // blank space after division operator 
+				 temp_s = temp_s.substring(temp_s.indexOf("(") + 1, temp_s.indexOf("/") - 1); 
+				 numar = (string_localmap.containsKey(temp_s)) ? string_localmap.get(temp_s) : null;
+			 }
+		 }
+		 
+		 return numar;
+	}
+	
+	
+	
 	public Value getArrayFromArrayExpr(Unit unit)
 	{
 		 List<ValueBox> boxl = unit.getUseAndDefBoxes();
@@ -306,7 +353,11 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 else
 	    			 flag = 99;
 	    	 }
+	    	 
+	    	 //check for class casting operation in the statements
 	    		 
+	    	 
+	    	 
 	    	 //handle non-Invoke expressions
 	    	 if (!stmt.containsInvokeExpr() && flag!=4 && flag!=99)
 	    	 {
@@ -494,8 +545,49 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 }
 	    	 
 	    	 
+	    	 boolean divisionOption = false;
 	    	 
-	    	 if (flag == 2)
+	    	 if (flag == 2 && !divisionOption)
+	    	 {
+	    		 System.out.println("#### Divide by Zero Exception may happen ####");
+	    		 
+	    		 Value v = getLeftHandFromDivision(unit);
+	    		 Local l1 =(Local) v;
+	    		 Local lhs = string_localmap.containsKey(l1.toString()) ? string_localmap.get(l1.toString()) : null;
+	    		 
+	    		 Local denom_toPatch = getDenomFromDivision(unit, string_localmap);
+	    		 
+	    		 Local numor = getNumorFromDivision(unit, string_localmap);
+	    		 
+	    		 //make the try-catch probe
+	    		 try_start_stmt = stmt;
+    			 try_end_stmt = (Stmt) ch.getSuccOf(stmt);
+    			 
+    			 
+    			 List<Stmt> probe = new ArrayList<Stmt>();
+    	    	 SootClass thrwCls = Scene.v().getSootClass("java.lang.ArithmeticException");
+    	    	 Stmt sGotoLast = Jimple.v().newGotoStmt(try_end_stmt);
+    	    	 probe.add(sGotoLast);
+    	    	 
+    	    	 //prepare for catch block
+    	    	 Local lException1 = UtilInstrum.getCreateLocal(jbody, "<ex2>", RefType.v(thrwCls));
+    	    	 Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
+    	    	 probe.add(sCatch);
+    	    	 
+    	    	 AssignStmt oneAssign = Jimple.v().newAssignStmt(denom_toPatch, IntConstant.v(1));
+	    		 probe.add(oneAssign);
+	    		 DivExpr divExpr = Jimple.v().newDivExpr(numor, denom_toPatch);
+	    		 AssignStmt divAssign = Jimple.v().newAssignStmt(lhs, divExpr);
+	    		 probe.add(divAssign);
+	    		 
+	    		 InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
+	    		 //instr
+	    		 jbody.getTraps().add(Jimple.v().newTrap(thrwCls, try_start_stmt, sGotoLast, sCatch));
+    	    	 jbody.validate();
+	    		 
+	    	 }
+	    	 
+	    	 if (flag == 2 && divisionOption)
 	    	 {
 	    		 //Handles by making the lhs to 1
 	    		 System.out.println("#### Divide by Zero Exception may happen ####");

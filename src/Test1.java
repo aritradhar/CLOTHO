@@ -35,6 +35,8 @@ public class Test1
 		int index1 = a / b;
 		int x = array[index];
 		int y = array[a-b];
-		return index;
+		arr[0] = 9999;
+		arri[0] = 1;
+		return index1;
 	}
 }
