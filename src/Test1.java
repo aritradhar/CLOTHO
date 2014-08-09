@@ -14,7 +14,7 @@ public class Test1
 	
 	public int fun(int[] array, int a, int b,int c)
 	{
-	    
+	    /*
 	    Integer []a1 ={10};
 	    Integer a2 =10;
 		Object a3 = (Object) a1;
@@ -24,7 +24,7 @@ public class Test1
 		Double a6 = (Double) a3 + a4 ;
 	    
 		System.out.println(a6);
-	    
+	    */
 	    int []arr = new int[c];
 	    Integer []arri = new Integer[c];
 	    

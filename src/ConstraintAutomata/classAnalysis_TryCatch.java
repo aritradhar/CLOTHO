@@ -151,7 +151,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	}
 	
 	
-	public Local getNewArray(Type type)
+	public Local getNewArray(Type type, int ARRAY_SIZE, Body jbody)
 	{
 		Local arg = null;
 		String stype = type.toString();
@@ -159,34 +159,34 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		
 		//handle basic types
 		if(stype.equals("int[]"))
-   			 arg = Jimple.v().newLocal("<NewArr>", ArrayType.v(IntType.v(), 1));
+			 arg = generateNewLocal(jbody, ArrayType.v(IntType.v(), ARRAY_SIZE));
 		
 		if(stype.equals("float[]"))
-  			 arg = Jimple.v().newLocal("<NewArr>", ArrayType.v(FloatType.v(), 1));
+			arg = generateNewLocal(jbody, ArrayType.v(FloatType.v(), ARRAY_SIZE));
 		
 		if(stype.equals("double[]"))
-  			 arg = Jimple.v().newLocal("<NewArr>", ArrayType.v(DoubleType.v(), 1));
+			arg = generateNewLocal(jbody, ArrayType.v(DoubleType.v(), ARRAY_SIZE));
 		
 		if(stype.equals("char[]"))
-  			 arg = Jimple.v().newLocal("<NewArr>", ArrayType.v(CharType.v(), 1));
+			arg = generateNewLocal(jbody, ArrayType.v(CharType.v(), ARRAY_SIZE));
 		
 		if(stype.equals("long[]"))
-  			 arg = Jimple.v().newLocal("<NewArr>", ArrayType.v(LongType.v(), 1));
+			arg = generateNewLocal(jbody, ArrayType.v(LongType.v(), ARRAY_SIZE));
 		
 		if(stype.equals("short[]"))
- 			 arg = Jimple.v().newLocal("<NewArr>", ArrayType.v(ShortType.v(), 1));
+			arg = generateNewLocal(jbody, ArrayType.v(ShortType.v(), ARRAY_SIZE));
 		
 		if(stype.equals("byte[]"))
- 			 arg = Jimple.v().newLocal("<NewArr>", ArrayType.v(ByteType.v(), 1));
+			arg = generateNewLocal(jbody, ArrayType.v(ByteType.v(), ARRAY_SIZE));
 		
 		if(stype.equals("boolean[]"))
-			 arg = Jimple.v().newLocal("<NewArr>", ArrayType.v(BooleanType.v(), 1));
+			arg = generateNewLocal(jbody, ArrayType.v(BooleanType.v(), ARRAY_SIZE));
 		
 		//else resolve from class
 		else
 		{
 			stype = stype.substring(0,stype.indexOf('['));
-			arg = Jimple.v().newLocal("<NewArr>", ArrayType.v(RefType.v(stype), 1));
+			arg = generateNewLocal(jbody, ArrayType.v(RefType.v(stype), ARRAY_SIZE));
 		}
 		return arg;
 	}
@@ -508,9 +508,11 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		//get local///////////////////////////////
 	    		 Value v_temp = getIndexFromArrayExpr(unit);
 	  
+	    		 //local array element to be pased in the catch probe
 	    		 Value v_array = getArrayFromArrayExpr(unit);
 	    		 Local local_array = (string_localmap.containsKey(v_array.toString())) ? string_localmap.get(v_array.toString()) : null;
 	    		 
+	    		 //array type to be passed in the catch probe
 	    		 Type array_type = local_array.getType();
 	    		 System.out.println("$$$ " + array_type);
 	    		 
@@ -540,11 +542,13 @@ public class classAnalysis_TryCatch extends BodyTransformer
     	    	 //assign the index val
     	    	 AssignStmt oneAssign_1 = Jimple.v().newAssignStmt(index_to_patched, IntConstant.v(1));
 	    		 probe.add(oneAssign_1);
-	    		 //array reassign
-	    		 Local arg = null; 
-	    		 if(array_type.toString().contains("int"))
-	    			 arg = Jimple.v().newLocal("<NewArr>", ArrayType.v(IntType.v(), 1));
 	    		 
+	    		 //array reassign
+	    		 int ARRAY_SIZE = 1; //hard-coded array size
+	    		 Local arg = getNewArray(array_type, ARRAY_SIZE, jbody); 
+	    		 
+	    		 AssignStmt array_Assign = Jimple.v().newAssignStmt(local_array, arg);
+	    		 probe.add(array_Assign);
 	    		 //System.out.println(arg);
 
 	    		 
