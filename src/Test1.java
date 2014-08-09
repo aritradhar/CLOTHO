@@ -4,7 +4,7 @@ public class Test1
 {
 	public static void main(String[] ar)
 	{
-		int []array ={1,2,3,4};
+		int []array ={10,11,12,13};
 		int a = 2;
 		int b = 0;
 		int c = -1;
@@ -14,26 +14,21 @@ public class Test1
 	
 	public int fun(int[] array, int a, int b,int c)
 	{
-		Object obj = new Integer(0);
-	    try{
-		System.out.println((String)obj);
+	    
+	    Integer []a1 ={10};
+	    Integer a2 =10;
+		Object a3 = (Object) a1;
 		
-	    }
-	    catch(ClassCastException e)
-	    {
-	    	System.err.println("cast");
-	    	System.out.println(obj);
-	    }
+		Double a4 = 1.30;
+		Double a5 = 1.90;
+		Double a6 = (Double) a3 + a4 ;
 	    
-	    /*
-	    Integer a1 =10;
-		Object a2 = (Object) a1;
-		Double a3 = (Double) a2;
-	    */
-	    
+		System.out.println(a6);
 	    
 	    int []arr = new int[c];
-		
+	    Integer []arri = new Integer[c];
+	    
+	    
 		//int p = arr.length;
 		System.out.println(a+" "+b);
 		int index = a + b;
