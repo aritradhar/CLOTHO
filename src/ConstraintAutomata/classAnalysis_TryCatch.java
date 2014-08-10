@@ -239,7 +239,12 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		return arg;
 	}
 	
-	
+	/*
+	 * Returns JNewArrayExpr (var = newarray (type) [SIZE])
+	 * 
+	 * Type is resolved by separating primitive type or custom class
+	 * 
+	 */
 	public JNewArrayExpr getNewArrayExpr(Type type, Value ARRAY_SIZE)
 	{
 		JNewArrayExpr arg = null;
@@ -281,10 +286,22 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	}
 	
 	
+	/*
+	 * retuns in form | lhslocl | rhs local | cast type in string format | isCast|
+	 * isCast is a boolean entry to check if it is a cast statement or no
+	 * This is to ensure safety.
+	 * Output in terms of array of Objects as I need to keep different type
+	 * 
+	 * Exact type will be handled by type resolution method
+	 *  TODO
+	 */
+	
 	public Object[] processCastStamt(Unit unit, HashMap<String, Local> string_localmap)
 	{
-		 Object []output = new Object[3];
+		 Object []output = new Object[4];
 		
+		 Boolean isCast = false;
+		 
 		 Iterator<ValueBox> itv =unit.getUseAndDefBoxes().iterator();
 		 HashMap<String, Value> valbox_mp = new HashMap<>();
 		 
@@ -300,7 +317,9 @@ public class classAnalysis_TryCatch extends BodyTransformer
 			 {
 				 Value lhs= vBox.getValue();
 				 Local lhs_local = (string_localmap.containsKey(lhs.toString())) ? string_localmap.get(lhs.toString()) : null;
+				 output[0] = lhs_local;
 			 }
+			 
 			 if(strBox.contains("LinkedRValueBox"))
 			 {
 				 Value castValue= vBox.getValue();
@@ -311,12 +330,26 @@ public class classAnalysis_TryCatch extends BodyTransformer
 				 if(potentialCast && str_values[0].contains("(") && str_values[0].contains(")"))
 				 {
 					 String castClassStr = str_values[0].replace("(", "").replace(")", "");
-					 SootClass castClass = Scene.v().getSootClass(castClassStr);
-;	    					 String castedLocalString = str_values[1];
+					 
+					 /* may cause problem as it may be a primitive type
+					  * better to handle it on the fly
+					  * SootClass castClass = Scene.v().getSootClass(castClassStr);
+	    			  * rhs i.e. the casted object
+	    			  */
+					 
+					 String castedLocalString = str_values[1];
 					 //safe check
 					 Local castedLocal = (string_localmap.containsKey(castedLocalString)) ? string_localmap.get(castedLocalString) : null; 
 					 
+					 
+					 //safely assume that the statement is a cast statement
+					 isCast = true;
+					 
+					 output[1] = castedLocal;
+					 output[2] = castClassStr;
+					 output[3] = isCast;
 					 //System.out.println(castClass);
+					 
 				 }
 			 }
 		 }
@@ -399,37 +432,8 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 
 	    	 if(stmt instanceof AssignStmt)
 	    	 {
-	    		 Iterator<ValueBox> itv =unit.getUseAndDefBoxes().iterator();
-	    		 while(itv.hasNext())
-	    		 {
-	    			 ValueBox vBox = itv.next();
-	    			 String strBox = vBox.toString();
-	    			 System.out.println(strBox);
-	    			 
-	    			 if(strBox.contains("LinkedVariableBox"))
-	    			 {
-	    				 Value lhs= vBox.getValue();
-	    				 Local lhs_local = (string_localmap.containsKey(lhs.toString())) ? string_localmap.get(lhs.toString()) : null;
-	    			 }
-	    			 if(strBox.contains("LinkedRValueBox"))
-	    			 {
-	    				 Value castValue= vBox.getValue();
-	    				 String []str_values = vBox.getValue().toString().split(" ");
-	    				 
-	    				 boolean potentialCast = (str_values.length == 2) ? true : false;
-	    				 
-	    				 if(potentialCast && str_values[0].contains("(") && str_values[0].contains(")"))
-	    				 {
-	    					 String castClassStr = str_values[0].replace("(", "").replace(")", "");
-	    					 SootClass castClass = Scene.v().getSootClass(castClassStr);
-;	    					 String castedLocalString = str_values[1];
-	    					 //safe check
-	    					 Local castedLocal = (string_localmap.containsKey(castedLocalString)) ? string_localmap.get(castedLocalString) : null; 
-	    					 
-	    					 //System.out.println(castClass);
-	    				 }
-	    			 }
-	    		 }
+	    		 Object []out = processCastStamt(unit, string_localmap);
+	    		 
 	    	 }
 	    	 
 	    	 //check for class casting operation in the statements
