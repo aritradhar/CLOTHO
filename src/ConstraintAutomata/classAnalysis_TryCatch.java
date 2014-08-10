@@ -198,6 +198,32 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		 return string_localmap.containsKey(ret.toString());
 	}
 	
+	public Type getTypeFromString(String typeStr)
+	{
+		Type T = null;
+		
+		switch(typeStr)
+		{
+		case "int" : T = IntType.v();
+		break;
+		case "float" : T = FloatType.v();
+		break;
+		case "double" : T = DoubleType.v();
+		break;
+		case "byte" : T = ByteType.v();
+		break;
+		case "short" : T = ShortType.v();
+		break;
+		case "long" : T = LongType.v();
+		break;
+		case "char" : T = CharType.v();
+		break;
+		
+		default : T = RefType.v(typeStr);
+		}
+		
+		return T;
+	}
 	
 	public Local getNewArray(Type type, int ARRAY_SIZE, Body jbody)
 	{
@@ -287,7 +313,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	
 	
 	/*
-	 * retuns in form | lhslocl | rhs local | cast type in string format | isCast|
+	 * retuns in form | lhslocl | rhs local | cast type Type | isCast|
 	 * isCast is a boolean entry to check if it is a cast statement or no
 	 * This is to ensure safety.
 	 * Output in terms of array of Objects as I need to keep different type
@@ -346,7 +372,8 @@ public class classAnalysis_TryCatch extends BodyTransformer
 					 isCast = true;
 					 
 					 output[1] = castedLocal;
-					 output[2] = castClassStr;
+					 Type classCastType = getTypeFromString(castClassStr);
+					 output[2] = classCastType;
 					 output[3] = isCast;
 					 //System.out.println(castClass);
 					 
