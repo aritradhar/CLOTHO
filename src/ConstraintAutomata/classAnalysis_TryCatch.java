@@ -26,6 +26,7 @@ import profile.UtilInstrum;
 import soot.*;
 import soot.javaToJimple.LocalGenerator;
 import soot.jimple.*;
+import soot.jimple.internal.JArrayRef;
 import soot.jimple.internal.JNewArrayExpr;
 import soot.util.*;
 
@@ -228,39 +229,37 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	public Local getNewArray(Type type, int ARRAY_SIZE, Body jbody)
 	{
 		Local arg = null;
-		String stype = type.toString();
 		
 		//handle basic types
-		if(stype.equals("int[]"))
+		if(type == IntType.v().getArrayType())
 			 arg = generateNewLocal(jbody, ArrayType.v(IntType.v(), ARRAY_SIZE));
 
-		else if(stype.equals("float[]"))
+		else if(type == FloatType.v().getArrayType())
 			arg = generateNewLocal(jbody, ArrayType.v(FloatType.v(), ARRAY_SIZE));
 		
-		else if(stype.equals("double[]"))
+		else if(type == DoubleType.v().getArrayType())
 			arg = generateNewLocal(jbody, ArrayType.v(DoubleType.v(), ARRAY_SIZE));
 		
-		else if(stype.equals("char[]"))
+		else if(type == CharType.v().getArrayType())
 			arg = generateNewLocal(jbody, ArrayType.v(CharType.v(), ARRAY_SIZE));
 		
-		else if(stype.equals("long[]"))
+		else if(type == LongType.v().getArrayType())
 			arg = generateNewLocal(jbody, ArrayType.v(LongType.v(), ARRAY_SIZE));
 		
-		else if(stype.equals("short[]"))
+		else if(type == ShortType.v().getArrayType())
 			arg = generateNewLocal(jbody, ArrayType.v(ShortType.v(), ARRAY_SIZE));
 		
-		else if(stype.equals("byte[]"))
+		else if(type == ByteType.v().getArrayType())
 			arg = generateNewLocal(jbody, ArrayType.v(ByteType.v(), ARRAY_SIZE));
 		
-		else if(stype.equals("boolean[]"))
+		else if(type == BooleanType.v().getArrayType())
 			arg = generateNewLocal(jbody, ArrayType.v(BooleanType.v(), ARRAY_SIZE));
 		
 		//else resolve from class
 		else
 		{
-			String stype_t = stype.substring(0,stype.indexOf('['));
-			//System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%"+stype_t);
-			arg = generateNewLocal(jbody, ArrayType.v(RefType.v(stype_t), ARRAY_SIZE));
+			ArrayType art = (ArrayType) type;
+			arg = generateNewLocal(jbody, ArrayType.v(art, ARRAY_SIZE));
 		}
 		return arg;
 	}
@@ -475,15 +474,17 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 Iterator it_box  = usedefbox.iterator();
 	    	 int flag=0;
 	    	 
-	    	 if(unit.toString().contains("@parameter")) 
-	    		 continue; //handle new array separately
+	    	 if(stmt instanceof IdentityStmt) 
+	    		 continue;
 	    	 
 	    	 //handle GotoStmt separately
 	    	 if(stmt instanceof GotoStmt)
 	    		 continue;
-	    	 if(unit.toString().contains("newarray"))
+	    	 
+	    	 if(stmt instanceof AssignStmt)
 	    	 {
-	    		 if(isLocalArryIndex(string_localmap, unit))
+	    		 AssignStmt ast = (AssignStmt)stmt;
+	    		 if(ast.getRightOp() instanceof NewArrayExpr && isLocalArryIndex(string_localmap, unit))
 	    			 flag = 4;
 	    		 else
 	    			 flag = 99;
@@ -509,7 +510,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 //Flag 4 and 5 may happen together
 	    	 //TODO
 	    	 
-	    	 if (!stmt.containsInvokeExpr() && flag!=4 && flag!=99)
+	    	 if (flag != 4 && flag != 5)
 	    	 {
 	    		 while(it_box.hasNext())
 	    		 { 
@@ -567,7 +568,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 if(expr instanceof InterfaceInvokeExpr)
 	    		 {
 	    			 SootMethod expMethod = expr.getMethod();
-	    			 if(expMethod.getName().toString().equals("next") || expMethod.getName().toString().equals("nextLine"))// && expMethod.getDeclaringClass().toString().equals("java.util.Iterator"))
+	    			 if(expMethod.getName().equals("next") || expMethod.getName().equals("nextLine"))// && expMethod.getDeclaringClass().toString().equals("java.util.Iterator"))
 	    				 flag = 3;
 	    		 }
 	    	 }
@@ -585,13 +586,17 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 Local index_local = null;
 	    		 Local base_array_local = null;
 	    		 
-	    		 while(it_use_def.hasNext())
+	    		 AssignStmt astmt = (AssignStmt) stmt;
+				 Value lhs_array = astmt.getLeftOp();
+				 
+				 
+				 while(it_use_def.hasNext())
 	    		 {
 	    			 String tmp = it_use_def.next().toString();
 	    			 String index_variable_name = tmp;
 	    			 String base_array_variable_name = tmp;
 	    			 
-	    			 //System.out.println(temp);
+	    			 //System.out.println("@@ARRAY "+tmp);
 	    			 
 	    			 
 	    			 //////////////////////////////////////////////////////////////////////////////////////
@@ -680,6 +685,14 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 
 	    			 AssignStmt zeroAssign = Jimple.v().newAssignStmt(array_length_left_local, IntConstant.v(0));
 	    			 probe.add(zeroAssign);
+	    			 
+	    			 //array assign
+	    			 ArrayRef arrayRef = Jimple.v().newArrayRef(base_array_local, array_length_left_local);
+	    			 AssignStmt arrayAssign = Jimple.v().newAssignStmt(lhs_array, arrayRef);
+	    			 probe.add(arrayAssign);
+	    			 
+	    			 
+	    			 //probe.add(arrayRef);
 	    	    	 /////////////////////////////////////////////////////
 	    	    	 InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
 	    			

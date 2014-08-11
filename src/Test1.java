@@ -55,8 +55,10 @@ public class Test1
 		int index1 = a / b;
 		int x = array[index];
 		int y = array[a-b];
-		arr[0] = 9999;
-		arri[0] = 1;
-		return index1;
+		
+		System.out.println(arr[index + 3]);
+		//arr[0] = 9999;
+		//arri[0] = 1;
+		return y;
 	}
 }
