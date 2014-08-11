@@ -273,41 +273,39 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	 */
 	public JNewArrayExpr getNewArrayExpr(Type type, Value ARRAY_SIZE)
 	{
-		JNewArrayExpr arg = null;
-		String stype = type.toString();
-		
+		JNewArrayExpr arg = null;		
 		
 		//handle basic types
-		if(stype.equals("int[]"))
+		if(type == IntType.v().getArrayType())
 			 arg = new JNewArrayExpr(IntType.v(), ARRAY_SIZE);
 
-		else if(stype.equals("float[]"))
+		else if(type == FloatType.v().getArrayType())
 			arg = new JNewArrayExpr(FloatType.v(), ARRAY_SIZE);
 		
-		else if(stype.equals("double[]"))
+		else if(type == IntType.v().getArrayType())
 			arg = new JNewArrayExpr(DoubleType.v(), ARRAY_SIZE);
 		
-		else if(stype.equals("char[]"))
+		else if(type == CharType.v().getArrayType())
 			arg = new JNewArrayExpr(CharType.v(), ARRAY_SIZE);
 		
-		else if(stype.equals("long[]"))
+		else if(type == LongType.v().getArrayType())
 			arg = new JNewArrayExpr(LongType.v(), ARRAY_SIZE);
 		
-		else if(stype.equals("short[]"))
+		else if(type == ShortType.v().getArrayType())
 			arg = new JNewArrayExpr(ShortType.v(), ARRAY_SIZE);
 		
-		else if(stype.equals("byte[]"))
+		else if(type == ByteType.v().getArrayType())
 			arg = new JNewArrayExpr(ByteType.v(), ARRAY_SIZE);
 		
-		else if(stype.equals("boolean[]"))
+		else if(type == BooleanType.v().getArrayType())
 			arg = new JNewArrayExpr(BooleanType.v(), ARRAY_SIZE);
 		
 		//else resolve from class
 		else
 		{
-			String stype_t = stype.substring(0,stype.indexOf('['));
-			//System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%"+stype_t);
-			arg = new JNewArrayExpr(RefType.v(stype_t), ARRAY_SIZE);
+			ArrayType art = (ArrayType) type;
+			//System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%"+art.baseType);
+			arg = new JNewArrayExpr(art.baseType, ARRAY_SIZE);
 		}
 		return arg;
 	}
@@ -340,9 +338,10 @@ public class classAnalysis_TryCatch extends BodyTransformer
 				 CastExpr cast = (CastExpr) v;
 				 castType = cast.getCastType();
 				 output[2] = castType;
-				 output[3] = true;
+				//potential casting
+				 output[3] = true;  
 				 
-				 System.out.println("$$$$$$  "+ output[0]+" : "+ output[1]+" : "+ output[2]+" : "+ output[3]);
+				 //System.out.println("$$$$$$  "+ output[0]+" : "+ output[1]+" : "+ output[2]+" : "+ output[3]);
 				 
 				 return output;
 			 }
@@ -600,7 +599,6 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 if(index_variable_name.contains("ImmediateBox"))
 	    			 {
 	    				 index_variable_name = index_variable_name.substring(index_variable_name.indexOf("(") + 1,index_variable_name.indexOf(")"));
-	    				 
 	    				 //System.out.println(":::"+index_variable_name);
 	    				 
 	    				 if(string_localmap.containsKey(index_variable_name))
@@ -824,7 +822,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 
 	    		 //array type to be passed in the catch probe
 	    		 Type array_type = local_array.getType();
-	    		 //System.out.println("$$$ " + array_type);
+	    		 //System.out.println("$$$ " + local_array);
 	    		 
 	    		 Local index_to_patched = string_localmap.containsKey(v_temp.toString()) ? string_localmap.get(v_temp.toString()) : null;
 	    		 
