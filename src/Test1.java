@@ -23,6 +23,7 @@ public class Test1
 		Double a5 = 1.90;
 		
 		
+		@SuppressWarnings("unused")
 		double a16 = (double) a3 + a2 ;
 		Double a6 = (Double) a3 + a4 ;
 	    

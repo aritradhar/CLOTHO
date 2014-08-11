@@ -319,7 +319,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	 * Output in terms of array of Objects as I need to keep different type
 	 * 
 	 * Exact type will be handled by type resolution method
-	 *  TODO
+	 * getTypeFromString()
 	 */
 	
 	public Object[] processCastStamt(Unit unit, HashMap<String, Local> string_localmap)
@@ -459,7 +459,8 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 
 	    	 if(stmt instanceof AssignStmt)
 	    	 {
-	    		 Object []out = processCastStamt(unit, string_localmap);
+	    		 @SuppressWarnings("unused")
+				Object []out = processCastStamt(unit, string_localmap);
 	    		 
 	    	 }
 	    	 
