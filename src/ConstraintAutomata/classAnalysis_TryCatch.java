@@ -204,22 +204,22 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		
 		switch(typeStr)
 		{
-		case "int" : T = IntType.v();
-		break;
-		case "float" : T = FloatType.v();
-		break;
-		case "double" : T = DoubleType.v();
-		break;
-		case "byte" : T = ByteType.v();
-		break;
-		case "short" : T = ShortType.v();
-		break;
-		case "long" : T = LongType.v();
-		break;
-		case "char" : T = CharType.v();
-		break;
+			case "int" : T = IntType.v();
+			break;
+			case "float" : T = FloatType.v();
+			break;
+			case "double" : T = DoubleType.v();
+			break;
+			case "byte" : T = ByteType.v();
+			break;
+			case "short" : T = ShortType.v();
+			break;
+			case "long" : T = LongType.v();
+			break;
+			case "char" : T = CharType.v();
+			break;
 		
-		default : T = RefType.v(typeStr);
+			default : T = RefType.v(typeStr);
 		}
 		
 		return T;
@@ -426,6 +426,16 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	     int stmt_counter = 0;
 	     
 	 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+	     
+	     /*
+	      * flag description
+	      * flag = 99 don't process
+	      * flag = 1 array index
+	      * flag = 2 division
+	      * flag = 3 no such element
+	      * flag = 4 negative sized array
+	      * flag = 5 class cast   
+	      */
 	     while(it.hasNext())
 	     {
 	    	 ++stmt_counter;
@@ -459,9 +469,13 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 
 	    	 if(stmt instanceof AssignStmt)
 	    	 {
-	    		 @SuppressWarnings("unused")
 				Object []out = processCastStamt(unit, string_localmap);
-	    		 
+	    		
+				boolean isCast = (boolean)out[3];
+	    		
+				//TODO
+				if(isCast)
+	    			flag = 5; 
 	    	 }
 	    	 
 	    	 //check for class casting operation in the statements
