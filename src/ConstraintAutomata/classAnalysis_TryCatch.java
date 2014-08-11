@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 import profile.InstrumManager;
 import profile.UtilInstrum;
@@ -198,6 +197,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		 return string_localmap.containsKey(ret.toString());
 	}
 	
+	
 	public Type getTypeFromString(String typeStr)
 	{
 		Type T = null;
@@ -276,6 +276,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		JNewArrayExpr arg = null;
 		String stype = type.toString();
 		
+		
 		//handle basic types
 		if(stype.equals("int[]"))
 			 arg = new JNewArrayExpr(IntType.v(), ARRAY_SIZE);
@@ -324,8 +325,30 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	
 	public Object[] processCastStamt(Unit unit, HashMap<String, Local> string_localmap)
 	{
-		 Object []output = new Object[4];
-		
+		 Object []output = new Object[4];		 
+		 
+		 Type castType = null;
+		 
+		 if((Stmt)unit instanceof AssignStmt)
+		 {
+			 AssignStmt astmt = (AssignStmt) unit;
+			 Value v = astmt.getRightOp();
+			 if(v instanceof CastExpr)
+			 {
+				 output[0] = astmt.getLeftOp();
+				 output[1] = astmt.getRightOp();
+				 CastExpr cast = (CastExpr) v;
+				 castType = cast.getCastType();
+				 output[2] = castType;
+				 output[3] = true;
+				 
+				 System.out.println("$$$$$$  "+ output[0]+" : "+ output[1]+" : "+ output[2]+" : "+ output[3]);
+				 
+				 return output;
+			 }
+		 }
+		 output[3] = false;
+		 /*
 		 Boolean isCast = false;
 		 
 		 Iterator<ValueBox> itv =unit.getUseAndDefBoxes().iterator();
@@ -362,7 +385,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 					  * SootClass castClass = Scene.v().getSootClass(castClassStr);
 	    			  * rhs i.e. the casted object
 	    			  */
-					 
+					 /*
 					 String castedLocalString = str_values[1];
 					 //safe check
 					 Local castedLocal = (string_localmap.containsKey(castedLocalString)) ? string_localmap.get(castedLocalString) : null; 
@@ -380,8 +403,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 					 
 				 }
 			 }
-		 }
-		output[3] = isCast;
+		 }*/
 		return output;
 	}
 	
@@ -468,10 +490,10 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 flag = 99;
 	    	 }
 	    	 
-	    	 if(stmt instanceof AssignStmt)
+	    	 if(stmt instanceof AssignStmt && flag!=99)
 	    	 {
 				Object []out = processCastStamt(unit, string_localmap);
-	    		
+			
 				boolean isCast = (boolean)out[3];
 	    		
 				//TODO
@@ -484,6 +506,10 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 
 	    	 
 	    	 //handle non-Invoke expressions
+	    	 
+	    	 //Flag 4 and 5 may happen together
+	    	 //TODO
+	    	 
 	    	 if (!stmt.containsInvokeExpr() && flag!=4 && flag!=99)
 	    	 {
 	    		 while(it_box.hasNext())
@@ -773,6 +799,10 @@ public class classAnalysis_TryCatch extends BodyTransformer
     	    	 Local lException1 = UtilInstrum.getCreateLocal(jbody, "<ex2>", RefType.v(thrwCls));
     	    	 Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
     	    	 probe.add(sCatch);
+    	    	 
+    	    	//stmt for catch block
+    	    	//TODO
+    	    	 
     	    	 
     	    	 InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
 	    		 //instrumentation

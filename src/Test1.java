@@ -17,7 +17,7 @@ public class Test1
 	
 	public int fun(int[] array, int a, int b,int c)
 	{
-	    ArrayList<Integer> ar = new ArrayList<Integer>();
+	    /*ArrayList<Integer> ar = new ArrayList<Integer>();
 	    ar.add(1);
 	    ar.add(3);
 	    ar.add(4);
@@ -29,7 +29,7 @@ public class Test1
 	    System.out.println(it.next());
 	    System.out.println(it.next());
 	    System.out.println(it.next());
-	    
+	    */
 	    
 	    Integer []a1 ={10};
 	    Integer a2 =10;
