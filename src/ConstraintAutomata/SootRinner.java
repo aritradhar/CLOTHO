@@ -35,6 +35,7 @@ import soot.*;
            */
           
           Scene.v().addBasicClass("java.util.ArrayList",SootClass.SIGNATURES);
+          Scene.v().addBasicClass("java.util.NoSuchElementException",SootClass.SIGNATURES);
           soot.Main.main(args);
           
           

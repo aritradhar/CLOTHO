@@ -375,12 +375,13 @@ public class classAnalysis_TryCatch extends BodyTransformer
 					 Type classCastType = getTypeFromString(castClassStr);
 					 output[2] = classCastType;
 					 output[3] = isCast;
+					 return output;
 					 //System.out.println(castClass);
 					 
 				 }
 			 }
 		 }
-		
+		output[3] = isCast;
 		return output;
 	}
 	
@@ -748,7 +749,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 probe.add(oneAssign);
 	    		 
 	    		 InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
-	    		 //instr
+	    		 //instrumentation
 	    		 jbody.getTraps().add(Jimple.v().newTrap(thrwCls, try_start_stmt, sGotoLast, sCatch));
     	    	 jbody.validate();
 	    		 
@@ -764,9 +765,19 @@ public class classAnalysis_TryCatch extends BodyTransformer
     			 try_end_stmt = (Stmt) ch.getSuccOf(stmt);
     			 
     			 List<Stmt> probe = new ArrayList<Stmt>();
-    	    	 SootClass thrwCls = Scene.v().getSootClass("java.lang.ArithmeticException");
+    	    	 SootClass thrwCls = Scene.v().loadClassAndSupport("java.util.NoSuchElementException");
     	    	 Stmt sGotoLast = Jimple.v().newGotoStmt(try_end_stmt);
     	    	 probe.add(sGotoLast);
+    	    	 
+    	    	 //prepare for catch block
+    	    	 Local lException1 = UtilInstrum.getCreateLocal(jbody, "<ex2>", RefType.v(thrwCls));
+    	    	 Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
+    	    	 probe.add(sCatch);
+    	    	 
+    	    	 InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
+	    		 //instrumentation
+	    		 jbody.getTraps().add(Jimple.v().newTrap(thrwCls, try_start_stmt, sGotoLast, sCatch));
+    	    	 jbody.validate();
 	    		 
 	    	 }
 	    	 if(flag == 4)
@@ -802,7 +813,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
     	    	 probe.add(sGotoLast);
     	    	 
     	    	 //prepare for catch block
-    	    	 Local lException1 = UtilInstrum.getCreateLocal(jbody, "<ex3>", RefType.v(thrwCls));
+    	    	 Local lException1 = UtilInstrum.getCreateLocal(jbody, "<ex4>", RefType.v(thrwCls));
     	    	 Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
     	    	 probe.add(sCatch);
     	    	 

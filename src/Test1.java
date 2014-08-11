@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
 
 
 public class Test1 
@@ -14,6 +17,19 @@ public class Test1
 	
 	public int fun(int[] array, int a, int b,int c)
 	{
+	    ArrayList<Integer> ar = new ArrayList<Integer>();
+	    ar.add(1);
+	    ar.add(3);
+	    ar.add(4);
+	    ar.add(5);
+	    Iterator<Integer> it = ar.iterator();
+	    
+	    System.out.println(it.next());
+	    System.out.println(it.next());
+	    System.out.println(it.next());
+	    System.out.println(it.next());
+	    System.out.println(it.next());
+	    
 	    
 	    Integer []a1 ={10};
 	    Integer a2 =10;
