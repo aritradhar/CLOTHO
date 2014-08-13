@@ -8,8 +8,8 @@ public class Test1
 	public static void main(String[] ar)
 	{
 		int []array ={10,11,12,13};
-		int a = 2;
-		int b = 0;
+		int a = 0;
+		int b = 2;
 		int c = -1;
 		int out = new Test1().fun(array, a, b, c);
 		System.out.println(out);
@@ -30,7 +30,7 @@ public class Test1
 	    System.out.println(it.next());
 	    System.out.println(it.next());
 	    */
-	    
+	    /*
 	    Integer []a1 ={10};
 	    Integer a2 =10;
 		Object a3 = (Object) a1;
@@ -44,7 +44,8 @@ public class Test1
 		Double a6 = (Double) a3 + a4 ;
 	    
 		System.out.println(a6);
-	    
+	    */
+		
 	    int []arr = new int[c];
 	    Integer []arri = new Integer[c];
 	    
@@ -55,6 +56,11 @@ public class Test1
 		int index1 = a / b;
 		int x = array[index];
 		int y = array[a-b];
+		
+		if(y<1)
+			y=1;
+		else
+			y=2;
 		
 		System.out.println(arr[index + 3]);
 		//arr[0] = 9999;

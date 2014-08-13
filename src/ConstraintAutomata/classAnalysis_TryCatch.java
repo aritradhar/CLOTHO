@@ -27,6 +27,8 @@ import soot.*;
 import soot.javaToJimple.LocalGenerator;
 import soot.jimple.*;
 import soot.jimple.internal.JArrayRef;
+import soot.jimple.internal.JLeExpr;
+import soot.jimple.internal.JLengthExpr;
 import soot.jimple.internal.JNewArrayExpr;
 import soot.util.*;
 
@@ -198,7 +200,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		 return string_localmap.containsKey(ret.toString());
 	}
 	
-	
+	//now not required
 	public Type getTypeFromString(String typeStr)
 	{
 		Type T = null;
@@ -546,9 +548,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    				 flag = 1;
 	    				 break;
 	    			 }
-	    			 
-	    			 
-	    			 
+	    			 	    			 	    			 
 	    	    
 	    			 if(str.contains("/"))
 	    			 {
@@ -580,8 +580,8 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 Boolean t1 = false, t2 = false;
 	    		 
 	    		 //instrument invariant
-	    		 List usedefbox_in = unit.getUseAndDefBoxes();
-	    		 Iterator it_use_def = usedefbox_in.iterator();
+	    		 List<ValueBox> usedefbox_in = unit.getUseAndDefBoxes();
+	    		 Iterator<ValueBox> it_use_def = usedefbox_in.iterator();
 	    		 
 	    		 Local index_local = null;
 	    		 Local base_array_local = null;
@@ -592,7 +592,8 @@ public class classAnalysis_TryCatch extends BodyTransformer
 				 
 				 while(it_use_def.hasNext())
 	    		 {
-	    			 String tmp = it_use_def.next().toString();
+					 ValueBox vBox =  it_use_def.next();
+	    			 String tmp = vBox.toString();
 	    			 String index_variable_name = tmp;
 	    			 String base_array_variable_name = tmp;
 	    			 
@@ -614,22 +615,22 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 //look for base array in the Jimple local box
 	    			 if(base_array_variable_name.contains("JimpleLocalBox"))
 	    			 {
-	    				 base_array_variable_name = base_array_variable_name.substring(base_array_variable_name.indexOf("(") + 1,base_array_variable_name.indexOf(")"));
-	    				 
+	    				 base_array_variable_name = base_array_variable_name.substring(base_array_variable_name.indexOf("(") + 1,base_array_variable_name.indexOf(")"));	    				 
 	    				 //System.out.println(":::"+base_array_variable_name);
 	    				 
 	    				 if(string_localmap.containsKey(base_array_variable_name))
 	    					 t2 = true;
 	    				 	    				 
-	    			 }
-	    			 
-	    			 
+	    			 }	    			 	    			 
 	    			 ////////////////////////////////////////////////////////////////////////////////////////
+	    			 
 	    			 if(string_localmap.containsKey(index_variable_name) && t1 && t2)
-	    				 index_local = string_localmap.get(index_variable_name);
+	    				 index_local = (Local) vBox.getValue();
+	    				 //index_local = string_localmap.get(index_variable_name);
 	    			 /////////////////////////////////////////////////////////////////////////////////////////
-	    			 if(string_localmap.containsKey(base_array_variable_name))	    						 
-	    				 base_array_local = string_localmap.get(base_array_variable_name);
+	    			 if(string_localmap.containsKey(base_array_variable_name))	  
+	    				 base_array_local = (Local) vBox.getValue();
+	    				 //base_array_local = string_localmap.get(base_array_variable_name);
 	    				 //System.out.println(base_array_local.toString());
 	    			 
 	    			 ////////////////////////////////////////////////////////////////////////////////////////
@@ -682,9 +683,33 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 AssignStmt normalize_assign = Jimple.v().newAssignStmt(array_length_left_local, normalize_expr);
 	    			 */
 	    			 //probe.add(normalize_assign);
-	    			 
 	    			 AssignStmt zeroAssign = Jimple.v().newAssignStmt(array_length_left_local, IntConstant.v(0));
 	    			 probe.add(zeroAssign);
+	    			 
+	    			 LengthExpr lenExpr = Jimple.v().newLengthExpr(base_array_local);
+	    			 AssignStmt LenAssign = Jimple.v().newAssignStmt(array_length_left_local, lenExpr);
+	    			// probe.add(LenAssign);
+	    			 
+	    			 
+	    			 //Less than expr
+	    			  
+	    			 //LeExpr lessExpr = Jimple.v().newLeExpr(array_length_left_local,IntConstant.v(-1));
+	    			 //IfStmt ifstmt = Jimple.v().newIfStmt(lessExpr, zeroAssign);
+	    			 //probe.add(ifstmt);
+	    			 
+	    			 LeExpr lessExpr = Jimple.v().newLeExpr(array_length_left_local,IntConstant.v(-1));
+	    			 IfStmt ifStmt = Jimple .v().newIfStmt(lessExpr , zeroAssign);
+	    			 probe.add(ifStmt);
+
+	    			 
+	    			 //GeExpr geExpr = Jimple.v().newGeExpr(array_length_left_local,IntConstant.v(-1));
+	    			 //IfStmt ifStmt1 = Jimple .v().newIfStmt(geExpr , LenAssign);
+	    			 //probe.add(ifStmt1);	  
+	    			 
+	    			 //probe.add(zeroAssign);
+	    			 
+	    			 //greater than expr	    			  
+	    			
 	    			 
 	    			 //array assign
 	    			 ArrayRef arrayRef = Jimple.v().newArrayRef(base_array_local, array_length_left_local);
@@ -829,7 +854,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		//get local///////////////////////////////
 	    		 Value v_temp = getIndexFromArrayExpr(unit);
 	  
-	    		 //local array element to be pased in the catch probe
+	    		 //local array element to be passed in the catch probe
 	    		 Value v_array = getArrayFromArrayExpr(unit);
 	    		 Local local_array = (string_localmap.containsKey(v_array.toString())) ? string_localmap.get(v_array.toString()) : null;
 	    		 
@@ -917,5 +942,3 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	     //System.out.println(ch.toString());
 
 }
-
-
