@@ -18,17 +18,21 @@ package ConstraintAutomata;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import soot.ArrayType;
 import soot.Body;
 import soot.BodyTransformer;
+import soot.Local;
 import soot.PatchingChain;
 import soot.SootMethod;
 import soot.Unit;
 import soot.Value;
 import soot.ValueBox;
+import soot.jimple.ArrayRef;
 import soot.jimple.AssignStmt;
+import soot.jimple.IdentityStmt;
 import soot.jimple.NewArrayExpr;
 import soot.jimple.Stmt;
 
@@ -44,7 +48,7 @@ public class ArrayLookAhead extends BodyTransformer
 	     PatchingChain<Unit> ch=jbody.getUnits();     	     
 	     Iterator<Unit> it = ch.snapshotIterator();
 	     
-	     HashMap<Integer, Value> stmtCounterMap = new HashMap<>();
+	     HashMap<Integer, Local> newArrayExprMap = new HashMap<>();
 	     Integer stmtCounter = 0;
 	     
 	     
@@ -55,6 +59,11 @@ public class ArrayLookAhead extends BodyTransformer
 	    	 Stmt stmt = (Stmt) unit;
 	    	 boolean flag = false;
 	    	 
+	    	 //ignore all identity statement
+	    	 if(stmt instanceof IdentityStmt)
+	    		 continue;
+	    	 
+	    	 
 	    	 if(stmt instanceof AssignStmt)
 	    		 
 	    	 {
@@ -64,27 +73,57 @@ public class ArrayLookAhead extends BodyTransformer
 	    		 
 	    		 if(rhs instanceof NewArrayExpr)
 	    		 {
-	    			 stmtCounterMap.put(stmtCounter, lhs);
+	    			 newArrayExprMap.put(stmtCounter, (Local)lhs);
 	    			 flag = true;
+	    		 }
+	    		 
+	    		 if(rhs instanceof ArrayRef)
+	    		 {
+	    			 
+	    			 ArrayRef aRef = stmt.getArrayRef();
+	    			 Value arrayBaseValue = aRef.getBase();
+	    			 Value arrayIndexValue = aRef.getIndex();
+	    			 
+	    			 System.out.println("#####   "+stmt+" "+arrayBaseValue+" "+arrayIndexValue);
 	    		 }
 	    	 }
 	    	 
 	    	 if(!flag)
 	    	 {
-	    		 Iterator<ValueBox> it_valBox= stmt.getUseAndDefBoxes().iterator();
+	    		 List<ValueBox> vlist= stmt.getUseAndDefBoxes();
+	    		 Iterator<ValueBox> it_valBox= vlist.iterator();
+	    		 
+	    		 int arrFlag = 0;
+	    		 Value tempVal = null;
 	    		 
 	    		 while(it_valBox.hasNext())
 	    		 {
-	    			 ValueBox vb = it_valBox.next();
 	    			 
+	    			 ValueBox vb = it_valBox.next();
 	    			 Value v = vb.getValue();
+	    			 
+	    			 if(vb.toString().contains("LinkedRValueBox"))
+	    			 {
+	    				 arrFlag++;
+	    				 tempVal = v;
+	    			 }
+	    			 
 	    			 if(v.getType() instanceof ArrayType)
-	    				 System.out.println(unit+"   ::  "+v);
+	    			 {	    		
+	    				 arrFlag++;
+	    				 //System.out.println(unit+"   ::  "+v);	
+	    				 //System.out.println(vlist);
+	    			 }
+	    			 
+	    			 if(arrFlag == 2)
+	    			 {
+	    				 //System.out.println(tempVal+"  "+tempVal.getType());
+	    			 }
 	    		 }
 	    	 }
 	     }
 	     
-	     System.out.println(stmtCounterMap.entrySet());
+	     System.out.println(newArrayExprMap.entrySet());
 	}
 
 }

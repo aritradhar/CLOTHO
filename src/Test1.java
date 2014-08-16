@@ -63,6 +63,7 @@ public class Test1
 		int y = array[a-b];
 		
 		int q = new Test1().fun1(array,y);
+		System.out.println(arri[x].hashCode());
 		
 		System.out.println(arr[index + 3]);
 		//arr[0] = 9999;

@@ -8,16 +8,16 @@
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
 <jmpPos sline="31" eline="31" spos="0" epos="0"/>
-<text info="[]" aType="ParamNamesTag"/>
+<text info="[a, b]" aType="ParamNamesTag"/>
 </attribute>
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
-<jmpPos sline="39" eline="39" spos="0" epos="0"/>
+<jmpPos sline="47" eline="47" spos="0" epos="0"/>
 <text info="[array, a, b, c]" aType="ParamNamesTag"/>
 </attribute>
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
-<jmpPos sline="87" eline="87" spos="0" epos="0"/>
+<jmpPos sline="103" eline="103" spos="0" epos="0"/>
 <text info="[]" aType="ParamNamesTag"/>
 </attribute>
 </attributes>
