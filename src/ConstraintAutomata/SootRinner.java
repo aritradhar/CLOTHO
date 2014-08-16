@@ -30,6 +30,7 @@ import soot.*;
           //jtp.add(new Transform("jtp.instrumenter", new VariableMonitor()));
     
           jtp.add(new Transform("jtp.instrumenter", new classAnalysis_TryCatch()));
+          //jtp.add(new Transform("jtp.instrumenter", new ArrayLookAhead()));
           /* Give control to Soot to process all options,
            * InvokeStaticInstrumenter.internalTransform will get called.
            */

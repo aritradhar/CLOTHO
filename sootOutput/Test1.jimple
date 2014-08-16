@@ -28,13 +28,21 @@ public class Test1 extends java.lang.Object
         return;
     }
 
-    public int fun(int[], int, int, int)
+    public void fun1()
     {
         Test1 this;
-        int[] array, arr, temp$5, temp$7, temp$13;
-        int a, b, c, index, temp$3, index1, temp$4, x, temp$6, y, temp$8, temp$9, temp$10, temp$11, temp$14, temp$15, temp$16;
+
+        this := @this: Test1;
+        return;
+    }
+
+    public int fun(int[], int, int, int)
+    {
+        Test1 this, temp$10;
+        int[] array, arr, temp$5, temp$7, temp$12;
+        int a, b, c, index, temp$3, index1, temp$4, x, temp$6, y, temp$8, temp$9, temp$13, temp$14, temp$15;
         java.lang.Integer[] arri;
-        java.io.PrintStream temp$0, temp$12;
+        java.io.PrintStream temp$0, temp$11;
         java.lang.StringBuffer temp$1;
         java.lang.String temp$2;
 
@@ -64,29 +72,15 @@ public class Test1 extends java.lang.Object
         temp$8 = a - b;
         temp$9 = temp$8;
         y = temp$7[temp$9];
-        if y < 1 goto label0;
-
-        goto label1;
-
-     label0:
-        nop;
-        temp$10 = 1;
-        y = temp$10;
-        goto label2;
-
-     label1:
-        nop;
-        temp$11 = 2;
-        y = temp$11;
-
-     label2:
-        nop;
-        temp$12 = <java.lang.System: java.io.PrintStream out>;
-        temp$13 = arr;
-        temp$14 = index;
-        temp$15 = temp$14 + 3;
-        temp$16 = temp$13[temp$15];
-        virtualinvoke temp$12.<java.io.PrintStream: void println(int)>(temp$16);
+        temp$10 = new Test1;
+        specialinvoke temp$10.<Test1: void <init>()>();
+        virtualinvoke temp$10.<Test1: void fun1()>();
+        temp$11 = <java.lang.System: java.io.PrintStream out>;
+        temp$12 = arr;
+        temp$13 = index;
+        temp$14 = temp$13 + 3;
+        temp$15 = temp$12[temp$14];
+        virtualinvoke temp$11.<java.io.PrintStream: void println(int)>(temp$15);
         return y;
     }
 

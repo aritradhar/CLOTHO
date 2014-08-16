@@ -27,6 +27,7 @@ import soot.*;
 import soot.javaToJimple.LocalGenerator;
 import soot.jimple.*;
 import soot.jimple.internal.JArrayRef;
+import soot.jimple.internal.JInvokeStmt;
 import soot.jimple.internal.JLeExpr;
 import soot.jimple.internal.JLengthExpr;
 import soot.jimple.internal.JNewArrayExpr;
@@ -468,12 +469,12 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 
 	    	 System.out.println(unit);
 	    	 
-	    	 List usedefbox = unit.getUseAndDefBoxes();
+	    	 List<ValueBox> usedefbox = unit.getUseAndDefBoxes();
 	    	 //System.out.println(usedefbox);
 	    	 
 	    	 
 	    	 //System.out.println(s);
-	    	 Iterator it_box  = usedefbox.iterator();
+	    	 Iterator<ValueBox> it_box  = usedefbox.iterator();
 	    	 int flag=0;
 	    	 
 	    	 if(stmt instanceof IdentityStmt) 
@@ -488,8 +489,8 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 AssignStmt ast = (AssignStmt)stmt;
 	    		 if(ast.getRightOp() instanceof NewArrayExpr && isLocalArryIndex(string_localmap, unit))
 	    			 flag = 4;
-	    		 else
-	    			 flag = 99;
+	    		 else if(ast.getRightOp() instanceof NewArrayExpr)
+	    			 flag = 99;	    		
 	    	 }
 	    	 
 	    	 if(stmt instanceof AssignStmt && flag!=99)
@@ -512,12 +513,19 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 //Flag 4 and 5 may happen together
 	    	 //TODO
 	    	 
-	    	 if (flag != 4 && flag != 5)
+	    	 if ((flag != 4 && flag != 5 && flag!=99))
 	    	 {
+	    		 
 	    		 while(it_box.hasNext())
 	    		 { 
-	    			 str = it_box.next().toString();
-	    			 //System.out.println(":::"+str);	 
+	    			 //str = it_box.next().toString();
+	    			 ValueBox vb = it_box.next();
+	    			 
+	    			 Value v = vb.getValue();
+	    			 if(v.getType() instanceof ArrayType)
+	    				 flag = 1;
+	    			 
+	    			 /*//System.out.println(":::"+str);	 
 	    			 int pos=0;
 	    			 for(int i=0;i<str.length();i++)
 	    			 {
@@ -547,13 +555,16 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    				 //System.out.println(" Array Index Out of Bound/ -ve index May occur");
 	    				 flag = 1;
 	    				 break;
-	    			 }
+	    			 }*/
 	    			 	    			 	    			 
 	    	    
-	    			 if(str.contains("/"))
+	    			 if(stmt instanceof AssignStmt)
 	    			 {
-	    				 flag = 2;
-	    				 continue;
+	    				 AssignStmt ast = (AssignStmt) stmt;
+	    				 Value valtemp = ast.getRightOp();
+	    				 if(valtemp instanceof DivExpr)
+	    					 flag = 2;
+	    				 //continue;
 	    			 }
 	    	    
 	    			 //System.out.print(str + ":::");
@@ -574,7 +585,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    	 }
 	    	 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	    	 
-	    	 if (flag == 1)
+	    	 if (flag == 1 && !(stmt instanceof JInvokeStmt))
 	    	 {
 	    		 System.out.println("#### Array Index Out of Bound/ -ve index May occur ####");
 	    		 Boolean t1 = false, t2 = false;
@@ -686,35 +697,22 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 AssignStmt zeroAssign = Jimple.v().newAssignStmt(array_length_left_local, IntConstant.v(0));
 	    			 probe.add(zeroAssign);
 	    			 
-	    			 LengthExpr lenExpr = Jimple.v().newLengthExpr(base_array_local);
-	    			 AssignStmt LenAssign = Jimple.v().newAssignStmt(array_length_left_local, lenExpr);
-	    			// probe.add(LenAssign);
-	    			 
-	    			 
-	    			 //Less than expr
-	    			  
-	    			 //LeExpr lessExpr = Jimple.v().newLeExpr(array_length_left_local,IntConstant.v(-1));
-	    			 //IfStmt ifstmt = Jimple.v().newIfStmt(lessExpr, zeroAssign);
-	    			 //probe.add(ifstmt);
+	    			 //LengthExpr lenExpr = Jimple.v().newLengthExpr(base_array_local);
+	    			 //AssignStmt LenAssign = Jimple.v().newAssignStmt(array_length_left_local, lenExpr);
+	    			// probe.add(LenAssign);	    			 	    			 
 	    			 
 	    			 LeExpr lessExpr = Jimple.v().newLeExpr(array_length_left_local,IntConstant.v(-1));
 	    			 IfStmt ifStmt = Jimple .v().newIfStmt(lessExpr , zeroAssign);
-	    			 probe.add(ifStmt);
-
-	    			 
-	    			 //GeExpr geExpr = Jimple.v().newGeExpr(array_length_left_local,IntConstant.v(-1));
-	    			 //IfStmt ifStmt1 = Jimple .v().newIfStmt(geExpr , LenAssign);
-	    			 //probe.add(ifStmt1);	  
-	    			 
-	    			 //probe.add(zeroAssign);
-	    			 
-	    			 //greater than expr	    			  
-	    			
+	    			 probe.add(ifStmt);    			  	    			
 	    			 
 	    			 //array assign
 	    			 ArrayRef arrayRef = Jimple.v().newArrayRef(base_array_local, array_length_left_local);
 	    			 AssignStmt arrayAssign = Jimple.v().newAssignStmt(lhs_array, arrayRef);
 	    			 probe.add(arrayAssign);
+	    			 
+	    			 
+	    			 AssignStmt oneAssign = Jimple.v().newAssignStmt(array_length_left_local, IntConstant.v(1));
+	    			 probe.add(oneAssign);
 	    			 
 	    			 
 	    			 //probe.add(arrayRef);
