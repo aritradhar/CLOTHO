@@ -64,9 +64,9 @@ public class ArrayLookAhead extends BodyTransformer
 	    		 continue;
 	    	 
 	    	 
-	    	 if(stmt instanceof AssignStmt)
-	    		 
+	    	 if(stmt instanceof AssignStmt)	    		 
 	    	 {
+	    		 
 	    		 AssignStmt astmt = (AssignStmt) stmt;
 	    		 Value rhs = astmt.getRightOp();
 	    		 Value lhs = astmt.getLeftOp();
