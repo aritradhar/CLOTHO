@@ -1,0 +1,75 @@
+public class nullPointerTestcase.NullTestCase1 extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] ar;
+        nullPointerTestcase.Employee em, temp$0, temp$7;
+        java.lang.Double sal, temp$2, temp$5, temp$9, temp$10;
+        double temp$1, temp$3, temp$4, temp$8;
+        java.lang.NullPointerException ex;
+        java.io.PrintStream temp$6, temp$12;
+        java.lang.RuntimeException ex;
+        nullPointerTestcase.SalaryStructure ss, temp$11;
+        java.lang.String temp$13;
+
+        ar := @parameter0: java.lang.String[];
+        temp$0 = new nullPointerTestcase.Employee;
+        specialinvoke temp$0.<nullPointerTestcase.Employee: void <init>(java.lang.String,java.lang.String)>("Aritra", "programmer");
+        em = temp$0;
+        temp$1 = 0.0;
+        sal = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(temp$1);
+
+     label0:
+        nop;
+        temp$2 = virtualinvoke em.<nullPointerTestcase.Employee: java.lang.Double getSalary()>();
+        temp$3 = virtualinvoke temp$2.<java.lang.Double: double doubleValue()>();
+        temp$4 = temp$3 + 5.0;
+        temp$5 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(temp$4);
+        sal = temp$5;
+        goto label3;
+
+     label1:
+        nop;
+        ex := @caughtexception;
+        temp$6 = <java.lang.System: java.io.PrintStream err>;
+        virtualinvoke temp$6.<java.io.PrintStream: void println(java.lang.String)>("<Exception patch>");
+        temp$7 = new nullPointerTestcase.Employee;
+        temp$8 = 100.0;
+        temp$9 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(temp$8);
+        specialinvoke temp$7.<nullPointerTestcase.Employee: void <init>(java.lang.String,java.lang.String,java.lang.Double)>("Aritra", "programmer", temp$9);
+        em = temp$7;
+        temp$10 = virtualinvoke em.<nullPointerTestcase.Employee: java.lang.Double getSalary()>();
+        sal = temp$10;
+        nop;
+        goto label3;
+
+     label2:
+        nop;
+        ex := @caughtexception;
+        nop;
+        goto label3;
+
+     label3:
+        nop;
+        temp$11 = new nullPointerTestcase.SalaryStructure;
+        specialinvoke temp$11.<nullPointerTestcase.SalaryStructure: void <init>(java.lang.Double)>(sal);
+        ss = temp$11;
+        temp$12 = <java.lang.System: java.io.PrintStream out>;
+        temp$13 = virtualinvoke ss.<nullPointerTestcase.SalaryStructure: java.lang.String getGrade()>();
+        virtualinvoke temp$12.<java.io.PrintStream: void println(java.lang.String)>(temp$13);
+        return;
+
+        catch java.lang.NullPointerException from label0 to label1 with label1;
+        catch java.lang.RuntimeException from label0 to label1 with label2;
+    }
+
+    public void <init>()
+    {
+        nullPointerTestcase.NullTestCase1 this;
+
+        this := @this: nullPointerTestcase.NullTestCase1;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

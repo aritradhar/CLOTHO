@@ -1,0 +1,107 @@
+class nullPointerTestcase.SalaryStructure extends java.lang.Object
+{
+    private java.lang.Double salary;
+    private java.lang.String grade;
+
+    void <init>(java.lang.Double)
+    {
+        nullPointerTestcase.SalaryStructure this;
+        java.lang.Double salary;
+
+        this := @this: nullPointerTestcase.SalaryStructure;
+        salary := @parameter0: java.lang.Double;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        this.<nullPointerTestcase.SalaryStructure: java.lang.Double salary> = salary;
+        virtualinvoke this.<nullPointerTestcase.SalaryStructure: void setGreade()>();
+        return;
+    }
+
+    private final void setGreade()
+    {
+        nullPointerTestcase.SalaryStructure this;
+        java.lang.Double temp$0, temp$4, temp$7, temp$11;
+        double temp$1, temp$5, temp$8, temp$12;
+        int temp$2, temp$6, temp$9, temp$13;
+        java.lang.String temp$3, temp$10, temp$14, temp$15;
+
+        this := @this: nullPointerTestcase.SalaryStructure;
+        temp$0 = this.<nullPointerTestcase.SalaryStructure: java.lang.Double salary>;
+        temp$1 = virtualinvoke temp$0.<java.lang.Double: double doubleValue()>();
+        temp$2 = temp$1 cmpg 10.0;
+        if temp$2 >= 0 goto label1;
+
+        goto label0;
+
+     label0:
+        nop;
+        temp$3 = "C";
+        this.<nullPointerTestcase.SalaryStructure: java.lang.String grade> = temp$3;
+        goto label9;
+
+     label1:
+        nop;
+        temp$4 = this.<nullPointerTestcase.SalaryStructure: java.lang.Double salary>;
+        temp$5 = virtualinvoke temp$4.<java.lang.Double: double doubleValue()>();
+        temp$6 = temp$5 cmpl 10.0;
+        if temp$6 < 0 goto label4;
+
+        goto label2;
+
+     label2:
+        nop;
+        temp$7 = this.<nullPointerTestcase.SalaryStructure: java.lang.Double salary>;
+        temp$8 = virtualinvoke temp$7.<java.lang.Double: double doubleValue()>();
+        temp$9 = temp$8 cmpg 100.0;
+        if temp$9 >= 0 goto label4;
+
+        goto label3;
+
+        goto label3;
+
+     label3:
+        nop;
+        temp$10 = "B";
+        this.<nullPointerTestcase.SalaryStructure: java.lang.String grade> = temp$10;
+        goto label8;
+
+     label4:
+        nop;
+        temp$11 = this.<nullPointerTestcase.SalaryStructure: java.lang.Double salary>;
+        temp$12 = virtualinvoke temp$11.<java.lang.Double: double doubleValue()>();
+        temp$13 = temp$12 cmpl 100.0;
+        if temp$13 <= 0 goto label6;
+
+        goto label5;
+
+     label5:
+        nop;
+        temp$14 = "A";
+        this.<nullPointerTestcase.SalaryStructure: java.lang.String grade> = temp$14;
+        goto label7;
+
+     label6:
+        nop;
+        temp$15 = "O";
+        this.<nullPointerTestcase.SalaryStructure: java.lang.String grade> = temp$15;
+
+     label7:
+        nop;
+
+     label8:
+        nop;
+
+     label9:
+        nop;
+        return;
+    }
+
+    public java.lang.String getGrade()
+    {
+        nullPointerTestcase.SalaryStructure this;
+        java.lang.String temp$0;
+
+        this := @this: nullPointerTestcase.SalaryStructure;
+        temp$0 = this.<nullPointerTestcase.SalaryStructure: java.lang.String grade>;
+        return temp$0;
+    }
+}

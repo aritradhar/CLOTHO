@@ -86,6 +86,11 @@ public class NullTestCase1
 			em = new Employee("Aritra", "programmer",100.0);
 			sal = em.getSalary();
 		}
+		
+		catch(RuntimeException ex)
+		{
+			
+		}
 		SalaryStructure ss = new SalaryStructure(sal);
 		System.out.println(ss.getGrade());
 	}
