@@ -20,10 +20,10 @@ import soot.*;
          public static void main(String[] args) {
      
           /* check the arguments */
-          if (args.length == 0) {
+          /*if (args.length == 0) {
             System.err.println("Usage: java MainDriver [options] classname");
             System.exit(0);
-          }
+          }*/
           
           String []className = {"Test2"};
     
@@ -39,8 +39,8 @@ import soot.*;
            * InvokeStaticInstrumenter.internalTransform will get called.
            */
           
-          Scene.v().addBasicClass("java.util.ArrayList",SootClass.SIGNATURES);
-          Scene.v().addBasicClass("java.util.NoSuchElementException",SootClass.SIGNATURES);
+          //Scene.v().addBasicClass("java.util.ArrayList",SootClass.SIGNATURES);
+          //Scene.v().addBasicClass("java.util.NoSuchElementException",SootClass.SIGNATURES);
           soot.Main.main(className);
           
           

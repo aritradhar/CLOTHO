@@ -1,0 +1,87 @@
+public class Test2 extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] ar;
+        int[] array, temp$0;
+        int a, b, c, out, temp$2;
+        Test2 temp$1;
+        java.io.PrintStream temp$3;
+
+        ar := @parameter0: java.lang.String[];
+        temp$0 = newarray (int)[4];
+        temp$0[0] = 10;
+        temp$0[1] = 11;
+        temp$0[2] = 12;
+        temp$0[3] = 13;
+        array = temp$0;
+        a = 0;
+        b = 2;
+        c = -1;
+        temp$1 = new Test2;
+        specialinvoke temp$1.<Test2: void <init>()>();
+        temp$2 = virtualinvoke temp$1.<Test2: int fun(int[],int,int,int)>(array, a, b, c);
+        out = temp$2;
+        temp$3 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke temp$3.<java.io.PrintStream: void println(int)>(out);
+        return;
+    }
+
+    public int fun1(int[], int)
+    {
+        Test2 this;
+        int[] a, temp$0;
+        int b, temp$1, temp$2, temp$3;
+
+        this := @this: Test2;
+        a := @parameter0: int[];
+        b := @parameter1: int;
+        temp$0 = a;
+        temp$1 = b * 2;
+        temp$2 = temp$1;
+        temp$3 = temp$0[temp$2];
+        return temp$3;
+    }
+
+    public int fun(int[], int, int, int)
+    {
+        Test2 this;
+        int[] array, arr, temp$0, temp$3, temp$5, temp$7;
+        int a, b, c, p, temp$1, temp$2, q, temp$4, temp$6, temp$8, temp$9;
+        java.io.PrintStream temp$10;
+
+        this := @this: Test2;
+        array := @parameter0: int[];
+        a := @parameter1: int;
+        b := @parameter2: int;
+        c := @parameter3: int;
+        arr = newarray (int)[c];
+        p = lengthof arr;
+        temp$0 = arr;
+        temp$1 = 10;
+        temp$2 = 10;
+        temp$0[temp$1] = temp$2;
+        temp$3 = arr;
+        temp$4 = 5;
+        q = temp$3[temp$4];
+        temp$5 = arr;
+        temp$6 = 3;
+        temp$7 = arr;
+        temp$8 = 2;
+        temp$9 = temp$7[temp$8];
+        temp$5[temp$6] = temp$9;
+        temp$10 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke temp$10.<java.io.PrintStream: void println(int)>(p);
+        return p;
+    }
+
+    public void <init>()
+    {
+        Test2 this;
+
+        this := @this: Test2;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

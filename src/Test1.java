@@ -62,6 +62,9 @@ public class Test1
 		int x = array[index];
 		int y = array[a-b];
 		
+		int len = arr.length;
+		arr[3] = 10;
+		
 		
 		int q = new Test1().fun1(array,y);
 		if(y>0)

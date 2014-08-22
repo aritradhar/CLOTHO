@@ -768,7 +768,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    		 InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
 	    		 //instr
 	    		 jbody.getTraps().add(Jimple.v().newTrap(thrwCls, try_start_stmt, sGotoLast, sCatch));
-    	    	 jbody.validate();
+    	    	 jbody.validate();    	    	     	    	     	      	    	     	    	   	    	 
 	    		 
 	    	 }
 	    	 

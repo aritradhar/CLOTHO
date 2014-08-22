@@ -20,12 +20,19 @@ public class Test2
 		return a[b*2];
 	}
 	
-	public int fun(int[] array, int a, int b,int c)
+	public static int[] arrRet()
 	{
-		
-	    int []arr = null;    	    
+		return null;
+	}
+	
+	public int fun(int[] array, int a, int b,int c)
+	{		
+	    int []arr = arrRet();   
 		int p = arr.length;
-		System.out.println(p);
+		arr[9] = 10;
+		int q = arr[5];
+		arr[3] = arr[2];
+		System.out.println(p);		
 		return p;
 	}
 }
