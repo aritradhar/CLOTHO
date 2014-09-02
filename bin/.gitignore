@@ -6,12 +6,12 @@
 /RuntimeExceptions.class
 /SootRinner.class
 /Test1.class
+/Test2.class
 /TestPack/
 /TrapInstrumentation/
 /VariableMonitor.class
 /acteve/
 /classAnalysis.class
 /dataDependency.class
-/profile/
-/Test2.class
 /nullPointerTestcase/
+/profile/

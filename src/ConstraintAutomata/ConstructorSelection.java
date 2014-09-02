@@ -16,12 +16,14 @@
 package ConstraintAutomata;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import soot.Body;
 import soot.BodyTransformer;
 import soot.PatchingChain;
 import soot.SootMethod;
+import soot.Type;
 import soot.Unit;
 import soot.Value;
 import soot.jimple.AssignStmt;
@@ -41,6 +43,13 @@ public class ConstructorSelection extends BodyTransformer
 	     
 	    Stmt try_start_stmt = null, try_end_stmt = null;
 
+	    if(smethod.getName().equals("<init>"))
+	    {
+	    	List<Type> constructorParameterTypeList = smethod.getParameterTypes();
+	    	Integer parameterCount = constructorParameterTypeList.size();
+	    	//System.out.println(jbody);
+	    	System.out.println(parameterCount);
+	    }
 	     
    	 	while(it.hasNext())
 	    {

@@ -25,7 +25,7 @@ import soot.*;
             System.exit(0);
           }*/
           
-          String []className = {"nullPointerTestcase.NullTestCase1"};
+          String []className = {"nullPointerTestcase.Employee"};
     
           /* add a phase to transformer pack by call Pack.add */
           Pack jtp = PackManager.v().getPack("jtp");
