@@ -15,6 +15,7 @@ package ConstraintAutomata;
 //*************************************************************************************
 
 import soot.*;
+import soot.options.Options;
      
        public class SootRinner_constructor {
          public static void main(String[] args) {
@@ -31,7 +32,7 @@ import soot.*;
           Pack jtp = PackManager.v().getPack("jtp");
 
           jtp.add(new Transform("jtp.instrumenter", new ConstructorSelection()));
-          
+          Options.v().setPhaseOption("jb", "use-original-names:true");
           /* Give control to Soot to process all options,
            * InvokeStaticInstrumenter.internalTransform will get called.
            */

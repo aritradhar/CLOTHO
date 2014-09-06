@@ -17,35 +17,20 @@ package ConstraintAutomata;
 import soot.*;
 import soot.options.Options;
      
-       public class SootRinner {
+       public class SootRinner_MethodClone 
+       {
          public static void main(String[] args) {
      
-          /* check the arguments */
-          /*if (args.length == 0) {
-            System.err.println("Usage: java MainDriver [options] classname");
-            System.exit(0);
-          }*/
           
-          String []className = {"Test1"};
-    
+          String []className = {"Test2"};
+          SootClass currentClass = Scene.v().loadClassAndSupport(className[0]);
+          
           /* add a phase to transformer pack by call Pack.add */
           Pack jtp = PackManager.v().getPack("jtp");
-          //jtp.add(new Transform("jtp.instrumenter", new VariableMonitor()));
-    
-          jtp.add(new Transform("jtp.instrumenter", new classAnalysis_TryCatch()));
-          //jtp.add(new Transform("jtp.instrumenter", new ArrayLookAhead()));
-          //jtp.add(new Transform("jtp.instrumenter", new NullPointerArraylen()));
-          
-          /* Give control to Soot to process all options,
-           * InvokeStaticInstrumenter.internalTransform will get called.
-           */
-          
-          //Scene.v().addBasicClass("java.util.ArrayList",SootClass.SIGNATURES);
-          //Scene.v().addBasicClass("java.util.NoSuchElementException",SootClass.SIGNATURES);
+
+          jtp.add(new Transform("jtp.instrumenter", new MethodClone(currentClass)));
           Options.v().setPhaseOption("jb", "use-original-names:true");
-          soot.Main.main(className);
-          
-          
+          soot.Main.main(className);   
           
         }
      }

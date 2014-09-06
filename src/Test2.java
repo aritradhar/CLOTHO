@@ -5,6 +5,9 @@ import java.util.Iterator;
 
 public class Test2 
 {
+	int F_x;
+	String F_y;
+	
 	public static void main(String[] ar)
 	{
 		int []array ={10,11,12,13};
