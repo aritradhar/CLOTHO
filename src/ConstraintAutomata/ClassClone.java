@@ -86,31 +86,44 @@ public class ClassClone
 		while(it_mtd.hasNext())
 		{
 			SootMethod nxtMethod = it_mtd.next();
+			//skip constructor
+				
 			try
 			{		 
 				SootMethod newMethod = new SootMethod(nxtMethod.getName(),
 						 nxtMethod.getParameterTypes(), nxtMethod.getReturnType(),
 						 nxtMethod.getModifiers(), nxtMethod.getExceptions());
-				
-				 SootMethod newMethod_patched = new SootMethod(nxtMethod.getName() + "__patched__",
-						 nxtMethod.getParameterTypes(), nxtMethod.getReturnType(),
-						 nxtMethod.getModifiers(), nxtMethod.getExceptions());
+								 
 				 
 				 sClass.addMethod(newMethod);
-				 sClass.addMethod(newMethod_patched);
+				 
 
 		         JimpleBody body = Jimple.v().newBody(newMethod);
-		         JimpleBody body_patched = Jimple.v().newBody(newMethod_patched);
+		         
 		         
 		         body.importBodyContentsFrom(nxtMethod.retrieveActiveBody());
 		         newMethod.setActiveBody(body);
-		         
-		         body_patched.importBodyContentsFrom(nxtMethod.retrieveActiveBody());
-		         newMethod_patched.setActiveBody(body_patched);
 		          
 		         System.out.println("Method " + newMethod.getName() + " clonned");
-		         System.out.println("Method " + newMethod_patched.getName() + " patched added");
+		         
+		         if(!nxtMethod.getName().contains("<init>"))
+		         {
+		        	 SootMethod newMethod_patched = new SootMethod(nxtMethod.getName() + "__patched__",
+						 nxtMethod.getParameterTypes(), nxtMethod.getReturnType(),
+						 nxtMethod.getModifiers(), nxtMethod.getExceptions());
+		         
+		        	 sClass.addMethod(newMethod_patched);
+		         
+		        	 JimpleBody body_patched = Jimple.v().newBody(newMethod_patched);
+		         
+		        	 body_patched.importBodyContentsFrom(nxtMethod.retrieveActiveBody());
+		        	 newMethod_patched.setActiveBody(body_patched);
+		         
+		        	 System.out.println("Method " + newMethod_patched.getName() + " patched added");
+		         
+		         }
 			}
+			
 			catch(Exception ex)
 			{
 				System.err.println(nxtMethod.getName()+ " skipped");
@@ -127,8 +140,10 @@ public class ClassClone
 	    	PrintWriter writerOut = new PrintWriter(new OutputStreamWriter(streamOut));
 	    	
 	    	JasminClass jasminClass = new soot.jimple.JasminClass(sClass);
-	        jasminClass.print(writerOut);
-	        writerOut.flush();
+	        
+	    	jasminClass.print(writerOut);
+	        
+	    	writerOut.flush();
 	        streamOut.close();
 	        
 	        System.out.println("Class clone flashed in disk");
@@ -156,7 +171,9 @@ public class ClassClone
 	public static void getClone(boolean flash)
 	{
 		if(!flash)
-			return;
+		{
+			throw new IllegalArgumentException("Wrong flag type");
+		}
 		
 		Scene.v().loadClassAndSupport("java.lang.Object");
 		
@@ -171,11 +188,14 @@ public class ClassClone
 		flashClass(sClass);
 	}
 	
-	
+	//call if want to flash to disk + method clone for patched version
 	public static void getClone(boolean flash, boolean taint)
 	{
 		if(! (flash && taint))
+		{
 			throw new IllegalArgumentException("Wrong flag type");
+		}
+		
 		
 		Scene.v().loadClassAndSupport("java.lang.Object");
 		

@@ -30,6 +30,7 @@ import soot.options.Options;
 
           jtp.add(new Transform("jtp.instrumenter", new MethodClone(currentClass)));
           Options.v().setPhaseOption("jb", "use-original-names:true");
+          
           soot.Main.main(className);   
           
         }

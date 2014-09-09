@@ -8,6 +8,21 @@ public class Test2
 	int F_x;
 	String F_y;
 	
+	public Test2()
+	{
+		
+	}
+	
+	public Test2(int z)
+	{
+		
+	}
+	
+	public Test2(String z)
+	{
+		
+	}
+	
 	public static void main(String[] ar)
 	{
 		int []array ={10,11,12,13};
