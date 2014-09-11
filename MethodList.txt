@@ -1,0 +1,4 @@
+TestPack.Test2 main__patched
+TestPack.Test2 fun1__patched
+TestPack.Test2 arrRet__patched
+TestPack.Test2 fun__patched

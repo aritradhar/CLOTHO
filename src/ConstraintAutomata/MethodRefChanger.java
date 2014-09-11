@@ -1,52 +1,40 @@
 package ConstraintAutomata;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import soot.Body;
 import soot.BodyTransformer;
 import soot.Pack;
 import soot.PackManager;
 import soot.PatchingChain;
+import soot.Scene;
 import soot.SootClass;
 import soot.SootMethod;
 import soot.SootMethodRef;
+import soot.SootResolver;
 import soot.Transform;
 import soot.Unit;
 import soot.Value;
 import soot.jimple.AssignStmt;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
-import soot.jimple.Jimple;
 import soot.jimple.SpecialInvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.VirtualInvokeExpr;
-import soot.jimple.toolkits.callgraph.Units;
 import soot.options.Options;
 
 public class MethodRefChanger extends BodyTransformer
-{
-    
-	public static HashMap<SootClass, ArrayList<SootMethod>> patchedMethodMap;
-	
-	private void loadMethods()
-	{
-		BufferedReader br = new BufferedReader(new FileReader(paramFile))
-	}
-	
+{	
 	
 	@Override
 	protected void internalTransform(Body body, String phaseName, Map options)
-	{
+	{		
 		SootMethod sMethod = body.getMethod();
 		System.out.println("<<current method : " + sMethod.getName() + " >>");
 		
 		PatchingChain<Unit> pc = body.getUnits();
+		
 		Iterator<Unit> it = pc.snapshotIterator();
 		//System.out.println(body);
 		
@@ -97,6 +85,8 @@ public class MethodRefChanger extends BodyTransformer
 			}
 			
 		}
+		
+		//System.out.println(Constants.patchedMethodMap.entrySet());
 
 	}
 	
@@ -113,6 +103,19 @@ class Main_refChanger
 
         jtp.add(new Transform("jtp.instrumenter", new MethodRefChanger()));
         Options.v().setPhaseOption("jb", "use-original-names:true");
+        
+        /*
+        Options.v().set_whole_program(true);
+        Options.v().set_main_class(className[0]);
+        */
+        SootResolver.v().resolveClass("TestPack.Test2", SootClass.SIGNATURES);
+        SootResolver.v().resolveClass("java.util.Comparator", SootClass.SIGNATURES);
+        Scene.v().addBasicClass("java.lang.StringBuilder",SootClass.SIGNATURES);
+        
+        
+        // load the patched methods
+        
+        PatchedMethodLoader pml = new PatchedMethodLoader(Constants.methodListSileName);
         
         soot.Main.main(className);   
 	}

@@ -25,9 +25,7 @@ public class ClassClone
 {
 	public static SootClass currentClass;
 	public static SootClass sClass;
-	
-	public static String methodListSileName = "MethodList.txt";	
-	public static String patcheClause = "__patched";
+
 	
 	ClassClone(SootClass currentClass)
 	{
@@ -50,7 +48,7 @@ public class ClassClone
 			{
 				if(!nxtMethod.getName().startsWith("<"))
 				{
-				 SootMethod newMethod = new SootMethod(nxtMethod.getName() + patcheClause,
+				 SootMethod newMethod = new SootMethod(nxtMethod.getName() + Constants.patcheClause,
 						 nxtMethod.getParameterTypes(), nxtMethod.getReturnType(),
 						 nxtMethod.getModifiers(), nxtMethod.getExceptions());
 				 
@@ -114,7 +112,7 @@ public class ClassClone
 		          body.importBodyContentsFrom(nxtMethod.retrieveActiveBody());
 		          newMethod.setActiveBody(body);
 		          
-		          FileWriter fwrite = new FileWriter(methodListSileName,true);		          
+		          FileWriter fwrite = new FileWriter(Constants.methodListSileName,true);		          
 		          
 		          System.out.println("Method " + nxtMethod.getName() + " clonned");
 		          fwrite.append(sClass.toString() + " " + nxtMethod.getName() + "\n");
@@ -161,7 +159,7 @@ public class ClassClone
 		         
 		         if(!nxtMethod.getName().startsWith("<"))
 		         {
-		        	 SootMethod newMethod_patched = new SootMethod(nxtMethod.getName() + patcheClause,
+		        	 SootMethod newMethod_patched = new SootMethod(nxtMethod.getName() + Constants.patcheClause,
 						 nxtMethod.getParameterTypes(), nxtMethod.getReturnType(),
 						 nxtMethod.getModifiers(), nxtMethod.getExceptions());
 		         
@@ -172,7 +170,7 @@ public class ClassClone
 		        	 body_patched.importBodyContentsFrom(nxtMethod.retrieveActiveBody());
 		        	 newMethod_patched.setActiveBody(body_patched);
 		         
-		        	 FileWriter fwrite = new FileWriter(methodListSileName,true);	
+		        	 FileWriter fwrite = new FileWriter(Constants.methodListSileName,true);	
 		        	 System.out.println("Method " + newMethod_patched.getName() + " patched added");
 		        	 
 		        	 fwrite.append(sClass.toString() + " " + newMethod_patched.getName() + "\n");
