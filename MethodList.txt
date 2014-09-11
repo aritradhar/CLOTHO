@@ -1,4 +1,5 @@
-TestPack.Test2 main__patched
-TestPack.Test2 fun1__patched
-TestPack.Test2 arrRet__patched
-TestPack.Test2 fun__patched
+TestPack.Test2:void main__patched(java.lang.String[])
+TestPack.Test2:int fun1__patched(int[],int)
+TestPack.Test2:int fun1__patched(int[],float)
+TestPack.Test2:int[] arrRet__patched()
+TestPack.Test2:int fun__patched(int[],int,int,int)

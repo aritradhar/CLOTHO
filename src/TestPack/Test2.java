@@ -39,6 +39,12 @@ public class Test2
 		return a[b*2];
 	}
 	
+	public int fun1(int []a, float b)
+	{
+		int in = (int) (b/2);
+		return a[in];
+	}
+	
 	public static int[] arrRet()
 	{
 		return null;

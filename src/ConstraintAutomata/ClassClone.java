@@ -115,7 +115,7 @@ public class ClassClone
 		          FileWriter fwrite = new FileWriter(Constants.methodListSileName,true);		          
 		          
 		          System.out.println("Method " + nxtMethod.getName() + " clonned");
-		          fwrite.append(sClass.toString() + " " + nxtMethod.getName() + "\n");
+		          fwrite.append(sClass.toString() + Constants.UniversalDelim + nxtMethod.getBytecodeSignature() + "\n");
 		          
 		          fwrite.close();
 		          
@@ -171,9 +171,9 @@ public class ClassClone
 		        	 newMethod_patched.setActiveBody(body_patched);
 		         
 		        	 FileWriter fwrite = new FileWriter(Constants.methodListSileName,true);	
-		        	 System.out.println("Method " + newMethod_patched.getName() + " patched added");
+		        	 System.out.println("Method" + newMethod_patched.getName() + " patched added");
 		        	 
-		        	 fwrite.append(sClass.toString() + " " + newMethod_patched.getName() + "\n");
+		        	 fwrite.append(sClass.toString() + Constants.UniversalDelim + newMethod_patched.getSubSignature() + "\n");
 			          
 			          fwrite.close();
 		         

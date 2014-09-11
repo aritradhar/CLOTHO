@@ -1,3 +1,18 @@
+//*************************************************************************************
+//*********************************************************************************** *
+//author Aritra Dhar																* *
+//MT12004																			* *
+//M.TECH CSE																		* * 
+//INFORMATION SECURITY																* *
+//IIIT-Delhi																		* *	 
+//---------------------------------------------------------------------------------	* *																				* *
+/////////////////////////////////////////////////									* *
+//The program will do the following::::         //									* *
+/////////////////////////////////////////////////									* *
+//version 1.0																		* *
+//*********************************************************************************** * 
+//*************************************************************************************
+
 package ConstraintAutomata;
 
 import java.io.BufferedReader;
@@ -33,12 +48,14 @@ public class PatchedMethodLoader
 				if(str.length() == 0)
 					continue;
 				
-				String[] lineArr = str.split(" ");
+				String[] lineArr = str.split(Constants.UniversalDelim);
+				
+				//System.out.println(lineArr.length);
 				SootClass sc = Scene.v().loadClassAndSupport(lineArr[0]);
 				//Scene.v().loadNecessaryClasses();
 
 				//System.out.println(sc.getMethods().get(4).getName());
-				SootMethod patchedMethod = sc.getMethodByName(lineArr[1]);
+				SootMethod patchedMethod = sc.getMethod(lineArr[1]);
 				
 				if(!Constants.patchedMethodMap.containsKey(sc))
 				{
@@ -53,6 +70,8 @@ public class PatchedMethodLoader
 					Constants.patchedMethodMap.put(sc, al);
 				}
 			}
+			
+			//System.out.println(Constants.patchedMethodMap.entrySet());
 		}
 		
 		catch(IOException ex)
