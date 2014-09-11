@@ -1,9 +1,13 @@
 package ConstraintAutomata;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.Iterator;
 
 import soot.Scene;
@@ -22,6 +26,7 @@ public class ClassClone
 	public static SootClass currentClass;
 	public static SootClass sClass;
 	
+	public static String methodListSileName = "MethodList.txt";	
 	public static String patcheClause = "__patched";
 	
 	ClassClone(SootClass currentClass)
@@ -29,6 +34,7 @@ public class ClassClone
 		ClassClone.currentClass = currentClass;
 	}
 	
+	//not used
 	public static void addMethodPatched(SootClass currentClass)
 	{
 		Iterator<SootMethod> it_mtd = currentClass.getMethods().iterator();
@@ -108,7 +114,13 @@ public class ClassClone
 		          body.importBodyContentsFrom(nxtMethod.retrieveActiveBody());
 		          newMethod.setActiveBody(body);
 		          
+		          FileWriter fwrite = new FileWriter(methodListSileName,true);		          
+		          
 		          System.out.println("Method " + nxtMethod.getName() + " clonned");
+		          fwrite.append(sClass.toString() + " " + nxtMethod.getName() + "\n");
+		          
+		          fwrite.close();
+		          
 			}
 			catch(Exception ex)
 			{
@@ -160,7 +172,12 @@ public class ClassClone
 		        	 body_patched.importBodyContentsFrom(nxtMethod.retrieveActiveBody());
 		        	 newMethod_patched.setActiveBody(body_patched);
 		         
+		        	 FileWriter fwrite = new FileWriter(methodListSileName,true);	
 		        	 System.out.println("Method " + newMethod_patched.getName() + " patched added");
+		        	 
+		        	 fwrite.append(sClass.toString() + " " + newMethod_patched.getName() + "\n");
+			          
+			          fwrite.close();
 		         
 		         }
 			}
@@ -175,8 +192,34 @@ public class ClassClone
 	private static void flashClass(SootClass sClass)
 	{
 		String fileName = SourceLocator.v().getFileNameFor(sClass, Options.output_format_class);
+		
+		StringBuffer Fname = new StringBuffer();
+		
+		try
+		{
+			//fixed
+			String []filenameFragments = fileName.split("\\\\");
+									
+			//exclude the class name
+			for(int i = 0; i < filenameFragments.length - 1; i++)
+			{
+				Fname.append(filenameFragments[i] + "\\");
+			}
+			
+			Fname = new StringBuffer(Fname.subSequence(0, Fname.length()));
+			System.out.println(Fname);
+				
+			File file = new File(Fname.toString()); 
+			file.mkdirs();
+		}
+		catch(Exception ex)
+		{
+			System.err.println("Problem in creating new path for the clss file");
+			ex.printStackTrace();
+		}
 	    try
 	    {
+	    	//all nested paths are created -- fixed
 	    	OutputStream streamOut = new JasminOutputStream(new FileOutputStream(fileName));
 	    	PrintWriter writerOut = new PrintWriter(new OutputStreamWriter(streamOut));
 	    	
@@ -258,7 +301,7 @@ class ClassCloneMain
 {
 	public static void main(String[] ar)
 	{
-		SootClass currentClass = Scene.v().loadClassAndSupport("Test1");
+		SootClass currentClass = Scene.v().loadClassAndSupport("TestPack.Test2");
 		ClassClone.currentClass =  currentClass;
 		
 		//ClassClone.addMethodPatched(currentClass);

@@ -1,0 +1,32 @@
+public class Test_Caller extends java.lang.Object
+{
+
+    public void testFun()
+    {
+        Test_Caller this;
+        int out, temp$2;
+        Test2 temp$0;
+        int[] temp$1, temp$3, array, temp$4;
+
+        this := @this: Test_Caller;
+        temp$0 = new Test2;
+        specialinvoke temp$0.<Test2: void <init>()>();
+        temp$1 = newarray (int)[1];
+        temp$1[0] = 1;
+        temp$2 = virtualinvoke temp$0.<Test2: int fun1(int[],int)>(temp$1, 2);
+        out = temp$2;
+        temp$3 = staticinvoke <Test2: int[] arrRet()>();
+        temp$4 = staticinvoke <Test2: int[] arrRet()>();
+        array = temp$4;
+        return;
+    }
+
+    public void <init>()
+    {
+        Test_Caller this;
+
+        this := @this: Test_Caller;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}
