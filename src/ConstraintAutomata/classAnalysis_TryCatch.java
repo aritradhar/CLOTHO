@@ -416,6 +416,9 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	     SootMethod smethod = jbody.getMethod();
 	     System.out.println("<<<<<<<< Current Method : "+smethod.getName()+" >>>>>>>>");
 	     
+	     if(!smethod.getName().contains(ClassClone.patcheClause))
+	    	 return;
+	     
 	     Chain<Local> l = jbody.getLocals();
 	     Iterator<Local> it_local = l.iterator();
 	     

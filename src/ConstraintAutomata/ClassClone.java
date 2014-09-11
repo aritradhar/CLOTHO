@@ -22,9 +22,50 @@ public class ClassClone
 	public static SootClass currentClass;
 	public static SootClass sClass;
 	
+	public static String patcheClause = "__patched";
+	
 	ClassClone(SootClass currentClass)
 	{
 		ClassClone.currentClass = currentClass;
+	}
+	
+	public static void addMethodPatched(SootClass currentClass)
+	{
+		Iterator<SootMethod> it_mtd = currentClass.getMethods().iterator();
+		
+		while(it_mtd.hasNext())
+		{
+			SootMethod nxtMethod = it_mtd.next();
+			
+			//if(nxtMethod.getName().contains("<init>"))
+				//continue;
+			
+			try
+			{
+				if(!nxtMethod.getName().startsWith("<"))
+				{
+				 SootMethod newMethod = new SootMethod(nxtMethod.getName() + patcheClause,
+						 nxtMethod.getParameterTypes(), nxtMethod.getReturnType(),
+						 nxtMethod.getModifiers(), nxtMethod.getExceptions());
+				 
+				 currentClass.addMethod(newMethod);
+
+		          JimpleBody body = Jimple.v().newBody(newMethod);
+		          body.importBodyContentsFrom(nxtMethod.retrieveActiveBody());
+		          newMethod.setActiveBody(body);
+		          
+		          System.out.println("Method " + newMethod.getName() + " clonned");
+				}
+			}
+			catch(Exception ex)
+			{
+				System.err.println(nxtMethod.getName()+ " skipped");
+			}
+		}
+		
+		//System.out.println(currentClass.getMethods().get(2).getActiveBody());
+		flashClass(currentClass);
+
 	}
 	
 	private static void cloneField(SootClass currentClass, SootClass sClass)
@@ -106,9 +147,9 @@ public class ClassClone
 		          
 		         System.out.println("Method " + newMethod.getName() + " clonned");
 		         
-		         if(!nxtMethod.getName().contains("<init>"))
+		         if(!nxtMethod.getName().startsWith("<"))
 		         {
-		        	 SootMethod newMethod_patched = new SootMethod(nxtMethod.getName() + "__patched__",
+		        	 SootMethod newMethod_patched = new SootMethod(nxtMethod.getName() + patcheClause,
 						 nxtMethod.getParameterTypes(), nxtMethod.getReturnType(),
 						 nxtMethod.getModifiers(), nxtMethod.getExceptions());
 		         
@@ -152,6 +193,7 @@ public class ClassClone
 	    catch(Exception ex)
 	    {
 	    	System.err.println("Exception happen in clone class flashing");
+	    	ex.printStackTrace();
 	    }
 	}
 	
@@ -216,9 +258,10 @@ class ClassCloneMain
 {
 	public static void main(String[] ar)
 	{
-		SootClass currentClass = Scene.v().loadClassAndSupport("Test2");
+		SootClass currentClass = Scene.v().loadClassAndSupport("Test1");
 		ClassClone.currentClass =  currentClass;
 		
+		//ClassClone.addMethodPatched(currentClass);
 		ClassClone.getClone(true, true);
 	}
 }
