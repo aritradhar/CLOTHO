@@ -1,23 +1,23 @@
-public class Test2 extends java.lang.Object
+public class TestPack.Test2 extends java.lang.Object
 {
     int F_x;
     java.lang.String F_y;
 
     public void <init>()
     {
-        Test2 this;
+        TestPack.Test2 this;
 
-        this := @this: Test2;
+        this := @this: TestPack.Test2;
         specialinvoke this.<java.lang.Object: void <init>()>();
         return;
     }
 
     public void <init>(int)
     {
-        Test2 this;
+        TestPack.Test2 this;
         int z;
 
-        this := @this: Test2;
+        this := @this: TestPack.Test2;
         z := @parameter0: int;
         specialinvoke this.<java.lang.Object: void <init>()>();
         return;
@@ -25,10 +25,10 @@ public class Test2 extends java.lang.Object
 
     public void <init>(java.lang.String)
     {
-        Test2 this;
+        TestPack.Test2 this;
         java.lang.String z;
 
-        this := @this: Test2;
+        this := @this: TestPack.Test2;
         z := @parameter0: java.lang.String;
         specialinvoke this.<java.lang.Object: void <init>()>();
         return;
@@ -39,7 +39,7 @@ public class Test2 extends java.lang.Object
         java.lang.String[] ar;
         int[] array, temp$0;
         int a, b, c, out, temp$2;
-        Test2 temp$1;
+        TestPack.Test2 temp$1;
         java.io.PrintStream temp$3;
 
         ar := @parameter0: java.lang.String[];
@@ -52,9 +52,9 @@ public class Test2 extends java.lang.Object
         a = 0;
         b = 2;
         c = -1;
-        temp$1 = new Test2;
-        specialinvoke temp$1.<Test2: void <init>()>();
-        temp$2 = virtualinvoke temp$1.<Test2: int fun(int[],int,int,int)>(array, a, b, c);
+        temp$1 = new TestPack.Test2;
+        specialinvoke temp$1.<TestPack.Test2: void <init>()>();
+        temp$2 = virtualinvoke temp$1.<TestPack.Test2: int fun(int[],int,int,int)>(array, a, b, c);
         out = temp$2;
         temp$3 = <java.lang.System: java.io.PrintStream out>;
         virtualinvoke temp$3.<java.io.PrintStream: void println(int)>(out);
@@ -63,17 +63,35 @@ public class Test2 extends java.lang.Object
 
     public int fun1(int[], int)
     {
-        Test2 this;
+        TestPack.Test2 this;
         int[] a, temp$0;
         int b, temp$1, temp$2, temp$3;
 
-        this := @this: Test2;
+        this := @this: TestPack.Test2;
         a := @parameter0: int[];
         b := @parameter1: int;
         temp$0 = a;
         temp$1 = b * 2;
         temp$2 = temp$1;
         temp$3 = temp$0[temp$2];
+        return temp$3;
+    }
+
+    public int fun1(int[], float)
+    {
+        TestPack.Test2 this;
+        int[] a, temp$1;
+        float b, temp$0;
+        int in, temp$2, temp$3;
+
+        this := @this: TestPack.Test2;
+        a := @parameter0: int[];
+        b := @parameter1: float;
+        temp$0 = b / 2.0F;
+        in = (int) temp$0;
+        temp$1 = a;
+        temp$2 = in;
+        temp$3 = temp$1[temp$2];
         return temp$3;
     }
 
@@ -87,17 +105,17 @@ public class Test2 extends java.lang.Object
 
     public int fun(int[], int, int, int)
     {
-        Test2 this;
+        TestPack.Test2 this;
         int[] array, arr, temp$0, temp$1, temp$4, temp$6, temp$8;
         int a, b, c, p, temp$2, temp$3, q, temp$5, temp$7, temp$9, temp$10;
         java.io.PrintStream temp$11;
 
-        this := @this: Test2;
+        this := @this: TestPack.Test2;
         array := @parameter0: int[];
         a := @parameter1: int;
         b := @parameter2: int;
         c := @parameter3: int;
-        temp$0 = staticinvoke <Test2: int[] arrRet()>();
+        temp$0 = staticinvoke <TestPack.Test2: int[] arrRet()>();
         arr = temp$0;
         p = lengthof arr;
         temp$1 = arr;

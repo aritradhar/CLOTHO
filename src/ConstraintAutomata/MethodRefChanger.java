@@ -28,6 +28,7 @@ import soot.CharType;
 import soot.DoubleType;
 import soot.FloatType;
 import soot.IntType;
+import soot.Local;
 import soot.LongType;
 import soot.Pack;
 import soot.PackManager;
@@ -44,9 +45,12 @@ import soot.Type;
 import soot.Unit;
 import soot.Value;
 import soot.jimple.AssignStmt;
+import soot.jimple.InterfaceInvokeExpr;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
+import soot.jimple.Jimple;
 import soot.jimple.SpecialInvokeExpr;
+import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.VirtualInvokeExpr;
 import soot.options.Options;
@@ -90,10 +94,18 @@ public class MethodRefChanger extends BodyTransformer
 		}
 	}
 	
-	private SootMethod processAssignStatement(VirtualInvokeExpr virtualInvokeExpr)
+	
+	/*
+	 *process invoke statement
+	 *overloaded copy for virtual invoke expression 
+	 */
+	@SuppressWarnings({ "unchecked", "unused" })
+	private  SootMethod processInvokeStatement( VirtualInvokeExpr virtualInvokeExpr)
 	{
+		
 		List<Value> args = virtualInvokeExpr.getArgs();
-		System.out.println(args);
+		//virtualInvokeExpr.getArgs()
+		//System.out.println(args);
 		SootMethod calledMethod = virtualInvokeExpr.getMethod();
 		
 		List<Type> calledMethodArgTypes = calledMethod.getParameterTypes();
@@ -112,6 +124,10 @@ public class MethodRefChanger extends BodyTransformer
 		
 		HashSet<SootMethod> hs = Constants.patchedMethodMap.get(baseClass);
 		
+		//not in patched list
+		if(hs == null)
+			return null;
+		
 		//get the patched twin
 		//also match the argument list types
 		Iterator<SootMethod> itm = hs.iterator();
@@ -121,7 +137,7 @@ public class MethodRefChanger extends BodyTransformer
 		while(itm.hasNext())
 		{
 			SootMethod sm = itm.next();
-			List<Type> argTypes = sm.getParameterTypes();
+			//List<Type> argTypes = sm.getParameterTypes();
 			
 			String patchedMethodNameFromCalledMethod = calledMethod.getName().concat(Constants.patcheClause);
 			
@@ -132,15 +148,129 @@ public class MethodRefChanger extends BodyTransformer
 			}
 		}
 		
+		itm = alm.iterator();
+		while(itm.hasNext())
+		{
+			SootMethod sm = itm.next();
+			List<Type> argTypes = sm.getParameterTypes();
+			if(calledMethodArgTypes.size() == argTypes.size())
+			{
+				int counter = 0;
+				for(int i = 0; i<calledMethodArgTypes.size();i++)
+				{
+					if(calledMethodArgTypes.get(i).toString().equals(argTypes.get(i).toString()))
+						counter++;
+				}
+				if(counter == calledMethodArgTypes.size())
+				{
+					//System.out.println("Called " + sm.getSubSignature());
+					
+					return sm;
+				}
+			}
+		}
+		
 		return null;
 		
 	}
 	
+	/*
+	 *process invoke statement
+	 *overloaded copy for virtual invoke expression 
+	 */
+	@SuppressWarnings({ "unchecked", "unused" })
+	private SootMethod processInvokeStatement(StaticInvokeExpr staticlInvokeExpr)
+	{
+		List<Value> args = staticlInvokeExpr.getArgs();
+		//virtualInvokeExpr.getArgs()
+		//System.out.println(args);
+		SootMethod calledMethod = staticlInvokeExpr.getMethod();
+		
+		List<Type> calledMethodArgTypes = calledMethod.getParameterTypes();
+		
+		/*
+		 * 
+		Value baseObject = staticlInvokeExpr.getClass();
+		System.out.println(baseObject.getType());
+
+		
+		System.out.println("$$ " + staticlInvokeExpr.getMethod().getDeclaringClass().getPackageName());
+		*/
+		
+		
+		SootClass baseClass = staticlInvokeExpr.getMethod().getDeclaringClass();// = staticlInvokeExpr.getType();
+		
+		//Retrieve the patched version of the method reference from the populated map
+		
+		//System.out.println(baseClass.getName());
+		
+		HashSet<SootMethod> hs = Constants.patchedMethodMap.get(baseClass);
+		
+		//not in patched list
+		if(hs == null)
+			return null;
+		
+		//get the patched twin
+		//also match the argument list types
+		Iterator<SootMethod> itm = hs.iterator();
+		
+		ArrayList<SootMethod> alm = new ArrayList<>();
+		
+		while(itm.hasNext())
+		{
+			SootMethod sm = itm.next();
+			//List<Type> argTypes = sm.getParameterTypes();
+			
+			String patchedMethodNameFromCalledMethod = calledMethod.getName().concat(Constants.patcheClause);
+			
+			//if collide them get them in a list for parameter type check
+			if(sm.getName().equals(patchedMethodNameFromCalledMethod))
+			{
+				alm.add(sm);
+			}
+		}
+		
+		itm = alm.iterator();
+		while(itm.hasNext())
+		{
+			SootMethod sm = itm.next();
+
+			List<Type> argTypes = sm.getParameterTypes();
+			if(calledMethodArgTypes.size() == argTypes.size())
+			{
+				int counter = 0;
+				for(int i = 0; i<calledMethodArgTypes.size();i++)
+				{
+					if(calledMethodArgTypes.get(i).toString().equals(argTypes.get(i).toString()))
+						counter++;
+				}
+				if(counter == calledMethodArgTypes.size())
+				{
+					//System.out.println("Called " + sm.getSubSignature());
+					
+					return sm;
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+	
+	
+	
+	@SuppressWarnings("unused")
 	@Override
 	protected void internalTransform(Body body, String phaseName, Map options)
 	{		
 		SootMethod sMethod = body.getMethod();
 		System.out.println("<<current method : " + sMethod.getName() + " >>");
+		
+		/*
+		 * DEBUG
+		 */
+		if(sMethod.getName().equals("testFun"))
+			System.out.println(body);
 		
 		PatchingChain<Unit> pc = body.getUnits();
 		
@@ -173,71 +303,37 @@ public class MethodRefChanger extends BodyTransformer
 					System.out.println(stmt);
 					flag = true;
 					
+
 					VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) invokeExpr;
-					List<Value> args = virtualInvokeExpr.getArgs();
-					SootMethod calledMethod = virtualInvokeExpr.getMethod();
-					Value baseObject = virtualInvokeExpr.getBase();
-					//System.out.println(baseObject.getType());
-					List<Type> calledMethodArgTypes = calledMethod.getParameterTypes();
 					
-					//basic type exit
-					if(getProperClass(baseObject) == null)
-						continue;
-					
-					SootClass baseClass = getProperClass(baseObject);
-					//Retrieve the patched version of the method reference from the populated map
-					
-					HashSet<SootMethod> hs = Constants.patchedMethodMap.get(baseClass);
-					
-					//not in patched list
-					if(hs == null)
-						continue;
-					
-					//System.out.println(hs);
-					
-					//get the patched twin
-					//also match the argument list types
-					Iterator<SootMethod> itm = hs.iterator();
-					
-					ArrayList<SootMethod> alm = new ArrayList<>();
-					
-					while(itm.hasNext())
+					if(processInvokeStatement(virtualInvokeExpr) == null)
 					{
-						SootMethod sm = itm.next();
-						//List<Type> argTypes = sm.getParameterTypes();
-						
-						String patchedMethodNameFromCalledMethod = calledMethod.getName().concat(Constants.patcheClause);
-						
-						//if collide them get them in a list for parameter type check
-						if(sm.getName().equals(patchedMethodNameFromCalledMethod))
-						{
-							alm.add(sm);
-						}
+						System.out.println("----skipped----");
+						continue;
 					}
 					
-					itm = alm.iterator();
-					while(itm.hasNext())
-					{
-						SootMethod sm = itm.next();
-						List<Type> argTypes = sm.getParameterTypes();
-						if(calledMethodArgTypes.size() == argTypes.size())
-						{
-							int counter = 0;
-							for(int i = 0; i<calledMethodArgTypes.size();i++)
-							{
-								if(calledMethodArgTypes.get(i).toString().equals(argTypes.get(i).toString()))
-									counter++;
-							}
-							if(counter == calledMethodArgTypes.size())
-							{
-								System.out.println("Called " + sm.getSubSignature());
-								break;
-							}
-						}
-					}
+					SootMethod toBeCalled = processInvokeStatement(virtualInvokeExpr);
 					
+					System.out.println(toBeCalled.getSubSignature());
+
 					//delete old
 					//pc.remove(unit);
+				}
+				
+				if(invokeExpr instanceof StaticInvokeExpr)
+				{
+					StaticInvokeExpr staticInvokeExpr = (StaticInvokeExpr) invokeExpr;
+					
+					if(processInvokeStatement(staticInvokeExpr) == null)
+						continue;
+					
+					SootMethod toBeCalled = processInvokeStatement(staticInvokeExpr);
+					
+					System.out.println(toBeCalled.getSubSignature());
+					
+					StaticInvokeExpr st = Jimple.v().newStaticInvokeExpr(toBeCalled.makeRef(), staticInvokeExpr.getArgs());
+					
+					//pc.insertAfter(st,unit);
 				}
 			}
 			
@@ -245,6 +341,7 @@ public class MethodRefChanger extends BodyTransformer
 			{
 				AssignStmt astmt = (AssignStmt) stmt;
 				Value value = astmt.getRightOp();
+				Value lhs = astmt.getLeftOp();
 				
 				if(value instanceof VirtualInvokeExpr)
 				{				
@@ -252,75 +349,28 @@ public class MethodRefChanger extends BodyTransformer
 					flag = true;
 					
 					VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) value;
-					List<Value> args = virtualInvokeExpr.getArgs();
-					//System.out.println(args);
-					SootMethod calledMethod = virtualInvokeExpr.getMethod();
 					
-					List<Type> calledMethodArgTypes = calledMethod.getParameterTypes();
-					
-					Value baseObject = virtualInvokeExpr.getBase();
-					//System.out.println(baseObject.getType());
-					
-					
-					if(getProperClass(baseObject) == null)
+					//in case not found
+					if(processInvokeStatement(virtualInvokeExpr) == null)
 						continue;
 					
-					SootClass baseClass = getProperClass(baseObject);
-					//Retrieve the patched version of the method reference from the populated map
+					SootMethod toBeCalled = processInvokeStatement(virtualInvokeExpr);
 					
-					//System.out.println(baseClass.getName());
+					System.out.println(toBeCalled.getSubSignature());
 					
-					HashSet<SootMethod> hs = Constants.patchedMethodMap.get(baseClass);
+					VirtualInvokeExpr vr = Jimple.v().newVirtualInvokeExpr((Local)virtualInvokeExpr.getBase(), 
+							toBeCalled.makeRef(), virtualInvokeExpr.getArgs());
 					
-					//not in patched list
-					if(hs == null)
-						continue;
+					AssignStmt assignStmt = Jimple.v().newAssignStmt(lhs, vr);
 					
-					//get the patched twin
-					//also match the argument list types
-					Iterator<SootMethod> itm = hs.iterator();
-					
-					ArrayList<SootMethod> alm = new ArrayList<>();
-					
-					while(itm.hasNext())
-					{
-						SootMethod sm = itm.next();
-						//List<Type> argTypes = sm.getParameterTypes();
-						
-						String patchedMethodNameFromCalledMethod = calledMethod.getName().concat(Constants.patcheClause);
-						
-						//if collide them get them in a list for parameter type check
-						if(sm.getName().equals(patchedMethodNameFromCalledMethod))
-						{
-							alm.add(sm);
-						}
-					}
-					
-					itm = alm.iterator();
-					while(itm.hasNext())
-					{
-						SootMethod sm = itm.next();
-						List<Type> argTypes = sm.getParameterTypes();
-						if(calledMethodArgTypes.size() == argTypes.size())
-						{
-							int counter = 0;
-							for(int i = 0; i<calledMethodArgTypes.size();i++)
-							{
-								if(calledMethodArgTypes.get(i).toString().equals(argTypes.get(i).toString()))
-									counter++;
-							}
-							if(counter == calledMethodArgTypes.size())
-							{
-								System.out.println("Called " + sm.getSubSignature());
-								break;
-							}
-						}
-					}
-					
-					//System.out.println(alm);
-					
+					pc.insertAfter(assignStmt,unit);					
 				
 					
+				}
+				
+				if(value instanceof StaticInvokeExpr)
+				{
+					//System.out.println("%% " + unit);
 				}
 			}
 			
@@ -334,6 +384,7 @@ public class MethodRefChanger extends BodyTransformer
 
 class Main_refChanger
 {
+	@SuppressWarnings("unused")
 	public static void main(String[] args) 
 	{	            
         String []className = {"Test_Caller"};
