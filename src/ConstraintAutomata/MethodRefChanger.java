@@ -269,8 +269,8 @@ public class MethodRefChanger extends BodyTransformer
 		/*
 		 * DEBUG
 		 */
-		if(sMethod.getName().equals("testFun"))
-			System.out.println(body);
+		//if(sMethod.getName().equals("testFun"))
+			//System.out.println(body);
 		
 		PatchingChain<Unit> pc = body.getUnits();
 		
@@ -300,7 +300,8 @@ public class MethodRefChanger extends BodyTransformer
 				
 				if(invokeExpr instanceof VirtualInvokeExpr)
 				{
-					System.out.println(stmt);
+					System.out.println("%% " + stmt);
+					
 					flag = true;
 					
 
@@ -316,12 +317,22 @@ public class MethodRefChanger extends BodyTransformer
 					
 					System.out.println(toBeCalled.getSubSignature());
 
-					//delete old
-					//pc.remove(unit);
+					VirtualInvokeExpr vr = Jimple.v().newVirtualInvokeExpr((Local)virtualInvokeExpr.getBase(), 
+							toBeCalled.makeRef(), virtualInvokeExpr.getArgs());
+					
+					//create new invoke statement and encapsulate the virtual invoke
+					InvokeStmt invViToInstrument = Jimple.v().newInvokeStmt(vr);
+					
+					//insert modified method call and delete older one
+					
+					pc.insertAfter(invViToInstrument,unit);					
+				    pc.remove(unit);
 				}
 				
 				if(invokeExpr instanceof StaticInvokeExpr)
 				{
+					System.out.println("%% " + stmt);
+					
 					StaticInvokeExpr staticInvokeExpr = (StaticInvokeExpr) invokeExpr;
 					
 					if(processInvokeStatement(staticInvokeExpr) == null)
@@ -333,7 +344,12 @@ public class MethodRefChanger extends BodyTransformer
 					
 					StaticInvokeExpr st = Jimple.v().newStaticInvokeExpr(toBeCalled.makeRef(), staticInvokeExpr.getArgs());
 					
-					//pc.insertAfter(st,unit);
+					///create new invoke statement and encapsulate the static invoke
+					InvokeStmt invStToInstrument = Jimple.v().newInvokeStmt(st);
+					
+					//insert modified method call and delete older one
+					pc.insertAfter(invStToInstrument,unit);					
+				    pc.remove(unit);
 				}
 			}
 			
@@ -345,7 +361,7 @@ public class MethodRefChanger extends BodyTransformer
 				
 				if(value instanceof VirtualInvokeExpr)
 				{				
-					System.out.println(stmt);
+					System.out.println("%% " + stmt);
 					flag = true;
 					
 					VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) value;
@@ -363,14 +379,33 @@ public class MethodRefChanger extends BodyTransformer
 					
 					AssignStmt assignStmt = Jimple.v().newAssignStmt(lhs, vr);
 					
+					//insert modified method call and delete older one
 					pc.insertAfter(assignStmt,unit);					
-				
+				    pc.remove(unit);
 					
 				}
 				
 				if(value instanceof StaticInvokeExpr)
 				{
-					//System.out.println("%% " + unit);
+					System.out.println("%% " + stmt);
+					StaticInvokeExpr staticInvokeExpr = (StaticInvokeExpr) value;
+					
+					//in case not found
+					if(processInvokeStatement(staticInvokeExpr) == null)
+						continue;
+					
+					SootMethod toBeCalled = processInvokeStatement(staticInvokeExpr);
+					System.out.println(toBeCalled.getSubSignature());
+					
+					StaticInvokeExpr st = Jimple.v().newStaticInvokeExpr(toBeCalled.makeRef(), staticInvokeExpr.getArgs());
+					
+					AssignStmt assignStmt = Jimple.v().newAssignStmt(lhs, st);
+					
+					System.out.println("##" + unit);
+					
+					//insert modified method call and delete older one
+					pc.insertAfter(assignStmt,unit);
+					pc.remove(unit);
 				}
 			}
 			
