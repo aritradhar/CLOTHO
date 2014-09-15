@@ -59,7 +59,7 @@ import soot.options.Options;
 public class MethodRefChanger extends BodyTransformer
 {
 	
-	private SootClass getProperClass(Value v)
+	public static SootClass getProperClass(Value v)
 	{
 		Type t = v.getType();
 		
@@ -257,15 +257,12 @@ public class MethodRefChanger extends BodyTransformer
 	}
 	
 	
-	
-	
 	@SuppressWarnings("unused")
 	@Override
 	protected void internalTransform(Body body, String phaseName, Map options)
 	{		
 		SootMethod sMethod = body.getMethod();
 		System.out.println("<<current method : " + sMethod.getName() + " >>");
-		
 		/*
 		 * DEBUG
 		 */

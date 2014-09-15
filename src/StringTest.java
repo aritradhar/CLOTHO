@@ -16,12 +16,25 @@
 
 public class StringTest 
 {
+	void foo()
+	{
+		
+	}
+	
+	void bar()
+	{
+		
+	}
 	public static void main(String[] args) 
 	{
-		String st = "aritradhar";
+		String st = "aritra:dhar";
 
 		st = st.substring(0, st.indexOf(":"));
 		
-		System.out.println(st);
+		System.out.println(st.codePointCount(0, 8));
+		st.charAt(3);
+		st.subSequence(1, 2);
+		char[] c = new char[10];
+		st.getChars(0, 1, c, 2);
 	}
 }

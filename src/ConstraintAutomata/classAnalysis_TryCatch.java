@@ -414,6 +414,14 @@ public class classAnalysis_TryCatch extends BodyTransformer
 		 // this is to analyze potential ArrayIndexOutofBoundException and other RuntimeException
 
 	     SootMethod smethod = jbody.getMethod();
+	     
+	     //skip <init> -- constructor calls
+	     if(smethod.getName().startsWith("<"))
+	     {
+	    	 return;
+	     }
+	     
+	     
 	     System.out.println("<<<<<<<< Current Method : "+smethod.getName()+" >>>>>>>>");
 	     
 	     if(!smethod.getName().contains(Constants.patcheClause))
