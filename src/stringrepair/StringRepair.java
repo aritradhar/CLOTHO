@@ -1,25 +1,3 @@
-package stringrepair;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import profile.InstrumManager;
-import profile.UtilInstrum;
-import soot.Body;
-import soot.BodyTransformer;
-import soot.Local;
-import soot.Pack;
-import soot.PackManager;
-import soot.PatchingChain;
-import soot.RefType;
-import soot.Scene;
-import soot.SootClass;
-import soot.SootMethod;
-import soot.SootResolver;
-import soot.Transform;
-import soot.Unit;
 //*************************************************************************************
 //*********************************************************************************** *
 //author Aritra Dhar																* *
@@ -36,13 +14,46 @@ import soot.Unit;
 //*************************************************************************************
 
 
+package stringrepair;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import profile.InstrumManager;
+import profile.UtilInstrum;
+import soot.Body;
+import soot.BodyTransformer;
+import soot.IntType;
+import soot.Local;
+import soot.Pack;
+import soot.PackManager;
+import soot.PatchingChain;
+import soot.RefType;
+import soot.Scene;
+import soot.SootClass;
+import soot.SootMethod;
+import soot.Transform;
+import soot.Unit;
 import soot.Value;
+import soot.JastAddJ.Expr;
+import soot.javaToJimple.LocalGenerator;
 import soot.jimple.AssignStmt;
+import soot.jimple.ConditionExpr;
+import soot.jimple.GotoStmt;
+import soot.jimple.IfStmt;
+import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Jimple;
+import soot.jimple.LeExpr;
+import soot.jimple.NopStmt;
 import soot.jimple.Stmt;
+import soot.jimple.SubExpr;
 import soot.jimple.VirtualInvokeExpr;
+import soot.jimple.internal.JLeExpr;
 import soot.options.Options;
 import ConstraintAutomata.MethodRefChanger;
 
@@ -67,7 +78,7 @@ public class StringRepair extends BodyTransformer
 	/*
 	 * Get method String API method call from the virtual invoke expression
 	 */
-	private SootMethod getVirtualStringMethodCall(VirtualInvokeExpr virtualInvokeExpr)
+	public SootMethod getVirtualStringMethodCall(VirtualInvokeExpr virtualInvokeExpr)
 	{
 		Value base = virtualInvokeExpr.getBase();
 		
@@ -86,25 +97,114 @@ public class StringRepair extends BodyTransformer
 		return null;
 	}
 	
-	/*
-	private List<Stmt> subStringPatchProbe(Value lhs, Stmt stmt)
-	{
-		
-	}*/
 	
+	private List<Stmt> subStringPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	{
+		List<Stmt> probe = new ArrayList<Stmt>();
+		SootMethod sMethod = virtualInvokeExpr.getMethod();
+		
+		List<Value> args = virtualInvokeExpr.getArgs();
+		Value base = virtualInvokeExpr.getBase();
+		
+		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
+		SootMethod lengthMethod = stringClass.getMethod("int length()");
+		
+		if(sMethod.getSubSignature().equals("java.lang.String substring(int)"))
+		{
+			Value index = args.get(0);
+			Local len = new LocalGenerator(jbody).generateLocal(IntType.v());					
+			
+			VirtualInvokeExpr len_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, lengthMethod.makeRef());			
+			
+			AssignStmt len_assign = Jimple.v().newAssignStmt(len, len_virtual);
+			probe.add(len_assign);
+			
+			
+			SubExpr len_sub = Jimple.v().newSubExpr(len, IntConstant.v(1));
+			AssignStmt sub_len_assign = Jimple.v().newAssignStmt(len, len_sub);
+			probe.add(sub_len_assign);
+			
+			VirtualInvokeExpr substring_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, 
+					stringClass.getMethod("java.lang.String substring(int)").makeRef(), Arrays.asList(new Local[]{len}));
+			
+			if(lhs == null)
+			{
+				InvokeStmt st = Jimple.v().newInvokeStmt(substring_virtual);
+				probe.add(st);
+			}
+			else
+			{
+				AssignStmt base_assign = Jimple.v().newAssignStmt(lhs, substring_virtual);
+				probe.add(base_assign);
+			}
+			
+			
+		}
+		
+		if(sMethod.getSubSignature().equals("java.lang.String substring(int,int)"))
+		{
+			Value first_index = args.get(0);
+			Value second_index = args.get(1);			
+									
+			
+			
+			Local f_index = new LocalGenerator(jbody).generateLocal(IntType.v());
+
+			AssignStmt first_index_assign = Jimple.v().newAssignStmt(f_index, IntConstant.v(0));
+			AssignStmt first_index_assign2 = Jimple.v().newAssignStmt(new LocalGenerator(jbody).generateLocal(IntType.v()), IntConstant.v(10));
+			probe.add(first_index_assign);
+			
+			LeExpr jle = Jimple.v().newLeExpr(first_index, IntConstant.v(-1));
+			IfStmt ifs = Jimple.v().newIfStmt(jle, first_index_assign);
+						
+			probe.add(ifs);
+			//probe.add(first_index_assign);
+			
+			
+			Local l_index = new LocalGenerator(jbody).generateLocal(IntType.v());
+			
+			VirtualInvokeExpr len_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, lengthMethod.makeRef());			
+			
+			AssignStmt len_assign = Jimple.v().newAssignStmt(l_index, len_virtual);
+			probe.add(len_assign);
+			
+			
+					
+			SubExpr len_sub = Jimple.v().newSubExpr(l_index, IntConstant.v(1));
+			AssignStmt sub_len_assign = Jimple.v().newAssignStmt(l_index, len_sub);
+			probe.add(sub_len_assign);
+			
+			VirtualInvokeExpr substring_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, 
+					stringClass.getMethod("java.lang.String substring(int,int)").makeRef(), Arrays.asList(new Local[]{f_index, l_index}));
+			
+			if(lhs == null)
+			{
+				InvokeStmt st = Jimple.v().newInvokeStmt(substring_virtual);
+				probe.add(st);
+			}
+			else
+			{
+				AssignStmt base_assign = Jimple.v().newAssignStmt(lhs, substring_virtual);
+				probe.add(base_assign);
+			}
+			
+			
+		}
+		
+		return probe;
+	}
+
 	private Body makePatchProbe(PatchingChain<Unit> ch , Body jbody, Stmt try_start_stmt, Stmt try_end_stmt, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
 	{
 		 List<Stmt> probe = new ArrayList<Stmt>();
 		 //System.out.println(sMethod.getSubSignature());
-		 SootMethod sMethod = getVirtualStringMethodCall(virtualInvokeExpr);
+		 SootMethod sMethod = virtualInvokeExpr.getMethod();
 		 
 		 if(sMethod == null)
 			 return null;
 		 
 		 SootClass thrwCls = null;
 		 
-		 SootClass s = Scene.v().getSootClass("java.lang.String");
-
 		 if(sMethod.getSubSignature().equals("char chatAt(int)") || sMethod.getSubSignature().equals("inr codePointAt(int)") 
 				 || sMethod.getSubSignature().equals("int codePointBefore(int)") 
 				 || sMethod.getSubSignature().equals("int codePointCount(int,int)")
@@ -125,10 +225,6 @@ public class StringRepair extends BodyTransformer
 			 return null;
 		 }
 		 
-		 if(sMethod.getSubSignature().equals("char chatAt(int)"))
-		 {
-			 
-		 }
 		 
 		 Stmt sGotoLast = Jimple.v().newGotoStmt(try_end_stmt);
     	 probe.add(sGotoLast);
@@ -141,6 +237,13 @@ public class StringRepair extends BodyTransformer
     	 
     	 //call patching function based on methods
     	 
+    	 if( sMethod.getSubSignature().equals("java.lang.String substring(int)")
+				 || sMethod.getSubSignature().equals("java.lang.String substring(int,int)"))
+    	 {
+    		 probe.addAll(subStringPatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
+    	 
+    	 //add assignment statemnets
     	 if(lhs != null)
     	 {
     		 
@@ -171,6 +274,8 @@ public class StringRepair extends BodyTransformer
 		{
 			Unit unit = it.next();
 			Stmt stmt = (Stmt) unit;
+			
+			//System.out.println(stmt);
 			
 			if(stmt instanceof AssignStmt)
 			{

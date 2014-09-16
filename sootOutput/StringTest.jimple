@@ -1,44 +1,52 @@
 public class StringTest extends java.lang.Object
 {
 
+    void foo()
+    {
+        StringTest this;
+
+        this := @this: StringTest;
+        return;
+    }
+
+    void bar()
+    {
+        StringTest this;
+
+        this := @this: StringTest;
+        return;
+    }
+
     public static void main(java.lang.String[])
     {
         java.lang.String[] args;
-        java.lang.String st, temp$1, temp$3;
-        int temp$0;
-        java.lang.StringIndexOutOfBoundsException ex;
-        java.lang.StringBuffer temp$2;
-        java.io.PrintStream temp$4;
+        java.lang.String st, temp$1, temp$6, subs, temp$7;
+        int temp$0, a, temp$2, temp$4;
+        java.io.PrintStream temp$3, temp$8;
+        char temp$5;
+        java.lang.CharSequence temp$9;
+        char[] c;
 
         args := @parameter0: java.lang.String[];
-        st = "aritradhar";
-
-     label0:
-        nop;
+        st = "aritra:dhar";
         temp$0 = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>(":");
         temp$1 = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(0, temp$0);
         st = temp$1;
-        goto label2;
-
-     label1:
-        nop;
-        ex := @caughtexception;
-        temp$2 = new java.lang.StringBuffer;
-        specialinvoke temp$2.<java.lang.StringBuffer: void <init>()>();
-        virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(st);
-        virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(":");
-        temp$3 = virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.String toString()>();
-        st = temp$3;
-        nop;
-        goto label2;
-
-     label2:
-        nop;
-        temp$4 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$4.<java.io.PrintStream: void println(java.lang.String)>(st);
+        temp$2 = virtualinvoke st.<java.lang.String: int length()>();
+        a = temp$2;
+        temp$3 = <java.lang.System: java.io.PrintStream out>;
+        temp$4 = virtualinvoke st.<java.lang.String: int codePointCount(int,int)>(0, 2);
+        virtualinvoke temp$3.<java.io.PrintStream: void println(int)>(temp$4);
+        temp$5 = virtualinvoke st.<java.lang.String: char charAt(int)>(3);
+        temp$6 = virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(1);
+        temp$7 = virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(2);
+        subs = temp$7;
+        temp$8 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke temp$8.<java.io.PrintStream: void println(java.lang.String)>(subs);
+        temp$9 = virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
+        c = newarray (char)[10];
+        virtualinvoke st.<java.lang.String: void getChars(int,int,char[],int)>(0, 1, c, 2);
         return;
-
-        catch java.lang.StringIndexOutOfBoundsException from label0 to label1 with label1;
     }
 
     public void <init>()

@@ -11,5 +11,10 @@
 /TestPack/
 /Test_Caller.class
 /TrapInstrumentation/
-/StringRepair/
+/VariableMonitor.class
+/acteve/
+/classAnalysis.class
+/dataDependency.class
+/nullPointerTestcase/
+/profile/
 /stringrepair/
