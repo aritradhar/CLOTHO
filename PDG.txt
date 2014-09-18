@@ -1,0 +1,221 @@
+
+Program Dependence Graph for Method <init>
+*********CFG******** 
+Headers: 1 [Block 0:
+[preds: ] [succs: ]
+this := @this: StringTest;
+specialinvoke this.<java.lang.Object: void <init>()>();
+return;
+]Node = Block #0
+Preds:
+Succs:
+Blocks Detail:Block 0:
+[preds: ] [succs: ]
+this := @this: StringTest;
+specialinvoke this.<java.lang.Object: void <init>()>();
+return;
+
+
+*********PDG******** 
+
+ Begin PDGNode: Type: REGION: Begin-----------PDGRegion:  0-------------
+Children Regions are: 
+Units are: 
+this := @this: StringTest
+specialinvoke this.<java.lang.Object: void <init>()>()
+return
+End of PDG Region 0 -----------------------------
+
+ has 1 successors:
+0: Edge's label: [dependency] 
+   Target: Type: CFGNODE: Block #0
+
+ End PDGNode.
+ Begin PDGNode: Type: CFGNODE: Block 0:
+[preds: ] [succs: ]
+this := @this: StringTest;
+specialinvoke this.<java.lang.Object: void <init>()>();
+return;
+
+ has 0 successors:
+
+ End PDGNode.
+Program Dependence Graph for Method foo
+*********CFG******** 
+Headers: 1 [Block 0:
+[preds: ] [succs: ]
+this := @this: StringTest;
+return;
+]Node = Block #0
+Preds:
+Succs:
+Blocks Detail:Block 0:
+[preds: ] [succs: ]
+this := @this: StringTest;
+return;
+
+
+*********PDG******** 
+
+ Begin PDGNode: Type: REGION: Begin-----------PDGRegion:  0-------------
+Children Regions are: 
+Units are: 
+this := @this: StringTest
+return
+End of PDG Region 0 -----------------------------
+
+ has 1 successors:
+0: Edge's label: [dependency] 
+   Target: Type: CFGNODE: Block #0
+
+ End PDGNode.
+ Begin PDGNode: Type: CFGNODE: Block 0:
+[preds: ] [succs: ]
+this := @this: StringTest;
+return;
+
+ has 0 successors:
+
+ End PDGNode.
+Program Dependence Graph for Method bar
+*********CFG******** 
+Headers: 1 [Block 0:
+[preds: ] [succs: ]
+this := @this: StringTest;
+return;
+]Node = Block #0
+Preds:
+Succs:
+Blocks Detail:Block 0:
+[preds: ] [succs: ]
+this := @this: StringTest;
+return;
+
+
+*********PDG******** 
+
+ Begin PDGNode: Type: REGION: Begin-----------PDGRegion:  0-------------
+Children Regions are: 
+Units are: 
+this := @this: StringTest
+return
+End of PDG Region 0 -----------------------------
+
+ has 1 successors:
+0: Edge's label: [dependency] 
+   Target: Type: CFGNODE: Block #0
+
+ End PDGNode.
+ Begin PDGNode: Type: CFGNODE: Block 0:
+[preds: ] [succs: ]
+this := @this: StringTest;
+return;
+
+ has 0 successors:
+
+ End PDGNode.
+Program Dependence Graph for Method main
+*********CFG******** 
+Headers: 1 [Block 0:
+[preds: ] [succs: ]
+args := @parameter0: java.lang.String[];
+st = "aritra:dhar";
+$i0 = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>(":");
+st = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(0, $i0);
+virtualinvoke st.<java.lang.String: int length()>();
+$r0 = <java.lang.System: java.io.PrintStream out>;
+$i1 = virtualinvoke st.<java.lang.String: int codePointCount(int,int)>(0, 2);
+virtualinvoke $r0.<java.io.PrintStream: void println(int)>($i1);
+virtualinvoke st.<java.lang.String: char charAt(int)>(3);
+virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(1);
+i = 1;
+j = 3;
+subs = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(i, j);
+$r0 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(subs);
+virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
+c = newarray (char)[10];
+virtualinvoke st.<java.lang.String: void getChars(int,int,char[],int)>(0, 1, c, 2);
+return;
+]Node = Block #0
+Preds:
+Succs:
+Blocks Detail:Block 0:
+[preds: ] [succs: ]
+args := @parameter0: java.lang.String[];
+st = "aritra:dhar";
+$i0 = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>(":");
+st = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(0, $i0);
+virtualinvoke st.<java.lang.String: int length()>();
+$r0 = <java.lang.System: java.io.PrintStream out>;
+$i1 = virtualinvoke st.<java.lang.String: int codePointCount(int,int)>(0, 2);
+virtualinvoke $r0.<java.io.PrintStream: void println(int)>($i1);
+virtualinvoke st.<java.lang.String: char charAt(int)>(3);
+virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(1);
+i = 1;
+j = 3;
+subs = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(i, j);
+$r0 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(subs);
+virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
+c = newarray (char)[10];
+virtualinvoke st.<java.lang.String: void getChars(int,int,char[],int)>(0, 1, c, 2);
+return;
+
+
+*********PDG******** 
+
+ Begin PDGNode: Type: REGION: Begin-----------PDGRegion:  0-------------
+Children Regions are: 
+Units are: 
+args := @parameter0: java.lang.String[]
+st = "aritra:dhar"
+$i0 = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>(":")
+st = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(0, $i0)
+virtualinvoke st.<java.lang.String: int length()>()
+$r0 = <java.lang.System: java.io.PrintStream out>
+$i1 = virtualinvoke st.<java.lang.String: int codePointCount(int,int)>(0, 2)
+virtualinvoke $r0.<java.io.PrintStream: void println(int)>($i1)
+virtualinvoke st.<java.lang.String: char charAt(int)>(3)
+virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(1)
+i = 1
+j = 3
+subs = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(i, j)
+$r0 = <java.lang.System: java.io.PrintStream out>
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(subs)
+virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2)
+c = newarray (char)[10]
+virtualinvoke st.<java.lang.String: void getChars(int,int,char[],int)>(0, 1, c, 2)
+return
+End of PDG Region 0 -----------------------------
+
+ has 1 successors:
+0: Edge's label: [dependency] 
+   Target: Type: CFGNODE: Block #0
+
+ End PDGNode.
+ Begin PDGNode: Type: CFGNODE: Block 0:
+[preds: ] [succs: ]
+args := @parameter0: java.lang.String[];
+st = "aritra:dhar";
+$i0 = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>(":");
+st = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(0, $i0);
+virtualinvoke st.<java.lang.String: int length()>();
+$r0 = <java.lang.System: java.io.PrintStream out>;
+$i1 = virtualinvoke st.<java.lang.String: int codePointCount(int,int)>(0, 2);
+virtualinvoke $r0.<java.io.PrintStream: void println(int)>($i1);
+virtualinvoke st.<java.lang.String: char charAt(int)>(3);
+virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(1);
+i = 1;
+j = 3;
+subs = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(i, j);
+$r0 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(subs);
+virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
+c = newarray (char)[10];
+virtualinvoke st.<java.lang.String: void getChars(int,int,char[],int)>(0, 1, c, 2);
+return;
+
+ has 0 successors:
+
+ End PDGNode.

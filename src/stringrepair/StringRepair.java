@@ -68,9 +68,12 @@ public class StringRepair extends BodyTransformer
 
         jtp.add(new Transform("jtp.instrumenter", new StringRepair()));
         Options.v().setPhaseOption("jb", "use-original-names:true");
-        
+     
+        /* DEBUG
         Scanner s = new Scanner(System.in);
         String st = s.next();
+        */
+        String st = "c";
         
         if(st.equalsIgnoreCase("j"))
         	Options.v().set_output_format(Options.output_format_jimple);
@@ -78,7 +81,7 @@ public class StringRepair extends BodyTransformer
         if(st.equalsIgnoreCase("c"))
         	Options.v().set_output_format(Options.output_format_class);     
         
-        Scene.v().addBasicClass("ConstraintAutomata.IndexRepair",SootClass.SIGNATURES);
+        Scene.v().addBasicClass("stringrepair.IndexRepair",SootClass.SIGNATURES);
         
         soot.Main.main(className);
 	}
@@ -154,25 +157,17 @@ public class StringRepair extends BodyTransformer
 		if(sMethod.getSubSignature().equals("java.lang.String substring(int,int)"))
 		{
 			Value first_index = args.get(0);
-			Value second_index = args.get(1);			
-									
-			
+			Value second_index = args.get(1);														
 			
 			Local f_index = new LocalGenerator(jbody).generateLocal(IntType.v());
 
 			NopStmt nop = Jimple.v().newNopStmt();
 			
 			AssignStmt first_index_assign = Jimple.v().newAssignStmt(f_index, IntConstant.v(0));
-			//AssignStmt first_index_assign2 = Jimple.v().newAssignStmt(new LocalGenerator(jbody).generateLocal(IntType.v()), IntConstant.v(10));
-			
-			
-			GeExpr jle = Jimple.v().newGeExpr(first_index, IntConstant.v(-1));
-			IfStmt ifs = Jimple.v().newIfStmt(jle, nop);
 						
-			probe.add(ifs);
-			
-			//GotoStmt gt = Jimple.v().newGotoStmt(target);
-			
+			/*
+			 * IfStmt is no longer required here
+			 */
 			
 			probe.add(nop);
 			probe.add(first_index_assign);
@@ -186,7 +181,7 @@ public class StringRepair extends BodyTransformer
 			probe.add(len_assign1);
 			
 			
-			SootClass IndexRepairClass = Scene.v().loadClassAndSupport("ConstraintAutomata.IndexRepair");
+			SootClass IndexRepairClass = Scene.v().loadClassAndSupport("stringrepair.IndexRepair");
 			
 			StaticInvokeExpr staticInvI = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethodByName("getI").makeRef(), 
 					Arrays.asList(new Value[]{first_index, second_index, len}));
