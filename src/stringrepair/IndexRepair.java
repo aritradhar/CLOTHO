@@ -51,6 +51,9 @@ public class IndexRepair
 		ind1 = i;
 	}
 	
+	/*
+	 * Works both for substing(int), charAt(int), codePointAt(int)
+	 */
 	public static void indexRepair(int i, int len)
 	{
 		set(i);
@@ -61,12 +64,12 @@ public class IndexRepair
 		}
 		if(i > len - 1)
 		{
-			i = len;
+			i = len - 1;
 		}
 	}
 	
 	/*
-	 * Works both for subsequence and substring
+	 * Works both for subsequence(int,int) and substring(int,int)
 	 */
 	
 	public static void indexRepair(int i, int j, int len)
