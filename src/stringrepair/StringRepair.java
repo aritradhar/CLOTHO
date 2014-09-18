@@ -27,6 +27,7 @@ import profile.InstrumManager;
 import profile.UtilInstrum;
 import soot.Body;
 import soot.BodyTransformer;
+import soot.BooleanType;
 import soot.IntType;
 import soot.Local;
 import soot.Pack;
@@ -41,6 +42,7 @@ import soot.Unit;
 import soot.Value;
 import soot.javaToJimple.LocalGenerator;
 import soot.jimple.AssignStmt;
+import soot.jimple.DoubleConstant;
 import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
@@ -173,7 +175,7 @@ public class StringRepair extends BodyTransformer
 			probe.add(base_assign);
 		}
 		
-		
+		System.out.println("subSequencePatchProbe Executed ");
 		
 		return probe;
 	}
@@ -195,7 +197,7 @@ public class StringRepair extends BodyTransformer
 		if(sMethod.getSubSignature().equals("java.lang.String substring(int)"))
 		{
 					
-			Object[] res = singleIndexPatcher(jbody, lhs, virtualInvokeExpr);
+			Object[] res = singleIndexPatcher(jbody, lhs, virtualInvokeExpr, false);
 			
 			List<Stmt> sl = (List<Stmt>) res[0];
 			probe.addAll(sl);
@@ -240,6 +242,9 @@ public class StringRepair extends BodyTransformer
 		
 		if(sMethod.getSubSignature().equals("java.lang.String substring(int,int)"))
 		{
+			/*
+			 * Now all included i single method call
+			 * 
 			Value first_index = args.get(0);
 			Value second_index = args.get(1);														
 			
@@ -265,7 +270,12 @@ public class StringRepair extends BodyTransformer
 			//System.out.println(assignI);
 			probe.add(assignI);
 			probe.add(assignJ);
+			*/
 			
+			Object[] res = doubleIndexPatcher(jbody, lhs, virtualInvokeExpr);
+			
+			List<Stmt> sl = (List<Stmt>) res[0];
+			probe.addAll(sl);
 			
 			/*
 			 * Not Needed
@@ -281,8 +291,9 @@ public class StringRepair extends BodyTransformer
 			probe.add(sub_len_assign);
 			*/
 			
-			VirtualInvokeExpr substring_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, 
-					stringClass.getMethod("java.lang.String substring(int,int)").makeRef(), Arrays.asList(new Local[]{f_index, l_index}));
+			VirtualInvokeExpr substring_virtual = Jimple.v().newVirtualInvokeExpr((Local)res[1], 
+					stringClass.getMethod("java.lang.String substring(int,int)").makeRef(), 
+					Arrays.asList(new Local[]{(Local) res[2], (Local) res[3]}));
 			
 			if(lhs == null)
 			{
@@ -297,7 +308,7 @@ public class StringRepair extends BodyTransformer
 			
 			
 		}
-		
+		System.out.println("subStringPatchProbe Executed ");
 		return probe;
 	}
 	
@@ -306,8 +317,10 @@ public class StringRepair extends BodyTransformer
 	 * returns -> Object[0] = probe
 	 * 			  Object[1] = base
 	 * 			  Object[2] = li //index local to be  passed
+	 * 
+	 * flag = true for 1 <= index <= length 
 	 */
-	private Object[] singleIndexPatcher( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	private Object[] singleIndexPatcher( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr, Boolean flag)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		List<Value> args = virtualInvokeExpr.getArgs();
@@ -329,8 +342,20 @@ public class StringRepair extends BodyTransformer
 		
 		Local li = new LocalGenerator(jbody).generateLocal(IntType.v());
 		
-		StaticInvokeExpr repairIndex_static = Jimple.v().newStaticInvokeExpr(
+		StaticInvokeExpr repairIndex_static = null;
+		
+		if (flag)
+		{
+			
+			repairIndex_static = Jimple.v().newStaticInvokeExpr(
+					IndexRepairClass.getMethod("int getI(int,int,double)").makeRef(), Arrays.asList(new Value[]{index, len, DoubleConstant.v(1.0)}));
+		}
+		
+		else
+		{
+			repairIndex_static = Jimple.v().newStaticInvokeExpr(
 				IndexRepairClass.getMethod("int getI(int,int)").makeRef(), Arrays.asList(new Value[]{index, len}));
+		}
 		
 				
 		AssignStmt repairIndex_assign = Jimple.v().newAssignStmt(li, repairIndex_static);
@@ -338,8 +363,61 @@ public class StringRepair extends BodyTransformer
 
 		Object[] ret = new Object[]{probe, base, li};
 		
+		System.out.println("##single Index patch Executed ");
+		
 		return ret;
 	}
+	
+	/*
+	 * returns -> Object[0] = probe
+	 * 			  Object[1] = base
+	 * 			  Object[2] = li //lower index local to be  passed
+	 * 			  Object[3] = hi //higher index local to be  passed
+	 */
+	private Object[] doubleIndexPatcher( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	{
+		List<Stmt> probe = new ArrayList<Stmt>();
+		List<Value> args = virtualInvokeExpr.getArgs();
+		Value base = virtualInvokeExpr.getBase();
+		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
+
+		SootClass IndexRepairClass = Scene.v().loadClassAndSupport("stringrepair.IndexRepair");
+		SootMethod lengthMethod = stringClass.getMethod("int length()");
+		
+		Value first_index = args.get(0);
+		Value second_index = args.get(1);														
+		
+		Local f_index = new LocalGenerator(jbody).generateLocal(IntType.v());
+								
+		Local l_index = new LocalGenerator(jbody).generateLocal(IntType.v());
+		
+		Local len = new LocalGenerator(jbody).generateLocal(IntType.v());
+		VirtualInvokeExpr len_virtual1 = Jimple.v().newVirtualInvokeExpr((Local)base, lengthMethod.makeRef());						
+		AssignStmt len_assign1 = Jimple.v().newAssignStmt(len, len_virtual1);
+		probe.add(len_assign1);
+		
+		
+		StaticInvokeExpr staticInvI = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethod("int getI(int,int,int)").makeRef(), 
+				Arrays.asList(new Value[]{first_index, second_index, len}));
+		
+		StaticInvokeExpr staticInvJ = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethod("int getJ(int,int,int)").makeRef(), 
+				Arrays.asList(new Value[]{first_index, second_index, len}));
+		
+		AssignStmt assignI = Jimple.v().newAssignStmt(f_index, staticInvI);
+		AssignStmt assignJ = Jimple.v().newAssignStmt(l_index, staticInvJ);
+		
+		//System.out.println(assignI);
+		probe.add(assignI);
+		probe.add(assignJ);
+		
+		Object[] ret = new Object[]{probe, base, f_index, l_index};
+		
+		System.out.println("##double Index patch Executed ");
+		
+		return ret;
+	}
+	
+	
 	
 	/*
 	 * handle same as subString(int)
@@ -350,7 +428,7 @@ public class StringRepair extends BodyTransformer
 		List<Stmt> probe = new ArrayList<Stmt>();
 		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
 				
-		Object[] res = singleIndexPatcher(jbody, lhs, virtualInvokeExpr);
+		Object[] res = singleIndexPatcher(jbody, lhs, virtualInvokeExpr, false);
 		
 		List<Stmt> sl = (List<Stmt>) res[0];
 		probe.addAll(sl);
@@ -367,6 +445,96 @@ public class StringRepair extends BodyTransformer
 			AssignStmt base_assign = Jimple.v().newAssignStmt(lhs, charAt_virtual);
 			probe.add(base_assign);
 		}
+		
+		System.out.println("charAtPatchProbe Executed ");
+		
+		return probe;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<Stmt> codePointAtPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	{
+		List<Stmt> probe = new ArrayList<Stmt>();
+		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
+				
+		Object[] res = singleIndexPatcher(jbody, lhs, virtualInvokeExpr, false);
+		
+		List<Stmt> sl = (List<Stmt>) res[0];
+		probe.addAll(sl);
+		VirtualInvokeExpr codePointAt_virtual = Jimple.v().newVirtualInvokeExpr((Local) res[1], 
+				stringClass.getMethod("int codePointAt(int)").makeRef(), Arrays.asList(new Local[]{(Local) res[2]}));
+		
+		if(lhs == null)
+		{
+			InvokeStmt st = Jimple.v().newInvokeStmt(codePointAt_virtual);
+			probe.add(st);
+		}
+		else
+		{
+			AssignStmt base_assign = Jimple.v().newAssignStmt(lhs, codePointAt_virtual);
+			probe.add(base_assign);
+		}
+		
+		System.out.println("codePointAtPatchProbe Executed ");
+		
+		return probe;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<Stmt> codePointBeforePatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	{
+		List<Stmt> probe = new ArrayList<Stmt>();
+		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
+				
+		Object[] res = singleIndexPatcher(jbody, lhs, virtualInvokeExpr, true);
+		
+		List<Stmt> sl = (List<Stmt>) res[0];
+		probe.addAll(sl);
+		VirtualInvokeExpr codePointBefore_virtual = Jimple.v().newVirtualInvokeExpr((Local) res[1], 
+				stringClass.getMethod("int codePointAt(int)").makeRef(), Arrays.asList(new Local[]{(Local) res[2]}));
+		
+		if(lhs == null)
+		{
+			InvokeStmt st = Jimple.v().newInvokeStmt(codePointBefore_virtual);
+			probe.add(st);
+		}
+		else
+		{
+			AssignStmt base_assign = Jimple.v().newAssignStmt(lhs, codePointBefore_virtual);
+			probe.add(base_assign);
+		}
+		
+		System.out.println("codePointAtPatchProbe Executed ");
+		
+		return probe;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<Stmt> codePointCountPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	{
+		List<Stmt> probe = new ArrayList<Stmt>();
+		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
+				
+		Object[] res = doubleIndexPatcher(jbody, lhs, virtualInvokeExpr);
+		
+		List<Stmt> sl = (List<Stmt>) res[0];
+		probe.addAll(sl);
+		VirtualInvokeExpr codePointCount_virtual = Jimple.v().newVirtualInvokeExpr((Local) res[1], 
+				stringClass.getMethod("int codePointCount(int,int)").makeRef(), 
+				Arrays.asList(new Local[]{(Local) res[2], (Local) res[3]}));
+		
+		if(lhs == null)
+		{
+			InvokeStmt st = Jimple.v().newInvokeStmt(codePointCount_virtual);
+			probe.add(st);
+		}
+		else
+		{
+			AssignStmt base_assign = Jimple.v().newAssignStmt(lhs, codePointCount_virtual);
+			probe.add(base_assign);
+		}
+		
+		System.out.println("codePointAtPatchProbe Executed ");
 		
 		return probe;
 	}
@@ -435,7 +603,27 @@ public class StringRepair extends BodyTransformer
     		 probe.addAll(charAtPatchProbe(jbody, lhs, virtualInvokeExpr));
     	 }
     	 
-    	 //add assignment statemnets
+    	 if(sMethod.getSubSignature().equals("int codePointAt(int)"))
+    	 {
+    		 probe.addAll(codePointAtPatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
+    	 
+    	 if(sMethod.getSubSignature().equals("int codePointBefore(int)"))
+    	 {
+    		 probe.addAll(codePointBeforePatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
+    	 
+    	 if(sMethod.getSubSignature().equals("int codePointCount(int,int)"))
+    	 {
+    		 probe.addAll(codePointCountPatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
+    	 
+    	 if(sMethod.getSubSignature().equals("int offsetByCodePoints(int,int)"))
+    	 {
+    		 probe.addAll(codePointCountPatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
+    	 
+    	 //add assignment statements
     	 if(lhs != null)
     	 {
     		 

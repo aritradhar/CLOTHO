@@ -29,6 +29,13 @@ public class IndexRepair
 		indexRepair(i, len);
 		return ind1;
 	}
+	
+	public static int getI(int i, int len,double flag)
+	{
+		indexRepair(i, len,flag);
+		return ind1;
+	}
+	
 	public static int getI(int i, int j, int len)
 	{
 		indexRepair(i, j, len);
@@ -58,13 +65,31 @@ public class IndexRepair
 	{
 		set(i);
 		
-		if(i<0)
+		if(i < 0)
 		{
 			ind1 = 0;
 		}
 		if(i > len - 1)
 		{
-			i = len - 1;
+			ind1 = len - 1;
+		}
+	}
+	
+	/*
+	 * For code point before
+	 */
+	
+	public static void indexRepair(int i, int len, double flag)
+	{
+		set(i);
+		
+		if(i < 1)
+		{
+			ind1 = 1;
+		}
+		if(i > len)
+		{
+			ind1 = len;
 		}
 	}
 	
