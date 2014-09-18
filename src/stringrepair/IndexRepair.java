@@ -24,7 +24,11 @@ public class IndexRepair
 	/*
 	 * Allowable 0 -> len - 1
 	 */
-	
+	public static int getI(int i, int len)
+	{
+		indexRepair(i, len);
+		return ind1;
+	}
 	public static int getI(int i, int j, int len)
 	{
 		indexRepair(i, j, len);
@@ -41,6 +45,24 @@ public class IndexRepair
 	{
 		ind1 = i;
 		ind2 = j;
+	}
+	public static void set(int i)
+	{
+		ind1 = i;
+	}
+	
+	public static void indexRepair(int i, int len)
+	{
+		set(i);
+		
+		if(i<0)
+		{
+			ind1 = 0;
+		}
+		if(i > len - 1)
+		{
+			i = len;
+		}
 	}
 	
 	public static void indexRepair(int i, int j, int len)
@@ -76,12 +98,14 @@ public class IndexRepair
 		}
 	}
 	
-	
+	/*
+	 *
 	public static void main(String[] args) 
 	{
 		indexRepair(0, -9, 5);
 		
 		System.out.println(ind1 + " " + ind2);
 	}
+	*/
 	
 }

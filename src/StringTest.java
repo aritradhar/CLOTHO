@@ -34,7 +34,7 @@ public class StringTest
 		
 		System.out.println(st.codePointCount(0, 2));
 		st.charAt(3);
-		st.substring(1);
+		st.substring(10);
 		
 		int i = 1, j = 3;
 		

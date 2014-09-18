@@ -21,7 +21,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 import profile.InstrumManager;
 import profile.UtilInstrum;
@@ -41,8 +40,6 @@ import soot.Unit;
 import soot.Value;
 import soot.javaToJimple.LocalGenerator;
 import soot.jimple.AssignStmt;
-import soot.jimple.GeExpr;
-import soot.jimple.IfStmt;
 import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
@@ -119,6 +116,7 @@ public class StringRepair extends BodyTransformer
 		Value base = virtualInvokeExpr.getBase();
 		
 		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
+		SootClass IndexRepairClass = Scene.v().loadClassAndSupport("stringrepair.IndexRepair");
 		
 		SootMethod lengthMethod = stringClass.getMethod("int length()");
 		
@@ -132,13 +130,25 @@ public class StringRepair extends BodyTransformer
 			AssignStmt len_assign = Jimple.v().newAssignStmt(len, len_virtual);
 			probe.add(len_assign);
 			
-			
+			/* 
+			 * No longer required
+			 * 
 			SubExpr len_sub = Jimple.v().newSubExpr(len, IntConstant.v(1));
 			AssignStmt sub_len_assign = Jimple.v().newAssignStmt(len, len_sub);
 			probe.add(sub_len_assign);
+			*/
+			
+			Local li = new LocalGenerator(jbody).generateLocal(IntType.v());
+			
+			StaticInvokeExpr repairIndex_static = Jimple.v().newStaticInvokeExpr(
+					IndexRepairClass.getMethod("int getI(int,int)").makeRef(), Arrays.asList(new Value[]{index, len}));
+			
+					
+			AssignStmt repairIndex_assign = Jimple.v().newAssignStmt(li, repairIndex_static);
+			probe.add(repairIndex_assign);
 			
 			VirtualInvokeExpr substring_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, 
-					stringClass.getMethod("java.lang.String substring(int)").makeRef(), Arrays.asList(new Local[]{len}));
+					stringClass.getMethod("java.lang.String substring(int)").makeRef(), Arrays.asList(new Local[]{li}));
 			
 			if(lhs == null)
 			{
@@ -181,12 +191,10 @@ public class StringRepair extends BodyTransformer
 			probe.add(len_assign1);
 			
 			
-			SootClass IndexRepairClass = Scene.v().loadClassAndSupport("stringrepair.IndexRepair");
-			
-			StaticInvokeExpr staticInvI = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethodByName("getI").makeRef(), 
+			StaticInvokeExpr staticInvI = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethod("int getI(int,int,int)").makeRef(), 
 					Arrays.asList(new Value[]{first_index, second_index, len}));
 			
-			StaticInvokeExpr staticInvJ = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethodByName("getJ").makeRef(), 
+			StaticInvokeExpr staticInvJ = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethod("int getJ(int,int,int)").makeRef(), 
 					Arrays.asList(new Value[]{first_index, second_index, len}));
 			
 			AssignStmt assignI = Jimple.v().newAssignStmt(f_index, staticInvI);
