@@ -87,6 +87,7 @@ public class StringRepair extends BodyTransformer
 	/*
 	 * Get method String API method call from the virtual invoke expression
 	 */
+	
 	public SootMethod getVirtualStringMethodCall(VirtualInvokeExpr virtualInvokeExpr)
 	{
 		Value base = virtualInvokeExpr.getBase();
@@ -106,6 +107,74 @@ public class StringRepair extends BodyTransformer
 		return null;
 	}
 	
+	/*
+	 * public CharSequence subSequence(int beginIndex,int endIndex)
+	 * Returns a new character sequence that is a subsequence of this sequence.
+	 * 
+	 * IndexOutOfBoundsException - if beginIndex or endIndex are negative, 
+	 * if endIndex is greater than length(), or if beginIndex is greater than startIndex
+	 * 
+	 * behaves in exactly the same way as the invocation 
+	 * str.substring(begin, end)
+	 * 
+	 * beginIndex - the begin index, inclusive.
+	 * endIndex - the end index, exclusive.
+	 */
+	private List<Stmt> subSequencePatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	{
+		List<Stmt> probe = new ArrayList<Stmt>();
+		
+		List<Value> args = virtualInvokeExpr.getArgs();
+		Value base = virtualInvokeExpr.getBase();
+		
+		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
+		SootClass IndexRepairClass = Scene.v().loadClassAndSupport("stringrepair.IndexRepair");
+		SootMethod lengthMethod = stringClass.getMethod("int length()");
+		
+		Value beginIndex = args.get(0);
+		Value endIndex = args.get(1);
+		
+		Local len = new LocalGenerator(jbody).generateLocal(IntType.v());					
+		
+		VirtualInvokeExpr len_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, lengthMethod.makeRef());			
+		
+		AssignStmt len_assign = Jimple.v().newAssignStmt(len, len_virtual);
+		probe.add(len_assign);
+		
+		StaticInvokeExpr staticInvI = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethod("int getI(int,int,int)").makeRef(), 
+				Arrays.asList(new Value[]{beginIndex, endIndex, len}));
+		
+		StaticInvokeExpr staticInvJ = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethod("int getJ(int,int,int)").makeRef(), 
+				Arrays.asList(new Value[]{beginIndex, endIndex, len}));
+		
+		Local f_index = new LocalGenerator(jbody).generateLocal(IntType.v());
+		Local l_index = new LocalGenerator(jbody).generateLocal(IntType.v());
+		
+		AssignStmt assignI = Jimple.v().newAssignStmt(f_index, staticInvI);
+		AssignStmt assignJ = Jimple.v().newAssignStmt(l_index, staticInvJ);
+		
+		probe.add(assignI);
+		probe.add(assignJ);
+		
+		
+		VirtualInvokeExpr subsequence_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, 
+				stringClass.getMethod("java.lang.CharSequence subSequence(int,int)").makeRef(), Arrays.asList(new Local[]{f_index, l_index}));
+		
+		if(lhs == null)
+		{
+			InvokeStmt st = Jimple.v().newInvokeStmt(subsequence_virtual);
+			probe.add(st);
+		}
+		else
+		{
+			AssignStmt base_assign = Jimple.v().newAssignStmt(lhs, subsequence_virtual);
+			probe.add(base_assign);
+		}
+		
+		
+		
+		return probe;
+	}
 	
 	private List<Stmt> subStringPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
 	{
@@ -170,18 +239,10 @@ public class StringRepair extends BodyTransformer
 			Value second_index = args.get(1);														
 			
 			Local f_index = new LocalGenerator(jbody).generateLocal(IntType.v());
-
-			NopStmt nop = Jimple.v().newNopStmt();
-			
-			AssignStmt first_index_assign = Jimple.v().newAssignStmt(f_index, IntConstant.v(0));
-						
+									
 			/*
 			 * IfStmt is no longer required here
-			 */
-			
-			probe.add(nop);
-			probe.add(first_index_assign);
-			
+			 */			
 			
 			Local l_index = new LocalGenerator(jbody).generateLocal(IntType.v());
 			
@@ -207,8 +268,7 @@ public class StringRepair extends BodyTransformer
 			
 			/*
 			 * Not Needed
-			 */
-			/*
+			 /*
 			VirtualInvokeExpr len_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, lengthMethod.makeRef());			
 			
 			AssignStmt len_assign = Jimple.v().newAssignStmt(l_index, len_virtual);
@@ -260,8 +320,6 @@ public class StringRepair extends BodyTransformer
 				 || sMethod.getSubSignature().equals("java.lang.String substring(int)")
 				 || sMethod.getSubSignature().equals("java.lang.String substring(int,int)")
 				 || sMethod.getSubSignature().equals("java.lang.CharSequence subSequence(int,int)")
-				 || sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)")
-				 //|| sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)")
 				 )
 		 {
 			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
@@ -288,6 +346,11 @@ public class StringRepair extends BodyTransformer
 				 || sMethod.getSubSignature().equals("java.lang.String substring(int,int)"))
     	 {
     		 probe.addAll(subStringPatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
+    	 
+    	 if(sMethod.getSubSignature().equals("java.lang.CharSequence subSequence(int,int)"))
+    	 {
+    		 probe.addAll(subSequencePatchProbe(jbody, lhs, virtualInvokeExpr));
     	 }
     	 
     	 //add assignment statemnets
@@ -334,6 +397,8 @@ public class StringRepair extends BodyTransformer
 				//For string API all the calls would be virtual invoke expression
 				if(rhs instanceof VirtualInvokeExpr)
 				{
+					
+					System.out.println(stmt);
 					VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) rhs;
 					
 					/*
@@ -359,6 +424,8 @@ public class StringRepair extends BodyTransformer
 				
 				if(invokeExpr instanceof VirtualInvokeExpr)
 				{
+					System.out.println(stmt);
+					
 					VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) invokeExpr;
 					
 					Body b = makePatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), null, virtualInvokeExpr);

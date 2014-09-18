@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 //*************************************************************************************
 //*********************************************************************************** *
 //author Aritra Dhar																* *
@@ -34,7 +36,7 @@ public class StringTest
 		
 		System.out.println(st.codePointCount(0, 2));
 		st.charAt(3);
-		st.substring(10);
+		st.substring(1);
 		
 		int i = 1, j = 3;
 		
@@ -45,6 +47,9 @@ public class StringTest
 		char[] c = new char[10];
 		st.getChars(0, 1, c, 2);
 		
+		
+		CharSequence s = st.subSequence(1, 2);
+		System.out.println(s);
 		//System.out.println(st);
 	}
 }

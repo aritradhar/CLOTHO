@@ -65,6 +65,10 @@ public class IndexRepair
 		}
 	}
 	
+	/*
+	 * Works both for subsequence and substring
+	 */
+	
 	public static void indexRepair(int i, int j, int len)
 	{
 		set(i, j);
@@ -97,6 +101,7 @@ public class IndexRepair
 			}
 		}
 	}
+	
 	
 	/*
 	 *
