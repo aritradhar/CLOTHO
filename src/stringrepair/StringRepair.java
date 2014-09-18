@@ -701,8 +701,7 @@ public class StringRepair extends BodyTransformer
 					Body b = makePatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), null, virtualInvokeExpr);
 					
 					if(b == null)
-						continue;					
-					
+						continue;							
 				}
 			}
 		}
