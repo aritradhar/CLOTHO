@@ -424,8 +424,15 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	     
 	     System.out.println("<<<<<<<< Current Method : "+smethod.getName()+" >>>>>>>>");
 	     
+	     /*
+	      * Open after method clone
+	      */
+	     
+	     /*
 	     if(!smethod.getName().contains(Constants.patcheClause))
 	    	 return;
+	     */
+	     
 	     
 	     Chain<Local> l = jbody.getLocals();
 	     Iterator<Local> it_local = l.iterator();
@@ -723,7 +730,7 @@ public class classAnalysis_TryCatch extends BodyTransformer
 	    			 
 	    			 
 	    			 AssignStmt oneAssign = Jimple.v().newAssignStmt(array_length_left_local, IntConstant.v(1));
-	    			 probe.add(oneAssign);
+	    			 //probe.add(oneAssign);
 	    			 
 	    			 
 	    			 //probe.add(arrayRef);

@@ -1,3 +1,4 @@
+
 //*************************************************************************************
 //*********************************************************************************** *
 //author Aritra Dhar																* *
@@ -13,38 +14,74 @@
 //*********************************************************************************** * 
 //*************************************************************************************
 
+package ConstraintAutomata;
 
-public class StringTest 
+public class IndexRepair
 {
-	void foo()
+	public static int ind1;
+	public static int ind2;
+	
+	/*
+	 * Allowable 0 -> len - 1
+	 */
+	
+	public static int getI(int i, int j, int len)
 	{
-		
+		indexRepair(i, j, len);
+		return ind1;
 	}
 	
-	void bar()
+	public static int getJ(int i, int j, int len)
 	{
-		
+		indexRepair(i, j, len);
+		return ind2;
 	}
+	
+	public static void set(int i, int j)
+	{
+		ind1 = i;
+		ind2 = j;
+	}
+	
+	public static void indexRepair(int i, int j, int len)
+	{
+		set(i, j);
+		
+		if(i<0 && j>=len)
+		{
+			ind1 = 0;
+			ind2 = len - 1;
+		}
+		if(i<0)
+		{
+			ind1 = 0;
+		}
+		
+		if(j >= len)
+		{
+			ind2 = len - 1;
+		}
+		
+		if(j<0)
+		{
+			if(i >= len-1)
+			{
+				ind2 = len - 1;
+				ind1 = ind2 - 1;
+			}
+			else
+			{
+				ind2 = ind1 + 1;
+			}
+		}
+	}
+	
+	
 	public static void main(String[] args) 
 	{
-		String st = "aritra:dhar";
-
-		st = st.substring(0, st.indexOf(":"));
-		int a = st.length();
+		indexRepair(0, -9, 5);
 		
-		System.out.println(st.codePointCount(0, 2));
-		st.charAt(3);
-		st.substring(1);
-		
-		int i = 1, j = 3;
-		
-		String subs = st.substring(i,j);
-		System.out.println(subs);
-		
-		st.subSequence(1, 2);
-		char[] c = new char[10];
-		st.getChars(0, 1, c, 2);
-		
-		//System.out.println(st);
+		System.out.println(ind1 + " " + ind2);
 	}
+	
 }

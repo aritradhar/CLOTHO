@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import profile.InstrumManager;
 import profile.UtilInstrum;
@@ -38,28 +39,26 @@ import soot.SootMethod;
 import soot.Transform;
 import soot.Unit;
 import soot.Value;
-import soot.JastAddJ.Expr;
 import soot.javaToJimple.LocalGenerator;
 import soot.jimple.AssignStmt;
-import soot.jimple.ConditionExpr;
-import soot.jimple.GotoStmt;
+import soot.jimple.GeExpr;
 import soot.jimple.IfStmt;
 import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Jimple;
-import soot.jimple.LeExpr;
 import soot.jimple.NopStmt;
+import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.SubExpr;
 import soot.jimple.VirtualInvokeExpr;
-import soot.jimple.internal.JLeExpr;
 import soot.options.Options;
 import ConstraintAutomata.MethodRefChanger;
 
 
 public class StringRepair extends BodyTransformer
 {
+		
 	public static void main(String[] args) 
 	{
         
@@ -70,6 +69,16 @@ public class StringRepair extends BodyTransformer
         jtp.add(new Transform("jtp.instrumenter", new StringRepair()));
         Options.v().setPhaseOption("jb", "use-original-names:true");
         
+        Scanner s = new Scanner(System.in);
+        String st = s.next();
+        
+        if(st.equalsIgnoreCase("j"))
+        	Options.v().set_output_format(Options.output_format_jimple);
+        
+        if(st.equalsIgnoreCase("c"))
+        	Options.v().set_output_format(Options.output_format_class);     
+        
+        Scene.v().addBasicClass("ConstraintAutomata.IndexRepair",SootClass.SIGNATURES);
         
         soot.Main.main(className);
 	}
@@ -107,6 +116,7 @@ public class StringRepair extends BodyTransformer
 		Value base = virtualInvokeExpr.getBase();
 		
 		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
+		
 		SootMethod lengthMethod = stringClass.getMethod("int length()");
 		
 		if(sMethod.getSubSignature().equals("java.lang.String substring(int)"))
@@ -150,29 +160,62 @@ public class StringRepair extends BodyTransformer
 			
 			Local f_index = new LocalGenerator(jbody).generateLocal(IntType.v());
 
-			AssignStmt first_index_assign = Jimple.v().newAssignStmt(f_index, IntConstant.v(0));
-			AssignStmt first_index_assign2 = Jimple.v().newAssignStmt(new LocalGenerator(jbody).generateLocal(IntType.v()), IntConstant.v(10));
-			probe.add(first_index_assign);
+			NopStmt nop = Jimple.v().newNopStmt();
 			
-			LeExpr jle = Jimple.v().newLeExpr(first_index, IntConstant.v(-1));
-			IfStmt ifs = Jimple.v().newIfStmt(jle, first_index_assign);
+			AssignStmt first_index_assign = Jimple.v().newAssignStmt(f_index, IntConstant.v(0));
+			//AssignStmt first_index_assign2 = Jimple.v().newAssignStmt(new LocalGenerator(jbody).generateLocal(IntType.v()), IntConstant.v(10));
+			
+			
+			GeExpr jle = Jimple.v().newGeExpr(first_index, IntConstant.v(-1));
+			IfStmt ifs = Jimple.v().newIfStmt(jle, nop);
 						
 			probe.add(ifs);
-			//probe.add(first_index_assign);
+			
+			//GotoStmt gt = Jimple.v().newGotoStmt(target);
+			
+			
+			probe.add(nop);
+			probe.add(first_index_assign);
 			
 			
 			Local l_index = new LocalGenerator(jbody).generateLocal(IntType.v());
 			
+			Local len = new LocalGenerator(jbody).generateLocal(IntType.v());
+			VirtualInvokeExpr len_virtual1 = Jimple.v().newVirtualInvokeExpr((Local)base, lengthMethod.makeRef());						
+			AssignStmt len_assign1 = Jimple.v().newAssignStmt(len, len_virtual1);
+			probe.add(len_assign1);
+			
+			
+			SootClass IndexRepairClass = Scene.v().loadClassAndSupport("ConstraintAutomata.IndexRepair");
+			
+			StaticInvokeExpr staticInvI = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethodByName("getI").makeRef(), 
+					Arrays.asList(new Value[]{first_index, second_index, len}));
+			
+			StaticInvokeExpr staticInvJ = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethodByName("getJ").makeRef(), 
+					Arrays.asList(new Value[]{first_index, second_index, len}));
+			
+			AssignStmt assignI = Jimple.v().newAssignStmt(f_index, staticInvI);
+			AssignStmt assignJ = Jimple.v().newAssignStmt(l_index, staticInvJ);
+			
+			//System.out.println(assignI);
+			probe.add(assignI);
+			probe.add(assignJ);
+			
+			
+			/*
+			 * Not Needed
+			 */
+			/*
 			VirtualInvokeExpr len_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, lengthMethod.makeRef());			
 			
 			AssignStmt len_assign = Jimple.v().newAssignStmt(l_index, len_virtual);
 			probe.add(len_assign);
-			
-			
+						
 					
 			SubExpr len_sub = Jimple.v().newSubExpr(l_index, IntConstant.v(1));
 			AssignStmt sub_len_assign = Jimple.v().newAssignStmt(l_index, len_sub);
 			probe.add(sub_len_assign);
+			*/
 			
 			VirtualInvokeExpr substring_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, 
 					stringClass.getMethod("java.lang.String substring(int,int)").makeRef(), Arrays.asList(new Local[]{f_index, l_index}));
@@ -215,7 +258,8 @@ public class StringRepair extends BodyTransformer
 				 || sMethod.getSubSignature().equals("java.lang.String substring(int,int)")
 				 || sMethod.getSubSignature().equals("java.lang.CharSequence subSequence(int,int)")
 				 || sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)")
-				 || sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)"))
+				 //|| sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)")
+				 )
 		 {
 			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
 		 
@@ -230,8 +274,8 @@ public class StringRepair extends BodyTransformer
     	 probe.add(sGotoLast);
     	 
     	 //prepare for catch block
-    	 Double d = Math.random();
-    	 Local lException1 = UtilInstrum.getCreateLocal(jbody, "<ex>" + d.toString() , RefType.v(thrwCls));
+    	 Double d = Math.ceil(Math.random()*100000000);
+    	 Local lException1 = UtilInstrum.getCreateLocal(jbody, "<ex" + d.toString().replace(".", "") + ">", RefType.v(thrwCls));
     	 Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
     	 probe.add(sCatch);
     	 
@@ -274,7 +318,7 @@ public class StringRepair extends BodyTransformer
 		{
 			Unit unit = it.next();
 			Stmt stmt = (Stmt) unit;
-			
+						
 			//System.out.println(stmt);
 			
 			if(stmt instanceof AssignStmt)
