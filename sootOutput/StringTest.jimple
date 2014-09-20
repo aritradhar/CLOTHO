@@ -3,143 +3,72 @@ public class StringTest extends java.lang.Object
 
     public void <init>()
     {
-        StringTest this;
+        StringTest r0;
 
-        this := @this: StringTest;
-        specialinvoke this.<java.lang.Object: void <init>()>();
+        r0 := @this: StringTest;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
         return;
     }
 
     void foo()
     {
-        StringTest this;
+        StringTest r0;
 
-        this := @this: StringTest;
+        r0 := @this: StringTest;
         return;
     }
 
     void bar()
     {
-        StringTest this;
+        StringTest r0;
 
-        this := @this: StringTest;
+        r0 := @this: StringTest;
         return;
     }
 
     public static void main(java.lang.String[])
     {
-        java.lang.String[] args;
-        java.lang.String st, subs;
-        byte i, j;
-        char[] c;
-        int $i0, $i1, $i2, $i3, $i4, $i5, $i6;
-        java.io.PrintStream $r0;
-        java.lang.IndexOutOfBoundsException <ex65195176E7>, <ex91137676E7>, <ex58506796E7>, <ex70537691E7>, <ex7344603E7>, <ex97139513E7>;
+        java.lang.String[] r0;
+        java.lang.String r1, r2, r3, r5, r10;
+        byte b0, b1;
+        char[] r4;
+        java.lang.CharSequence r6;
+        java.io.PrintStream $r7, $r8, $r9, $r11, $r13, $r15, $r16;
+        int $i3, $i4, $i5, $i6, $i7;
 
-        args := @parameter0: java.lang.String[];
-        st = "aritra:dhar";
-        $i0 = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>(":");
-
-     label0:
-        st = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(0, $i0);
-
-     label1:
-        goto label4;
-
-     label2:
-        <ex65195176E7> := @caughtexception;
-        if 0 >= -1 goto label3;
-
-     label3:
-        nop;
-        $i2 = 0;
-        $i3 = virtualinvoke st.<java.lang.String: int length()>();
-        $i3 = $i3 - 1;
-        st = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>($i2, $i3);
-
-     label4:
-        virtualinvoke st.<java.lang.String: int length()>();
-        $r0 = <java.lang.System: java.io.PrintStream out>;
-
-     label5:
-        $i1 = virtualinvoke st.<java.lang.String: int codePointCount(int,int)>(0, 2);
-
-     label6:
-        goto label8;
-
-     label7:
-        <ex91137676E7> := @caughtexception;
-
-     label8:
-        virtualinvoke $r0.<java.io.PrintStream: void println(int)>($i1);
-        virtualinvoke st.<java.lang.String: char charAt(int)>(3);
-
-     label9:
-        virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(1);
-
-     label10:
-        goto label12;
-
-     label11:
-        <ex58506796E7> := @caughtexception;
-        $i4 = virtualinvoke st.<java.lang.String: int length()>();
-        $i4 = $i4 - 1;
-        virtualinvoke st.<java.lang.String: java.lang.String substring(int)>($i4);
-
-     label12:
-        i = 1;
-        j = 3;
-
-     label13:
-        subs = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(i, j);
-
-     label14:
-        goto label17;
-
-     label15:
-        <ex70537691E7> := @caughtexception;
-        if i >= -1 goto label16;
-
-     label16:
-        nop;
-        $i5 = 0;
-        $i6 = virtualinvoke st.<java.lang.String: int length()>();
-        $i6 = $i6 - 1;
-        subs = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>($i5, $i6);
-
-     label17:
-        $r0 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(subs);
-
-     label18:
-        virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
-
-     label19:
-        goto label21;
-
-     label20:
-        <ex7344603E7> := @caughtexception;
-
-     label21:
-        c = newarray (char)[10];
-
-     label22:
-        virtualinvoke st.<java.lang.String: void getChars(int,int,char[],int)>(0, 1, c, 2);
-
-     label23:
-        goto label25;
-
-     label24:
-        <ex97139513E7> := @caughtexception;
-
-     label25:
+        r0 := @parameter0: java.lang.String[];
+        r1 = "aritra:dhar";
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+        $i3 = virtualinvoke r1.<java.lang.String: int codePointCount(int,int)>(-1, 20);
+        virtualinvoke $r7.<java.io.PrintStream: void println(int)>($i3);
+        r2 = "Hello\ud835\udd6b";
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+        $i4 = virtualinvoke r2.<java.lang.String: int length()>();
+        virtualinvoke $r8.<java.io.PrintStream: void println(int)>($i4);
+        b0 = 1;
+        b1 = -9;
+        r3 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>(b0, b1);
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+        $i5 = virtualinvoke r1.<java.lang.String: int codePointBefore(int)>(20);
+        virtualinvoke $r9.<java.io.PrintStream: void println(int)>($i5);
+        $i6 = virtualinvoke r1.<java.lang.String: int indexOf(java.lang.String)>(":");
+        r10 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>(0, $i6);
+        virtualinvoke r10.<java.lang.String: int length()>();
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+        $i7 = virtualinvoke r10.<java.lang.String: int codePointAt(int)>(200);
+        virtualinvoke $r11.<java.io.PrintStream: void println(int)>($i7);
+        virtualinvoke r10.<java.lang.String: char charAt(int)>(20);
+        virtualinvoke r10.<java.lang.String: java.lang.String substring(int)>(20);
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r3);
+        virtualinvoke r10.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
+        r4 = newarray (char)[10];
+        r5 = staticinvoke <java.lang.String: java.lang.String valueOf(char[],int,int)>(r4, 1, 2);
+        $r15 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(r5);
+        r6 = virtualinvoke r10.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, -2);
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.Object)>(r6);
         return;
-
-        catch java.lang.IndexOutOfBoundsException from label0 to label1 with label2;
-        catch java.lang.IndexOutOfBoundsException from label5 to label6 with label7;
-        catch java.lang.IndexOutOfBoundsException from label9 to label10 with label11;
-        catch java.lang.IndexOutOfBoundsException from label13 to label14 with label15;
-        catch java.lang.IndexOutOfBoundsException from label18 to label19 with label20;
-        catch java.lang.IndexOutOfBoundsException from label22 to label23 with label24;
     }
 }

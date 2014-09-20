@@ -30,17 +30,20 @@ public class StringTest
 	public static void main(String[] args) 
 	{
 		String st = "aritra:dhar";
-		System.out.println(st.codePointCount(1, 2));
-
+		System.out.println(st.codePointCount(-1, 20));
+		
+		String g = "Hello\uD835\uDD6b";
+		
+		System.out.println(g.length());
 		
 		int i = 1, j = -9;
 		String subs = st.substring(i,j);
-		System.out.println(st.codePointBefore(21));
+		System.out.println(st.codePointBefore(20));
 		
 		st = st.substring(0, st.indexOf(":"));
 		int a = st.length();
 		
-		System.out.println(st.codePointAt(2));
+		System.out.println(st.codePointAt(200));
 		st.charAt(20);
 		st.substring(20);			
 		
@@ -49,8 +52,8 @@ public class StringTest
 		
 		st.subSequence(1, 2);
 		char[] c = new char[10];
-		st.getChars(0, 1, c, 2);
-		
+		String p = String.valueOf(c, 1, 2);
+		System.out.println(p);
 		
 		CharSequence s = st.subSequence(1, -2);
 		System.out.println(s);

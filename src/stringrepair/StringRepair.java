@@ -47,6 +47,7 @@ import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Jimple;
+import soot.jimple.LengthExpr;
 import soot.jimple.NopStmt;
 import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
@@ -186,13 +187,13 @@ public class StringRepair extends BodyTransformer
 		List<Stmt> probe = new ArrayList<Stmt>();
 		SootMethod sMethod = virtualInvokeExpr.getMethod();
 		
-		List<Value> args = virtualInvokeExpr.getArgs();
-		Value base = virtualInvokeExpr.getBase();
+		//List<Value> args = virtualInvokeExpr.getArgs();
+		//Value base = virtualInvokeExpr.getBase();
 		
 		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
-		SootClass IndexRepairClass = Scene.v().loadClassAndSupport("stringrepair.IndexRepair");
+		//SootClass IndexRepairClass = Scene.v().loadClassAndSupport("stringrepair.IndexRepair");
 		
-		SootMethod lengthMethod = stringClass.getMethod("int length()");
+		//SootMethod lengthMethod = stringClass.getMethod("int length()");
 		
 		if(sMethod.getSubSignature().equals("java.lang.String substring(int)"))
 		{
@@ -417,6 +418,55 @@ public class StringRepair extends BodyTransformer
 		return ret;
 	}
 	
+	/*
+	 * For static invoke expression
+	 * return ->  Object[0] = probe
+	 * 			  Object[1] = char array
+	 * 			  Object[2] = offset
+	 * 			  Object[3] = count
+	 */
+	private Object[] doubleIndexPatcher( Body jbody, Value lhs, StaticInvokeExpr virtualInvokeExpr)
+	{
+		List<Stmt> probe = new ArrayList<Stmt>();
+		List<Value> args = virtualInvokeExpr.getArgs();
+
+		SootClass IndexRepairClass = Scene.v().loadClassAndSupport("stringrepair.IndexRepair");
+		
+		Value charArray = args.get(0);
+		Value offset = args.get(1);
+		Value count = args.get(2);														
+		
+		Local offset_l = new LocalGenerator(jbody).generateLocal(IntType.v());
+								
+		Local count_l = new LocalGenerator(jbody).generateLocal(IntType.v());
+		
+		//character array length calculation
+		Local len = new LocalGenerator(jbody).generateLocal(IntType.v());
+		LengthExpr lenExpr = Jimple.v().newLengthExpr(charArray);						
+		AssignStmt len_assign1 = Jimple.v().newAssignStmt(len, lenExpr);
+		probe.add(len_assign1);
+		
+		
+		StaticInvokeExpr staticInvI = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethod("int getI(int,int,int,double)").makeRef(), 
+				Arrays.asList(new Value[]{offset, count, len, DoubleConstant.v(1.0)}));
+		
+		StaticInvokeExpr staticInvJ = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethod("int getJ(int,int,int,double)").makeRef(), 
+				Arrays.asList(new Value[]{offset, count, len, DoubleConstant.v(1.0)}));
+		
+		AssignStmt assignI = Jimple.v().newAssignStmt(offset_l, staticInvI);
+		AssignStmt assignJ = Jimple.v().newAssignStmt(count_l, staticInvJ);
+		
+		//System.out.println(assignI);
+		probe.add(assignI);
+		probe.add(assignJ);
+		
+		Object[] ret = new Object[]{probe, charArray, offset_l, count_l};
+		
+		System.out.println("##double Index patch Executed <static>");
+		
+		return ret;
+	}
+	
 	
 	
 	/*
@@ -491,7 +541,7 @@ public class StringRepair extends BodyTransformer
 		List<Stmt> sl = (List<Stmt>) res[0];
 		probe.addAll(sl);
 		VirtualInvokeExpr codePointBefore_virtual = Jimple.v().newVirtualInvokeExpr((Local) res[1], 
-				stringClass.getMethod("int codePointAt(int)").makeRef(), Arrays.asList(new Local[]{(Local) res[2]}));
+				stringClass.getMethod("int codePointBefore(int)").makeRef(), Arrays.asList(new Local[]{(Local) res[2]}));
 		
 		if(lhs == null)
 		{
@@ -539,18 +589,57 @@ public class StringRepair extends BodyTransformer
 		return probe;
 	}
 	
+	@SuppressWarnings("unchecked")
+	private List<Stmt> valueOfPatchProbe( Body jbody, Value lhs, StaticInvokeExpr staticlInvokeExpr)
+	{
+		List<Stmt> probe = new ArrayList<Stmt>();
+		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
+				
+		Object[] res = doubleIndexPatcher(jbody, lhs, staticlInvokeExpr);
+		
+		List<Stmt> sl = (List<Stmt>) res[0];
+		probe.addAll(sl);
+		
+		StaticInvokeExpr valueOf_static = Jimple.v().newStaticInvokeExpr(
+				stringClass.getMethod("java.lang.String valueOf(char[],int,int)").makeRef(), 
+				Arrays.asList(new Local[]{(Local) res[1], (Local) res[2], (Local) res[3]}));
+		
+		
+		if(lhs == null)
+		{
+			InvokeStmt st = Jimple.v().newInvokeStmt(valueOf_static);
+			probe.add(st);
+		}
+		else
+		{
+			AssignStmt base_assign = Jimple.v().newAssignStmt(lhs, valueOf_static);
+			probe.add(base_assign);
+		}
+		
+		System.out.println("valueofPatchProbe Executed ");
+		
+		return probe;
+	}
 	
 	
-	private Body makePatchProbe(PatchingChain<Unit> ch , Body jbody, Stmt try_start_stmt, Stmt try_end_stmt, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	
+	private <T extends InvokeExpr> Body  makePatchProbe(PatchingChain<Unit> ch ,
+			Body jbody, Stmt try_start_stmt, Stmt try_end_stmt, Value lhs, T InvokeExpr)
 	{
 		 List<Stmt> probe = new ArrayList<Stmt>();
-		 //System.out.println(sMethod.getSubSignature());
-		 SootMethod sMethod = virtualInvokeExpr.getMethod();
+		 
+		 SootMethod sMethod = InvokeExpr.getMethod();
+		 System.out.println(sMethod.getSubSignature());
 		 
 		 if(sMethod == null)
 			 return null;
 		 
 		 SootClass thrwCls = null;
+		 
+		 
+		 VirtualInvokeExpr virtualInvokeExpr = (InvokeExpr instanceof VirtualInvokeExpr) ? (VirtualInvokeExpr)InvokeExpr : null;
+
+		 StaticInvokeExpr staticInvokeExpr = (InvokeExpr instanceof StaticInvokeExpr) ? (StaticInvokeExpr)InvokeExpr : null;
 		 
 		 //Debug
 		 //System.out.println(sMethod);
@@ -564,10 +653,11 @@ public class StringRepair extends BodyTransformer
 				 || sMethod.getSubSignature().equals("java.lang.String substring(int)")
 				 || sMethod.getSubSignature().equals("java.lang.String substring(int,int)")
 				 || sMethod.getSubSignature().equals("java.lang.CharSequence subSequence(int,int)")
+				 || sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)")
 				 )
 		 {
 			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
-		 
+			 
 		 }
 		 else
 		 {
@@ -622,6 +712,12 @@ public class StringRepair extends BodyTransformer
     	 {
     		 probe.addAll(codePointCountPatchProbe(jbody, lhs, virtualInvokeExpr));
     	 }
+    	 
+    	 if(sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)"))
+    	 {
+    		 probe.addAll(valueOfPatchProbe(jbody, lhs, staticInvokeExpr));
+    	 }
+    	 
     	 
     	 //add assignment statements
     	 if(lhs != null)
@@ -686,6 +782,16 @@ public class StringRepair extends BodyTransformer
 					
 					
 				}
+				
+				if(rhs instanceof StaticInvokeExpr)
+				{
+					StaticInvokeExpr staticInvokeExpr = (StaticInvokeExpr) rhs;
+					
+					Body b = makePatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), lhs, staticInvokeExpr);
+					
+					if(b == null)
+						continue;
+				}
 			}
 			
 			if(stmt instanceof InvokeStmt)
@@ -699,6 +805,18 @@ public class StringRepair extends BodyTransformer
 					VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) invokeExpr;
 					
 					Body b = makePatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), null, virtualInvokeExpr);
+					
+					if(b == null)
+						continue;							
+				}
+				
+				if(invokeExpr instanceof StaticInvokeExpr)
+				{
+					//System.out.println(stmt);
+					
+					StaticInvokeExpr staticInvokeExpr = (StaticInvokeExpr) invokeExpr;
+					
+					Body b = makePatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), null, staticInvokeExpr);
 					
 					if(b == null)
 						continue;							

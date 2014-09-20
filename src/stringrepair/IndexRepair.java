@@ -30,7 +30,7 @@ public class IndexRepair
 		return ind1;
 	}
 	
-	public static int getI(int i, int len,double flag)
+	public static int getI(int i, int len, double flag)
 	{
 		indexRepair(i, len,flag);
 		return ind1;
@@ -41,6 +41,29 @@ public class IndexRepair
 		indexRepair(i, j, len);
 		return ind1;
 	}
+	
+	
+	/*
+	 * For repairing
+	 * public static String valueOf(char[] data, int offset, int count)
+	 */
+	public static int getI(int i, int j, int len, double flag)
+	{
+		indexRepair(i, j, len, flag);
+		return ind1;
+	}
+	/*
+	 * For repairing
+	 * public static String valueOf(char[] data, int offset, int count)
+	 */
+	public static int getJ(int i, int j, int len, double flag)
+	{
+		indexRepair(i, j, len, flag);
+		return ind2;
+	}
+	/*
+	 * 
+	 */
 	
 	public static int getJ(int i, int j, int len)
 	{
@@ -56,6 +79,37 @@ public class IndexRepair
 	public static void set(int i)
 	{
 		ind1 = i;
+	}
+	
+	/*
+	 * i -> offset
+	 * j -> count
+	 */
+	public static void indexRepair(int i, int j,int len, double flag)
+	{
+		set(i,j);
+		
+		if(i<0)
+		{
+			ind1 = 0;
+		}
+		
+		if(j<0)
+		{
+			ind2 = 0;
+		}
+		
+		if(len == 0)
+		{
+			ind1 = 0;
+			ind2 = 0;
+		}
+		
+		if((i + j) > len)
+		{
+			ind1 = 0;
+			ind2 = len;
+		}
 	}
 	
 	/*

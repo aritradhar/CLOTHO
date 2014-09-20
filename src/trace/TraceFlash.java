@@ -26,7 +26,7 @@ public class TraceFlash
 {
 	public static ArrayList<Object> traceList = new ArrayList<Object>();
 	
-	public static int flashTraceMemory(String MethodName, Object... valueType)
+	public static <T> int flashTraceMemory(String MethodName, T... valueType)
 	{
 		traceList.add(MethodName);
 		for(Object vt : valueType)
