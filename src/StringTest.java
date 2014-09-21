@@ -41,7 +41,12 @@ public class StringTest
 		System.out.println(st.codePointBefore(20));
 		
 		st = st.substring(0, st.indexOf(":"));
-		int a = st.length();
+		int t = st.length();
+		
+		int ind = st.indexOf("&");
+		st.substring(ind, 2);
+		
+		st.indexOf("^");
 		
 		System.out.println(st.codePointAt(200));
 		st.charAt(20);
