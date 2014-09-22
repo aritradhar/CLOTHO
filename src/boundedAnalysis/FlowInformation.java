@@ -17,7 +17,6 @@ package boundedAnalysis;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 import soot.Unit;
 import soot.toolkits.scalar.FlowSet;
@@ -25,15 +24,15 @@ import soot.toolkits.scalar.FlowSet;
 
 public class FlowInformation 
 {
-	public static ConcurrentHashMap<String, ArrayList<HashMap<Unit, FlowSet>>> flowInfo = new ConcurrentHashMap<>();
+	public static HashMap<String, ArrayList<HashMap<Unit, FlowSet>>> flowInfo = new HashMap<>();
 
 	
-	public void SetFlowInfo(String sMethod, Unit unit, FlowSet flowSet)
-	{
+	public static void SetFlowInfo(String sMethod, Unit unit, FlowSet flowSet)
+	{		
 		HashMap<Unit, FlowSet> flowMap = new HashMap<>();
 		flowMap.put(unit, flowSet);
 		
-		if(!flowInfo.contains(sMethod))
+		if(!flowInfo.containsKey(sMethod))
 		{
 			ArrayList<HashMap<Unit, FlowSet>> al = new ArrayList<>();
 			al.add(flowMap);

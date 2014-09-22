@@ -15,8 +15,13 @@
 
 package boundedAnalysis;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.swing.text.html.parser.Entity;
 
 import soot.Body;
 import soot.BodyTransformer;
@@ -57,7 +62,20 @@ public class BoundedForword extends BodyTransformer
 	        
 	        soot.Main.main(className);
 		
-		
+	        Iterator<Entry<String, ArrayList<HashMap<Unit, FlowSet>>>> it =  FlowInformation.flowInfo.entrySet().iterator();
+	        
+	        while(it.hasNext())
+	        {
+	        	Entry<String, ArrayList<HashMap<Unit, FlowSet>>> entry = it.next();
+	        	
+	        	Iterator<HashMap<Unit, FlowSet>> it_in = entry.getValue().iterator();
+	        	System.out.println(entry.getKey()+"\n====================================================================");
+	        	
+	        	while(it_in.hasNext())
+	        	{
+	        		System.out.println(it_in.next().entrySet());
+	        	}
+	        }
 	}
 
 	@Override
@@ -77,7 +95,7 @@ public class BoundedForword extends BodyTransformer
 	     }
 		 
 		 
-		 System.out.println(FlowInformation.flowInfo.keySet());
+		
 
 		
 		

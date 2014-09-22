@@ -42,20 +42,12 @@ import soot.toolkits.scalar.ForwardFlowAnalysis;
 public class ForwordAnalysis extends ForwardFlowAnalysis
 {
 	private UnitGraph g;
-	private FlowInformation fl;
 	/**
 	 * @param g
 	 * @param fl 
 	 */
+	
 	@SuppressWarnings("unchecked")
-	public ForwordAnalysis(UnitGraph g, FlowInformation fl) 
-	{
-		super(g);
-		this.g = g;
-		this.fl = fl;
-		
-		doAnalysis();
-	}@SuppressWarnings("unchecked")
 	public ForwordAnalysis(UnitGraph g) 
 	{
 		super(g);
@@ -75,7 +67,7 @@ public class ForwordAnalysis extends ForwardFlowAnalysis
 		FlowSet out = PopulateOutSet(inSet, unit, outSet);
 		outValue = out;
 		
-		fl.SetFlowInfo(g.getBody().getMethod().getSignature(), unit, out);
+		FlowInformation.SetFlowInfo(g.getBody().getMethod().getSignature(), unit, out);
 		
 		/*
 		if(out.size() > 0 )
@@ -182,7 +174,12 @@ public class ForwordAnalysis extends ForwardFlowAnalysis
 		{
 			return 1;
 		}
-		else if(sm.getName().equals("substring") || sm.getName().equals("subSequence"))
+		else if(sm.getName().equals("substring") 
+				|| sm.getName().equals("subSequence")
+				|| sm.getName().equals("codePointAt")
+				|| sm.getName().equals("codePointBefore")
+				|| sm.getName().equals("codePointCount")
+				|| sm.getName().equals("offsetByCodePoints"))
 		{
 			return 2;
 		}
