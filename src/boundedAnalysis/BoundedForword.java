@@ -38,7 +38,7 @@ public class BoundedForword extends BodyTransformer
 		 String []className = {"StringTest"};
 		  
 	        Pack jtp = PackManager.v().getPack("jtp");
-
+	        
 	        jtp.add(new Transform("jtp.boundedforward", new BoundedForword()));
 	        Options.v().setPhaseOption("jb", "use-original-names:true");
 	     
@@ -63,15 +63,21 @@ public class BoundedForword extends BodyTransformer
 	@Override
 	protected void internalTransform(Body body, String phaseName, Map options) 
 	{
+		
 		ForwordAnalysis fwA = new ForwordAnalysis(new BriefUnitGraph(body));
 
 		 Iterator<Unit> sIt = body.getUnits().iterator();
 	     
 		 while( sIt.hasNext() ) 
 	     {
-	    	 Stmt s = (Stmt) sIt.next();
-	    	 FlowSet liveVariables = (FlowSet) fwA.getFlowAfter( s );
+	    	 Stmt stmt = (Stmt) sIt.next();
+	    	 FlowSet indexVariableSet = (FlowSet) fwA.getFlowBefore(stmt);
+	    	 //if(indexVariableSet.size() > 0)
+	    		 //System.out.println(stmt + "\n" + indexVariableSet);
 	     }
+		 
+		 
+		 System.out.println(FlowInformation.flowInfo.keySet());
 
 		
 		

@@ -44,7 +44,9 @@ public class StringTest
 		int t = st.length();
 		
 		int ind = st.indexOf("&");
-		st.substring(ind, 2);
+		int ind1 = ind + 1;
+		
+		st.substring(ind1, 2);
 		
 		st.indexOf("^");
 		

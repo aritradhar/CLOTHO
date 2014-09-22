@@ -27,6 +27,10 @@ import soot.jimple.AssignStmt;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Stmt;
+import soot.toolkits.graph.BriefUnitGraph;
+import soot.toolkits.graph.DirectedGraph;
+import soot.toolkits.graph.HashReversibleGraph;
+import soot.toolkits.graph.ReversibleGraph;
 import soot.toolkits.graph.UnitGraph;
 import soot.toolkits.graph.pdg.EnhancedUnitGraph;
 import soot.toolkits.scalar.ArraySparseSet;
@@ -38,10 +42,20 @@ import soot.toolkits.scalar.ForwardFlowAnalysis;
 public class ForwordAnalysis extends ForwardFlowAnalysis
 {
 	private UnitGraph g;
+	private FlowInformation fl;
 	/**
 	 * @param g
+	 * @param fl 
 	 */
 	@SuppressWarnings("unchecked")
+	public ForwordAnalysis(UnitGraph g, FlowInformation fl) 
+	{
+		super(g);
+		this.g = g;
+		this.fl = fl;
+		
+		doAnalysis();
+	}@SuppressWarnings("unchecked")
 	public ForwordAnalysis(UnitGraph g) 
 	{
 		super(g);
@@ -59,8 +73,19 @@ public class ForwordAnalysis extends ForwardFlowAnalysis
 		Unit unit = (Unit) _unit;
 		
 		FlowSet out = PopulateOutSet(inSet, unit, outSet);
+		outValue = out;
+		
+		fl.SetFlowInfo(g.getBody().getMethod().getSignature(), unit, out);
+		
+		/*
 		if(out.size() > 0 )
+		{
+			System.out.println(g.getBody().getMethod());
 			System.out.println(unit + "\n" + out);
+			System.out.println("--------------------------------------------------");
+		}
+		*/
+		
 	}
 
 	@Override
@@ -153,7 +178,7 @@ public class ForwordAnalysis extends ForwardFlowAnalysis
 	protected <T extends InvokeExpr> int invokeMethodType(T invokeExpr)
 	{
 		SootMethod sm = invokeExpr.getMethod();
-		if(sm.getName().equals("indexOf"))
+		if(sm.getName().equals("indexOf") || sm.getName().equals("charAt"))
 		{
 			return 1;
 		}
@@ -167,6 +192,9 @@ public class ForwordAnalysis extends ForwardFlowAnalysis
 		}
 	}
 	
+	/*
+	 * out sets
+	 */
 	protected <T extends InvokeExpr> FlowSet getFlowSet(FlowSet in, FlowSet out, FlowSet usedSet, FlowSet defSet, T invokeExpr)
 	{
 		FlowSet fs = new ArraySparseSet();
