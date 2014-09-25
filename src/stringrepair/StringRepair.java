@@ -55,6 +55,7 @@ import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.SubExpr;
 import soot.jimple.VirtualInvokeExpr;
+import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.options.Options;
 import soot.toolkits.graph.BriefUnitGraph;
 import soot.toolkits.scalar.ForwardFlowAnalysis;
@@ -738,7 +739,7 @@ public class StringRepair extends BodyTransformer
 
 	@Override
 	protected void internalTransform(Body body, String phaseName, Map options) 
-	{
+	{				
 		SootMethod sMethod = body.getMethod();		
         
 		if(sMethod.getName().startsWith("<"))

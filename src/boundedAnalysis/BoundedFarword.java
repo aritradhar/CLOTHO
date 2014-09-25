@@ -27,24 +27,30 @@ import soot.Body;
 import soot.BodyTransformer;
 import soot.Pack;
 import soot.PackManager;
+import soot.Scene;
+import soot.SootClass;
+import soot.SootMethod;
 import soot.Transform;
 import soot.Unit;
 import soot.jimple.Stmt;
+import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.options.Options;
 import soot.toolkits.graph.BriefUnitGraph;
 import soot.toolkits.graph.UnitGraph;
 import soot.toolkits.graph.pdg.EnhancedUnitGraph;
 import soot.toolkits.scalar.FlowSet;
 
-public class BoundedForword extends BodyTransformer
+public class BoundedFarword extends BodyTransformer
 {
 	public static void main(String[] args) 
-	{
-		 String []className = {"StringTest"};
+	{		
+		
+		
+		 	String []className = {"StringTest"};
 		  
 	        Pack jtp = PackManager.v().getPack("jtp");
 	        
-	        jtp.add(new Transform("jtp.boundedforward", new BoundedForword()));
+	        jtp.add(new Transform("jtp.boundedforward", new BoundedFarword()));
 	        Options.v().setPhaseOption("jb", "use-original-names:true");
 	     
 	        /* DEBUG
@@ -58,7 +64,6 @@ public class BoundedForword extends BodyTransformer
 	        
 	        if(st.equalsIgnoreCase("c"))
 	        	Options.v().set_output_format(Options.output_format_class);     
-
 	        
 	        soot.Main.main(className);
 		
