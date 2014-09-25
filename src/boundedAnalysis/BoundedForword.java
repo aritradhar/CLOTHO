@@ -63,7 +63,7 @@ public class BoundedForword extends BodyTransformer
 	        soot.Main.main(className);
 		
 	        Iterator<Entry<String, ArrayList<HashMap<Unit, FlowSet>>>> it =  FlowInformation.flowInfo.entrySet().iterator();
-	        
+	        /*
 	        while(it.hasNext())
 	        {
 	        	Entry<String, ArrayList<HashMap<Unit, FlowSet>>> entry = it.next();
@@ -75,14 +75,14 @@ public class BoundedForword extends BodyTransformer
 	        	{
 	        		System.out.println(it_in.next().entrySet());
 	        	}
-	        }
+	        }*/
 	}
 
 	@Override
 	protected void internalTransform(Body body, String phaseName, Map options) 
 	{
 		
-		ForwordAnalysis fwA = new ForwordAnalysis(new BriefUnitGraph(body));
+		ForwardAnalysis fwA = new ForwardAnalysis(new BriefUnitGraph(body));
 
 		 Iterator<Unit> sIt = body.getUnits().iterator();
 	     

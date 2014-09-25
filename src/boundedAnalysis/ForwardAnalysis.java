@@ -39,16 +39,15 @@ import soot.toolkits.scalar.ForwardFlowAnalysis;
 
 
 @SuppressWarnings("rawtypes")
-public class ForwordAnalysis extends ForwardFlowAnalysis
+public class ForwardAnalysis extends ForwardFlowAnalysis
 {
 	private UnitGraph g;
 	/**
-	 * @param g
-	 * @param fl 
+	 * @param g	  
 	 */
 	
 	@SuppressWarnings("unchecked")
-	public ForwordAnalysis(UnitGraph g) 
+	public ForwardAnalysis(UnitGraph g) 
 	{
 		super(g);
 		this.g = g;
@@ -69,14 +68,14 @@ public class ForwordAnalysis extends ForwardFlowAnalysis
 		
 		FlowInformation.SetFlowInfo(g.getBody().getMethod().getSignature(), unit, out);
 		
-		/*
+		
 		if(out.size() > 0 )
 		{
 			System.out.println(g.getBody().getMethod());
 			System.out.println(unit + "\n" + out);
 			System.out.println("--------------------------------------------------");
 		}
-		*/
+		
 		
 	}
 
@@ -149,14 +148,14 @@ public class ForwordAnalysis extends ForwardFlowAnalysis
 			if(rhs instanceof InvokeExpr)
 			{
 				InvokeExpr invokeExpr = (InvokeExpr) rhs;
-				outSet = getFlowSet(in, out, usedSet,  defSet, invokeExpr);
+				outSet = getFlowSet_forward(in, out, usedSet,  defSet, invokeExpr);
 			}
 		}
 		
 		if(stmt instanceof InvokeStmt)
 		{
 			InvokeExpr invokeExpr = stmt.getInvokeExpr();
-			outSet = getFlowSet(in, out, usedSet,  defSet, invokeExpr);
+			outSet = getFlowSet_forward(in, out, usedSet,  defSet, invokeExpr);
 		}
 		
 		return outSet;
@@ -190,9 +189,10 @@ public class ForwordAnalysis extends ForwardFlowAnalysis
 	}
 	
 	/*
+	 * Forward analysis
 	 * out sets
 	 */
-	protected <T extends InvokeExpr> FlowSet getFlowSet(FlowSet in, FlowSet out, FlowSet usedSet, FlowSet defSet, T invokeExpr)
+	protected <T extends InvokeExpr> FlowSet getFlowSet_forward(FlowSet in, FlowSet out, FlowSet usedSet, FlowSet defSet, T invokeExpr)
 	{
 		FlowSet fs = new ArraySparseSet();
 		
@@ -204,6 +204,27 @@ public class ForwordAnalysis extends ForwardFlowAnalysis
 		else if(invokeMethodType(invokeExpr) == 2)
 		{
 			in.intersection(usedSet, fs);
+		}
+		
+		return fs;
+	}
+	
+	/*
+	 * Backward analysis
+	 * out sets
+	 */
+	protected <T extends InvokeExpr> FlowSet getFlowSet_backward(FlowSet in, FlowSet out, FlowSet usedSet, FlowSet defSet, T invokeExpr)
+	{
+		FlowSet fs = new ArraySparseSet();
+		
+		if(invokeMethodType(invokeExpr) == 1)
+		{
+			in.intersection(defSet, fs);
+		}
+		
+		else if(invokeMethodType(invokeExpr) == 2)
+		{
+			in.union(usedSet, fs);
 		}
 		
 		return fs;

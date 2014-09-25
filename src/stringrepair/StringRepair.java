@@ -23,6 +23,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import boundedAnalysis.FlowInformation;
+import boundedAnalysis.ForwardAnalysis;
 import profile.InstrumManager;
 import profile.UtilInstrum;
 import soot.Body;
@@ -54,12 +56,13 @@ import soot.jimple.Stmt;
 import soot.jimple.SubExpr;
 import soot.jimple.VirtualInvokeExpr;
 import soot.options.Options;
+import soot.toolkits.graph.BriefUnitGraph;
+import soot.toolkits.scalar.ForwardFlowAnalysis;
 import ConstraintAutomata.MethodRefChanger;
 
 
 public class StringRepair extends BodyTransformer
-{
-		
+{		
 	public static void main(String[] args) 
 	{
         
@@ -82,7 +85,7 @@ public class StringRepair extends BodyTransformer
         if(st.equalsIgnoreCase("c"))
         	Options.v().set_output_format(Options.output_format_class);     
         
-        Scene.v().addBasicClass("stringrepair.IndexRepair",SootClass.SIGNATURES);
+        Scene.v().addBasicClass("stringrepair.IndexRepair",SootClass.SIGNATURES);              
         
         soot.Main.main(className);
 	}
@@ -736,12 +739,19 @@ public class StringRepair extends BodyTransformer
 	@Override
 	protected void internalTransform(Body body, String phaseName, Map options) 
 	{
-		SootMethod sMethod = body.getMethod();
-			
+		SootMethod sMethod = body.getMethod();		
+        
 		if(sMethod.getName().startsWith("<"))
 			return;
+		
 		System.out.println("---- Current Method : " + sMethod.getName() + " ----");
 		
+		//see forward flow analysis and then look for the variables
+		ForwardAnalysis fwA = new ForwardAnalysis(new BriefUnitGraph(body));
+        
+        String methodSig = sMethod.getSignature();
+		
+        
 		PatchingChain<Unit> pc= body.getUnits();
 		
 		Iterator<Unit> it = pc.snapshotIterator();
@@ -749,8 +759,10 @@ public class StringRepair extends BodyTransformer
 		while(it.hasNext())
 		{
 			Unit unit = it.next();
-			Stmt stmt = (Stmt) unit;
-						
+			Stmt stmt = (Stmt) unit;			
+	        
+			if(FlowInformation.getOutValueFromUnit(methodSig, unit) != null)
+				System.out.println("%%%%%  " + FlowInformation.getOutValueFromUnit(methodSig, unit));
 			//System.out.println(stmt);
 			
 			if(stmt instanceof AssignStmt)

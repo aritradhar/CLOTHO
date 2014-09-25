@@ -141,7 +141,7 @@ public class VariableMonitor extends BodyTransformer
 			NewExpr newExpr = Jimple.v().newNewExpr(RefType.v("java.util.ArrayList"));			
 			Local l = Jimple.v().newLocal("variablList",RefType.v("java.util.ArrayList"));
 			body.getLocals().add(l);
-			SootMethodRef ref = Scene.v().getSootClass("java.util.ArrayList").getMethod("<init>",Collections.emptyList()).makeRef();
+			SootMethodRef ref = Scene.v().getSootClass("java.util.ArrayList").getMethod("<init>").makeRef();
 			InvokeExpr expr = Jimple.v().newSpecialInvokeExpr(l,ref);
 			Stmt invoke = Jimple.v().newInvokeStmt(expr);						
 			AssignStmt assign = Jimple.v().newAssignStmt(l,newExpr);

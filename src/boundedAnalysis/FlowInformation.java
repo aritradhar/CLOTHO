@@ -17,8 +17,11 @@ package boundedAnalysis;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import soot.Unit;
+import soot.Value;
+import soot.ValueBox;
 import soot.toolkits.scalar.FlowSet;
 
 
@@ -44,5 +47,33 @@ public class FlowInformation
 			al.add(flowMap);
 			flowInfo.put(sMethod, al);
 		}
+	}
+	
+	/*
+	 * Given a method signature and unit, get if the out set is non empty.
+	 * retrieve the box from the flowset and return it
+	 */
+	
+	public static Value getOutValueFromUnit(String methodSig, Unit unit)
+	{
+
+		
+		Iterator<HashMap<Unit, FlowSet>> it = flowInfo.get(methodSig).iterator();
+		
+		while(it.hasNext())
+		{
+			HashMap<Unit, FlowSet> gm = it.next();
+			if(gm.containsKey(unit))
+			{
+				FlowSet fs = gm.get(unit);
+				if(fs.size() == 0)
+					return null;
+				
+				Value out = ((ValueBox) fs.iterator().next()).getValue();
+				return out;
+			}
+		}
+		
+		return null;
 	}
 }

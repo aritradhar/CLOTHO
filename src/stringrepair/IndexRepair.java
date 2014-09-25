@@ -86,7 +86,7 @@ public class IndexRepair
 	 * j -> count
 	 */
 	public static void indexRepair(int i, int j,int len, double flag)
-	{
+	{		
 		set(i,j);
 		
 		if(i<0)
