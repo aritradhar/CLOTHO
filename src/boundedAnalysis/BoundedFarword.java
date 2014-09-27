@@ -67,8 +67,9 @@ public class BoundedFarword extends BodyTransformer
 	        
 	        soot.Main.main(className);
 		
-	        Iterator<Entry<String, ArrayList<HashMap<Unit, FlowSet>>>> it =  FlowInformation.flowInfo.entrySet().iterator();
 	        /*
+	        Iterator<Entry<String, ArrayList<HashMap<Unit, FlowSet>>>> it =  FlowInformation.flowInfo.entrySet().iterator();
+	        
 	        while(it.hasNext())
 	        {
 	        	Entry<String, ArrayList<HashMap<Unit, FlowSet>>> entry = it.next();
@@ -80,7 +81,8 @@ public class BoundedFarword extends BodyTransformer
 	        	{
 	        		System.out.println(it_in.next().entrySet());
 	        	}
-	        }*/
+	        }
+	        */
 	}
 
 	@Override

@@ -36,6 +36,8 @@ public class StringTest
 		
 		System.out.println(g.length());
 		
+		boolean a = false;
+		
 		int i = 1, j = -9;
 		String subs = st.substring(i,j);
 		System.out.println(st.codePointBefore(20));
@@ -46,7 +48,8 @@ public class StringTest
 		int ind = st.indexOf("&");
 		int ind1 = ind + 1;
 		
-		st.substring(ind1, 2);
+		ind  = 6;
+		st.substring(ind, 2);
 		
 		st.indexOf("^");
 		

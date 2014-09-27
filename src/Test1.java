@@ -50,10 +50,8 @@ public class Test1
 	    
 		System.out.println(a6);
 	    */
-		
 	    int []arr = new int[c];
 	    Integer []arri = new Integer[c];
-	    
 	    
 		//int p = arr.length;
 		System.out.println(a+" "+b);

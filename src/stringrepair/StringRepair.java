@@ -38,6 +38,7 @@ import soot.PatchingChain;
 import soot.RefType;
 import soot.Scene;
 import soot.SootClass;
+import soot.SootField;
 import soot.SootMethod;
 import soot.Transform;
 import soot.Unit;
@@ -136,7 +137,8 @@ public class StringRepair extends BodyTransformer
 		List<Value> args = virtualInvokeExpr.getArgs();
 		Value base = virtualInvokeExpr.getBase();
 		
-		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
+		SootClass stringClass = Scene.v().getSootClass("java.lang.String");	
+		
 		SootClass IndexRepairClass = Scene.v().loadClassAndSupport("stringrepair.IndexRepair");
 		SootMethod lengthMethod = stringClass.getMethod("int length()");
 		
@@ -629,15 +631,20 @@ public class StringRepair extends BodyTransformer
 	
 	private <T extends InvokeExpr> Body  makePatchProbe(PatchingChain<Unit> ch ,
 			Body jbody, Stmt try_start_stmt, Stmt try_end_stmt, Value lhs, T InvokeExpr)
-	{
+	{	 
 		 List<Stmt> probe = new ArrayList<Stmt>();
 		 
 		 SootMethod sMethod = InvokeExpr.getMethod();
-		 System.out.println(sMethod.getSubSignature());
-		 
+		
+		 /*
+		  * Sanity check
+		  */
 		 if(sMethod == null)
 			 return null;
 		 
+		 System.out.println(sMethod.getSubSignature());
+		 
+	
 		 SootClass thrwCls = null;
 		 
 		 

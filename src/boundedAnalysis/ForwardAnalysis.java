@@ -150,6 +150,16 @@ public class ForwardAnalysis extends ForwardFlowAnalysis
 				InvokeExpr invokeExpr = (InvokeExpr) rhs;
 				outSet = getFlowSet_forward(in, out, usedSet,  defSet, invokeExpr);
 			}
+			/*
+			 * for normal assign statement
+			 * The right hand side should 
+			 * be deducted from the in set
+			*/
+			else
+			{
+				outSet = getFlowSet_forward(in, outSet, usedSet, defSet);
+			}
+			
 		}
 		
 		if(stmt instanceof InvokeStmt)
@@ -207,6 +217,15 @@ public class ForwardAnalysis extends ForwardFlowAnalysis
 		}
 		
 		return fs;
+	}
+	
+	protected FlowSet getFlowSet_forward(FlowSet in, FlowSet out, FlowSet usedSet, FlowSet defSet)
+	{
+		FlowSet _in = in;
+		
+		_in.remove(defSet);
+		
+		return _in;
 	}
 	
 	/*
