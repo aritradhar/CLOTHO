@@ -53,6 +53,9 @@ public class Test1
 	    int []arr = new int[c];
 	    Integer []arri = new Integer[c];
 	    
+	    int len = arr.length;
+	    
+	    System.out.println(len);
 		//int p = arr.length;
 		System.out.println(a+" "+b);
 		int index = a + b;
@@ -60,8 +63,7 @@ public class Test1
 		int x = array[index];
 		int y = array[a-b];
 		
-		int len = arr.length;
-		//arr[3] = 10;	
+		array[3] = array[6] + array[9];	
 		
 		System.out.println(arr[index + 3]);
 		//arr[0] = 9999;

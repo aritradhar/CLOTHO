@@ -13,6 +13,7 @@
 /TrapInstrumentation/
 /VariableMonitor.class
 /acteve/
+/arrayrepair/
 /boundedAnalysis/
 /classAnalysis.class
 /dataDependency.class
@@ -21,5 +22,3 @@
 /profile/
 /stringrepair/
 /trace/
-/ArrayRepair/
-/arrayrepair/

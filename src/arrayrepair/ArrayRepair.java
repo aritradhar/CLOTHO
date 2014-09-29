@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import profile.InstrumManager;
 import profile.UtilInstrum;
 import boundedAnalysis.ForwardAnalysis;
 import soot.ArrayType;
@@ -39,8 +40,10 @@ import soot.Type;
 import soot.Unit;
 import soot.Value;
 import soot.ValueBox;
+import soot.jimple.ArrayRef;
 import soot.jimple.AssignStmt;
 import soot.jimple.Expr;
+import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.Jimple;
 import soot.jimple.NewArrayExpr;
@@ -71,16 +74,56 @@ public class ArrayRepair extends BodyTransformer
         	Options.v().set_output_format(Options.output_format_jimple);
         
         if(st.equalsIgnoreCase("c"))
-        	Options.v().set_output_format(Options.output_format_class);                 
+        	Options.v().set_output_format(Options.output_format_class);     
+        
+        Scene.v().addBasicClass("arrayrepair.IndexRepair",SootClass.SIGNATURES);      
         
         soot.Main.main(className);
 	}
 	
+	/*
+	 * Returns an object array
+	 * Object[0] -> probe
+	 * Object[1] -> thrwCls
+	 * Object[2] -> sCatch
+	 */
 	
-	private List<Stmt> newArrayPatchProbe( Body jbody, Value lhs, NewArrayExpr newArrayExpr)
+	private Object[] newArrayPatchProbe( Body jbody, Value lhs, NewArrayExpr newArrayExpr)
 	{
 		List<Stmt> probe = new ArrayList<>();
 		
+		SootClass thrwCls = Scene.v().getSootClass("java.lang.NegativeArraySizeException");
+		Double d = Math.ceil(Math.random()*100000000);
+   	 	Local lException1 = UtilInstrum.getCreateLocal(jbody, 
+   	 			"<ex" + d.toString().replace(".", "") + ">", RefType.v(thrwCls));
+   	 	
+   	 	Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
+   	 	probe.add(sCatch);
+		
+   	 	//catch block instrumentation
+   	 	//re-initialize the array with size 1
+   	 	
+   	 	NewArrayExpr nae = Jimple.v().newNewArrayExpr(newArrayExpr.getType(), IntConstant.v(1));
+   	 	AssignStmt ast = Jimple.v().newAssignStmt(lhs, nae);
+   	 	
+   	    probe.add(ast);
+   	 	
+   	    System.out.println("#newArrayPatchProbe executed");
+   	    
+		return new Object[]{probe, thrwCls, sCatch};
+	}
+	
+	/*
+	 * Returns an object array
+	 * Object[0] -> probe
+	 * Object[1] -> thrwCls
+	 * Object[2] -> sCatch
+	 */
+	
+	private Object[] arrayRefPatchProbe(Body jbody, ValuePair valuePair, ArrayRef arrayRef)
+	{
+		List<Stmt> probe = new ArrayList<>();
+	
 		SootClass thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
 		Double d = Math.ceil(Math.random()*100000000);
    	 	Local lException1 = UtilInstrum.getCreateLocal(jbody, 
@@ -89,25 +132,55 @@ public class ArrayRepair extends BodyTransformer
    	 	Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
    	 	probe.add(sCatch);
 		
+   	 	//catch block instrumentation
    	 	
+   	 	Value indexValue = arrayRef.getIndex();
+   	 	Value baseValue = arrayRef.getBase();
    	 	
-		return probe;
+   	 	//ArrayRef newArrayRef = Jimple.v().newArrayRef(base, index)
+   	 	
+		return new Object[]{probe, thrwCls, sCatch};
 	}
 	
-	private <T extends Expr, AnyNewExpr> Body  makePatchProbe(PatchingChain<Unit> ch ,
-			Body jbody, Stmt try_start_stmt, Stmt try_end_stmt, Value lhs, T Expr)
+	@SuppressWarnings("unchecked")
+	private <T extends Value> Body  makePatchProbe(PatchingChain<Unit> ch,
+			Body jbody, Stmt try_start_stmt, Stmt try_end_stmt, ValuePair valuePair, T Expr)
 	{
 		List<Stmt> probe = new ArrayList<>();
 		
+		Stmt sGotoLast = Jimple.v().newGotoStmt(try_end_stmt);
+    	probe.add(sGotoLast);   	    	
+    	
+    	
 		NewArrayExpr newArrayExpr = null;
+		ArrayRef arrayRef = null;
 		
+		Object[] ret = null;
 		if(Expr instanceof NewArrayExpr)
 		{
 			newArrayExpr = (NewArrayExpr) Expr;
-			probe.addAll(newArrayPatchProbe(jbody, lhs, newArrayExpr));
+			ret = newArrayPatchProbe(jbody, valuePair.value, newArrayExpr);
+			
+			probe.addAll((List<Stmt>)ret[0]);
 		}
 		
+		else if(Expr instanceof ArrayRef)
+		{
+			arrayRef = (ArrayRef) Expr;
+			ret = arrayRefPatchProbe(jbody, valuePair, arrayRef);
+			
+			probe.addAll((List<Stmt>)ret[0]);
+		}
 		
+		else
+		{
+			return null;
+		}
+		
+		InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
+		 //instr
+		jbody.getTraps().add(Jimple.v().newTrap((SootClass) ret[1], try_start_stmt, sGotoLast, (Stmt) ret[2]));
+		jbody.validate(); 
 		
 		return jbody;
 	}
@@ -151,7 +224,31 @@ public class ArrayRepair extends BodyTransformer
 				if(rhs instanceof NewArrayExpr)
 				{
 					NewArrayExpr nae = (NewArrayExpr) rhs;
-					Body b = makePatchProbe(pc, body, stmt, (Stmt) pc.getSuccOf(stmt), lhs, nae);
+					Body b = makePatchProbe(pc, body, stmt, (Stmt) pc.getSuccOf(stmt), new ValuePair(lhs, false, false), nae);
+					
+					if(b == null)
+						continue;
+				}
+				
+				/*
+				 * In case any thing assigned to a array
+				 */
+				if(lhs instanceof ArrayRef)
+				{
+					ArrayRef arf = (ArrayRef) lhs;
+					Body b = makePatchProbe(pc, body, stmt, (Stmt) pc.getSuccOf(stmt), new ValuePair(lhs, true, false), arf);
+					
+					if(b == null)
+						continue;
+				}
+				
+				/*
+				 * In case the array is assigned to something else 
+				 */
+				if(rhs instanceof ArrayRef)
+				{
+					ArrayRef arf = (ArrayRef) rhs;
+					Body b = makePatchProbe(pc, body, stmt, (Stmt) pc.getSuccOf(stmt), new ValuePair(rhs, false, true), arf);
 					
 					if(b == null)
 						continue;
@@ -164,12 +261,15 @@ public class ArrayRepair extends BodyTransformer
 				Type valType = val.getType();
 				
 				if(valType instanceof ArrayType)
+				{
 					containsArrayType = true;
+					break;
+				}
 			}
 			
 			if(containsArrayType)
 			{
-				
+				//System.out.println(unit);
 			}
 	    
 		}
