@@ -182,17 +182,24 @@ public class IndexRepair
 				ind2 = ind1 + 1;
 			}
 		}
+		
+		if(i>j)
+		{
+			if(j<=len-1 && len >0)
+			{
+				ind1 = ind2-1;
+			}
+		}
 	}
 	
 	
-	/*
-	 *
+
 	public static void main(String[] args) 
 	{
-		indexRepair(0, -9, 5);
+		indexRepair(6, 2, 1);
 		
 		System.out.println(ind1 + " " + ind2);
 	}
-	*/
+
 	
 }

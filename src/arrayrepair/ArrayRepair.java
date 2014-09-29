@@ -17,6 +17,7 @@
 package arrayrepair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import boundedAnalysis.ForwardAnalysis;
 import soot.ArrayType;
 import soot.Body;
 import soot.BodyTransformer;
+import soot.IntType;
 import soot.Local;
 import soot.Pack;
 import soot.PackManager;
@@ -40,12 +42,14 @@ import soot.Type;
 import soot.Unit;
 import soot.Value;
 import soot.ValueBox;
+import soot.javaToJimple.LocalGenerator;
 import soot.jimple.ArrayRef;
 import soot.jimple.AssignStmt;
 import soot.jimple.Expr;
 import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.Jimple;
+import soot.jimple.LengthExpr;
 import soot.jimple.NewArrayExpr;
 import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
@@ -134,10 +138,37 @@ public class ArrayRepair extends BodyTransformer
 		
    	 	//catch block instrumentation
    	 	
-   	 	Value indexValue = arrayRef.getIndex();
-   	 	Value baseValue = arrayRef.getBase();
+   	 	Value index = arrayRef.getIndex();
+   	 	Value base = arrayRef.getBase();
    	 	
-   	 	//ArrayRef newArrayRef = Jimple.v().newArrayRef(base, index)
+   	 	SootClass IndexRepairClass = Scene.v().loadClassAndSupport("arrayrepair.IndexRepair");
+   	 	
+   	 	Local baseLength = new LocalGenerator(jbody).generateLocal(IntType.v());
+   	 	LengthExpr lenExpr = Jimple.v().newLengthExpr(base);
+   	 	AssignStmt lenAssign = Jimple.v().newAssignStmt(baseLength, lenExpr);
+   	 	probe.add(lenAssign);
+   	 	
+   	 	
+   	 	Local indexLoc = new LocalGenerator(jbody).generateLocal(IntType.v());
+   	 	AssignStmt indAssign = Jimple.v().newAssignStmt(indexLoc, 
+   	 			Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethodByName("getI").makeRef(), Arrays.asList(new Value[]{index, baseLength})));
+   	 	
+   	 	probe.add(indAssign);
+   	 	
+   	 	ArrayRef newArrayRef = Jimple.v().newArrayRef(base, indexLoc);
+   	 	
+   	 	Local l = new LocalGenerator(jbody).generateLocal(valuePair.value.getType());
+   	 	AssignStmt temp = Jimple.v().newAssignStmt(l, valuePair.value);
+   	 	probe.add(temp);
+   	 	
+   	 	AssignStmt arrayRefAssign = null;
+   	 	
+   	 	if(valuePair.isLeft)
+   	 		arrayRefAssign = Jimple.v().newAssignStmt(l, newArrayRef);
+   	 	else if(valuePair.isRight)
+   	 		arrayRefAssign = Jimple.v().newAssignStmt(newArrayRef, l);
+   	 	
+   	 	probe.add(arrayRefAssign);
    	 	
 		return new Object[]{probe, thrwCls, sCatch};
 	}
@@ -224,6 +255,7 @@ public class ArrayRepair extends BodyTransformer
 				if(rhs instanceof NewArrayExpr)
 				{
 					NewArrayExpr nae = (NewArrayExpr) rhs;
+					//send the other side
 					Body b = makePatchProbe(pc, body, stmt, (Stmt) pc.getSuccOf(stmt), new ValuePair(lhs, false, false), nae);
 					
 					if(b == null)
@@ -236,7 +268,7 @@ public class ArrayRepair extends BodyTransformer
 				if(lhs instanceof ArrayRef)
 				{
 					ArrayRef arf = (ArrayRef) lhs;
-					Body b = makePatchProbe(pc, body, stmt, (Stmt) pc.getSuccOf(stmt), new ValuePair(lhs, true, false), arf);
+					Body b = makePatchProbe(pc, body, stmt, (Stmt) pc.getSuccOf(stmt), new ValuePair(rhs, true, false), arf);
 					
 					if(b == null)
 						continue;
@@ -248,7 +280,7 @@ public class ArrayRepair extends BodyTransformer
 				if(rhs instanceof ArrayRef)
 				{
 					ArrayRef arf = (ArrayRef) rhs;
-					Body b = makePatchProbe(pc, body, stmt, (Stmt) pc.getSuccOf(stmt), new ValuePair(rhs, false, true), arf);
+					Body b = makePatchProbe(pc, body, stmt, (Stmt) pc.getSuccOf(stmt), new ValuePair(lhs, false, true), arf);
 					
 					if(b == null)
 						continue;

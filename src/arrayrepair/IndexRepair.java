@@ -18,14 +18,15 @@ package arrayrepair;
 
 public class IndexRepair 
 {
-	static int ind;
+	public static int ind;
 	
-	static int getI()
+	public static int getI(int index, int len)
 	{
+		setIndex(index, len);
 		return ind;
 	}
 	
-	static void setIndex(int index, int len)
+	public static void setIndex(int index, int len)
 	{
 		if(index<0)
 			ind = 0;

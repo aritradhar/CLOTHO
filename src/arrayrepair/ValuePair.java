@@ -16,12 +16,15 @@ package arrayrepair;
 
 import soot.Value;
 
-
+/*
+ * Array reference at the left hand side -> isRight = true
+ * Array reference at the right hand side -> isLeft = true
+ */
 public class ValuePair 
 {
-	Value value;
-	boolean isLeft;
-	boolean isRight;
+	public Value value;
+	public boolean isLeft;
+	public boolean isRight;
 	
 	public ValuePair(Value value, boolean isLeft, boolean isRight)
 	{
