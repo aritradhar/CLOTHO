@@ -250,6 +250,12 @@ public class IndexRepair
 				ind1 = ind2 - 1;
 			}
 			
+			else if(j>len - 1 && i>=len - 1)
+			{
+				ind2 = len - 1;
+				ind1 = ind2 - 1;
+			}
+			
 			/* 
 			 * i is bad
 			 * j is good
@@ -269,15 +275,40 @@ public class IndexRepair
 				ind1 = i;
 				ind2 = len - 1;
 			}
+			
+			/*
+			 * Bounds are satisfied
+			 */
+			else
+			{
+				set(i,j);
+			}
 				
 			return;
+		}
+		/*
+		 * Some crazy corner cases
+		 */
+		if(i==j)
+		{
+			if(i<0)
+			{
+				ind1 = 0;
+				ind2 = ind1 + 1;
+			}
+			
+			else if(i>=len-1)
+			{
+				ind2 = len - 1;
+				ind1 = ind2 - 1;
+			}
 		}
 	}
 	
 
 	public static void main(String[] args) 
 	{
-		indexRepair(6, 2, 4);
+		indexRepair(12, 11, 4);
 		
 		System.out.println(ind1 + " " + ind2);
 	}
