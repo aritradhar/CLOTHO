@@ -150,7 +150,8 @@ public class IndexRepair
 	/*
 	 * Works both for subsequence(int,int) and substring(int,int)
 	 */
-	
+	//TODO have bugs
+	/*
 	public static void indexRepair(int i, int j, int len)
 	{
 		set(i, j);
@@ -191,12 +192,92 @@ public class IndexRepair
 			}
 		}
 	}
+	*/
 	
+	/*
+	 * Works both for subsequence(int,int) and substring(int,int)
+	 */
+	public static void indexRepair(int i, int j, int len)
+	{
+		if(len == 0 || len == 1)
+		{
+			ind1 = ind2 = 0;
+			return;
+		}
+		
+		if(i>j)
+		{
+			if(i<0)
+			{
+				ind1 = 0;
+				ind2 = ind1 + 1;
+			}
+			else if(i>=len-1 && j>len-1)
+			{
+				ind2 = len - 1;
+				ind1 = ind2 - 1;
+			}
+			
+			else if(i>=len - 1 && j>=1 && j<=len-1)
+			{
+				ind2 = j;
+				ind1 = ind2 - 1;
+			}
+			
+			else if(i>=len - 1 && j<0)
+			{
+				ind1 = len - 2;
+				ind2 = ind1 + 1;
+			}
+			else if(i<len - 1 && j>=1 && j<=len-1)
+			{
+				ind2 = j;
+				ind1 = ind2 - 1;
+			}
+			
+			return;
+			
+		}
+		
+		if(j>i)
+		{
+			/*
+			 * Both i and j are bad
+			 */
+			if(j<=0)
+			{
+				ind2 = 1;
+				ind1 = ind2 - 1;
+			}
+			
+			/* 
+			 * i is bad
+			 * j is good
+			 */		
+			else if(j<=len - 1 && j>0 && i<0)
+			{
+				ind1 = 0;
+				ind2 = j;
+			}
+			
+			/* 
+			 * j is bad
+			 * i is good
+			 */			
+			else if(i<len - 1 && i>=0 && j>len-1 )
+			{
+				ind1 = i;
+				ind2 = len - 1;
+			}
+				
+			return;
+		}
+	}
 	
 
 	public static void main(String[] args) 
 	{
-		indexRepair(6, 2, 1);
+		indexRepair(6, 2, 4);
 		
 		System.out.println(ind1 + " " + ind2);
 	}
