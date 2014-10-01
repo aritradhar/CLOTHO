@@ -1,6 +1,15 @@
 public class StringTest extends java.lang.Object
 {
 
+    public void <init>()
+    {
+        StringTest this;
+
+        this := @this: StringTest;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+
     void foo()
     {
         StringTest this;
@@ -20,68 +29,61 @@ public class StringTest extends java.lang.Object
     public static void main(java.lang.String[])
     {
         java.lang.String[] args;
-        java.lang.String st, g, subs, temp$4, temp$8, temp$12, temp$17, p, temp$20;
-        java.io.PrintStream temp$0, temp$2, temp$5, temp$14, temp$18, temp$21, temp$23;
-        int temp$1, temp$3, i, j, temp$6, temp$7, t, temp$9, ind, temp$10, ind1, temp$11, temp$13, temp$15;
-        boolean a;
-        char temp$16;
-        java.lang.CharSequence temp$19, s, temp$22;
+        java.lang.String st, g, subs, p, $r2, $r3;
+        byte i, j, ind;
+        int ind, ind1, $i0, $i1, $i2;
         char[] c;
+        java.lang.CharSequence s;
+        java.io.PrintStream $r0;
+        java.lang.StringBuilder $r1;
 
         args := @parameter0: java.lang.String[];
         st = "aritra:dhar";
-        temp$0 = <java.lang.System: java.io.PrintStream out>;
-        temp$1 = virtualinvoke st.<java.lang.String: int codePointCount(int,int)>(-1, 20);
-        virtualinvoke temp$0.<java.io.PrintStream: void println(int)>(temp$1);
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        $i0 = virtualinvoke st.<java.lang.String: int codePointCount(int,int)>(-1, 20);
+        virtualinvoke $r0.<java.io.PrintStream: void println(int)>($i0);
         g = "Hello\ud835\udd6b";
-        temp$2 = <java.lang.System: java.io.PrintStream out>;
-        temp$3 = virtualinvoke g.<java.lang.String: int length()>();
-        virtualinvoke temp$2.<java.io.PrintStream: void println(int)>(temp$3);
-        a = 0;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        $i0 = virtualinvoke g.<java.lang.String: int length()>();
+        virtualinvoke $r0.<java.io.PrintStream: void println(int)>($i0);
         i = 1;
         j = -9;
-        temp$4 = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(i, j);
-        subs = temp$4;
-        temp$5 = <java.lang.System: java.io.PrintStream out>;
-        temp$6 = virtualinvoke st.<java.lang.String: int codePointBefore(int)>(20);
-        virtualinvoke temp$5.<java.io.PrintStream: void println(int)>(temp$6);
-        temp$7 = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>(":");
-        temp$8 = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(0, temp$7);
-        st = temp$8;
-        temp$9 = virtualinvoke st.<java.lang.String: int length()>();
-        t = temp$9;
-        temp$10 = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>("&");
-        ind = temp$10;
-        temp$11 = ind;
-        ind1 = temp$11 + 1;
-        temp$12 = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(ind1, 2);
-        temp$13 = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>("^");
-        temp$14 = <java.lang.System: java.io.PrintStream out>;
-        temp$15 = virtualinvoke st.<java.lang.String: int codePointAt(int)>(200);
-        virtualinvoke temp$14.<java.io.PrintStream: void println(int)>(temp$15);
-        temp$16 = virtualinvoke st.<java.lang.String: char charAt(int)>(20);
-        temp$17 = virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(20);
-        temp$18 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$18.<java.io.PrintStream: void println(java.lang.String)>(subs);
-        temp$19 = virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
+        subs = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(i, j);
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        $i0 = virtualinvoke st.<java.lang.String: int codePointBefore(int)>(20);
+        virtualinvoke $r0.<java.io.PrintStream: void println(int)>($i0);
+        $i1 = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>(":");
+        st = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(0, $i1);
+        virtualinvoke st.<java.lang.String: int length()>();
+        ind = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>("&");
+        virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>("^");
+        ind1 = ind + 1;
+        ind = 6;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        $r1 = new java.lang.StringBuilder;
+        $i2 = virtualinvoke st.<java.lang.String: int length()>();
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i2);
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+        $r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  ");
+        $r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(st);
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>($r3);
+        virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(ind1, 2);
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        $i0 = virtualinvoke st.<java.lang.String: int codePointAt(int)>(200);
+        virtualinvoke $r0.<java.io.PrintStream: void println(int)>($i0);
+        virtualinvoke st.<java.lang.String: char charAt(int)>(20);
+        virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(20);
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(subs);
+        virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
         c = newarray (char)[10];
-        temp$20 = staticinvoke <java.lang.String: java.lang.String valueOf(char[],int,int)>(c, 1, 2);
-        p = temp$20;
-        temp$21 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$21.<java.io.PrintStream: void println(java.lang.String)>(p);
-        temp$22 = virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, -2);
-        s = temp$22;
-        temp$23 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$23.<java.io.PrintStream: void println(java.lang.Object)>(s);
-        return;
-    }
-
-    public void <init>()
-    {
-        StringTest this;
-
-        this := @this: StringTest;
-        specialinvoke this.<java.lang.Object: void <init>()>();
+        p = staticinvoke <java.lang.String: java.lang.String valueOf(char[],int,int)>(c, 1, 2);
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(p);
+        s = virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, -2);
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.Object)>(s);
         return;
     }
 }

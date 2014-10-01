@@ -44,13 +44,14 @@ public class StringTest
 		int t = st.length();
 		
 		int ind = st.indexOf("&");
+		int ind4 = st.indexOf("^");
 		int ind1 = ind + 1;
 		
 		ind  = 6;
 		System.out.println(st.length() + "  " + st);
-		st.substring(ind, 2);
+		st.substring(ind1, 2);
 		
-		st.indexOf("^");
+		
 		
 		System.out.println(st.codePointAt(200));
 		st.charAt(20);
@@ -63,6 +64,8 @@ public class StringTest
 		char[] c = new char[10];
 		String p = String.valueOf(c, 1, 2);
 		System.out.println(p);
+		
+		//st.substring(ind, 1);
 		
 		CharSequence s = st.subSequence(1, -2);
 		System.out.println(s);

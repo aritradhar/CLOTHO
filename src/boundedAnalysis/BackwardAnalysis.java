@@ -29,12 +29,12 @@ import soot.jimple.InvokeStmt;
 import soot.jimple.Stmt;
 import soot.toolkits.graph.UnitGraph;
 import soot.toolkits.scalar.ArraySparseSet;
+import soot.toolkits.scalar.BackwardFlowAnalysis;
 import soot.toolkits.scalar.FlowSet;
-import soot.toolkits.scalar.ForwardFlowAnalysis;
 
 
 @SuppressWarnings("rawtypes")
-public class ForwardAnalysis extends ForwardFlowAnalysis
+public class BackwardAnalysis extends BackwardFlowAnalysis
 {
 	private UnitGraph g;
 	/**
@@ -42,7 +42,7 @@ public class ForwardAnalysis extends ForwardFlowAnalysis
 	 */
 	
 	@SuppressWarnings("unchecked")
-	public ForwardAnalysis(UnitGraph g) 
+	public BackwardAnalysis(UnitGraph g) 
 	{
 		super(g);
 		this.g = g;
@@ -143,7 +143,7 @@ public class ForwardAnalysis extends ForwardFlowAnalysis
 			if(rhs instanceof InvokeExpr)
 			{
 				InvokeExpr invokeExpr = (InvokeExpr) rhs;
-				outSet = getFlowSet_forward(in, out, usedSet,  defSet, invokeExpr);
+				outSet = getFlowSet_backward(in, out, usedSet,  defSet, invokeExpr);
 			}
 			/*
 			 * for normal assign statement
@@ -152,7 +152,7 @@ public class ForwardAnalysis extends ForwardFlowAnalysis
 			*/
 			else
 			{
-				outSet = getFlowSet_forward(in, outSet, usedSet, defSet);
+				outSet = getFlowSet_backWard(in, outSet, usedSet, defSet);
 			}
 			
 		}
@@ -160,7 +160,7 @@ public class ForwardAnalysis extends ForwardFlowAnalysis
 		if(stmt instanceof InvokeStmt)
 		{
 			InvokeExpr invokeExpr = stmt.getInvokeExpr();
-			outSet = getFlowSet_forward(in, out, usedSet,  defSet, invokeExpr);
+			outSet = getFlowSet_backward(in, out, usedSet,  defSet, invokeExpr);
 		}
 		
 		return outSet;
@@ -242,6 +242,15 @@ public class ForwardAnalysis extends ForwardFlowAnalysis
 		}
 		
 		return fs;
+	}
+	
+	protected FlowSet getFlowSet_backWard(FlowSet in, FlowSet out, FlowSet usedSet, FlowSet defSet)
+	{
+		FlowSet _in = in;
+		
+		_in.remove(defSet);
+		
+		return _in;
 	}
 	
 

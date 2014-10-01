@@ -40,7 +40,7 @@ import soot.toolkits.graph.UnitGraph;
 import soot.toolkits.graph.pdg.EnhancedUnitGraph;
 import soot.toolkits.scalar.FlowSet;
 
-public class BoundedFarword extends BodyTransformer
+public class BoundedForwardnBackward extends BodyTransformer
 {
 	public static void main(String[] args) 
 	{		
@@ -50,14 +50,14 @@ public class BoundedFarword extends BodyTransformer
 		  
 	        Pack jtp = PackManager.v().getPack("jtp");
 	        
-	        jtp.add(new Transform("jtp.boundedforward", new BoundedFarword()));
+	        jtp.add(new Transform("jtp.boundedforward", new BoundedForwardnBackward()));
 	        Options.v().setPhaseOption("jb", "use-original-names:true");
 	     
 	        /* DEBUG
 	        Scanner s = new Scanner(System.in);
 	        String st = s.next();
 	        */
-	        String st = "c";
+	        String st = "j";
 	        
 	        if(st.equalsIgnoreCase("j"))
 	        	Options.v().set_output_format(Options.output_format_jimple);
@@ -88,7 +88,7 @@ public class BoundedFarword extends BodyTransformer
 	@Override
 	protected void internalTransform(Body body, String phaseName, Map options) 
 	{
-		
+		boolean sw = false;
 		ForwardAnalysis fwA = new ForwardAnalysis(new BriefUnitGraph(body));
 
 		 Iterator<Unit> sIt = body.getUnits().iterator();
@@ -101,10 +101,29 @@ public class BoundedFarword extends BodyTransformer
 	    		 //System.out.println(stmt + "\n" + indexVariableSet);
 	     }
 		 
+		 if(sw)
+		 {
+			 System.out.println("==========================================================");
+			 System.out.println("                    End of analysis                       ");
+			 System.out.println("==========================================================");
 		 
-		
+			 BackwardAnalysis bwA = new BackwardAnalysis(new BriefUnitGraph(body));
 
-		
-		
-	}
+			 sIt = body.getUnits().iterator();
+	     
+			 while( sIt.hasNext() ) 
+			 {
+				 Stmt stmt = (Stmt) sIt.next();
+				 FlowSet indexVariableSet = (FlowSet) fwA.getFlowBefore(stmt);
+				 //if(indexVariableSet.size() > 0)
+	    		 	//System.out.println(stmt + "\n" + indexVariableSet);
+			 }
+		 
+		 
+			 System.out.println("==========================================================");
+			 System.out.println("                    End of analysis                       ");
+			 System.out.println("==========================================================");				
+		 }
+		 
+		 }
 }
