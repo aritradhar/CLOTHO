@@ -1,0 +1,113 @@
+public class Test1 extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] ar;
+        int[] array, temp$0;
+        int a, b, c, out, temp$2;
+        Test1 temp$1;
+        java.io.PrintStream temp$3;
+
+        ar := @parameter0: java.lang.String[];
+        temp$0 = newarray (int)[4];
+        temp$0[0] = 10;
+        temp$0[1] = 11;
+        temp$0[2] = 12;
+        temp$0[3] = 13;
+        array = temp$0;
+        a = 0;
+        b = 2;
+        c = -1;
+        temp$1 = new Test1;
+        specialinvoke temp$1.<Test1: void <init>()>();
+        temp$2 = virtualinvoke temp$1.<Test1: int fun(int[],int,int,int)>(array, a, b, c);
+        out = temp$2;
+        temp$3 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke temp$3.<java.io.PrintStream: void println(int)>(out);
+        return;
+    }
+
+    public int fun1(int[], int)
+    {
+        Test1 this;
+        int[] a, temp$0;
+        int b, temp$1, temp$2, temp$3;
+
+        this := @this: Test1;
+        a := @parameter0: int[];
+        b := @parameter1: int;
+        temp$0 = a;
+        temp$1 = b * 2;
+        temp$2 = temp$1;
+        temp$3 = temp$0[temp$2];
+        return temp$3;
+    }
+
+    public int fun(int[], int, int, int)
+    {
+        Test1 this;
+        int[] array, arr, temp$6, temp$8, temp$11, temp$13, temp$16, temp$21;
+        int a, b, c, len, index, temp$4, index1, temp$5, x, temp$7, y, temp$9, temp$10, temp$12, temp$14, temp$15, temp$17, temp$18, temp$19, temp$22, temp$23, temp$24;
+        java.lang.Integer[] arri;
+        java.io.PrintStream temp$0, temp$1, temp$20;
+        java.lang.StringBuffer temp$2;
+        java.lang.String temp$3;
+
+        this := @this: Test1;
+        array := @parameter0: int[];
+        a := @parameter1: int;
+        b := @parameter2: int;
+        c := @parameter3: int;
+        arr = newarray (int)[c];
+        arri = newarray (java.lang.Integer)[c];
+        len = lengthof arr;
+        temp$0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke temp$0.<java.io.PrintStream: void println(int)>(len);
+        temp$1 = <java.lang.System: java.io.PrintStream out>;
+        temp$2 = new java.lang.StringBuffer;
+        specialinvoke temp$2.<java.lang.StringBuffer: void <init>()>();
+        virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>(a);
+        virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(" ");
+        virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>(b);
+        temp$3 = virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.String toString()>();
+        virtualinvoke temp$1.<java.io.PrintStream: void println(java.lang.String)>(temp$3);
+        temp$4 = a;
+        index = temp$4 + b;
+        temp$5 = a / b;
+        index1 = temp$5;
+        temp$6 = array;
+        temp$7 = index;
+        x = temp$6[temp$7];
+        temp$8 = array;
+        temp$9 = a - b;
+        temp$10 = temp$9;
+        y = temp$8[temp$10];
+        temp$11 = array;
+        temp$12 = 3;
+        temp$13 = array;
+        temp$14 = 6;
+        temp$15 = temp$13[temp$14];
+        temp$16 = array;
+        temp$17 = 9;
+        temp$18 = temp$16[temp$17];
+        temp$19 = temp$15 + temp$18;
+        temp$11[temp$12] = temp$19;
+        temp$20 = <java.lang.System: java.io.PrintStream out>;
+        temp$21 = arr;
+        temp$22 = index;
+        temp$23 = temp$22 + 3;
+        temp$24 = temp$21[temp$23];
+        virtualinvoke temp$20.<java.io.PrintStream: void println(int)>(temp$24);
+        return y;
+    }
+
+    public void <init>()
+    {
+        Test1 this;
+
+        this := @this: Test1;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

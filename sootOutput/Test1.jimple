@@ -1,107 +1,6 @@
 public class Test1 extends java.lang.Object
 {
 
-    public static void main(java.lang.String[])
-    {
-        java.lang.String[] ar;
-        int[] array, temp$0;
-        int a, b, c, out, temp$2;
-        Test1 temp$1;
-        java.io.PrintStream temp$3;
-
-        ar := @parameter0: java.lang.String[];
-        temp$0 = newarray (int)[4];
-        temp$0[0] = 10;
-        temp$0[1] = 11;
-        temp$0[2] = 12;
-        temp$0[3] = 13;
-        array = temp$0;
-        a = 0;
-        b = 2;
-        c = -1;
-        temp$1 = new Test1;
-        specialinvoke temp$1.<Test1: void <init>()>();
-        temp$2 = virtualinvoke temp$1.<Test1: int fun(int[],int,int,int)>(array, a, b, c);
-        out = temp$2;
-        temp$3 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$3.<java.io.PrintStream: void println(int)>(out);
-        return;
-    }
-
-    public int fun1(int[], int)
-    {
-        Test1 this;
-        int[] a, temp$0;
-        int b, temp$1, temp$2, temp$3;
-
-        this := @this: Test1;
-        a := @parameter0: int[];
-        b := @parameter1: int;
-        temp$0 = a;
-        temp$1 = b * 2;
-        temp$2 = temp$1;
-        temp$3 = temp$0[temp$2];
-        return temp$3;
-    }
-
-    public int fun(int[], int, int, int)
-    {
-        Test1 this;
-        int[] array, arr, temp$6, temp$8, temp$11, temp$13, temp$16, temp$21;
-        int a, b, c, len, index, temp$4, index1, temp$5, x, temp$7, y, temp$9, temp$10, temp$12, temp$14, temp$15, temp$17, temp$18, temp$19, temp$22, temp$23, temp$24;
-        java.lang.Integer[] arri;
-        java.io.PrintStream temp$0, temp$1, temp$20;
-        java.lang.StringBuffer temp$2;
-        java.lang.String temp$3;
-
-        this := @this: Test1;
-        array := @parameter0: int[];
-        a := @parameter1: int;
-        b := @parameter2: int;
-        c := @parameter3: int;
-        arr = newarray (int)[c];
-        arri = newarray (java.lang.Integer)[c];
-        len = lengthof arr;
-        temp$0 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$0.<java.io.PrintStream: void println(int)>(len);
-        temp$1 = <java.lang.System: java.io.PrintStream out>;
-        temp$2 = new java.lang.StringBuffer;
-        specialinvoke temp$2.<java.lang.StringBuffer: void <init>()>();
-        virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>(a);
-        virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(" ");
-        virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>(b);
-        temp$3 = virtualinvoke temp$2.<java.lang.StringBuffer: java.lang.String toString()>();
-        virtualinvoke temp$1.<java.io.PrintStream: void println(java.lang.String)>(temp$3);
-        temp$4 = a;
-        index = temp$4 + b;
-        temp$5 = a / b;
-        index1 = temp$5;
-        temp$6 = array;
-        temp$7 = index;
-        x = temp$6[temp$7];
-        temp$8 = array;
-        temp$9 = a - b;
-        temp$10 = temp$9;
-        y = temp$8[temp$10];
-        temp$11 = array;
-        temp$12 = 3;
-        temp$13 = array;
-        temp$14 = 6;
-        temp$15 = temp$13[temp$14];
-        temp$16 = array;
-        temp$17 = 9;
-        temp$18 = temp$16[temp$17];
-        temp$19 = temp$15 + temp$18;
-        temp$11[temp$12] = temp$19;
-        temp$20 = <java.lang.System: java.io.PrintStream out>;
-        temp$21 = arr;
-        temp$22 = index;
-        temp$23 = temp$22 + 3;
-        temp$24 = temp$21[temp$23];
-        virtualinvoke temp$20.<java.io.PrintStream: void println(int)>(temp$24);
-        return y;
-    }
-
     public void <init>()
     {
         Test1 this;
@@ -109,5 +8,285 @@ public class Test1 extends java.lang.Object
         this := @this: Test1;
         specialinvoke this.<java.lang.Object: void <init>()>();
         return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] ar;
+        int[] array, $r0;
+        byte a, b, c;
+        int out, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11;
+        Test1 $r1;
+        java.io.PrintStream $r2;
+        java.lang.NegativeArraySizeException <ex53221068E7>;
+        java.lang.IndexOutOfBoundsException <ex65249433E7>, <ex70049032E7>, <ex33380282E7>, <ex44249494E7>;
+
+        ar := @parameter0: java.lang.String[];
+
+     label0:
+        $r0 = newarray (int)[4];
+
+     label1:
+        goto label3;
+
+     label2:
+        <ex53221068E7> := @caughtexception;
+        $r0 = newarray (int[])[1];
+
+     label3:
+        $r0[0] = 10;
+
+     label4:
+        goto label6;
+
+     label5:
+        <ex65249433E7> := @caughtexception;
+        $i0 = lengthof $r0;
+        $i1 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>(0, $i0);
+        $i2 = 10;
+        $i2 = $r0[$i1];
+
+     label6:
+        $r0[1] = 11;
+
+     label7:
+        goto label9;
+
+     label8:
+        <ex70049032E7> := @caughtexception;
+        $i3 = lengthof $r0;
+        $i4 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>(1, $i3);
+        $i5 = 11;
+        $i5 = $r0[$i4];
+
+     label9:
+        $r0[2] = 12;
+
+     label10:
+        goto label12;
+
+     label11:
+        <ex33380282E7> := @caughtexception;
+        $i6 = lengthof $r0;
+        $i7 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>(2, $i6);
+        $i8 = 12;
+        $i8 = $r0[$i7];
+
+     label12:
+        $r0[3] = 13;
+
+     label13:
+        goto label15;
+
+     label14:
+        <ex44249494E7> := @caughtexception;
+        $i9 = lengthof $r0;
+        $i10 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>(3, $i9);
+        $i11 = 13;
+        $i11 = $r0[$i10];
+
+     label15:
+        array = $r0;
+        a = 0;
+        b = 2;
+        c = -1;
+        $r1 = new Test1;
+        specialinvoke $r1.<Test1: void <init>()>();
+        out = virtualinvoke $r1.<Test1: int fun(int[],int,int,int)>(array, a, b, c);
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r2.<java.io.PrintStream: void println(int)>(out);
+        return;
+
+        catch java.lang.NegativeArraySizeException from label0 to label1 with label2;
+        catch java.lang.IndexOutOfBoundsException from label3 to label4 with label5;
+        catch java.lang.IndexOutOfBoundsException from label6 to label7 with label8;
+        catch java.lang.IndexOutOfBoundsException from label9 to label10 with label11;
+        catch java.lang.IndexOutOfBoundsException from label12 to label13 with label14;
+    }
+
+    public int fun1(int[], int)
+    {
+        Test1 this;
+        int[] a;
+        int b, $i0, $i1, $i2, $i3, $i4;
+        java.lang.IndexOutOfBoundsException <ex98008478E7>;
+
+        this := @this: Test1;
+        a := @parameter0: int[];
+        b := @parameter1: int;
+        $i0 = b * 2;
+
+     label0:
+        $i1 = a[$i0];
+
+     label1:
+        goto label3;
+
+     label2:
+        <ex98008478E7> := @caughtexception;
+        $i2 = lengthof a;
+        $i3 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>($i0, $i2);
+        $i4 = $i1;
+        a[$i3] = $i4;
+
+     label3:
+        return $i1;
+
+        catch java.lang.IndexOutOfBoundsException from label0 to label1 with label2;
+    }
+
+    public int fun(int[], int, int, int)
+    {
+        Test1 this;
+        int[] array, arr;
+        int a, b, c, len, index, index1, x, y, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20;
+        java.lang.Integer[] arri;
+        java.io.PrintStream $r0;
+        java.lang.StringBuilder $r1;
+        java.lang.String $r2, $r3;
+        java.lang.NegativeArraySizeException <ex68197946E7>, <ex37618336E7>;
+        java.lang.IndexOutOfBoundsException <ex28581423E7>, <ex31201632E7>, <ex85910850>, <ex43460717E7>, <ex63426175E7>, <ex67568440>;
+
+        this := @this: Test1;
+        array := @parameter0: int[];
+        a := @parameter1: int;
+        b := @parameter2: int;
+        c := @parameter3: int;
+
+     label0:
+        arr = newarray (int)[c];
+
+     label1:
+        goto label3;
+
+     label2:
+        <ex68197946E7> := @caughtexception;
+        arr = newarray (int[])[1];
+
+     label3:
+        arri = newarray (java.lang.Integer)[c];
+
+     label4:
+        goto label6;
+
+     label5:
+        <ex37618336E7> := @caughtexception;
+        arri = newarray (java.lang.Integer[])[1];
+
+     label6:
+        len = lengthof arr;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(int)>(len);
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        $r1 = new java.lang.StringBuilder;
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(a);
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+        $r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+        $r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b);
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>($r3);
+        index = a + b;
+        index1 = a / b;
+
+     label7:
+        x = array[index];
+
+     label8:
+        goto label10;
+
+     label9:
+        <ex28581423E7> := @caughtexception;
+        $i3 = lengthof array;
+        $i4 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>(index, $i3);
+        $i5 = x;
+        array[$i4] = $i5;
+
+     label10:
+        $i0 = a - b;
+
+     label11:
+        y = array[$i0];
+
+     label12:
+        goto label14;
+
+     label13:
+        <ex31201632E7> := @caughtexception;
+        $i6 = lengthof array;
+        $i7 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>($i0, $i6);
+        $i8 = y;
+        array[$i7] = $i8;
+
+     label14:
+        $i1 = array[6];
+
+     label15:
+        goto label17;
+
+     label16:
+        <ex85910850> := @caughtexception;
+        $i9 = lengthof array;
+        $i10 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>(6, $i9);
+        $i11 = $i1;
+        array[$i10] = $i11;
+
+     label17:
+        $i2 = array[9];
+
+     label18:
+        goto label20;
+
+     label19:
+        <ex43460717E7> := @caughtexception;
+        $i12 = lengthof array;
+        $i13 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>(9, $i12);
+        $i14 = $i2;
+        array[$i13] = $i14;
+
+     label20:
+        $i1 = $i1 + $i2;
+
+     label21:
+        array[3] = $i1;
+
+     label22:
+        goto label24;
+
+     label23:
+        <ex63426175E7> := @caughtexception;
+        $i15 = lengthof array;
+        $i16 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>(3, $i15);
+        $i17 = $i1;
+        $i17 = array[$i16];
+
+     label24:
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        $i1 = index + 3;
+
+     label25:
+        $i0 = arr[$i1];
+
+     label26:
+        goto label28;
+
+     label27:
+        <ex67568440> := @caughtexception;
+        $i18 = lengthof arr;
+        $i19 = staticinvoke <arrayrepair.IndexRepair: int getI(int,int)>($i1, $i18);
+        $i20 = $i0;
+        arr[$i19] = $i20;
+
+     label28:
+        virtualinvoke $r0.<java.io.PrintStream: void println(int)>($i0);
+        return y;
+
+        catch java.lang.NegativeArraySizeException from label0 to label1 with label2;
+        catch java.lang.NegativeArraySizeException from label3 to label4 with label5;
+        catch java.lang.IndexOutOfBoundsException from label7 to label8 with label9;
+        catch java.lang.IndexOutOfBoundsException from label11 to label12 with label13;
+        catch java.lang.IndexOutOfBoundsException from label14 to label15 with label16;
+        catch java.lang.IndexOutOfBoundsException from label17 to label18 with label19;
+        catch java.lang.IndexOutOfBoundsException from label21 to label22 with label23;
+        catch java.lang.IndexOutOfBoundsException from label25 to label26 with label27;
     }
 }
