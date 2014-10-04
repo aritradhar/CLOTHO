@@ -20,15 +20,21 @@ public class StringTest
 {
 	void foo()
 	{
-		
+		new StringTest().bar();
 	}
 	
 	void bar()
+	{
+		new StringTest().bar1();
+	}
+	void bar1()
 	{
 		
 	}
 	public static void main(String[] args) 
 	{
+		new StringTest().bar();
+		
 		String st = "aritra:dhar";
 		System.out.println(st.codePointCount(-1, 20));
 		

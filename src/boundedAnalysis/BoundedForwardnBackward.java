@@ -84,11 +84,14 @@ public class BoundedForwardnBackward extends BodyTransformer
 	        }
 	        */
 	}
-
+    
+	
+	@SuppressWarnings({ "unchecked", "unused", "rawtypes" })
 	@Override
 	protected void internalTransform(Body body, String phaseName, Map options) 
 	{
 		boolean sw = false;
+		
 		ForwardAnalysis fwA = new ForwardAnalysis(new BriefUnitGraph(body));
 
 		 Iterator<Unit> sIt = body.getUnits().iterator();
@@ -103,18 +106,19 @@ public class BoundedForwardnBackward extends BodyTransformer
 		 
 		 if(sw)
 		 {
+			 sIt = null;
 			 System.out.println("==========================================================");
 			 System.out.println("                    End of analysis                       ");
 			 System.out.println("==========================================================");
 		 
 			 BackwardAnalysis bwA = new BackwardAnalysis(new BriefUnitGraph(body));
-
+			 
 			 sIt = body.getUnits().iterator();
 	     
 			 while( sIt.hasNext() ) 
 			 {
 				 Stmt stmt = (Stmt) sIt.next();
-				 FlowSet indexVariableSet = (FlowSet) fwA.getFlowBefore(stmt);
+				 FlowSet indexVariableSet = (FlowSet) bwA.getFlowBefore(stmt);
 				 //if(indexVariableSet.size() > 0)
 	    		 	//System.out.println(stmt + "\n" + indexVariableSet);
 			 }

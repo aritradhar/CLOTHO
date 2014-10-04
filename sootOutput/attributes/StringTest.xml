@@ -2,22 +2,28 @@
 <attributes>
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
-<jmpPos sline="4" eline="4" spos="0" epos="0"/>
+<jmpPos sline="0" eline="0" spos="0" epos="0"/>
+<color r="255" g="0" b="0" fg="0" aType="Unreachable Methods"/>
 <text info="[]" aType="ParamNamesTag"/>
+<text info="Method foo is not reachable!" aType="Unreachable Methods"/>
 </attribute>
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
-<jmpPos sline="12" eline="12" spos="0" epos="0"/>
+<jmpPos sline="0" eline="0" spos="0" epos="0"/>
+<color r="255" g="0" b="0" fg="0" aType="Unreachable Methods"/>
 <text info="[]" aType="ParamNamesTag"/>
+<text info="Method bar is not reachable!" aType="Unreachable Methods"/>
 </attribute>
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
-<jmpPos sline="20" eline="20" spos="0" epos="0"/>
+<jmpPos sline="0" eline="0" spos="0" epos="0"/>
 <text info="[args]" aType="ParamNamesTag"/>
 </attribute>
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
-<jmpPos sline="79" eline="79" spos="0" epos="0"/>
+<jmpPos sline="0" eline="0" spos="0" epos="0"/>
+<color r="255" g="0" b="0" fg="0" aType="Unreachable Methods"/>
 <text info="[]" aType="ParamNamesTag"/>
+<text info="Method &amp;lt;init&amp;gt; is not reachable!" aType="Unreachable Methods"/>
 </attribute>
 </attributes>

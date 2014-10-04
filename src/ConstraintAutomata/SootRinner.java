@@ -15,6 +15,7 @@ package ConstraintAutomata;
 //*************************************************************************************
 
 import soot.*;
+import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.options.Options;
      
        public class SootRinner {
@@ -42,6 +43,7 @@ import soot.options.Options;
           
           //Scene.v().addBasicClass("java.util.ArrayList",SootClass.SIGNATURES);
           //Scene.v().addBasicClass("java.util.NoSuchElementException",SootClass.SIGNATURES);
+          
           Options.v().setPhaseOption("jb", "use-original-names:true");
           soot.Main.main(className);
           
