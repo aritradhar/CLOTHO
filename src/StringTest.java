@@ -25,7 +25,14 @@ public class StringTest
 	
 	void bar()
 	{
-		new StringTest().bar1();
+		try
+		{
+			new StringTest().bar1();
+		}
+		catch(IllegalArgumentException ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 	void bar1()
 	{
