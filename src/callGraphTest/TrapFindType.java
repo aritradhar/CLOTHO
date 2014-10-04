@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import soot.PatchingChain;
+import soot.SootClass;
 import soot.Trap;
 import soot.Unit;
 
@@ -76,5 +78,51 @@ public class TrapFindType
 			}
 		}
 		throw new RuntimeException("Trap missing");
+	}
+	
+	public static SootClass getExeptionClassFromUnit(String subSignature, Unit unit, PatchingChain<Unit> pc)
+	{
+				
+		Trap trap = TrapFindType.unitExistsInTrap(subSignature, unit, pc);
+				
+		return  (trap == null) ? null : trap.getException();				
+	}
+	
+	public static Trap unitExistsInTrap(String subSignature, Unit unit, PatchingChain<Unit> pc)
+	{
+		if(!trapFindType.containsKey(subSignature))
+			return null;
+		
+		Iterator<Trap> iTrap = trapFindType.get(subSignature).iterator();
+		
+		while(iTrap.hasNext())
+		{
+			Trap trap = iTrap.next();
+			
+			Unit begin = trap.getBeginUnit();
+			Unit end = trap.getEndUnit();
+			
+			Iterator<Unit> it = pc.iterator();
+			boolean flag = false;
+			
+			while(it.hasNext())
+			{
+				Unit currentUnit = it.next();
+				
+				if(currentUnit.equals(begin))
+					flag = true;
+				
+				if(currentUnit.equals(end))
+					break;
+				
+				if(flag)
+				{
+					if(currentUnit.equals(unit))
+						return trap;
+				}
+			}
+		}
+		
+		return null;
 	}
 }

@@ -21,9 +21,13 @@ import soot.Body;
 import soot.BodyTransformer;
 import soot.Pack;
 import soot.PackManager;
+import soot.PatchingChain;
+import soot.Scene;
+import soot.SootClass;
 import soot.SootMethod;
 import soot.Transform;
 import soot.Trap;
+import soot.Unit;
 import soot.options.Options;
 import soot.util.Chain;
 
@@ -53,6 +57,7 @@ public class TrapFinder extends BodyTransformer
         System.out.println(TrapFindType.trapFindType.entrySet());
 	}
 
+	@SuppressWarnings({ "unused", "rawtypes" })
 	@Override
 	protected void internalTransform(Body jbody, String phaseName, Map options) 
 	{
@@ -68,6 +73,27 @@ public class TrapFinder extends BodyTransformer
 		{
 			Trap trap = iTraps.next();
 			TrapFindType.insertTrap(subSignature, trap);
+		}
+		
+		SootClass s = Scene.v().loadClassAndSupport("StringTest");
+		
+		PatchingChain<Unit> pc = jbody.getUnits();
+		Iterator<Unit> it = pc.iterator();
+		
+		while(it.hasNext())
+		{
+			Unit unit = it.next();
+			/*
+			Trap trap = TrapFindType.unitExistsInTrap(subSignature, unit, pc);
+			
+			if(trap!=null)
+				System.out.println(unit + "  "  + trap);
+			*/
+			SootClass sc = TrapFindType.getExeptionClassFromUnit(subSignature, unit, pc);
+			if(sc!=null)
+			{
+				System.out.println(unit + "  "  + sc);
+			}
 		}
 	} 
 
