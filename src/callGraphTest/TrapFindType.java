@@ -125,4 +125,28 @@ public class TrapFindType
 		
 		return null;
 	}
+	
+	public static HashMap<String, HashMap<Unit, Trap>> unitTrapMap = new HashMap<>();
+	
+	public static void setUnitTrapInfo(String subSignature, Unit unit, PatchingChain<Unit> pc)
+	{
+		Trap trap = TrapFindType.unitExistsInTrap(subSignature, unit, pc);
+		
+		if(!unitTrapMap.containsKey(subSignature))
+		{
+			HashMap<Unit, Trap> hm = new HashMap<>();
+			
+			hm.put(unit, trap);
+			unitTrapMap.put(subSignature, hm);
+		}
+		
+		else
+		{
+			HashMap<Unit, Trap> hm = unitTrapMap.get(subSignature);
+			
+			hm.put(unit, trap);
+			unitTrapMap.put(subSignature, hm);
+			
+		}
+	}
 }

@@ -14,6 +14,8 @@
 //*************************************************************************************
 
 package callGraphTest;
+
+
 import java.util.Iterator;
 import java.util.Map;
 
@@ -54,7 +56,8 @@ public class TrapFinder extends BodyTransformer
         
         soot.Main.main(className);
         
-        System.out.println(TrapFindType.trapFindType.entrySet());
+        //System.out.println(TrapFindType.trapFindType.entrySet());
+        System.out.println(TrapFindType.unitTrapMap.entrySet());
 	}
 
 	@SuppressWarnings({ "unused", "rawtypes" })
@@ -63,7 +66,7 @@ public class TrapFinder extends BodyTransformer
 	{
 		SootMethod sMethod = jbody.getMethod();		
 		
-		String subSignature = sMethod.getSubSignature();
+		String subSignature = sMethod.getSignature();
 		System.out.println("<< Current method : " + subSignature + " >>");
 		
 		Chain<Trap> traps = jbody.getTraps();
@@ -92,8 +95,10 @@ public class TrapFinder extends BodyTransformer
 			SootClass sc = TrapFindType.getExeptionClassFromUnit(subSignature, unit, pc);
 			if(sc!=null)
 			{
-				System.out.println(unit + "  "  + sc);
+				//System.out.println(unit + "  "  + sc);
 			}
+			
+			TrapFindType.setUnitTrapInfo(subSignature, unit, pc);
 		}
 	} 
 
