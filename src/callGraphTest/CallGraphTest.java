@@ -32,6 +32,7 @@ import soot.Transform;
 import soot.jimple.toolkits.callgraph.CHATransformer;
 import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.jimple.toolkits.callgraph.Targets;
+import soot.options.Options;
 
 public class CallGraphTest 
 {
@@ -40,7 +41,7 @@ public class CallGraphTest
 		// create a list from args
 		List<String> argsList = new ArrayList<String>(Arrays.asList(args));
 		// add on the following arguments
-		argsList.addAll(Arrays.asList(new String[]{"-w", "-app", "StringTest"}));
+		argsList.addAll(Arrays.asList(new String[]{"-w", "StringTest"}));
 		// PackManager manages the packs containing the various phases and their options
 		PackManager.v().getPack("wjtp").add(new Transform("wjtp.myTransform", new SceneTransformer() {
 			
@@ -56,7 +57,7 @@ public class CallGraphTest
 				Scene.v().setEntryPoints(entryPoints);
 				CallGraph cg = Scene.v().getCallGraph();
 				
-				/*try
+				try
 				{
 					FileWriter fw = new FileWriter("CGDump.txt");
 					fw.append(cg.toString());
@@ -65,9 +66,12 @@ public class CallGraphTest
 				catch(Exception ex)
 				{
 					ex.printStackTrace();
-				}*/
+				}
 				
-				SootMethod testM = Scene.v().getMainClass().getMethodByName("bar");
+				SootMethod testM = Scene.v().getMainClass().getMethodByName("foo");
+				
+				System.out.println(CallGraphDFS.callGraphDFS(cg, Scene.v().getMainClass().getMethodByName("foo")) + "\n----");
+				
 				
 				Iterator<MethodOrMethodContext> targets1 = new Targets(cg.edgesOutOf(testM));
 				while (targets1.hasNext()) 
@@ -86,6 +90,7 @@ public class CallGraphTest
 			}
 		}));
 		
+		Options.v().set_exclude(Arrays.asList(new String[]{"java", "sun", "java.lang"}));
 		args = argsList.toArray(new String[0]);
 		soot.Main.main(args);
 	}

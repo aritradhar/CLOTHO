@@ -19,8 +19,9 @@ import java.util.Arrays;
 public class StringTest 
 {
 	void foo()
-	{
+	{			
 		new StringTest().bar();
+
 	}
 	
 	void bar()
@@ -41,6 +42,7 @@ public class StringTest
 	public static void main(String[] args) 
 	{
 		new StringTest().bar();
+		new StringTest().foo();
 		
 		String st = "aritra:dhar";
 		System.out.println(st.codePointCount(-1, 20));

@@ -3,16 +3,17 @@
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
 <jmpPos sline="0" eline="0" spos="0" epos="0"/>
-<color r="255" g="0" b="0" fg="0" aType="Unreachable Methods"/>
 <text info="[]" aType="ParamNamesTag"/>
-<text info="Method foo is not reachable!" aType="Unreachable Methods"/>
 </attribute>
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
 <jmpPos sline="0" eline="0" spos="0" epos="0"/>
-<color r="255" g="0" b="0" fg="0" aType="Unreachable Methods"/>
 <text info="[]" aType="ParamNamesTag"/>
-<text info="Method bar is not reachable!" aType="Unreachable Methods"/>
+</attribute>
+<attribute>
+<srcPos sline="0" eline="0" spos="0" epos="0"/>
+<jmpPos sline="0" eline="0" spos="0" epos="0"/>
+<text info="[]" aType="ParamNamesTag"/>
 </attribute>
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
@@ -22,8 +23,6 @@
 <attribute>
 <srcPos sline="0" eline="0" spos="0" epos="0"/>
 <jmpPos sline="0" eline="0" spos="0" epos="0"/>
-<color r="255" g="0" b="0" fg="0" aType="Unreachable Methods"/>
 <text info="[]" aType="ParamNamesTag"/>
-<text info="Method &amp;lt;init&amp;gt; is not reachable!" aType="Unreachable Methods"/>
 </attribute>
 </attributes>
