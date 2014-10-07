@@ -57,12 +57,7 @@ public class CallGraphDFS
 			 * do not add it to trace
 			 * but don't explore it
 			 */
-			String pkg = poppedMethod.getDeclaringClass().getPackageName();
-			if(poppedMethod.getName().startsWith("<") || pkg.contains("java.lang") 
-					|| pkg.contains("java.util") || pkg.contains("sun.security")
-					|| pkg.contains("java.security") || pkg.contains("sun.reflect")
-					|| pkg.contains("sun.net") || pkg.contains("java.nio")
-					|| pkg.contains("sun.misc") || pkg.contains("java.nio"))
+			if(ExcludeMethod.excludeMethod(poppedMethod))
 				continue;
 			
 				

@@ -79,12 +79,7 @@ public class CallGraphTest
 				{
 					SootMethod tgt = (SootMethod)targets1.next();
 					
-					String pkg = tgt.getDeclaringClass().getPackageName();
-					if(tgt.getName().startsWith("<") || pkg.contains("java.lang") 
-							|| pkg.contains("java.util") || pkg.contains("sun.security")
-							|| pkg.contains("java.security") || pkg.contains("sun.reflect")
-							|| pkg.contains("sun.net") || pkg.contains("java.nio")
-							|| pkg.contains("sun.misc") || pkg.contains("java.nio"))
+					if(ExcludeMethod.excludeMethod(tgt))
 						continue;
 					
 					System.out.println(testM + " may called from " + tgt);
@@ -95,12 +90,7 @@ public class CallGraphTest
 				{
 					SootMethod tgt = (SootMethod)targets.next();
 					
-					String pkg = tgt.getDeclaringClass().getPackageName();
-					if(tgt.getName().startsWith("<") || pkg.contains("java.lang") 
-							|| pkg.contains("java.util") || pkg.contains("sun.security")
-							|| pkg.contains("java.security") || pkg.contains("sun.reflect")
-							|| pkg.contains("sun.net") || pkg.contains("java.nio")
-							|| pkg.contains("sun.misc") || pkg.contains("java.nio"))
+					if(ExcludeMethod.excludeMethod(tgt))
 						continue;
 					
 					System.out.println(src + " may call " + tgt);
