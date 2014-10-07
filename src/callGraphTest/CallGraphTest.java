@@ -16,7 +16,6 @@
 package callGraphTest;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -31,6 +30,7 @@ import soot.SootMethod;
 import soot.Transform;
 import soot.jimple.toolkits.callgraph.CHATransformer;
 import soot.jimple.toolkits.callgraph.CallGraph;
+import soot.jimple.toolkits.callgraph.Sources;
 import soot.jimple.toolkits.callgraph.Targets;
 import soot.options.Options;
 
@@ -45,6 +45,7 @@ public class CallGraphTest
 		// PackManager manages the packs containing the various phases and their options
 		PackManager.v().getPack("wjtp").add(new Transform("wjtp.myTransform", new SceneTransformer() {
 			
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
 			protected void internalTransform(String phaseName, Map options) 
 			{
@@ -68,24 +69,43 @@ public class CallGraphTest
 					ex.printStackTrace();
 				}
 				
-				SootMethod testM = Scene.v().getMainClass().getMethodByName("foo");
+				SootMethod testM = Scene.v().getMainClass().getMethodByName("bar");
 				
-				System.out.println(CallGraphDFS.callGraphDFS(cg, Scene.v().getMainClass().getMethodByName("foo")) + "\n----");
+				System.out.println(CallGraphDFS.callGraphDFS(cg, Scene.v().getMainClass().getMethodByName("foo"), true) + "\n----");
 				
 				
-				Iterator<MethodOrMethodContext> targets1 = new Targets(cg.edgesOutOf(testM));
+				Iterator<MethodOrMethodContext> targets1 = new Sources(cg.edgesInto(testM));
 				while (targets1.hasNext()) 
 				{
 					SootMethod tgt = (SootMethod)targets1.next();
-					System.out.println(testM + " may call " + tgt);
+					
+					String pkg = tgt.getDeclaringClass().getPackageName();
+					if(tgt.getName().startsWith("<") || pkg.contains("java.lang") 
+							|| pkg.contains("java.util") || pkg.contains("sun.security")
+							|| pkg.contains("java.security") || pkg.contains("sun.reflect")
+							|| pkg.contains("sun.net") || pkg.contains("java.nio")
+							|| pkg.contains("sun.misc") || pkg.contains("java.nio"))
+						continue;
+					
+					System.out.println(testM + " may called from " + tgt);
 				}
 				
 				Iterator<MethodOrMethodContext> targets = new Targets(cg.edgesOutOf(src));
 				while (targets.hasNext()) 
 				{
 					SootMethod tgt = (SootMethod)targets.next();
+					
+					String pkg = tgt.getDeclaringClass().getPackageName();
+					if(tgt.getName().startsWith("<") || pkg.contains("java.lang") 
+							|| pkg.contains("java.util") || pkg.contains("sun.security")
+							|| pkg.contains("java.security") || pkg.contains("sun.reflect")
+							|| pkg.contains("sun.net") || pkg.contains("java.nio")
+							|| pkg.contains("sun.misc") || pkg.contains("java.nio"))
+						continue;
+					
 					System.out.println(src + " may call " + tgt);
 				}
+				
 				
 			}
 		}));

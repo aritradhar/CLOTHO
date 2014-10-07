@@ -24,6 +24,7 @@ import java.util.Queue;
 import soot.MethodOrMethodContext;
 import soot.SootMethod;
 import soot.jimple.toolkits.callgraph.CallGraph;
+import soot.jimple.toolkits.callgraph.Sources;
 import soot.jimple.toolkits.callgraph.Targets;
 
 
@@ -31,7 +32,8 @@ public class CallGraphDFS
 {
 	public static CallGraph cg;
 	
-	public static ArrayList<SootMethod> callGraphDFS(CallGraph _cg, SootMethod startMethod)
+	@SuppressWarnings("unchecked")
+	public static ArrayList<SootMethod> callGraphDFS(CallGraph _cg, SootMethod startMethod, boolean reverse)
 	{
 		cg = _cg;
 		
@@ -63,7 +65,8 @@ public class CallGraphDFS
 					|| pkg.contains("sun.misc") || pkg.contains("java.nio"))
 				continue;
 			
-			Iterator<MethodOrMethodContext> targets = new Targets(cg.edgesOutOf(poppedMethod));
+				
+			Iterator<MethodOrMethodContext> targets = (reverse) ? new Sources(cg.edgesInto(poppedMethod)) : new Targets(cg.edgesOutOf(poppedMethod));
 			while (targets.hasNext()) 
 			{
 				SootMethod targetMethod = (SootMethod)targets.next();								
@@ -80,4 +83,5 @@ public class CallGraphDFS
 		
 		return trace;
 	}
+	
 }
