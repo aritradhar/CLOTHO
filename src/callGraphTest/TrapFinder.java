@@ -60,7 +60,7 @@ public class TrapFinder extends BodyTransformer
        // System.out.println(TrapFindType.unitTrapMap.entrySet());
 	}
 
-	@SuppressWarnings({ "unused", "rawtypes" })
+	@SuppressWarnings("rawtypes" )
 	@Override
 	protected void internalTransform(Body jbody, String phaseName, Map options) 
 	{
@@ -77,8 +77,6 @@ public class TrapFinder extends BodyTransformer
 			Trap trap = iTraps.next();
 			TrapFindType.insertTrap(subSignature, trap);
 		}
-		
-		SootClass s = Scene.v().loadClassAndSupport("StringTest");
 		
 		PatchingChain<Unit> pc = jbody.getUnits();
 		Iterator<Unit> it = pc.iterator();
