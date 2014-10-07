@@ -23,3 +23,5 @@
 /profile/
 /stringrepair/
 /trace/
+/callGraph/
+/callGraphTrace/
