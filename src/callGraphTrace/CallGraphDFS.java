@@ -76,6 +76,9 @@ public class CallGraphDFS
 			}
 		}
 		
+		//drop the 1st entry as it will always be the source method
+		trace.remove(0);
+		
 		return trace;
 	}
 	

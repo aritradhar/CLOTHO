@@ -15,7 +15,7 @@
 /acteve/
 /arrayrepair/
 /boundedAnalysis/
-/callGraphTest/
+/callGraphTrace/
 /classAnalysis.class
 /dataDependency.class
 /dependency/
@@ -23,5 +23,3 @@
 /profile/
 /stringrepair/
 /trace/
-/callGraph/
-/callGraphTrace/

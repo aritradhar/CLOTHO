@@ -29,6 +29,11 @@ import soot.SootClass;
 import soot.SootMethod;
 import soot.Trap;
 import soot.Unit;
+import soot.Value;
+import soot.jimple.AssignStmt;
+import soot.jimple.InvokeExpr;
+import soot.jimple.InvokeStmt;
+import soot.jimple.Stmt;
 import soot.jimple.toolkits.callgraph.CHATransformer;
 import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.util.Chain;
@@ -64,7 +69,7 @@ public class CallGraphTrapTracer extends SceneTransformer
 		
 		SootMethod testM = sClass.getMethodByName("bar");
 		
-		System.out.println(CallGraphDFS.callGraphDFS(cg, sClass.getMethodByName("foo"), true) + "\n----");
+		//System.out.println(CallGraphDFS.callGraphDFS(cg, sClass.getMethodByName("foo"), true) + "\n----");
 		
 		/*
 		 * DEBUG
@@ -90,6 +95,8 @@ public class CallGraphTrapTracer extends SceneTransformer
 		 */
 		
 		List<SootMethod> sMethodList = sClass.getMethods();
+		
+		//record all traps from the class
 		for(int i = 0; i< sMethodList.size(); i++)
 		{
 			SootMethod sMethod = sMethodList.get(i);
@@ -124,6 +131,63 @@ public class CallGraphTrapTracer extends SceneTransformer
 				TrapFindType.setUnitTrapInfo(subSignature, unit, pc);
 			}
 		
-		}			
+		}
+		System.out.println("===================");
+		
+		for(int i = 0; i< sMethodList.size(); i++)
+		{
+			SootMethod sMethod = sMethodList.get(i);
+			if(sMethod.getName().startsWith("<"))
+				continue;
+			
+			//do reverse lookup
+			ArrayList<SootMethod> reverseLookupList = CallGraphDFS.callGraphDFS(cg, sMethod, true);
+			
+			for(int j = 0; j < reverseLookupList.size(); j++)
+			{
+				SootMethod sMethod_internal = reverseLookupList.get(j);
+				Body jbody = sMethod_internal.retrieveActiveBody();
+				
+				PatchingChain<Unit> pc = jbody.getUnits();
+				Iterator<Unit> it = pc.iterator();					
+				
+				while(it.hasNext())
+				{
+					Unit unit = it.next();
+					Stmt stmt = (Stmt) unit;
+					
+					if(stmt instanceof AssignStmt)
+					{
+						AssignStmt ast = (AssignStmt) stmt;
+						Value  rhs = ast.getRightOp();
+						
+						if(rhs instanceof InvokeExpr)
+						{
+							InvokeExpr invokeExpr = (InvokeExpr) rhs;
+							
+							SootMethod calledMethof = invokeExpr.getMethod();
+							
+							if(calledMethof.getSignature() == sMethod_internal.getSignature())
+							{
+								System.out.println("Hit");
+							}
+						}
+					}
+					if(stmt instanceof InvokeStmt)
+					{
+						InvokeExpr invokeExpr = stmt.getInvokeExpr();
+						
+						SootMethod calledMethof = invokeExpr.getMethod();
+						
+						if(calledMethof.getSignature() == sMethod_internal.getSignature())
+						{
+							System.out.println("Hit");
+						}
+					}
+				}
+				
+			}
+			
+		}
 	}
 }
