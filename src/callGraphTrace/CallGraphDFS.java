@@ -21,11 +21,17 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Queue;
 
+import soot.Body;
 import soot.MethodOrMethodContext;
+import soot.PatchingChain;
+import soot.SootClass;
 import soot.SootMethod;
+import soot.Unit;
+import soot.jimple.Stmt;
 import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.jimple.toolkits.callgraph.Sources;
 import soot.jimple.toolkits.callgraph.Targets;
+import util.Utils;
 
 
 public class CallGraphDFS 
@@ -80,6 +86,80 @@ public class CallGraphDFS
 		trace.remove(0);
 		
 		return trace;
+	}
+	
+	/*
+	 * Default reverse flag should be set to true
+	 */
+	@SuppressWarnings("unchecked")
+	public static SootClass reverseLookupTrapFinder(CallGraph _cg, SootMethod startMethod, boolean reverse)
+	{
+		
+		cg = _cg;
+		
+		ArrayList<SootMethod> trace = new ArrayList<>();
+		
+		Queue<SootMethod> DFSq = new ArrayDeque<>();
+		
+		HashSet<SootMethod> visited = new HashSet<>();
+		
+		//initialization
+		DFSq.add(startMethod);
+		visited.add(startMethod);
+		
+		int counter = 0;
+		
+		while(DFSq.peek()!=null)
+		{
+			counter ++;
+			SootMethod poppedMethod = DFSq.poll();
+			trace.add(poppedMethod);
+			
+			/*
+			 * in case it is a constructor or library
+			 * do not add it to trace
+			 * but don't explore it
+			 */
+			if(ExcludeMethod.excludeMethod(poppedMethod))
+				continue;
+			
+				
+			Iterator<MethodOrMethodContext> targets = (reverse) ? new Sources(cg.edgesInto(poppedMethod)) : new Targets(cg.edgesOutOf(poppedMethod));
+			while (targets.hasNext()) 
+			{
+				SootMethod targetMethod = (SootMethod)targets.next();								
+				
+				if(!visited.contains(targetMethod))
+				{
+					DFSq.add(targetMethod);
+					visited.add(targetMethod);
+					
+					Body body = targetMethod.retrieveActiveBody();
+					
+					PatchingChain<Unit> pc = body.getUnits();
+					Iterator<Unit> it = pc.iterator();
+					
+					while(it.hasNext())
+					{
+						Unit unit = it.next();
+						Stmt stmt = (Stmt) unit;
+						
+						SootMethod calledMethod = Utils.getInvokedMethodFromStmt(stmt);
+						
+						if(calledMethod == null)
+						{
+							continue;
+						}
+						
+						if(calledMethod.getSignature() == poppedMethod.getSignature())
+						{
+							return TrapFindType.getExeptionClassFromUnit(targetMethod.getSignature(), unit, pc);
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 	
 }

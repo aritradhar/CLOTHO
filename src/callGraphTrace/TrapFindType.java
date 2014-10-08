@@ -27,29 +27,29 @@ public class TrapFindType
 {
 	public static HashMap<String, HashSet<Trap>> trapFindType = new HashMap<>();
 	
-	public static void insertTrap(String subSignature, Trap trap)
+	public static void insertTrap(String methodSignature, Trap trap)
 	{
-		if(!trapFindType.containsKey(subSignature))
+		if(!trapFindType.containsKey(methodSignature))
 		{
 			HashSet<Trap> trapSet = new HashSet<>();
 			trapSet.add(trap);
 			
-			trapFindType.put(subSignature, trapSet);
+			trapFindType.put(methodSignature, trapSet);
 		}
 		else
 		{
-			HashSet<Trap> trapSet = trapFindType.get(subSignature);
+			HashSet<Trap> trapSet = trapFindType.get(methodSignature);
 			trapSet.add(trap);
-			trapFindType.put(subSignature, trapSet);
+			trapFindType.put(methodSignature, trapSet);
 		}
 	}
 	
-	public static Unit getBeginUnitFromTrap(String subSignature, Trap trap)
+	public static Unit getBeginUnitFromTrap(String methodSignature, Trap trap)
 	{
 		if(!trapFindType.containsKey(trap))
 			throw new RuntimeException("Method subsignature not found");
 		
-		Iterator<Trap> iTrap = trapFindType.get(subSignature).iterator();
+		Iterator<Trap> iTrap = trapFindType.get(methodSignature).iterator();
 		
 		while(iTrap.hasNext())
 		{
@@ -62,12 +62,12 @@ public class TrapFindType
 		throw new RuntimeException("Trap missing");
 	}
 	
-	public static Unit getEndUnitFromTrap(String subSignature, Trap trap)
+	public static Unit getEndUnitFromTrap(String methodSignature, Trap trap)
 	{
 		if(!trapFindType.containsKey(trap))
 			throw new RuntimeException("Method subsignature not found");
 		
-		Iterator<Trap> iTrap = trapFindType.get(subSignature).iterator();
+		Iterator<Trap> iTrap = trapFindType.get(methodSignature).iterator();
 		
 		while(iTrap.hasNext())
 		{
@@ -80,20 +80,20 @@ public class TrapFindType
 		throw new RuntimeException("Trap missing");
 	}
 	
-	public static SootClass getExeptionClassFromUnit(String subSignature, Unit unit, PatchingChain<Unit> pc)
+	public static SootClass getExeptionClassFromUnit(String methodSignature, Unit unit, PatchingChain<Unit> pc)
 	{
 				
-		Trap trap = TrapFindType.unitExistsInTrap(subSignature, unit, pc);
+		Trap trap = TrapFindType.unitExistsInTrap(methodSignature, unit, pc);
 				
 		return  (trap == null) ? null : trap.getException();				
 	}
 	
-	public static Trap unitExistsInTrap(String subSignature, Unit unit, PatchingChain<Unit> pc)
+	public static Trap unitExistsInTrap(String methodSignature, Unit unit, PatchingChain<Unit> pc)
 	{
-		if(!trapFindType.containsKey(subSignature))
+		if(!trapFindType.containsKey(methodSignature))
 			return null;
 		
-		Iterator<Trap> iTrap = trapFindType.get(subSignature).iterator();
+		Iterator<Trap> iTrap = trapFindType.get(methodSignature).iterator();
 		
 		while(iTrap.hasNext())
 		{
@@ -128,24 +128,24 @@ public class TrapFindType
 	
 	public static HashMap<String, HashMap<Unit, Trap>> unitTrapMap = new HashMap<>();
 	
-	public static void setUnitTrapInfo(String subSignature, Unit unit, PatchingChain<Unit> pc)
+	public static void setUnitTrapInfo(String methodSignature, Unit unit, PatchingChain<Unit> pc)
 	{
-		Trap trap = TrapFindType.unitExistsInTrap(subSignature, unit, pc);
+		Trap trap = TrapFindType.unitExistsInTrap(methodSignature, unit, pc);
 		
-		if(!unitTrapMap.containsKey(subSignature))
+		if(!unitTrapMap.containsKey(methodSignature))
 		{
 			HashMap<Unit, Trap> hm = new HashMap<>();
 			
 			hm.put(unit, trap);
-			unitTrapMap.put(subSignature, hm);
+			unitTrapMap.put(methodSignature, hm);
 		}
 		
 		else
 		{
-			HashMap<Unit, Trap> hm = unitTrapMap.get(subSignature);
+			HashMap<Unit, Trap> hm = unitTrapMap.get(methodSignature);
 			
 			hm.put(unit, trap);
-			unitTrapMap.put(subSignature, hm);
+			unitTrapMap.put(methodSignature, hm);
 			
 		}
 	}

@@ -37,6 +37,7 @@ import soot.jimple.Stmt;
 import soot.jimple.toolkits.callgraph.CHATransformer;
 import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.util.Chain;
+import util.Utils;
 
 
 public class CallGraphTrapTracer extends SceneTransformer
@@ -141,52 +142,10 @@ public class CallGraphTrapTracer extends SceneTransformer
 				continue;
 			
 			//do reverse lookup
-			ArrayList<SootMethod> reverseLookupList = CallGraphDFS.callGraphDFS(cg, sMethod, true);
+			//ArrayList<SootMethod> reverseLookupList = CallGraphDFS.callGraphDFS(cg, sMethod, true);
 			
-			for(int j = 0; j < reverseLookupList.size(); j++)
-			{
-				SootMethod sMethod_internal = reverseLookupList.get(j);
-				Body jbody = sMethod_internal.retrieveActiveBody();
-				
-				PatchingChain<Unit> pc = jbody.getUnits();
-				Iterator<Unit> it = pc.iterator();					
-				
-				while(it.hasNext())
-				{
-					Unit unit = it.next();
-					Stmt stmt = (Stmt) unit;
-					
-					if(stmt instanceof AssignStmt)
-					{
-						AssignStmt ast = (AssignStmt) stmt;
-						Value  rhs = ast.getRightOp();
-						
-						if(rhs instanceof InvokeExpr)
-						{
-							InvokeExpr invokeExpr = (InvokeExpr) rhs;
-							
-							SootMethod calledMethof = invokeExpr.getMethod();
-							
-							if(calledMethof.getSignature() == sMethod_internal.getSignature())
-							{
-								System.out.println("Hit");
-							}
-						}
-					}
-					if(stmt instanceof InvokeStmt)
-					{
-						InvokeExpr invokeExpr = stmt.getInvokeExpr();
-						
-						SootMethod calledMethof = invokeExpr.getMethod();
-						
-						if(calledMethof.getSignature() == sMethod_internal.getSignature())
-						{
-							System.out.println("Hit");
-						}
-					}
-				}
-				
-			}
+			System.out.println(CallGraphDFS.reverseLookupTrapFinder(cg, sMethod, true));
+	
 			
 		}
 	}
