@@ -144,7 +144,7 @@ public class CallGraphTrapTracer extends SceneTransformer
 			//do reverse lookup
 			//ArrayList<SootMethod> reverseLookupList = CallGraphDFS.callGraphDFS(cg, sMethod, true);
 			
-			System.out.println(CallGraphDFS.reverseLookupTrapFinder(cg, sMethod, true));
+			System.out.println(sMethod + " Handled in : " + CallGraphDFS.reverseLookupTrapFinder(cg, sMethod, true));
 	
 			
 		}

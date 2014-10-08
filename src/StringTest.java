@@ -20,20 +20,21 @@ public class StringTest
 {
 	void foo()
 	{			
-		new StringTest().bar();
-
-	}
-	
-	void bar()
-	{
 		try
 		{
-			new StringTest().bar1();
+			new StringTest().bar();
 		}
 		catch(IllegalArgumentException ex)
 		{
 			ex.printStackTrace();
 		}
+
+	}
+	
+	void bar()
+	{
+
+		new StringTest().bar1();
 	}
 	void bar1()
 	{
@@ -41,7 +42,7 @@ public class StringTest
 	}
 	public static void main(String[] args) 
 	{
-		new StringTest().bar();
+		//new StringTest().bar();
 		new StringTest().foo();
 		
 		String st = "aritra:dhar";

@@ -153,7 +153,10 @@ public class CallGraphDFS
 						
 						if(calledMethod.getSignature() == poppedMethod.getSignature())
 						{
-							return TrapFindType.getExeptionClassFromUnit(targetMethod.getSignature(), unit, pc);
+							if(TrapFindType.getExeptionClassFromUnit(targetMethod.getSignature(), unit, pc) != null)
+								return TrapFindType.getExeptionClassFromUnit(targetMethod.getSignature(), unit, pc);
+							else
+								continue;
 						}
 					}
 				}
