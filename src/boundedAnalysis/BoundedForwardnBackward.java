@@ -104,6 +104,10 @@ public class BoundedForwardnBackward extends BodyTransformer
 	    		 //System.out.println(stmt + "\n" + indexVariableSet);
 	     }
 		 
+		 
+		 /*
+		  * Disabled 
+		  */		 
 		 if(sw)
 		 {
 			 sIt = null;

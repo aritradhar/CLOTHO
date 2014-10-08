@@ -12,37 +12,6 @@ public class StringTest extends java.lang.Object
 
     void foo()
     {
-        StringTest this, $r1;
-        java.lang.String st;
-        int ind;
-        java.lang.IndexOutOfBoundsException ex, $r2;
-
-        this := @this: StringTest;
-        st = "123";
-        ind = virtualinvoke st.<java.lang.String: int indexOf(java.lang.String)>("&");
-        virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(ind, 2);
-
-     label0:
-        $r1 = new StringTest;
-        specialinvoke $r1.<StringTest: void <init>()>();
-        virtualinvoke $r1.<StringTest: void bar()>();
-
-     label1:
-        goto label3;
-
-     label2:
-        $r2 := @caughtexception;
-        ex = $r2;
-        virtualinvoke ex.<java.lang.IndexOutOfBoundsException: void printStackTrace()>();
-
-     label3:
-        return;
-
-        catch java.lang.IndexOutOfBoundsException from label0 to label1 with label2;
-    }
-
-    void bar()
-    {
         StringTest this, $r0;
         java.lang.IllegalArgumentException ex, $r1;
 
@@ -51,7 +20,7 @@ public class StringTest extends java.lang.Object
      label0:
         $r0 = new StringTest;
         specialinvoke $r0.<StringTest: void <init>()>();
-        virtualinvoke $r0.<StringTest: void bar1()>();
+        virtualinvoke $r0.<StringTest: void bar()>();
 
      label1:
         goto label3;
@@ -65,6 +34,17 @@ public class StringTest extends java.lang.Object
         return;
 
         catch java.lang.IllegalArgumentException from label0 to label1 with label2;
+    }
+
+    void bar()
+    {
+        StringTest this, $r0;
+
+        this := @this: StringTest;
+        $r0 = new StringTest;
+        specialinvoke $r0.<StringTest: void <init>()>();
+        virtualinvoke $r0.<StringTest: void bar1()>();
+        return;
     }
 
     void bar1()
@@ -90,7 +70,7 @@ public class StringTest extends java.lang.Object
         args := @parameter0: java.lang.String[];
         $r0 = new StringTest;
         specialinvoke $r0.<StringTest: void <init>()>();
-        virtualinvoke $r0.<StringTest: void bar()>();
+        virtualinvoke $r0.<StringTest: void foo()>();
         st = "aritra:dhar";
         $r1 = <java.lang.System: java.io.PrintStream out>;
         $i0 = virtualinvoke st.<java.lang.String: int codePointCount(int,int)>(-1, 20);
