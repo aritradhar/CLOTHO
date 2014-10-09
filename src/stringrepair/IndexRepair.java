@@ -212,6 +212,13 @@ public class IndexRepair
 				ind1 = 0;
 				ind2 = ind1 + 1;
 			}
+			
+			if(i>=0 && i<len - 1 && j<0)
+			{
+				ind1 = i;
+				ind2 = ind1 + 1;
+			}
+			
 			else if(i>=len-1 && j>len-1)
 			{
 				ind2 = len - 1;
@@ -254,6 +261,11 @@ public class IndexRepair
 			{
 				ind2 = len - 1;
 				ind1 = ind2 - 1;
+			}
+			else if(i<0 && j>len - 1)
+			{
+				ind1 = 0;
+				ind2 = len - 1;
 			}
 			
 			/* 
@@ -308,7 +320,7 @@ public class IndexRepair
 
 	public static void main(String[] args) 
 	{
-		indexRepair(12, 11, 4);
+		indexRepair(1, -2,11);
 		
 		System.out.println(ind1 + " " + ind2);
 	}

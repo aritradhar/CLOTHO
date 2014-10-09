@@ -43,7 +43,7 @@ public class StringTest
 	public static void main(String[] args) 
 	{
 		//new StringTest().bar();
-		new StringTest().foo();
+		//new StringTest().foo();
 		
 		String st = "aritra:dhar";
 		System.out.println(st.codePointCount(-1, 20));
@@ -65,6 +65,7 @@ public class StringTest
 		
 		ind  = 6;
 		System.out.println(st.length() + "  " + st);
+		
 		st.substring(ind1, 2);
 		
 		
@@ -76,13 +77,13 @@ public class StringTest
 		
 		System.out.println(subs);
 		
+		
 		st.subSequence(1, 2);
 		char[] c = new char[10];
 		String p = String.valueOf(c, 1, 2);
 		System.out.println(p);
 		
 		//st.substring(ind, 1);
-		
 		CharSequence s = st.subSequence(1, -2);
 		System.out.println(s);
 		//System.out.println(st);

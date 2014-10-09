@@ -25,6 +25,7 @@ import javax.swing.text.html.parser.Entity;
 
 import soot.Body;
 import soot.BodyTransformer;
+import soot.Local;
 import soot.Pack;
 import soot.PackManager;
 import soot.Scene;
@@ -103,6 +104,7 @@ public class BoundedForwardnBackward extends BodyTransformer
 	    	 //if(indexVariableSet.size() > 0)
 	    		 //System.out.println(stmt + "\n" + indexVariableSet);
 	     }
+		 
 		 
 		 
 		 /*
