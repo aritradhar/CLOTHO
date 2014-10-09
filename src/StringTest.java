@@ -68,6 +68,10 @@ public class StringTest
 		
 		st.substring(ind1, 2);
 		
+		if(st.length() > (2+ind))
+		{
+			int a =0;
+		}
 		
 		
 		System.out.println(st.codePointAt(200));
