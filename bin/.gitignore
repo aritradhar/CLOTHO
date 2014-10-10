@@ -17,6 +17,7 @@
 /boundedAnalysis/
 /callGraphTrace/
 /classAnalysis.class
+/constraintAnalysis/
 /dataDependency.class
 /dependency/
 /nullPointerTestcase/

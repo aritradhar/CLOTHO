@@ -28,6 +28,9 @@ public class CallGraphDriver
 	{
 
 		String []className = {"StringTest"};
+			
+		Options.v().setPhaseOption("cg.cha", "on");
+		Options.v().set_exclude(Arrays.asList(new String[]{"java", "sun", "java.lang"}));
 
 		PackManager.v().getPack("wjtp").add(new Transform("wjtp.myTransform", new CallGraphTrapTracer()));
 		
@@ -42,7 +45,7 @@ public class CallGraphDriver
         	Options.v().set_output_format(Options.output_format_class); 
         
         Options.v().set_whole_program(true);
-		Options.v().set_exclude(Arrays.asList(new String[]{"java", "sun", "java.lang"}));
+		
 		Options.v().set_app(true);
 
 		soot.Main.main(className);

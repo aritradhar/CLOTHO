@@ -13,7 +13,11 @@
 //*********************************************************************************** * 
 //*************************************************************************************
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class StringTest 
@@ -40,7 +44,7 @@ public class StringTest
 	{
 		
 	}
-	public static void main(String[] args) 
+	public static void main(String[] args) throws IOException
 	{
 		//new StringTest().bar();
 		//new StringTest().foo();
@@ -68,9 +72,20 @@ public class StringTest
 		
 		st.substring(ind1, 2);
 		
-		if(st.length() > (2+ind))
+		int  k =6;
+		if(st.length() > k+33)
 		{
 			int a =0;
+		}
+		
+		if(st.startsWith(">"))
+		{
+			int a1 =0;
+		}
+		
+		if(ind != 25)
+		{
+			int a2 =0;
 		}
 		
 		

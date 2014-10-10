@@ -48,15 +48,16 @@ public class StringTest extends java.lang.Object
         return;
     }
 
-    public static void main(java.lang.String[])
+    public static void main(java.lang.String[]) throws java.io.IOException
     {
         java.lang.String[] args;
-        java.lang.String st, g, subs, temp$4, temp$8, temp$17, temp$18, temp$25, p, temp$28;
-        java.io.PrintStream temp$0, temp$2, temp$5, temp$14, temp$22, temp$26, temp$29, temp$31;
-        int temp$1, temp$3, i, j, temp$6, temp$7, t, temp$9, ind, temp$10, ind4, temp$11, ind1, temp$12, temp$13, temp$16, temp$19, temp$20, temp$21, a, temp$23;
+        java.lang.String st, g, subs, temp$4, temp$8, temp$17, temp$18, temp$24, p, temp$27;
+        java.io.PrintStream temp$0, temp$2, temp$5, temp$14, temp$21, temp$25, temp$28, temp$30;
+        int temp$1, temp$3, i, j, temp$6, temp$7, t, temp$9, ind, temp$10, ind4, temp$11, ind1, temp$12, temp$13, temp$16, temp$19, a, a1, a2, temp$22;
         java.lang.StringBuffer temp$15;
-        char temp$24;
-        java.lang.CharSequence temp$27, s, temp$30;
+        boolean temp$20;
+        char temp$23;
+        java.lang.CharSequence temp$26, s, temp$29;
         char[] c;
 
         args := @parameter0: java.lang.String[];
@@ -99,9 +100,7 @@ public class StringTest extends java.lang.Object
         virtualinvoke temp$14.<java.io.PrintStream: void println(java.lang.String)>(temp$17);
         temp$18 = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(ind1, 2);
         temp$19 = virtualinvoke st.<java.lang.String: int length()>();
-        temp$20 = 2;
-        temp$21 = temp$20 + ind;
-        if temp$19 > temp$21 goto label0;
+        if temp$19 > 6 goto label0;
 
         goto label1;
 
@@ -111,23 +110,44 @@ public class StringTest extends java.lang.Object
 
      label1:
         nop;
-        temp$22 = <java.lang.System: java.io.PrintStream out>;
-        temp$23 = virtualinvoke st.<java.lang.String: int codePointAt(int)>(200);
-        virtualinvoke temp$22.<java.io.PrintStream: void println(int)>(temp$23);
-        temp$24 = virtualinvoke st.<java.lang.String: char charAt(int)>(20);
-        temp$25 = virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(20);
-        temp$26 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$26.<java.io.PrintStream: void println(java.lang.String)>(subs);
-        temp$27 = virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
+        temp$20 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>(">");
+        if temp$20 == 0 goto label3;
+
+        goto label2;
+
+     label2:
+        nop;
+        a1 = 0;
+
+     label3:
+        nop;
+        if ind > 6 goto label4;
+
+        goto label5;
+
+     label4:
+        nop;
+        a2 = 0;
+
+     label5:
+        nop;
+        temp$21 = <java.lang.System: java.io.PrintStream out>;
+        temp$22 = virtualinvoke st.<java.lang.String: int codePointAt(int)>(200);
+        virtualinvoke temp$21.<java.io.PrintStream: void println(int)>(temp$22);
+        temp$23 = virtualinvoke st.<java.lang.String: char charAt(int)>(20);
+        temp$24 = virtualinvoke st.<java.lang.String: java.lang.String substring(int)>(20);
+        temp$25 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke temp$25.<java.io.PrintStream: void println(java.lang.String)>(subs);
+        temp$26 = virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
         c = newarray (char)[10];
-        temp$28 = staticinvoke <java.lang.String: java.lang.String valueOf(char[],int,int)>(c, 1, 2);
-        p = temp$28;
-        temp$29 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$29.<java.io.PrintStream: void println(java.lang.String)>(p);
-        temp$30 = virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, -2);
-        s = temp$30;
-        temp$31 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$31.<java.io.PrintStream: void println(java.lang.Object)>(s);
+        temp$27 = staticinvoke <java.lang.String: java.lang.String valueOf(char[],int,int)>(c, 1, 2);
+        p = temp$27;
+        temp$28 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke temp$28.<java.io.PrintStream: void println(java.lang.String)>(p);
+        temp$29 = virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, -2);
+        s = temp$29;
+        temp$30 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke temp$30.<java.io.PrintStream: void println(java.lang.Object)>(s);
         return;
     }
 

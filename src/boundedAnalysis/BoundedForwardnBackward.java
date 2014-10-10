@@ -25,6 +25,7 @@ import javax.swing.text.html.parser.Entity;
 
 import soot.Body;
 import soot.BodyTransformer;
+import soot.G;
 import soot.Local;
 import soot.Pack;
 import soot.PackManager;
@@ -66,7 +67,9 @@ public class BoundedForwardnBackward extends BodyTransformer
 	        if(st.equalsIgnoreCase("c"))
 	        	Options.v().set_output_format(Options.output_format_class);     
 	        
-	        soot.Main.main(className);
+	        soot.Main.main(className);	        
+	        G.reset();
+
 		
 	        /*
 	        Iterator<Entry<String, ArrayList<HashMap<Unit, FlowSet>>>> it =  FlowInformation.flowInfo.entrySet().iterator();

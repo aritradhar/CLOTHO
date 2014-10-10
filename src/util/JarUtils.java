@@ -46,6 +46,7 @@ public class JarUtils
 		int  i = k;	
 		int v = size/(100/k);
 		
+		System.out.println(size);
 		while (enumEntries.hasMoreElements()) 
 		{	
 			progress++;
@@ -55,7 +56,6 @@ public class JarUtils
 				System.out.print (i + "%  ");
 				i += (k);
 			}
-			System.out.println();
 			
 		    JarEntry file = (JarEntry) enumEntries.nextElement();
 		    File f = new File(destDir + File.separator + file.getName());
@@ -84,6 +84,7 @@ public class JarUtils
 	{
 		try 
 		{
+			
 			File dir = new File(_dir);
 			byte buffer[] = new byte[BUFFER_SIZE];
 			// Open archive file
@@ -108,7 +109,6 @@ public class JarUtils
 					System.out.print (i + "%  ");
 					i += (k);
 				}
-				System.out.println();
 				
 				File tmp = new File(filePath);
 				
@@ -131,6 +131,7 @@ public class JarUtils
 			stream.close();
 			System.out.println("Adding completed OK");
 		} 
+		
 		catch (Exception ex) 
 		{
 			ex.printStackTrace();
@@ -154,9 +155,7 @@ public class JarUtils
 	
 	
 	
-	/*
-	 * DEBUG
-	 * 
+
 	public static void main(String[] args) throws IOException 
 	{
 		Scanner s = new Scanner(System.in);
@@ -164,10 +163,10 @@ public class JarUtils
 		String jarFile = s.next();
 		String destDir = s.next();
 		
-		JarExtract.createJarArchive(jarFile, destDir);
+		JarUtils.createJarArchive(jarFile, destDir);
 		
 		s.close();
 		System.out.println("Done");
 	}
-	*/
+
 }
