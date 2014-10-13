@@ -15,13 +15,4 @@
 /acteve/
 /arrayrepair/
 /boundedAnalysis/
-/callGraphTrace/
-/classAnalysis.class
 /constraintAnalysis/
-/dataDependency.class
-/dependency/
-/nullPointerTestcase/
-/profile/
-/stringrepair/
-/trace/
-/util/
