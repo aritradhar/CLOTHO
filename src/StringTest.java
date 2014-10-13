@@ -50,6 +50,7 @@ public class StringTest
 		//new StringTest().foo();
 		
 		String st = "aritra:dhar";
+		/*
 		System.out.println(st.codePointCount(-1, 20));
 		
 		String g = "Hello\uD835\uDD6b";
@@ -71,30 +72,45 @@ public class StringTest
 		System.out.println(st.length() + "  " + st);
 		
 		st.substring(ind1, 2);
-		
+		*/
 		int  k =6;
 		if(st.length() > k+33)
 		{
 			int a =0;
 		}
 		
+		if(st.length() == 1)
+		{
+			int a = 1;
+		}
+		
+		if(st.length() == 2)
+		{
+			int a = 1;
+		}
+		
+		if(st.length() == 3)
+		{
+			int a = 1;
+		}
+		
 		if(st.startsWith(">"))
 		{
 			int a1 =0;
 		}
-		
+		/*
 		if(ind != 25)
 		{
 			int a2 =0;
 		}
-		
+		*/
 		
 		System.out.println(st.codePointAt(200));
 		st.charAt(20);
 		st.substring(20);			
 		
 		
-		System.out.println(subs);
+		//System.out.println(subs);
 		
 		
 		st.subSequence(1, 2);
