@@ -84,12 +84,12 @@ public class StringTest
 			int a = 1;
 		}
 		
-		if(st.length() == 2)
+		if(st.length() > 2)
 		{
 			int a = 1;
 		}
 		
-		if(st.length() == 3)
+		if(st.length() < 39)
 		{
 			int a = 1;
 		}

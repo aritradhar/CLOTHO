@@ -15,35 +15,33 @@
 
 package constraintAnalysis;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import soot.G;
+import soot.Pack;
+import soot.PackManager;
+import soot.Transform;
+import soot.options.Options;
 
-import soot.Value;
 
-
-public class ConstraintStorageDataType
+public class Driver 
 {
-	
-	Value minLength;
-	Value maxLength;
-	
-	List<Value> prefix;
-	List<Value> contains;
-	
-	public ConstraintStorageDataType()
+	public static void main(String[] args) 
 	{
-		this.prefix = new ArrayList<>();
-		this.contains = new ArrayList<>();
+		String []className = {"StringTest"};
+		  
+        Pack jtp = PackManager.v().getPack("jtp");
+        
+        jtp.add(new Transform("jtp.constraintcheck", new ConstraintCheck()));
+        
+        String st = "j";
+        
+        if(st.equalsIgnoreCase("j"))
+        	Options.v().set_output_format(Options.output_format_jimple);
+        
+        if(st.equalsIgnoreCase("c"))
+        	Options.v().set_output_format(Options.output_format_class);     
+        
+        //Options.v().setPhaseOption("jb", "use-original-names:true");
+        
+        soot.Main.main(className);	        
 	}
-	
-	public ConstraintStorageDataType(Value minLength, Value maxLength, Value[] prefix, Value[] contains)
-	{
-		this.maxLength = maxLength;
-		this.minLength = minLength;
-		
-		this.prefix = Arrays.asList(prefix);
-		this.contains = Arrays.asList(contains);
-	}
-	
 }

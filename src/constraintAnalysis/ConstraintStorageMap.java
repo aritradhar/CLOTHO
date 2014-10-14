@@ -17,26 +17,28 @@ package constraintAnalysis;
 
 import java.util.HashMap;
 
+import soot.Value;
+
 public class ConstraintStorageMap 
 {
-	//signature -> [Stringname -> ConstraintStorageDataType] 
-	public static HashMap<String, HashMap<String, ConstraintStorageDataType>> constraintStorageMap = new HashMap<>();
+	//signature -> [String value -> ConstraintStorageDataType] 
+	public static HashMap<String, HashMap<Value, ConstraintStorageDataType>> constraintStorageMap = new HashMap<>();
 
 
-	public static void updateMinLength(String methodSignature, String stringObject, int minLength)
+	public static void updateMinLength(String methodSignature, Value stringObject, Value minLength)
 	{
 		if(!constraintStorageMap.containsKey(methodSignature))
 		{
 			ConstraintStorageDataType CSDT = new ConstraintStorageDataType();
 			CSDT.minLength = minLength;
 
-			HashMap<String, ConstraintStorageDataType> tmp = new HashMap<>();
+			HashMap<Value, ConstraintStorageDataType> tmp = new HashMap<>();
 			tmp.put(stringObject, CSDT);
 
 		}
 		else
 		{
-			HashMap<String, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
+			HashMap<Value, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
 
 			if(!tmp.containsKey(stringObject))
 			{
@@ -50,27 +52,27 @@ public class ConstraintStorageMap
 				ConstraintStorageDataType CSDT = tmp.get(stringObject);
 
 				//makes sense
-				CSDT.minLength = (CSDT.minLength > minLength) ? minLength : CSDT.minLength;
+				CSDT.minLength = (Integer.parseInt(CSDT.minLength.toString()) > Integer.parseInt(minLength.toString())) ? minLength : CSDT.minLength;
 			}
 
 		}
 	}
 	
 	
-	public static void updateMaxLength(String methodSignature, String stringObject, int maxLength)
+	public static void updateMaxLength(String methodSignature, Value stringObject, Value maxLength)
 	{
 		if(!constraintStorageMap.containsKey(methodSignature))
 		{
 			ConstraintStorageDataType CSDT = new ConstraintStorageDataType();
 			CSDT.maxLength = maxLength;
 
-			HashMap<String, ConstraintStorageDataType> tmp = new HashMap<>();
+			HashMap<Value, ConstraintStorageDataType> tmp = new HashMap<>();
 			tmp.put(stringObject, CSDT);
 
 		}
 		else
 		{
-			HashMap<String, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
+			HashMap<Value, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
 
 			if(!tmp.containsKey(stringObject))
 			{
@@ -84,26 +86,26 @@ public class ConstraintStorageMap
 				ConstraintStorageDataType CSDT = tmp.get(stringObject);
 
 				//makes sense
-				CSDT.maxLength = (CSDT.maxLength < maxLength) ? maxLength : CSDT.maxLength;
+				CSDT.maxLength = (Integer.parseInt(CSDT.maxLength.toString()) < Integer.parseInt(maxLength.toString())) ? maxLength : CSDT.maxLength;
 			}
 
 		}
 	}
 
-	public static void updateContains(String methodSignature, String stringObject, String containStr)
+	public static void updateContains(String methodSignature, Value stringObject, Value containStr)
 	{
 		if(!constraintStorageMap.containsKey(methodSignature))
 		{
 			ConstraintStorageDataType CSDT = new ConstraintStorageDataType();
 			CSDT.contains.add(containStr);
 
-			HashMap<String, ConstraintStorageDataType> tmp = new HashMap<>();
+			HashMap<Value, ConstraintStorageDataType> tmp = new HashMap<>();
 			tmp.put(stringObject, CSDT);
 
 		}
 		else
 		{
-			HashMap<String, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
+			HashMap<Value, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
 
 			if(!tmp.containsKey(stringObject))
 			{
@@ -121,20 +123,20 @@ public class ConstraintStorageMap
 		}
 	}
 
-	public static void updatePrefix(String methodSignature, String stringObject, String prefixStr)
+	public static void updatePrefix(String methodSignature, Value stringObject, Value prefixStr)
 	{
 		if(!constraintStorageMap.containsKey(methodSignature))
 		{
 			ConstraintStorageDataType CSDT = new ConstraintStorageDataType();
 			CSDT.prefix.add(prefixStr);
 
-			HashMap<String, ConstraintStorageDataType> tmp = new HashMap<>();
+			HashMap<Value, ConstraintStorageDataType> tmp = new HashMap<>();
 			tmp.put(stringObject, CSDT);
 
 		}
 		else
 		{
-			HashMap<String, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
+			HashMap<Value, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
 
 			if(!tmp.containsKey(stringObject))
 			{
@@ -154,17 +156,17 @@ public class ConstraintStorageMap
 
 
 
-	public static void insetToMap(String methodSignature, String stringObject, ConstraintStorageDataType constraintStorageDataType)
+	public static void insetToMap(String methodSignature, Value stringObject, ConstraintStorageDataType constraintStorageDataType)
 	{
 		if(!constraintStorageMap.containsKey(methodSignature))
 		{
-			HashMap<String, ConstraintStorageDataType> tmp = new HashMap<>();
+			HashMap<Value, ConstraintStorageDataType> tmp = new HashMap<>();
 			tmp.put(stringObject, constraintStorageDataType);
 		}
 
 		else
 		{
-			HashMap<String, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
+			HashMap<Value, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
 			tmp.put(stringObject, constraintStorageDataType);		
 		}
 	}

@@ -15,57 +15,83 @@
 
 package constraintAnalysis;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import soot.Body;
+import soot.BodyTransformer;
 import soot.Local;
 import soot.PatchingChain;
-import soot.RefType;
-import soot.Scene;
-import soot.SootClass;
 import soot.SootMethod;
-import soot.Type;
 import soot.Unit;
 import soot.Value;
-import soot.ValueBox;
 import soot.jimple.AssignStmt;
 import soot.jimple.ConditionExpr;
 import soot.jimple.IfStmt;
+import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
-import soot.jimple.InvokeStmt;
 import soot.jimple.NumericConstant;
-import soot.jimple.ParameterRef;
 import soot.jimple.Stmt;
 import soot.jimple.VirtualInvokeExpr;
 import soot.jimple.internal.JEqExpr;
-import soot.util.Chain;
+import soot.jimple.internal.JGeExpr;
+import soot.jimple.internal.JGtExpr;
+import soot.jimple.internal.JLeExpr;
+import soot.jimple.internal.JNeExpr;
 
 
-public class ConstraintCheck 
+public class ConstraintCheck extends BodyTransformer
 {
-	public Local local;
-	public PatchingChain<Unit> pc;
 	List<ConditionExpr> constraintList;
 	
-	public ConstraintCheck(soot.Local local, PatchingChain<Unit> pc)
-	{
-		this.local = local;
-		this.pc = pc;
-		
-		constraintList = new ArrayList<>();
-		
-		//this.getConstraint();
-		this.getConditionalLocals();
-	}
+	//contains the locals in the conditional statement and the 
+	//string methods by which they were initialized
+	HashMap<Local, SootMethod> conditionalLocals;
+
 	
 	/*
-	 * returns a boolean and the SootMethod
+	 * 1 -> == [JEqExpr]
+	 * 2 -> != [JNeExpr]
+	 * 3 -> >= [JGeExpr]
+	 * 4 -> >  [JGtExpr]
+	 * 5 -> <= [JLeExpr]
+	 * 6 -> <  [JLtExpr]
 	 */
-	private static Object[] checkMethods(Value rhs)
+	
+	private int evaluateCondition(ConditionExpr conditionExpr)
+	{
+		if(conditionExpr instanceof JEqExpr)
+			return 1;
+		
+		else if(conditionExpr instanceof JNeExpr)
+			return 2;
+		
+		else if(conditionExpr instanceof JGeExpr)
+			return 3;
+		
+		else if(conditionExpr instanceof JGtExpr)
+			return 4;
+		
+		else if(conditionExpr instanceof JLeExpr)
+			return 5;
+		
+		else
+			return 6;
+		
+	}
+	
+	
+	/*
+	 * returns Object array
+	 * object[0] -> boolean
+	 * object[1] -> SootMethod
+	 * object[2] -> base
+	 * object[3] -> argument list
+	 */
+	private Object[] checkMethods(Value rhs)
 	{	
 		if(rhs instanceof InvokeExpr)
 		{
@@ -81,18 +107,22 @@ public class ConstraintCheck
 				{
 					
 					String subSignature = invokeMethod.getSubSignature();
+					List<Value> args = vInvokeExpr.getArgs();
 					
 					switch (subSignature) 
 					{
 					
 					case "int length()":
-						return new Object[]{true,invokeMethod};
+						return new Object[]{true, invokeMethod, base, args};
 						
-					case "boolean startsWith(java.langString)":
-						return new Object[]{true,invokeMethod};
+					case "boolean startsWith(java.lang.String)":
+						return new Object[]{true, invokeMethod, base, args};
 						
-					case "boolean startsWith(java.langString, int)":
-						return new Object[]{true,invokeMethod};
+					case "boolean startsWith(java.lang.String, int)":
+						return new Object[]{true, invokeMethod, base, args};
+						
+					case "boolean endsWith(java.lang.String)":
+						return new Object[]{true, invokeMethod, base, args};
 
 					default:
 						return new Object[]{false};
@@ -114,9 +144,79 @@ public class ConstraintCheck
 		return new Object[]{false};
 	}
 	
-	public HashSet<Local> getConditionalLocals()
+	private void populateConstraintMap(IfStmt ifStmt, Object[] ret, Value lhs, Value rhs, String methodSignature)
 	{
-		HashSet<Local> locSet = new HashSet<>();
+		
+		Value condition = ifStmt.getCondition();
+
+		ConditionExpr condExpr = (ConditionExpr) condition;
+		Value op1 = condExpr.getOp1();
+
+		Value op2 = condExpr.getOp2();
+		
+		if(!(op2 instanceof NumericConstant))
+			return;
+								
+		
+		if(op1 == lhs)
+		{
+			/*
+			 * 1 -> == [JEqExpr]
+			 * 2 -> != [JNeExpr]
+			 * 3 -> >= [JGeExpr]
+			 * 4 -> >  [JGtExpr]
+			 * 5 -> <= [JLeExpr]
+			 * 6 -> <  [JLtExpr]
+			 */
+			int conditionType = evaluateCondition(condExpr);
+			
+			switch(conditionType)
+			{
+				case 1:
+					ConstraintStorageMap.updateMaxLength(methodSignature, (Value) ret[2], op2);
+					ConstraintStorageMap.updateMinLength(methodSignature, (Value) ret[2], op2);
+					break;
+					
+				case 2:
+					Integer val = Integer.parseInt(op2.toString());
+					++val;
+					Value newOp = IntConstant.v(val);
+					
+					ConstraintStorageMap.updateMaxLength(methodSignature, newOp, op2);
+					ConstraintStorageMap.updateMinLength(methodSignature, newOp, op2);
+					break;
+					
+				case 3:
+					ConstraintStorageMap.updateMinLength(methodSignature, (Value) ret[2], op2);
+					break;
+					
+				case 4:
+					ConstraintStorageMap.updateMinLength(methodSignature, (Value) ret[2], op2);
+					break;
+					
+				case 5:
+					ConstraintStorageMap.updateMaxLength(methodSignature, (Value) ret[2], op2);
+					break;
+					
+				case 6:
+					ConstraintStorageMap.updateMaxLength(methodSignature, (Value) ret[2], op2);
+					break;
+					
+			}
+			//System.out.println(op2.getType() +" " +op2);
+			System.out.println(lhs + "  " + ret[1] + "  "+ ret[2] + ret[3]);
+		}
+	}
+			
+
+	@Override
+	protected void internalTransform(Body jbody, String phaseName, Map options) 
+	{
+		SootMethod sm = jbody.getMethod();
+	
+		System.out.println("Method : "+sm.getName());
+		
+		PatchingChain<Unit> pc = jbody.getUnits();
 		
 		Iterator<Unit> it = pc.iterator();
 		
@@ -125,120 +225,44 @@ public class ConstraintCheck
 			Unit unit = it.next();
 			Stmt stmt = (Stmt) unit;
 			
-			//System.out.println(stmt);
-			
 			if(stmt instanceof AssignStmt)
 			{
 				AssignStmt ast = (AssignStmt) stmt;
-				
+
 				Value lhs = ast.getLeftOp();
 				Value rhs = ast.getRightOp();
+
+				Object []ret = checkMethods(rhs);
 				
-				if((Boolean)checkMethods(rhs)[0])
+				if((Boolean)ret[0])
 				{
 					/*
-					*Internal iteration
-					*check with lhs
-					*/			
+					 *Internal iteration check with lhs
+					 */			
 					Iterator<Unit> it_in = pc.iterator();
+
+					
+					boolean flag = false;
 					
 					while(it_in.hasNext())
 					{
 						Stmt stmt_in = (Stmt) it_in.next();
 						
+						if(stmt_in != stmt && !flag)
+							continue;
+						
+						else
+							flag = true;
+
 						if(stmt_in instanceof IfStmt)
 						{
 							IfStmt ifStmt = (IfStmt) stmt_in;
-							Value condition = ifStmt.getCondition();
-							
-							ConditionExpr condExpr = (ConditionExpr) condition;
-							Value op1 = condExpr.getOp1();
-							
-							if(op1 == lhs)
-							{
-								System.out.println(lhs);
-								locSet.add((Local) lhs);
-							}
+							populateConstraintMap(ifStmt, ret, lhs, rhs, jbody.getMethod().getSignature());
 						}
 					}
 				}
 			}
 		}
 		
-		return locSet;
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	public void getConstraint()
-	{
-		
-		Iterator<Unit> it = pc.iterator();
-		
-		while(it.hasNext())
-		{
-			Unit u = it.next();
-			Stmt stmt = (Stmt) u;
-			
-			if(stmt instanceof IfStmt)
-			{
-				IfStmt ifStmt = (IfStmt) stmt;
-				Value condition = ifStmt.getCondition();
-				
-				ConditionExpr condExpr = (ConditionExpr) condition;
-				
-				//getting op1 (*) op2
-				
-				Value op1 = condExpr.getOp1();
-				Value op2 = condExpr.getOp2();
-				
-				/*
-				if(condExpr instanceof JEqExpr)
-					System.out.println("Equal");
-				*/
-				
-				//check for constant present in constraint 
-				if(op2 instanceof NumericConstant)
-				{
-					System.out.println("Num present");
-					this.constraintList.add(condExpr);
-				}
-				
-				System.out.println(condExpr + " OP1 : " + op1 + " OP2: " + op2);
-			}
-			
-			
-			List<ValueBox> useDefBox = stmt.getUseAndDefBoxes();
-			
-			for(ValueBox vb:useDefBox)
-			{
-				Value value = vb.getValue();
-				if(value instanceof ParameterRef)
-					continue;
-				if(!(value instanceof Local))
-					continue;
-				
-				if(local.equals((Local)value))
-				{
-					//System.out.println(u);
-					
-					
-				}
-			}
-			
-		}
-	}
-	
-	public static void main(String[] args) 
-	{
-		SootClass sc = Scene.v().loadClassAndSupport("StringTest");
-		SootMethod sm = sc.getMethodByName("main");
-		
-		Body b = sm.retrieveActiveBody();
-		PatchingChain<Unit> pc = b.getUnits();
-		
-		Chain<Local> ls = b.getLocals();
-		new ConstraintCheck(ls.getLast(), pc);
 	}
 }
