@@ -93,6 +93,10 @@ public class StringTest
 		{
 			int a = 1;
 		}
+		else
+		{
+			int j = 29;
+		}
 		
 		if(st.startsWith(">"))
 		{

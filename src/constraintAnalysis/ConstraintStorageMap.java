@@ -34,6 +34,8 @@ public class ConstraintStorageMap
 
 			HashMap<Value, ConstraintStorageDataType> tmp = new HashMap<>();
 			tmp.put(stringObject, CSDT);
+			
+			constraintStorageMap.put(methodSignature, tmp);
 
 		}
 		else
@@ -45,6 +47,8 @@ public class ConstraintStorageMap
 				ConstraintStorageDataType CSDT = new ConstraintStorageDataType();
 				CSDT.minLength = minLength;
 				tmp.put(stringObject, CSDT);
+				
+				constraintStorageMap.put(methodSignature, tmp);
 			}
 
 			else
@@ -52,7 +56,19 @@ public class ConstraintStorageMap
 				ConstraintStorageDataType CSDT = tmp.get(stringObject);
 
 				//makes sense
-				CSDT.minLength = (Integer.parseInt(CSDT.minLength.toString()) > Integer.parseInt(minLength.toString())) ? minLength : CSDT.minLength;
+				if(CSDT.minLength == null)
+				{
+					CSDT.minLength = minLength;
+				}
+				
+				else
+				{
+					CSDT.minLength = (Integer.parseInt(CSDT.minLength.toString()) > Integer.parseInt(minLength.toString())) ? minLength : CSDT.minLength;
+				}
+				
+				tmp.put(stringObject, CSDT);
+				constraintStorageMap.put(methodSignature, tmp);
+				
 			}
 
 		}
@@ -69,6 +85,7 @@ public class ConstraintStorageMap
 			HashMap<Value, ConstraintStorageDataType> tmp = new HashMap<>();
 			tmp.put(stringObject, CSDT);
 
+			constraintStorageMap.put(methodSignature, tmp);
 		}
 		else
 		{
@@ -79,6 +96,8 @@ public class ConstraintStorageMap
 				ConstraintStorageDataType CSDT = new ConstraintStorageDataType();
 				CSDT.maxLength = maxLength;
 				tmp.put(stringObject, CSDT);
+				
+				constraintStorageMap.put(methodSignature, tmp);
 			}
 
 			else
@@ -86,7 +105,18 @@ public class ConstraintStorageMap
 				ConstraintStorageDataType CSDT = tmp.get(stringObject);
 
 				//makes sense
-				CSDT.maxLength = (Integer.parseInt(CSDT.maxLength.toString()) < Integer.parseInt(maxLength.toString())) ? maxLength : CSDT.maxLength;
+				if(CSDT.maxLength == null)
+				{
+					CSDT.maxLength = maxLength;
+				}
+				
+				else
+				{
+					CSDT.maxLength = (Integer.parseInt(CSDT.maxLength.toString()) < Integer.parseInt(maxLength.toString())) ? maxLength : CSDT.maxLength;
+				}
+				
+				tmp.put(stringObject, CSDT);
+				constraintStorageMap.put(methodSignature, tmp);
 			}
 
 		}

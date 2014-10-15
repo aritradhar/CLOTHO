@@ -16,14 +16,12 @@
 package constraintAnalysis;
 
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import soot.Body;
 import soot.BodyTransformer;
-import soot.Local;
 import soot.PatchingChain;
 import soot.SootMethod;
 import soot.Unit;
@@ -45,12 +43,15 @@ import soot.jimple.internal.JNeExpr;
 
 public class ConstraintCheck extends BodyTransformer
 {
+	/*
+	 * No longer needed
+	 * s
 	List<ConditionExpr> constraintList;
 	
 	//contains the locals in the conditional statement and the 
 	//string methods by which they were initialized
 	HashMap<Local, SootMethod> conditionalLocals;
-
+	 */
 	
 	/*
 	 * 1 -> == [JEqExpr]
@@ -86,7 +87,7 @@ public class ConstraintCheck extends BodyTransformer
 	
 	/*
 	 * returns Object array
-	 * object[0] -> boolean
+	 * object[0] -> boolean -> constraint checking for string API calls
 	 * object[1] -> SootMethod
 	 * object[2] -> base
 	 * object[3] -> argument list
@@ -144,6 +145,14 @@ public class ConstraintCheck extends BodyTransformer
 		return new Object[]{false};
 	}
 	
+	/*
+	 * ret Object array structure
+	 * object[0] -> boolean -> constraint checking for string API calls
+	 * object[1] -> SootMethod
+	 * object[2] -> base
+	 * object[3] -> argument list
+	 */
+	
 	private void populateConstraintMap(IfStmt ifStmt, Object[] ret, Value lhs, Value rhs, String methodSignature)
 	{
 		
@@ -161,44 +170,45 @@ public class ConstraintCheck extends BodyTransformer
 		if(op1 == lhs)
 		{
 			/*
-			 * 1 -> == [JEqExpr]
-			 * 2 -> != [JNeExpr]
-			 * 3 -> >= [JGeExpr]
-			 * 4 -> >  [JGtExpr]
-			 * 5 -> <= [JLeExpr]
-			 * 6 -> <  [JLtExpr]
+			 *Jimple representation		Actual source code (Map)
+			 * 1 -> == [JEqExpr] --------> != (2)
+			 * 2 -> != [JNeExpr] --------> == (1)
+			 * 3 -> >= [JGeExpr] --------> <  (6)
+			 * 4 -> >  [JGtExpr] --------> <= (5)
+			 * 5 -> <= [JLeExpr] --------> >  (4)
+			 * 6 -> <  [JLtExpr] --------> >= (3)
 			 */
 			int conditionType = evaluateCondition(condExpr);
 			
 			switch(conditionType)
 			{
-				case 1:
+				case 2:
 					ConstraintStorageMap.updateMaxLength(methodSignature, (Value) ret[2], op2);
 					ConstraintStorageMap.updateMinLength(methodSignature, (Value) ret[2], op2);
 					break;
 					
-				case 2:
+				case 1:
 					Integer val = Integer.parseInt(op2.toString());
 					++val;
 					Value newOp = IntConstant.v(val);
 					
-					ConstraintStorageMap.updateMaxLength(methodSignature, newOp, op2);
-					ConstraintStorageMap.updateMinLength(methodSignature, newOp, op2);
+					ConstraintStorageMap.updateMaxLength(methodSignature, (Value) ret[2], newOp);
+					ConstraintStorageMap.updateMinLength(methodSignature, (Value) ret[2], newOp);
 					break;
 					
-				case 3:
-					ConstraintStorageMap.updateMinLength(methodSignature, (Value) ret[2], op2);
-					break;
-					
-				case 4:
+				case 6:
 					ConstraintStorageMap.updateMinLength(methodSignature, (Value) ret[2], op2);
 					break;
 					
 				case 5:
+					ConstraintStorageMap.updateMinLength(methodSignature, (Value) ret[2], op2);
+					break;
+					
+				case 4:
 					ConstraintStorageMap.updateMaxLength(methodSignature, (Value) ret[2], op2);
 					break;
 					
-				case 6:
+				case 3:
 					ConstraintStorageMap.updateMaxLength(methodSignature, (Value) ret[2], op2);
 					break;
 					
@@ -207,6 +217,8 @@ public class ConstraintCheck extends BodyTransformer
 			System.out.println(lhs + "  " + ret[1] + "  "+ ret[2] + ret[3]);
 		}
 	}
+	
+	
 			
 
 	@Override

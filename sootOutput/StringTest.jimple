@@ -59,10 +59,10 @@ public class StringTest extends java.lang.Object
     {
         java.lang.String[] r0;
         java.lang.String r1, r2;
-        byte b0;
+        byte b0, b6;
         boolean z0, z1, z2, z3, $z4, z5;
         java.lang.CharSequence r3;
-        int $i1, $i2, $i3, $i4, $i5, $i6;
+        int $i1, $i2, $i3, $i4, $i5, $i7;
         java.io.PrintStream $r4, $r8, $r9;
         char[] r7;
 
@@ -92,17 +92,21 @@ public class StringTest extends java.lang.Object
         if $i5 >= 39 goto label3;
 
         z3 = 1;
+        goto label4;
 
      label3:
+        b6 = 29;
+
+     label4:
         $z4 = virtualinvoke r1.<java.lang.String: boolean startsWith(java.lang.String)>(">");
-        if $z4 == 0 goto label4;
+        if $z4 == 0 goto label5;
 
         z5 = 0;
 
-     label4:
+     label5:
         $r4 = <java.lang.System: java.io.PrintStream out>;
-        $i6 = virtualinvoke r1.<java.lang.String: int codePointAt(int)>(200);
-        virtualinvoke $r4.<java.io.PrintStream: void println(int)>($i6);
+        $i7 = virtualinvoke r1.<java.lang.String: int codePointAt(int)>(200);
+        virtualinvoke $r4.<java.io.PrintStream: void println(int)>($i7);
         virtualinvoke r1.<java.lang.String: char charAt(int)>(20);
         virtualinvoke r1.<java.lang.String: java.lang.String substring(int)>(20);
         virtualinvoke r1.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);

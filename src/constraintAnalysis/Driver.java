@@ -15,10 +15,15 @@
 
 package constraintAnalysis;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
 import soot.G;
 import soot.Pack;
 import soot.PackManager;
 import soot.Transform;
+import soot.Value;
 import soot.options.Options;
 
 
@@ -42,6 +47,24 @@ public class Driver
         
         //Options.v().setPhaseOption("jb", "use-original-names:true");
         
-        soot.Main.main(className);	        
+        soot.Main.main(className);	    
+        
+        G.reset();
+        
+        //DEBUG
+        //constraint map check
+        for(String Key : ConstraintStorageMap.constraintStorageMap.keySet())
+        {
+        	System.out.println(Key);
+            HashMap<Value, ConstraintStorageDataType> cdt = ConstraintStorageMap.constraintStorageMap.get(Key);
+        	
+            for(Value val : cdt.keySet())
+            {
+            	System.out.println("String object : " + val);
+            	ConstraintStorageDataType CDT = cdt.get(val);
+            	System.out.println("Min length : " + CDT.minLength);
+            	System.out.println("Max length : " + CDT.maxLength);
+            }	
+        }
 	}
 }
