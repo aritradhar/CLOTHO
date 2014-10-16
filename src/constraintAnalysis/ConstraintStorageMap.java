@@ -131,7 +131,8 @@ public class ConstraintStorageMap
 
 			HashMap<Value, ConstraintStorageDataType> tmp = new HashMap<>();
 			tmp.put(stringObject, CSDT);
-
+			
+			constraintStorageMap.put(methodSignature, tmp);
 		}
 		else
 		{
@@ -148,8 +149,10 @@ public class ConstraintStorageMap
 			{
 				ConstraintStorageDataType CSDT = tmp.get(stringObject);
 				CSDT.contains.add(containStr);
-			}
-
+				tmp.put(stringObject, CSDT);
+				
+			}	
+			constraintStorageMap.put(methodSignature, tmp);
 		}
 	}
 
@@ -162,7 +165,7 @@ public class ConstraintStorageMap
 
 			HashMap<Value, ConstraintStorageDataType> tmp = new HashMap<>();
 			tmp.put(stringObject, CSDT);
-
+			constraintStorageMap.put(methodSignature, tmp);
 		}
 		else
 		{
@@ -179,7 +182,9 @@ public class ConstraintStorageMap
 			{
 				ConstraintStorageDataType CSDT = tmp.get(stringObject);
 				CSDT.prefix.add(prefixStr);
+				tmp.put(stringObject, CSDT);
 			}
+			constraintStorageMap.put(methodSignature, tmp);
 
 		}
 	}

@@ -64,6 +64,7 @@ public class Driver
             	ConstraintStorageDataType CDT = cdt.get(val);
             	System.out.println("Min length : " + CDT.minLength);
             	System.out.println("Max length : " + CDT.maxLength);
+            	System.out.println("Prefix : " + CDT.prefix);
             }	
         }
 	}

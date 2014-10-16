@@ -153,6 +153,7 @@ public class ConstraintCheck extends BodyTransformer
 	 * object[3] -> argument list
 	 */
 	
+	@SuppressWarnings("unchecked")
 	private void populateConstraintMap(IfStmt ifStmt, Object[] ret, Value lhs, Value rhs, String methodSignature)
 	{
 		
@@ -214,7 +215,16 @@ public class ConstraintCheck extends BodyTransformer
 					
 			}
 			//System.out.println(op2.getType() +" " +op2);
-			System.out.println(lhs + "  " + ret[1] + "  "+ ret[2] + ret[3]);
+			SootMethod condMethod = (SootMethod) ret[1];
+			String condMethodSignature = condMethod.getSignature();
+			
+			if(condMethodSignature.equals("<java.lang.String: boolean startsWith(java.lang.String)>"))
+			{
+				List<Value> argList = (List<Value>) ret[3];
+				Value arg = argList.get(0);
+				ConstraintStorageMap.updatePrefix(methodSignature,(Value) ret[2], arg);
+			}
+			System.out.println(lhs + " : " + condMethodSignature + " : " + ret[2] + " : " + ret[3]);
 		}
 	}
 	
