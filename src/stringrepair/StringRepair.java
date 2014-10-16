@@ -770,7 +770,7 @@ public class StringRepair extends BodyTransformer
 			Stmt stmt = (Stmt) unit;			
 	        
 			if(FlowInformation.getOutValueFromUnit(methodSig, unit) != null)
-				System.out.println("%%%%%  " + FlowInformation.getOutValueFromUnit(methodSig, unit));
+				//System.out.println("%%%%%  " + FlowInformation.getOutValueFromUnit(methodSig, unit));
 			//System.out.println(stmt);
 			
 			if(stmt instanceof AssignStmt)

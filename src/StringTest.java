@@ -50,6 +50,7 @@ public class StringTest
 		//new StringTest().foo();
 		
 		String st = "aritra:dhar";
+		String st1 = "aritra:dhar";
 		/*
 		System.out.println(st.codePointCount(-1, 20));
 		
@@ -99,6 +100,18 @@ public class StringTest
 		}
 		
 		if(st.startsWith(">"))
+		{
+			int a1 =0;
+		}
+		if(st.startsWith(">:"))
+		{
+			int a1 =0;
+		}
+		if(st.contains("aav"))
+		{
+			int a1 =0;
+		}
+		if(st1.contains("aavst1"))
 		{
 			int a1 =0;
 		}

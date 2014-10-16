@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import constraintAnalysis.stringRepair.StringRepairConstraint;
 import soot.G;
 import soot.Pack;
 import soot.PackManager;
@@ -47,10 +48,8 @@ public class Driver
         
         //Options.v().setPhaseOption("jb", "use-original-names:true");
         
-        soot.Main.main(className);	    
-        
-        G.reset();
-        
+        soot.Main.main(className);	           
+
         //DEBUG
         //constraint map check
         for(String Key : ConstraintStorageMap.constraintStorageMap.keySet())
@@ -65,7 +64,26 @@ public class Driver
             	System.out.println("Min length : " + CDT.minLength);
             	System.out.println("Max length : " + CDT.maxLength);
             	System.out.println("Prefix : " + CDT.prefix);
+            	System.out.println("Contains : " + CDT.contains);
             }	
         }
+        
+        System.out.println("==================================================================================");
+        System.out.println("                        End of constraint analysis                                ");
+        System.out.println("==================================================================================");
+        
+        G.reset();
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        jtp = PackManager.v().getPack("jtp");
+        
+        jtp.add(new Transform("jtp.constraintcheck", new StringRepairConstraint()));
+        
+        
+        //Options.v().setPhaseOption("jb", "use-original-names:true");
+        
+        soot.Main.main(className);	
+        
 	}
 }

@@ -124,6 +124,9 @@ public class ConstraintCheck extends BodyTransformer
 						
 					case "boolean endsWith(java.lang.String)":
 						return new Object[]{true, invokeMethod, base, args};
+						
+					case "boolean contains(java.lang.CharSequence)":
+						return new Object[]{true, invokeMethod, base, args};
 
 					default:
 						return new Object[]{false};
@@ -224,6 +227,14 @@ public class ConstraintCheck extends BodyTransformer
 				Value arg = argList.get(0);
 				ConstraintStorageMap.updatePrefix(methodSignature,(Value) ret[2], arg);
 			}
+			
+			if(condMethodSignature.equals("<java.lang.String: boolean contains(java.lang.CharSequence)>"))
+			{
+				List<Value> argList = (List<Value>) ret[3];
+				Value arg = argList.get(0);
+				ConstraintStorageMap.updateContains(methodSignature,(Value) ret[2], arg);
+			}
+			
 			System.out.println(lhs + " : " + condMethodSignature + " : " + ret[2] + " : " + ret[3]);
 		}
 	}

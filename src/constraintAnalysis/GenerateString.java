@@ -14,12 +14,42 @@
 //*************************************************************************************
 package constraintAnalysis;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+
+import soot.Value;
 
 
 public class GenerateString 
 {	
+	
+	public static String init(String signature, Value stringObject, HashMap<String, HashMap<Value, ConstraintStorageDataType>> constraintStorageMap)
+	{
+		HashMap<Value, ConstraintStorageDataType> CSDTmap = constraintStorageMap.get(signature);
+		ConstraintStorageDataType CSDT = CSDTmap.get(stringObject);
+		
+		int minLength = Integer.parseInt(CSDT.minLength.toString());
+		int maxLength = Integer.parseInt(CSDT.maxLength.toString());
+		
+		List<String> prefix = new ArrayList<>();
+		List<String> contains = new ArrayList<>();
+		
+		for(int i = 0; i < CSDT.prefix.size(); i++)
+		{
+			prefix.add(CSDT.prefix.get(i).toString().substring(1, CSDT.prefix.get(i).toString().length() - 2));
+		}
+		
+		for(int i = 0; i < CSDT.contains.size(); i++)
+		{
+			contains.add(CSDT.contains.get(i).toString().substring(1, CSDT.contains.get(i).toString().length() - 2));
+		}
+		
+		return generateString(minLength, maxLength, prefix, contains);
+	}
+	
+	
 	@SuppressWarnings("unused")
 	public static String generateString(int minLength, int maxLength, List<String> prefix, List<String> contain)
 	{
