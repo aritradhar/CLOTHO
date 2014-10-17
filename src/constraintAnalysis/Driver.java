@@ -50,6 +50,7 @@ public class Driver
         
         soot.Main.main(className);	           
 
+        /*
         //DEBUG
         //constraint map check
         for(String Key : ConstraintStorageMap.constraintStorageMap.keySet())
@@ -66,7 +67,7 @@ public class Driver
             	System.out.println("Prefix : " + CDT.prefix);
             	System.out.println("Contains : " + CDT.contains);
             }	
-        }
+        }*/
         
         System.out.println("==================================================================================");
         System.out.println("                        End of constraint analysis                                ");

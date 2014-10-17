@@ -25,11 +25,11 @@ import soot.Value;
 public class ConstraintStorageDataType
 {
 	
-	Value minLength;
-	Value maxLength;
+	public Value minLength;
+	public Value maxLength;
 	
-	List<Value> prefix;
-	List<Value> contains;
+	public List<Value> prefix;
+	public List<Value> contains;
 	
 	public ConstraintStorageDataType()
 	{

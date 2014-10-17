@@ -16,10 +16,13 @@
 package constraintAnalysis.stringRepair;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import constraintAnalysis.ConstraintStorageDataType;
+import constraintAnalysis.ConstraintStorageMap;
 import profile.InstrumManager;
 import profile.UtilInstrum;
 import soot.Body;
@@ -43,9 +46,52 @@ import soot.toolkits.graph.BriefUnitGraph;
 
 public class StringRepairConstraint extends BodyTransformer
 {
-	private <T extends InvokeExpr> List<Stmt> constraintCheckPatchProbe( Body jbody, Value lhs, T InvokeExpr)
+	private <T extends InvokeExpr> List<Stmt> constraintCheckPatchProbe(Body jbody, Value lhs, T InvokeExpr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
+		
+		VirtualInvokeExpr virtualInvokeExpr = (InvokeExpr instanceof VirtualInvokeExpr) ? (VirtualInvokeExpr)InvokeExpr : null;
+
+		StaticInvokeExpr staticInvokeExpr = (InvokeExpr instanceof StaticInvokeExpr) ? (StaticInvokeExpr)InvokeExpr : null;
+		
+		
+		if(InvokeExpr instanceof VirtualInvokeExpr)
+		{
+			Value baseString = virtualInvokeExpr.getBase();
+			
+			String methodSignature = jbody.getMethod().getSignature();
+				
+			HashMap<Value, ConstraintStorageDataType> CSDTmap = ConstraintStorageMap.constraintStorageMap.get(methodSignature);
+			
+			//it can not retrieve the value even the hashcode is same
+			//CSDTmap.get(baseString);
+			//ConstraintStorageDataType CSDT = CSDTmap.get(baseString);
+			
+			ConstraintStorageDataType CSDT = ConstraintStorageMap.CSDTget(baseString, CSDTmap);
+			
+			/*
+			System.out.println("Base : "+ baseString +"  Base Hash : " + baseString.hashCode());
+			for(String Key : ConstraintStorageMap.constraintStorageMap.keySet())
+	        {
+	        	System.out.println(Key);
+	            HashMap<Value, ConstraintStorageDataType> cdt = ConstraintStorageMap.constraintStorageMap.get(Key);
+	            
+	            for(Value val : cdt.keySet())
+	            {
+	            	System.out.println("String object : " + val);
+	            	System.out.println("val == baseString : "+ val +"  "+baseString+"  " +(val.equals(baseString)));
+	            	System.out.println("HashCode : " + val.hashCode());
+	            	ConstraintStorageDataType CDT = cdt.get(val);
+	            	System.out.println("Min length : " + CDT.minLength);
+	            	System.out.println("Max length : " + CDT.maxLength);
+	            	System.out.println("Prefix : " + CDT.prefix);
+	            	System.out.println("Contains : " + CDT.contains);
+	            }
+	        }
+			*/
+			System.out.println("Contains : " + CSDT.prefix);
+		
+		}
 		
 		return probe;
 	}
@@ -67,9 +113,9 @@ public class StringRepairConstraint extends BodyTransformer
 		 
 	
 		 SootClass thrwCls = null; 
-		 VirtualInvokeExpr virtualInvokeExpr = (InvokeExpr instanceof VirtualInvokeExpr) ? (VirtualInvokeExpr)InvokeExpr : null;
+		 //VirtualInvokeExpr virtualInvokeExpr = (InvokeExpr instanceof VirtualInvokeExpr) ? (VirtualInvokeExpr)InvokeExpr : null;
 
-		 StaticInvokeExpr staticInvokeExpr = (InvokeExpr instanceof StaticInvokeExpr) ? (StaticInvokeExpr)InvokeExpr : null;
+		 //StaticInvokeExpr staticInvokeExpr = (InvokeExpr instanceof StaticInvokeExpr) ? (StaticInvokeExpr)InvokeExpr : null;
 		
 		 boolean containsAPIcall = false;
 		 //Debug
@@ -109,7 +155,7 @@ public class StringRepairConstraint extends BodyTransformer
     	  */
     	 if(containsAPIcall)
     	 {
-    		 
+    		 probe.addAll(constraintCheckPatchProbe(jbody, lhs, InvokeExpr));
     	 }
     	 
     	 

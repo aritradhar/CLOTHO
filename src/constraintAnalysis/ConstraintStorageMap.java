@@ -189,6 +189,23 @@ public class ConstraintStorageMap
 		}
 	}
 
+	public static ConstraintStorageDataType CSDTget(Value value, HashMap<Value, ConstraintStorageDataType> CSDTmap)
+	{
+		int argHashCode = value.hashCode();
+
+
+		for(Value val : CSDTmap.keySet())
+		{
+			int valHashCode = val.hashCode();
+
+			if((valHashCode == argHashCode) && (val.toString().equals(value.toString())) &&  (val.getType().toString().equals(value.getType().toString())))
+			{
+				return CSDTmap.get(val);
+			}
+		}
+		
+		return null;
+	}
 
 
 	public static void insetToMap(String methodSignature, Value stringObject, ConstraintStorageDataType constraintStorageDataType)
