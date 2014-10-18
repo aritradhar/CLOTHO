@@ -188,6 +188,39 @@ public class ConstraintStorageMap
 
 		}
 	}
+	
+	public static void updateEquals(String methodSignature, Value stringObject, Value equlalStr)
+	{
+		if(!constraintStorageMap.containsKey(methodSignature))
+		{
+			ConstraintStorageDataType CSDT = new ConstraintStorageDataType();
+			CSDT.equals.add(equlalStr);
+
+			HashMap<Value, ConstraintStorageDataType> tmp = new HashMap<>();
+			tmp.put(stringObject, CSDT);
+			constraintStorageMap.put(methodSignature, tmp);
+		}
+		else
+		{
+			HashMap<Value, ConstraintStorageDataType> tmp = constraintStorageMap.get(methodSignature);
+
+			if(!tmp.containsKey(stringObject))
+			{
+				ConstraintStorageDataType CSDT = new ConstraintStorageDataType();
+				CSDT.equals.add(equlalStr);
+				tmp.put(stringObject, CSDT);
+			}
+
+			else
+			{
+				ConstraintStorageDataType CSDT = tmp.get(stringObject);
+				CSDT.equals.add(equlalStr);
+				tmp.put(stringObject, CSDT);
+			}
+			constraintStorageMap.put(methodSignature, tmp);
+
+		}
+	}
 
 	public static ConstraintStorageDataType CSDTget(Value value, HashMap<Value, ConstraintStorageDataType> CSDTmap)
 	{

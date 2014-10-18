@@ -127,6 +127,12 @@ public class ConstraintCheck extends BodyTransformer
 						
 					case "boolean contains(java.lang.CharSequence)":
 						return new Object[]{true, invokeMethod, base, args};
+						
+					case "boolean equals(java.lang.Object)":
+						return new Object[]{true, invokeMethod, base, args};
+						
+					case "boolean equalsIgnoreCase(java.lang.String)":
+						return new Object[]{true, invokeMethod, base, args};
 
 					default:
 						return new Object[]{false};
@@ -233,6 +239,14 @@ public class ConstraintCheck extends BodyTransformer
 				List<Value> argList = (List<Value>) ret[3];
 				Value arg = argList.get(0);
 				ConstraintStorageMap.updateContains(methodSignature,(Value) ret[2], arg);
+			}
+			
+			if(condMethodSignature.equals("<java.lang.String: boolean equals(java.lang.Object)>") ||
+					condMethodSignature.equals("<java.lang.String: boolean equalsIgnoreCase(java.lang.Object)>"))
+			{
+				List<Value> argList = (List<Value>) ret[3];
+				Value arg = argList.get(0);
+				ConstraintStorageMap.updateEquals(methodSignature,(Value) ret[2], arg);
 			}
 			
 			System.out.println(lhs + " : " + condMethodSignature + " : " + ret[2] + " : " + ret[3]);

@@ -31,19 +31,24 @@ public class ConstraintStorageDataType
 	public List<Value> prefix;
 	public List<Value> contains;
 	
+	public List<Value> equals; 
+	
 	public ConstraintStorageDataType()
 	{
 		this.prefix = new ArrayList<>();
 		this.contains = new ArrayList<>();
+		this.equals = new ArrayList<>();
 	}
 	
-	public ConstraintStorageDataType(Value minLength, Value maxLength, Value[] prefix, Value[] contains)
+	public ConstraintStorageDataType(Value minLength, Value maxLength, Value[] prefix, Value[] contains, Value[] equals)
 	{
 		this.maxLength = maxLength;
 		this.minLength = minLength;
 		
 		this.prefix = Arrays.asList(prefix);
 		this.contains = Arrays.asList(contains);
+		
+		this.equals = Arrays.asList(equals);
 	}
 	
 }

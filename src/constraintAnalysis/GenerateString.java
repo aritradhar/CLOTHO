@@ -37,23 +37,46 @@ public class GenerateString
 		List<String> prefix = new ArrayList<>();
 		List<String> contains = new ArrayList<>();
 		
+		List<String> equals = new ArrayList<>();
+		
 		for(int i = 0; i < CSDT.prefix.size(); i++)
 		{
-			prefix.add(CSDT.prefix.get(i).toString().substring(1, CSDT.prefix.get(i).toString().length() - 2));
+			prefix.add(CSDT.prefix.get(i).toString().substring(1, CSDT.prefix.get(i).toString().length() - 1));
 		}
 		
 		for(int i = 0; i < CSDT.contains.size(); i++)
 		{
-			contains.add(CSDT.contains.get(i).toString().substring(1, CSDT.contains.get(i).toString().length() - 2));
+			contains.add(CSDT.contains.get(i).toString().substring(1, CSDT.contains.get(i).toString().length() - 1));
 		}
 		
-		return generateString(minLength, maxLength, prefix, contains);
+		for(int i = 0; i < CSDT.equals.size(); i++)
+		{
+			equals.add(CSDT.equals.get(i).toString().substring(1, CSDT.equals.get(i).toString().length() - 1));
+		}
+		
+		return generateString(minLength, maxLength, prefix, contains, equals);
 	}
 	
 	
 	@SuppressWarnings("unused")
-	public static String generateString(int minLength, int maxLength, List<String> prefix, List<String> contain)
+	public static String generateString(int minLength, int maxLength, List<String> prefix, List<String> contain, List<String> equals)
 	{
+		if(equals.size() > 0)
+		{
+			int len = 0;
+			String str = "";
+			for(int i = 0; i<equals.size(); i++)
+			{
+				if(equals.get(i).length() > len)
+				{
+					str = equals.get(i);
+					len = equals.get(i).length();
+				}
+			}
+			
+			return str;
+		}
+		
 		String gen = "";
 		int length = 0;
 		
@@ -129,13 +152,13 @@ public class GenerateString
 		}
 	}
 	
-	public static void main(String[] args) 
-	{
-		for(int i=0; i<1000;i++)
-		{
-			String s = generateString(0, i, Arrays.asList(new String[]{"ab","abba"}), Arrays.asList(new String[]{":", ">>"}));
-			
-			System.out.println(s);
-		}
-	}
+//	public static void main(String[] args) 
+//	{
+//		for(int i=0; i<1000;i++)
+//		{
+//			String s = generateString(0, i, Arrays.asList(new String[]{"ab","abba"}), Arrays.asList(new String[]{":", ">>"}), Arrays.asList(new String[]{"aaaa>><<%"}));
+//			
+//			System.out.println(s);
+//		}
+//	}
 }

@@ -116,6 +116,14 @@ public class StringTest
 		{
 			int a1 =0;
 		}
+		if(st == "aa")
+		{
+			int a1 =0;
+		}
+		if(st.equals("avv"))
+		{
+			int a1 =0;
+		}
 		/*
 		if(ind != 25)
 		{
