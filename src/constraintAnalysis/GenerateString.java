@@ -31,6 +31,10 @@ public class GenerateString
 		//HashMap<Value, ConstraintStorageDataType> CSDTmap = constraintStorageMap.get(signature);
 		//ConstraintStorageDataType CSDT = CSDTmap.get(stringObject);
 		
+		/*
+		 * In case the object with no constrain list,
+		 */
+		
 		int minLength = Integer.parseInt(CSDT.minLength.toString());
 		int maxLength = Integer.parseInt(CSDT.maxLength.toString());
 		

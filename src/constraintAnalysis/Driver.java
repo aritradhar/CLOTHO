@@ -46,7 +46,7 @@ public class Driver
         if(st.equalsIgnoreCase("c"))
         	Options.v().set_output_format(Options.output_format_class);     
         
-        //Options.v().setPhaseOption("jb", "use-original-names:true");
+        Options.v().setPhaseOption("jb", "use-original-names:true");
         
         soot.Main.main(className);	           
 
@@ -82,7 +82,7 @@ public class Driver
         jtp.add(new Transform("jtp.constraintcheck", new StringRepairConstraint()));
         
         
-        //Options.v().setPhaseOption("jb", "use-original-names:true");
+        Options.v().setPhaseOption("jb", "use-original-names:true");
         
         soot.Main.main(className);	
         

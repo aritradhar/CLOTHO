@@ -116,14 +116,18 @@ public class StringTest
 		{
 			int a1 =0;
 		}
-		if(st == "aa")
-		{
-			int a1 =0;
-		}
-		if(st.equals("avv"))
-		{
-			int a1 =0;
-		}
+//		if(st == "aa")
+//		{
+//			int a1 =0;
+//		}
+//		if(st.equals("avv"))
+//		{
+//			int a1 =0;
+//		}
+		
+		st = s.substring(1, 2);
+		
+		System.out.println(st);
 		/*
 		if(ind != 25)
 		{

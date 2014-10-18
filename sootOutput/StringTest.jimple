@@ -3,32 +3,32 @@ public class StringTest extends java.lang.Object
 
     public void <init>()
     {
-        StringTest r0;
+        StringTest this;
 
-        r0 := @this: StringTest;
-        specialinvoke r0.<java.lang.Object: void <init>()>();
+        this := @this: StringTest;
+        specialinvoke this.<java.lang.Object: void <init>()>();
         return;
     }
 
     void foo()
     {
-        StringTest r0, $r1;
-        java.lang.IllegalArgumentException r2, $r3;
+        StringTest this, $r0;
+        java.lang.IllegalArgumentException ex, $r1;
 
-        r0 := @this: StringTest;
+        this := @this: StringTest;
 
      label0:
-        $r1 = new StringTest;
-        specialinvoke $r1.<StringTest: void <init>()>();
-        virtualinvoke $r1.<StringTest: void bar()>();
+        $r0 = new StringTest;
+        specialinvoke $r0.<StringTest: void <init>()>();
+        virtualinvoke $r0.<StringTest: void bar()>();
 
      label1:
         goto label3;
 
      label2:
-        $r3 := @caughtexception;
-        r2 = $r3;
-        virtualinvoke r2.<java.lang.IllegalArgumentException: void printStackTrace()>();
+        $r1 := @caughtexception;
+        ex = $r1;
+        virtualinvoke ex.<java.lang.IllegalArgumentException: void printStackTrace()>();
 
      label3:
         return;
@@ -38,100 +38,93 @@ public class StringTest extends java.lang.Object
 
     void bar()
     {
-        StringTest r0, $r1;
+        StringTest this, $r0;
 
-        r0 := @this: StringTest;
-        $r1 = new StringTest;
-        specialinvoke $r1.<StringTest: void <init>()>();
-        virtualinvoke $r1.<StringTest: void bar1()>();
+        this := @this: StringTest;
+        $r0 = new StringTest;
+        specialinvoke $r0.<StringTest: void <init>()>();
+        virtualinvoke $r0.<StringTest: void bar1()>();
         return;
     }
 
     void bar1()
     {
-        StringTest r0;
+        StringTest this;
 
-        r0 := @this: StringTest;
+        this := @this: StringTest;
         return;
     }
 
     public static void main(java.lang.String[]) throws java.io.IOException
     {
-        java.lang.String[] r0;
-        java.lang.String r1, r2, r3;
-        byte b0, b6;
-        boolean z0, z1, z2, z3, $z4, z5, $z6, z7, $z8, z9, $z10, z11, z12, $z13, z14;
-        int $i1, $i2, $i3, $i4, $i5;
+        java.lang.String[] args;
+        java.lang.String s, st1, st;
+        byte k, l5;
+        boolean l5, $z0;
+        int $i0, $i1;
+        java.io.PrintStream $r0;
 
-        r0 := @parameter0: java.lang.String[];
-        r1 = "aritra:dhar";
-        r2 = "aritra:dhar";
-        r3 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
-        b0 = 6;
-        $i1 = virtualinvoke r3.<java.lang.String: int length()>();
-        $i2 = b0 + 33;
-        if $i1 <= $i2 goto label0;
+        args := @parameter0: java.lang.String[];
+        s = "aritra:dhar";
+        st1 = "aritra:dhar";
+        st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
+        k = 6;
+        $i0 = virtualinvoke st.<java.lang.String: int length()>();
+        $i1 = k + 33;
+        if $i0 <= $i1 goto label0;
 
-        z0 = 0;
+        l5 = 0;
 
      label0:
-        $i3 = virtualinvoke r3.<java.lang.String: int length()>();
-        if $i3 != 1 goto label1;
+        $i0 = virtualinvoke st.<java.lang.String: int length()>();
+        if $i0 != 1 goto label1;
 
-        z1 = 1;
+        l5 = 1;
 
      label1:
-        $i4 = virtualinvoke r3.<java.lang.String: int length()>();
-        if $i4 <= 2 goto label2;
+        $i0 = virtualinvoke st.<java.lang.String: int length()>();
+        if $i0 <= 2 goto label2;
 
-        z2 = 1;
+        l5 = 1;
 
      label2:
-        $i5 = virtualinvoke r3.<java.lang.String: int length()>();
-        if $i5 >= 39 goto label3;
+        $i0 = virtualinvoke st.<java.lang.String: int length()>();
+        if $i0 >= 39 goto label3;
 
-        z3 = 1;
+        l5 = 1;
         goto label4;
 
      label3:
-        b6 = 29;
+        l5 = 29;
 
      label4:
-        $z4 = virtualinvoke r3.<java.lang.String: boolean startsWith(java.lang.String)>(">");
-        if $z4 == 0 goto label5;
+        $z0 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>(">");
+        if $z0 == 0 goto label5;
 
-        z5 = 0;
+        l5 = 0;
 
      label5:
-        $z6 = virtualinvoke r3.<java.lang.String: boolean startsWith(java.lang.String)>(">:");
-        if $z6 == 0 goto label6;
+        $z0 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>(">:");
+        if $z0 == 0 goto label6;
 
-        z7 = 0;
+        l5 = 0;
 
      label6:
-        $z8 = virtualinvoke r3.<java.lang.String: boolean contains(java.lang.CharSequence)>("aav");
-        if $z8 == 0 goto label7;
+        $z0 = virtualinvoke st.<java.lang.String: boolean contains(java.lang.CharSequence)>("aav");
+        if $z0 == 0 goto label7;
 
-        z9 = 0;
+        l5 = 0;
 
      label7:
-        $z10 = virtualinvoke r2.<java.lang.String: boolean contains(java.lang.CharSequence)>("aavst1");
-        if $z10 == 0 goto label8;
+        $z0 = virtualinvoke st1.<java.lang.String: boolean contains(java.lang.CharSequence)>("aavst1");
+        if $z0 == 0 goto label8;
 
-        z11 = 0;
+        l5 = 0;
 
      label8:
-        if r3 != "aa" goto label9;
-
-        z12 = 0;
-
-     label9:
-        $z13 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>("avv");
-        if $z13 == 0 goto label10;
-
-        z14 = 0;
-
-     label10:
+        st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(st);
         return;
     }
 }
