@@ -88,11 +88,6 @@ public class StringRepairConstraint extends BodyTransformer
 			AssignStmt patchAssign = Jimple.v().newAssignStmt(lhs, StringConstant.v(generatedString));
 			
 			probe.add(patchAssign);
-			
-//			System.out.println("Min length : " + CSDT.minLength);
-//        	System.out.println("Max length : " + CSDT.maxLength);
-//        	System.out.println("Prefix : " + CSDT.prefix);
-//        	System.out.println("Contains : " + CSDT.contains);
 		
 		}
 		
