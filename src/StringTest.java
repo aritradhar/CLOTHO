@@ -49,7 +49,7 @@ public class StringTest
 		//new StringTest().bar();
 		//new StringTest().foo();
 		
-		String st = "aritra:dhar";
+		String s = "aritra:dhar";
 		String st1 = "aritra:dhar";
 		/*
 		System.out.println(st.codePointCount(-1, 20));
@@ -74,6 +74,7 @@ public class StringTest
 		
 		st.substring(ind1, 2);
 		*/
+		String st = s.substring(1, 2);
 		int  k =6;
 		if(st.length() > k+33)
 		{
@@ -121,7 +122,7 @@ public class StringTest
 			int a2 =0;
 		}
 		*/
-		
+		/*
 		System.out.println(st.codePointAt(200));
 		st.charAt(20);
 		st.substring(20);			
@@ -136,8 +137,8 @@ public class StringTest
 		System.out.println(p);
 		
 		//st.substring(ind, 1);
-		CharSequence s = st.subSequence(1, -2);
-		System.out.println(s);
+		CharSequence cs = st.subSequence(1, -2);
+		System.out.println(cs);*/
 		//System.out.println(st);
 	}
 }

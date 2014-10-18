@@ -15,6 +15,7 @@
 package constraintAnalysis;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -25,10 +26,10 @@ import soot.Value;
 public class GenerateString 
 {	
 	
-	public static String init(String signature, Value stringObject, HashMap<String, HashMap<Value, ConstraintStorageDataType>> constraintStorageMap)
+	public static String init(String signature, Value stringObject, ConstraintStorageDataType CSDT)
 	{
-		HashMap<Value, ConstraintStorageDataType> CSDTmap = constraintStorageMap.get(signature);
-		ConstraintStorageDataType CSDT = CSDTmap.get(stringObject);
+		//HashMap<Value, ConstraintStorageDataType> CSDTmap = constraintStorageMap.get(signature);
+		//ConstraintStorageDataType CSDT = CSDTmap.get(stringObject);
 		
 		int minLength = Integer.parseInt(CSDT.minLength.toString());
 		int maxLength = Integer.parseInt(CSDT.maxLength.toString());
@@ -57,14 +58,21 @@ public class GenerateString
 		int length = 0;
 		
 		if(minLength == maxLength)
+		{
 			length = minLength;
+		}
+		
+		else if(minLength > maxLength)
+		{
+			length = minLength;
+		}
 		
 		else
 		{
 			Random rand = new Random();
 			length = rand.nextInt(maxLength - minLength + 1) + minLength;
 		}
-		
+		//System.out.println(length);
 		
 		
 		int prefixLength = 0;
@@ -102,22 +110,32 @@ public class GenerateString
 		{
 			int restLength = length - gen.length();
 			
-			Character[] charStr = new Character[restLength];
+			char[] charStr = new char[restLength];
 			
 			for(int i=0; i< restLength; i++)
 			{
 				Random r = new Random();
-				int charI = r.nextInt(255);
+				int charI = r.nextInt(127 - 33 + 1) + 33;
 				charStr[i] = (char) charI;
 			}
-			
-			gen = gen.concat(charStr.toString());
+		
+			gen = gen.concat(String.valueOf(charStr));
 			
 			return gen;
 		}
 		else
 		{
 			return gen;
+		}
+	}
+	
+	public static void main(String[] args) 
+	{
+		for(int i=0; i<1000;i++)
+		{
+			String s = generateString(0, i, Arrays.asList(new String[]{"ab","abba"}), Arrays.asList(new String[]{":", ">>"}));
+			
+			System.out.println(s);
 		}
 	}
 }
