@@ -24,6 +24,8 @@ import constraintAnalysis.stringRepair.StringRepairConstraintDynamic;
 import soot.G;
 import soot.Pack;
 import soot.PackManager;
+import soot.Scene;
+import soot.SootClass;
 import soot.Transform;
 import soot.Value;
 import soot.options.Options;
@@ -84,6 +86,9 @@ public class Driver
         
         
         Options.v().setPhaseOption("jb", "use-original-names:true");
+        
+        Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);  
+        Scene.v().addBasicClass("java.util.Iterator",SootClass.SIGNATURES);
         
         soot.Main.main(className);	
         

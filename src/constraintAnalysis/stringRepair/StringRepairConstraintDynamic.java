@@ -16,6 +16,7 @@
 package constraintAnalysis.stringRepair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -23,13 +24,12 @@ import java.util.Map;
 
 import constraintAnalysis.ConstraintStorageDataType;
 import constraintAnalysis.ConstraintStorageMap;
+import constraintAnalysis.DynamicIfStmtInfo;
 import constraintAnalysis.GenerateString;
 import profile.InstrumManager;
 import profile.UtilInstrum;
-import soot.ArrayType;
 import soot.Body;
 import soot.BodyTransformer;
-import soot.IntType;
 import soot.Local;
 import soot.PatchingChain;
 import soot.RefType;
@@ -39,11 +39,8 @@ import soot.SootMethod;
 import soot.Type;
 import soot.Unit;
 import soot.Value;
-import soot.javaToJimple.LocalGenerator;
 import soot.jimple.AssignStmt;
-import soot.jimple.ConditionExpr;
 import soot.jimple.IfStmt;
-import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Jimple;
@@ -51,7 +48,6 @@ import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.StringConstant;
 import soot.jimple.VirtualInvokeExpr;
-import soot.toolkits.graph.BriefUnitGraph;
 
 public class StringRepairConstraintDynamic extends BodyTransformer
 {
@@ -184,7 +180,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		
 		System.out.println("---- Current Method : " + sMethod.getName() + " ----");
         
-        String methodSig = sMethod.getSignature();
+        String methodSignature = sMethod.getSignature();
 		
         
 		PatchingChain<Unit> pc= body.getUnits();
@@ -205,8 +201,8 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 				
 				Value lhs = ast.getLeftOp();
 				Value rhs = ast.getRightOp();
-				
-				
+												
+				//search for the variables in the conditional expression in the if statement
 				
 				Object []ret = constraintAnalysis.ConstraintCheckDynamic.checkMethods(rhs);
 				
@@ -233,7 +229,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 						if(stmt_in instanceof IfStmt)
 						{
 							IfStmt ifStmt = (IfStmt) stmt_in;
-							//populateConstraintMap(ifStmt, ret, lhs, rhs, body.getMethod().getSignature());
+							DynamicIfStmtInfo.init(ifStmt, ret, methodSignature, unit);
 						}
 					}
 				}
@@ -241,7 +237,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 				
 				
 				
-								
+				
 				//For string API all the calls would be virtual invoke expression
 				if(rhs instanceof VirtualInvokeExpr)
 				{
@@ -290,13 +286,49 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 					
 					StaticInvokeExpr staticInvokeExpr = (StaticInvokeExpr) invokeExpr;
 					
-					Body b = makePatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), null, staticInvokeExpr);
+					//Body b = makePatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), null, staticInvokeExpr);
 					
-					if(b == null)
-						continue;							
+					//if(b == null)
+						//continue;							
 				}
 			}
 		}
+		it  = null;
+		
+		/*
+		for(IfStmt ifs : DynamicIfStmtInfo.dynamicIfStmtInfo.keySet())
+		{
+			System.out.println("IfStmt : " + ifs);
+			System.out.println(DynamicIfStmtInfo.dynamicIfStmtInfo.get(ifs)[0]);
+		}
+		*/
+		
+		
+		/*
+		 * 2nd pass for instrumentation
+		 */
+				
+		it = pc.snapshotIterator();
+		
+		while(it.hasNext())
+		{
+			Unit unit = it.next();
+			Stmt stmt = (Stmt) unit;
+			
+			if(stmt instanceof IfStmt)
+			{
+				IfStmt ifs = (IfStmt) stmt;
+				
+				if(DynamicIfStmtInfo.dynamicIfStmtInfo.containsKey(ifs))
+				{
+					Unit invokePoint = (Unit) DynamicIfStmtInfo.dynamicIfStmtInfo.get(ifs)[0];
+					InvokeStmt toInstrument = (InvokeStmt) DynamicIfStmtInfo.dynamicIfStmtInfo.get(ifs)[1];
+					
+					pc.insertBefore(toInstrument, invokePoint);
+				}
+			}
+		}
+		
 	}
 	
 }
