@@ -42,7 +42,7 @@ import soot.jimple.internal.JLeExpr;
 import soot.jimple.internal.JNeExpr;
 
 
-public class ConstraintCheck extends BodyTransformer
+public class ConstraintCheckDynamic extends BodyTransformer
 {
 	/*
 	 * No longer needed
@@ -63,7 +63,7 @@ public class ConstraintCheck extends BodyTransformer
 	 * 6 -> <  [JLtExpr]
 	 */
 	
-	private int evaluateCondition(ConditionExpr conditionExpr)
+	public static int evaluateCondition(ConditionExpr conditionExpr)
 	{
 		if(conditionExpr instanceof JEqExpr)
 			return 1;
@@ -93,7 +93,7 @@ public class ConstraintCheck extends BodyTransformer
 	 * object[2] -> base
 	 * object[3] -> argument list
 	 */
-	private Object[] checkMethods(Value rhs)
+	public static Object[] checkMethods(Value rhs)
 	{	
 		if(rhs instanceof InvokeExpr)
 		{
@@ -164,7 +164,7 @@ public class ConstraintCheck extends BodyTransformer
 	 */
 	
 	@SuppressWarnings("unchecked")
-	private void populateConstraintMap(IfStmt ifStmt, Object[] ret, Value lhs, Value rhs, String methodSignature)
+	public void populateConstraintMap(IfStmt ifStmt, Object[] ret, Value lhs, Value rhs, String methodSignature)
 	{
 		
 		Value condition = ifStmt.getCondition();

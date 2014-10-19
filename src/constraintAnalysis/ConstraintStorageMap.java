@@ -225,7 +225,9 @@ public class ConstraintStorageMap
 	public static ConstraintStorageDataType CSDTget(Value value, HashMap<Value, ConstraintStorageDataType> CSDTmap)
 	{
 		int argHashCode = value.hashCode();
-
+		
+		if(CSDTmap == null)
+			return null;
 
 		for(Value val : CSDTmap.keySet())
 		{

@@ -76,7 +76,7 @@ public class StringTest
 		*/
 		String st = s.substring(1, 2);
 		int  k =6;
-		if(st.length() > k+33)
+		if(st.length() > k+99)
 		{
 			int a =0;
 		}
@@ -120,12 +120,16 @@ public class StringTest
 //		{
 //			int a1 =0;
 //		}
-//		if(st.equals("avv"))
-//		{
-//			int a1 =0;
-//		}
 		
-		st = s.substring(1, 2);
+		String st3 = new String("AAWWW");
+		if(st.equals(st3))
+		{
+			int a1 =0;
+		}
+		
+		
+		System.out.println(st);
+		st = s.substring(1, 200);
 		
 		System.out.println(st);
 		/*

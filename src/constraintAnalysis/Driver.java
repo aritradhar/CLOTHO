@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 import constraintAnalysis.stringRepair.StringRepairConstraint;
+import constraintAnalysis.stringRepair.StringRepairConstraintDynamic;
 import soot.G;
 import soot.Pack;
 import soot.PackManager;
@@ -79,7 +80,7 @@ public class Driver
         
         jtp = PackManager.v().getPack("jtp");
         
-        jtp.add(new Transform("jtp.constraintcheck", new StringRepairConstraint()));
+        jtp.add(new Transform("jtp.instrument", new StringRepairConstraintDynamic()));
         
         
         Options.v().setPhaseOption("jb", "use-original-names:true");

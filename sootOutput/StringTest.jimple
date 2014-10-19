@@ -58,11 +58,11 @@ public class StringTest extends java.lang.Object
     public static void main(java.lang.String[]) throws java.io.IOException
     {
         java.lang.String[] args;
-        java.lang.String s, st1, st;
+        java.lang.String s, st1, st, st3, $r0;
         byte k, l5;
-        boolean l5, $z0;
+        boolean l5, l6, $z0;
         int $i0, $i1;
-        java.io.PrintStream $r0;
+        java.io.PrintStream $r1;
 
         args := @parameter0: java.lang.String[];
         s = "aritra:dhar";
@@ -70,7 +70,7 @@ public class StringTest extends java.lang.Object
         st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
         k = 6;
         $i0 = virtualinvoke st.<java.lang.String: int length()>();
-        $i1 = k + 33;
+        $i1 = k + 99;
         if $i0 <= $i1 goto label0;
 
         l5 = 0;
@@ -122,9 +122,20 @@ public class StringTest extends java.lang.Object
         l5 = 0;
 
      label8:
-        st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
-        $r0 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(st);
+        $r0 = new java.lang.String;
+        specialinvoke $r0.<java.lang.String: void <init>(java.lang.String)>("AAWWW");
+        st3 = $r0;
+        $z0 = virtualinvoke st.<java.lang.String: boolean equals(java.lang.Object)>(st3);
+        if $z0 == 0 goto label9;
+
+        l6 = 0;
+
+     label9:
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(st);
+        st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 200);
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(st);
         return;
     }
 }
