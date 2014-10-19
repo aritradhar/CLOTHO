@@ -26,7 +26,7 @@ import soot.Value;
 public class GenerateStringDynamic 
 {	
 	
-	public static String init(String signature, String stringObject, ConstraintStorageDataTypeDynamic CSDTdynamic)
+	public static String init(String signature, String stringObject)
 	{
 		//HashMap<Value, ConstraintStorageDataType> CSDTmap = constraintStorageMap.get(signature);
 		//ConstraintStorageDataType CSDT = CSDTmap.get(stringObject);
@@ -34,6 +34,10 @@ public class GenerateStringDynamic
 		/*
 		 * In case the object with no constrain list,
 		 */
+		
+		HashMap<String, ConstraintStorageDataTypeDynamic> tempMap = ConstraintStorageMapDynamic.constraintStorageMapDynamic.get(signature);
+		ConstraintStorageDataTypeDynamic CSDTdynamic = tempMap.get(stringObject);
+		
 		
 		Integer minLength =CSDTdynamic.minLength;
 		Integer maxLength = CSDTdynamic.maxLength;

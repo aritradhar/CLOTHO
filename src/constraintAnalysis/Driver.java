@@ -87,7 +87,9 @@ public class Driver
         
         Options.v().setPhaseOption("jb", "use-original-names:true");
         
-        Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);  
+        Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);
+        Scene.v().addBasicClass("constraintAnalysis.GenerateStringDynamic",SootClass.SIGNATURES);
+        
         Scene.v().addBasicClass("java.util.Iterator",SootClass.SIGNATURES);
         
         soot.Main.main(className);	

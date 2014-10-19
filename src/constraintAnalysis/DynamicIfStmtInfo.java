@@ -25,6 +25,7 @@ import soot.SootMethod;
 import soot.SootMethodRef;
 import soot.Unit;
 import soot.Value;
+import soot.jimple.AssignStmt;
 import soot.jimple.ConditionExpr;
 import soot.jimple.IfStmt;
 import soot.jimple.InvokeStmt;
@@ -36,7 +37,8 @@ public class DynamicIfStmtInfo
 {	
 	/*
 	 * Object array contains
-	 * invoke statement and the unit before which in instrumentation is to be done
+	 * invoke statement, unit, assign statement for string generation
+	 *  before which in instrumentation is to be done
 	 */
 	public static HashMap<IfStmt, Object[]> dynamicIfStmtInfo = new HashMap<>();
 	
@@ -67,32 +69,45 @@ public class DynamicIfStmtInfo
 		{
 			Value v = ((List<Value>) ret[3]).get(0);
 		
-			SootClass sc = Scene.v().loadClass("constraintAnalysis.ConstraintStorageMapDynamic", SootClass.SIGNATURES);
+			SootClass ConstraintStorageMapDynamicClass = Scene.v().loadClass("constraintAnalysis.ConstraintStorageMapDynamic", SootClass.SIGNATURES);
+			
+			SootClass stringGenerateDynamicClass = Scene.v().loadClass("constraintAnalysis.GenerateStringDynamic", SootClass.SIGNATURES);
+			
+			SootMethodRef stringGenerateInitMethodRef = stringGenerateDynamicClass.getMethodByName("init").makeRef();
 			
 			SootMethodRef instrMethod = null;
 			
 			if(calledMethod.getSignature().equals("<java.lang.String: boolean contains(java.lang.CharSequence)>"))
 			{
-				instrMethod = sc.getMethodByName("updateContains").makeRef();
+				instrMethod = ConstraintStorageMapDynamicClass.getMethodByName("updateContains").makeRef();
 			}
 			
 			if(calledMethod.getSignature().equals("<java.lang.String: boolean startsWith(java.lang.String)>"))
 			{
-				instrMethod = sc.getMethodByName("updatePrefix").makeRef();
+				instrMethod = ConstraintStorageMapDynamicClass.getMethodByName("updatePrefix").makeRef();
 			}
 			
 			if(calledMethod.getSignature().equals("<java.lang.String: boolean equals(java.lang.Object)>") || 
 					calledMethod.getSignature().equals("<boolean equalsIgnoreCase(java.lang.String)>"))
 			{
-				instrMethod = sc.getMethodByName("updateEquals").makeRef();
+				instrMethod = ConstraintStorageMapDynamicClass.getMethodByName("updateEquals").makeRef();
 			}
 			
 			
 			StaticInvokeExpr staticInvokeExpr = 
 					Jimple.v().newStaticInvokeExpr(instrMethod, 
-							Arrays.asList(new Value[]{(Value)StringConstant.v(methodSignature), (Value) ret[2], v}));
+							Arrays.asList(new Value[]{ (Value) StringConstant.v(methodSignature), (Value) ret[2], v}));
 			
 			InvokeStmt invokeStmt = Jimple.v().newInvokeStmt(staticInvokeExpr);
+			
+			Value baseString = (Value) ret[2];
+			
+			StaticInvokeExpr stringGeneratCall = Jimple.v().newStaticInvokeExpr(stringGenerateInitMethodRef, 
+					Arrays.asList( new Value[]{(Value) StringConstant.v(methodSignature), baseString}));
+			
+			InvokeStmt invStmt = Jimple.v().newInvokeStmt(stringGeneratCall);
+			
+			AssignStmt ast = Jimple.v().newAssignStmt(baseString, stringGeneratCall);
 			
 			dynamicIfStmtInfo.put(ifStmt, new Object[]{unit, invokeStmt});
 			
