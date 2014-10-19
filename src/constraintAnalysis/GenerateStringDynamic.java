@@ -34,6 +34,22 @@ public class GenerateStringDynamic
 		/*
 		 * In case the object with no constrain list,
 		 */
+		/*
+		for(String m : ConstraintStorageMapDynamic.constraintStorageMapDynamic.keySet())
+		{
+			System.out.println(m);
+			HashMap<String , ConstraintStorageDataTypeDynamic> t = ConstraintStorageMapDynamic.constraintStorageMapDynamic.get(m);
+			for(String s : t.keySet())
+			{
+				ConstraintStorageDataTypeDynamic c = t.get(s);
+				System.out.println("Max :" +c.maxLength);
+				System.out.println("Min :" +c.minLength);
+				System.out.println("prefix :" +c.prefix);
+				System.out.println("Contains :" +c.contains);
+				System.out.println("Equals :" +c.equals);
+			}
+		}
+		*/
 		
 		HashMap<String, ConstraintStorageDataTypeDynamic> tempMap = ConstraintStorageMapDynamic.constraintStorageMapDynamic.get(signature);
 		ConstraintStorageDataTypeDynamic CSDTdynamic = tempMap.get(stringObject);
@@ -52,7 +68,7 @@ public class GenerateStringDynamic
 	
 	
 	@SuppressWarnings("unused")
-	public static String generateString(int minLength, int maxLength, List<String> prefix, List<String> contain, List<String> equals)
+	public static String generateString(Integer minLength, Integer maxLength, List<String> prefix, List<String> contain, List<String> equals)
 	{
 		if(equals.size() > 0)
 		{
@@ -70,10 +86,50 @@ public class GenerateStringDynamic
 			return str;
 		}
 		
-		String gen = "";
-		int length = 0;
+		if(minLength == null && maxLength == null)
+		{
+			String selectString = "";
+			String selectPrefix = "";
+			if(prefix.size() > 0)
+			{
+				int prefixLength = 0;
+				for(int i = 0; i< prefix.size();i++)
+				{
+					String str = prefix.get(i);
+					if(str.length() > prefixLength)
+					{
+						selectPrefix = str;
+						prefixLength = str.length();
+					}
+				}
+			}
+			selectString = selectString.concat(selectPrefix);
+			
+			if(contain.size() > 0)
+			{
+				for(int i = 0; i< contain.size(); i++)
+				{
+					selectString = selectString.concat(contain.get(i));
+				}
+			}
+			
+			return selectString;
+		}
 		
-		if(minLength == maxLength)
+		int length = 0;
+		String gen = "";
+		
+		if(minLength == null && maxLength != null)
+		{
+			length = maxLength;
+		}
+		
+		else if(minLength != null && maxLength == null)
+		{
+			length = minLength;
+		}
+		
+		else if(minLength == maxLength)
 		{
 			length = minLength;
 		}

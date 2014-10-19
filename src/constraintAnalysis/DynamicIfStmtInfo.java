@@ -109,7 +109,7 @@ public class DynamicIfStmtInfo
 			
 			AssignStmt ast = Jimple.v().newAssignStmt(baseString, stringGeneratCall);
 			
-			dynamicIfStmtInfo.put(ifStmt, new Object[]{unit, invokeStmt});
+			dynamicIfStmtInfo.put(ifStmt, new Object[]{unit, invokeStmt, ast});
 			
 			//System.out.println("%%%% "  + op1 + ret[1] + ret[3] + (v instanceof StringConstant));
 		}

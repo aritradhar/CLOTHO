@@ -26,6 +26,7 @@ import constraintAnalysis.ConstraintStorageDataType;
 import constraintAnalysis.ConstraintStorageMap;
 import constraintAnalysis.DynamicIfStmtInfo;
 import constraintAnalysis.GenerateString;
+import polyglot.ast.Assign;
 import profile.InstrumManager;
 import profile.UtilInstrum;
 import soot.Body;
@@ -323,8 +324,11 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 				{
 					Unit invokePoint = (Unit) DynamicIfStmtInfo.dynamicIfStmtInfo.get(ifs)[0];
 					InvokeStmt toInstrument = (InvokeStmt) DynamicIfStmtInfo.dynamicIfStmtInfo.get(ifs)[1];
+					AssignStmt ast = (AssignStmt) DynamicIfStmtInfo.dynamicIfStmtInfo.get(ifs)[2];
 					
 					pc.insertBefore(toInstrument, invokePoint);
+					
+					pc.insertAfter(ast, toInstrument);
 				}
 			}
 		}
