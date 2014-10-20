@@ -339,6 +339,14 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 								pc.insertBefore(toInstrument, unit);
 								pc.insertAfter(ast, toInstrument);
 							}
+							else
+							{
+								InvokeStmt toInstrument = (InvokeStmt) ret[1];
+								AssignStmt ast = (AssignStmt) ret[2];
+						
+								pc.insertBefore(toInstrument, invokePoint);
+								pc.insertAfter(ast, toInstrument);
+							}
 						}
 						else
 						{

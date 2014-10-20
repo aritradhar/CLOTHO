@@ -90,7 +90,7 @@ public class Driver
         Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);
         Scene.v().addBasicClass("constraintAnalysis.GenerateStringDynamic",SootClass.SIGNATURES);
         
-        String st1 = "j";
+        String st1 = "c";
         
         if(st1.equalsIgnoreCase("j"))
         	Options.v().set_output_format(Options.output_format_jimple);
