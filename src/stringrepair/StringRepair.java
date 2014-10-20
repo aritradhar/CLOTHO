@@ -97,7 +97,7 @@ public class StringRepair extends BodyTransformer
 	 * Get method String API method call from the virtual invoke expression
 	 */
 	
-	public SootMethod getVirtualStringMethodCall(VirtualInvokeExpr virtualInvokeExpr)
+	public static SootMethod getVirtualStringMethodCall(VirtualInvokeExpr virtualInvokeExpr)
 	{
 		Value base = virtualInvokeExpr.getBase();
 		
@@ -130,7 +130,7 @@ public class StringRepair extends BodyTransformer
 	 * endIndex - the end index, exclusive.
 	 */
 	
-	private List<Stmt> subSequencePatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	public static List<Stmt> subSequencePatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		
@@ -188,7 +188,7 @@ public class StringRepair extends BodyTransformer
 	}
 	
 	@SuppressWarnings("unchecked")
-	private List<Stmt> subStringPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	public static List<Stmt> subStringPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		SootMethod sMethod = virtualInvokeExpr.getMethod();
@@ -327,7 +327,7 @@ public class StringRepair extends BodyTransformer
 	 * 
 	 * flag = true for 1 <= index <= length 
 	 */
-	private Object[] singleIndexPatcher( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr, Boolean flag)
+	public static Object[] singleIndexPatcher( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr, Boolean flag)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		List<Value> args = virtualInvokeExpr.getArgs();
@@ -381,7 +381,7 @@ public class StringRepair extends BodyTransformer
 	 * 			  Object[2] = li //lower index local to be  passed
 	 * 			  Object[3] = hi //higher index local to be  passed
 	 */
-	private Object[] doubleIndexPatcher( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	public static  Object[] doubleIndexPatcher( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		List<Value> args = virtualInvokeExpr.getArgs();
@@ -431,7 +431,7 @@ public class StringRepair extends BodyTransformer
 	 * 			  Object[2] = offset
 	 * 			  Object[3] = count
 	 */
-	private Object[] doubleIndexPatcher( Body jbody, Value lhs, StaticInvokeExpr virtualInvokeExpr)
+	public Object[] doubleIndexPatcher( Body jbody, Value lhs, StaticInvokeExpr virtualInvokeExpr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		List<Value> args = virtualInvokeExpr.getArgs();
@@ -479,7 +479,7 @@ public class StringRepair extends BodyTransformer
 	 * handle same as subString(int)
 	 */
 	@SuppressWarnings("unchecked")
-	private List<Stmt> charAtPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	public List<Stmt> charAtPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
@@ -508,7 +508,7 @@ public class StringRepair extends BodyTransformer
 	}
 	
 	@SuppressWarnings("unchecked")
-	private List<Stmt> codePointAtPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	public List<Stmt> codePointAtPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
@@ -537,7 +537,7 @@ public class StringRepair extends BodyTransformer
 	}
 	
 	@SuppressWarnings("unchecked")
-	private List<Stmt> codePointBeforePatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	public List<Stmt> codePointBeforePatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
@@ -566,7 +566,7 @@ public class StringRepair extends BodyTransformer
 	}
 	
 	@SuppressWarnings("unchecked")
-	private List<Stmt> codePointCountPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
+	public List<Stmt> codePointCountPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
@@ -596,7 +596,7 @@ public class StringRepair extends BodyTransformer
 	}
 	
 	@SuppressWarnings("unchecked")
-	private List<Stmt> valueOfPatchProbe( Body jbody, Value lhs, StaticInvokeExpr staticlInvokeExpr)
+	public List<Stmt> valueOfPatchProbe( Body jbody, Value lhs, StaticInvokeExpr staticlInvokeExpr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
@@ -629,7 +629,7 @@ public class StringRepair extends BodyTransformer
 	
 	
 	
-	private <T extends InvokeExpr> Body  makePatchProbe(PatchingChain<Unit> ch ,
+	public <T extends InvokeExpr> Body  makePatchProbe(PatchingChain<Unit> ch ,
 			Body jbody, Stmt try_start_stmt, Stmt try_end_stmt, Value lhs, T InvokeExpr)
 	{	 
 		 List<Stmt> probe = new ArrayList<Stmt>();

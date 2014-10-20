@@ -60,6 +60,7 @@ public class StringTest extends java.lang.Object
         java.lang.String[] args;
         java.lang.String s, st1, st, st3, $r1;
         byte k;
+        java.lang.CharSequence st4;
         int $i0, $i1;
         java.io.PrintStream $r0;
         boolean $z0;
@@ -77,6 +78,9 @@ public class StringTest extends java.lang.Object
         virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit1");
 
      label0:
+        st4 = virtualinvoke st.<java.lang.String: java.lang.CharSequence subSequence(int,int)>(1, 2);
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.Object)>(st4);
         $r0 = <java.lang.System: java.io.PrintStream out>;
         virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(st);
         $i0 = virtualinvoke st.<java.lang.String: int length()>();

@@ -89,6 +89,7 @@ public class Driver
         
         Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);
         Scene.v().addBasicClass("constraintAnalysis.GenerateStringDynamic",SootClass.SIGNATURES);
+        Scene.v().addBasicClass("stringrepair.IndexRepair", SootClass.SIGNATURES);       
         
         String st1 = "c";
         

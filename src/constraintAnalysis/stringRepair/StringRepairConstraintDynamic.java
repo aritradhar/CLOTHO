@@ -26,7 +26,6 @@ import constraintAnalysis.ConstraintStorageDataType;
 import constraintAnalysis.ConstraintStorageMap;
 import constraintAnalysis.DynamicIfStmtInfo;
 import constraintAnalysis.GenerateString;
-import polyglot.ast.Assign;
 import profile.InstrumManager;
 import profile.UtilInstrum;
 import soot.Body;
@@ -50,6 +49,8 @@ import soot.jimple.Stmt;
 import soot.jimple.StringConstant;
 import soot.jimple.VirtualInvokeExpr;
 
+import stringrepair.*;
+
 public class StringRepairConstraintDynamic extends BodyTransformer
 {
 	
@@ -58,39 +59,57 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		List<Stmt> probe = new ArrayList<Stmt>();
 		
 		VirtualInvokeExpr virtualInvokeExpr = (InvokeExpr instanceof VirtualInvokeExpr) ? (VirtualInvokeExpr)InvokeExpr : null;
-
-		StaticInvokeExpr staticInvokeExpr = (InvokeExpr instanceof StaticInvokeExpr) ? (StaticInvokeExpr)InvokeExpr : null;
+		//StaticInvokeExpr staticInvokeExpr = (InvokeExpr instanceof StaticInvokeExpr) ? (StaticInvokeExpr)InvokeExpr : null;
 		
 		Type stringType = RefType.v("java.lang.String");
+		Type charSequenceType = RefType.v("java.lang.CharSequence");
+		
+		if(lhs == null)
+			return new ArrayList<Stmt>();;
 		
 		if(InvokeExpr instanceof VirtualInvokeExpr && lhs.getType() == stringType)
 		{
-			Value baseString = virtualInvokeExpr.getBase();
-			
 			String methodSignature = jbody.getMethod().getSignature();
 				
 			HashMap<Value, ConstraintStorageDataType> CSDTmap = ConstraintStorageMap.constraintStorageMap.get(methodSignature);
-			
-			/*
-			 * it can not retrieve the value even the hashcode is same
-			 * CSDTmap.get(baseString);
-			 * ConstraintStorageDataType CSDT = CSDTmap.get(baseString);
-			*/
 			ConstraintStorageDataType CSDT = ConstraintStorageMap.CSDTget(lhs, CSDTmap);
 			
 			/*
-			 * Sanity check
+			 * No constraint information
+			 * Fall back to index patching
 			 */
 			if(CSDT == null)
-				return null;
+				return StringRepair.subStringPatchProbe(jbody, lhs, virtualInvokeExpr);
 			
 			String generatedString = GenerateString.init(methodSignature, lhs, CSDT);
-			
-			
+						
 			AssignStmt patchAssign = Jimple.v().newAssignStmt(lhs, StringConstant.v(generatedString));
 			
 			probe.add(patchAssign);
 		
+		}
+		
+		if(InvokeExpr instanceof VirtualInvokeExpr && lhs.getType() == charSequenceType)
+		{
+			String methodSignature = jbody.getMethod().getSignature();
+			
+			HashMap<Value, ConstraintStorageDataType> CSDTmap = ConstraintStorageMap.constraintStorageMap.get(methodSignature);
+			ConstraintStorageDataType CSDT = ConstraintStorageMap.CSDTget(lhs, CSDTmap);
+			
+			/*
+			 * No constraint information
+			 * Fall back to index patching
+			 */
+			if(CSDT == null)
+			{				
+				return StringRepair.subSequencePatchProbe(jbody, lhs, virtualInvokeExpr);
+			}
+			
+			String generatedString = GenerateString.init(methodSignature, lhs, CSDT);
+						
+			AssignStmt patchAssign = Jimple.v().newAssignStmt(lhs, StringConstant.v(generatedString));
+			
+			probe.add(patchAssign);
 		}
 		
 		return probe;
@@ -117,24 +136,59 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 
 		 //StaticInvokeExpr staticInvokeExpr = (InvokeExpr instanceof StaticInvokeExpr) ? (StaticInvokeExpr)InvokeExpr : null;
 		
-		 boolean containsAPIcall = false;
+		 int containsAPIcall = 1;
 		 //Debug
 		 //System.out.println(sMethod);
 		 
-		 if(sMethod.getSubSignature().equals("char charAt(int)") || sMethod.getSubSignature().equals("int codePointAt(int)") 
-				 || sMethod.getSubSignature().equals("int codePointBefore(int)") 
-				 || sMethod.getSubSignature().equals("int codePointCount(int,int)")
-				 || sMethod.getSubSignature().equals("int offsetByCodePoints(int,int)") 
-				 || sMethod.getSubSignature().equals("void getChars(int,int,char[],int)")
-				 || sMethod.getSubSignature().equals("void getBytes(int,int,byte[],int)")
-				 || sMethod.getSubSignature().equals("java.lang.String substring(int)")
-				 || sMethod.getSubSignature().equals("java.lang.String substring(int,int)")
-				 || sMethod.getSubSignature().equals("java.lang.CharSequence subSequence(int,int)")
-				 || sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)")
-				 )
+		 /*
+		  * return type String
+		  */
+		 if(sMethod.getSubSignature().equals("java.lang.String substring(int)")
+				 || sMethod.getSubSignature().equals("java.lang.String substring(int,int)"))
 		 {
 			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
-			 containsAPIcall = true;
+			 containsAPIcall = 1;
+		 }
+		 
+		 /*
+		  * Return type CharSequence
+		  */
+		 else if(sMethod.getSubSignature().equals("java.lang.CharSequence subSequence(int,int)")
+				 || sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)"))
+		 {
+			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
+			 containsAPIcall = 2;
+		 }
+		 
+		 /*
+		  * return type character
+		  */
+		 else if(sMethod.getSubSignature().equals("char charAt(int)"))
+		 {
+			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
+			 containsAPIcall = 3;
+		 }
+		 
+		 /*
+		  * return type integer
+		  */
+		 else if(sMethod.getSubSignature().equals("int codePointAt(int)") 
+				 || sMethod.getSubSignature().equals("int codePointBefore(int)") 
+				 || sMethod.getSubSignature().equals("int codePointCount(int,int)")
+				 || sMethod.getSubSignature().equals("int offsetByCodePoints(int,int)") )
+		 {
+			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
+			 containsAPIcall = 4;
+		 }
+		 
+		 /*
+		  * return type void
+		  */
+		 else if(sMethod.getSubSignature().equals("void getChars(int,int,char[],int)")
+				 || sMethod.getSubSignature().equals("void getBytes(int,int,byte[],int)"))
+		 {
+			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
+			 containsAPIcall = 5;
 		 }
 		 else
 		 {
@@ -153,7 +207,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
     	 /*
     	  * Catch block will contains the patching code based on the API call
     	  */
-    	 if(containsAPIcall)
+    	 if(containsAPIcall == 1 || containsAPIcall == 2)
     	 {
     		 probe.addAll(constraintCheckPatchProbe(jbody, lhs, InvokeExpr));
     	 }
