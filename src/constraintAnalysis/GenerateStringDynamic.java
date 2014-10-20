@@ -55,8 +55,8 @@ public class GenerateStringDynamic
 		ConstraintStorageDataTypeDynamic CSDTdynamic = tempMap.get(stringObject);
 		
 		
-		Integer minLength =CSDTdynamic.minLength;
-		Integer maxLength = CSDTdynamic.maxLength;
+		int minLength =CSDTdynamic.minLength;
+		int maxLength = CSDTdynamic.maxLength;
 		
 		List<String> prefix = CSDTdynamic.prefix;
 		List<String> contains = CSDTdynamic.contains;
@@ -68,7 +68,7 @@ public class GenerateStringDynamic
 	
 	
 	@SuppressWarnings("unused")
-	public static String generateString(Integer minLength, Integer maxLength, List<String> prefix, List<String> contain, List<String> equals)
+	public static String generateString(int minLength, int maxLength, List<String> prefix, List<String> contain, List<String> equals)
 	{
 		if(equals.size() > 0)
 		{
@@ -86,7 +86,7 @@ public class GenerateStringDynamic
 			return str;
 		}
 		
-		if(minLength == null && maxLength == null)
+		if(minLength == -1 && maxLength == -1)
 		{
 			String selectString = "";
 			String selectPrefix = "";
@@ -119,12 +119,12 @@ public class GenerateStringDynamic
 		int length = 0;
 		String gen = "";
 		
-		if(minLength == null && maxLength != null)
+		if(minLength == -1 && maxLength != -1)
 		{
 			length = maxLength;
 		}
 		
-		else if(minLength != null && maxLength == null)
+		else if(minLength != -1 && maxLength == -1)
 		{
 			length = minLength;
 		}

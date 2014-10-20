@@ -322,13 +322,46 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 				
 				if(DynamicIfStmtInfo.dynamicIfStmtInfo.containsKey(ifs))
 				{
-					Unit invokePoint = (Unit) DynamicIfStmtInfo.dynamicIfStmtInfo.get(ifs)[0];
-					InvokeStmt toInstrument = (InvokeStmt) DynamicIfStmtInfo.dynamicIfStmtInfo.get(ifs)[1];
-					AssignStmt ast = (AssignStmt) DynamicIfStmtInfo.dynamicIfStmtInfo.get(ifs)[2];
+					Object[] ret = DynamicIfStmtInfo.dynamicIfStmtInfo.get(ifs);
 					
-					pc.insertBefore(toInstrument, invokePoint);
+					if(ret.length == 3)
+					{
+						Unit invokePoint = (Unit) ret[0];
+						
+						if(invokePoint instanceof AssignStmt && ((AssignStmt) invokePoint).getRightOp() instanceof VirtualInvokeExpr)
+						{
+							VirtualInvokeExpr cie = (VirtualInvokeExpr) ((AssignStmt) invokePoint).getRightOp();
+							if(cie.getMethod().getSignature().equals("<java.lang.String: int length()>"))
+							{
+								InvokeStmt toInstrument = (InvokeStmt) ret[1];
+								AssignStmt ast = (AssignStmt) ret[2];
+						
+								pc.insertBefore(toInstrument, unit);
+								pc.insertAfter(ast, toInstrument);
+							}
+						}
+						else
+						{
+							InvokeStmt toInstrument = (InvokeStmt) ret[1];
+							AssignStmt ast = (AssignStmt) ret[2];
 					
-					pc.insertAfter(ast, toInstrument);
+							pc.insertBefore(toInstrument, invokePoint);
+							pc.insertAfter(ast, toInstrument);
+						}
+					}
+					
+					else if(ret.length == 4)
+					{
+						Unit invokePoint = (Unit) ret[0];
+						InvokeStmt toInstrumentMax = (InvokeStmt) ret[1];
+						InvokeStmt toInstrumentMin = (InvokeStmt) ret[2];
+						AssignStmt ast = (AssignStmt) ret[3];
+						
+						//System.out.println("Invokept " + invokePoint);
+						pc.insertBefore(toInstrumentMax, invokePoint);
+						pc.insertAfter(toInstrumentMin, toInstrumentMax);
+						pc.insertAfter(ast, toInstrumentMin);
+					}
 				}
 			}
 		}

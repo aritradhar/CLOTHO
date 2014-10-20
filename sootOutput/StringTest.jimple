@@ -58,84 +58,131 @@ public class StringTest extends java.lang.Object
     public static void main(java.lang.String[]) throws java.io.IOException
     {
         java.lang.String[] args;
-        java.lang.String s, st1, st, st3, $r0;
-        byte k, l5;
-        boolean l5, l6, $z0;
+        java.lang.String s, st1, st, st3, $r1;
+        byte k;
         int $i0, $i1;
-        java.io.PrintStream $r1;
+        java.io.PrintStream $r0;
+        boolean $z0;
+        java.lang.IndexOutOfBoundsException <ex45301104E7>, <ex93447838E7>;
 
         args := @parameter0: java.lang.String[];
         s = "aritra:dhar";
         st1 = "aritra:dhar";
-        st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
+
+     label0:
+        st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 200);
+
+     label1:
+        goto label3;
+
+     label2:
+        <ex45301104E7> := @caughtexception;
+        st = ">:aavrVnT|2GKOtgwZZ`$3|}K}1~*d0";
+
+     label3:
         k = 6;
         $i0 = virtualinvoke st.<java.lang.String: int length()>();
         $i1 = k + 99;
-        if $i0 <= $i1 goto label0;
+        staticinvoke <constraintAnalysis.ConstraintStorageMapDynamic: void updateMinLength(java.lang.String,java.lang.String,int)>("<StringTest: void main(java.lang.String[])>", st, $i1);
+        st = staticinvoke <constraintAnalysis.GenerateStringDynamic: java.lang.String init(java.lang.String,java.lang.String)>("<StringTest: void main(java.lang.String[])>", st);
+        if $i0 <= $i1 goto label4;
 
-        l5 = 0;
-
-     label0:
-        $i0 = virtualinvoke st.<java.lang.String: int length()>();
-        if $i0 != 1 goto label1;
-
-        l5 = 1;
-
-     label1:
-        $i0 = virtualinvoke st.<java.lang.String: int length()>();
-        if $i0 <= 2 goto label2;
-
-        l5 = 1;
-
-     label2:
-        $i0 = virtualinvoke st.<java.lang.String: int length()>();
-        if $i0 >= 39 goto label3;
-
-        l5 = 1;
-        goto label4;
-
-     label3:
-        l5 = 29;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit1");
 
      label4:
-        $z0 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>(">");
-        if $z0 == 0 goto label5;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(st);
+        staticinvoke <constraintAnalysis.ConstraintStorageMapDynamic: void updateMaxLength(java.lang.String,java.lang.String,int)>("<StringTest: void main(java.lang.String[])>", st, 1);
+        staticinvoke <constraintAnalysis.ConstraintStorageMapDynamic: void updateMinLength(java.lang.String,java.lang.String,int)>("<StringTest: void main(java.lang.String[])>", st, 1);
+        st = staticinvoke <constraintAnalysis.GenerateStringDynamic: java.lang.String init(java.lang.String,java.lang.String)>("<StringTest: void main(java.lang.String[])>", st);
+        $i0 = virtualinvoke st.<java.lang.String: int length()>();
+        if $i0 != 1 goto label5;
 
-        l5 = 0;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit2");
 
      label5:
-        $z0 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>(">:");
-        if $z0 == 0 goto label6;
+        $i0 = virtualinvoke st.<java.lang.String: int length()>();
+        staticinvoke <constraintAnalysis.ConstraintStorageMapDynamic: void updateMinLength(java.lang.String,java.lang.String,int)>("<StringTest: void main(java.lang.String[])>", st, 2);
+        st = staticinvoke <constraintAnalysis.GenerateStringDynamic: java.lang.String init(java.lang.String,java.lang.String)>("<StringTest: void main(java.lang.String[])>", st);
+        if $i0 <= 2 goto label6;
 
-        l5 = 0;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit3");
 
      label6:
-        $z0 = virtualinvoke st.<java.lang.String: boolean contains(java.lang.CharSequence)>("aav");
-        if $z0 == 0 goto label7;
+        $i0 = virtualinvoke st.<java.lang.String: int length()>();
+        staticinvoke <constraintAnalysis.ConstraintStorageMapDynamic: void updateMaxLength(java.lang.String,java.lang.String,int)>("<StringTest: void main(java.lang.String[])>", st, 39);
+        st = staticinvoke <constraintAnalysis.GenerateStringDynamic: java.lang.String init(java.lang.String,java.lang.String)>("<StringTest: void main(java.lang.String[])>", st);
+        if $i0 >= 39 goto label7;
 
-        l5 = 0;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit4");
+        goto label8;
 
      label7:
-        $z0 = virtualinvoke st1.<java.lang.String: boolean contains(java.lang.CharSequence)>("aavst1");
-        if $z0 == 0 goto label8;
-
-        l5 = 0;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit5");
 
      label8:
-        $r0 = new java.lang.String;
-        specialinvoke $r0.<java.lang.String: void <init>(java.lang.String)>("AAWWW");
-        st3 = $r0;
-        $z0 = virtualinvoke st.<java.lang.String: boolean equals(java.lang.Object)>(st3);
+        $z0 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>(">");
         if $z0 == 0 goto label9;
 
-        l6 = 0;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit6");
 
      label9:
-        $r1 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(st);
+        $z0 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>(">:");
+        if $z0 == 0 goto label10;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit7");
+
+     label10:
+        $z0 = virtualinvoke st.<java.lang.String: boolean contains(java.lang.CharSequence)>("aav");
+        if $z0 == 0 goto label11;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit8");
+
+     label11:
+        $z0 = virtualinvoke st1.<java.lang.String: boolean contains(java.lang.CharSequence)>("aavst1");
+        if $z0 == 0 goto label12;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit9");
+
+     label12:
+        $r1 = new java.lang.String;
+        specialinvoke $r1.<java.lang.String: void <init>(java.lang.String)>("AAWWW");
+        st3 = $r1;
+        $z0 = virtualinvoke st.<java.lang.String: boolean equals(java.lang.Object)>(st3);
+        if $z0 == 0 goto label13;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Hit10");
+
+     label13:
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(st);
+
+     label14:
         st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 200);
-        $r1 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(st);
+
+     label15:
+        goto label17;
+
+     label16:
+        <ex93447838E7> := @caughtexception;
+        st = ">:aav@$ux\\e+a}HGYd9)<g5j2F3}M.";
+
+     label17:
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(st);
         return;
+
+        catch java.lang.IndexOutOfBoundsException from label0 to label1 with label2;
+        catch java.lang.IndexOutOfBoundsException from label14 to label15 with label16;
     }
 }

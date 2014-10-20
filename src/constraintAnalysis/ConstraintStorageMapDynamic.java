@@ -25,7 +25,7 @@ public class ConstraintStorageMapDynamic
 	public static HashMap<String, HashMap<String, ConstraintStorageDataTypeDynamic>> constraintStorageMapDynamic = new HashMap<>();
 
 
-	public static void updateMinLength(String methodSignature, String stringObject, Integer minLength)
+	public static void updateMinLength(String methodSignature, String stringObject, int minLength)
 	{
 		if(!constraintStorageMapDynamic.containsKey(methodSignature))
 		{
@@ -56,7 +56,7 @@ public class ConstraintStorageMapDynamic
 				ConstraintStorageDataTypeDynamic CSDT = tmp.get(stringObject);
 
 				//makes sense
-				if(CSDT.minLength == null)
+				if(CSDT.minLength == -1)
 				{
 					CSDT.minLength = minLength;
 				}
@@ -75,7 +75,7 @@ public class ConstraintStorageMapDynamic
 	}
 	
 	
-	public static void updateMaxLength(String methodSignature, String stringObject, Integer maxLength)
+	public static void updateMaxLength(String methodSignature, String stringObject, int maxLength)
 	{
 		if(!constraintStorageMapDynamic.containsKey(methodSignature))
 		{
@@ -105,7 +105,7 @@ public class ConstraintStorageMapDynamic
 				ConstraintStorageDataTypeDynamic CSDT = tmp.get(stringObject);
 
 				//makes sense
-				if(CSDT.maxLength == null)
+				if(CSDT.maxLength == -1)
 				{
 					CSDT.maxLength = maxLength;
 				}

@@ -90,6 +90,14 @@ public class Driver
         Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);
         Scene.v().addBasicClass("constraintAnalysis.GenerateStringDynamic",SootClass.SIGNATURES);
         
+        String st1 = "j";
+        
+        if(st1.equalsIgnoreCase("j"))
+        	Options.v().set_output_format(Options.output_format_jimple);
+        
+        if(st1.equalsIgnoreCase("c"))
+        	Options.v().set_output_format(Options.output_format_class);     
+        
         Scene.v().addBasicClass("java.util.Iterator",SootClass.SIGNATURES);
         
         soot.Main.main(className);	

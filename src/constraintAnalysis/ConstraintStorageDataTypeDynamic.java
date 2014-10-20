@@ -25,8 +25,8 @@ import soot.Value;
 public class ConstraintStorageDataTypeDynamic
 {
 	
-	public Integer minLength;
-	public Integer maxLength;
+	public int minLength;
+	public int maxLength;
 	
 	public List<String> prefix;
 	public List<String> contains;
@@ -35,12 +35,14 @@ public class ConstraintStorageDataTypeDynamic
 	
 	public ConstraintStorageDataTypeDynamic()
 	{
+		minLength = -1;
+		maxLength = - 1;
 		this.prefix = new ArrayList<>();
 		this.contains = new ArrayList<>();
 		this.equals = new ArrayList<>();
 	}
 	
-	public ConstraintStorageDataTypeDynamic(Integer minLength, Integer maxLength, String[] prefix, String[] contains, String[] equals)
+	public ConstraintStorageDataTypeDynamic(int minLength, int maxLength, String[] prefix, String[] contains, String[] equals)
 	{
 		this.maxLength = maxLength;
 		this.minLength = minLength;

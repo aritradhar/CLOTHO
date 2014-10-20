@@ -74,47 +74,51 @@ public class StringTest
 		
 		st.substring(ind1, 2);
 		*/
-		String st = s.substring(1, 2);
+		String st = s.substring(1, 200);
+		
 		int  k =6;
 		if(st.length() > k+99)
 		{
-			int a =0;
+			System.out.println("Hit1");
 		}
 		
+		
+		System.out.println(st);
 		if(st.length() == 1)
 		{
-			int a = 1;
+			System.out.println("Hit2");
 		}
 		
 		if(st.length() > 2)
 		{
-			int a = 1;
+			System.out.println("Hit3");
 		}
 		
 		if(st.length() < 39)
 		{
-			int a = 1;
+			System.out.println("Hit4");
 		}
 		else
 		{
-			int j = 29;
+			System.out.println("Hit5");
 		}
+		
 		
 		if(st.startsWith(">"))
 		{
-			int a1 =0;
+			System.out.println("Hit6");
 		}
 		if(st.startsWith(">:"))
 		{
-			int a1 =0;
+			System.out.println("Hit7");
 		}
 		if(st.contains("aav"))
 		{
-			int a1 =0;
+			System.out.println("Hit8");
 		}
 		if(st1.contains("aavst1"))
 		{
-			int a1 =0;
+			System.out.println("Hit9");
 		}
 //		if(st == "aa")
 //		{
@@ -124,7 +128,7 @@ public class StringTest
 		String st3 = new String("AAWWW");
 		if(st.equals(st3))
 		{
-			int a1 =0;
+			System.out.println("Hit10");
 		}
 		
 		
