@@ -19,12 +19,17 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import soot.Body;
+import soot.IntType;
+import soot.Local;
 import soot.Scene;
 import soot.SootClass;
 import soot.SootMethod;
 import soot.SootMethodRef;
 import soot.Unit;
 import soot.Value;
+import soot.javaToJimple.LocalGenerator;
+import soot.jimple.AddExpr;
 import soot.jimple.AssignStmt;
 import soot.jimple.ConditionExpr;
 import soot.jimple.IfStmt;
@@ -53,7 +58,7 @@ public class DynamicIfStmtInfo
 	
 	
 	@SuppressWarnings({ "unchecked", "unused" })
-	public static void init(IfStmt ifStmt, Object[] ret, String methodSignature, Unit unit)
+	public static void init(IfStmt ifStmt, Object[] ret, String methodSignature, Unit unit, Body body)
 	{
 		Value condition = ifStmt.getCondition();
 
@@ -174,9 +179,14 @@ public class DynamicIfStmtInfo
 						
 					case 1:
 					{
-						Integer val = Integer.parseInt(op2.toString());
-						++val;
-						Value newOp = IntConstant.v(val);
+						//potential failure point
+						//Integer val = Integer.parseInt(op2.toString());
+						//++val;
+						//
+						AddExpr add = Jimple.v().newAddExpr(op2, IntConstant.v(1));
+						Local newOp = new LocalGenerator(body).generateLocal(IntType.v());
+						AssignStmt ast1 = Jimple.v().newAssignStmt(newOp, add);
+						//Value newOp = IntConstant.v(val);
 						
 						StaticInvokeExpr staticInvokeExprMax = 
 								Jimple.v().newStaticInvokeExpr(instrMethodMax, 

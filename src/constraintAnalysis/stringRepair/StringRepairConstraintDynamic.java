@@ -284,7 +284,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 						if(stmt_in instanceof IfStmt)
 						{
 							IfStmt ifStmt = (IfStmt) stmt_in;
-							DynamicIfStmtInfo.init(ifStmt, ret, methodSignature, unit);
+							DynamicIfStmtInfo.init(ifStmt, ret, methodSignature, unit, body);
 						}
 					}
 				}
@@ -351,6 +351,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		it  = null;
 		
 		/*
+		 * DEBUG
 		for(IfStmt ifs : DynamicIfStmtInfo.dynamicIfStmtInfo.keySet())
 		{
 			System.out.println("IfStmt : " + ifs);

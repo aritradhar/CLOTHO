@@ -56,8 +56,8 @@ public class Driver
 		Options.v().set_prepend_classpath(true);
 		 
 		
-		String[] className = {"StringTest"};//classNameList.toArray(new String[classNameList.size()]);
-		
+		//String[] className = {"StringTest"};
+		String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		
         Pack jtp = PackManager.v().getPack("jtp");
