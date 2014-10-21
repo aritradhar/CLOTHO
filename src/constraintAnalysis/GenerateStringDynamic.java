@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import constraintAnalysis.stringRepair.EncounterRepair;
 import soot.Value;
 
 
@@ -50,6 +51,15 @@ public class GenerateStringDynamic
 			}
 		}
 		*/
+		
+		/*
+		 * If the string does not encounter any exception till now, just don't repair it
+		 */
+		if(!EncounterRepair.encounterRepairGet(signature, stringObject))
+		{
+			//System.out.println("FallBack");
+			return stringObject;
+		}
 		
 		HashMap<String, ConstraintStorageDataTypeDynamic> tempMap = ConstraintStorageMapDynamic.constraintStorageMapDynamic.get(signature);
 		ConstraintStorageDataTypeDynamic CSDTdynamic = tempMap.get(stringObject);

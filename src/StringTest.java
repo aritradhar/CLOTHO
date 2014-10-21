@@ -85,8 +85,8 @@ public class StringTest
 			System.out.println("Hit1");
 		}
 		
-		CharSequence st4 = st.subSequence(1, 2);
-		System.out.println(st4);
+		//CharSequence st4 = st.subSequence(1, 2);
+		//System.out.println(st4);
 		
 		System.out.println(st);
 		if(st.length() == 1)

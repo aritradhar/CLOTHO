@@ -36,6 +36,7 @@ import soot.RefType;
 import soot.Scene;
 import soot.SootClass;
 import soot.SootMethod;
+import soot.SootMethodRef;
 import soot.Type;
 import soot.Unit;
 import soot.Value;
@@ -48,7 +49,6 @@ import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.StringConstant;
 import soot.jimple.VirtualInvokeExpr;
-
 import stringrepair.*;
 
 public class StringRepairConstraintDynamic extends BodyTransformer
@@ -79,13 +79,28 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			 * Fall back to index patching
 			 */
 			if(CSDT == null)
-				return StringRepair.subStringPatchProbe(jbody, lhs, virtualInvokeExpr);
+			{
+				probe.addAll(StringRepair.subStringPatchProbe(jbody, lhs, virtualInvokeExpr));
+				return probe;
+			}
 			
 			String generatedString = GenerateString.init(methodSignature, lhs, CSDT);
 						
 			AssignStmt patchAssign = Jimple.v().newAssignStmt(lhs, StringConstant.v(generatedString));
 			
+			/*
+			 * Set that the string encounters a exception
+			 */
+			SootClass encounterRepairClass = Scene.v().loadClass("constraintAnalysis.stringRepair.EncounterRepair", SootClass.SIGNATURES);
+			SootMethodRef encounterRepairSetRef = encounterRepairClass.getMethodByName("encounterRepairSet").makeRef();
+			
+			StaticInvokeExpr encounterException = Jimple.v().newStaticInvokeExpr(encounterRepairSetRef,
+					Arrays.asList( new Value[]{(Value) StringConstant.v(methodSignature), lhs}));
+			
+			InvokeStmt encounterExceptionStmt = Jimple.v().newInvokeStmt(encounterException);
+					
 			probe.add(patchAssign);
+			probe.add(encounterExceptionStmt);
 		
 		}
 		
@@ -102,7 +117,8 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			 */
 			if(CSDT == null)
 			{				
-				return StringRepair.subSequencePatchProbe(jbody, lhs, virtualInvokeExpr);
+				probe.addAll(StringRepair.subSequencePatchProbe(jbody, lhs, virtualInvokeExpr));
+				return probe;
 			}
 			
 			String generatedString = GenerateString.init(methodSignature, lhs, CSDT);
