@@ -74,10 +74,13 @@ public class StringTest
 		
 		st.substring(ind1, 2);
 		*/
-		String st = s.substring(1, 200);
+		String st = s.substring(1, 9);
 		
+		String st5 = s.substring(1,4);
+		
+		System.out.println(st5);
 		int  k =6;
-		if(st.length() > k+99)
+		if(st.length() > k+1)
 		{
 			System.out.println("Hit1");
 		}
@@ -135,7 +138,7 @@ public class StringTest
 		
 		
 		System.out.println(st);
-		st = s.substring(1, 200);
+		st = s.substring(1, 2);
 		
 		System.out.println(st);
 		/*

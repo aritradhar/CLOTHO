@@ -58,20 +58,23 @@ public class StringTest extends java.lang.Object
     public static void main(java.lang.String[]) throws java.io.IOException
     {
         java.lang.String[] args;
-        java.lang.String s, st1, st, st3, $r1;
+        java.lang.String s, st1, st, st5, st3, $r1;
         byte k;
         java.lang.CharSequence st4;
-        int $i0, $i1;
         java.io.PrintStream $r0;
+        int $i0, $i1;
         boolean $z0;
 
         args := @parameter0: java.lang.String[];
         s = "aritra:dhar";
         st1 = "aritra:dhar";
-        st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 200);
+        st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 9);
+        st5 = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(st5);
         k = 6;
         $i0 = virtualinvoke st.<java.lang.String: int length()>();
-        $i1 = k + 99;
+        $i1 = k + 1;
         if $i0 <= $i1 goto label0;
 
         $r0 = <java.lang.System: java.io.PrintStream out>;
@@ -149,7 +152,7 @@ public class StringTest extends java.lang.Object
      label9:
         $r0 = <java.lang.System: java.io.PrintStream out>;
         virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(st);
-        st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 200);
+        st = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
         $r0 = <java.lang.System: java.io.PrintStream out>;
         virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(st);
         return;
