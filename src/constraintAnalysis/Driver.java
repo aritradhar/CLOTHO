@@ -15,11 +15,12 @@
 
 package constraintAnalysis;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
-import constraintAnalysis.stringRepair.StringRepairConstraint;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import constraintAnalysis.stringRepair.StringRepairConstraintDynamic;
 import soot.G;
 import soot.Pack;
@@ -27,16 +28,38 @@ import soot.PackManager;
 import soot.Scene;
 import soot.SootClass;
 import soot.Transform;
-import soot.Value;
 import soot.options.Options;
-
+import util.ENV;
+import util.JarUtils;
 
 public class Driver 
 {
-	public static void main(String[] args) 
+	public static void main(String[] args) throws IOException 
 	{
-		String []className = {"StringTest"};
-		  
+		JarUtils.populateFilesList(new File(args[0]));
+		List<String> Files = JarUtils.filesListInDir;
+		
+		ArrayList<String> classNameList = new ArrayList<>();
+		
+		for(String files : Files)
+		{
+			if(!files.endsWith(".class"))
+				continue;
+			
+			String temp = files.replace("C:\\Users\\Aritra\\workspace\\git\\Repair_Spec\\bin\\", "");
+			
+			classNameList.add(temp.replace("\\", ".").replace(".class", ""));
+			//System.out.println(className[i++]);
+		}
+		
+		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
+		Options.v().set_prepend_classpath(true);
+		 
+		
+		String[] className = {"StringTest"};//classNameList.toArray(new String[classNameList.size()]);
+		
+		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
+		
         Pack jtp = PackManager.v().getPack("jtp");
         
         jtp.add(new Transform("jtp.constraintcheck", new ConstraintCheck()));
@@ -70,7 +93,8 @@ public class Driver
             	System.out.println("Prefix : " + CDT.prefix);
             	System.out.println("Contains : " + CDT.contains);
             }	
-        }*/
+        }
+        */
         
         System.out.println("==================================================================================");
         System.out.println("                        End of constraint analysis                                ");
@@ -91,6 +115,9 @@ public class Driver
         Scene.v().addBasicClass("constraintAnalysis.GenerateStringDynamic",SootClass.SIGNATURES);
         Scene.v().addBasicClass("stringrepair.IndexRepair", SootClass.SIGNATURES);       
         
+        Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);	
+		Options.v().set_prepend_classpath(true);
+		
         String st1 = "c";
         
         if(st1.equalsIgnoreCase("j"))
