@@ -28,6 +28,7 @@ import soot.PackManager;
 import soot.Scene;
 import soot.SootClass;
 import soot.Transform;
+import soot.jimple.infoflow.taint.SourceSinkResolver;
 import soot.options.Options;
 import util.ENV;
 import util.JarUtils;
@@ -103,10 +104,17 @@ public class Driver
         G.reset();
         
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /*
+         * Taint analysis
+         */
+        
+        SourceSinkResolver ssr = new SourceSinkResolver(new String[]{args[1], args[2]});
+        
+        G.reset();
         
         jtp = PackManager.v().getPack("jtp");
         
-        jtp.add(new Transform("jtp.instrument", new StringRepairConstraintDynamic()));
+        jtp.add(new Transform("jtp.instrument", new StringRepairConstraintDynamic(ssr)));
         
         
         Options.v().setPhaseOption("jb", "use-original-names:true");

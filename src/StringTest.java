@@ -48,8 +48,8 @@ public class StringTest
 	{
 		//new StringTest().bar();
 		//new StringTest().foo();
-		
-		String s = "aritra:dhar";
+
+		String s = new BufferedReader(new InputStreamReader(System.in)).readLine();
 		String st1 = "aritra:dhar";
 		/*
 		System.out.println(st.codePointCount(-1, 20));
@@ -74,7 +74,7 @@ public class StringTest
 		
 		st.substring(ind1, 2);
 		*/
-		String st = s.substring(1, 9);
+		String st = s.substring(1, 61);
 		
 		String st5 = s.substring(1,4);
 		
@@ -135,6 +135,9 @@ public class StringTest
 		{
 			System.out.println("Hit10");
 		}
+		
+		st1 = st1.substring(1, 2);
+		System.out.println(st1);
 		
 		
 		System.out.println(st);

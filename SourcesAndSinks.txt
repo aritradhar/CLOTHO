@@ -1,0 +1,5 @@
+<java.io.InputStreamReader: void <init> -> _SOURCE_
+<java.io.BufferedReader: java.lang.String readLine()> -> _SOURCE_
+
+<java.io.PrintStream: void println(int)> -> _SINK_
+<java.io.PrintStream: void println(java.lang.String)> -> _SINK_

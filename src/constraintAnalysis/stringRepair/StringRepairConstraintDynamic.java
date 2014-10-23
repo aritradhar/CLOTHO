@@ -49,10 +49,21 @@ import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.StringConstant;
 import soot.jimple.VirtualInvokeExpr;
+import soot.jimple.infoflow.taint.SourceSinkResolver;
 import stringrepair.*;
 
 public class StringRepairConstraintDynamic extends BodyTransformer
 {
+	SourceSinkResolver ssr;
+	 
+	public StringRepairConstraintDynamic()
+	{
+		 
+	}
+	public StringRepairConstraintDynamic(SourceSinkResolver ssr)
+	{
+		this.ssr = ssr;
+	}
 	
 	private <T extends InvokeExpr> List<Stmt> constraintCheckPatchProbe(Body jbody, Value lhs, T InvokeExpr)
 	{
@@ -258,13 +269,19 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		
 		Iterator<Unit> it = pc.snapshotIterator();
 		
+		//System.out.println(this.ssr.toStringMethodToChainMap());
+		
+		int counter = 0;
 		while(it.hasNext())
 		{
 			Unit unit = it.next();
 			Stmt stmt = (Stmt) unit;			
 			
 			//System.out.println(stmt);
-						
+				
+			if(!this.ssr.isSafe(unit, sMethod, counter++))
+				continue;
+		
 			
 			if(stmt instanceof AssignStmt)
 			{
@@ -303,10 +320,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 							DynamicIfStmtInfo.init(ifStmt, ret, methodSignature, unit, body);
 						}
 					}
-				}
-				
-				
-				
+				}											
 				
 				
 				//For string API all the calls would be virtual invoke expression

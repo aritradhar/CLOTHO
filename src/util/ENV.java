@@ -15,6 +15,8 @@
 
 package util;
 
+import soot.jimple.infoflow.taint.SourceSinkResolver;
+
 
 public class ENV 
 {
