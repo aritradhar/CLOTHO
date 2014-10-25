@@ -17,6 +17,7 @@ package constraintAnalysis;
 
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,10 @@ public class Driver
 {
 	public static void main(String[] args) throws IOException 
 	{
+		FileWriter fw = new FileWriter("log.txt",true);
+		fw.append("Args : \n");
+		fw.append(args[0] + "  "+args[1] + "  " + args[2] + "\n");
+		
 		JarUtils.populateFilesList(new File(args[0]));
 		List<String> Files = JarUtils.filesListInDir;
 		
@@ -57,9 +62,11 @@ public class Driver
 		Options.v().set_prepend_classpath(true);
 		 
 		
-		String[] className = {"StringTest"};
-		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
+		//String[] className = {"StringTest"};
+		String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
+		
+		long start = System.currentTimeMillis();
 		
         Pack jtp = PackManager.v().getPack("jtp");
         
@@ -77,6 +84,9 @@ public class Driver
         
         soot.Main.main(className);	           
 
+        long constraint_check_end = System.currentTimeMillis();
+        
+        fw.append("Constraint analysis time : " + (constraint_check_end - start) + " ms\n");
         /*
         //DEBUG
         //constraint map check
@@ -108,9 +118,16 @@ public class Driver
          * Taint analysis
          */
         
+        long taint_start = System.currentTimeMillis();
         SourceSinkResolver ssr = new SourceSinkResolver(new String[]{args[1], args[2]});
         
         G.reset();
+        long taint_end = System.currentTimeMillis();
+        
+        fw.append("taint analysis time :" + (taint_end - taint_start) + " ms\n");
+        
+        
+        long instrument_start = System.currentTimeMillis();
         
         jtp = PackManager.v().getPack("jtp");
         
@@ -139,5 +156,9 @@ public class Driver
         
         soot.Main.main(className);	
         
+        long instrument_end = System.currentTimeMillis();
+        
+        fw.append("Instrumentation time + class flashing in FileSystem : " + (instrument_end - instrument_start) + " ms\n");
+        fw.close();
 	}
 }

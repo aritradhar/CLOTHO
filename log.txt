@@ -1,0 +1,14 @@
+Args : 
+bin\net  jperf.jar  <net.nlanr.jperf.JPerf: void main(java.lang.String[])>Taint analysis time : 11856 ms
+taint analysis time :810 ms
+Instrumentation time + class flashing in FileSystem : 9143 ms
+Args : 
+bin\net  jperf.jar  <net.nlanr.jperf.JPerf: void main(java.lang.String[])>
+Constraint analysis time : 12105 ms
+taint analysis time :677 ms
+Instrumentation time + class flashing in FileSystem : 10305 ms
+Args : 
+bin\net  jperf.jar  <net.nlanr.jperf.JPerf: void main(java.lang.String[])>
+Constraint analysis time : 11967 ms
+taint analysis time :790 ms
+Instrumentation time + class flashing in FileSystem : 10295 ms
