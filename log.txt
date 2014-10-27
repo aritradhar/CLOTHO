@@ -1,14 +1,162 @@
 Args : 
 bin\net  jperf.jar  <net.nlanr.jperf.JPerf: void main(java.lang.String[])>Taint analysis time : 11856 ms
 taint analysis time :810 ms
-Instrumentation time + class flashing in FileSystem : 9143 ms
+Instrumentation time + class flashing in FileSystem : 9143 msArgs : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 6347 ms
+taint analysis time :394 ms
+Instrumentation time + class flashing in FileSystem : 4600 ms
+Args : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 13860 ms
+taint analysis time :305 ms
+Instrumentation time + class flashing in FileSystem : 11516 ms
+Args : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 16232 ms
+taint analysis time :573 ms
+Instrumentation time + class flashing in FileSystem : 12282 ms
+Args : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 15800 ms
+taint analysis time :315 ms
+Instrumentation time + class flashing in FileSystem : 14109 ms
+Args : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 16100 ms
+taint analysis time :449 ms
+Instrumentation time + class flashing in FileSystem : 12899 ms
+Args : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 16971 ms
+taint analysis time :415 ms
+Instrumentation time + class flashing in FileSystem : 12574 ms
+Args : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 16712 ms
+taint analysis time :300 ms
+Instrumentation time + class flashing in FileSystem : 13557 ms
+Args : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 16980 ms
+taint analysis time :439 ms
+Instrumentation time + class flashing in FileSystem : 12747 ms
+Args : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 18270 ms
+taint analysis time :260 ms
+Instrumentation time + class flashing in FileSystem : 12133 ms
+Args : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 16577 ms
+taint analysis time :285 ms
+Instrumentation time + class flashing in FileSystem : 14253 ms
+Args : 
+bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
+Constraint analysis time : 28829 ms
+taint analysis time :274 ms
+Instrumentation time + class flashing in FileSystem : 26189 ms
+Args : 
+bin\org  Azureus2.jar  <org.gudy.azureus2.ui.common.Main: void main(java.lang.String[])>
+Constraint analysis time : 60562 ms
+Instrumentation time + class flashing in FileSystem : 79072 ms
+Args : 
+bin\org  Azureus2.jar  <org.gudy.azureus2.ui.common.Main: void main(java.lang.String[])>
+Constraint analysis time : 76088 ms
+Instrumentation time + class flashing in FileSystem : 78557 ms
+Args : 
+bin\org  Azureus2.jar  <org.gudy.azureus2.ui.common.Main: void main(java.lang.String[])>
+Constraint analysis time : 76003 ms
+Instrumentation time + class flashing in FileSystem : 85523 ms
+Args : 
+bin\org  Azureus2.jar  <org.gudy.azureus2.ui.common.Main: void main(java.lang.String[])>
+Constraint analysis time : 61896 ms
+Instrumentation time + class flashing in FileSystem : 63429 ms
+Args : 
+bin\org  Azureus2.jar  <org.gudy.azureus2.ui.common.Main: void main(java.lang.String[])>
+Constraint analysis time : 46479 ms
+Instrumentation time + class flashing in FileSystem : 78406 ms
 Args : 
 bin\net  jperf.jar  <net.nlanr.jperf.JPerf: void main(java.lang.String[])>
-Constraint analysis time : 12105 ms
-taint analysis time :677 ms
-Instrumentation time + class flashing in FileSystem : 10305 ms
+Constraint analysis time : 11376 ms
+taint analysis time :925 ms
+Instrumentation time + class flashing in FileSystem : 7481 ms
+Total repair count : 0
 Args : 
 bin\net  jperf.jar  <net.nlanr.jperf.JPerf: void main(java.lang.String[])>
-Constraint analysis time : 11967 ms
-taint analysis time :790 ms
-Instrumentation time + class flashing in FileSystem : 10295 ms
+Constraint analysis time : 11206 ms
+taint analysis time :882 ms
+Instrumentation time + class flashing in FileSystem : 6819 ms
+Total repair count : 0
+Args : 
+bin\com  WhatsApp_2_12_1.jar  <com.whatsapp.client.test.com.whatsapp.client.test: void startApp()>
+Constraint analysis time : 1839 ms
+taint analysis time :398 ms
+Instrumentation time + class flashing in FileSystem : 878 ms
+Total repair count : 0
+Args : 
+bin\sim  8085sim.jar  <sim.MainFrame: void main(java.lang.String[])>
+Constraint analysis time : 13401 ms
+taint analysis time :813 ms
+Instrumentation time + class flashing in FileSystem : 15525 ms
+Total repair count : 109
+Args : 
+bin\sim  8085sim.jar  <sim.MainFrame: void main(java.lang.String[])>
+Constraint analysis time : 15626 ms
+taint analysis time :953 ms
+Instrumentation time + class flashing in FileSystem : 17159 ms
+Total repair count : 109
+Args : 
+bin\  bin.jar  <StringTest: void main(java.lang.String[])>
+Constraint analysis time : 2789 ms
+taint analysis time :1787 ms
+Instrumentation time + class flashing in FileSystem : 1855 ms
+Total repair count : 2
+Args : 
+bin\  bin.jar  <StringTest: void main(java.lang.String[])>
+Constraint analysis time : 2859 ms
+taint analysis time :1657 ms
+Instrumentation time + class flashing in FileSystem : 1546 ms
+Total repair count : 3
+Args : 
+bin\  bin.jar  <StringTest: void main(java.lang.String[])>
+Constraint analysis time : 3038 ms
+taint analysis time :1791 ms
+Instrumentation time + class flashing in FileSystem : 1804 ms
+Total repair count : 3
+Args : 
+bin\  bin.jar  <StringTest: void main(java.lang.String[])>
+Constraint analysis time : 2820 ms
+taint analysis time :1667 ms
+Instrumentation time + class flashing in FileSystem : 1543 ms
+Total repair count : 2
+Args : 
+bin\  bin.jar  <StringTest: void main(java.lang.String[])>
+Constraint analysis time : 2890 ms
+taint analysis time :1679 ms
+Instrumentation time + class flashing in FileSystem : 1828 ms
+Total repair count : 3
+Args : 
+bin\  bin.jar  <StringTest: void main(java.lang.String[])>
+Constraint analysis time : 3158 ms
+taint analysis time :1772 ms
+Instrumentation time + class flashing in FileSystem : 1929 ms
+Total repair count : 3
+Args : 
+bin\  bin.jar  <StringTest: void main(java.lang.String[])>
+Constraint analysis time : 3233 ms
+taint analysis time :1635 ms
+Instrumentation time + class flashing in FileSystem : 1792 ms
+Total repair count : 2
+Args : 
+bin\  bin.jar  <StringTest: void main(java.lang.String[])>
+Constraint analysis time : 2610 ms
+taint analysis time :1528 ms
+Instrumentation time + class flashing in FileSystem : 1871 ms
+Total repair count : 3
+Args : 
+bin\  bin.jar  <StringTest: void main(java.lang.String[])>
+Constraint analysis time : 3214 ms
+taint analysis time :1619 ms
+Instrumentation time + class flashing in FileSystem : 1852 ms
+Total repair count : 2

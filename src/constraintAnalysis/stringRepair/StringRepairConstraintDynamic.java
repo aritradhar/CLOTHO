@@ -22,10 +22,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JMenu;
+
 import constraintAnalysis.ConstraintStorageDataType;
 import constraintAnalysis.ConstraintStorageMap;
 import constraintAnalysis.DynamicIfStmtInfo;
 import constraintAnalysis.GenerateString;
+import polyglot.ast.Assign;
 import profile.InstrumManager;
 import profile.UtilInstrum;
 import soot.Body;
@@ -40,8 +43,12 @@ import soot.SootMethodRef;
 import soot.Type;
 import soot.Unit;
 import soot.Value;
+import soot.javaToJimple.LocalGenerator;
 import soot.jimple.AssignStmt;
+import soot.jimple.DivExpr;
+import soot.jimple.Expr;
 import soot.jimple.IfStmt;
+import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Jimple;
@@ -51,6 +58,7 @@ import soot.jimple.StringConstant;
 import soot.jimple.VirtualInvokeExpr;
 import soot.jimple.infoflow.taint.SourceSinkResolver;
 import stringrepair.*;
+import util.ENV;
 
 public class StringRepairConstraintDynamic extends BodyTransformer
 {
@@ -63,6 +71,60 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 	public StringRepairConstraintDynamic(SourceSinkResolver ssr)
 	{
 		this.ssr = ssr;
+	}
+	
+	private <T extends Expr> List<Stmt> divPatchProbe(PatchingChain<Unit> ch ,
+			Body jbody, Stmt try_start_stmt, Stmt try_end_stmt, Value lhs, T Expr)
+	{
+		List<Stmt> probe = new ArrayList<Stmt>();
+		
+		Value dom = null, nom = null;
+		DivExpr divExpr = null;
+		
+		if(Expr instanceof DivExpr)
+		{
+			divExpr = (DivExpr) Expr;
+			nom = divExpr.getOp1();
+			dom = divExpr.getOp2();
+		}
+		
+		SootClass thrwCls = Scene.v().getSootClass("java.lang.ArithmeticException");
+		
+		Stmt sGotoLast = Jimple.v().newGotoStmt(try_end_stmt);
+   	 	probe.add(sGotoLast);
+   	 
+   	 	//prepare for catch block
+   	 	Double d = Math.ceil(Math.random()*100000000);
+   	 	Local lException1 = UtilInstrum.getCreateLocal(jbody, "<ex" + d.toString().replace(".", "") + ">", RefType.v(thrwCls));
+   	 	Stmt sCatch = Jimple.v().newIdentityStmt(lException1, Jimple.v().newCaughtExceptionRef());
+   	 	probe.add(sCatch);
+   	 	
+   	 	//catch block
+   	 	
+   	 	Local newDom = new LocalGenerator(jbody).generateLocal(dom.getType());
+	 	
+   	 	AssignStmt oneAssign = Jimple.v().newAssignStmt(newDom, IntConstant.v(1));
+   	 	probe.add(oneAssign);
+   	 	
+   	 	Local newNom = new LocalGenerator(jbody).generateLocal(nom.getType());
+	 	AssignStmt t1 = Jimple.v().newAssignStmt(newNom, nom);
+	 	probe.add(t1);
+   	 	
+   	 	DivExpr div = Jimple.v().newDivExpr(newNom, newDom);
+   	 	
+   	 	if(lhs != null)
+   	 	{
+   	 		AssignStmt lhsAssign = Jimple.v().newAssignStmt(lhs, div);
+   	 		probe.add(lhsAssign);
+   	 	}
+   	 	
+		InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
+		//instr
+		jbody.getTraps().add(Jimple.v().newTrap(thrwCls, try_start_stmt, sGotoLast, sCatch));
+    	jbody.validate(); 
+    	 
+    	 
+		return probe;
 	}
 	
 	private <T extends InvokeExpr> List<Stmt> constraintCheckPatchProbe(Body jbody, Value lhs, T InvokeExpr)
@@ -92,6 +154,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			if(CSDT == null)
 			{
 				probe.addAll(StringRepair.subStringPatchProbe(jbody, lhs, virtualInvokeExpr));
+				ENV.REPAIR_COUNT++;
 				return probe;
 			}
 			
@@ -112,6 +175,8 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 					
 			probe.add(patchAssign);
 			probe.add(encounterExceptionStmt);
+			
+			ENV.REPAIR_COUNT++;
 		
 		}
 		
@@ -129,6 +194,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			if(CSDT == null)
 			{				
 				probe.addAll(StringRepair.subSequencePatchProbe(jbody, lhs, virtualInvokeExpr));
+				ENV.REPAIR_COUNT++;
 				return probe;
 			}
 			
@@ -137,6 +203,8 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			AssignStmt patchAssign = Jimple.v().newAssignStmt(lhs, StringConstant.v(generatedString));
 			
 			probe.add(patchAssign);
+			
+			ENV.REPAIR_COUNT++;
 		}
 		
 		return probe;
@@ -400,6 +468,19 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		{
 			Unit unit = it.next();
 			Stmt stmt = (Stmt) unit;
+			
+			if(stmt instanceof AssignStmt)
+			{
+				AssignStmt ast = (AssignStmt) stmt;
+				Value lhs = ast.getLeftOp();
+				Value rhs = ast.getRightOp();
+				
+				if(rhs instanceof DivExpr)
+				{
+					DivExpr divExpr = (DivExpr) rhs;
+					divPatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), lhs, divExpr);
+				}
+			}
 			
 			if(stmt instanceof IfStmt)
 			{

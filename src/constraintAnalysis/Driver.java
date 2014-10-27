@@ -53,7 +53,7 @@ public class Driver
 				continue;
 			
 			String temp = files.replace("C:\\Users\\Aritra\\workspace\\git\\Repair_Spec\\bin\\", "");
-			
+			//String temp = files.replace("C:\\Users\\Aritra\\workspace\\git\\Repair_Spec\\test\\", "");
 			classNameList.add(temp.replace("\\", ".").replace(".class", ""));
 			//System.out.println(className[i++]);
 		}
@@ -61,9 +61,8 @@ public class Driver
 		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
 		Options.v().set_prepend_classpath(true);
 		 
-		
-		//String[] className = {"StringTest"};
-		String[] className = classNameList.toArray(new String[classNameList.size()]);	
+		String[] className = {"StringTest"};
+		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		
 		long start = System.currentTimeMillis();
@@ -71,6 +70,7 @@ public class Driver
         Pack jtp = PackManager.v().getPack("jtp");
         
         jtp.add(new Transform("jtp.constraintcheck", new ConstraintCheck()));
+        
         
         String st = "j";
         
@@ -80,7 +80,7 @@ public class Driver
         if(st.equalsIgnoreCase("c"))
         	Options.v().set_output_format(Options.output_format_class);     
         
-        Options.v().setPhaseOption("jb", "use-original-names:true");
+        //Options.v().setPhaseOption("jb", "use-original-names:true");
         
         soot.Main.main(className);	           
 
@@ -119,13 +119,16 @@ public class Driver
          */
         
         long taint_start = System.currentTimeMillis();
-        SourceSinkResolver ssr = new SourceSinkResolver(new String[]{args[1], args[2]});
         
-        G.reset();
+        SourceSinkResolver ssr = new SourceSinkResolver(new String[]{args[1], args[2]}, false);
+        ssr.setAccessPathLength(ENV.INFOFLOW_ACCESS_PATH_LENGTH);
+        ssr.runAnalysis();      
+        
         long taint_end = System.currentTimeMillis();
         
         fw.append("taint analysis time :" + (taint_end - taint_start) + " ms\n");
         
+        G.reset();
         
         long instrument_start = System.currentTimeMillis();
         
@@ -143,7 +146,7 @@ public class Driver
         
         Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);	
 		Options.v().set_prepend_classpath(true);
-		
+		/*
         String st1 = "c";
         
         if(st1.equalsIgnoreCase("j"))
@@ -151,14 +154,17 @@ public class Driver
         
         if(st1.equalsIgnoreCase("c"))
         	Options.v().set_output_format(Options.output_format_class);     
-        
+        */
+		
+		
         Scene.v().addBasicClass("java.util.Iterator",SootClass.SIGNATURES);
-        
+   
         soot.Main.main(className);	
         
         long instrument_end = System.currentTimeMillis();
         
         fw.append("Instrumentation time + class flashing in FileSystem : " + (instrument_end - instrument_start) + " ms\n");
+        fw.append("Total repair count : " + ENV.REPAIR_COUNT + "\n");
         fw.close();
 	}
 }

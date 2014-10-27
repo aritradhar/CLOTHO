@@ -51,6 +51,14 @@ public class StringTest
 
 		String s = new BufferedReader(new InputStreamReader(System.in)).readLine();
 		String st1 = "aritra:dhar";
+		
+		int a = 10;
+		int b = 10;
+		int c = 0;
+		
+		int d = a/c;
+		
+		System.out.println(d);
 		/*
 		System.out.println(st.codePointCount(-1, 20));
 		
