@@ -39,6 +39,8 @@ public class IndexRepair
 	public static int getI(int i, int j, int len)
 	{
 		indexRepair(i, j, len);
+		System.out.println("@Patch routine getI in : " + i + ", " + "j" + ", " + len);
+		System.out.println("@Patch routine getI out : " + ind1);
 		return ind1;
 	}
 	
@@ -68,6 +70,8 @@ public class IndexRepair
 	public static int getJ(int i, int j, int len)
 	{
 		indexRepair(i, j, len);
+		System.out.println("@Patch routine getJ in : " + i + ", " + "j" + ", " + len);
+		System.out.println("@Patch routine getj out : " + ind2);
 		return ind2;
 	}
 	
@@ -317,13 +321,14 @@ public class IndexRepair
 		}
 	}
 	
-
+	/*
+	 * DEBUG
 	public static void main(String[] args) 
 	{
 		indexRepair(1, -2,11);
 		
 		System.out.println(ind1 + " " + ind2);
-	}
+	}*/
 
 	
 }

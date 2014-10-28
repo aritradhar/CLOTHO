@@ -61,7 +61,8 @@ public class Driver
 		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
 		Options.v().set_prepend_classpath(true);
 		 
-		String[] className = {"StringTest"};
+		//String[] className = {"StringTest"};
+		String[] className = {"ApacheBug"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		
@@ -117,7 +118,7 @@ public class Driver
         /*
          * Taint analysis
          */
-        
+        /*
         long taint_start = System.currentTimeMillis();
         
         SourceSinkResolver ssr = new SourceSinkResolver(new String[]{args[1], args[2]}, false);
@@ -129,12 +130,14 @@ public class Driver
         fw.append("taint analysis time :" + (taint_end - taint_start) + " ms\n");
         
         G.reset();
+        */
+        
         
         long instrument_start = System.currentTimeMillis();
         
         jtp = PackManager.v().getPack("jtp");
         
-        jtp.add(new Transform("jtp.instrument", new StringRepairConstraintDynamic(ssr)));
+        jtp.add(new Transform("jtp.instrument", new StringRepairConstraintDynamic()));
         
         
         Options.v().setPhaseOption("jb", "use-original-names:true");

@@ -1,40 +1,10 @@
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-
-//*************************************************************************************
-//*********************************************************************************** *
-//author Aritra Dhar																* *
-//MT12004																			* *
-//M.TECH CSE																		* * 
-//INFORMATION SECURITY																* *
-//IIIT-Delhi																		* *	 
-//---------------------------------------------------------------------------------	* *																				* *
-/////////////////////////////////////////////////									* *
-//The program will do the following::::         //									* *
-/////////////////////////////////////////////////									* *
-//version 1.0																		* *
-//*********************************************************************************** * 
-//*************************************************************************************
 
 
 public class ApacheBug 
 {
 
 	/*  113 */   private static final char SYSTEM_SEPARATOR = File.separatorChar;
-	/*      */   
-	/*      */   private static final char OTHER_SEPARATOR;
-	
-	/*      */   static
-	/*      */   {
-	/*  120 */     if (isSystemWindows()) {
-	/*  121 */       OTHER_SEPARATOR = '/';
-	/*      */     } else {
-	/*  123 */       OTHER_SEPARATOR = '\\';
-	/*      */     }
-	/*      */   }
-
 
 	/*      */   static boolean isSystemWindows()
 	/*      */   {
@@ -110,13 +80,7 @@ public class ApacheBug
 	/*  556 */     int lastWindowsPos = filename.lastIndexOf('\\');
 	/*  557 */     return Math.max(lastUnixPos, lastWindowsPos);
 	/*      */   }
-
-
-	/*      */   
-	/*      */ 
-
-
-	/*      */ 
+	
 	/*      */   public static String getPathNoEndSeparator(String filename)
 	/*      */   {
 	/*  676 */     return doGetPath(filename, 0);
@@ -147,7 +111,8 @@ public class ApacheBug
 	public static void main(String[] args) 
 	{
 		 String path = "/foo.xml"; 
-		 ApacheBug.getPathNoEndSeparator(path);
+		 String s = ApacheBug.getPathNoEndSeparator(path);
+		 System.out.println(s);
 	}
 }
 

@@ -347,9 +347,11 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			
 			//System.out.println(stmt);
 				
+			//check for safe
+			/*
 			if(!this.ssr.isSafe(unit, sMethod, counter++))
 				continue;
-		
+			 */
 			
 			if(stmt instanceof AssignStmt)
 			{
