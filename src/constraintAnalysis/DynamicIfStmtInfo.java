@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import soot.Body;
+import soot.CharType;
 import soot.IntType;
 import soot.Local;
 import soot.Scene;
@@ -65,6 +66,12 @@ public class DynamicIfStmtInfo
 		ConditionExpr condExpr = (ConditionExpr) condition;
 		Value op1 = condExpr.getOp1();
 		Value op2 = condExpr.getOp2();
+		
+		//TODO
+		//here is one dirty quick fix. Should be fixed in more civilized manner
+		
+		if(op1.getType() instanceof CharType)
+			return;
 		
 		SootMethod calledMethod = (SootMethod)ret[1];
 		

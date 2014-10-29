@@ -27,6 +27,9 @@ public class ConstraintStorageMap
 
 	public static void updateMinLength(String methodSignature, Value stringObject, Value minLength)
 	{
+		if(Integer.parseInt(minLength.toString()) < 0)
+			return;
+		
 		if(!constraintStorageMap.containsKey(methodSignature))
 		{
 			ConstraintStorageDataType CSDT = new ConstraintStorageDataType();
@@ -77,6 +80,9 @@ public class ConstraintStorageMap
 	
 	public static void updateMaxLength(String methodSignature, Value stringObject, Value maxLength)
 	{
+		if(Integer.parseInt(maxLength.toString()) < 0)
+			return;
+		
 		if(!constraintStorageMap.containsKey(methodSignature))
 		{
 			ConstraintStorageDataType CSDT = new ConstraintStorageDataType();

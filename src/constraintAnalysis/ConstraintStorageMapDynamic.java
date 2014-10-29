@@ -27,6 +27,9 @@ public class ConstraintStorageMapDynamic
 
 	public static void updateMinLength(String methodSignature, String stringObject, int minLength)
 	{
+		if(minLength < 0)
+			return;
+		
 		if(!constraintStorageMapDynamic.containsKey(methodSignature))
 		{
 			ConstraintStorageDataTypeDynamic CSDT = new ConstraintStorageDataTypeDynamic();
@@ -77,6 +80,9 @@ public class ConstraintStorageMapDynamic
 	
 	public static void updateMaxLength(String methodSignature, String stringObject, int maxLength)
 	{
+		if(maxLength < 0)
+			return;
+		
 		if(!constraintStorageMapDynamic.containsKey(methodSignature))
 		{
 			ConstraintStorageDataTypeDynamic CSDT = new ConstraintStorageDataTypeDynamic();
