@@ -118,7 +118,7 @@ public class Driver
         /*
          * Taint analysis
          */
-        /*
+        
         long taint_start = System.currentTimeMillis();
         
         SourceSinkResolver ssr = new SourceSinkResolver(new String[]{args[1], args[2]}, false);
@@ -130,14 +130,14 @@ public class Driver
         fw.append("taint analysis time :" + (taint_end - taint_start) + " ms\n");
         
         G.reset();
-        */
+        
         
         
         long instrument_start = System.currentTimeMillis();
         
         jtp = PackManager.v().getPack("jtp");
         
-        jtp.add(new Transform("jtp.instrument", new StringRepairConstraintDynamic()));
+        jtp.add(new Transform("jtp.instrument", new StringRepairConstraintDynamic(ssr)));
         
         
         Options.v().setPhaseOption("jb", "use-original-names:true");

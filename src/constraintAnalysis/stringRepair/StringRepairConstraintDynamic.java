@@ -15,6 +15,7 @@
 
 package constraintAnalysis.stringRepair;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ import constraintAnalysis.ConstraintStorageDataType;
 import constraintAnalysis.ConstraintStorageMap;
 import constraintAnalysis.DynamicIfStmtInfo;
 import constraintAnalysis.GenerateString;
-import polyglot.ast.Assign;
+import constraintAnalysis.safeUnit.SafeUnitEvaluator;
 import profile.InstrumManager;
 import profile.UtilInstrum;
 import soot.Body;
@@ -333,13 +334,16 @@ public class StringRepairConstraintDynamic extends BodyTransformer
         String methodSignature = sMethod.getSignature();
 		
         
-		PatchingChain<Unit> pc= body.getUnits();
-		
+		PatchingChain<Unit> pc= body.getUnits();		
 		Iterator<Unit> it = pc.snapshotIterator();
+		
+		
+		SafeUnitEvaluator SUI = new SafeUnitEvaluator(ssr, pc, sMethod);
 		
 		//System.out.println(this.ssr.toStringMethodToChainMap());
 		
-		int counter = 0;
+		//int counter = 0;
+		
 		while(it.hasNext())
 		{
 			Unit unit = it.next();
@@ -348,10 +352,12 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			//System.out.println(stmt);
 				
 			//check for safe
+		    if(!SUI.isSafe(unit))
+		    	continue;
 			/*
 			if(!this.ssr.isSafe(unit, sMethod, counter++))
-				continue;
-			 */
+					continue;
+			*/
 			
 			if(stmt instanceof AssignStmt)
 			{
