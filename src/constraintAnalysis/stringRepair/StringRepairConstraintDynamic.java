@@ -53,6 +53,7 @@ import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Jimple;
+import soot.jimple.SpecialInvokeExpr;
 import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.StringConstant;
@@ -228,9 +229,11 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		 
 	
 		 SootClass thrwCls = null; 
-		 //VirtualInvokeExpr virtualInvokeExpr = (InvokeExpr instanceof VirtualInvokeExpr) ? (VirtualInvokeExpr)InvokeExpr : null;
+		 VirtualInvokeExpr virtualInvokeExpr = (InvokeExpr instanceof VirtualInvokeExpr) ? (VirtualInvokeExpr)InvokeExpr : null;
 
-		 //StaticInvokeExpr staticInvokeExpr = (InvokeExpr instanceof StaticInvokeExpr) ? (StaticInvokeExpr)InvokeExpr : null;
+		 StaticInvokeExpr staticInvokeExpr = (InvokeExpr instanceof StaticInvokeExpr) ? (StaticInvokeExpr)InvokeExpr : null;
+		 
+		 SpecialInvokeExpr specialInvokeExpr = (InvokeExpr instanceof SpecialInvokeExpr) ? (SpecialInvokeExpr)InvokeExpr : null;
 		
 		 int containsAPIcall = 1;
 		 //Debug
@@ -286,6 +289,13 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
 			 containsAPIcall = 5;
 		 }
+		 
+		 else if(sMethod.getSignature().equals("<java.lang.String: void <init>(char[],int,int)>"))
+		 {
+			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
+			 containsAPIcall = 6;
+		 }
+		 
 		 else
 		 {
 			 return null;
@@ -307,8 +317,37 @@ public class StringRepairConstraintDynamic extends BodyTransformer
     	 {
     		 probe.addAll(constraintCheckPatchProbe(jbody, lhs, InvokeExpr));
     	 }
+		 
+		 else if(sMethod.getSubSignature().equals("int codePointAt(int)"))
+    	 {
+    		 probe.addAll(stringrepair.StringRepair.codePointAtPatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
+		 
+		 else if(sMethod.getSubSignature().equals("int codePointBefore(int)"))
+    	 {
+    		 probe.addAll(stringrepair.StringRepair.codePointBeforePatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
     	 
+		 else if(sMethod.getSubSignature().equals("int codePointCount(int,int)"))
+    	 {
+    		 probe.addAll(stringrepair.StringRepair.codePointCountPatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
     	 
+		 else if(sMethod.getSubSignature().equals("int offsetByCodePoints(int,int)"))
+    	 {
+    		 probe.addAll(stringrepair.StringRepair.codePointCountPatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
+    	 
+		 else if(sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)"))
+    	 {
+    		 probe.addAll(stringrepair.StringRepair.valueOfPatchProbe(jbody, lhs, staticInvokeExpr));
+    	 }
+    	 
+		 else if(sMethod.getSignature().equals("<java.lang.String: void <init>(char[],int,int)>"))
+		 {
+			 Value base_specialInvokeExpr = specialInvokeExpr.getBase();
+			 probe.addAll(stringrepair.StringRepair.stringConstructorPatchProbe(jbody, lhs, base_specialInvokeExpr, specialInvokeExpr));
+		 }
     	 
     	 InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
 		 //instr
@@ -337,9 +376,11 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		PatchingChain<Unit> pc= body.getUnits();		
 		Iterator<Unit> it = pc.snapshotIterator();
 		
-		
-		SafeUnitEvaluator SUI = new SafeUnitEvaluator(ssr, pc, sMethod);
-		
+		SafeUnitEvaluator SUI = null;
+		if(ENV.TAINT_ANALYSIS_ENABLE)
+		{
+			SUI = new SafeUnitEvaluator(ssr, pc, sMethod);
+		}
 		//System.out.println(this.ssr.toStringMethodToChainMap());
 		
 		//int counter = 0;
@@ -352,8 +393,11 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			//System.out.println(stmt);
 				
 			//check for safe
-		    if(!SUI.isSafe(unit))
-		    	continue;
+		    if(ENV.TAINT_ANALYSIS_ENABLE)
+		    {
+		    	if(!SUI.isSafe(unit))
+		    		continue;
+		    }
 			/*
 			if(!this.ssr.isSafe(unit, sMethod, counter++))
 					continue;
@@ -423,6 +467,12 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 					if(b == null)
 						continue;
 				}
+				
+				if(rhs instanceof SpecialInvokeExpr)
+				{
+					SpecialInvokeExpr specialInvokeExppr = (SpecialInvokeExpr) rhs;
+					//System.out.println("### # " + specialInvokeExppr);
+				}
 			}
 			
 			if(stmt instanceof InvokeStmt)
@@ -451,6 +501,21 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 					
 					//if(b == null)
 						//continue;							
+				}
+				
+				/*
+				 * For string constructor
+				 * public String(char[] value, int offset,int count)
+				 * requires a special invoke call analysis
+				 */
+				
+				if(invokeExpr instanceof SpecialInvokeExpr)
+				{
+					SpecialInvokeExpr specialInvokeExppr = (SpecialInvokeExpr) invokeExpr;
+					Body b = makePatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), null, specialInvokeExppr);
+					if(b == null)
+						continue;	
+					//System.out.println("###  " + specialInvokeExppr);
 				}
 			}
 		}

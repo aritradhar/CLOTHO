@@ -1,239 +1,249 @@
 public class StringTest extends java.lang.Object
 {
 
+    public void <init>()
+    {
+        StringTest r0;
+
+        r0 := @this: StringTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
     void foo()
     {
-        StringTest this, temp$0;
-        java.lang.IllegalArgumentException ex;
+        StringTest r0, $r2;
+        java.lang.IllegalArgumentException r1, $r3;
 
-        this := @this: StringTest;
-
-     label0:
-        nop;
-        temp$0 = new StringTest;
-        specialinvoke temp$0.<StringTest: void <init>()>();
-        virtualinvoke temp$0.<StringTest: void bar()>();
-        goto label2;
+        r0 := @this: StringTest;
 
      label1:
-        nop;
-        ex := @caughtexception;
-        virtualinvoke ex.<java.lang.IllegalArgumentException: void printStackTrace()>();
-        nop;
-        goto label2;
+        $r2 = new StringTest;
+
+        specialinvoke $r2.<StringTest: void <init>()>();
+
+        virtualinvoke $r2.<StringTest: void bar()>();
 
      label2:
-        nop;
+        goto label4;
+
+     label3:
+        $r3 := @caughtexception;
+
+        r1 = $r3;
+
+        virtualinvoke r1.<java.lang.IllegalArgumentException: void printStackTrace()>();
+
+     label4:
         return;
 
-        catch java.lang.IllegalArgumentException from label0 to label1 with label1;
+        catch java.lang.IllegalArgumentException from label1 to label2 with label3;
     }
 
     void bar()
     {
-        StringTest this, temp$0;
+        StringTest r0, $r1;
 
-        this := @this: StringTest;
-        temp$0 = new StringTest;
-        specialinvoke temp$0.<StringTest: void <init>()>();
-        virtualinvoke temp$0.<StringTest: void bar1()>();
+        r0 := @this: StringTest;
+
+        $r1 = new StringTest;
+
+        specialinvoke $r1.<StringTest: void <init>()>();
+
+        virtualinvoke $r1.<StringTest: void bar1()>();
+
         return;
     }
 
     void bar1()
     {
-        StringTest this;
+        StringTest r0;
 
-        this := @this: StringTest;
+        r0 := @this: StringTest;
+
         return;
     }
 
     public static void main(java.lang.String[]) throws java.io.IOException
     {
-        java.lang.String[] args;
-        char[] ca, temp$0;
-        java.lang.String s1, temp$1, s, temp$6, st1, st, temp$9, st5, temp$10, st3, temp$32, temp$35, temp$38;
-        java.io.PrintStream temp$2, temp$8, temp$11, temp$15, temp$16, temp$18, temp$20, temp$22, temp$23, temp$25, temp$27, temp$29, temp$31, temp$34, temp$36, temp$37, temp$39;
-        java.io.BufferedReader temp$3;
-        java.io.InputStreamReader temp$4;
-        java.io.InputStream temp$5;
-        int a, b, c, d, temp$7, k, temp$12, temp$13, temp$14, temp$17, temp$19, temp$21;
-        boolean temp$24, temp$26, temp$28, temp$30, temp$33;
+        java.lang.String[] r0;
+        char[] r1, $r8;
+        java.lang.String r2, r3, r4, r5, r6, r7, $r9, $r18, r31, r32;
+        int i3, $i6, $i7, $i8, $i9;
+        java.io.PrintStream $r10, $r14, $r15, $r16, $r17, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30;
+        java.io.InputStreamReader $r11;
+        java.io.BufferedReader $r12;
+        java.io.InputStream $r13;
+        boolean $z0, $z1, $z2, $z3, $z4;
 
-        args := @parameter0: java.lang.String[];
-        temp$0 = newarray (char)[4];
-        temp$0[0] = 97;
-        temp$0[1] = 98;
-        temp$0[2] = 99;
-        temp$0[3] = 100;
-        ca = temp$0;
-        temp$1 = new java.lang.String;
-        specialinvoke temp$1.<java.lang.String: void <init>(char[],int,int)>(ca, 1, 1);
-        s1 = temp$1;
-        temp$2 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$2.<java.io.PrintStream: void println(java.lang.String)>(s1);
-        temp$3 = new java.io.BufferedReader;
-        temp$4 = new java.io.InputStreamReader;
-        temp$5 = <java.lang.System: java.io.InputStream in>;
-        specialinvoke temp$4.<java.io.InputStreamReader: void <init>(java.io.InputStream)>(temp$5);
-        specialinvoke temp$3.<java.io.BufferedReader: void <init>(java.io.Reader)>(temp$4);
-        temp$6 = virtualinvoke temp$3.<java.io.BufferedReader: java.lang.String readLine()>();
-        s = temp$6;
-        st1 = "aritra:dhar";
-        a = 10;
-        b = 10;
-        c = 0;
-        temp$7 = a / c;
-        d = temp$7;
-        temp$8 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$8.<java.io.PrintStream: void println(int)>(d);
-        temp$9 = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 61);
-        st = temp$9;
-        temp$10 = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
-        st5 = temp$10;
-        temp$11 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$11.<java.io.PrintStream: void println(java.lang.String)>(st5);
-        k = 6;
-        temp$12 = virtualinvoke st.<java.lang.String: int length()>();
-        temp$13 = k;
-        temp$14 = temp$13 + 1;
-        if temp$12 > temp$14 goto label0;
+        r0 := @parameter0: java.lang.String[];
 
-        goto label1;
+        $r8 = newarray (char)[4];
 
-     label0:
-        nop;
-        temp$15 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$15.<java.io.PrintStream: void println(java.lang.String)>("Hit1");
+        $r8[0] = 97;
 
-     label1:
-        nop;
-        temp$16 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$16.<java.io.PrintStream: void println(java.lang.String)>(st);
-        temp$17 = virtualinvoke st.<java.lang.String: int length()>();
-        if temp$17 == 1 goto label2;
+        $r8[1] = 98;
 
-        goto label3;
+        $r8[2] = 99;
 
-     label2:
-        nop;
-        temp$18 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$18.<java.io.PrintStream: void println(java.lang.String)>("Hit2");
+        $r8[3] = 100;
 
-     label3:
-        nop;
-        temp$19 = virtualinvoke st.<java.lang.String: int length()>();
-        if temp$19 > 2 goto label4;
+        r1 = $r8;
 
-        goto label5;
+        $r9 = new java.lang.String;
 
-     label4:
-        nop;
-        temp$20 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$20.<java.io.PrintStream: void println(java.lang.String)>("Hit3");
+        specialinvoke $r9.<java.lang.String: void <init>(char[],int,int)>(r1, 1, 1);
 
-     label5:
-        nop;
-        temp$21 = virtualinvoke st.<java.lang.String: int length()>();
-        if temp$21 < 39 goto label6;
+        r2 = $r9;
 
-        goto label7;
+        $r10 = <java.lang.System: java.io.PrintStream out>;
 
-     label6:
-        nop;
-        temp$22 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$22.<java.io.PrintStream: void println(java.lang.String)>("Hit4");
-        goto label8;
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(r2);
 
-     label7:
-        nop;
-        temp$23 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$23.<java.io.PrintStream: void println(java.lang.String)>("Hit5");
+        $r12 = new java.io.BufferedReader;
 
-     label8:
-        nop;
-        temp$24 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>(">");
-        if temp$24 == 0 goto label10;
+        $r11 = new java.io.InputStreamReader;
 
-        goto label9;
+        $r13 = <java.lang.System: java.io.InputStream in>;
 
-     label9:
-        nop;
-        temp$25 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$25.<java.io.PrintStream: void println(java.lang.String)>("Hit6");
+        specialinvoke $r11.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r13);
+
+        specialinvoke $r12.<java.io.BufferedReader: void <init>(java.io.Reader)>($r11);
+
+        r3 = virtualinvoke $r12.<java.io.BufferedReader: java.lang.String readLine()>();
+
+        r4 = "aritra:dhar";
+
+        i3 = 10 / 0;
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(int)>(i3);
+
+        r5 = virtualinvoke r3.<java.lang.String: java.lang.String substring(int,int)>(1, 61);
+
+        r6 = virtualinvoke r3.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+
+        $r15 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(r6);
+
+        $i6 = virtualinvoke r5.<java.lang.String: int length()>();
+
+        if $i6 <= 7 goto label01;
+
+        $r28 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>("Hit1");
+
+     label01:
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(r5);
+
+        $i7 = virtualinvoke r5.<java.lang.String: int length()>();
+
+        if $i7 != 1 goto label02;
+
+        $r29 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r29.<java.io.PrintStream: void println(java.lang.String)>("Hit2");
+
+     label02:
+        $i9 = virtualinvoke r5.<java.lang.String: int length()>();
+
+        if $i9 <= 2 goto label03;
+
+        $r30 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>("Hit3");
+
+     label03:
+        $i8 = virtualinvoke r5.<java.lang.String: int length()>();
+
+        if $i8 >= 39 goto label04;
+
+        $r25 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>("Hit4");
+
+        goto label05;
+
+     label04:
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>("Hit5");
+
+     label05:
+        $z0 = virtualinvoke r5.<java.lang.String: boolean startsWith(java.lang.String)>(">");
+
+        if $z0 == 0 goto label06;
+
+        $r24 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>("Hit6");
+
+     label06:
+        $z2 = virtualinvoke r5.<java.lang.String: boolean startsWith(java.lang.String)>(">:");
+
+        if $z2 == 0 goto label07;
+
+        $r27 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>("Hit7");
+
+     label07:
+        $z3 = virtualinvoke r5.<java.lang.String: boolean contains(java.lang.CharSequence)>("aav");
+
+        if $z3 == 0 goto label08;
+
+        $r26 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>("Hit8");
+
+     label08:
+        $z1 = virtualinvoke r4.<java.lang.String: boolean contains(java.lang.CharSequence)>("aavst1");
+
+        if $z1 == 0 goto label09;
+
+        $r22 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>("Hit9");
+
+     label09:
+        $r18 = new java.lang.String;
+
+        specialinvoke $r18.<java.lang.String: void <init>(java.lang.String)>("AAWWW");
+
+        r7 = $r18;
+
+        $z4 = virtualinvoke r5.<java.lang.String: boolean equals(java.lang.Object)>(r7);
+
+        if $z4 == 0 goto label10;
+
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>("Hit10");
 
      label10:
-        nop;
-        temp$26 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>(">:");
-        if temp$26 == 0 goto label12;
+        r31 = virtualinvoke r4.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
 
-        goto label11;
+        $r19 = <java.lang.System: java.io.PrintStream out>;
 
-     label11:
-        nop;
-        temp$27 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$27.<java.io.PrintStream: void println(java.lang.String)>("Hit7");
+        virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>(r31);
 
-     label12:
-        nop;
-        temp$28 = virtualinvoke st.<java.lang.String: boolean contains(java.lang.CharSequence)>("aav");
-        if temp$28 == 0 goto label14;
+        $r20 = <java.lang.System: java.io.PrintStream out>;
 
-        goto label13;
+        virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>(r5);
 
-     label13:
-        nop;
-        temp$29 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$29.<java.io.PrintStream: void println(java.lang.String)>("Hit8");
+        r32 = virtualinvoke r3.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
 
-     label14:
-        nop;
-        temp$30 = virtualinvoke st1.<java.lang.String: boolean contains(java.lang.CharSequence)>("aavst1");
-        if temp$30 == 0 goto label16;
+        $r23 = <java.lang.System: java.io.PrintStream out>;
 
-        goto label15;
+        virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(r32);
 
-     label15:
-        nop;
-        temp$31 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$31.<java.io.PrintStream: void println(java.lang.String)>("Hit9");
-
-     label16:
-        nop;
-        temp$32 = new java.lang.String;
-        specialinvoke temp$32.<java.lang.String: void <init>(java.lang.String)>("AAWWW");
-        st3 = temp$32;
-        temp$33 = virtualinvoke st.<java.lang.String: boolean equals(java.lang.Object)>(st3);
-        if temp$33 == 0 goto label18;
-
-        goto label17;
-
-     label17:
-        nop;
-        temp$34 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$34.<java.io.PrintStream: void println(java.lang.String)>("Hit10");
-
-     label18:
-        nop;
-        temp$35 = virtualinvoke st1.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
-        st1 = temp$35;
-        temp$36 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$36.<java.io.PrintStream: void println(java.lang.String)>(st1);
-        temp$37 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$37.<java.io.PrintStream: void println(java.lang.String)>(st);
-        temp$38 = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(1, 2);
-        st = temp$38;
-        temp$39 = <java.lang.System: java.io.PrintStream out>;
-        virtualinvoke temp$39.<java.io.PrintStream: void println(java.lang.String)>(st);
-        return;
-    }
-
-    public void <init>()
-    {
-        StringTest this;
-
-        this := @this: StringTest;
-        specialinvoke this.<java.lang.Object: void <init>()>();
         return;
     }
 }

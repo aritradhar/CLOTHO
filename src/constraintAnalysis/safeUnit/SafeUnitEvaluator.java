@@ -54,6 +54,7 @@ public class SafeUnitEvaluator
 		while(it.hasNext())
 		{
 			Unit unit = it.next();
+			//System.out.println("#### " + unit);
 			this.unitSafeMap.put(unit, ssr.isSafe(unit, sMethod, counter++));
 		}
 	}

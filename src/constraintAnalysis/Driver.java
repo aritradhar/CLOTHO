@@ -61,8 +61,8 @@ public class Driver
 		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
 		Options.v().set_prepend_classpath(true);
 		 
-		//String[] className = {"StringTest"};
-		String[] className = {"ApacheBug"};
+		String[] className = {"StringTest"};
+		//String[] className = {"ApacheBug"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		
@@ -119,26 +119,36 @@ public class Driver
          * Taint analysis
          */
         
-        long taint_start = System.currentTimeMillis();
+        SourceSinkResolver ssr = null;
+        if(ENV.TAINT_ANALYSIS_ENABLE)
+        {
+        	long taint_start = System.currentTimeMillis();
         
-        SourceSinkResolver ssr = new SourceSinkResolver(new String[]{args[1], args[2]}, false);
-        ssr.setAccessPathLength(ENV.INFOFLOW_ACCESS_PATH_LENGTH);
-        ssr.runAnalysis();      
+        	ssr = new SourceSinkResolver(new String[]{args[1], args[2]}, false);
+        	ssr.setAccessPathLength(ENV.INFOFLOW_ACCESS_PATH_LENGTH);
+        	ssr.runAnalysis();      
         
-        long taint_end = System.currentTimeMillis();
+        	long taint_end = System.currentTimeMillis();
         
-        fw.append("taint analysis time :" + (taint_end - taint_start) + " ms\n");
+        	fw.append("taint analysis time :" + (taint_end - taint_start) + " ms\n");
         
-        G.reset();
-        
+        	G.reset();
+        }
         
         
         long instrument_start = System.currentTimeMillis();
         
         jtp = PackManager.v().getPack("jtp");
         
-        jtp.add(new Transform("jtp.instrument", new StringRepairConstraintDynamic(ssr)));
+        if(ENV.TAINT_ANALYSIS_ENABLE)
+        {
+        	jtp.add(new Transform("jtp.instrument", new StringRepairConstraintDynamic(ssr)));
+        }
         
+        else
+        {
+        	jtp.add(new Transform("jtp.instrument", new StringRepairConstraintDynamic()));
+        }
         
         Options.v().setPhaseOption("jb", "use-original-names:true");
         

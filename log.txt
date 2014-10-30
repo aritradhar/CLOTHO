@@ -306,3 +306,63 @@ Constraint analysis time : 2321 ms
 taint analysis time :624 ms
 Instrumentation time + class flashing in FileSystem : 2202 ms
 Total repair count : 1
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2365 ms
+taint analysis time :649 ms
+Instrumentation time + class flashing in FileSystem : 2301 ms
+Total repair count : 1
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2603 ms
+taint analysis time :640 ms
+Instrumentation time + class flashing in FileSystem : 2231 ms
+Total repair count : 1
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2621 ms
+taint analysis time :649 ms
+Instrumentation time + class flashing in FileSystem : 238 ms
+Total repair count : 0
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2548 ms
+taint analysis time :584 ms
+Instrumentation time + class flashing in FileSystem : 2110 ms
+Total repair count : 1
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2568 ms
+taint analysis time :609 ms
+Instrumentation time + class flashing in FileSystem : 2500 ms
+Total repair count : 1
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2460 ms
+Instrumentation time + class flashing in FileSystem : 1999 ms
+Total repair count : 1
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2793 ms
+Instrumentation time + class flashing in FileSystem : 2029 ms
+Total repair count : 1
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2433 ms
+Instrumentation time + class flashing in FileSystem : 1998 ms
+Total repair count : 4
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2464 ms
+Instrumentation time + class flashing in FileSystem : 1799 ms
+Total repair count : 4
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2527 ms
+Instrumentation time + class flashing in FileSystem : 1856 ms
+Total repair count : 4
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2449 ms
+Instrumentation time + class flashing in FileSystem : 1840 ms
+Total repair count : 4
