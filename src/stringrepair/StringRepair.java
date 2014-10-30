@@ -19,6 +19,7 @@ package stringrepair;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +28,11 @@ import boundedAnalysis.FlowInformation;
 import boundedAnalysis.ForwardAnalysis;
 import profile.InstrumManager;
 import profile.UtilInstrum;
+import soot.ArrayType;
 import soot.Body;
 import soot.BodyTransformer;
 import soot.BooleanType;
+import soot.CharType;
 import soot.IntType;
 import soot.Local;
 import soot.Pack;
@@ -65,7 +68,7 @@ import ConstraintAutomata.MethodRefChanger;
 
 
 public class StringRepair extends BodyTransformer
-{		
+{	
 	public static void main(String[] args) 
 	{
         
@@ -709,9 +712,12 @@ public class StringRepair extends BodyTransformer
 		probe.addAll(sl);
 		
 		SpecialInvokeExpr stringConstructor_special = Jimple.v().newSpecialInvokeExpr(
-				(Local) base, stringClass.getMethod("java.lang.String valueOf(char[],int,int)").makeRef(), 
+				(Local) base, 
+				stringClass.getMethod("<init>", Arrays.asList(CharType.v().getArrayType(), IntType.v(), IntType.v())).makeRef(),
+				//stringClass.getMethod("java.lang.String: void <init>(char[],int,int)").makeRef(), 
 				Arrays.asList(new Local[]{(Local) res[1], (Local) res[2], (Local) res[3]}));
 		
+		System.out.println("#### " + stringConstructor_special);
 		
 		if(lhs == null)
 		{

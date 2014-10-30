@@ -15,7 +15,6 @@
 
 package constraintAnalysis.stringRepair;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,7 +22,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JMenu;
 
 import constraintAnalysis.ConstraintStorageDataType;
 import constraintAnalysis.ConstraintStorageMap;
@@ -346,6 +344,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		 else if(sMethod.getSignature().equals("<java.lang.String: void <init>(char[],int,int)>"))
 		 {
 			 Value base_specialInvokeExpr = specialInvokeExpr.getBase();
+			 System.out.println("&&&& " + specialInvokeExpr);
 			 probe.addAll(stringrepair.StringRepair.stringConstructorPatchProbe(jbody, lhs, base_specialInvokeExpr, specialInvokeExpr));
 		 }
     	 
