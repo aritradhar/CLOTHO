@@ -61,8 +61,8 @@ public class Driver
 		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
 		Options.v().set_prepend_classpath(true);
 		 
-		String[] className = {"StringTest"};
-		//String[] className = {"ApacheBug"};
+		//String[] className = {"StringTest"};
+		String[] className = {"asmbug.Method"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		
@@ -152,10 +152,8 @@ public class Driver
         
         Options.v().setPhaseOption("jb", "use-original-names:true");
         
-        Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);
-        Scene.v().addBasicClass("constraintAnalysis.GenerateStringDynamic",SootClass.SIGNATURES);
-        Scene.v().addBasicClass("stringrepair.IndexRepair", SootClass.SIGNATURES);    
-        Scene.v().addBasicClass("constraintAnalysis.stringRepair.EncounterRepair", SootClass.SIGNATURES);
+        ENV.classReseolver();
+        
         
         Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);	
 		Options.v().set_prepend_classpath(true);

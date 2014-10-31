@@ -407,3 +407,55 @@ Constraint analysis time : 2422 ms
 taint analysis time :765 ms
 Instrumentation time + class flashing in FileSystem : 1708 ms
 Total repair count : 4
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2711 ms
+taint analysis time :791 ms
+Instrumentation time + class flashing in FileSystem : 1549 ms
+Total repair count : 0
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2427 ms
+taint analysis time :848 ms
+Instrumentation time + class flashing in FileSystem : 1511 ms
+Total repair count : 0
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2866 ms
+taint analysis time :799 ms
+Instrumentation time + class flashing in FileSystem : 2025 ms
+Total repair count : 4
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2764 ms
+taint analysis time :691 ms
+Instrumentation time + class flashing in FileSystem : 1403 ms
+Total repair count : 0
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2500 ms
+taint analysis time :616 ms
+Instrumentation time + class flashing in FileSystem : 1589 ms
+Total repair count : 0
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2561 ms
+taint analysis time :650 ms
+Instrumentation time + class flashing in FileSystem : 1765 ms
+Total repair count : 0
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2811 ms
+Instrumentation time + class flashing in FileSystem : 1690 ms
+Total repair count : 0
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2473 ms
+Instrumentation time + class flashing in FileSystem : 2120 ms
+Total repair count : 5
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2812 ms
+taint analysis time :802 ms
+Instrumentation time + class flashing in FileSystem : 1998 ms
+Total repair count : 5

@@ -15,6 +15,9 @@
 
 package util;
 
+import soot.Scene;
+import soot.SootClass;
+
 
 public class ENV 
 {
@@ -49,4 +52,19 @@ public class ENV
 	public final static int INFOFLOW_ACCESS_PATH_LENGTH = 4;
 	
 	public final static boolean TAINT_ANALYSIS_ENABLE = true;
+	
+	
+	public static void classReseolver()
+	{
+		Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);
+        Scene.v().addBasicClass("constraintAnalysis.GenerateStringDynamic",SootClass.SIGNATURES);
+        Scene.v().addBasicClass("stringrepair.IndexRepair", SootClass.SIGNATURES);    
+        Scene.v().addBasicClass("constraintAnalysis.stringRepair.EncounterRepair", SootClass.SIGNATURES);
+        Scene.v().addBasicClass("java.lang.System", SootClass.SIGNATURES);
+        Scene.v().addBasicClass("java.util.Formatter", SootClass.SIGNATURES);
+        Scene.v().addBasicClass("java.io.BufferedWriter", SootClass.SIGNATURES);
+        Scene.v().addBasicClass("java.io.OutputStreamWriter", SootClass.SIGNATURES);
+        Scene.v().addBasicClass("java.util.Formatter", SootClass.SIGNATURES);
+        Scene.v().addBasicClass("java.util.Formatter", SootClass.SIGNATURES);
+	}
 }
