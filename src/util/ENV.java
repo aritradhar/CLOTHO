@@ -48,5 +48,5 @@ public class ENV
 			
 	public final static int INFOFLOW_ACCESS_PATH_LENGTH = 4;
 	
-	public final static boolean TAINT_ANALYSIS_ENABLE = false;
+	public final static boolean TAINT_ANALYSIS_ENABLE = true;
 }
