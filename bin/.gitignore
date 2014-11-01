@@ -1,3 +1,14 @@
 /test/
+/ConstraintAutomata/
+/DaikonTest/
+/Patching/
+/TestPack/
+/TrapInstrumentation/
+/acteve/
+/arrayrepair/
+/asmbug/
+/boundedAnalysis/
+/apacheMathsBug/
+/org/
+/apacheMathBug/
 /constraintAnalysis/
-/util/

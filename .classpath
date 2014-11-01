@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="C:/lib/ApacheLog4jbugged/log4j-core-2.0-beta9.jar"/>
 	<classpathentry kind="lib" path="C:/lib/ApacheLog4jbugged/apache-logging-log4j.jar"/>
 	<classpathentry kind="lib" path="C:/lib/sootN.jar"/>
+	<classpathentry kind="lib" path="C:/lib/Apache Maths bug/commons-math-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -62,7 +62,8 @@ public class Driver
 		Options.v().set_prepend_classpath(true);
 		 
 		//String[] className = {"StringTest"};
-		String[] className = {"asmbug.Method"};
+		//String[] className = {"asmbug.Method"};
+		String[] className = {"apacheMathBug.ComplexFormat"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		
