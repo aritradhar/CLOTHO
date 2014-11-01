@@ -63,7 +63,8 @@ public class Driver
 		 
 		//String[] className = {"StringTest"};
 		//String[] className = {"asmbug.Method"};
-		String[] className = {"apacheMathBug.ComplexFormat"};
+		//String[] className = {"apacheMathBug.ComplexFormat"};
+		String[] className = {"ApacheStrutsBug.CoolUriServletDispatcher"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		

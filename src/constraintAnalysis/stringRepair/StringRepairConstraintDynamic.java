@@ -243,7 +243,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		 if(sMethod.getSubSignature().equals("java.lang.String substring(int)")
 				 || sMethod.getSubSignature().equals("java.lang.String substring(int,int)"))
 		 {
-			 thrwCls = Scene.v().getSootClass("java.lang.IndexOutOfBoundsException");
+			 thrwCls = Scene.v().getSootClass("java.lang.StringIndexOutOfBoundsException");
 			 containsAPIcall = 1;
 		 }
 		 

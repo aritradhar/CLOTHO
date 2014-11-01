@@ -26,13 +26,15 @@ public class IndexRepair
 	 */
 	public static int getI(int i, int len)
 	{
+		System.out.println("@Patch routine getI in : " + i + ", "+ len);
 		indexRepair(i, len);
+		System.out.println("@Patch routine getI out : " + ind1);
 		return ind1;
 	}
 	
 	public static int getI(int i, int len, double flag)
 	{
-		indexRepair(i, len,flag);
+		indexRepair(i, len,flag);		
 		return ind1;
 	}
 	
@@ -325,10 +327,10 @@ public class IndexRepair
 	 * DEBUG
 	public static void main(String[] args) 
 	{
-		indexRepair(1, -2,11);
+		indexRepair(1, -1,0);
 		
 		System.out.println(ind1 + " " + ind2);
-	}*/
+	}
 
-	
+	*/
 }

@@ -18,7 +18,9 @@ package util;
 import soot.Scene;
 import soot.SootClass;
 
-
+/*
+ * Repair tool global environment controller
+ */
 public class ENV 
 {
 	
@@ -33,7 +35,13 @@ public class ENV
 			+ "C:\\lib\\apache-logging-log4j.jar;"
 			+ "C:\\lib\\commons-cli-1.2.jar;"
 			+ "C:\\lib\\junit-4.8.2.jar;"
-			+ "C:\\Users\\Aritra\\workspace\\git\\Repair_Spec\\bin";
+			+ "C:\\Users\\Aritra\\workspace\\git\\Repair_Spec\\bin;"
+			+ "C:\\test\\lib\\servlet-api-2.5-20081211.jar;"
+			+ "C:\\lib\\spring-mock-2.0.6.jar;"
+			+ "C:\\lib\\spring-2.0-core.jar;"
+			+ "C:\\lib\\org-apache-commons-logging.jar;"
+			+ "C:\\lib\\apache-commons.jar;"
+			+ "C:\\lib\\com.springsource.edu.emory.mathcs.backport_3.1.0.jar";
 	
 	
 	public static int REPAIR_COUNT = 0;
@@ -53,6 +61,7 @@ public class ENV
 	
 	public final static boolean TAINT_ANALYSIS_ENABLE = true;
 	
+	public final static boolean CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER = true;
 	
 	public static void classReseolver()
 	{
@@ -66,5 +75,7 @@ public class ENV
         Scene.v().addBasicClass("java.io.OutputStreamWriter", SootClass.SIGNATURES);
         Scene.v().addBasicClass("java.util.Formatter", SootClass.SIGNATURES);
         Scene.v().addBasicClass("java.util.Formatter", SootClass.SIGNATURES);
+        Scene.v().addBasicClass("java.lang.StringIndexOutOfBoundsException",SootClass.SIGNATURES);
+        Scene.v().addBasicClass("StringTest",SootClass.SIGNATURES);
 	}
 }

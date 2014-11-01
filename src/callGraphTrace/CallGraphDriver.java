@@ -18,8 +18,11 @@ package callGraphTrace;
 import java.util.Arrays;
 
 import soot.PackManager;
+import soot.Scene;
+import soot.SootClass;
 import soot.Transform;
 import soot.options.Options;
+import util.ENV;
 
 
 public class CallGraphDriver 
@@ -27,8 +30,12 @@ public class CallGraphDriver
 	public static void main(String[] args) 
 	{
 
-		String []className = {"StringTest"};
-			
+		//String []className = {"StringTest"};
+		String[] className = {"ApacheStrutsBug.CoolUriServletDispatcher"};
+		
+		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
+		Options.v().set_prepend_classpath(true);
+		
 		Options.v().setPhaseOption("cg.cha", "on");
 		Options.v().set_exclude(Arrays.asList(new String[]{"java", "sun", "java.lang"}));
 
@@ -47,7 +54,9 @@ public class CallGraphDriver
         Options.v().set_whole_program(true);
 		
 		Options.v().set_app(true);
-
+		
+		ENV.classReseolver();
+		
 		soot.Main.main(className);
 	}
 }

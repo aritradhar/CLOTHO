@@ -343,6 +343,7 @@ public class StringRepair extends BodyTransformer
 		SootMethod lengthMethod = stringClass.getMethod("int length()");
 		
 		Value index = args.get(0);
+		//System.out.println("$$$$ " +index + " " + virtualInvokeExpr);
 		Local len = new LocalGenerator(jbody).generateLocal(IntType.v());					
 		
 		VirtualInvokeExpr len_virtual = Jimple.v().newVirtualInvokeExpr((Local)base, lengthMethod.makeRef());			
@@ -366,6 +367,8 @@ public class StringRepair extends BodyTransformer
 		{
 			repairIndex_static = Jimple.v().newStaticInvokeExpr(
 				IndexRepairClass.getMethod("int getI(int,int)").makeRef(), Arrays.asList(new Value[]{index, len}));
+			
+			System.out.println(repairIndex_static);
 		}
 		
 				

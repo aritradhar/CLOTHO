@@ -26,7 +26,38 @@ import soot.Unit;
 public class TrapFindType 
 {
 	public static HashMap<String, HashSet<Trap>> trapFindType = new HashMap<>();
+	public static HashMap<String, HashSet<Unit>> excludedUnits = new HashMap<>();
 	
+	
+	public static void setInExcludedUnits(String signature, Unit unit)
+	{
+		if(!excludedUnits.containsKey(signature))
+		{
+			HashSet<Unit> hs = new HashSet<>();
+			hs.add(unit);
+			excludedUnits.put(signature, hs);
+		}
+		else
+		{
+			HashSet<Unit> hs = excludedUnits.get(signature);
+			hs.add(unit);
+			excludedUnits.put(signature, hs);
+		}
+	}
+	
+	public static boolean isExcludedUnit(String signature, Unit unit)
+	{		
+		if(excludedUnits.containsKey(signature))
+		{
+			HashSet<Unit> hs = excludedUnits.get(signature);
+			if(hs.contains(unit))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	public static void insertTrap(String methodSignature, Trap trap)
 	{
 		if(!trapFindType.containsKey(methodSignature))

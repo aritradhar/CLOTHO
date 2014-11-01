@@ -10,5 +10,10 @@
 	<classpathentry kind="lib" path="C:/lib/ApacheLog4jbugged/apache-logging-log4j.jar"/>
 	<classpathentry kind="lib" path="C:/lib/sootN.jar"/>
 	<classpathentry kind="lib" path="C:/lib/Apache Maths bug/commons-math-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/test/lib/servlet-api-2.5-20081211.jar"/>
+	<classpathentry kind="lib" path="C:/lib/mockito/mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/lib/spring-mock-2.0.6.jar"/>
+	<classpathentry kind="lib" path="C:/lib/spring-2.0-core.jar"/>
+	<classpathentry kind="lib" path="C:/lib/org-apache-commons-logging.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -46,13 +46,13 @@ public class CallGraphTrapTracer extends SceneTransformer
 	@Override
 	protected void internalTransform(String phaseName, Map options) 
 	{
-		SootClass sClass = Scene.v().loadClassAndSupport("StringTest");
+		SootClass sClass = Scene.v().loadClassAndSupport("ApacheStrutsBug.CoolUriServletDispatcher");
 		sClass.setApplicationClass();
 		
 		CHATransformer.v().transform();
-		SootMethod src = sClass.getMethodByName("main");
+		SootMethod src = sClass.getMethodByName("service");
 		ArrayList<SootMethod> entryPoints = new ArrayList<SootMethod>();
-		SootMethod src1 = sClass.getMethodByName("main");
+		SootMethod src1 = sClass.getMethodByName("service");
 		entryPoints.add(src1);
 		Scene.v().setEntryPoints(entryPoints);
 		CallGraph cg = Scene.v().getCallGraph();
@@ -68,7 +68,7 @@ public class CallGraphTrapTracer extends SceneTransformer
 			ex.printStackTrace();
 		}
 		
-		SootMethod testM = sClass.getMethodByName("bar");
+		//SootMethod testM = sClass.getMethodByName("bar");
 		
 		//System.out.println(CallGraphDFS.callGraphDFS(cg, sClass.getMethodByName("foo"), true) + "\n----");
 		
@@ -130,6 +130,8 @@ public class CallGraphTrapTracer extends SceneTransformer
 				}
 				
 				TrapFindType.setUnitTrapInfo(subSignature, unit, pc);
+				
+				
 			}
 		
 		}
