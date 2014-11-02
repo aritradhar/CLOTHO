@@ -74,14 +74,7 @@ public class Driver
         
         jtp.add(new Transform("jtp.constraintcheck", new ConstraintCheck()));
         
-        
-        String st = "j";
-        
-        if(st.equalsIgnoreCase("j"))
-        	Options.v().set_output_format(Options.output_format_jimple);
-        
-        if(st.equalsIgnoreCase("c"))
-        	Options.v().set_output_format(Options.output_format_class);     
+        ENV.WriteOption(ENV.CONSTRAINT_ANALYSIS_PHASE_WRITE_OPTION);   
         
         //Options.v().setPhaseOption("jb", "use-original-names:true");
         
@@ -166,16 +159,9 @@ public class Driver
         
         Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);	
 		Options.v().set_prepend_classpath(true);
-		/*
-        String st1 = "c";
+	
         
-        if(st1.equalsIgnoreCase("j"))
-        	Options.v().set_output_format(Options.output_format_jimple);
-        
-        if(st1.equalsIgnoreCase("c"))
-        	Options.v().set_output_format(Options.output_format_class);     
-        */
-		
+		ENV.WriteOption(ENV.INSTRUMRNTATION_PASE_WRITE_OPTION);
 		
         Scene.v().addBasicClass("java.util.Iterator",SootClass.SIGNATURES);
    

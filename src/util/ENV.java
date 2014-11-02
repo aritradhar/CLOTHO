@@ -17,6 +17,7 @@ package util;
 
 import soot.Scene;
 import soot.SootClass;
+import soot.options.Options;
 
 /*
  * Repair tool global environment controller
@@ -46,6 +47,13 @@ public class ENV
 	
 	public static int REPAIR_COUNT = 0;
 	
+	/*
+	 * 1 -> Jimple
+	 * 2 -> Class
+	 */
+	public static int CONSTRAINT_ANALYSIS_PHASE_WRITE_OPTION = 1;
+	public static int INSTRUMRNTATION_PASE_WRITE_OPTION = 2;
+	public static int CALLGRAPH_ANALYSIS_PHASE_WRITE_OPTION = 1;
 	/*
 	 * range - [1, infinity]
 	 * snippet from the javadoc of infoflow
@@ -77,5 +85,15 @@ public class ENV
         Scene.v().addBasicClass("java.util.Formatter", SootClass.SIGNATURES);
         Scene.v().addBasicClass("java.lang.StringIndexOutOfBoundsException",SootClass.SIGNATURES);
         Scene.v().addBasicClass("StringTest",SootClass.SIGNATURES);
+	}
+	
+	public static void WriteOption(int option) 
+	{
+		if(option == 1)
+			Options.v().set_output_format(Options.output_format_jimple);
+		
+
+		if(option == 2)
+			Options.v().set_output_format(Options.output_format_class);
 	}
 }
