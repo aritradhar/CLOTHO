@@ -124,17 +124,20 @@ public class CallGraphTrapTracer extends SceneTransformer
 				Unit unit = it.next();
 
 				SootClass sc = TrapFindType.getExeptionClassFromUnit(subSignature, unit, pc);
-				if(sc!=null)
+				
+				/*
+				 * if(sc!=null)
 				{
 					System.out.println(subSignature+ "  " + unit + "  "  + sc);
 				}
-				
+				*/
 				TrapFindType.setUnitTrapInfo(subSignature, unit, pc);
 				
 				
 			}
 		
 		}
+		/*
 		System.out.println("===================");
 		
 		for(int i = 0; i< sMethodList.size(); i++)
@@ -149,6 +152,6 @@ public class CallGraphTrapTracer extends SceneTransformer
 			System.out.println(sMethod + " Handled in : " + CallGraphDFS.reverseLookupTrapFinder(cg, sMethod, true));
 	
 			
-		}
+		}*/
 	}
 }
