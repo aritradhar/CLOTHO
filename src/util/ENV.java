@@ -119,6 +119,17 @@ public class ENV
         Scene.v().addBasicClass("java.lang.AbstractStringBuilder", SootClass.BODIES);
         Scene.v().addBasicClass("java.util.AbstractMap", SootClass.BODIES);
         Scene.v().addBasicClass("java.io.InputStream", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Character", SootClass.BODIES);
+        Scene.v().addBasicClass("java.math.BigDecimal", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Double", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Float", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Integer", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Short", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Long", SootClass.BODIES);
+        Scene.v().addBasicClass("java.math.BigInteger", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.NumberFormatException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Number", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Character", SootClass.BODIES);
 	}
 	
 	public static void WriteOption(int option) 

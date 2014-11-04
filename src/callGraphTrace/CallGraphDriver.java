@@ -27,11 +27,11 @@ import util.ENV;
 
 public class CallGraphDriver 
 {
-	public static void main(String[] args) 
+	public static void main(String[] className) 
 	{
 
 		//String []className = {"StringTest"};
-		String[] className = {"BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher", "StringTest"};
+		//String[] className = {"BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher", "StringTest"};
 		
 		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
 		Options.v().set_prepend_classpath(true);

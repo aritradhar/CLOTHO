@@ -134,7 +134,8 @@ public class Driver
         System.out.println("Checking CallGraph for already Handled exception");
         if(ENV.CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER)
         {
-        	
+        	callGraphTrace.CallGraphDriver.main(className);
+        	G.reset();
         }
         
         
