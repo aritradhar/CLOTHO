@@ -315,6 +315,11 @@ public class StringRepairConstraintDynamic extends BodyTransformer
     	 {
     		 probe.addAll(constraintCheckPatchProbe(jbody, lhs, InvokeExpr));
     	 }
+    	 
+    	 else if(sMethod.getSubSignature().equals("char charAt(int)"))
+    	 {
+    		 probe.addAll(stringrepair.StringRepair.charAtPatchProbe(jbody, lhs, virtualInvokeExpr));
+    	 }
 		 
 		 else if(sMethod.getSubSignature().equals("int codePointAt(int)"))
     	 {
