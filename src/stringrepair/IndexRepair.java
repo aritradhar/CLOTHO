@@ -34,7 +34,9 @@ public class IndexRepair
 	
 	public static int getI(int i, int len, double flag)
 	{
-		indexRepair(i, len,flag);		
+		System.out.println("@Patch routine getI in : " + i + ", "+ len);
+		indexRepair(i, len,flag);	
+		System.out.println("@Patch routine getI out : " + ind1);
 		return ind1;
 	}
 	
@@ -53,7 +55,9 @@ public class IndexRepair
 	 */
 	public static int getI(int i, int j, int len, double flag)
 	{
+		System.out.println("@Patch routine getI in : " + i + ", " + j + ", " + len);
 		indexRepair(i, j, len, flag);
+		System.out.println("@Patch routine getI out : " + ind1);
 		return ind1;
 	}
 	/*
@@ -62,7 +66,9 @@ public class IndexRepair
 	 */
 	public static int getJ(int i, int j, int len, double flag)
 	{
+		System.out.println("@Patch routine getJ in : " + i + ", " + j + ", " + len);
 		indexRepair(i, j, len, flag);
+		System.out.println("@Patch routine getI out : " + ind2);
 		return ind2;
 	}
 	/*
@@ -123,13 +129,19 @@ public class IndexRepair
 	 */
 	public static void indexRepair(int i, int len)
 	{
+		System.out.println("Here");
 		set(i);
 		
-		if(i < 0)
+		if(len == 0)
 		{
 			ind1 = 0;
 		}
-		if(i > len - 1)
+		
+		else if(i < 0)
+		{
+			ind1 = 0;
+		}
+		else if(i > len - 1)
 		{
 			ind1 = len - 1;
 		}
@@ -324,13 +336,14 @@ public class IndexRepair
 	}
 	
 	/*
-	 * DEBUG
+	 * DEBUG*/
 	public static void main(String[] args) 
 	{
-		indexRepair(1, -1,0);
-		
-		System.out.println(ind1 + " " + ind2);
+		//indexRepair(1, -1,0);
+		getI(-1, 0);
+		System.out.println(ind1);
+		//System.out.println(ind1 + " " + ind2);
 	}
 
-	*/
+	
 }

@@ -1,4 +1,4 @@
-package asmbug;
+package BugTestPack.asmbug;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

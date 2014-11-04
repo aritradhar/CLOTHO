@@ -1,7 +1,3 @@
-package asmbug;
-
-import java.io.IOException;
-
 //*************************************************************************************
 //*********************************************************************************** *
 //author Aritra Dhar																* *
@@ -16,15 +12,30 @@ import java.io.IOException;
 //version 1.0																		* *
 //*********************************************************************************** * 
 //*************************************************************************************
-public class Test 
+
+package BugTestPack.asmbug;
+
+import java.lang.reflect.Constructor;
+
+
+public class MainTest 
 {
-	public Test()
+	public static void main(String[] args) throws ClassNotFoundException 
 	{
+		Class<?> classN = Class.forName("asmbug.Test");
+		Constructor<?>[] constructors = classN.getDeclaredConstructors();
+		String constructorString = constructors[0].toGenericString();
 		
-	}
-	
-	public Test(int i, String j) throws IOException, IllegalAccessException
-	{
+		System.out.println(constructorString);
 		
+		Method constructor = Method.getMethod(constructors[0].toGenericString());	 
+		System.out.println(constructor);
+		 
+		 
+		String constructorString1 = constructors[1].toGenericString();		
+		System.out.println(constructorString1);
+			
+		Method constructor1 = Method.getMethod(constructors[1].toGenericString());	 
+		System.out.println(constructor1);
 	}
 }

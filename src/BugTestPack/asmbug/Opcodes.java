@@ -1,4 +1,4 @@
-package asmbug;
+package BugTestPack.asmbug;
 
 /**
  * Defines the JVM opcodes, access flags and array type codes. This interface

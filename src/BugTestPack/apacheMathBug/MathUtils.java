@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package apacheMathBug;
+package BugTestPack.apacheMathBug;
 
 import java.math.BigDecimal;
 

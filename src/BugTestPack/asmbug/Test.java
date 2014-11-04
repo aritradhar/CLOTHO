@@ -1,3 +1,7 @@
+package BugTestPack.asmbug;
+
+import java.io.IOException;
+
 //*************************************************************************************
 //*********************************************************************************** *
 //author Aritra Dhar																* *
@@ -12,23 +16,15 @@
 //version 1.0																		* *
 //*********************************************************************************** * 
 //*************************************************************************************
-
-package apacheMathBug;
-
-import java.text.ParsePosition;
-
-
-public class Main 
+public class Test 
 {
-	public static void main(String[] args) 
+	public Test()
 	{
-		ParsePosition ps = new ParsePosition(2);
 		
-		Complex c = new Complex(1.0, 2.22);
-		ComplexFormat cf = new ComplexFormat();
+	}
+	
+	public Test(int i, String j) throws IOException, IllegalAccessException
+	{
 		
-		cf.parse("10.0 + 1.0", ps);
-		
-		System.out.println(cf);
 	}
 }

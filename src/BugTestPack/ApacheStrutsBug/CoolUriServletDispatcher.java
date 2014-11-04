@@ -1,4 +1,4 @@
-package ApacheStrutsBug;
+package BugTestPack.ApacheStrutsBug;
 /*
  * Copyright (c) 2002-2003 by OpenSymphony
  * All rights reserved.
@@ -73,10 +73,14 @@ public class CoolUriServletDispatcher{
     	String actionName = request.getServletPath().substring(1, request.getServletPath().indexOf('/', 1));
     	System.out.println("First success");
         Map parameters = new HashMap();
-
+  	
         try {
-        	System.out.println("Second" );
+        	
         	int t1 = request.getServletPath().indexOf('/', 1);
+        	System.out.println("Second" );
+        	System.out.println(t1);
+        	System.out.println(request.getServletPath());
+        	System.out.println(request.getServletPath().length());
         	String t = request.getServletPath().substring(t1);
         	System.out.println("Second : " + t);
             StringTokenizer st = new StringTokenizer(t, "/");
@@ -106,7 +110,7 @@ public class CoolUriServletDispatcher{
             }
         } catch (Exception e) 
         {
-        	//System.out.println("Caught here");
+        	System.out.println("Caught here");
             e.printStackTrace();
             
         }

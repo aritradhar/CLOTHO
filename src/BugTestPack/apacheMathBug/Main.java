@@ -13,29 +13,22 @@
 //*********************************************************************************** * 
 //*************************************************************************************
 
-package asmbug;
+package BugTestPack.apacheMathBug;
 
-import java.lang.reflect.Constructor;
+import java.text.ParsePosition;
 
 
-public class MainTest 
+public class Main 
 {
-	public static void main(String[] args) throws ClassNotFoundException 
+	public static void main(String[] args) 
 	{
-		Class<?> classN = Class.forName("asmbug.Test");
-		Constructor<?>[] constructors = classN.getDeclaredConstructors();
-		String constructorString = constructors[0].toGenericString();
+		ParsePosition ps = new ParsePosition(2);
 		
-		System.out.println(constructorString);
+		Complex c = new Complex(1.0, 2.22);
+		ComplexFormat cf = new ComplexFormat();
 		
-		Method constructor = Method.getMethod(constructors[0].toGenericString());	 
-		System.out.println(constructor);
-		 
-		 
-		String constructorString1 = constructors[1].toGenericString();		
-		System.out.println(constructorString1);
-			
-		Method constructor1 = Method.getMethod(constructors[1].toGenericString());	 
-		System.out.println(constructor1);
+		cf.parse("10.0 + 1.0", ps);
+		
+		System.out.println(cf);
 	}
 }

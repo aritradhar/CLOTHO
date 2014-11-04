@@ -1,4 +1,4 @@
-package asmbug;
+package BugTestPack.asmbug;
 
 import java.util.HashMap;
 import java.util.Map;
