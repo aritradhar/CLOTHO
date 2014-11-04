@@ -71,11 +71,14 @@ public class ENV
 	
 	public final static boolean CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER = true;
 	
+	public final static boolean KEEP_SOURCE_LINE_NUMBER = true;
+	
 	public static void classReseolver()
 	{
 		Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);
         Scene.v().addBasicClass("constraintAnalysis.GenerateStringDynamic",SootClass.SIGNATURES);
-        Scene.v().addBasicClass("stringrepair.IndexRepair", SootClass.SIGNATURES);    
+        Scene.v().addBasicClass("stringrepair.IndexRepair", SootClass.SIGNATURES);   
+        Scene.v().addBasicClass("stringrepair.FailSafeCharAt", SootClass.SIGNATURES);
         Scene.v().addBasicClass("constraintAnalysis.stringRepair.EncounterRepair", SootClass.SIGNATURES);
         Scene.v().addBasicClass("java.lang.System", SootClass.SIGNATURES);
         Scene.v().addBasicClass("java.util.Formatter", SootClass.SIGNATURES);

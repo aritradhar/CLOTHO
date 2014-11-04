@@ -363,6 +363,7 @@ public class StringRepair extends BodyTransformer
 					IndexRepairClass.getMethod("int getI(int,int,double)").makeRef(), Arrays.asList(new Value[]{index, len, DoubleConstant.v(1.0)}));
 		}
 		
+		//needs some fail safe in case the index value is still zero
 		else
 		{
 			repairIndex_static = Jimple.v().newStaticInvokeExpr(
@@ -374,7 +375,8 @@ public class StringRepair extends BodyTransformer
 				
 		AssignStmt repairIndex_assign = Jimple.v().newAssignStmt(li, repairIndex_static);
 		probe.add(repairIndex_assign);
-
+		
+		
 		Object[] ret = new Object[]{probe, base, li};
 		
 		System.out.println("##single Index patch Executed ");
@@ -541,13 +543,23 @@ public class StringRepair extends BodyTransformer
 		List<Stmt> probe = new ArrayList<Stmt>();
 		SootClass stringClass = Scene.v().getSootClass("java.lang.String");
 				
-		Object[] res = singleIndexPatcher(jbody, lhs, virtualInvokeExpr, false);
 		
-		List<Stmt> sl = (List<Stmt>) res[0];
-		probe.addAll(sl);
-		VirtualInvokeExpr charAt_virtual = Jimple.v().newVirtualInvokeExpr((Local) res[1], 
-				stringClass.getMethod("char charAt(int)").makeRef(), Arrays.asList(new Local[]{(Local) res[2]}));
+		Value baseString = virtualInvokeExpr.getBase();
+		Value argIndex = virtualInvokeExpr.getArg(0);
 		
+		SootClass IndexRepairClass = Scene.v().loadClassAndSupport("stringrepair.FailSafeCharAt");
+		
+		SootMethod lengthMethod = stringClass.getMethod("int length()");
+		Local len = new LocalGenerator(jbody).generateLocal(IntType.v());						
+		VirtualInvokeExpr len_virtual = Jimple.v().newVirtualInvokeExpr((Local)baseString, lengthMethod.makeRef());	
+		AssignStmt len_assign = Jimple.v().newAssignStmt(len, len_virtual);
+		probe.add(len_assign);
+		
+		StaticInvokeExpr charAt_virtual = Jimple.v().newStaticInvokeExpr(IndexRepairClass.getMethodByName("failSafeCharAt").makeRef(), 
+				Arrays.asList(new Value[]{baseString, argIndex, (Value) len}));
+				
+				
+		//needs some fail safe in case the index value is still zero
 		if(lhs == null)
 		{
 			InvokeStmt st = Jimple.v().newInvokeStmt(charAt_virtual);
@@ -557,12 +569,16 @@ public class StringRepair extends BodyTransformer
 		{
 			AssignStmt base_assign = Jimple.v().newAssignStmt(lhs, charAt_virtual);
 			probe.add(base_assign);
+			
+			
 		}
 		
 		System.out.println("charAtPatchProbe Executed ");
 		
 		return probe;
-	}
+	}	
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	public static List<Stmt> codePointAtPatchProbe( Body jbody, Value lhs, VirtualInvokeExpr virtualInvokeExpr)

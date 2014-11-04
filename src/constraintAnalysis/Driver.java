@@ -161,7 +161,8 @@ public class Driver
         Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);	
 		Options.v().set_prepend_classpath(true);
 	
-        
+        Options.v().keep_line_number();
+		
 		ENV.WriteOption(ENV.INSTRUMRNTATION_PASE_WRITE_OPTION);
 		
         Scene.v().addBasicClass("java.util.Iterator",SootClass.SIGNATURES);
