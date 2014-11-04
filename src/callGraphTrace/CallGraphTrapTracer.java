@@ -42,116 +42,122 @@ import util.Utils;
 
 public class CallGraphTrapTracer extends SceneTransformer
 {
+
+	SootClass[] inputSootClass;
+
+	public CallGraphTrapTracer()
+	{
+
+	}
+
+	public CallGraphTrapTracer(String[] inputClass)
+	{	
+		int i = 0;
+
+		inputSootClass = new SootClass[inputClass.length];
+		
+		for(String str : inputClass)
+		{
+			this.inputSootClass[i++] = Scene.v().loadClass(str, SootClass.BODIES);
+		}
+	}
 	@SuppressWarnings({"unused", "rawtypes"})
 	@Override
 	protected void internalTransform(String phaseName, Map options) 
 	{
-		SootClass sClass = Scene.v().loadClassAndSupport("ApacheStrutsBug.CoolUriServletDispatcher");
-		sClass.setApplicationClass();
-		
-		CHATransformer.v().transform();
-		SootMethod src = sClass.getMethodByName("service");
-		ArrayList<SootMethod> entryPoints = new ArrayList<SootMethod>();
-		SootMethod src1 = sClass.getMethodByName("service");
-		entryPoints.add(src1);
-		Scene.v().setEntryPoints(entryPoints);
-		CallGraph cg = Scene.v().getCallGraph();
-		
-		try
+		//SootClass sClass = Scene.v().loadClassAndSupport("BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher");
+		for(SootClass sClass : inputSootClass)
 		{
-			FileWriter fw = new FileWriter("CGDump.txt");
-			fw.append(cg.toString());
-			fw.close();
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		
-		//SootMethod testM = sClass.getMethodByName("bar");
-		
-		//System.out.println(CallGraphDFS.callGraphDFS(cg, sClass.getMethodByName("foo"), true) + "\n----");
-		
-		/*
-		 * DEBUG
-		Iterator<MethodOrMethodContext> targets1 = new Sources(cg.edgesInto(testM));
-		while (targets1.hasNext()) 
-		{
-			SootMethod tgt = (SootMethod)targets1.next();
-			
-			if(ExcludeMethod.excludeMethod(tgt))
-				continue;
-			
-			System.out.println(testM + " may called from " + tgt);
-		}
-		*/
-		
-		
-		/*
-		 * Use the TrapFinder code with minor modification
-		 * This will bale to plug-in to the current code.
-		 * This will allow to go up in the call chain and 
-		 * go to the call site and see if it was wrapped 
-		 * in some try-catch block or not.
-		 */
-		
-		List<SootMethod> sMethodList = sClass.getMethods();
-		
-		//record all traps from the class
-		for(int i = 0; i< sMethodList.size(); i++)
-		{
-			SootMethod sMethod = sMethodList.get(i);
-			
-			String subSignature = sMethod.getSignature();
-			//System.out.println("<< Current method : " + subSignature + " >>");
-			
-			Body jbody = sMethod.retrieveActiveBody();
-			
-			Chain<Trap> traps = jbody.getTraps();
-			Iterator<Trap> iTraps = traps.iterator();
-			
-			while(iTraps.hasNext())
-			{
-				Trap trap = iTraps.next();
-				TrapFindType.insertTrap(subSignature, trap);
-			}
-			
-			PatchingChain<Unit> pc = jbody.getUnits();
-			Iterator<Unit> it = pc.iterator();					
-			
-			while(it.hasNext())
-			{
-				Unit unit = it.next();
+			sClass.setApplicationClass();
 
-				SootClass sc = TrapFindType.getExeptionClassFromUnit(subSignature, unit, pc);
-				
-				/*
-				 * if(sc!=null)
-				{
-					System.out.println(subSignature+ "  " + unit + "  "  + sc);
-				}
-				*/
-				TrapFindType.setUnitTrapInfo(subSignature, unit, pc);
-				
-				
+			CHATransformer.v().transform();
+			//SootMethod src = sClass.getMethodByName("service");
+			ArrayList<SootMethod> entryPoints = new ArrayList<SootMethod>();
+
+			//SootMethod rc1 = sClass.getMethodByName("service");
+			//entryPoints.add(src1);
+			//Scene.v().setEntryPoints(entryPoints);
+			CallGraph cg = Scene.v().getCallGraph();
+
+			try
+			{
+				FileWriter fw = new FileWriter("CGDump.txt");
+				fw.append(cg.toString());
+				fw.close();
 			}
-		
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+
+
+
+			/*
+			 * Use the TrapFinder code with minor modification
+			 * This will bale to plug-in to the current code.
+			 * This will allow to go up in the call chain and 
+			 * go to the call site and see if it was wrapped 
+			 * in some try-catch block or not.
+			 */
+
+			List<SootMethod> sMethodList = sClass.getMethods();
+
+			//record all traps from the class
+			for(int i = 0; i< sMethodList.size(); i++)
+			{
+				SootMethod sMethod = sMethodList.get(i);
+
+				String subSignature = sMethod.getSignature();
+				//System.out.println("<< Current method : " + subSignature + " >>");
+
+				Body jbody = sMethod.retrieveActiveBody();
+
+				Chain<Trap> traps = jbody.getTraps();
+				Iterator<Trap> iTraps = traps.iterator();
+
+				while(iTraps.hasNext())
+				{
+					Trap trap = iTraps.next();
+					TrapFindType.insertTrap(subSignature, trap);
+				}
+
+				PatchingChain<Unit> pc = jbody.getUnits();
+				Iterator<Unit> it = pc.iterator();					
+
+				while(it.hasNext())
+				{
+					Unit unit = it.next();
+
+					SootClass sc = TrapFindType.getExeptionClassFromUnit(subSignature, unit, pc);
+
+
+					if(sc!=null)
+					{
+						System.out.println(subSignature+ "  " + unit + "  "  + sc);
+					}
+
+					TrapFindType.setUnitTrapInfo(subSignature, unit, pc);
+
+
+				}
+
+			}
 		}
 		/*
 		System.out.println("===================");
-		
+
 		for(int i = 0; i< sMethodList.size(); i++)
 		{
 			SootMethod sMethod = sMethodList.get(i);
 			if(sMethod.getName().startsWith("<"))
 				continue;
-			
+
 			//do reverse lookup
 			//ArrayList<SootMethod> reverseLookupList = CallGraphDFS.callGraphDFS(cg, sMethod, true);
-			
+
 			System.out.println(sMethod + " Handled in : " + CallGraphDFS.reverseLookupTrapFinder(cg, sMethod, true));
-	
-			
+
+
 		}*/
 	}
 }

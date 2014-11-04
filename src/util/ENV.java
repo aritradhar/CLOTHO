@@ -90,6 +90,37 @@ public class ENV
         Scene.v().addBasicClass("StringTest",SootClass.SIGNATURES);
 	}
 	
+	public static void classReseolverBody()
+	{
+		Scene.v().addBasicClass("java.lang.Object",SootClass.BODIES);
+		Scene.v().addBasicClass("java.lang.System", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Formatter", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.BufferedWriter", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.OutputStreamWriter", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Formatter", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Formatter", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.HashMap", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.URLDecoder", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.String", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.BufferedReader", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.PrintStream", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.InputStreamReader", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Throwable", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.Reader", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.IllegalArgumentException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Exception", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.FilterOutputStream", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.OutputStream", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.RuntimeException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.IOException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.net.URLDecoder", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.StringBuilder", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.StringTokenizer", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.AbstractStringBuilder", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.AbstractMap", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.InputStream", SootClass.BODIES);
+	}
+	
 	public static void WriteOption(int option) 
 	{
 		if(option == 1)

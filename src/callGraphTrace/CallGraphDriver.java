@@ -31,15 +31,16 @@ public class CallGraphDriver
 	{
 
 		//String []className = {"StringTest"};
-		String[] className = {"ApacheStrutsBug.CoolUriServletDispatcher"};
+		String[] className = {"BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher", "StringTest"};
 		
 		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
 		Options.v().set_prepend_classpath(true);
-		
 		Options.v().setPhaseOption("cg.cha", "on");
 		Options.v().set_exclude(Arrays.asList(new String[]{"java", "sun", "java.lang"}));
-
-		PackManager.v().getPack("wjtp").add(new Transform("wjtp.myTransform", new CallGraphTrapTracer()));
+		Options.v().set_no_bodies_for_excluded(true);
+		
+		
+		PackManager.v().getPack("wjtp").add(new Transform("wjtp.myTransform", new CallGraphTrapTracer(className)));
 		
 		Options.v().setPhaseOption("jb", "use-original-names:true");
 	     
@@ -56,6 +57,7 @@ public class CallGraphDriver
 		Options.v().set_app(true);
 		
 		ENV.classReseolver();
+		ENV.classReseolverBody();
 		
 		soot.Main.main(className);
 	}

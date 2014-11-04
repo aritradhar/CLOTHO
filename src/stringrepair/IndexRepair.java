@@ -129,7 +129,6 @@ public class IndexRepair
 	 */
 	public static void indexRepair(int i, int len)
 	{
-		System.out.println("Here");
 		set(i);
 		
 		if(len == 0)

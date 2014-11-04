@@ -669,3 +669,9 @@ Constraint analysis time : 3183 ms
 taint analysis time :637 ms
 Instrumentation time + class flashing in FileSystem : 2797 ms
 Total repair count : 8
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 3253 ms
+taint analysis time :627 ms
+Instrumentation time + class flashing in FileSystem : 3191 ms
+Total repair count : 8
