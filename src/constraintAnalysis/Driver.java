@@ -131,10 +131,14 @@ public class Driver
         	G.reset();
         }
         
-        System.out.println("Checking CallGraph for already Handled exception");
+        System.out.println("----------Checking CallGraph for already Handled exception----------------");
         if(ENV.CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER)
         {
+        	long call_graph_start = System.currentTimeMillis();
         	callGraphTrace.CallGraphDriver.main(className);
+        	long call_graph_end = System.currentTimeMillis();
+        	
+        	fw.append("Call graph analysis time :" + (call_graph_end - call_graph_start) + " ms\n");
         	G.reset();
         }
         
