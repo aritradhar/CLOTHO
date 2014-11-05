@@ -693,3 +693,17 @@ Constraint analysis time : 3722 ms
 taint analysis time :600 ms
 Instrumentation time + class flashing in FileSystem : 2344 ms
 Total repair count : 8
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 3127 ms
+taint analysis time :683 ms
+Call graph analysis time :13900 ms
+Instrumentation time + class flashing in FileSystem : 2660 ms
+Total repair count : 8
+Args : 
+bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+Constraint analysis time : 2886 ms
+taint analysis time :667 ms
+Call graph analysis time :15800 ms
+Instrumentation time + class flashing in FileSystem : 2531 ms
+Total repair count : 8

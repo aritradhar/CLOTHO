@@ -1,3 +1,4 @@
+package BugTestPack.ApacheLog4j;
 import java.io.IOException;
 import java.sql.SQLException;
 

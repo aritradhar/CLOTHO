@@ -70,6 +70,7 @@ public class ENV
 	public final static boolean TAINT_ANALYSIS_ENABLE = true;
 	
 	public final static boolean CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER = true;
+	public final static boolean CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER_INSTRUMRNTATION = true;
 	
 	public final static boolean KEEP_SOURCE_LINE_NUMBER = true;
 	

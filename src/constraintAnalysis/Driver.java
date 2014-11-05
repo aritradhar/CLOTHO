@@ -62,9 +62,9 @@ public class Driver
 		Options.v().set_prepend_classpath(true);
 		 
 		//String[] className = {"StringTest"};
-		//String[] className = {"asmbug.Method"};
-		//String[] className = {"apacheMathBug.ComplexFormat"};
-		//String[] className = {"ApacheStrutsBug.CoolUriServletDispatcher"};
+		//String[] className = {"BugTestPack.asmbug.Method"};
+		//String[] className = {"BugTestPack.apacheMathBug.ComplexFormat"};
+		//String[] className = {"BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher"};
 		String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
@@ -84,6 +84,7 @@ public class Driver
         long constraint_check_end = System.currentTimeMillis();
         
         fw.append("Constraint analysis time : " + (constraint_check_end - start) + " ms\n");
+        System.out.println(Runtime.getRuntime().freeMemory()/(1024*1024) + " MB\n");
         /*
         //DEBUG
         //constraint map check
@@ -130,6 +131,7 @@ public class Driver
         
         	G.reset();
         }
+        System.out.println(Runtime.getRuntime().freeMemory()/(1024*1024) + " MB\n");
         
         System.out.println("----------Checking CallGraph for already Handled exception----------------");
         if(ENV.CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER)
@@ -141,6 +143,7 @@ public class Driver
         	fw.append("Call graph analysis time :" + (call_graph_end - call_graph_start) + " ms\n");
         	G.reset();
         }
+        System.out.println(Runtime.getRuntime().freeMemory()/(1024*1024) + " MB\n");
         
         
         
@@ -179,5 +182,7 @@ public class Driver
         fw.append("Instrumentation time + class flashing in FileSystem : " + (instrument_end - instrument_start) + " ms\n");
         fw.append("Total repair count : " + ENV.REPAIR_COUNT + "\n");
         fw.close();
+        
+        System.out.println(Runtime.getRuntime().freeMemory()/(1024*1024) + " MB\n");
 	}
 }
