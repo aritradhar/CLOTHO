@@ -42,7 +42,11 @@ public class ENV
 			+ "C:\\lib\\spring-2.0-core.jar;"
 			+ "C:\\lib\\org-apache-commons-logging.jar;"
 			+ "C:\\lib\\apache-commons.jar;"
-			+ "C:\\lib\\com.springsource.edu.emory.mathcs.backport_3.1.0.jar";
+			+ "C:\\lib\\com.springsource.edu.emory.mathcs.backport_3.1.0.jar;"
+			+ "C:\\aspectj1.6\\lib\\aspectjrt.jar;"
+			+ "C:\\aspectj1.6\\lib\\aspectjtools.jar;"
+			+ "C:\\aspectj1.6\\lib\\aspectjweaver.jar;"
+			+ "C:\\aspectj1.6\\lib\\org.aspectj.matcher.jar";
 	
 	
 	/*
@@ -143,6 +147,9 @@ public class ENV
         Scene.v().addBasicClass("java.lang.StringBuffer", SootClass.BODIES);
         Scene.v().addBasicClass("java.io.File", SootClass.BODIES);
         Scene.v().addBasicClass("java.lang.Math", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Class", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.AssertionError", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Error", SootClass.BODIES);
         Scene.v().addBasicClass("java.util.MissingResourceException", SootClass.BODIES);
         Scene.v().addBasicClass("java.util.MissingResourceException", SootClass.BODIES);
         Scene.v().addBasicClass("java.util.MissingResourceException", SootClass.BODIES);

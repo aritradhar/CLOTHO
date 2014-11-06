@@ -1,9 +1,4 @@
 /test/
-/.gitignore
 /BugTestPack/
-/ConstraintAutomata/
-/DaikonTest/
-/Patching/
 /constraintAnalysis/
 /util/
-/callGraphTrace/

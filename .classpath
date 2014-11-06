@@ -15,5 +15,9 @@
 	<classpathentry kind="lib" path="C:/lib/spring-mock-2.0.6.jar"/>
 	<classpathentry kind="lib" path="C:/lib/spring-2.0-core.jar"/>
 	<classpathentry kind="lib" path="C:/lib/org-apache-commons-logging.jar"/>
+	<classpathentry kind="lib" path="C:/aspectj1.6/lib/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="C:/aspectj1.6/lib/aspectjtools.jar"/>
+	<classpathentry kind="lib" path="C:/aspectj1.6/lib/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="C:/aspectj1.6/lib/org.aspectj.matcher.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
