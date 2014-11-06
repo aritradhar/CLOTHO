@@ -66,7 +66,9 @@ public class Driver
 		//String[] className = {"BugTestPack.asmbug.Method"};
 		//String[] className = {"BugTestPack.apacheMathBug.ComplexFormat"};
 		//String[] className = {"BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher"};
-		String[] className = {"BugTestPack.eclipseAspectJWeaverBug.WeaverBug"};
+		//String[] className = {"BugTestPack.eclipseAspectJWeaverBug.WeaverBug"};
+		//String[] className = {"BugTestPack.ApacheCommonFileFtpBug.Ftpbug"};
+		String[] className = {"BugTestPack.ApacheXalan.XalanBug"};
 		//String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};

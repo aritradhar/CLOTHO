@@ -113,38 +113,6 @@ Total unit count after repair : 102
 =====================================================================================
 Class file input :
 BugTestPack.eclipseAspectJWeaverBug.WeaverBug
-Constraint analysis time : 2611 ms
-Constraint analysis memory consumption : 4 MB
-Taint analysis time :497 ms
-Taint analysis memory consumption :32 MB
-Call graph analysis time :46369 ms
-Call graph analysis memory Consumption  :210 MB
-Instrumentation time + class flashing in FileSystem : 1317 ms
-Instrumentation memory Consumption  :131 MB
-Total repair count : 0
-Total unit handled : 65
-Call graph size : 16206
-Total unit count after repair : 62
-Total instrumentation : -3
-=====================================================================================
-Class file input :
-BugTestPack.eclipseAspectJWeaverBug.WeaverBug
-Constraint analysis time : 2586 ms
-Constraint analysis memory consumption : 4 MB
-Taint analysis time :558 ms
-Taint analysis memory consumption :32 MB
-Call graph analysis time :41603 ms
-Call graph analysis memory Consumption  :214 MB
-Instrumentation time + class flashing in FileSystem : 1257 ms
-Instrumentation memory Consumption  :128 MB
-Total repair count : 0
-Total unit handled : 48
-Call graph size : 16195
-Total unit count after repair : 49
-Total instrumentation : 1
-=====================================================================================
-Class file input :
-BugTestPack.eclipseAspectJWeaverBug.WeaverBug
 Constraint analysis time : 2748 ms
 Constraint analysis memory consumption : 7 MB
 Taint analysis time :637 ms
@@ -158,4 +126,36 @@ Total unit handled : 50
 Call graph size : 16199
 Total unit count after repair : 51
 Total instrumentation : 1
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonFileFtpBug.Ftpbug
+Constraint analysis time : 2283 ms
+Constraint analysis memory consumption : -4 MB
+Taint analysis time :504 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :7972 ms
+Call graph analysis memory Consumption  :213 MB
+Instrumentation time + class flashing in FileSystem : 1344 ms
+Instrumentation memory Consumption  :119 MB
+Total repair count : 1
+Total unit handled : 14
+Call graph size : 688
+Total unit count after repair : 17
+Total instrumentation : 3
+=====================================================================================
+Class file input :
+BugTestPack.ApacheXalan.XalanBug
+Constraint analysis time : 2295 ms
+Constraint analysis memory consumption : -4 MB
+Taint analysis time :608 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :8086 ms
+Call graph analysis memory Consumption  :213 MB
+Instrumentation time + class flashing in FileSystem : 1527 ms
+Instrumentation memory Consumption  :117 MB
+Total repair count : 0
+Total unit handled : 33
+Call graph size : 720
+Total unit count after repair : 43
+Total instrumentation : 10
 =====================================================================================
