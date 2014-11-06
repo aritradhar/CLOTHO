@@ -45,7 +45,13 @@ public class ENV
 			+ "C:\\lib\\com.springsource.edu.emory.mathcs.backport_3.1.0.jar";
 	
 	
-	public static int REPAIR_COUNT = 0;
+	/*
+	 * All stats here
+	 */
+	public static int STAT_REPAIR_COUNT = 0;
+	public static int STAT_UNIT_HANDLED = 0;
+	public static int STAT_UNIT_POST_REPAIR = 0;
+	public static int STAT_CALL_GRAPH_SIZE = 0;
 	
 	/*
 	 * 1 -> Jimple
@@ -71,6 +77,9 @@ public class ENV
 	
 	public final static boolean CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER = true;
 	public final static boolean CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER_INSTRUMRNTATION = true;
+	
+	public final static boolean PROFILE_ANALYSIS_TIME = true;
+	public final static boolean PROFILE_ANALYSIS_MEMORY = true;
 	
 	public final static boolean KEEP_SOURCE_LINE_NUMBER = true;
 	
@@ -131,6 +140,12 @@ public class ENV
         Scene.v().addBasicClass("java.lang.NumberFormatException", SootClass.BODIES);
         Scene.v().addBasicClass("java.lang.Number", SootClass.BODIES);
         Scene.v().addBasicClass("java.lang.Character", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.StringBuffer", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.File", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Math", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.MissingResourceException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.MissingResourceException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.MissingResourceException", SootClass.BODIES);
 	}
 	
 	public static void WriteOption(int option) 

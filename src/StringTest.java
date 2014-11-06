@@ -50,7 +50,7 @@ public class StringTest
 		//new StringTest().foo();
 
 		char[] ca = {'a','b','c','d'};
-		String s1 = new String(ca, 1, 1);
+		String s1 = new String(ca, 1, 9);
 		System.out.println(s1);
 		String s = new BufferedReader(new InputStreamReader(System.in)).readLine();
 		String st1 = "aritra:dhar";

@@ -1,8 +1,9 @@
 /test/
-/ApacheStrutsBug/
+/.gitignore
+/BugTestPack/
+/ConstraintAutomata/
+/DaikonTest/
+/Patching/
 /constraintAnalysis/
 /util/
-/stringrepair/
 /callGraphTrace/
-/org/
-/BugTestPack/

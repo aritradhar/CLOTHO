@@ -39,8 +39,8 @@ public class Driver
 	public static void main(String[] args) throws IOException 
 	{
 		FileWriter fw = new FileWriter("log.txt",true);
-		fw.append("Args : \n");
-		fw.append(args[0] + "  "+args[1] + "  " + args[2] + "\n");
+		//fw.append("Args : \n");
+		//fw.append(args[0] + "  "+args[1] + "  " + args[2] + "\n");
 		
 		JarUtils.populateFilesList(new File(args[0]));
 		List<String> Files = JarUtils.filesListInDir;
@@ -62,14 +62,22 @@ public class Driver
 		Options.v().set_prepend_classpath(true);
 		 
 		//String[] className = {"StringTest"};
+		//String[] className = {"BugTestPack.ApacheCommonFileUtils.ApacheBug"};
 		//String[] className = {"BugTestPack.asmbug.Method"};
 		//String[] className = {"BugTestPack.apacheMathBug.ComplexFormat"};
-		//String[] className = {"BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher"};
-		String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
+		String[] className = {"BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher"};
+		//String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		
+		fw.append("Class file input :\n");
+		for(int i = 0; i < className.length; i++ )
+		{
+			fw.append(className[i] + "\n");
+		}
+		
 		long start = System.currentTimeMillis();
+		long constrait_check_free_mem_start = Runtime.getRuntime().freeMemory();
 		
         Pack jtp = PackManager.v().getPack("jtp");
         
@@ -83,8 +91,18 @@ public class Driver
 
         long constraint_check_end = System.currentTimeMillis();
         
-        fw.append("Constraint analysis time : " + (constraint_check_end - start) + " ms\n");
-        System.out.println(Runtime.getRuntime().freeMemory()/(1024*1024) + " MB\n");
+        if(ENV.PROFILE_ANALYSIS_TIME)
+        {
+        	fw.append("Constraint analysis time : " + (constraint_check_end - start) + " ms\n");
+        }
+        
+        long constrait_check_free_mem_end = Runtime.getRuntime().freeMemory();
+        
+        if(ENV.PROFILE_ANALYSIS_MEMORY)
+        {
+        	fw.append("Constraint analysis memory consumption : " + ((constrait_check_free_mem_start - constrait_check_free_mem_end)/(1024*1024)) + " MB\n");
+        }
+        
         /*
         //DEBUG
         //constraint map check
@@ -110,7 +128,7 @@ public class Driver
         System.out.println("==================================================================================");
         
         G.reset();
-        
+        System.gc();
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /*
          * Taint analysis
@@ -120,34 +138,64 @@ public class Driver
         if(ENV.TAINT_ANALYSIS_ENABLE)
         {
         	long taint_start = System.currentTimeMillis();
-        
+        	long taint_free_mem_start = Runtime.getRuntime().freeMemory();
+        	
         	ssr = new SourceSinkResolver(new String[]{args[1], args[2]}, false);
         	ssr.setAccessPathLength(ENV.INFOFLOW_ACCESS_PATH_LENGTH);
         	ssr.runAnalysis();      
         
         	long taint_end = System.currentTimeMillis();
-        
-        	fw.append("taint analysis time :" + (taint_end - taint_start) + " ms\n");
-        
+        	long taint_free_mem_end = Runtime.getRuntime().freeMemory();
+        	
+        	if(ENV.PROFILE_ANALYSIS_TIME)
+        	{
+        		fw.append("Taint analysis time :" + (taint_end - taint_start) + " ms\n");
+        	}
+        	if(ENV.PROFILE_ANALYSIS_MEMORY)
+        	{
+        		fw.append("Taint analysis memory consumption :" + ((taint_free_mem_start - taint_free_mem_end)/(1024*1024)) + " MB\n");
+        	}
+        	
         	G.reset();
+        	System.gc();
         }
-        System.out.println(Runtime.getRuntime().freeMemory()/(1024*1024) + " MB\n");
         
         System.out.println("----------Checking CallGraph for already Handled exception----------------");
         if(ENV.CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER)
         {
         	long call_graph_start = System.currentTimeMillis();
-        	callGraphTrace.CallGraphDriver.main(className);
+        	
+        	try
+        	{
+        		callGraphTrace.CallGraphDriver.main(className);
+        	}
+        	catch(Exception ex)
+        	{
+        		ex.printStackTrace();
+        		System.exit(1);
+        	}
+        	
         	long call_graph_end = System.currentTimeMillis();
         	
-        	fw.append("Call graph analysis time :" + (call_graph_end - call_graph_start) + " ms\n");
+        	if(ENV.PROFILE_ANALYSIS_TIME)
+        	{
+        		fw.append("Call graph analysis time :" + (call_graph_end - call_graph_start) + " ms\n");
+        	}
+        	
+        	if(ENV.PROFILE_ANALYSIS_MEMORY)
+        	{
+        		fw.append("Call graph analysis memory Consumption  :" + callGraphTrace.CallGraphDriver.memory_consumption + " MB\n");
+        	}
+        	
         	G.reset();
+        	System.gc();
         }
-        System.out.println(Runtime.getRuntime().freeMemory()/(1024*1024) + " MB\n");
+   
         
         
         
         long instrument_start = System.currentTimeMillis();
+        long instrument_free_mem_start = Runtime.getRuntime().freeMemory();
         
         jtp = PackManager.v().getPack("jtp");
         
@@ -178,11 +226,31 @@ public class Driver
         soot.Main.main(className);	
         
         long instrument_end = System.currentTimeMillis();
+        long instrument_free_mem_end = Runtime.getRuntime().freeMemory();
         
-        fw.append("Instrumentation time + class flashing in FileSystem : " + (instrument_end - instrument_start) + " ms\n");
-        fw.append("Total repair count : " + ENV.REPAIR_COUNT + "\n");
+        if(ENV.PROFILE_ANALYSIS_TIME)
+        {
+        	fw.append("Instrumentation time + class flashing in FileSystem : " + (instrument_end - instrument_start) + " ms\n");
+        }
+        
+        if(ENV.PROFILE_ANALYSIS_MEMORY)
+    	{
+    		fw.append("Instrumentation memory Consumption  :" + ((instrument_free_mem_start - instrument_free_mem_end)/(1024*1024)) + " MB\n");
+    	}
+        
+        fw.append("Total repair count : " + ENV.STAT_REPAIR_COUNT + "\n");
+        fw.append("Total unit handled : " + ENV.STAT_UNIT_HANDLED + "\n");
+        fw.append("Call graph size : " + ENV.STAT_CALL_GRAPH_SIZE + "\n");
+        fw.append("Total unit count after repair : " + ENV.STAT_UNIT_POST_REPAIR + "\n");
+        fw.append("Total instrumentation : " + (ENV.STAT_UNIT_POST_REPAIR - ENV.STAT_UNIT_HANDLED) + "\n");
+        
+        System.out.print("Total repair count : " + ENV.STAT_REPAIR_COUNT + "\n");
+        System.out.print("Total unit handled : " + ENV.STAT_UNIT_HANDLED + "\n");
+        System.out.print("Call graph size : " + ENV.STAT_CALL_GRAPH_SIZE + "\n");
+        System.out.print("Total unit count after repair : " + ENV.STAT_UNIT_POST_REPAIR + "\n");
+        
+        fw.append("=====================================================================================\n");
         fw.close();
         
-        System.out.println(Runtime.getRuntime().freeMemory()/(1024*1024) + " MB\n");
 	}
 }

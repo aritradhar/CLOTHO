@@ -27,6 +27,9 @@ import util.ENV;
 
 public class CallGraphDriver 
 {
+	
+	public static long memory_consumption;
+	
 	public static void main(String[] className) 
 	{
 
@@ -39,8 +42,12 @@ public class CallGraphDriver
 		Options.v().set_exclude(Arrays.asList(new String[]{"java", "sun", "java.lang"}));
 		Options.v().set_no_bodies_for_excluded(true);
 		
-		
+		long mem_start = Runtime.getRuntime().freeMemory();
 		PackManager.v().getPack("wjtp").add(new Transform("wjtp.myTransform", new CallGraphTrapTracer(className)));
+		
+		long mem_end = CallGraphTrapTracer.free_mem;
+		
+		memory_consumption = (mem_start - mem_end)/(1024 * 1024);
 		
 		Options.v().setPhaseOption("jb", "use-original-names:true");
 	     

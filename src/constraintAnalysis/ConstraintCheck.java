@@ -40,6 +40,7 @@ import soot.jimple.internal.JGeExpr;
 import soot.jimple.internal.JGtExpr;
 import soot.jimple.internal.JLeExpr;
 import soot.jimple.internal.JNeExpr;
+import util.ENV;
 
 
 public class ConstraintCheck extends BodyTransformer
@@ -275,6 +276,11 @@ public class ConstraintCheck extends BodyTransformer
 		{
 			Unit unit = it.next();
 			Stmt stmt = (Stmt) unit;
+			
+			/*
+			 * Populate the stats here for total no off units scanned
+			 */
+			ENV.STAT_UNIT_HANDLED++;
 			
 			if(stmt instanceof AssignStmt)
 			{

@@ -1,709 +1,113 @@
-Args : 
-bin\net  jperf.jar  <net.nlanr.jperf.JPerf: void main(java.lang.String[])>Taint analysis time : 11856 ms
-taint analysis time :810 ms
-Instrumentation time + class flashing in FileSystem : 9143 msArgs : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 6347 ms
-taint analysis time :394 ms
-Instrumentation time + class flashing in FileSystem : 4600 ms
-Args : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 13860 ms
-taint analysis time :305 ms
-Instrumentation time + class flashing in FileSystem : 11516 ms
-Args : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 16232 ms
-taint analysis time :573 ms
-Instrumentation time + class flashing in FileSystem : 12282 ms
-Args : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 15800 ms
-taint analysis time :315 ms
-Instrumentation time + class flashing in FileSystem : 14109 ms
-Args : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 16100 ms
-taint analysis time :449 ms
-Instrumentation time + class flashing in FileSystem : 12899 ms
-Args : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 16971 ms
-taint analysis time :415 ms
-Instrumentation time + class flashing in FileSystem : 12574 ms
-Args : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 16712 ms
-taint analysis time :300 ms
-Instrumentation time + class flashing in FileSystem : 13557 ms
-Args : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 16980 ms
-taint analysis time :439 ms
-Instrumentation time + class flashing in FileSystem : 12747 ms
-Args : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 18270 ms
-taint analysis time :260 ms
-Instrumentation time + class flashing in FileSystem : 12133 ms
-Args : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 16577 ms
-taint analysis time :285 ms
-Instrumentation time + class flashing in FileSystem : 14253 ms
-Args : 
-bin\org  Azureus2.jar  <com.aelitis.azureus.core.AzureusCore.Main: void main(java.lang.String[])>
-Constraint analysis time : 28829 ms
-taint analysis time :274 ms
-Instrumentation time + class flashing in FileSystem : 26189 ms
-Args : 
-bin\org  Azureus2.jar  <org.gudy.azureus2.ui.common.Main: void main(java.lang.String[])>
-Constraint analysis time : 60562 ms
-Instrumentation time + class flashing in FileSystem : 79072 ms
-Args : 
-bin\org  Azureus2.jar  <org.gudy.azureus2.ui.common.Main: void main(java.lang.String[])>
-Constraint analysis time : 76088 ms
-Instrumentation time + class flashing in FileSystem : 78557 ms
-Args : 
-bin\org  Azureus2.jar  <org.gudy.azureus2.ui.common.Main: void main(java.lang.String[])>
-Constraint analysis time : 76003 ms
-Instrumentation time + class flashing in FileSystem : 85523 ms
-Args : 
-bin\org  Azureus2.jar  <org.gudy.azureus2.ui.common.Main: void main(java.lang.String[])>
-Constraint analysis time : 61896 ms
-Instrumentation time + class flashing in FileSystem : 63429 ms
-Args : 
-bin\org  Azureus2.jar  <org.gudy.azureus2.ui.common.Main: void main(java.lang.String[])>
-Constraint analysis time : 46479 ms
-Instrumentation time + class flashing in FileSystem : 78406 ms
-Args : 
-bin\net  jperf.jar  <net.nlanr.jperf.JPerf: void main(java.lang.String[])>
-Constraint analysis time : 11376 ms
-taint analysis time :925 ms
-Instrumentation time + class flashing in FileSystem : 7481 ms
-Total repair count : 0
-Args : 
-bin\net  jperf.jar  <net.nlanr.jperf.JPerf: void main(java.lang.String[])>
-Constraint analysis time : 11206 ms
-taint analysis time :882 ms
-Instrumentation time + class flashing in FileSystem : 6819 ms
-Total repair count : 0
-Args : 
-bin\com  WhatsApp_2_12_1.jar  <com.whatsapp.client.test.com.whatsapp.client.test: void startApp()>
-Constraint analysis time : 1839 ms
-taint analysis time :398 ms
-Instrumentation time + class flashing in FileSystem : 878 ms
-Total repair count : 0
-Args : 
-bin\sim  8085sim.jar  <sim.MainFrame: void main(java.lang.String[])>
-Constraint analysis time : 13401 ms
-taint analysis time :813 ms
-Instrumentation time + class flashing in FileSystem : 15525 ms
-Total repair count : 109
-Args : 
-bin\sim  8085sim.jar  <sim.MainFrame: void main(java.lang.String[])>
-Constraint analysis time : 15626 ms
-taint analysis time :953 ms
-Instrumentation time + class flashing in FileSystem : 17159 ms
-Total repair count : 109
-Args : 
-bin\  bin.jar  <StringTest: void main(java.lang.String[])>
-Constraint analysis time : 2789 ms
-taint analysis time :1787 ms
-Instrumentation time + class flashing in FileSystem : 1855 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <StringTest: void main(java.lang.String[])>
-Constraint analysis time : 2859 ms
-taint analysis time :1657 ms
-Instrumentation time + class flashing in FileSystem : 1546 ms
-Total repair count : 3
-Args : 
-bin\  bin.jar  <StringTest: void main(java.lang.String[])>
-Constraint analysis time : 3038 ms
-taint analysis time :1791 ms
-Instrumentation time + class flashing in FileSystem : 1804 ms
-Total repair count : 3
-Args : 
-bin\  bin.jar  <StringTest: void main(java.lang.String[])>
-Constraint analysis time : 2820 ms
-taint analysis time :1667 ms
-Instrumentation time + class flashing in FileSystem : 1543 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <StringTest: void main(java.lang.String[])>
-Constraint analysis time : 2890 ms
-taint analysis time :1679 ms
-Instrumentation time + class flashing in FileSystem : 1828 ms
-Total repair count : 3
-Args : 
-bin\  bin.jar  <StringTest: void main(java.lang.String[])>
-Constraint analysis time : 3158 ms
-taint analysis time :1772 ms
-Instrumentation time + class flashing in FileSystem : 1929 ms
-Total repair count : 3
-Args : 
-bin\  bin.jar  <StringTest: void main(java.lang.String[])>
-Constraint analysis time : 3233 ms
-taint analysis time :1635 ms
-Instrumentation time + class flashing in FileSystem : 1792 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <StringTest: void main(java.lang.String[])>
-Constraint analysis time : 2610 ms
-taint analysis time :1528 ms
-Instrumentation time + class flashing in FileSystem : 1871 ms
-Total repair count : 3
-Args : 
-bin\  bin.jar  <StringTest: void main(java.lang.String[])>
-Constraint analysis time : 3214 ms
-taint analysis time :1619 ms
-Instrumentation time + class flashing in FileSystem : 1852 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2742 ms
-taint analysis time :717 ms
-Instrumentation time + class flashing in FileSystem : 1758 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2419 ms
-taint analysis time :625 ms
-Instrumentation time + class flashing in FileSystem : 1846 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2515 ms
-taint analysis time :591 ms
-Instrumentation time + class flashing in FileSystem : 1843 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2430 ms
-taint analysis time :647 ms
-Instrumentation time + class flashing in FileSystem : 1717 ms
+ Class file input :
+StringTest
+Constraint analysis time : 2206 ms
+Constraint analysis memory consumption : 38 MB
+Taint analysis time :540 ms
+Taint analysis memory consumption :29 MB
+Call graph analysis time :6895 ms
+Call graph analysis memory Consumption  :146 MB
+Instrumentation time + class flashing in FileSystem : 1795 ms
+Instrumentation memory Consumption  :113 MB
 Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2399 ms
-taint analysis time :652 ms
+=====================================================================================
+Class file input :
+BugTestPack.asmbug.Method
+Constraint analysis time : 2235 ms
+Constraint analysis memory consumption : 37 MB
+Taint analysis time :583 ms
+Taint analysis memory consumption :29 MB
+Call graph analysis time :8242 ms
+Call graph analysis memory Consumption  :147 MB
+Instrumentation time + class flashing in FileSystem : 1535 ms
+Instrumentation memory Consumption  :118 MB
+Total repair count : 5
+=====================================================================================
+Class file input :
+BugTestPack.apacheMathBug.ComplexFormat
+Constraint analysis time : 2672 ms
+Constraint analysis memory consumption : -4 MB
+Taint analysis time :600 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :7979 ms
+Call graph analysis memory Consumption  :209 MB
 Instrumentation time + class flashing in FileSystem : 1681 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2495 ms
-taint analysis time :674 ms
-Instrumentation time + class flashing in FileSystem : 1932 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2388 ms
-Instrumentation time + class flashing in FileSystem : 1616 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2536 ms
-Instrumentation time + class flashing in FileSystem : 1853 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2330 ms
-Instrumentation time + class flashing in FileSystem : 1666 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2470 ms
-Instrumentation time + class flashing in FileSystem : 1773 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2418 ms
-Instrumentation time + class flashing in FileSystem : 1611 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2308 ms
-Instrumentation time + class flashing in FileSystem : 1970 ms
+Instrumentation memory Consumption  :128 MB
+Total repair count : 2
+=====================================================================================
+Class file input :
+BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher
+Constraint analysis time : 2310 ms
+Constraint analysis memory consumption : 40 MBTaint analysis time :494 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :27965 ms
+Call graph analysis memory Consumption  :146 MB
+Instrumentation time + class flashing in FileSystem : 952 ms
+Instrumentation memory Consumption  :115 MB
+Total repair count : 2
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonLangMathBug.NumberUtils
+Constraint analysis time : 2739 ms
+Constraint analysis memory consumption : -3 MB
+Taint analysis time :562 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :11305 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2158 ms
+Instrumentation memory Consumption  :133 MB
+Total repair count : 8
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonFileUtils.ApacheBug
+Constraint analysis time : 2235 ms
+Constraint analysis memory consumption : 38 MB
+Taint analysis time :565 ms
+Taint analysis memory consumption :29 MB
+Call graph analysis time :7422 ms
+Call graph analysis memory Consumption  :146 MB
+Instrumentation time + class flashing in FileSystem : 1619 ms
+Instrumentation memory Consumption  :118 MB
 Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3108 ms
-Instrumentation time + class flashing in FileSystem : 2464 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2624 ms
-Instrumentation time + class flashing in FileSystem : 2138 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2315 ms
-Instrumentation time + class flashing in FileSystem : 2154 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2386 ms
-Instrumentation time + class flashing in FileSystem : 1966 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2801 ms
-Instrumentation time + class flashing in FileSystem : 2247 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2472 ms
-Instrumentation time + class flashing in FileSystem : 2007 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2605 ms
-Instrumentation time + class flashing in FileSystem : 1877 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2609 ms
-Instrumentation time + class flashing in FileSystem : 52916 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonFileUtils.ApacheBug
 Constraint analysis time : 2558 ms
-Instrumentation time + class flashing in FileSystem : 2015 ms
+Constraint analysis memory consumption : 38 MB
+Taint analysis time :572 ms
+Taint analysis memory consumption :29 MB
+Call graph analysis time :7910 ms
+Call graph analysis memory Consumption  :146 MB
+Instrumentation time + class flashing in FileSystem : 1748 ms
+Instrumentation memory Consumption  :124 MB
 Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2393 ms
-Instrumentation time + class flashing in FileSystem : 2033 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2549 ms
-taint analysis time :680 ms
-Instrumentation time + class flashing in FileSystem : 2123 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2485 ms
-taint analysis time :694 ms
-Instrumentation time + class flashing in FileSystem : 2523 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2383 ms
-taint analysis time :702 ms
-Instrumentation time + class flashing in FileSystem : 2612 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2624 ms
-taint analysis time :674 ms
-Instrumentation time + class flashing in FileSystem : 2200 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2321 ms
-taint analysis time :624 ms
-Instrumentation time + class flashing in FileSystem : 2202 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2365 ms
-taint analysis time :649 ms
-Instrumentation time + class flashing in FileSystem : 2301 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2603 ms
-taint analysis time :640 ms
-Instrumentation time + class flashing in FileSystem : 2231 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2621 ms
-taint analysis time :649 ms
-Instrumentation time + class flashing in FileSystem : 238 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2548 ms
-taint analysis time :584 ms
-Instrumentation time + class flashing in FileSystem : 2110 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2568 ms
-taint analysis time :609 ms
-Instrumentation time + class flashing in FileSystem : 2500 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2460 ms
-Instrumentation time + class flashing in FileSystem : 1999 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2793 ms
-Instrumentation time + class flashing in FileSystem : 2029 ms
-Total repair count : 1
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2433 ms
-Instrumentation time + class flashing in FileSystem : 1998 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2464 ms
-Instrumentation time + class flashing in FileSystem : 1799 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2527 ms
-Instrumentation time + class flashing in FileSystem : 1856 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2449 ms
-Instrumentation time + class flashing in FileSystem : 1840 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2535 ms
-Instrumentation time + class flashing in FileSystem : 1596 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2406 ms
-Instrumentation time + class flashing in FileSystem : 1494 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2426 ms
-Instrumentation time + class flashing in FileSystem : 1651 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2555 ms
-Instrumentation time + class flashing in FileSystem : 1690 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2469 ms
-Instrumentation time + class flashing in FileSystem : 1675 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2408 ms
-Instrumentation time + class flashing in FileSystem : 1577 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2443 ms
-Instrumentation time + class flashing in FileSystem : 1827 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2422 ms
-taint analysis time :765 ms
-Instrumentation time + class flashing in FileSystem : 1708 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2711 ms
-taint analysis time :791 ms
-Instrumentation time + class flashing in FileSystem : 1549 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2427 ms
-taint analysis time :848 ms
-Instrumentation time + class flashing in FileSystem : 1511 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2866 ms
-taint analysis time :799 ms
-Instrumentation time + class flashing in FileSystem : 2025 ms
-Total repair count : 4
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2764 ms
-taint analysis time :691 ms
-Instrumentation time + class flashing in FileSystem : 1403 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2500 ms
-taint analysis time :616 ms
-Instrumentation time + class flashing in FileSystem : 1589 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2561 ms
-taint analysis time :650 ms
-Instrumentation time + class flashing in FileSystem : 1765 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2811 ms
-Instrumentation time + class flashing in FileSystem : 1690 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2473 ms
-Instrumentation time + class flashing in FileSystem : 2120 ms
-Total repair count : 5
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2812 ms
-taint analysis time :802 ms
-Instrumentation time + class flashing in FileSystem : 1998 ms
-Total repair count : 5
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2943 ms
-taint analysis time :731 ms
-Instrumentation time + class flashing in FileSystem : 3028 ms
+Total unit handled : 125
+=====================================================================================
+Class file input :
+BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher
+Constraint analysis time : 2532 ms
+Constraint analysis memory consumption : 40 MB
+Taint analysis time :687 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :28355 ms
+Call graph analysis memory Consumption  :145 MB
+Instrumentation time + class flashing in FileSystem : 866 ms
+Instrumentation memory Consumption  :112 MB
 Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 1949 ms
-taint analysis time :784 ms
-Instrumentation time + class flashing in FileSystem : 1408 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2035 ms
-taint analysis time :711 ms
-Instrumentation time + class flashing in FileSystem : 1457 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2643 ms
-taint analysis time :687 ms
-Instrumentation time + class flashing in FileSystem : 2079 ms
+Total unit handled : 80
+Call graph size : 11299
+=====================================================================================
+Class file input :
+BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher
+Constraint analysis time : 2244 ms
+Constraint analysis memory consumption : 40 MB
+Taint analysis time :553 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :21986 ms
+Call graph analysis memory Consumption  :145 MB
+Instrumentation time + class flashing in FileSystem : 787 ms
+Instrumentation memory Consumption  :114 MB
 Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2479 ms
-taint analysis time :688 ms
-Instrumentation time + class flashing in FileSystem : 2013 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2756 ms
-taint analysis time :670 ms
-Instrumentation time + class flashing in FileSystem : 2078 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2808 ms
-taint analysis time :711 ms
-Instrumentation time + class flashing in FileSystem : 2037 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2896 ms
-taint analysis time :759 ms
-Instrumentation time + class flashing in FileSystem : 1922 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2747 ms
-taint analysis time :699 ms
-Instrumentation time + class flashing in FileSystem : 1996 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2476 ms
-taint analysis time :697 ms
-Instrumentation time + class flashing in FileSystem : 1861 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2624 ms
-taint analysis time :668 ms
-Instrumentation time + class flashing in FileSystem : 1976 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2506 ms
-taint analysis time :683 ms
-Instrumentation time + class flashing in FileSystem : 1864 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2720 ms
-taint analysis time :657 ms
-Instrumentation time + class flashing in FileSystem : 2093 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2576 ms
-taint analysis time :847 ms
-Instrumentation time + class flashing in FileSystem : 1920 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2610 ms
-taint analysis time :667 ms
-Instrumentation time + class flashing in FileSystem : 1853 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2833 ms
-taint analysis time :667 ms
-Instrumentation time + class flashing in FileSystem : 2114 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2526 ms
-taint analysis time :730 ms
-Instrumentation time + class flashing in FileSystem : 1852 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2857 ms
-taint analysis time :618 ms
-Instrumentation time + class flashing in FileSystem : 2062 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3079 ms
-taint analysis time :689 ms
-Instrumentation time + class flashing in FileSystem : 2182 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2880 ms
-taint analysis time :715 ms
-Instrumentation time + class flashing in FileSystem : 2016 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2834 ms
-taint analysis time :651 ms
-Instrumentation time + class flashing in FileSystem : 1870 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3023 ms
-taint analysis time :612 ms
-Instrumentation time + class flashing in FileSystem : 2188 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2855 ms
-taint analysis time :604 ms
-Instrumentation time + class flashing in FileSystem : 2064 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2888 ms
-taint analysis time :706 ms
-Instrumentation time + class flashing in FileSystem : 2103 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3019 ms
-taint analysis time :671 ms
-Instrumentation time + class flashing in FileSystem : 2216 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3013 ms
-taint analysis time :871 ms
-Instrumentation time + class flashing in FileSystem : 2595 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3006 ms
-taint analysis time :698 ms
-Instrumentation time + class flashing in FileSystem : 2037 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2684 ms
-taint analysis time :663 ms
-Instrumentation time + class flashing in FileSystem : 2299 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2663 ms
-taint analysis time :602 ms
-Instrumentation time + class flashing in FileSystem : 2344 ms
-Total repair count : 2
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2403 ms
-taint analysis time :845 ms
-Instrumentation time + class flashing in FileSystem : 1743 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3213 ms
-taint analysis time :677 ms
-Instrumentation time + class flashing in FileSystem : 3275 ms
-Total repair count : 8
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3148 ms
-taint analysis time :748 ms
-Instrumentation time + class flashing in FileSystem : 3111 ms
-Total repair count : 8
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3265 ms
-taint analysis time :653 ms
-Instrumentation time + class flashing in FileSystem : 1986 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3048 ms
-taint analysis time :600 ms
-Instrumentation time + class flashing in FileSystem : 1982 ms
-Total repair count : 0
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3183 ms
-taint analysis time :637 ms
-Instrumentation time + class flashing in FileSystem : 2797 ms
-Total repair count : 8
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3253 ms
-taint analysis time :627 ms
-Instrumentation time + class flashing in FileSystem : 3191 ms
-Total repair count : 8
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2930 ms
-taint analysis time :653 ms
-Instrumentation time + class flashing in FileSystem : 2179 ms
-Total repair count : 8
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2987 ms
-taint analysis time :675 ms
-Instrumentation time + class flashing in FileSystem : 2290 ms
-Total repair count : 8
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3722 ms
-taint analysis time :600 ms
-Instrumentation time + class flashing in FileSystem : 2344 ms
-Total repair count : 8
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 3127 ms
-taint analysis time :683 ms
-Call graph analysis time :13900 ms
-Instrumentation time + class flashing in FileSystem : 2660 ms
-Total repair count : 8
-Args : 
-bin\  bin.jar  <ApacheBug: void main(java.lang.String[])>
-Constraint analysis time : 2886 ms
-taint analysis time :667 ms
-Call graph analysis time :15800 ms
-Instrumentation time + class flashing in FileSystem : 2531 ms
-Total repair count : 8
+Total unit handled : 80
+Call graph size : 11299
+Total unit count after repair : 102
+=====================================================================================

@@ -154,7 +154,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			if(CSDT == null)
 			{
 				probe.addAll(StringRepair.subStringPatchProbe(jbody, lhs, virtualInvokeExpr));
-				ENV.REPAIR_COUNT++;
+				ENV.STAT_REPAIR_COUNT++;
 				return probe;
 			}
 			
@@ -176,7 +176,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			probe.add(patchAssign);
 			probe.add(encounterExceptionStmt);
 			
-			ENV.REPAIR_COUNT++;
+			ENV.STAT_REPAIR_COUNT++;
 		
 		}
 		
@@ -194,7 +194,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			if(CSDT == null)
 			{				
 				probe.addAll(StringRepair.subSequencePatchProbe(jbody, lhs, virtualInvokeExpr));
-				ENV.REPAIR_COUNT++;
+				ENV.STAT_REPAIR_COUNT++;
 				return probe;
 			}
 			
@@ -204,7 +204,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			
 			probe.add(patchAssign);
 			
-			ENV.REPAIR_COUNT++;
+			ENV.STAT_REPAIR_COUNT++;
 		}
 		
 		return probe;
@@ -616,6 +616,8 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 				}
 			}
 		}
+		
+		ENV.STAT_UNIT_POST_REPAIR += pc.size();
 		
 	}
 	

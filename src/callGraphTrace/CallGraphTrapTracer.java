@@ -37,11 +37,13 @@ import soot.jimple.Stmt;
 import soot.jimple.toolkits.callgraph.CHATransformer;
 import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.util.Chain;
+import util.ENV;
 import util.Utils;
 
 
 public class CallGraphTrapTracer extends SceneTransformer
 {
+	public static long free_mem;
 
 	SootClass[] inputSootClass;
 
@@ -78,6 +80,8 @@ public class CallGraphTrapTracer extends SceneTransformer
 			//entryPoints.add(src1);
 			//Scene.v().setEntryPoints(entryPoints);
 			CallGraph cg = Scene.v().getCallGraph();
+			
+			ENV.STAT_CALL_GRAPH_SIZE = cg.size();
 
 			try
 			{
@@ -159,5 +163,6 @@ public class CallGraphTrapTracer extends SceneTransformer
 
 
 		}*/
+		free_mem = Runtime.getRuntime().freeMemory();
 	}
 }

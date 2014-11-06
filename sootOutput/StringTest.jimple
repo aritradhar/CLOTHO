@@ -94,7 +94,7 @@ public class StringTest extends java.lang.Object
 
         $r9 = new java.lang.String;
 
-        specialinvoke $r9.<java.lang.String: void <init>(char[],int,int)>(r1, 1, 1);
+        specialinvoke $r9.<java.lang.String: void <init>(char[],int,int)>(r1, 1, 9);
 
         r2 = $r9;
 
