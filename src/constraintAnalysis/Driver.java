@@ -70,7 +70,8 @@ public class Driver
 		//String[] className = {"BugTestPack.ApacheCommonFileFtpBug.Ftpbug"};
 		//String[] className = {"BugTestPack.ApacheXalan.XalanBug"};
 		//String[] className = {"BugTestPack.ApacheSOAPbug.SoapBug"};
-		String[] className = {"BugTestPack.ApacheCompressBug.TarArchiveEntry"};
+		//String[] className = {"BugTestPack.ApacheCompressBug.TarArchiveEntry"};
+		String[] className = {"BugTestPack.ApacheCliBug.CliBug"};
 		//String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};

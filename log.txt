@@ -191,3 +191,19 @@ Call graph size : 4024
 Total unit count after repair : 180
 Total instrumentation : 46
 =====================================================================================
+Class file input :
+BugTestPack.ApacheCliBug.CliBug
+Constraint analysis time : 3144 ms
+Constraint analysis memory consumption : -4 MB
+Taint analysis time :634 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :13703 ms
+Call graph analysis memory Consumption  :213 MB
+Instrumentation time + class flashing in FileSystem : 2435 ms
+Instrumentation memory Consumption  :125 MB
+Total repair count : 0
+Total unit handled : 53
+Call graph size : 2680
+Total unit count after repair : 72
+Total instrumentation : 19
+=====================================================================================
