@@ -22,5 +22,10 @@
 	<classpathentry kind="lib" path="C:/lib/Apache soap/soap-2.3.1.jar"/>
 	<classpathentry kind="lib" path="C:/lib/javax.mail.jar"/>
 	<classpathentry kind="lib" path="C:/lib/Commons VFS/commons-vfs-2.0/commons-vfs2-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/lib/Apache wicket/wicket-core-1.5.12.jar"/>
+	<classpathentry kind="lib" path="C:/lib/Apache wicket/wicket-request-1.5.12.jar"/>
+	<classpathentry kind="lib" path="C:/lib/Apache wicket/wicket-util-1.5.12.jar"/>
+	<classpathentry kind="lib" path="C:/lib/Apache tapeesty/tapestry-core-5.2.6.jar"/>
+	<classpathentry kind="lib" path="C:/lib/Apache tapeesty/tapestry-ioc-5.2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

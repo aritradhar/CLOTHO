@@ -207,3 +207,35 @@ Call graph size : 2680
 Total unit count after repair : 72
 Total instrumentation : 19
 =====================================================================================
+Class file input :
+BugTestPack.ApacheWicket.WicketBug
+Constraint analysis time : 3893 ms
+Constraint analysis memory consumption : 8 MB
+Taint analysis time :638 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :71571 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 1424 ms
+Instrumentation memory Consumption  :134 MB
+Total repair count : 1
+Total unit handled : 68
+Call graph size : 64658
+Total unit count after repair : 84
+Total instrumentation : 16
+=====================================================================================
+Class file input :
+BugTestPack.ApacheTapeStry.TapeStryBug
+Constraint analysis time : 3232 ms
+Constraint analysis memory consumption : 8 MB
+Taint analysis time :658 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :22364 ms
+Call graph analysis memory Consumption  :211 MB
+Instrumentation time + class flashing in FileSystem : 2014 ms
+Instrumentation memory Consumption  :137 MB
+Total repair count : 5
+Total unit handled : 71
+Call graph size : 5106
+Total unit count after repair : 102
+Total instrumentation : 31
+=====================================================================================

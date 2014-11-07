@@ -48,7 +48,14 @@ public class ENV
 			+ "C:\\aspectj1.6\\lib\\aspectjweaver.jar;"
 			+ "C:\\aspectj1.6\\lib\\org.aspectj.matcher.jar;"
 			+ "C:\\lib\\Apache soap\\soap-2.3.1.jar;"
-			+ "C:\\lib\\javax.mail.jar";
+			+ "C:\\lib\\javax.mail.jar;"
+			+ "C:\\lib\\Apache wicket\\wicket-core-1.5.12.jar;"
+			+ "C:\\lib\\Apache wicket\\wicket-request-1.5.12.jar;"
+			+ "C:\\lib\\Apache wicket\\wicket-util-1.5.12.jar;"
+			+ "C:\\lib\\Apache tapeesty\\tapestry-core-5.2.6.jar;"
+			+ "C:\\lib\\Apache tapeesty\\tapestry-ioc-5.2.6.jar;"
+			+ "C:\\lib\\Apache tapeesty\\tapestry-test-5.2.6.jar;"
+			+ "C:\\lib\\Apache tapeesty\\tapestry-func-5.2.6.jar";
 	
 	
 	/*
@@ -170,7 +177,7 @@ public class ENV
         Scene.v().addBasicClass("java.util.Locale", SootClass.BODIES);
         Scene.v().addBasicClass("java.util.Date", SootClass.BODIES);
         Scene.v().addBasicClass("javax.mail.internet.ContentType", SootClass.BODIES);
-        Scene.v().addBasicClass("javax.mail.internet.ContentType", SootClass.BODIES);
+        Scene.v().addBasicClass("java.nio.charset.Charset", SootClass.BODIES);
         Scene.v().addBasicClass("javax.mail.internet.ContentType", SootClass.BODIES);
 	}
 	
