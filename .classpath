@@ -19,5 +19,7 @@
 	<classpathentry kind="lib" path="C:/aspectj1.6/lib/aspectjtools.jar"/>
 	<classpathentry kind="lib" path="C:/aspectj1.6/lib/aspectjweaver.jar"/>
 	<classpathentry kind="lib" path="C:/aspectj1.6/lib/org.aspectj.matcher.jar"/>
+	<classpathentry kind="lib" path="C:/lib/Apache soap/soap-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/lib/javax.mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

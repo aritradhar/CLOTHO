@@ -159,3 +159,35 @@ Call graph size : 720
 Total unit count after repair : 43
 Total instrumentation : 10
 =====================================================================================
+Class file input :
+BugTestPack.ApacheSOAPbug.SoapBug
+Constraint analysis time : 2909 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :546 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :12511 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2089 ms
+Instrumentation memory Consumption  :142 MB
+Total repair count : 3
+Total unit handled : 165
+Call graph size : 3924
+Total unit count after repair : 185
+Total instrumentation : 20
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCompressBug.TarArchiveEntry
+Constraint analysis time : 2689 ms
+Constraint analysis memory consumption : 5 MB
+Taint analysis time :555 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :11517 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 1835 ms
+Instrumentation memory Consumption  :130 MB
+Total repair count : 4
+Total unit handled : 134
+Call graph size : 4024
+Total unit count after repair : 180
+Total instrumentation : 46
+=====================================================================================

@@ -46,7 +46,9 @@ public class ENV
 			+ "C:\\aspectj1.6\\lib\\aspectjrt.jar;"
 			+ "C:\\aspectj1.6\\lib\\aspectjtools.jar;"
 			+ "C:\\aspectj1.6\\lib\\aspectjweaver.jar;"
-			+ "C:\\aspectj1.6\\lib\\org.aspectj.matcher.jar";
+			+ "C:\\aspectj1.6\\lib\\org.aspectj.matcher.jar;"
+			+ "C:\\lib\\Apache soap\\soap-2.3.1.jar;"
+			+ "C:\\lib\\javax.mail.jar";
 	
 	
 	/*
@@ -86,6 +88,10 @@ public class ENV
 	public final static boolean PROFILE_ANALYSIS_MEMORY = true;
 	
 	public final static boolean KEEP_SOURCE_LINE_NUMBER = true;
+	
+	public final static boolean IGNORE_CONSTRUCTOR = false;
+	
+	public final static boolean DEBUG_POST_PATCH_BODY_PRINT = false; 
 	
 	public static void classReseolver()
 	{
@@ -150,9 +156,22 @@ public class ENV
         Scene.v().addBasicClass("java.lang.Class", SootClass.BODIES);
         Scene.v().addBasicClass("java.lang.AssertionError", SootClass.BODIES);
         Scene.v().addBasicClass("java.lang.Error", SootClass.BODIES);
-        Scene.v().addBasicClass("java.util.MissingResourceException", SootClass.BODIES);
-        Scene.v().addBasicClass("java.util.MissingResourceException", SootClass.BODIES);
-        Scene.v().addBasicClass("java.util.MissingResourceException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.ClassLoader", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.mail.internet.MimeMultipart", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.mail.MessagingException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Hashtable", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.mail.Multipart", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.mail.internet.ContentType", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.NullPointerException", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.mail.internet.MimeBodyPart", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Dictionary", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.IndexOutOfBoundsException", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.mail.BodyPart", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Locale", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Date", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.mail.internet.ContentType", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.mail.internet.ContentType", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.mail.internet.ContentType", SootClass.BODIES);
 	}
 	
 	public static void WriteOption(int option) 

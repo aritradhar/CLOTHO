@@ -369,10 +369,10 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 	{
 		SootMethod sMethod = body.getMethod();		
         
-		if(sMethod.getName().startsWith("<"))
+		if(sMethod.getName().startsWith("<") && ENV.IGNORE_CONSTRUCTOR)
 			return;
 		
-		System.out.println("---- Current Method : " + sMethod.getName() + " ----");
+		System.out.println("---- Current Method : " + sMethod.getSubSignature() + " ----");
         
         String methodSignature = sMethod.getSignature();
 		
@@ -552,11 +552,13 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 				Value lhs = ast.getLeftOp();
 				Value rhs = ast.getRightOp();
 				
+				/*
+				 * Disable division patch
 				if(rhs instanceof DivExpr)
 				{
 					DivExpr divExpr = (DivExpr) rhs;
 					divPatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), lhs, divExpr);
-				}
+				}*/
 			}
 			
 			if(stmt instanceof IfStmt)
@@ -616,6 +618,17 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 				}
 			}
 		}
+		
+		if(ENV.DEBUG_POST_PATCH_BODY_PRINT)
+		{
+			Iterator<Unit> i = pc.iterator();
+		
+			while(i.hasNext())
+			{
+				System.out.println(i.next());
+			}
+		}
+		//body.validate();
 		
 		ENV.STAT_UNIT_POST_REPAIR += pc.size();
 		
