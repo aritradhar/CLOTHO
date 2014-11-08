@@ -73,7 +73,9 @@ public class Driver
 		//String[] className = {"BugTestPack.ApacheCompressBug.TarArchiveEntry"};
 		//String[] className = {"BugTestPack.ApacheCliBug.CliBug"};
 		//String[] className = {"BugTestPack.ApacheWicket.WicketBug"};
-		String[] className = {"BugTestPack.ApacheTapeStry.TapeStryBug"};
+		//String[] className = {"BugTestPack.ApacheTapeStry.TapeStryBug"};
+		//String[] className = {"BugTestPack.ApacheJuddiBug.JuddiBug"};
+		String[] className = {"BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel"};
 		//String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};

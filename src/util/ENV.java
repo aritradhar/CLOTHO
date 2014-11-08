@@ -43,10 +43,10 @@ public class ENV
 			+ "C:\\lib\\org-apache-commons-logging.jar;"
 			+ "C:\\lib\\apache-commons.jar;"
 			+ "C:\\lib\\com.springsource.edu.emory.mathcs.backport_3.1.0.jar;"
-			+ "C:\\aspectj1.6\\lib\\aspectjrt.jar;"
-			+ "C:\\aspectj1.6\\lib\\aspectjtools.jar;"
-			+ "C:\\aspectj1.6\\lib\\aspectjweaver.jar;"
-			+ "C:\\aspectj1.6\\lib\\org.aspectj.matcher.jar;"
+			//+ "C:\\aspectj1.6\\lib\\aspectjrt.jar;"
+			//+ "C:\\aspectj1.6\\lib\\aspectjtools.jar;"
+			//+ "C:\\aspectj1.6\\lib\\aspectjweaver.jar;"
+			//+ "C:\\aspectj1.6\\lib\\org.aspectj.matcher.jar;"
 			+ "C:\\lib\\Apache soap\\soap-2.3.1.jar;"
 			+ "C:\\lib\\javax.mail.jar;"
 			+ "C:\\lib\\Apache wicket\\wicket-core-1.5.12.jar;"
@@ -55,7 +55,13 @@ public class ENV
 			+ "C:\\lib\\Apache tapeesty\\tapestry-core-5.2.6.jar;"
 			+ "C:\\lib\\Apache tapeesty\\tapestry-ioc-5.2.6.jar;"
 			+ "C:\\lib\\Apache tapeesty\\tapestry-test-5.2.6.jar;"
-			+ "C:\\lib\\Apache tapeesty\\tapestry-func-5.2.6.jar";
+			+ "C:\\lib\\Apache tapeesty\\tapestry-func-5.2.6.jar;"
+			+ "C:\\lib\\javax.persistence-2.1.0-rc1.jar;"
+			+ "C:\\lib\\Apach juddi\\juddi-core-openjpa-3.1.0.jar;"
+			+ "C:\\lib\\Eclipse Bug lib\\aspectjrt.jar;"
+			+ "C:\\lib\\Eclipse Bug lib\\aspectjtools.jar;"
+			+ "C:\\lib\\Eclipse Bug lib\\aspectjweaver.jar;"
+			+ "C:\\lib\\Eclipse Bug lib\\org.aspectj.matcher.jar";
 	
 	
 	/*
@@ -178,7 +184,12 @@ public class ENV
         Scene.v().addBasicClass("java.util.Date", SootClass.BODIES);
         Scene.v().addBasicClass("javax.mail.internet.ContentType", SootClass.BODIES);
         Scene.v().addBasicClass("java.nio.charset.Charset", SootClass.BODIES);
-        Scene.v().addBasicClass("javax.mail.internet.ContentType", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Arrays", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.persistence.LockModeType", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.persistence.FlushModeType", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.persistence.TemporalType", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Collections", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.IllegalStateException", SootClass.BODIES);
 	}
 	
 	public static void WriteOption(int option) 

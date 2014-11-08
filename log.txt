@@ -239,3 +239,35 @@ Call graph size : 5106
 Total unit count after repair : 102
 Total instrumentation : 31
 =====================================================================================
+Class file input :
+BugTestPack.ApacheJuddiBug.JuddiBug
+Constraint analysis time : 3031 ms
+Constraint analysis memory consumption : 10 MB
+Taint analysis time :542 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :11585 ms
+Call graph analysis memory Consumption  :211 MB
+Instrumentation time + class flashing in FileSystem : 2264 ms
+Instrumentation memory Consumption  :135 MB
+Total repair count : 2
+Total unit handled : 70
+Call graph size : 2760
+Total unit count after repair : 82
+Total instrumentation : 12
+=====================================================================================
+Class file input :
+BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel
+Constraint analysis time : 3618 ms
+Constraint analysis memory consumption : 24 MB
+Taint analysis time :548 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :43706 ms
+Call graph analysis memory Consumption  :213 MB
+Instrumentation time + class flashing in FileSystem : 1578 ms
+Instrumentation memory Consumption  :146 MB
+Total repair count : 1
+Total unit handled : 39
+Call graph size : 24695
+Total unit count after repair : 45
+Total instrumentation : 6
+=====================================================================================
