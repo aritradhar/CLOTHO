@@ -411,3 +411,115 @@ Call graph size : 3428
 Total unit count after repair : 56
 Total instrumentation : 19
 =====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 3053 ms
+Constraint analysis memory consumption : 8 MB
+Taint analysis time :527 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :13957 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 3117 ms
+Instrumentation memory Consumption  :132 MB
+Total repair count : 1
+Total unit handled : 37
+Call graph size : 3428
+Total unit count after repair : 52
+Total instrumentation : 15
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 2844 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :491 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :14135 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 3301 ms
+Instrumentation memory Consumption  :135 MB
+Total repair count : 4
+Total unit handled : 42
+Call graph size : 3432
+Total unit count after repair : 77
+Total instrumentation : 35
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 2922 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :546 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :13818 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2746 ms
+Instrumentation memory Consumption  :135 MB
+Total repair count : 4
+Total unit handled : 42
+Call graph size : 3432
+Total unit count after repair : 77
+Total instrumentation : 35
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 2890 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :517 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :14124 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2717 ms
+Instrumentation memory Consumption  :135 MB
+Total repair count : 4
+Total unit handled : 42
+Call graph size : 3432
+Total unit count after repair : 77
+Total instrumentation : 35
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 3063 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :616 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :13088 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 1995 ms
+Instrumentation memory Consumption  :135 MB
+Total repair count : 4
+Total unit handled : 42
+Call graph size : 3432
+Total unit count after repair : 77
+Total instrumentation : 35
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 3120 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :524 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :13878 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2677 ms
+Instrumentation memory Consumption  :136 MB
+Total repair count : 5
+Total unit handled : 42
+Call graph size : 3432
+Total unit count after repair : 81
+Total instrumentation : 39
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 2877 ms
+Constraint analysis memory consumption : 8 MB
+Taint analysis time :634 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :15050 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 3197 ms
+Instrumentation memory Consumption  :133 MB
+Total repair count : 2
+Total unit handled : 35
+Call graph size : 3427
+Total unit count after repair : 52
+Total instrumentation : 17
+=====================================================================================

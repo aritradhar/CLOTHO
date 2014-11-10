@@ -23,10 +23,12 @@ import java.util.List;
 import java.util.Map;
 
 
+
 import constraintAnalysis.ConstraintStorageDataType;
 import constraintAnalysis.ConstraintStorageMap;
 import constraintAnalysis.DynamicIfStmtInfo;
 import constraintAnalysis.GenerateString;
+import constraintAnalysis.OptimizationExlude;
 import constraintAnalysis.safeUnit.SafeUnitEvaluator;
 import profile.InstrumManager;
 import profile.UtilInstrum;
@@ -73,7 +75,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		this.ssr = ssr;
 	}
 	
-	private <T extends Expr> List<Stmt> divPatchProbe(PatchingChain<Unit> ch ,
+	public static <T extends Expr> List<Stmt> divPatchProbe(PatchingChain<Unit> ch ,
 			Body jbody, Stmt try_start_stmt, Stmt try_end_stmt, Value lhs, T Expr)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
@@ -127,7 +129,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		return probe;
 	}
 	
-	private <T extends InvokeExpr> List<Stmt> constraintCheckPatchProbe(Body jbody, Value lhs, T InvokeExpr)
+	private <T extends InvokeExpr> List<Stmt> constraintCheckPatchProbe(Body jbody, Value lhs, T InvokeExpr, PatchingChain<Unit> pc, Stmt st)
 	{
 		List<Stmt> probe = new ArrayList<Stmt>();
 		
@@ -144,6 +146,17 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		{
 			String methodSignature = jbody.getMethod().getSignature();
 				
+			Value baseCheck = virtualInvokeExpr.getBase();
+			
+			/*if(ENV.OPTOMIZATION_SUBSEQUENT_PATCH_NON_USE_SKIP)
+			{
+				System.out.println("#### OPTIMIZATION EXCLUDED" + st);
+				if(OptimizationExlude.doOptimize(pc, st, baseCheck))
+					return probe;
+			}*/
+			
+			OptimizationExlude.setMap(pc, st, baseCheck);
+			
 			HashMap<Value, ConstraintStorageDataType> CSDTmap = ConstraintStorageMap.constraintStorageMap.get(methodSignature);
 			ConstraintStorageDataType CSDT = ConstraintStorageMap.CSDTget(lhs, CSDTmap);
 			
@@ -313,7 +326,13 @@ public class StringRepairConstraintDynamic extends BodyTransformer
     	  */
     	 if(containsAPIcall == 1 || containsAPIcall == 2)
     	 {
-    		 probe.addAll(constraintCheckPatchProbe(jbody, lhs, InvokeExpr));
+    		 List<Stmt> patchProbe = constraintCheckPatchProbe(jbody, lhs, InvokeExpr, ch, try_start_stmt);
+    		 
+    		 /*
+    		  * Optimization may return null here
+    		  */
+    		 if(patchProbe != null)
+    			 probe.addAll(patchProbe);
     	 }
     	 
     	 else if(sMethod.getSubSignature().equals("char charAt(int)"))
@@ -367,6 +386,11 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 	@SuppressWarnings("rawtypes")
 	protected void internalTransform(Body body, String phaseName, Map options) 
 	{
+		/*
+		 * Make sure no false popagation
+		 */
+		OptimizationExlude.optMap.clear();
+		
 		SootMethod sMethod = body.getMethod();		
         
 		if(sMethod.getName().startsWith("<") && ENV.IGNORE_CONSTRUCTOR)

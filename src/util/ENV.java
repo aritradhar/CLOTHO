@@ -106,6 +106,8 @@ public class ENV
 	
 	public final static boolean DEBUG_POST_PATCH_BODY_PRINT = false; 
 	
+	public final static boolean OPTOMIZATION_SUBSEQUENT_PATCH_NON_USE_SKIP = true;
+	
 	public static void classReseolver()
 	{
 		Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);
