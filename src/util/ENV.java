@@ -120,6 +120,7 @@ public class ENV
         Scene.v().addBasicClass("java.util.Formatter", SootClass.SIGNATURES);
         Scene.v().addBasicClass("java.util.Formatter", SootClass.SIGNATURES);
         Scene.v().addBasicClass("java.lang.StringIndexOutOfBoundsException",SootClass.SIGNATURES);
+        Scene.v().addBasicClass("java.util.Currency",SootClass.SIGNATURES);
         Scene.v().addBasicClass("StringTest",SootClass.SIGNATURES);
 	}
 	
@@ -190,6 +191,18 @@ public class ENV
         Scene.v().addBasicClass("javax.persistence.TemporalType", SootClass.BODIES);
         Scene.v().addBasicClass("java.util.Collections", SootClass.BODIES);
         Scene.v().addBasicClass("java.lang.IllegalStateException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.reflect", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.reflect.Method", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.reflect.Constructor", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.IllegalStateException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.text.FieldPosition", SootClass.BODIES);
+        Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
+        Scene.v().addBasicClass("java.text.Format", SootClass.BODIES);
+        Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
+        Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
+        Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
+        Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
+        Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
 	}
 	
 	public static void WriteOption(int option) 

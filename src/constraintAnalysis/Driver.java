@@ -61,9 +61,11 @@ public class Driver
 		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
 		Options.v().set_prepend_classpath(true);
 		 
-		//String[] className = {"StringTest1"};
+		//String[] className = {"StringTest"};
+		String[] className = {"StringExample"};
 		//String[] className = {"BugTestPack.ApacheCommonFileUtils.ApacheBug"};
 		//String[] className = {"BugTestPack.asmbug.Method"};
+		//String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
 		//String[] className = {"BugTestPack.apacheMathBug.ComplexFormat"};
 		//String[] className = {"BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher"};
 		//String[] className = {"BugTestPack.eclipseAspectJWeaverBug.WeaverBug"};
@@ -75,7 +77,7 @@ public class Driver
 		//String[] className = {"BugTestPack.ApacheWicket.WicketBug"};
 		//String[] className = {"BugTestPack.ApacheTapeStry.TapeStryBug"};
 		//String[] className = {"BugTestPack.ApacheJuddiBug.JuddiBug"};
-		String[] className = {"BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel"};
+		//String[] className = {"BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel"};
 		//String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
@@ -95,7 +97,7 @@ public class Driver
         
         ENV.WriteOption(ENV.CONSTRAINT_ANALYSIS_PHASE_WRITE_OPTION);   
         
-        //Options.v().setPhaseOption("jb", "use-original-names:true");
+        Options.v().setPhaseOption("jb", "use-original-names:true");
         
         soot.Main.main(className);	           
 
