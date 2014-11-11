@@ -67,6 +67,8 @@ public class CallGraphTrapTracer extends SceneTransformer
 	@Override
 	protected void internalTransform(String phaseName, Map options) 
 	{
+		CallGraph cg = Scene.v().getCallGraph();
+		
 		//SootClass sClass = Scene.v().loadClassAndSupport("BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher");
 		for(SootClass sClass : inputSootClass)
 		{
@@ -79,7 +81,7 @@ public class CallGraphTrapTracer extends SceneTransformer
 			//SootMethod rc1 = sClass.getMethodByName("service");
 			//entryPoints.add(src1);
 			//Scene.v().setEntryPoints(entryPoints);
-			CallGraph cg = Scene.v().getCallGraph();
+			
 			
 			ENV.STAT_CALL_GRAPH_SIZE = cg.size();
 
@@ -141,7 +143,6 @@ public class CallGraphTrapTracer extends SceneTransformer
 					}
 
 					TrapFindType.setUnitTrapInfo(subSignature, unit, pc);
-
 
 				}
 

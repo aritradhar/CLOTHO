@@ -52,6 +52,38 @@ public class WicketBug
 
 		return setParameters(Url.parse(url.toString(), getCharset()));
 	}
+	
+	public Url getContextRelativeUrlPatched(String uri, String filterPrefix)
+	{
+		if (filterPrefix.length() > 0 && !filterPrefix.endsWith("/"))
+		{
+			filterPrefix += "/";
+		}
+		StringBuilder url = new StringBuilder();
+		uri = Strings.stripJSessionId(uri);
+		final int start = httpServletRequest.getContextPath().length() + filterPrefix.length() + 1;
+		
+		if(start<0)
+			url.append("");
+		else if(start>uri.length())
+			url.append(uri);
+		else
+			url.append(uri.substring(start));
+
+		if (errorAttributes == null)
+		{
+			String query = httpServletRequest.getQueryString();
+			if (!Strings.isEmpty(query))
+			{
+				url.append('?');
+				url.append(query);
+			}
+		}
+
+		return setParameters(Url.parse(url.toString(), getCharset()));
+	}
+	
+	
 	private Url setParameters(Url url)
 	{
 		url.setPort(httpServletRequest.getServerPort());
@@ -66,13 +98,24 @@ public class WicketBug
 	
 	public static void main(String[] args) 
 	{
-		MockHttpServletRequest request = new MockHttpServletRequest();
-    	request.setServerName("www.example.com");
-    	
-    	WicketBug wb = new WicketBug();
-    	wb.httpServletRequest = request;
-    	
-		wb.getContextRelativeUrl("a.b", "aa");
+		long start = System.currentTimeMillis();
+
+		for(int i = 0;i<100000;i++)
+		{
+			MockHttpServletRequest request = new MockHttpServletRequest();
+			request.setServerName("www.example.com");
+
+			WicketBug wb = new WicketBug();
+			wb.httpServletRequest = request;
+
+			wb.getContextRelativeUrlPatched("a.b", "aa");
+			
+			if(i%100 == 0)
+				System.out.println(i);
+		}
+		long end =  System.currentTimeMillis();
+
+		System.out.println((end - start) + " ms");
 	}
 
 }

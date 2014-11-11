@@ -34,9 +34,13 @@ public class GenerateString
 		/*
 		 * In case the object with no constrain list,
 		 */
+		int minLength = 0, maxLength = 0;
 		
-		int minLength = Integer.parseInt(CSDT.minLength.toString());
-		int maxLength = Integer.parseInt(CSDT.maxLength.toString());
+		if(CSDT.minLength != null)
+			minLength = Integer.parseInt(CSDT.minLength.toString());
+		
+		if(CSDT.maxLength != null)
+			maxLength = Integer.parseInt(CSDT.maxLength.toString());
 		
 		List<String> prefix = new ArrayList<>();
 		List<String> contains = new ArrayList<>();

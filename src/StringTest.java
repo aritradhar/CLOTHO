@@ -52,6 +52,7 @@ public class StringTest
 
 		String s = new BufferedReader(new InputStreamReader(System.in)).readLine();
 		String st1 = "aritra:dhar";
+		System.out.println(s);
 		
 		int a = 10;
 		int b = 10;
@@ -98,6 +99,9 @@ public class StringTest
 		//System.out.println(st4);
 		
 		System.out.println(st);
+		System.out.println(s);
+		
+		
 		if(st.length() == 1)
 		{
 			System.out.println("Hit2");

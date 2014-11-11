@@ -30,12 +30,15 @@ import soot.Scene;
 import soot.SootClass;
 import soot.Transform;
 import soot.jimple.infoflow.taint.SourceSinkResolver;
+import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.options.Options;
 import util.ENV;
 import util.JarUtils;
 
 public class Driver 
 {
+	public static CallGraph cg;
+	
 	public static void main(String[] args) throws IOException 
 	{
 		FileWriter fw = new FileWriter("log.txt",true);
@@ -62,7 +65,10 @@ public class Driver
 		Options.v().set_prepend_classpath(true);
 		 
 		//String[] className = {"StringTest"};
-		String[] className = {"StringExample"};
+		//String[] className = {"log4jRep"};
+		//String[] className = {"BugTestPack.AdobeFlexBuf.OrderedProperties"};
+		//String[] className = {"BugTestPack.ApacheHama.HamaBug"};
+		//String[] className = {"StringExample"};
 		//String[] className = {"BugTestPack.ApacheCommonFileUtils.ApacheBug"};
 		//String[] className = {"BugTestPack.asmbug.Method"};
 		//String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
@@ -74,11 +80,14 @@ public class Driver
 		//String[] className = {"BugTestPack.ApacheSOAPbug.SoapBug"};
 		//String[] className = {"BugTestPack.ApacheCompressBug.TarArchiveEntry"};
 		//String[] className = {"BugTestPack.ApacheCliBug.CliBug"};
+		//String[] className = {"BugTestPack.ApacheCliBug.CliBug2_x"};
 		//String[] className = {"BugTestPack.ApacheWicket.WicketBug"};
 		//String[] className = {"BugTestPack.ApacheTapeStry.TapeStryBug"};
 		//String[] className = {"BugTestPack.ApacheJuddiBug.JuddiBug"};
 		//String[] className = {"BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel"};
 		//String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
+		//String[] className = {"BugTestPack.ApacheSlingBug.SlingBug"};
+		String[] className = {"BugTestPack.ApacheDerbyBug.DerbyBug"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		
@@ -88,33 +97,37 @@ public class Driver
 			fw.append(className[i] + "\n");
 		}
 		
-		long start = System.currentTimeMillis();
-		long constrait_check_free_mem_start = Runtime.getRuntime().freeMemory();
+		Pack jtp = null;
 		
-        Pack jtp = PackManager.v().getPack("jtp");
+		if(ENV.CONSTRAINT_ANALYSIS_ENABLE)
+		{
+			long start = System.currentTimeMillis();
+			long constrait_check_free_mem_start = Runtime.getRuntime().freeMemory();
+		
+        	jtp = PackManager.v().getPack("jtp");
         
-        jtp.add(new Transform("jtp.constraintcheck", new ConstraintCheck()));
+        	jtp.add(new Transform("jtp.constraintcheck", new ConstraintCheck()));
         
-        ENV.WriteOption(ENV.CONSTRAINT_ANALYSIS_PHASE_WRITE_OPTION);   
+        	ENV.WriteOption(ENV.CONSTRAINT_ANALYSIS_PHASE_WRITE_OPTION);   
         
-        Options.v().setPhaseOption("jb", "use-original-names:true");
+        	Options.v().setPhaseOption("jb", "use-original-names:true");
         
-        soot.Main.main(className);	           
+        	soot.Main.main(className);	           
 
-        long constraint_check_end = System.currentTimeMillis();
+        	long constraint_check_end = System.currentTimeMillis();
         
-        if(ENV.PROFILE_ANALYSIS_TIME)
-        {
-        	fw.append("Constraint analysis time : " + (constraint_check_end - start) + " ms\n");
-        }
+        	if(ENV.PROFILE_ANALYSIS_TIME)
+        	{
+        		fw.append("Constraint analysis time : " + (constraint_check_end - start) + " ms\n");
+        	}
         
-        long constrait_check_free_mem_end = Runtime.getRuntime().freeMemory();
+        	long constrait_check_free_mem_end = Runtime.getRuntime().freeMemory();
         
-        if(ENV.PROFILE_ANALYSIS_MEMORY)
-        {
-        	fw.append("Constraint analysis memory consumption : " + ((constrait_check_free_mem_start - constrait_check_free_mem_end)/(1024*1024)) + " MB\n");
-        }
-        
+        	if(ENV.PROFILE_ANALYSIS_MEMORY)
+        	{
+        		fw.append("Constraint analysis memory consumption : " + ((constrait_check_free_mem_start - constrait_check_free_mem_end)/(1024*1024)) + " MB\n");
+        	}
+		}
         /*
         //DEBUG
         //constraint map check
@@ -176,6 +189,8 @@ public class Driver
         if(ENV.CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER)
         {
         	long call_graph_start = System.currentTimeMillis();
+        	
+        	Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);
         	
         	try
         	{
@@ -263,6 +278,12 @@ public class Driver
         
         fw.append("=====================================================================================\n");
         fw.close();
+        
+        
+        
+        System.out.println("Safe : "  + ENV.TOTAL_SAFE);
+        System.out.println("Unsafe : "  + ENV.TOTAL_UNSAFE);
+        
         
 	}
 }

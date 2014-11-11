@@ -128,6 +128,8 @@
 <java.lang.String: java.lang.String valueOf(double)>
 <java.lang.String: java.lang.String valueOf(float)>
 <java.lang.String: java.lang.String valueOf(int)>
+<java.lang.String: java.lang.String substring(int,int)>
+<java.lang.String: java.lang.String substring(int)>
 <java.lang.String: java.lang.String valueOf(long)>
 <java.lang.String: java.lang.String valueOf(java.lang.Object)>
 

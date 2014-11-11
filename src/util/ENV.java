@@ -61,7 +61,17 @@ public class ENV
 			+ "C:\\lib\\Eclipse Bug lib\\aspectjrt.jar;"
 			+ "C:\\lib\\Eclipse Bug lib\\aspectjtools.jar;"
 			+ "C:\\lib\\Eclipse Bug lib\\aspectjweaver.jar;"
-			+ "C:\\lib\\Eclipse Bug lib\\org.aspectj.matcher.jar";
+			+ "C:\\lib\\Eclipse Bug lib\\org.aspectj.matcher.jar;"
+			+ "C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\checkstyle-6.0\\antlr-2.7.7.jar;"
+			+ "C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\checkstyle-6.0\\antlr4-annotations-4.3.jar;"
+			+ "C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\checkstyle-6.0\\antlr4-runtime-4.3.jar;"
+			+ "C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\checkstyle-6.0\\commons-beanutils-core-1.8.3.jar;"
+			+ "C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\checkstyle-6.0\\commons-cli-1.2.jar;"
+			+ "C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\checkstyle-6.0\\commons-logging-1.1.1.jar;"
+			+ "C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\checkstyle-6.0\\guava-18.0.jar;"
+			+ "C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\checkstyle-6.0\\org.abego.treelayout.core-1.0.1.jar;"
+			+ "C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\checkstyle-6.0\\apache-ant-1.8.2.jar;"
+			+ "C:\\Users\\Aritra\\workspace\\Repair_TaintAnalysis\\checkstyle-6.0\\com-sun-javadoc.jar";
 	
 	
 	/*
@@ -92,7 +102,9 @@ public class ENV
 			
 	public final static int INFOFLOW_ACCESS_PATH_LENGTH = 4;
 	
-	public final static boolean TAINT_ANALYSIS_ENABLE = true;
+	public final static boolean TAINT_ANALYSIS_ENABLE = false;
+	
+	public final static boolean CONSTRAINT_ANALYSIS_ENABLE = true;
 	
 	public final static boolean CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER = true;
 	public final static boolean CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER_INSTRUMRNTATION = true;
@@ -107,6 +119,11 @@ public class ENV
 	public final static boolean DEBUG_POST_PATCH_BODY_PRINT = false; 
 	
 	public final static boolean OPTOMIZATION_SUBSEQUENT_PATCH_NON_USE_SKIP = true;
+	
+	public final static boolean C = false;
+	
+	public static int TOTAL_SAFE = 0;
+	public static int TOTAL_UNSAFE = 0;
 	
 	public static void classReseolver()
 	{
@@ -201,10 +218,27 @@ public class ENV
         Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
         Scene.v().addBasicClass("java.text.Format", SootClass.BODIES);
         Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
-        Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
-        Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
-        Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
-        Scene.v().addBasicClass("java.text.ParsePosition", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Properties", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.FileInputStream", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.FileReader", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.BufferedReader", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.AbstractCollection", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Vector", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.AbstractCollection", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.PrintWriter", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.StringIndexOutOfBoundsException", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.AbstractList", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.Writer", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.AbstractCollection", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Thread", SootClass.BODIES);
+        Scene.v().addBasicClass("javax.swing.SwingUtilities", SootClass.BODIES);
+        Scene.v().addBasicClass("java.awt.GraphicsEnvironment", SootClass.BODIES);
+        Scene.v().addBasicClass("java.io.FileOutputStream", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Runtime", SootClass.BODIES);
+        Scene.v().addBasicClass("java.awt.GraphicsEnvironment", SootClass.BODIES);
+        Scene.v().addBasicClass("java.lang.Boolean", SootClass.BODIES);
+        Scene.v().addBasicClass("java.awt.GraphicsEnvironment", SootClass.BODIES);
+
 	}
 	
 	public static void WriteOption(int option) 

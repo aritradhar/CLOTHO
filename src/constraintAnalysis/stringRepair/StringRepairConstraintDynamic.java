@@ -24,6 +24,7 @@ import java.util.Map;
 
 
 
+
 import constraintAnalysis.ConstraintStorageDataType;
 import constraintAnalysis.ConstraintStorageMap;
 import constraintAnalysis.DynamicIfStmtInfo;
@@ -338,31 +339,37 @@ public class StringRepairConstraintDynamic extends BodyTransformer
     	 else if(sMethod.getSubSignature().equals("char charAt(int)"))
     	 {
     		 probe.addAll(stringrepair.StringRepair.charAtPatchProbe(jbody, lhs, virtualInvokeExpr));
+    		 ENV.STAT_REPAIR_COUNT++;
     	 }
 		 
 		 else if(sMethod.getSubSignature().equals("int codePointAt(int)"))
     	 {
     		 probe.addAll(stringrepair.StringRepair.codePointAtPatchProbe(jbody, lhs, virtualInvokeExpr));
+    		 ENV.STAT_REPAIR_COUNT++;
     	 }
 		 
 		 else if(sMethod.getSubSignature().equals("int codePointBefore(int)"))
     	 {
     		 probe.addAll(stringrepair.StringRepair.codePointBeforePatchProbe(jbody, lhs, virtualInvokeExpr));
+    		 ENV.STAT_REPAIR_COUNT++;
     	 }
     	 
 		 else if(sMethod.getSubSignature().equals("int codePointCount(int,int)"))
     	 {
     		 probe.addAll(stringrepair.StringRepair.codePointCountPatchProbe(jbody, lhs, virtualInvokeExpr));
+    		 ENV.STAT_REPAIR_COUNT++;
     	 }
     	 
 		 else if(sMethod.getSubSignature().equals("int offsetByCodePoints(int,int)"))
     	 {
     		 probe.addAll(stringrepair.StringRepair.codePointCountPatchProbe(jbody, lhs, virtualInvokeExpr));
+    		 ENV.STAT_REPAIR_COUNT++;
     	 }
     	 
 		 else if(sMethod.getSubSignature().equals("java.lang.String valueOf(char[],int,int)"))
     	 {
     		 probe.addAll(stringrepair.StringRepair.valueOfPatchProbe(jbody, lhs, staticInvokeExpr));
+    		 ENV.STAT_REPAIR_COUNT++;
     	 }
     	 
 		 else if(sMethod.getSignature().equals("<java.lang.String: void <init>(char[],int,int)>"))
@@ -370,6 +377,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			 Value base_specialInvokeExpr = specialInvokeExpr.getBase();
 			 System.out.println("&&&& " + specialInvokeExpr);
 			 probe.addAll(stringrepair.StringRepair.stringConstructorPatchProbe(jbody, lhs, base_specialInvokeExpr, specialInvokeExpr));
+			 ENV.STAT_REPAIR_COUNT++;
 		 }
     	 
     	 InstrumManager.v().insertRightBeforeNoRedirect(ch, probe, try_end_stmt);
@@ -423,8 +431,21 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			//check for safe
 		    if(ENV.TAINT_ANALYSIS_ENABLE)
 		    {
+		    	//System.out.println(SUI.isSafe(unit) +"  "+ unit);
 		    	if(!SUI.isSafe(unit))
+		    	{
+		    		ENV.TOTAL_UNSAFE++;
+		    		//System.out.println("Unsafe");
 		    		continue;
+		    	}
+		    	else
+		    	{
+		    		ENV.TOTAL_SAFE++;
+		    	}
+		    }
+		    if(ENV.CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER)
+		    {
+		    	
 		    }
 			/*
 			if(!this.ssr.isSafe(unit, sMethod, counter++))

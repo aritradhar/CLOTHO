@@ -62,7 +62,8 @@ public class StringExample
 		if(st.startsWith(">:"))
 		{
 		}
-
+	
+		st1 = st1.substring(1, 2);
 		System.out.println(st);
 
 	}
