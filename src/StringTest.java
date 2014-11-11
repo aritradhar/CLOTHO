@@ -53,14 +53,8 @@ public class StringTest
 		String s = new BufferedReader(new InputStreamReader(System.in)).readLine();
 		String st1 = "aritra:dhar";
 		System.out.println(s);
-		
-		int a = 10;
-		int b = 10;
-		int c = 0;
-		
-		int d = a/c;
-		
-		System.out.println(d);
+
+
 		/*
 		System.out.println(st.codePointCount(-1, 20));
 		
@@ -84,10 +78,18 @@ public class StringTest
 		
 		st.substring(ind1, 2);
 		*/
-		String st = s.substring(1, 61);
-		
+		String st = null;
+		try
+		{
+			st = s.substring(1, 61);
+		}
+		catch(Exception e)
+		{
+			
+		}
 		String st5 = s.substring(1,4);
-		
+		System.out.println(st5);
+		/*
 		System.out.println(st5);
 		int  k =6;
 		if(st.length() > k+1)
@@ -148,7 +150,7 @@ public class StringTest
 		{
 			System.out.println("Hit10");
 		}
-		
+		*/
 		st1 = st1.substring(1, 2);
 		System.out.println(st1);
 		

@@ -1,5 +1,5 @@
 /test/
-/.gitignore
+/com/
 /BugTestPack/
 /ConstraintAutomata/
 /DaikonTest/
@@ -11,9 +11,4 @@
 /boundedAnalysis/
 /callGraphTrace/
 /constraintAnalysis/
-/dependency/
-/nullPointerTestcase/
-/profile/
-/stringrepair/
-/trace/
 /util/

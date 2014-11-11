@@ -64,7 +64,7 @@ public class Driver
 		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
 		Options.v().set_prepend_classpath(true);
 		 
-		//String[] className = {"StringTest"};
+		String[] className = {"StringTest"};
 		//String[] className = {"log4jRep"};
 		//String[] className = {"BugTestPack.AdobeFlexBuf.OrderedProperties"};
 		//String[] className = {"BugTestPack.ApacheHama.HamaBug"};
@@ -87,7 +87,7 @@ public class Driver
 		//String[] className = {"BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel"};
 		//String[] className = {"BugTestPack.ApacheCommonLangMathBug.NumberUtils"};
 		//String[] className = {"BugTestPack.ApacheSlingBug.SlingBug"};
-		String[] className = {"BugTestPack.ApacheDerbyBug.DerbyBug"};
+		//String[] className = {"BugTestPack.ApacheDerbyBug.DerbyBug"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		

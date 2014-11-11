@@ -100,9 +100,9 @@ public class ENV
 	 * Default value is 5.
 	 */
 			
-	public final static int INFOFLOW_ACCESS_PATH_LENGTH = 4;
+	public final static int INFOFLOW_ACCESS_PATH_LENGTH = 5;
 	
-	public final static boolean TAINT_ANALYSIS_ENABLE = false;
+	public final static boolean TAINT_ANALYSIS_ENABLE = true;
 	
 	public final static boolean CONSTRAINT_ANALYSIS_ENABLE = true;
 	

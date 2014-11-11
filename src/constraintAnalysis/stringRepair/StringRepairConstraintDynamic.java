@@ -25,6 +25,9 @@ import java.util.Map;
 
 
 
+
+
+import callGraphTrace.TrapFindType;
 import constraintAnalysis.ConstraintStorageDataType;
 import constraintAnalysis.ConstraintStorageMap;
 import constraintAnalysis.DynamicIfStmtInfo;
@@ -42,6 +45,7 @@ import soot.Scene;
 import soot.SootClass;
 import soot.SootMethod;
 import soot.SootMethodRef;
+import soot.Trap;
 import soot.Type;
 import soot.Unit;
 import soot.Value;
@@ -431,7 +435,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			//check for safe
 		    if(ENV.TAINT_ANALYSIS_ENABLE)
 		    {
-		    	//System.out.println(SUI.isSafe(unit) +"  "+ unit);
+		        System.out.println(SUI.isSafe(unit) +"  "+ unit);
 		    	if(!SUI.isSafe(unit))
 		    	{
 		    		ENV.TOTAL_UNSAFE++;
@@ -445,7 +449,21 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 		    }
 		    if(ENV.CALL_CHAIN_LOOK_UP_FOR_EXCEPTION_HANDLER)
 		    {
-		    	
+		    	if(TrapFindType.unitTrapMap.containsKey(methodSignature))
+		    	{
+		    		HashMap<String, Trap> hm = TrapFindType.unitTrapMap.get(methodSignature);
+		    		if(hm.containsKey(unit.toString()))
+		    		{
+		    			/*
+		    			 * There is a trap object inside the methdos
+		    			 * or in its ancestor
+		    			 */
+		    			if(hm.get(unit.toString()) != null)
+		    			{
+		    				continue;
+		    			}
+		    		}
+		    	}
 		    }
 			/*
 			if(!this.ssr.isSafe(unit, sMethod, counter++))

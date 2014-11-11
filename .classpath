@@ -36,5 +36,8 @@
 	<classpathentry kind="lib" path="C:/lib/Apache Service mix/plexus-utils-3.0.jar"/>
 	<classpathentry kind="lib" path="C:/lib/Apache Service mix/servicemix-common-3.2.1.jar"/>
 	<classpathentry kind="lib" path="C:/lib/Apache Service mix/maven-core-3.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/lib/Ofbiz lib/baksmali-1.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/lib/Ofbiz lib/freemarker-2.3.21.jar"/>
+	<classpathentry kind="lib" path="C:/lib/Ofbiz lib/owasp-esapi-full-java-1.4-patched-by-OFBIZ-3135.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

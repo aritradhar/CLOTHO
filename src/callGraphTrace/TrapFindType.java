@@ -157,7 +157,7 @@ public class TrapFindType
 		return null;
 	}
 	
-	public static HashMap<String, HashMap<Unit, Trap>> unitTrapMap = new HashMap<>();
+	public static HashMap<String, HashMap<String, Trap>> unitTrapMap = new HashMap<>();
 	
 	public static void setUnitTrapInfo(String methodSignature, Unit unit, PatchingChain<Unit> pc)
 	{
@@ -165,17 +165,17 @@ public class TrapFindType
 		
 		if(!unitTrapMap.containsKey(methodSignature))
 		{
-			HashMap<Unit, Trap> hm = new HashMap<>();
+			HashMap<String, Trap> hm = new HashMap<>();
 			
-			hm.put(unit, trap);
+			hm.put(unit.toString(), trap);
 			unitTrapMap.put(methodSignature, hm);
 		}
 		
 		else
 		{
-			HashMap<Unit, Trap> hm = unitTrapMap.get(methodSignature);
+			HashMap<String, Trap> hm = unitTrapMap.get(methodSignature);
 			
-			hm.put(unit, trap);
+			hm.put(unit.toString(), trap);
 			unitTrapMap.put(methodSignature, hm);
 			
 		}
