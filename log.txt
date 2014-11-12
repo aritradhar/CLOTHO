@@ -1123,3 +1123,79 @@ Call graph size : 4507
 Total unit count after repair : 51
 Total instrumentation : 6
 =====================================================================================
+Class file input :
+BugTestPack.ApacheOfbizBug.Start
+Constraint analysis time : 3359 ms
+Constraint analysis memory consumption : 15 MB
+Taint analysis time :1390 ms
+Taint analysis memory consumption :14 MB
+Call graph analysis time :18919 ms
+Call graph analysis memory Consumption  :215 MB
+Instrumentation time + class flashing in FileSystem : 2817 ms
+Instrumentation memory Consumption  :149 MB
+Total repair count : 0
+Total unit handled : 28
+Call graph size : 4399
+Total unit count after repair : 28
+Total instrumentation : 0
+=====================================================================================
+Class file input :
+BugTestPack.ApacheOfbizBug.Start
+Constraint analysis time : 3186 ms
+Constraint analysis memory consumption : 15 MB
+Taint analysis time :1359 ms
+Taint analysis memory consumption :14 MB
+Instrumentation time + class flashing in FileSystem : 2067 ms
+Instrumentation memory Consumption  :44 MB
+Total repair count : 1
+Total unit handled : 28
+Call graph size : 0
+Total unit count after repair : 34
+Total instrumentation : 6
+=====================================================================================
+Class file input :
+BugTestPack.ApacheHiveBug.HiveBug
+Constraint analysis time : 3151 ms
+Constraint analysis memory consumption : 12 MB
+Taint analysis time :1557 ms
+Taint analysis memory consumption :11 MB
+Instrumentation time + class flashing in FileSystem : 1970 ms
+Instrumentation memory Consumption  :44 MB
+Total repair count : 1
+Total unit handled : 23
+Call graph size : 0
+Total unit count after repair : 31
+Total instrumentation : 8
+=====================================================================================
+Class file input :
+BugTestPack.ApacheHiveBug.HiveBug
+Constraint analysis time : 3382 ms
+Constraint analysis memory consumption : 12 MB
+Taint analysis time :1508 ms
+Taint analysis memory consumption :11 MB
+Call graph analysis time :20260 ms
+Call graph analysis memory Consumption  :212 MB
+Instrumentation time + class flashing in FileSystem : 2610 ms
+Instrumentation memory Consumption  :143 MB
+Total repair count : 1
+Total unit handled : 23
+Call graph size : 4461
+Total unit count after repair : 31
+Total instrumentation : 8
+=====================================================================================
+Class file input :
+BugTestPack.ApachePdfBox.PDFboxBug
+Constraint analysis time : 3591 ms
+Constraint analysis memory consumption : 20 MB
+Taint analysis time :1360 ms
+Taint analysis memory consumption :13 MB
+Call graph analysis time :23525 ms
+Call graph analysis memory Consumption  :215 MB
+Instrumentation time + class flashing in FileSystem : 3768 ms
+Instrumentation memory Consumption  :144 MB
+Total repair count : 1
+Total unit handled : 43
+Call graph size : 6274
+Total unit count after repair : 49
+Total instrumentation : 6
+=====================================================================================

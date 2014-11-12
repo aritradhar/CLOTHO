@@ -238,6 +238,7 @@ public class ENV
         Scene.v().addBasicClass("java.awt.GraphicsEnvironment", SootClass.BODIES);
         Scene.v().addBasicClass("java.lang.Boolean", SootClass.BODIES);
         Scene.v().addBasicClass("java.awt.GraphicsEnvironment", SootClass.BODIES);
+        Scene.v().addBasicClass("java.util.Scanner", SootClass.BODIES);
 
 	}
 	
