@@ -27,12 +27,18 @@ import java.util.Map;
 
 
 
+
+
+
 import callGraphTrace.TrapFindType;
 import constraintAnalysis.ConstraintStorageDataType;
 import constraintAnalysis.ConstraintStorageMap;
 import constraintAnalysis.DynamicIfStmtInfo;
 import constraintAnalysis.GenerateString;
+import constraintAnalysis.LastCheckAnalysis;
+import constraintAnalysis.MethodBond;
 import constraintAnalysis.OptimizationExlude;
+import constraintAnalysis.OptimizationPayloadCheck;
 import constraintAnalysis.safeUnit.SafeUnitEvaluator;
 import profile.InstrumManager;
 import profile.UtilInstrum;
@@ -476,7 +482,12 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 				
 				Value lhs = ast.getLeftOp();
 				Value rhs = ast.getRightOp();
-												
+				
+				if(ENV.OPTOMIZATION_SUBSEQUENT_PATCH_NON_USE_SKIP)
+				{
+					LastCheckAnalysis.setUsed(lhs);
+				}
+				
 				//search for the variables in the conditional expression in the if statement
 				
 				Object []ret = constraintAnalysis.ConstraintCheckDynamic.checkMethods(rhs);
@@ -514,6 +525,8 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 				if(rhs instanceof VirtualInvokeExpr)
 				{
 					
+					
+					
 					//System.out.println(stmt);
 					VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) rhs;
 					
@@ -526,7 +539,7 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 				}
 				
 				if(rhs instanceof StaticInvokeExpr)
-				{
+				{					
 					StaticInvokeExpr staticInvokeExpr = (StaticInvokeExpr) rhs;
 					
 					Body b = makePatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), lhs, staticInvokeExpr);
@@ -546,11 +559,29 @@ public class StringRepairConstraintDynamic extends BodyTransformer
 			{
 				InvokeExpr invokeExpr = stmt.getInvokeExpr();
 				
+				String invokedMethodSig = invokeExpr.getMethod().getSignature();
+				List<Value> args = invokeExpr.getArgs();
+				
+				
 				if(invokeExpr instanceof VirtualInvokeExpr)
 				{
 					//System.out.println(stmt);
 					
 					VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) invokeExpr;
+					
+					Value base = virtualInvokeExpr.getBase();
+					if(ENV.OPTOMIZATION_SUBSEQUENT_PATCH_NON_USE_SKIP)
+					{
+						MethodBond MB = new MethodBond(base, methodSignature, invokedMethodSig);
+						//start with false
+						OptimizationPayloadCheck OPC = new OptimizationPayloadCheck(args, false);
+						LastCheckAnalysis.setInWatchDog(MB, OPC);
+						
+						if(LastCheckAnalysis.triggerSubsqOptimization(MB))
+							continue;
+						
+					}
+					
 					
 					Body b = makePatchProbe(pc, body, stmt, (Stmt)pc.getSuccOf(stmt), null, virtualInvokeExpr);
 					

@@ -1247,3 +1247,51 @@ Call graph size : 4490
 Total unit count after repair : 57
 Total instrumentation : 20
 =====================================================================================
+Class file input :
+BugTestPack.ApacheNutchBug.NutchBug
+Constraint analysis time : 3331 ms
+Constraint analysis memory consumption : 16 MB
+Taint analysis time :1344 ms
+Taint analysis memory consumption :8 MB
+Call graph analysis time :20332 ms
+Call graph analysis memory Consumption  :151 MB
+Instrumentation time + class flashing in FileSystem : 3223 ms
+Instrumentation memory Consumption  :144 MB
+Total repair count : 2
+Total unit handled : 44
+Call graph size : 4629
+Total unit count after repair : 60
+Total instrumentation : 16
+=====================================================================================
+Class file input :
+BugTestPack.ApacheNutchBug.NutchBug
+Constraint analysis time : 3672 ms
+Constraint analysis memory consumption : 16 MB
+Taint analysis time :1491 ms
+Taint analysis memory consumption :14 MB
+Call graph analysis time :29502 ms
+Call graph analysis memory Consumption  :215 MB
+Instrumentation time + class flashing in FileSystem : 2813 ms
+Instrumentation memory Consumption  :140 MB
+Total repair count : 1
+Total unit handled : 42
+Call graph size : 4627
+Total unit count after repair : 54
+Total instrumentation : 12
+=====================================================================================
+Class file input :
+BugTestPack.ApacheHiveBug.HiveBug
+Constraint analysis time : 3341 ms
+Constraint analysis memory consumption : 16 MB
+Taint analysis time :1328 ms
+Taint analysis memory consumption :14 MB
+Call graph analysis time :22292 ms
+Call graph analysis memory Consumption  :211 MB
+Instrumentation time + class flashing in FileSystem : 2997 ms
+Instrumentation memory Consumption  :150 MB
+Total repair count : 2
+Total unit handled : 54
+Call graph size : 4793
+Total unit count after repair : 72
+Total instrumentation : 18
+=====================================================================================

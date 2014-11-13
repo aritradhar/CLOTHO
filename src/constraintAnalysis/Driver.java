@@ -89,11 +89,11 @@ public class Driver
 		//String[] className = {"BugTestPack.ApacheSlingBug.SlingBug"};
 		//String[] className = {"BugTestPack.ApacheDerbyBug.DerbyBug"};
 		//String[] className = {"BugTestPack.ApacheOfbizBug.Start"};
-		//String[] className = {"BugTestPack.ApacheHiveBug.HiveBug"};
+		String[] className = {"BugTestPack.ApacheHiveBug.HiveBug"};
 		//String[] className = {"BugTestPack.ApachePdfBox.PDFboxBug"};
 		//String[] className = {"BugTestPack.ApacheHbaseBug.ServerName"};
 		//String[] className = {"BugTestPack.ApacheNutchBug.NutchBug"};
-		String[] className = {"BugTestPack.ApacheVFSBug.VFSBug"};
+		//String[] className = {"BugTestPack.ApacheVFSBug.VFSBug"};
 		//String[] className = classNameList.toArray(new String[classNameList.size()]);	
 		//String []className = {"net.nlanr.jperf.core.IPerfProperties"};
 		

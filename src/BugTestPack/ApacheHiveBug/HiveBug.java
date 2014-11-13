@@ -29,11 +29,33 @@ public class HiveBug
       resultExprString = r;
     }
 	
+	private void fixResultExprStringP()
+    {
+      String r = resultExprString.trim();
+      String prefix = "";
+      if(r.length() >=6)
+    	  prefix = r.substring(0, 6);
+      else
+    	  prefix = r;
+      if (!prefix.toLowerCase().equals("select"))
+      {
+        r = "select " + r;
+      }
+      resultExprString = r;
+    }
+	
 	public static void main(String[] args) 
 	{
-		HiveBug h = new HiveBug();
-		h.resultExprString = "abc";
+		long s = System.currentTimeMillis();
+		for(int i = 0; i<50000;i++)
+		{
+			HiveBug h = new HiveBug();
+			h.resultExprString = "sas";
 		
-		h.fixResultExprString();
+			h.fixResultExprString();
+		}
+		long e = System.currentTimeMillis();
+		
+		System.out.println((e - s) + "ms");
 	}
 }
