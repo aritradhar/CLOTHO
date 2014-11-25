@@ -64,6 +64,7 @@ public class Driver
 		Options.v().set_soot_classpath(ENV.SOOT_CLASS_PATH);				
 		Options.v().set_prepend_classpath(true);
 		 
+		String[] className = {"BugSynthetic"};
 		//String[] className = {"StringTest"};
 		//String[] className = {"log4jRep"};
 		//String[] className = {"BugTestPack.AdobeFlexBuf.OrderedProperties"};
@@ -89,7 +90,7 @@ public class Driver
 		//String[] className = {"BugTestPack.ApacheSlingBug.SlingBug"};
 		//String[] className = {"BugTestPack.ApacheDerbyBug.DerbyBug"};
 		//String[] className = {"BugTestPack.ApacheOfbizBug.Start"};
-		String[] className = {"BugTestPack.ApacheHiveBug.HiveBug"};
+		//String[] className = {"BugTestPack.ApacheHiveBug.HiveBug"};
 		//String[] className = {"BugTestPack.ApachePdfBox.PDFboxBug"};
 		//String[] className = {"BugTestPack.ApacheHbaseBug.ServerName"};
 		//String[] className = {"BugTestPack.ApacheNutchBug.NutchBug"};

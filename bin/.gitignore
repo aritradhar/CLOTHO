@@ -1,5 +1,4 @@
 /test/
-/com/
 /BugTestPack/
 /ConstraintAutomata/
 /DaikonTest/
@@ -11,4 +10,3 @@
 /boundedAnalysis/
 /callGraphTrace/
 /constraintAnalysis/
-/util/

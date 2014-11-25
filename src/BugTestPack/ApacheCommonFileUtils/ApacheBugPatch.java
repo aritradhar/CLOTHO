@@ -82,14 +82,10 @@ public class ApacheBugPatch
 	/*  557 */     return Math.max(lastUnixPos, lastWindowsPos);
 	/*      */   }
 	
-	/*      */   public static String getPathNoEndSeparator(String filename)
-	/*      */   {
+	/*      */   public static String getPathNoEndSeparator(String filename){
 	/*  676 */     return doGetPath(filename, 0);
 	/*      */   }
-	/*      */   
-	/*      */ 
-	/*      */   private static String doGetPath(String filename, int separatorAdd)
-	/*      */   {
+	/*      */   private static String doGetPath(String filename, int separatorAdd){
 	/*  687 */     if (filename == null) {
 	/*  688 */       return null;
 	/*      */     }
@@ -101,14 +97,12 @@ public class ApacheBugPatch
 	/*  695 */     if ((prefix >= filename.length()) || (index < 0)) {
 	/*  696 */       return "";
 	/*      */     }
-	int endIndex = index+separatorAdd;
-	if (prefix >= filename.length() || index < 0 || prefix >= endIndex) {
-        return "";
-    }
-	
-	/*  698 */     return filename.substring(prefix, index + endIndex);
-
-				}
+	/*  697 */	   int endIndex = index+separatorAdd;
+	/*  698 */	   if (prefix >= filename.length() || index < 0 || prefix > endIndex) {
+	/*  699 */    	 return "";
+	/*      */		}
+	/*  700 */     return filename.substring(prefix, endIndex);
+	/*      */	 }
 
  
 	/*      */   public ApacheBugPatch() {}
