@@ -1407,3 +1407,19 @@ Call graph size : 6510
 Total unit count after repair : 63
 Total instrumentation : 14
 =====================================================================================
+Class file input :
+BugSynthetic
+Constraint analysis time : 3267 ms
+Constraint analysis memory consumption : 21 MB
+Taint analysis time :1272 ms
+Taint analysis memory consumption :10 MB
+Call graph analysis time :22577 ms
+Call graph analysis memory Consumption  :210 MB
+Instrumentation time + class flashing in FileSystem : 2611 ms
+Instrumentation memory Consumption  :152 MB
+Total repair count : 2
+Total unit handled : 49
+Call graph size : 6093
+Total unit count after repair : 63
+Total instrumentation : 14
+=====================================================================================
