@@ -1,0 +1,65 @@
+class com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context extends java.lang.Object
+{
+    private final com.puppycrawl.tools.checkstyle.api.DetailAST mAST;
+    private int mCount;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context: com.puppycrawl.tools.checkstyle.api.DetailAST mAST> = aAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context: int mCount> = 0;
+
+        return;
+    }
+
+    public void addCount(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context this;
+        int aCount, $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context;
+
+        aCount := @parameter0: int;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context: int mCount>;
+
+        $i1 = $i0 + aCount;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context: int mCount> = $i1;
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST getAST()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context: com.puppycrawl.tools.checkstyle.api.DetailAST mAST>;
+
+        return $r0;
+    }
+
+    public int getCount()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck$Context: int mCount>;
+
+        return $i0;
+    }
+}

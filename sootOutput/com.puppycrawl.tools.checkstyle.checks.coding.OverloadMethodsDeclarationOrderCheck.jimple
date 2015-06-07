@@ -1,0 +1,152 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 6;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+        int parentType;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        parentType = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if parentType == 14 goto label1;
+
+        if parentType == 158 goto label1;
+
+        if parentType == 15 goto label1;
+
+        if parentType != 138 goto label2;
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck: void checkOverloadMethodsGrouping(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label2:
+        return;
+    }
+
+    private void checkOverloadMethodsGrouping(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aObjectBlock, currentToken, $r2;
+        java.util.HashMap methodIndexMap, methodLineNumberMap, $r0, $r1;
+        int currentIndex, priviousIndex, previousLineWithOverloadMethod, $i0, $i1, $i2, $i3;
+        java.lang.String methodName;
+        boolean $z0;
+        java.lang.Integer $r4, $r5, $r8, $r10, $r12;
+        java.lang.Object $r6, $r9;
+        java.lang.Object[] $r11;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck;
+
+        aObjectBlock := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        currentToken = virtualinvoke aObjectBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $r0 = new java.util.HashMap;
+
+        specialinvoke $r0.<java.util.HashMap: void <init>()>();
+
+        methodIndexMap = $r0;
+
+        $r1 = new java.util.HashMap;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+
+        methodLineNumberMap = $r1;
+
+        currentIndex = 0;
+
+     label1:
+        if currentToken == null goto label4;
+
+        $i0 = virtualinvoke currentToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 9 goto label3;
+
+        currentIndex = currentIndex + 1;
+
+        $r2 = virtualinvoke currentToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        methodName = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = interfaceinvoke methodIndexMap.<java.util.Map: boolean containsKey(java.lang.Object)>(methodName);
+
+        if $z0 == 0 goto label2;
+
+        $r6 = interfaceinvoke methodIndexMap.<java.util.Map: java.lang.Object get(java.lang.Object)>(methodName);
+
+        $r8 = (java.lang.Integer) $r6;
+
+        priviousIndex = virtualinvoke $r8.<java.lang.Integer: int intValue()>();
+
+        $i2 = currentIndex - priviousIndex;
+
+        if $i2 <= 1 goto label2;
+
+        $r9 = interfaceinvoke methodLineNumberMap.<java.util.Map: java.lang.Object get(java.lang.Object)>(methodName);
+
+        $r10 = (java.lang.Integer) $r9;
+
+        previousLineWithOverloadMethod = virtualinvoke $r10.<java.lang.Integer: int intValue()>();
+
+        $i3 = virtualinvoke currentToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r11 = newarray (java.lang.Object)[1];
+
+        $r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(previousLineWithOverloadMethod);
+
+        $r11[0] = $r12;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck: void log(int,java.lang.String,java.lang.Object[])>($i3, "overload.methods.declaration", $r11);
+
+     label2:
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(currentIndex);
+
+        interfaceinvoke methodIndexMap.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(methodName, $r4);
+
+        $i1 = virtualinvoke currentToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        interfaceinvoke methodLineNumberMap.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(methodName, $r5);
+
+     label3:
+        currentToken = virtualinvoke currentToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label4:
+        return;
+    }
+}

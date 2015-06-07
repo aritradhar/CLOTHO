@@ -1,0 +1,194 @@
+public final class com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck extends com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalCheck
+{
+    private static final java.lang.String[] DEFAULT_IGNORED_METHOD_NAMES;
+    private final java.util.Set mIgnoredMethodNames;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck this;
+        java.lang.String[] $r0, $r2;
+        java.util.HashSet $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
+
+        $r0 = newarray (java.lang.String)[6];
+
+        $r0[0] = "Error";
+
+        $r0[1] = "RuntimeException";
+
+        $r0[2] = "Throwable";
+
+        $r0[3] = "java.lang.Error";
+
+        $r0[4] = "java.lang.RuntimeException";
+
+        $r0[5] = "java.lang.Throwable";
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalCheck: void <init>(java.lang.String[])>($r0);
+
+        $r1 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: java.util.Set mIgnoredMethodNames> = $r1;
+
+        $r2 = <com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: java.lang.String[] DEFAULT_IGNORED_METHOD_NAMES>;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: void setIgnoredMethodNames(java.lang.String[])>($r2);
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 82;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aDetailAST, token, $r0, $r1;
+        com.puppycrawl.tools.checkstyle.api.FullIdent ident;
+        java.lang.String $r2, $r3, $r5;
+        boolean $z0, $z1;
+        int $i0;
+        java.lang.Object[] $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
+
+        aDetailAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        token = virtualinvoke aDetailAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $r0 = virtualinvoke aDetailAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: boolean shouldIgnoreMethod(java.lang.String)>($r2);
+
+        if $z0 != 0 goto label3;
+
+     label1:
+        if token == null goto label3;
+
+        $i0 = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 75 goto label2;
+
+        ident = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(token);
+
+        $r3 = virtualinvoke ident.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: boolean isIllegalClassName(java.lang.String)>($r3);
+
+        if $z1 == 0 goto label2;
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r5 = virtualinvoke ident.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r4[0] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(token, "illegal.throw", $r4);
+
+     label2:
+        token = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label3:
+        return;
+    }
+
+    private boolean shouldIgnoreMethod(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck this;
+        java.lang.String aName;
+        java.util.Set $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
+
+        aName := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: java.util.Set mIgnoredMethodNames>;
+
+        $z0 = interfaceinvoke $r0.<java.util.Set: boolean contains(java.lang.Object)>(aName);
+
+        return $z0;
+    }
+
+    public void setIgnoredMethodNames(java.lang.String[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck this;
+        java.lang.String[] aMethodNames, arr$;
+        int len$, i$;
+        java.lang.String element;
+        java.util.Set $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
+
+        aMethodNames := @parameter0: java.lang.String[];
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: java.util.Set mIgnoredMethodNames>;
+
+        interfaceinvoke $r0.<java.util.Set: void clear()>();
+
+        arr$ = aMethodNames;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label2;
+
+        element = arr$[i$];
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: java.util.Set mIgnoredMethodNames>;
+
+        interfaceinvoke $r1.<java.util.Set: boolean add(java.lang.Object)>(element);
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "finalize";
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck: java.lang.String[] DEFAULT_IGNORED_METHOD_NAMES> = $r0;
+
+        return;
+    }
+}

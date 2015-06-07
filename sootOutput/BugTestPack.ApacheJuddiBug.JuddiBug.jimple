@@ -1,0 +1,191 @@
+public class BugTestPack.ApacheJuddiBug.JuddiBug extends java.lang.Object
+{
+    private java.util.List keyGeneratorKeys;
+    protected java.lang.String authorizedName;
+
+    public void <init>()
+    {
+        BugTestPack.ApacheJuddiBug.JuddiBug this;
+
+        this := @this: BugTestPack.ApacheJuddiBug.JuddiBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<BugTestPack.ApacheJuddiBug.JuddiBug: java.util.List keyGeneratorKeys> = null;
+
+        return;
+    }
+
+    public void populateKeyGeneratorKeys(javax.persistence.EntityManager)
+    {
+        BugTestPack.ApacheJuddiBug.JuddiBug this;
+        javax.persistence.EntityManager em;
+        org.apache.juddi.query.util.DynamicQuery getKeysQuery, $r0, $r1, $r2, $r3;
+        org.apache.juddi.query.util.DynamicQuery$Parameter pubParam, keyParam, $r5, $r8;
+        javax.persistence.Query qry;
+        java.lang.String $r6, $r7, $r9, $r11, $r12, $r14, $r15;
+        java.lang.StringBuilder $r10, $r13;
+        org.apache.juddi.query.util.DynamicQuery$Parameter[] $r17;
+        java.util.List $r18;
+
+        this := @this: BugTestPack.ApacheJuddiBug.JuddiBug;
+
+        em := @parameter0: javax.persistence.EntityManager;
+
+        $r0 = new org.apache.juddi.query.util.DynamicQuery;
+
+        specialinvoke $r0.<org.apache.juddi.query.util.DynamicQuery: void <init>()>();
+
+        getKeysQuery = $r0;
+
+        $r1 = virtualinvoke getKeysQuery.<org.apache.juddi.query.util.DynamicQuery: org.apache.juddi.query.util.DynamicQuery append(java.lang.String)>("select t.entityKey from Tmodel t");
+
+        $r2 = virtualinvoke $r1.<org.apache.juddi.query.util.DynamicQuery: org.apache.juddi.query.util.DynamicQuery pad()>();
+
+        $r3 = virtualinvoke $r2.<org.apache.juddi.query.util.DynamicQuery: org.apache.juddi.query.util.DynamicQuery WHERE()>();
+
+        virtualinvoke $r3.<org.apache.juddi.query.util.DynamicQuery: org.apache.juddi.query.util.DynamicQuery pad()>();
+
+        $r5 = new org.apache.juddi.query.util.DynamicQuery$Parameter;
+
+        $r6 = virtualinvoke this.<BugTestPack.ApacheJuddiBug.JuddiBug: java.lang.String getAuthorizedName()>();
+
+        $r7 = <org.apache.juddi.query.util.DynamicQuery: java.lang.String PREDICATE_EQUALS>;
+
+        specialinvoke $r5.<org.apache.juddi.query.util.DynamicQuery$Parameter: void <init>(java.lang.String,java.lang.Object,java.lang.String)>("t.authorizedName", $r6, $r7);
+
+        pubParam = $r5;
+
+        $r8 = new org.apache.juddi.query.util.DynamicQuery$Parameter;
+
+        $r10 = new java.lang.StringBuilder;
+
+        $r9 = <org.apache.juddi.query.util.DynamicQuery: java.lang.String WILDCARD>;
+
+        $r11 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r9);
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>($r11);
+
+        $r13 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("keygenerator");
+
+        $r12 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r15 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>();
+
+        $r14 = <org.apache.juddi.query.util.DynamicQuery: java.lang.String PREDICATE_LIKE>;
+
+        specialinvoke $r8.<org.apache.juddi.query.util.DynamicQuery$Parameter: void <init>(java.lang.String,java.lang.Object,java.lang.String)>("UPPER(t.entityKey)", $r15, $r14);
+
+        keyParam = $r8;
+
+        $r17 = newarray (org.apache.juddi.query.util.DynamicQuery$Parameter)[2];
+
+        $r17[0] = pubParam;
+
+        $r17[1] = keyParam;
+
+        virtualinvoke getKeysQuery.<org.apache.juddi.query.util.DynamicQuery: org.apache.juddi.query.util.DynamicQuery appendGroupedAnd(org.apache.juddi.query.util.DynamicQuery$Parameter[])>($r17);
+
+        qry = virtualinvoke getKeysQuery.<org.apache.juddi.query.util.DynamicQuery: javax.persistence.Query buildJPAQuery(javax.persistence.EntityManager)>(em);
+
+        $r18 = interfaceinvoke qry.<javax.persistence.Query: java.util.List getResultList()>();
+
+        this.<BugTestPack.ApacheJuddiBug.JuddiBug: java.util.List keyGeneratorKeys> = $r18;
+
+        return;
+    }
+
+    public java.lang.String getAuthorizedName()
+    {
+        BugTestPack.ApacheJuddiBug.JuddiBug this;
+        java.lang.String $r0;
+
+        this := @this: BugTestPack.ApacheJuddiBug.JuddiBug;
+
+        $r0 = this.<BugTestPack.ApacheJuddiBug.JuddiBug: java.lang.String authorizedName>;
+
+        return $r0;
+    }
+
+    public boolean isValidPublisherKey(javax.persistence.EntityManager, java.lang.String)
+    {
+        BugTestPack.ApacheJuddiBug.JuddiBug this;
+        javax.persistence.EntityManager em;
+        java.lang.String key, keyPartition, keyGenKey, keyGenPartition;
+        java.util.Iterator l5;
+        int $i0, $i1;
+        java.lang.String[] $r0;
+        java.util.List $r1, $r2;
+        boolean $z0, $z1;
+        java.lang.Object $r3;
+
+        this := @this: BugTestPack.ApacheJuddiBug.JuddiBug;
+
+        em := @parameter0: javax.persistence.EntityManager;
+
+        key := @parameter1: java.lang.String;
+
+        if key != null goto label1;
+
+        return 0;
+
+     label1:
+        $i0 = virtualinvoke key.<java.lang.String: int lastIndexOf(java.lang.String)>(":");
+
+        keyPartition = virtualinvoke key.<java.lang.String: java.lang.String substring(int,int)>(0, $i0);
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "12123:sad";
+
+        $r0[1] = "aaddwr:afsf";
+
+        $r1 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r0);
+
+        this.<BugTestPack.ApacheJuddiBug.JuddiBug: java.util.List keyGeneratorKeys> = $r1;
+
+        $r2 = this.<BugTestPack.ApacheJuddiBug.JuddiBug: java.util.List keyGeneratorKeys>;
+
+        l5 = interfaceinvoke $r2.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label3;
+
+     label2:
+        $r3 = interfaceinvoke l5.<java.util.Iterator: java.lang.Object next()>();
+
+        keyGenKey = (java.lang.String) $r3;
+
+        $i1 = virtualinvoke key.<java.lang.String: int lastIndexOf(java.lang.String)>(":");
+
+        keyGenPartition = virtualinvoke keyGenKey.<java.lang.String: java.lang.String substring(int,int)>(0, $i1);
+
+        $z1 = virtualinvoke keyGenPartition.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(keyPartition);
+
+        if $z1 == 0 goto label3;
+
+        return 1;
+
+     label3:
+        $z0 = interfaceinvoke l5.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label2;
+
+        return 0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        BugTestPack.ApacheJuddiBug.JuddiBug $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new BugTestPack.ApacheJuddiBug.JuddiBug;
+
+        specialinvoke $r0.<BugTestPack.ApacheJuddiBug.JuddiBug: void <init>()>();
+
+        virtualinvoke $r0.<BugTestPack.ApacheJuddiBug.JuddiBug: boolean isValidPublisherKey(javax.persistence.EntityManager,java.lang.String)>(null, "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">");
+
+        return;
+    }
+}

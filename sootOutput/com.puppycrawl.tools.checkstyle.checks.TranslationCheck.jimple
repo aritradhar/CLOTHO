@@ -1,0 +1,476 @@
+public class com.puppycrawl.tools.checkstyle.checks.TranslationCheck extends com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck
+{
+    private final java.util.List mPropertyFiles;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.TranslationCheck this;
+        java.util.ArrayList $r0;
+        java.lang.String[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: java.util.List mPropertyFiles> = $r0;
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "properties";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: void setFileExtensions(java.lang.String[])>($r1);
+
+        return;
+    }
+
+    public void beginProcessing(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.TranslationCheck this;
+        java.lang.String aCharset;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+
+        aCharset := @parameter0: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void beginProcessing(java.lang.String)>(aCharset);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: java.util.List mPropertyFiles>;
+
+        interfaceinvoke $r0.<java.util.List: void clear()>();
+
+        return;
+    }
+
+    protected void processFiltered(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.TranslationCheck this;
+        java.io.File aFile;
+        java.util.List aLines, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: java.util.List mPropertyFiles>;
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>(aFile);
+
+        return;
+    }
+
+    public void finishProcessing()
+    {
+        com.puppycrawl.tools.checkstyle.checks.TranslationCheck this;
+        java.util.Map propFilesMap;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void finishProcessing()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: java.util.List mPropertyFiles>;
+
+        propFilesMap = staticinvoke <com.puppycrawl.tools.checkstyle.checks.TranslationCheck: java.util.Map arrangePropertyFiles(java.util.List)>($r0);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: void checkPropertyFileSets(java.util.Map)>(propFilesMap);
+
+        return;
+    }
+
+    private static java.lang.String extractPropertyIdentifier(java.io.File)
+    {
+        java.io.File aFile;
+        java.lang.String filePath, $r0;
+        int dirNameEnd, baseNameStart, underscoreIdx, dotIdx, cutoffIdx, $i1;
+        char $c0;
+
+        aFile := @parameter0: java.io.File;
+
+        filePath = virtualinvoke aFile.<java.io.File: java.lang.String getPath()>();
+
+        $c0 = <java.io.File: char separatorChar>;
+
+        dirNameEnd = virtualinvoke filePath.<java.lang.String: int lastIndexOf(int)>($c0);
+
+        baseNameStart = dirNameEnd + 1;
+
+        underscoreIdx = virtualinvoke filePath.<java.lang.String: int indexOf(int,int)>(95, baseNameStart);
+
+        dotIdx = virtualinvoke filePath.<java.lang.String: int indexOf(int,int)>(46, baseNameStart);
+
+        if underscoreIdx == -1 goto label1;
+
+        $i1 = underscoreIdx;
+
+        goto label2;
+
+     label1:
+        $i1 = dotIdx;
+
+     label2:
+        cutoffIdx = $i1;
+
+        $r0 = virtualinvoke filePath.<java.lang.String: java.lang.String substring(int,int)>(0, cutoffIdx);
+
+        return $r0;
+    }
+
+    private static java.util.Map arrangePropertyFiles(java.util.List)
+    {
+        java.util.List aPropFiles;
+        java.util.HashMap propFileMap;
+        java.util.Iterator i$;
+        java.io.File f;
+        java.lang.String identifier;
+        java.util.Set fileSet;
+        boolean $z0;
+        java.lang.Object $r0, $r1;
+
+        aPropFiles := @parameter0: java.util.List;
+
+        propFileMap = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        i$ = interfaceinvoke aPropFiles.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r0 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        f = (java.io.File) $r0;
+
+        identifier = staticinvoke <com.puppycrawl.tools.checkstyle.checks.TranslationCheck: java.lang.String extractPropertyIdentifier(java.io.File)>(f);
+
+        $r1 = interfaceinvoke propFileMap.<java.util.Map: java.lang.Object get(java.lang.Object)>(identifier);
+
+        fileSet = (java.util.Set) $r1;
+
+        if fileSet != null goto label2;
+
+        fileSet = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        interfaceinvoke propFileMap.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(identifier, fileSet);
+
+     label2:
+        interfaceinvoke fileSet.<java.util.Set: boolean add(java.lang.Object)>(f);
+
+        goto label1;
+
+     label3:
+        return propFileMap;
+    }
+
+    private java.util.Set loadKeys(java.io.File)
+    {
+        com.puppycrawl.tools.checkstyle.checks.TranslationCheck this;
+        java.io.File aFile;
+        java.util.HashSet keys;
+        java.io.FileInputStream inStream, $r0;
+        java.util.Properties props, $r1;
+        java.util.Enumeration e;
+        java.lang.Throwable l6, $r4;
+        boolean $z0;
+        java.lang.Object $r2;
+        java.io.IOException $r3, props;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        keys = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        inStream = null;
+
+     label1:
+        $r0 = new java.io.FileInputStream;
+
+        specialinvoke $r0.<java.io.FileInputStream: void <init>(java.io.File)>(aFile);
+
+        inStream = $r0;
+
+        $r1 = new java.util.Properties;
+
+        specialinvoke $r1.<java.util.Properties: void <init>()>();
+
+        props = $r1;
+
+        virtualinvoke props.<java.util.Properties: void load(java.io.InputStream)>(inStream);
+
+        e = virtualinvoke props.<java.util.Properties: java.util.Enumeration propertyNames()>();
+
+     label2:
+        $z0 = interfaceinvoke e.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 == 0 goto label3;
+
+        $r2 = interfaceinvoke e.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        interfaceinvoke keys.<java.util.Set: boolean add(java.lang.Object)>($r2);
+
+        goto label2;
+
+     label3:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(inStream);
+
+        goto label8;
+
+     label4:
+        $r3 := @caughtexception;
+
+        props = $r3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: void logIOException(java.io.IOException,java.io.File)>(props, aFile);
+
+     label5:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(inStream);
+
+        goto label8;
+
+     label6:
+        $r4 := @caughtexception;
+
+        l6 = $r4;
+
+     label7:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(inStream);
+
+        throw l6;
+
+     label8:
+        return keys;
+
+        catch java.io.IOException from label1 to label3 with label4;
+        catch java.lang.Throwable from label1 to label3 with label6;
+        catch java.lang.Throwable from label4 to label5 with label6;
+        catch java.lang.Throwable from label6 to label7 with label6;
+    }
+
+    private void logIOException(java.io.IOException, java.io.File)
+    {
+        com.puppycrawl.tools.checkstyle.checks.TranslationCheck this;
+        java.io.IOException aEx;
+        java.io.File aFile;
+        java.lang.String[] args, $r6;
+        java.lang.String key, $r1, $r5, $r7;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage message, $r0;
+        java.util.TreeSet messages;
+        boolean $z0;
+        java.lang.Class $r2;
+        com.puppycrawl.tools.checkstyle.api.MessageDispatcher $r3;
+        org.apache.commons.logging.Log $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+
+        aEx := @parameter0: java.io.IOException;
+
+        aFile := @parameter1: java.io.File;
+
+        args = null;
+
+        key = "general.fileNotFound";
+
+        $z0 = aEx instanceof java.io.FileNotFoundException;
+
+        if $z0 != 0 goto label1;
+
+        $r6 = newarray (java.lang.String)[1];
+
+        $r7 = virtualinvoke aEx.<java.io.IOException: java.lang.String getMessage()>();
+
+        $r6[0] = $r7;
+
+        args = $r6;
+
+        key = "general.exception";
+
+     label1:
+        $r0 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: java.lang.String getId()>();
+
+        $r2 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,java.lang.String,java.lang.String,java.lang.Object[],java.lang.String,java.lang.Class,java.lang.String)>(0, "com.puppycrawl.tools.checkstyle.messages", key, args, $r1, $r2, null);
+
+        message = $r0;
+
+        messages = staticinvoke <com.google.common.collect.Sets: java.util.TreeSet newTreeSet()>();
+
+        virtualinvoke messages.<java.util.TreeSet: boolean add(java.lang.Object)>(message);
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: com.puppycrawl.tools.checkstyle.api.MessageDispatcher getMessageDispatcher()>();
+
+        $r5 = virtualinvoke aFile.<java.io.File: java.lang.String getPath()>();
+
+        interfaceinvoke $r3.<com.puppycrawl.tools.checkstyle.api.MessageDispatcher: void fireErrors(java.lang.String,java.util.SortedSet)>($r5, messages);
+
+        $r4 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: org.apache.commons.logging.Log getExceptionLogger()>();
+
+        interfaceinvoke $r4.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>("IOException occured.", aEx);
+
+        return;
+    }
+
+    private void compareKeySets(java.util.Set, java.util.Map)
+    {
+        com.puppycrawl.tools.checkstyle.checks.TranslationCheck this;
+        java.util.Set aKeys, fls, currentKeys;
+        java.util.Map aFileMap;
+        java.util.Iterator i$, i$;
+        java.util.Map$Entry entry;
+        java.io.File currentFile;
+        com.puppycrawl.tools.checkstyle.api.MessageDispatcher dispatcher;
+        java.lang.String path;
+        java.util.HashSet keysClone;
+        java.lang.Object key, $r0, $r1, $r2;
+        boolean $z0, $z1, $z3;
+        java.lang.Object[] $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+
+        aKeys := @parameter0: java.util.Set;
+
+        aFileMap := @parameter1: java.util.Map;
+
+        fls = interfaceinvoke aFileMap.<java.util.Map: java.util.Set entrySet()>();
+
+        i$ = interfaceinvoke fls.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        entry = (java.util.Map$Entry) $r1;
+
+        $r0 = interfaceinvoke entry.<java.util.Map$Entry: java.lang.Object getKey()>();
+
+        currentFile = (java.io.File) $r0;
+
+        dispatcher = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: com.puppycrawl.tools.checkstyle.api.MessageDispatcher getMessageDispatcher()>();
+
+        path = virtualinvoke currentFile.<java.io.File: java.lang.String getPath()>();
+
+        interfaceinvoke dispatcher.<com.puppycrawl.tools.checkstyle.api.MessageDispatcher: void fireFileStarted(java.lang.String)>(path);
+
+        $r2 = interfaceinvoke entry.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        currentKeys = (java.util.Set) $r2;
+
+        keysClone = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet(java.lang.Iterable)>(aKeys);
+
+        interfaceinvoke keysClone.<java.util.Set: boolean removeAll(java.util.Collection)>(currentKeys);
+
+        $z1 = interfaceinvoke keysClone.<java.util.Set: boolean isEmpty()>();
+
+        if $z1 != 0 goto label3;
+
+        i$ = interfaceinvoke keysClone.<java.util.Set: java.util.Iterator iterator()>();
+
+     label2:
+        $z3 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z3 == 0 goto label3;
+
+        key = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r3[0] = key;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: void log(int,java.lang.String,java.lang.Object[])>(0, "translation.missingKey", $r3);
+
+        goto label2;
+
+     label3:
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: void fireErrors(java.lang.String)>(path);
+
+        interfaceinvoke dispatcher.<com.puppycrawl.tools.checkstyle.api.MessageDispatcher: void fireFileFinished(java.lang.String)>(path);
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    private void checkPropertyFileSets(java.util.Map)
+    {
+        com.puppycrawl.tools.checkstyle.checks.TranslationCheck this;
+        java.util.Map aPropFiles;
+        java.util.Set entrySet, files, fileKeys;
+        java.util.Iterator i$, i$;
+        java.util.Map$Entry entry;
+        java.util.HashSet keys;
+        java.util.HashMap fileMap;
+        java.io.File file;
+        boolean $z0, $z1;
+        java.lang.Object $r0, $r1, $r2;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+
+        aPropFiles := @parameter0: java.util.Map;
+
+        entrySet = interfaceinvoke aPropFiles.<java.util.Map: java.util.Set entrySet()>();
+
+        i$ = interfaceinvoke entrySet.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label5;
+
+        $r0 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        entry = (java.util.Map$Entry) $r0;
+
+        $r1 = interfaceinvoke entry.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        files = (java.util.Set) $r1;
+
+        $i0 = interfaceinvoke files.<java.util.Set: int size()>();
+
+        if $i0 < 2 goto label4;
+
+        keys = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        fileMap = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        i$ = interfaceinvoke files.<java.util.Set: java.util.Iterator iterator()>();
+
+     label2:
+        $z1 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label3;
+
+        $r2 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        file = (java.io.File) $r2;
+
+        fileKeys = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: java.util.Set loadKeys(java.io.File)>(file);
+
+        interfaceinvoke keys.<java.util.Set: boolean addAll(java.util.Collection)>(fileKeys);
+
+        interfaceinvoke fileMap.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(file, fileKeys);
+
+        goto label2;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.TranslationCheck: void compareKeySets(java.util.Set,java.util.Map)>(keys, fileMap);
+
+     label4:
+        goto label1;
+
+     label5:
+        return;
+    }
+}

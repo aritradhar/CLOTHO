@@ -1,0 +1,54 @@
+class com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1 extends java.lang.Object implements javax.swing.event.TreeExpansionListener
+{
+    final com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this$0;
+
+    void <init>(com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1 this;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter l1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this$0> = l1;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void treeExpanded(javax.swing.event.TreeExpansionEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1 this;
+        javax.swing.event.TreeExpansionEvent event;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1;
+
+        event := @parameter0: javax.swing.event.TreeExpansionEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this$0>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: void fireTableDataChanged()>();
+
+        return;
+    }
+
+    public void treeCollapsed(javax.swing.event.TreeExpansionEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1 this;
+        javax.swing.event.TreeExpansionEvent event;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1;
+
+        event := @parameter0: javax.swing.event.TreeExpansionEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this$0>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: void fireTableDataChanged()>();
+
+        return;
+    }
+}

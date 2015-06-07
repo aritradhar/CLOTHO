@@ -1,0 +1,456 @@
+public final class com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mVariableStack;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables> = $r0;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mVariableStack> = $r1;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        $r0 = newarray (int)[20];
+
+        $r0[0] = 6;
+
+        $r0[1] = 93;
+
+        $r0[2] = 38;
+
+        $r0[3] = 160;
+
+        $r0[4] = 81;
+
+        $r0[5] = 100;
+
+        $r0[6] = 101;
+
+        $r0[7] = 102;
+
+        $r0[8] = 103;
+
+        $r0[9] = 104;
+
+        $r0[10] = 105;
+
+        $r0[11] = 106;
+
+        $r0[12] = 107;
+
+        $r0[13] = 108;
+
+        $r0[14] = 109;
+
+        $r0[15] = 110;
+
+        $r0[16] = 131;
+
+        $r0[17] = 25;
+
+        $r0[18] = 132;
+
+        $r0[19] = 26;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: void clear()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mVariableStack>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: void clear()>();
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        java.lang.IllegalStateException $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 6: goto label1;
+            case 25: goto label3;
+            case 26: goto label3;
+            case 38: goto label2;
+            case 81: goto label3;
+            case 93: goto label2;
+            case 100: goto label3;
+            case 101: goto label3;
+            case 102: goto label3;
+            case 103: goto label3;
+            case 104: goto label3;
+            case 105: goto label3;
+            case 106: goto label3;
+            case 107: goto label3;
+            case 108: goto label3;
+            case 109: goto label3;
+            case 110: goto label3;
+            case 131: goto label3;
+            case 132: goto label3;
+            case 160: goto label2;
+            default: goto label4;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: void enterBlock()>();
+
+        goto label5;
+
+     label2:
+        goto label5;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: void checkIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label5;
+
+     label4:
+        $r0 = new java.lang.IllegalStateException;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r1);
+
+        throw $r0;
+
+     label5:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+        int $i0;
+        java.lang.IllegalStateException $r1;
+        java.lang.String $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 6: goto label4;
+            case 25: goto label5;
+            case 26: goto label5;
+            case 38: goto label1;
+            case 81: goto label5;
+            case 93: goto label3;
+            case 100: goto label5;
+            case 101: goto label5;
+            case 102: goto label5;
+            case 103: goto label5;
+            case 104: goto label5;
+            case 105: goto label5;
+            case 106: goto label5;
+            case 107: goto label5;
+            case 108: goto label5;
+            case 109: goto label5;
+            case 110: goto label5;
+            case 131: goto label5;
+            case 132: goto label5;
+            case 160: goto label2;
+            default: goto label6;
+        };
+
+     label1:
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: void leaveForIter(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        goto label7;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: void leaveForEach(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label7;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: void leaveForDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label7;
+
+     label4:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: void exitBlock()>();
+
+        goto label7;
+
+     label5:
+        goto label7;
+
+     label6:
+        $r1 = new java.lang.IllegalStateException;
+
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r1.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r2);
+
+        throw $r1;
+
+     label7:
+        return;
+    }
+
+    private void enterBlock()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0, $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mVariableStack>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r0);
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables> = $r2;
+
+        return;
+    }
+
+    private void exitBlock()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0, $r2;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mVariableStack>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.api.FastStack) $r1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables> = $r2;
+
+        return;
+    }
+
+    private void checkIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, identAST;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0, $r1, $r2;
+        boolean $z0, $z1;
+        int $i0, $i1, $i2;
+        java.lang.String $r3, $r5;
+        java.lang.Object[] $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables>;
+
+        if $r0 == null goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: boolean isEmpty()>();
+
+        if $z0 != 0 goto label1;
+
+        identAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        if identAST == null goto label1;
+
+        $i0 = virtualinvoke identAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 59 goto label1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables>;
+
+        $r3 = virtualinvoke identAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z1 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.FastStack: boolean contains(java.lang.Object)>($r3);
+
+        if $z1 == 0 goto label1;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r5 = virtualinvoke identAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r4[0] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i2, "modified.control.variable", $r4);
+
+     label1:
+        return;
+    }
+
+    private void leaveForIter(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, forInitAST, parameterDefAST, param;
+        int $i0;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        forInitAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(36);
+
+        parameterDefAST = virtualinvoke forInitAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(10);
+
+     label1:
+        if parameterDefAST == null goto label3;
+
+        $i0 = virtualinvoke parameterDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 10 goto label2;
+
+        param = virtualinvoke parameterDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables>;
+
+        $r1 = virtualinvoke param.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r1);
+
+     label2:
+        parameterDefAST = virtualinvoke parameterDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label3:
+        return;
+    }
+
+    private void leaveForEach(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aForEach, paramDef, paramName;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        aForEach := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        paramDef = virtualinvoke aForEach.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(10);
+
+        paramName = virtualinvoke paramDef.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables>;
+
+        $r1 = virtualinvoke paramName.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r1);
+
+        return;
+    }
+
+    private void leaveForDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, forInitAST, parameterDefAST;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0, $r2;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        forInitAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(36);
+
+        if forInitAST == null goto label4;
+
+        parameterDefAST = virtualinvoke forInitAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(10);
+
+     label1:
+        if parameterDefAST == null goto label3;
+
+        $i0 = virtualinvoke parameterDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 10 goto label2;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables>;
+
+        virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+     label2:
+        parameterDefAST = virtualinvoke parameterDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label3:
+        goto label5;
+
+     label4:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCurrentVariables>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+     label5:
+        return;
+    }
+}

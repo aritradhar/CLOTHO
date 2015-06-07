@@ -1,0 +1,167 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck
+{
+    private boolean mAllowLineBreaks;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck this;
+        com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption NOSPACE>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck: void <init>(java.lang.Enum,java.lang.Class)>($r0, class "com/puppycrawl/tools/checkstyle/checks/whitespace/PadOption");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
+
+        $r0 = newarray (int)[5];
+
+        $r0[0] = 8;
+
+        $r0[1] = 138;
+
+        $r0[2] = 27;
+
+        $r0[3] = 9;
+
+        $r0[4] = 43;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parenAST;
+        java.lang.String line, $r6, $r8, $r10;
+        int before, $i0, $i1, $i2, $i3, $i4;
+        java.lang.String[] $r0;
+        boolean $z0, $z1, $z2, $z3;
+        com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption $r1, $r3;
+        java.lang.Enum $r2, $r4;
+        char $c5, $c6;
+        java.lang.Object[] $r5, $r7, $r9;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 27 goto label1;
+
+        parenAST = aAST;
+
+        goto label2;
+
+     label1:
+        parenAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(77);
+
+        if parenAST != null goto label2;
+
+        return;
+
+     label2:
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck: java.lang.String[] getLines()>();
+
+        $i1 = virtualinvoke parenAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = $i1 - 1;
+
+        line = $r0[$i2];
+
+        $i3 = virtualinvoke parenAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: boolean whitespaceBefore(int,java.lang.String)>($i3, line);
+
+        if $z0 == 0 goto label3;
+
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck: boolean mAllowLineBreaks>;
+
+        if $z3 != 0 goto label5;
+
+        $r9 = newarray (java.lang.Object)[1];
+
+        $r10 = virtualinvoke parenAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r9[0] = $r10;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(parenAST, "line.previous", $r9);
+
+        goto label5;
+
+     label3:
+        $i4 = virtualinvoke parenAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        before = $i4 - 1;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption NOSPACE>;
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck: java.lang.Enum getAbstractOption()>();
+
+        if $r1 != $r2 goto label4;
+
+        $c6 = virtualinvoke line.<java.lang.String: char charAt(int)>(before);
+
+        $z2 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c6);
+
+        if $z2 == 0 goto label4;
+
+        $r7 = newarray (java.lang.Object)[1];
+
+        $r8 = virtualinvoke parenAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r7[0] = $r8;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(parenAST, "ws.preceded", $r7);
+
+        goto label5;
+
+     label4:
+        $r3 = <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption SPACE>;
+
+        $r4 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck: java.lang.Enum getAbstractOption()>();
+
+        if $r3 != $r4 goto label5;
+
+        $c5 = virtualinvoke line.<java.lang.String: char charAt(int)>(before);
+
+        $z1 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c5);
+
+        if $z1 != 0 goto label5;
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r6 = virtualinvoke parenAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r5[0] = $r6;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(parenAST, "ws.notPreceded", $r5);
+
+     label5:
+        return;
+    }
+
+    public void setAllowLineBreaks(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck this;
+        boolean aAllowLineBreaks;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
+
+        aAllowLineBreaks := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck: boolean mAllowLineBreaks> = aAllowLineBreaks;
+
+        return;
+    }
+}

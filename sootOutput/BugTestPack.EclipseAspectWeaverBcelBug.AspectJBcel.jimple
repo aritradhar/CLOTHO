@@ -1,0 +1,125 @@
+public class BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel extends java.lang.Object
+{
+    protected org.aspectj.weaver.ReferenceType resolvedTypeX;
+    public org.aspectj.apache.bcel.classfile.JavaClass javaClass;
+    private java.lang.String className;
+    private boolean isNested;
+    private java.util.List typeMungers;
+
+    public void <init>()
+    {
+        BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel this;
+        java.util.List $r0;
+
+        this := @this: BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <java.util.Collections: java.util.List emptyList()>();
+
+        this.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: java.util.List typeMungers> = $r0;
+
+        return;
+    }
+
+    public org.aspectj.weaver.ResolvedType getOuterClass()
+    {
+        BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel this;
+        int lastDollar;
+        java.lang.String superClassName, $r0, $r1, $r7, $r8;
+        org.aspectj.weaver.UnresolvedType outer;
+        boolean $z0;
+        org.aspectj.weaver.ReferenceType $r2;
+        org.aspectj.weaver.World $r3;
+        org.aspectj.weaver.ResolvedType $r4;
+        java.lang.IllegalStateException $r5;
+        java.lang.StringBuilder $r6, $r9;
+
+        this := @this: BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel;
+
+        $z0 = virtualinvoke this.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: boolean isNested()>();
+
+        if $z0 != 0 goto label1;
+
+        $r5 = new java.lang.IllegalStateException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Can\'t get the outer class of non-nested type: ");
+
+        $r7 = this.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: java.lang.String className>;
+
+        $r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r8 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r8);
+
+        throw $r5;
+
+     label1:
+        $r0 = this.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: java.lang.String className>;
+
+        lastDollar = virtualinvoke $r0.<java.lang.String: int lastIndexOf(int)>(36);
+
+        $r1 = this.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: java.lang.String className>;
+
+        superClassName = virtualinvoke $r1.<java.lang.String: java.lang.String substring(int,int)>(0, lastDollar);
+
+        outer = staticinvoke <org.aspectj.weaver.UnresolvedType: org.aspectj.weaver.UnresolvedType forName(java.lang.String)>(superClassName);
+
+        $r2 = virtualinvoke this.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: org.aspectj.weaver.ReferenceType getResolvedTypeX()>();
+
+        $r3 = virtualinvoke $r2.<org.aspectj.weaver.ReferenceType: org.aspectj.weaver.World getWorld()>();
+
+        $r4 = virtualinvoke outer.<org.aspectj.weaver.UnresolvedType: org.aspectj.weaver.ResolvedType resolve(org.aspectj.weaver.World)>($r3);
+
+        return $r4;
+    }
+
+    public boolean isNested()
+    {
+        BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel this;
+        boolean $z0;
+
+        this := @this: BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel;
+
+        $z0 = this.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: boolean isNested>;
+
+        return $z0;
+    }
+
+    public org.aspectj.weaver.ReferenceType getResolvedTypeX()
+    {
+        BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel this;
+        org.aspectj.weaver.ReferenceType $r0;
+
+        this := @this: BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel;
+
+        $r0 = this.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: org.aspectj.weaver.ReferenceType resolvedTypeX>;
+
+        return $r0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel r, $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel;
+
+        specialinvoke $r0.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: void <init>()>();
+
+        r = $r0;
+
+        r.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: boolean isNested> = 1;
+
+        r.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: java.lang.String className> = "TestClass";
+
+        virtualinvoke r.<BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel: org.aspectj.weaver.ResolvedType getOuterClass()>();
+
+        return;
+    }
+}

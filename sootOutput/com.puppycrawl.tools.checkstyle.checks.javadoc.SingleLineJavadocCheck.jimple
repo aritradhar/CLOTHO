@@ -1,0 +1,133 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck extends com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultJavadocTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 10000;
+
+        return $r0;
+    }
+
+    public void visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aAst;
+        boolean $z0, $z1, $z2;
+        int $i0;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck: boolean isSingleLineJavadoc()>();
+
+        if $z0 == 0 goto label2;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck: boolean hasJavadocTags(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aAst);
+
+        if $z1 != 0 goto label1;
+
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck: boolean hasJavadocInlineTags(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aAst);
+
+        if $z2 == 0 goto label2;
+
+     label1:
+        $i0 = interfaceinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getLineNumber()>();
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "singleline.javadoc", $r0);
+
+     label2:
+        return;
+    }
+
+    private boolean isSingleLineJavadoc()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST blockCommentStart, blockCommentEnd;
+        int $i0, $i1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
+
+        blockCommentStart = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getBlockCommentAst()>();
+
+        blockCommentEnd = virtualinvoke blockCommentStart.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $i0 = virtualinvoke blockCommentStart.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke blockCommentEnd.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i0 != $i1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private boolean hasJavadocTags(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aJavadocRoot, javadocTagSection;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
+
+        aJavadocRoot := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        javadocTagSection = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode findFirstToken(com.puppycrawl.tools.checkstyle.api.DetailNode,int)>(aJavadocRoot, 10071);
+
+        if javadocTagSection == null goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private boolean hasJavadocInlineTags(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aJavadocRoot;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
+
+        aJavadocRoot := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: boolean branchContains(com.puppycrawl.tools.checkstyle.api.DetailNode,int)>(aJavadocRoot, 10072);
+
+        return $z0;
+    }
+}

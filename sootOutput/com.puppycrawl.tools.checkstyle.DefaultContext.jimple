@@ -1,0 +1,76 @@
+public final class com.puppycrawl.tools.checkstyle.DefaultContext extends java.lang.Object implements com.puppycrawl.tools.checkstyle.api.Context
+{
+    private final java.util.Map mEntries;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.DefaultContext this;
+        java.util.HashMap $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultContext;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.DefaultContext: java.util.Map mEntries> = $r0;
+
+        return;
+    }
+
+    public java.lang.Object get(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultContext this;
+        java.lang.String aKey;
+        java.util.Map $r0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultContext;
+
+        aKey := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultContext: java.util.Map mEntries>;
+
+        $r1 = interfaceinvoke $r0.<java.util.Map: java.lang.Object get(java.lang.Object)>(aKey);
+
+        return $r1;
+    }
+
+    public com.google.common.collect.ImmutableCollection getAttributeNames()
+    {
+        com.puppycrawl.tools.checkstyle.DefaultContext this;
+        java.util.Map $r0;
+        java.util.Set $r1;
+        com.google.common.collect.ImmutableList $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultContext;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultContext: java.util.Map mEntries>;
+
+        $r1 = interfaceinvoke $r0.<java.util.Map: java.util.Set keySet()>();
+
+        $r2 = staticinvoke <com.google.common.collect.ImmutableList: com.google.common.collect.ImmutableList copyOf(java.util.Collection)>($r1);
+
+        return $r2;
+    }
+
+    public void add(java.lang.String, java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultContext this;
+        java.lang.String aKey;
+        java.lang.Object aValue;
+        java.util.Map $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultContext;
+
+        aKey := @parameter0: java.lang.String;
+
+        aValue := @parameter1: java.lang.Object;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultContext: java.util.Map mEntries>;
+
+        interfaceinvoke $r0.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(aKey, aValue);
+
+        return;
+    }
+}

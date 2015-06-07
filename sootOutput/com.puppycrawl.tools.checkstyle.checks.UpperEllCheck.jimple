@@ -1,0 +1,67 @@
+public class com.puppycrawl.tools.checkstyle.checks.UpperEllCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.UpperEllCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UpperEllCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.UpperEllCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UpperEllCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 143;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UpperEllCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.lang.String $r0, $r1;
+        boolean $z0;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.Object[] $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UpperEllCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean endsWith(java.lang.String)>("l");
+
+        if $z0 == 0 goto label1;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $i2 = virtualinvoke $r1.<java.lang.String: int length()>();
+
+        $i3 = $i1 + $i2;
+
+        $i4 = $i3 - 1;
+
+        $r2 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.UpperEllCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i4, "upperEll", $r2);
+
+     label1:
+        return;
+    }
+}

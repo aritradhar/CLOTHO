@@ -1,0 +1,150 @@
+final class com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc extends java.lang.Object
+{
+    private final boolean mDeclaredAsFinal;
+    private final boolean mDeclaredAsAbstract;
+    private boolean mHasNonPrivateCtor;
+    private boolean mHasPrivateCtor;
+
+    void <init>(boolean, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc this;
+        boolean aDeclaredAsFinal, aDeclaredAsAbstract;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc;
+
+        aDeclaredAsFinal := @parameter0: boolean;
+
+        aDeclaredAsAbstract := @parameter1: boolean;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mDeclaredAsFinal> = aDeclaredAsFinal;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mDeclaredAsAbstract> = aDeclaredAsAbstract;
+
+        return;
+    }
+
+    void reportPrivateCtor()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mHasPrivateCtor> = 1;
+
+        return;
+    }
+
+    void reportNonPrivateCtor()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mHasNonPrivateCtor> = 1;
+
+        return;
+    }
+
+    boolean hasPrivateCtor()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mHasPrivateCtor>;
+
+        return $z0;
+    }
+
+    boolean hasNonPrivateCtor()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mHasNonPrivateCtor>;
+
+        return $z0;
+    }
+
+    boolean isDeclaredAsFinal()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mDeclaredAsFinal>;
+
+        return $z0;
+    }
+
+    boolean isDeclaredAsAbstract()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mDeclaredAsAbstract>;
+
+        return $z0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc this;
+        java.lang.StringBuilder $r0, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r14;
+        java.lang.Class $r1;
+        java.lang.String $r2, $r13;
+        boolean $z0, $z1, $z2, $z3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("final=");
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mDeclaredAsFinal>;
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z0);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" abstract=");
+
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mDeclaredAsAbstract>;
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z1);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" pctor=");
+
+        $z2 = this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mHasPrivateCtor>;
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z2);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ctor=");
+
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc: boolean mHasNonPrivateCtor>;
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z3);
+
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r13 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r13;
+    }
+}

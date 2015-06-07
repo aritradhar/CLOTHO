@@ -1,0 +1,88 @@
+class com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2 extends java.lang.Object implements javax.swing.event.TreeModelListener
+{
+    final com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this$0;
+
+    void <init>(com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2 this;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter l1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this$0> = l1;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void treeNodesChanged(javax.swing.event.TreeModelEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2 this;
+        javax.swing.event.TreeModelEvent e;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2;
+
+        e := @parameter0: javax.swing.event.TreeModelEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this$0>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: void delayedFireTableDataChanged()>();
+
+        return;
+    }
+
+    public void treeNodesInserted(javax.swing.event.TreeModelEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2 this;
+        javax.swing.event.TreeModelEvent e;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2;
+
+        e := @parameter0: javax.swing.event.TreeModelEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this$0>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: void delayedFireTableDataChanged()>();
+
+        return;
+    }
+
+    public void treeNodesRemoved(javax.swing.event.TreeModelEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2 this;
+        javax.swing.event.TreeModelEvent e;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2;
+
+        e := @parameter0: javax.swing.event.TreeModelEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this$0>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: void delayedFireTableDataChanged()>();
+
+        return;
+    }
+
+    public void treeStructureChanged(javax.swing.event.TreeModelEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2 this;
+        javax.swing.event.TreeModelEvent e;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2;
+
+        e := @parameter0: javax.swing.event.TreeModelEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this$0>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: void delayedFireTableDataChanged()>();
+
+        return;
+    }
+}

@@ -1,0 +1,92 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck extends com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultJavadocTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck;
+
+        $r0 = newarray (int)[4];
+
+        $r0[0] = 10;
+
+        $r0[1] = 11;
+
+        $r0[2] = 17;
+
+        $r0[3] = 8;
+
+        return $r0;
+    }
+
+    public void visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aAst, $r0;
+        boolean $z0;
+        int $i0;
+        java.lang.Object[] $r1;
+        java.lang.String $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        $r0 = interfaceinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode getParent()>();
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck: boolean isEmptyTag(com.puppycrawl.tools.checkstyle.api.DetailNode)>($r0);
+
+        if $z0 == 0 goto label1;
+
+        $i0 = interfaceinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getLineNumber()>();
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r2 = interfaceinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailNode: java.lang.String getText()>();
+
+        $r1[0] = $r2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "non.empty.atclause", $r1);
+
+     label1:
+        return;
+    }
+
+    private boolean isEmptyTag(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aTagNode, tagDescription;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck;
+
+        aTagNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        tagDescription = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode findFirstToken(com.puppycrawl.tools.checkstyle.api.DetailNode,int)>(aTagNode, 10068);
+
+        if tagDescription != null goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+}

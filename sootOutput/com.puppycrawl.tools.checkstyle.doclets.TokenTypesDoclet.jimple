@@ -1,0 +1,309 @@
+public final class com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet extends java.lang.Object
+{
+    private static final java.lang.String DEST_FILE_OPT;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static boolean start(com.sun.javadoc.RootDoc) throws java.io.FileNotFoundException
+    {
+        com.sun.javadoc.RootDoc aRoot;
+        java.lang.String fileName, $r5, $r6, $r9, $r10, $r12, $r18, $r20;
+        java.io.FileOutputStream fos, $r1;
+        java.io.PrintStream ps, $r2;
+        com.sun.javadoc.ClassDoc[] classes;
+        com.sun.javadoc.FieldDoc[] arr$, message;
+        int len$, i$, $i0, $i1;
+        com.sun.javadoc.FieldDoc field;
+        java.lang.Throwable l11, $r22;
+        java.lang.String[][] $r0;
+        com.sun.javadoc.ClassDoc $r3, $r7;
+        java.lang.IllegalArgumentException $r4, $r19;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        com.sun.javadoc.Type $r8;
+        java.lang.StringBuilder $r11, $r16, $r17, $r21;
+        com.sun.javadoc.Tag[] $r13, $r14;
+        com.sun.javadoc.Tag $r15;
+
+        aRoot := @parameter0: com.sun.javadoc.RootDoc;
+
+        $r0 = interfaceinvoke aRoot.<com.sun.javadoc.RootDoc: java.lang.String[][] options()>();
+
+        fileName = staticinvoke <com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet: java.lang.String getDestFileName(java.lang.String[][])>($r0);
+
+        $r1 = new java.io.FileOutputStream;
+
+        specialinvoke $r1.<java.io.FileOutputStream: void <init>(java.lang.String)>(fileName);
+
+        fos = $r1;
+
+        ps = null;
+
+     label01:
+        $r2 = new java.io.PrintStream;
+
+        specialinvoke $r2.<java.io.PrintStream: void <init>(java.io.OutputStream)>(fos);
+
+        ps = $r2;
+
+        classes = interfaceinvoke aRoot.<com.sun.javadoc.RootDoc: com.sun.javadoc.ClassDoc[] classes()>();
+
+        $i0 = lengthof classes;
+
+        if $i0 != 1 goto label02;
+
+        $r6 = "TokenTypes";
+
+        $r3 = classes[0];
+
+        $r5 = interfaceinvoke $r3.<com.sun.javadoc.ClassDoc: java.lang.String name()>();
+
+        $z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r5);
+
+        if $z0 != 0 goto label03;
+
+     label02:
+        $r4 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r4.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("The doclet should be used for TokenTypes only");
+
+        throw $r4;
+
+     label03:
+        $r7 = classes[0];
+
+        message = interfaceinvoke $r7.<com.sun.javadoc.ClassDoc: com.sun.javadoc.FieldDoc[] fields()>();
+
+        arr$ = message;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label04:
+        if i$ >= len$ goto label07;
+
+        field = arr$[i$];
+
+        $z1 = interfaceinvoke field.<com.sun.javadoc.FieldDoc: boolean isStatic()>();
+
+        if $z1 == 0 goto label06;
+
+        $z3 = interfaceinvoke field.<com.sun.javadoc.FieldDoc: boolean isPublic()>();
+
+        if $z3 == 0 goto label06;
+
+        $z2 = interfaceinvoke field.<com.sun.javadoc.FieldDoc: boolean isFinal()>();
+
+        if $z2 == 0 goto label06;
+
+        $r9 = "int";
+
+        $r8 = interfaceinvoke field.<com.sun.javadoc.FieldDoc: com.sun.javadoc.Type type()>();
+
+        $r10 = interfaceinvoke $r8.<com.sun.javadoc.Type: java.lang.String qualifiedTypeName()>();
+
+        $z4 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+
+        if $z4 == 0 goto label06;
+
+        $r13 = interfaceinvoke field.<com.sun.javadoc.FieldDoc: com.sun.javadoc.Tag[] firstSentenceTags()>();
+
+        $i1 = lengthof $r13;
+
+        if $i1 == 1 goto label05;
+
+        $r19 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r19.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Should be only one tag.");
+
+        throw $r19;
+
+     label05:
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>()>();
+
+        $r12 = interfaceinvoke field.<com.sun.javadoc.FieldDoc: java.lang.String name()>();
+
+        $r16 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("=");
+
+        $r14 = interfaceinvoke field.<com.sun.javadoc.FieldDoc: com.sun.javadoc.Tag[] firstSentenceTags()>();
+
+        $r15 = $r14[0];
+
+        $r20 = interfaceinvoke $r15.<com.sun.javadoc.Tag: java.lang.String text()>();
+
+        $r21 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+
+        $r18 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke ps.<java.io.PrintStream: void println(java.lang.String)>($r18);
+
+     label06:
+        i$ = i$ + 1;
+
+        goto label04;
+
+     label07:
+        if ps == null goto label11;
+
+        virtualinvoke ps.<java.io.PrintStream: void close()>();
+
+        goto label11;
+
+     label08:
+        $r22 := @caughtexception;
+
+        l11 = $r22;
+
+     label09:
+        if ps == null goto label10;
+
+        virtualinvoke ps.<java.io.PrintStream: void close()>();
+
+     label10:
+        throw l11;
+
+     label11:
+        return 1;
+
+        catch java.lang.Throwable from label01 to label07 with label08;
+        catch java.lang.Throwable from label08 to label09 with label08;
+    }
+
+    public static int optionLength(java.lang.String)
+    {
+        java.lang.String aOption, $r0;
+        boolean $z0;
+
+        aOption := @parameter0: java.lang.String;
+
+        $r0 = "-destfile";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aOption);
+
+        if $z0 == 0 goto label1;
+
+        return 2;
+
+     label1:
+        return 0;
+    }
+
+    public static boolean validOptions(java.lang.String[][], com.sun.javadoc.DocErrorReporter)
+    {
+        java.lang.String[][] aOptions, arr$;
+        com.sun.javadoc.DocErrorReporter aReporter;
+        boolean foundDestFileOption, $z0;
+        int len$, i$;
+        java.lang.String[] opt;
+        java.lang.String $r0, $r1;
+
+        aOptions := @parameter0: java.lang.String[][];
+
+        aReporter := @parameter1: com.sun.javadoc.DocErrorReporter;
+
+        foundDestFileOption = 0;
+
+        arr$ = aOptions;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label4;
+
+        opt = arr$[i$];
+
+        $r1 = "-destfile";
+
+        $r0 = opt[0];
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r0);
+
+        if $z0 == 0 goto label3;
+
+        if foundDestFileOption == 0 goto label2;
+
+        interfaceinvoke aReporter.<com.sun.javadoc.DocErrorReporter: void printError(java.lang.String)>("Only one -destfile option allowed.");
+
+        return 0;
+
+     label2:
+        foundDestFileOption = 1;
+
+     label3:
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label4:
+        if foundDestFileOption != 0 goto label5;
+
+        interfaceinvoke aReporter.<com.sun.javadoc.DocErrorReporter: void printError(java.lang.String)>("Usage: javadoc -destfile file -doclet TokenTypesDoclet ...");
+
+     label5:
+        return foundDestFileOption;
+    }
+
+    private static java.lang.String getDestFileName(java.lang.String[][])
+    {
+        java.lang.String[][] aOptions, arr$;
+        java.lang.String fileName, $r0, $r1;
+        int len$, i$;
+        java.lang.String[] opt;
+        boolean $z0;
+
+        aOptions := @parameter0: java.lang.String[][];
+
+        fileName = null;
+
+        arr$ = aOptions;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label3;
+
+        opt = arr$[i$];
+
+        $r1 = "-destfile";
+
+        $r0 = opt[0];
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r0);
+
+        if $z0 == 0 goto label2;
+
+        fileName = opt[1];
+
+     label2:
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label3:
+        return fileName;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet: java.lang.String DEST_FILE_OPT> = "-destfile";
+
+        return;
+    }
+}

@@ -1,0 +1,364 @@
+public final class com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int DEFAULT_MAX_METHODS;
+    private int mMaxPrivate;
+    private int mMaxPackage;
+    private int mMaxProtected;
+    private int mMaxPublic;
+    private int mMaxTotal;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mCounters;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxPrivate> = 100;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxPackage> = 100;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxProtected> = 100;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxPublic> = 100;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxTotal> = 100;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCounters> = $r0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        $r0 = newarray (int)[5];
+
+        $r0[0] = 14;
+
+        $r0[1] = 159;
+
+        $r0[2] = 158;
+
+        $r0[3] = 15;
+
+        $r0[4] = 9;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter $r0;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 14 == $i0 goto label1;
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 15 == $i2 goto label1;
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 159 == $i3 goto label1;
+
+        $i4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 158 != $i4 goto label4;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCounters>;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 15 != $i1 goto label2;
+
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter: void <init>(boolean)>($z0);
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r0);
+
+        goto label5;
+
+     label4:
+        $i5 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 9 != $i5 goto label5;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: void raiseCounter(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label5:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter counter;
+        int $i0, $i1, $i2, $i3;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 14 == $i0 goto label1;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 15 == $i1 goto label1;
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 159 == $i2 goto label1;
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 158 != $i3 goto label2;
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCounters>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        counter = (com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter) $r1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: void checkCounters(com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter,com.puppycrawl.tools.checkstyle.api.DetailAST)>(counter, aAST);
+
+     label2:
+        return;
+    }
+
+    private void raiseCounter(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethod, temp;
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter actualCounter;
+        com.puppycrawl.tools.checkstyle.api.Scope scope;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        aMethod := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCounters>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object peek()>();
+
+        actualCounter = (com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter) $r1;
+
+        temp = virtualinvoke aMethod.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        scope = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: com.puppycrawl.tools.checkstyle.api.Scope getScopeFromMods(com.puppycrawl.tools.checkstyle.api.DetailAST)>(temp);
+
+        virtualinvoke actualCounter.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter: void increment(com.puppycrawl.tools.checkstyle.api.Scope)>(scope);
+
+        return;
+    }
+
+    private void checkCounters(com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter aCounter;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        com.puppycrawl.tools.checkstyle.api.Scope $r0, $r1, $r2, $r3;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        aCounter := @parameter0: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter;
+
+        aAst := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxPrivate>;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PRIVATE>;
+
+        $i1 = virtualinvoke aCounter.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter: int value(com.puppycrawl.tools.checkstyle.api.Scope)>($r0);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: void checkMax(int,int,java.lang.String,com.puppycrawl.tools.checkstyle.api.DetailAST)>($i0, $i1, "too.many.privateMethods", aAst);
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxPackage>;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PACKAGE>;
+
+        $i3 = virtualinvoke aCounter.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter: int value(com.puppycrawl.tools.checkstyle.api.Scope)>($r1);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: void checkMax(int,int,java.lang.String,com.puppycrawl.tools.checkstyle.api.DetailAST)>($i2, $i3, "too.many.packageMethods", aAst);
+
+        $i4 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxProtected>;
+
+        $r2 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PROTECTED>;
+
+        $i5 = virtualinvoke aCounter.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter: int value(com.puppycrawl.tools.checkstyle.api.Scope)>($r2);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: void checkMax(int,int,java.lang.String,com.puppycrawl.tools.checkstyle.api.DetailAST)>($i4, $i5, "too.many.protectedMethods", aAst);
+
+        $i6 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxPublic>;
+
+        $r3 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PUBLIC>;
+
+        $i7 = virtualinvoke aCounter.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter: int value(com.puppycrawl.tools.checkstyle.api.Scope)>($r3);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: void checkMax(int,int,java.lang.String,com.puppycrawl.tools.checkstyle.api.DetailAST)>($i6, $i7, "too.many.publicMethods", aAst);
+
+        $i8 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxTotal>;
+
+        $i9 = virtualinvoke aCounter.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck$MethodCounter: int getTotal()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: void checkMax(int,int,java.lang.String,com.puppycrawl.tools.checkstyle.api.DetailAST)>($i8, $i9, "too.many.methods", aAst);
+
+        return;
+    }
+
+    private void checkMax(int, int, java.lang.String, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        int aMax, aValue, $i0;
+        java.lang.String aMsg;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        java.lang.Object[] $r0;
+        java.lang.Integer $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        aMax := @parameter0: int;
+
+        aValue := @parameter1: int;
+
+        aMsg := @parameter2: java.lang.String;
+
+        aAst := @parameter3: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        if aMax >= aValue goto label1;
+
+        $i0 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aValue);
+
+        $r0[0] = $r1;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aMax);
+
+        $r0[1] = $r2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, aMsg, $r0);
+
+     label1:
+        return;
+    }
+
+    public void setMaxPrivate(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        int aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        aValue := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxPrivate> = aValue;
+
+        return;
+    }
+
+    public void setMaxPackage(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        int aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        aValue := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxPackage> = aValue;
+
+        return;
+    }
+
+    public void setMaxProtected(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        int aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        aValue := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxProtected> = aValue;
+
+        return;
+    }
+
+    public void setMaxPublic(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        int aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        aValue := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxPublic> = aValue;
+
+        return;
+    }
+
+    public void setMaxTotal(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck this;
+        int aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
+
+        aValue := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int mMaxTotal> = aValue;
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck: int DEFAULT_MAX_METHODS> = 100;
+
+        return;
+    }
+}

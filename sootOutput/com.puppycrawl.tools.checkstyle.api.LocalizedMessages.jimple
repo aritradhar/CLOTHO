@@ -1,0 +1,80 @@
+public final class com.puppycrawl.tools.checkstyle.api.LocalizedMessages extends java.lang.Object
+{
+    private final java.util.TreeSet mMessages;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages this;
+        java.util.TreeSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.TreeSet newTreeSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: java.util.TreeSet mMessages> = $r0;
+
+        return;
+    }
+
+    public java.util.TreeSet getMessages()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages this;
+        java.util.TreeSet $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: java.util.TreeSet mMessages>;
+
+        $r1 = staticinvoke <com.google.common.collect.Sets: java.util.TreeSet newTreeSet(java.lang.Iterable)>($r0);
+
+        return $r1;
+    }
+
+    public void reset()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages this;
+        java.util.TreeSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: java.util.TreeSet mMessages>;
+
+        virtualinvoke $r0.<java.util.TreeSet: void clear()>();
+
+        return;
+    }
+
+    public void add(com.puppycrawl.tools.checkstyle.api.LocalizedMessage)
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages this;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage aMsg;
+        java.util.TreeSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+
+        aMsg := @parameter0: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: java.util.TreeSet mMessages>;
+
+        virtualinvoke $r0.<java.util.TreeSet: boolean add(java.lang.Object)>(aMsg);
+
+        return;
+    }
+
+    public int size()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages this;
+        java.util.TreeSet $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: java.util.TreeSet mMessages>;
+
+        $i0 = virtualinvoke $r0.<java.util.TreeSet: int size()>();
+
+        return $i0;
+    }
+}

@@ -1,0 +1,178 @@
+final class com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass extends com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo
+{
+    private final java.lang.String mSurroundingClass;
+    private boolean mIsLoadable;
+    private java.lang.Class mClass;
+    private final com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck mCheck;
+
+    private void <init>(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token, java.lang.String, com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass this;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token aName;
+        java.lang.String aSurroundingClass;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck aCheck;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass;
+
+        aName := @parameter0: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        aSurroundingClass := @parameter1: java.lang.String;
+
+        aCheck := @parameter2: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: void <init>(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token)>(aName);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: boolean mIsLoadable> = 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: java.lang.String mSurroundingClass> = aSurroundingClass;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck mCheck> = aCheck;
+
+        return;
+    }
+
+    private boolean isLoadable()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: boolean mIsLoadable>;
+
+        return $z0;
+    }
+
+    public java.lang.Class getClazz()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass this;
+        boolean $z0;
+        java.lang.Class $r0, $r1, $r5;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck $r2;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token $r3;
+        java.lang.String $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: boolean isLoadable()>();
+
+        if $z0 == 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: java.lang.Class mClass>;
+
+        if $r1 != null goto label1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck mCheck>;
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token getName()>();
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: java.lang.String mSurroundingClass>;
+
+        $r5 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.Class tryLoadClass(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token,java.lang.String)>($r3, $r4);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: void setClazz(java.lang.Class)>($r5);
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: java.lang.Class mClass>;
+
+        return $r0;
+    }
+
+    private void setClazz(java.lang.Class)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass this;
+        java.lang.Class aClass, $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass;
+
+        aClass := @parameter0: java.lang.Class;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: java.lang.Class mClass> = aClass;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: java.lang.Class mClass>;
+
+        if $r0 == null goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: boolean mIsLoadable> = $z0;
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass this;
+        java.lang.StringBuilder $r0, $r1, $r3, $r4, $r6, $r7, $r8, $r9, $r11, $r12;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token $r2;
+        java.lang.String $r5, $r13;
+        boolean $z0;
+        java.lang.Class $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("RegularClass[name=");
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token getName()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", in class=");
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: java.lang.String mSurroundingClass>;
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", loadable=");
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: boolean mIsLoadable>;
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z0);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", class=");
+
+        $r10 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: java.lang.Class mClass>;
+
+        $r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r10);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r13;
+    }
+
+    void <init>(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token, java.lang.String, com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck, com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$1)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass this;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token x0;
+        java.lang.String x1;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck x2;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$1 x3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        x1 := @parameter1: java.lang.String;
+
+        x2 := @parameter2: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        x3 := @parameter3: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: void <init>(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token,java.lang.String,com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck)>(x0, x1, x2);
+
+        return;
+    }
+}

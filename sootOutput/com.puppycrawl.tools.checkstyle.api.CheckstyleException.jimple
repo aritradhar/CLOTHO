@@ -1,0 +1,42 @@
+public class com.puppycrawl.tools.checkstyle.api.CheckstyleException extends java.lang.Exception
+{
+    private static final long serialVersionUID;
+
+    public void <init>(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException this;
+        java.lang.String aMessage;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        aMessage := @parameter0: java.lang.String;
+
+        specialinvoke this.<java.lang.Exception: void <init>(java.lang.String)>(aMessage);
+
+        return;
+    }
+
+    public void <init>(java.lang.String, java.lang.Throwable)
+    {
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException this;
+        java.lang.String aMessage;
+        java.lang.Throwable aCause;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        aMessage := @parameter0: java.lang.String;
+
+        aCause := @parameter1: java.lang.Throwable;
+
+        specialinvoke this.<java.lang.Exception: void <init>(java.lang.String,java.lang.Throwable)>(aMessage, aCause);
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.api.CheckstyleException: long serialVersionUID> = -3517342299748221108L;
+
+        return;
+    }
+}

@@ -1,0 +1,310 @@
+public class BugTestPack.eclipseAspectJWeaverBug.WeaverBug extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugTestPack.eclipseAspectJWeaverBug.WeaverBug this;
+
+        this := @this: BugTestPack.eclipseAspectJWeaverBug.WeaverBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static org.aspectj.weaver.UnresolvedType forSignatureP(java.lang.String)
+    {
+        java.lang.String signature;
+        char c;
+        int $i0;
+        org.aspectj.weaver.UnresolvedType $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15;
+
+        signature := @parameter0: java.lang.String;
+
+        c = 32;
+
+        $i0 = virtualinvoke signature.<java.lang.String: int length()>();
+
+        if $i0 <= 0 goto label01;
+
+        c = virtualinvoke signature.<java.lang.String: char charAt(int)>(0);
+
+     label01:
+        lookupswitch(c)
+        {
+            case 43: goto label14;
+            case 45: goto label15;
+            case 63: goto label16;
+            case 66: goto label02;
+            case 67: goto label03;
+            case 68: goto label04;
+            case 70: goto label05;
+            case 73: goto label06;
+            case 74: goto label07;
+            case 76: goto label08;
+            case 80: goto label09;
+            case 83: goto label10;
+            case 84: goto label17;
+            case 86: goto label11;
+            case 90: goto label12;
+            case 91: goto label13;
+            default: goto label18;
+        };
+
+     label02:
+        $r12 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType BYTE>;
+
+        return $r12;
+
+     label03:
+        $r11 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType CHAR>;
+
+        return $r11;
+
+     label04:
+        $r10 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType DOUBLE>;
+
+        return $r10;
+
+     label05:
+        $r9 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType FLOAT>;
+
+        return $r9;
+
+     label06:
+        $r8 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType INT>;
+
+        return $r8;
+
+     label07:
+        $r7 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType LONG>;
+
+        return $r7;
+
+     label08:
+        $r6 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r6;
+
+     label09:
+        $r5 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r5;
+
+     label10:
+        $r4 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType SHORT>;
+
+        return $r4;
+
+     label11:
+        $r2 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType VOID>;
+
+        return $r2;
+
+     label12:
+        $r1 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType BOOLEAN>;
+
+        return $r1;
+
+     label13:
+        $r0 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r0;
+
+     label14:
+        $r15 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r15;
+
+     label15:
+        $r13 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r13;
+
+     label16:
+        $r14 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r14;
+
+     label17:
+        $r3 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r3;
+
+     label18:
+        return null;
+    }
+
+    public static org.aspectj.weaver.UnresolvedType forSignature(java.lang.String)
+    {
+        java.lang.String signature;
+        char $c0;
+        org.aspectj.weaver.UnresolvedType $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15;
+
+        signature := @parameter0: java.lang.String;
+
+        $c0 = virtualinvoke signature.<java.lang.String: char charAt(int)>(0);
+
+        lookupswitch($c0)
+        {
+            case 43: goto label13;
+            case 45: goto label14;
+            case 63: goto label15;
+            case 66: goto label01;
+            case 67: goto label02;
+            case 68: goto label03;
+            case 70: goto label04;
+            case 73: goto label05;
+            case 74: goto label06;
+            case 76: goto label07;
+            case 80: goto label08;
+            case 83: goto label09;
+            case 84: goto label16;
+            case 86: goto label10;
+            case 90: goto label11;
+            case 91: goto label12;
+            default: goto label17;
+        };
+
+     label01:
+        $r12 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType BYTE>;
+
+        return $r12;
+
+     label02:
+        $r11 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType CHAR>;
+
+        return $r11;
+
+     label03:
+        $r10 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType DOUBLE>;
+
+        return $r10;
+
+     label04:
+        $r9 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType FLOAT>;
+
+        return $r9;
+
+     label05:
+        $r8 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType INT>;
+
+        return $r8;
+
+     label06:
+        $r7 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType LONG>;
+
+        return $r7;
+
+     label07:
+        $r6 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r6;
+
+     label08:
+        $r5 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r5;
+
+     label09:
+        $r4 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType SHORT>;
+
+        return $r4;
+
+     label10:
+        $r2 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType VOID>;
+
+        return $r2;
+
+     label11:
+        $r1 = <org.aspectj.weaver.ResolvedType: org.aspectj.weaver.UnresolvedType BOOLEAN>;
+
+        return $r1;
+
+     label12:
+        $r0 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r0;
+
+     label13:
+        $r14 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r14;
+
+     label14:
+        $r15 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r15;
+
+     label15:
+        $r13 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r13;
+
+     label16:
+        $r3 = staticinvoke <org.aspectj.weaver.TypeFactory: org.aspectj.weaver.UnresolvedType createTypeFromSignature(java.lang.String)>(signature);
+
+        return $r3;
+
+     label17:
+        return null;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        java.util.Scanner sc, $r0;
+        int n, i;
+        long s, $l0, i;
+        java.io.InputStream $r1;
+        java.lang.StringBuilder $r3, $r5;
+        java.io.PrintStream $r4;
+        java.lang.String $r6, $r7;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.Scanner;
+
+        $r1 = <java.lang.System: java.io.InputStream in>;
+
+        specialinvoke $r0.<java.util.Scanner: void <init>(java.io.InputStream)>($r1);
+
+        sc = $r0;
+
+        n = virtualinvoke sc.<java.util.Scanner: int nextInt()>();
+
+        s = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        i = 0;
+
+        goto label2;
+
+     label1:
+        staticinvoke <BugTestPack.eclipseAspectJWeaverBug.WeaverBug: org.aspectj.weaver.UnresolvedType forSignatureP(java.lang.String)>("");
+
+        i = i + 1;
+
+     label2:
+        if i < n goto label1;
+
+        i = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        $l0 = i - s;
+
+        $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>($l0);
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>($r6);
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms");
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        return;
+    }
+}

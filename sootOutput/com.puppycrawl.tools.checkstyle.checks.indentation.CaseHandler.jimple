@@ -1,0 +1,109 @@
+public class com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler extends com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler
+{
+    private final int[] mCaseChildren;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck, com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck aIndentCheck;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aExpr;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler aParent;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler;
+
+        aIndentCheck := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aExpr := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParent := @parameter2: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,java.lang.String,com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)>(aIndentCheck, "case", aExpr, aParent);
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 95;
+
+        $r0[1] = 96;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler: int[] mCaseChildren> = $r0;
+
+        return;
+    }
+
+    protected com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel getLevelImpl()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel $r0, $r2;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler $r1;
+        int[] $r3;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck $r4;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler getParent()>();
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel getLevel()>();
+
+        $r3 = newarray (int)[1];
+
+        $r4 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck getIndentCheck()>();
+
+        $i0 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int getCaseIndent()>();
+
+        $r3[0] = $i0;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel,int[])>($r2, $r3);
+
+        return $r0;
+    }
+
+    private void checkCase()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0;
+        int[] $r1;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler: com.puppycrawl.tools.checkstyle.api.DetailAST getMainAst()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler: int[] mCaseChildren>;
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel getLevel()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler: void checkChildren(com.puppycrawl.tools.checkstyle.api.DetailAST,int[],com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel,boolean,boolean)>($r0, $r1, $r2, 1, 0);
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel suggestedChildLevel(com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler aChild;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler;
+
+        aChild := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel getLevel()>();
+
+        return $r0;
+    }
+
+    public void checkIndentation()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.CaseHandler: void checkCase()>();
+
+        return;
+    }
+}

@@ -1,0 +1,548 @@
+public final class com.puppycrawl.tools.checkstyle.checks.CheckUtils extends java.lang.Object
+{
+    private static final int BASE_8;
+    private static final int BASE_10;
+    private static final int BASE_16;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.CheckUtils this;
+        java.lang.UnsupportedOperationException $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>()>();
+
+        throw $r0;
+    }
+
+    public static boolean isEqualsMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiers, nameNode, paramsNode;
+        java.lang.String name, $r0;
+        int $i0, $i1;
+        boolean $z0, $z1, $z2, $z3;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 9 goto label1;
+
+        return 0;
+
+     label1:
+        modifiers = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z0 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        if $z0 != 0 goto label2;
+
+        $z1 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(41);
+
+        if $z1 == 0 goto label3;
+
+     label2:
+        return 0;
+
+     label3:
+        nameNode = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        name = virtualinvoke nameNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r0 = "equals";
+
+        $z2 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(name);
+
+        if $z2 != 0 goto label4;
+
+        return 0;
+
+     label4:
+        paramsNode = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        $i1 = virtualinvoke paramsNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i1 != 1 goto label5;
+
+        $z3 = 1;
+
+        goto label6;
+
+     label5:
+        $z3 = 0;
+
+     label6:
+        return $z3;
+    }
+
+    public static boolean isElseIf(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parentAST;
+        int $i0;
+        boolean $z0, $z1, $z2;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        parentAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 85 goto label2;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: boolean isElse(com.puppycrawl.tools.checkstyle.api.DetailAST)>(parentAST);
+
+        if $z0 != 0 goto label1;
+
+        $z2 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: boolean isElseWithCurlyBraces(com.puppycrawl.tools.checkstyle.api.DetailAST)>(parentAST);
+
+        if $z2 == 0 goto label2;
+
+     label1:
+        $z1 = 1;
+
+        goto label3;
+
+     label2:
+        $z1 = 0;
+
+     label3:
+        return $z1;
+    }
+
+    private static boolean isElse(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        boolean $z0;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 94 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private static boolean isElseWithCurlyBraces(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+        int $i0, $i1;
+        boolean $z0, $z1;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 7 goto label1;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i1 != 2 goto label1;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: boolean isElse(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        if $z0 == 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.FullIdent createFullType(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aTypeAST, arrayDeclAST, $r1;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r0;
+
+        aTypeAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        arrayDeclAST = virtualinvoke aTypeAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(17);
+
+        if arrayDeclAST != null goto label1;
+
+        $r1 = aTypeAST;
+
+        goto label2;
+
+     label1:
+        $r1 = arrayDeclAST;
+
+     label2:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: com.puppycrawl.tools.checkstyle.api.FullIdent createFullTypeNoArrays(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r1);
+
+        return $r0;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.api.FullIdent createFullTypeNoArrays(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aTypeAST, $r0;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r1;
+
+        aTypeAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aTypeAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        return $r1;
+    }
+
+    public static double parseDouble(java.lang.String, int)
+    {
+        java.lang.String aText, txt;
+        int aType, $i0, $i1, $i2, $i3;
+        double result;
+        byte radix;
+        boolean $z0, $z1, $z2, $z3;
+        long $l4;
+        char $c5;
+
+        aText := @parameter0: java.lang.String;
+
+        aType := @parameter1: int;
+
+        txt = virtualinvoke aText.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("_", "");
+
+        result = 0.0;
+
+        tableswitch(aType)
+        {
+            case 139: goto label2;
+            case 140: goto label9;
+            case 141: goto label9;
+            case 142: goto label1;
+            case 143: goto label2;
+            case 144: goto label1;
+            default: goto label9;
+        };
+
+     label1:
+        result = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>(txt);
+
+        goto label9;
+
+     label2:
+        radix = 10;
+
+        $z0 = virtualinvoke txt.<java.lang.String: boolean startsWith(java.lang.String)>("0x");
+
+        if $z0 != 0 goto label3;
+
+        $z2 = virtualinvoke txt.<java.lang.String: boolean startsWith(java.lang.String)>("0X");
+
+        if $z2 == 0 goto label4;
+
+     label3:
+        radix = 16;
+
+        txt = virtualinvoke txt.<java.lang.String: java.lang.String substring(int)>(2);
+
+        goto label5;
+
+     label4:
+        $c5 = virtualinvoke txt.<java.lang.String: char charAt(int)>(0);
+
+        if $c5 != 48 goto label5;
+
+        radix = 8;
+
+        txt = virtualinvoke txt.<java.lang.String: java.lang.String substring(int)>(1);
+
+     label5:
+        $z1 = virtualinvoke txt.<java.lang.String: boolean endsWith(java.lang.String)>("L");
+
+        if $z1 != 0 goto label6;
+
+        $z3 = virtualinvoke txt.<java.lang.String: boolean endsWith(java.lang.String)>("l");
+
+        if $z3 == 0 goto label7;
+
+     label6:
+        $i0 = virtualinvoke txt.<java.lang.String: int length()>();
+
+        $i1 = $i0 - 1;
+
+        txt = virtualinvoke txt.<java.lang.String: java.lang.String substring(int,int)>(0, $i1);
+
+     label7:
+        $i2 = virtualinvoke txt.<java.lang.String: int length()>();
+
+        if $i2 <= 0 goto label9;
+
+        if aType != 139 goto label8;
+
+        $i3 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: int parseInt(java.lang.String,int)>(txt, radix);
+
+        result = (double) $i3;
+
+        goto label9;
+
+     label8:
+        $l4 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: long parseLong(java.lang.String,int)>(txt, radix);
+
+        result = (double) $l4;
+
+        goto label9;
+
+     label9:
+        return result;
+    }
+
+    public static int parseInt(java.lang.String, int)
+    {
+        java.lang.String aText;
+        int aRadix, result, max, i, digit;
+        char $c0;
+
+        aText := @parameter0: java.lang.String;
+
+        aRadix := @parameter1: int;
+
+        result = 0;
+
+        max = virtualinvoke aText.<java.lang.String: int length()>();
+
+        i = 0;
+
+     label1:
+        if i >= max goto label2;
+
+        $c0 = virtualinvoke aText.<java.lang.String: char charAt(int)>(i);
+
+        digit = staticinvoke <java.lang.Character: int digit(char,int)>($c0, aRadix);
+
+        result = result * aRadix;
+
+        result = result + digit;
+
+        i = i + 1;
+
+        goto label1;
+
+     label2:
+        return result;
+    }
+
+    public static long parseLong(java.lang.String, int)
+    {
+        java.lang.String aText;
+        int aRadix, max, i, digit;
+        long result, $l1, $l2;
+        char $c0;
+
+        aText := @parameter0: java.lang.String;
+
+        aRadix := @parameter1: int;
+
+        result = 0L;
+
+        max = virtualinvoke aText.<java.lang.String: int length()>();
+
+        i = 0;
+
+     label1:
+        if i >= max goto label2;
+
+        $c0 = virtualinvoke aText.<java.lang.String: char charAt(int)>(i);
+
+        digit = staticinvoke <java.lang.Character: int digit(char,int)>($c0, aRadix);
+
+        $l1 = (long) aRadix;
+
+        result = result * $l1;
+
+        $l2 = (long) digit;
+
+        result = result + $l2;
+
+        i = i + 1;
+
+        goto label1;
+
+     label2:
+        return result;
+    }
+
+    public static double parseFloat(java.lang.String, int)
+    {
+        java.lang.String aText;
+        int aType;
+        double $d0, $d1;
+        float $f0;
+
+        aText := @parameter0: java.lang.String;
+
+        aType := @parameter1: int;
+
+        $d0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: double parseDouble(java.lang.String,int)>(aText, aType);
+
+        $f0 = (float) $d0;
+
+        $d1 = (double) $f0;
+
+        return $d1;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNode(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aNode, currentNode, child, newNode;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+
+        aNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        currentNode = aNode;
+
+        child = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if child == null goto label4;
+
+        newNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNode(com.puppycrawl.tools.checkstyle.api.DetailAST)>(child);
+
+        $i0 = virtualinvoke newNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i0 < $i1 goto label2;
+
+        $i2 = virtualinvoke newNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i2 != $i3 goto label3;
+
+        $i4 = virtualinvoke newNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i5 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        if $i4 >= $i5 goto label3;
+
+     label2:
+        currentNode = newNode;
+
+     label3:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label4:
+        return currentNode;
+    }
+
+    public static java.util.List getTypeParameterNames(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aNode, typeParameters, typeParam, sibling, $r0, $r2;
+        java.util.ArrayList typeParamNames;
+        java.lang.String $r1, $r3;
+        int $i0;
+
+        aNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        typeParameters = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(169);
+
+        typeParamNames = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        if typeParameters == null goto label3;
+
+        typeParam = virtualinvoke typeParameters.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(170);
+
+        $r0 = virtualinvoke typeParam.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        interfaceinvoke typeParamNames.<java.util.List: boolean add(java.lang.Object)>($r1);
+
+        sibling = virtualinvoke typeParam.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label1:
+        if sibling == null goto label3;
+
+        $i0 = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 170 goto label2;
+
+        $r2 = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r3 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        interfaceinvoke typeParamNames.<java.util.List: boolean add(java.lang.Object)>($r3);
+
+     label2:
+        sibling = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label3:
+        return typeParamNames;
+    }
+
+    public static java.util.List getTypeParameters(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aNode, typeParameters, typeParam, sibling;
+        java.util.ArrayList typeParams;
+        int $i0;
+
+        aNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        typeParameters = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(169);
+
+        typeParams = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        if typeParameters == null goto label3;
+
+        typeParam = virtualinvoke typeParameters.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(170);
+
+        interfaceinvoke typeParams.<java.util.List: boolean add(java.lang.Object)>(typeParam);
+
+        sibling = virtualinvoke typeParam.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label1:
+        if sibling == null goto label3;
+
+        $i0 = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 170 goto label2;
+
+        interfaceinvoke typeParams.<java.util.List: boolean add(java.lang.Object)>(sibling);
+
+     label2:
+        sibling = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label3:
+        return typeParams;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.CheckUtils: int BASE_16> = 16;
+
+        <com.puppycrawl.tools.checkstyle.checks.CheckUtils: int BASE_10> = 10;
+
+        <com.puppycrawl.tools.checkstyle.checks.CheckUtils: int BASE_8> = 8;
+
+        return;
+    }
+}

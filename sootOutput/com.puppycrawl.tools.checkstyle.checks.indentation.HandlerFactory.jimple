@@ -1,0 +1,552 @@
+public class com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory extends java.lang.Object
+{
+    private static final org.apache.commons.logging.Log LOG;
+    private final java.util.Map mTypeHandlers;
+    private final java.util.Map mCreatedHandlers;
+
+    private void register(int, java.lang.Class)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory this;
+        int aType;
+        java.lang.Class aHandlerClass;
+        java.lang.reflect.Constructor ctor;
+        java.lang.Class[] $r0;
+        java.util.Map $r1;
+        java.lang.Integer $r2;
+        java.lang.SecurityException $r4, ctor;
+        java.lang.StringBuilder $r5, $r7, $r8, $r11, $r12, $r14, $r17, $r18, $r20;
+        org.apache.commons.logging.Log $r6;
+        java.lang.String $r9, $r13, $r19;
+        java.lang.RuntimeException $r10, $r15;
+        java.lang.NoSuchMethodException $r16;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory;
+
+        aType := @parameter0: int;
+
+        aHandlerClass := @parameter1: java.lang.Class;
+
+     label1:
+        $r0 = newarray (java.lang.Class)[3];
+
+        $r0[0] = class "com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheck";
+
+        $r0[1] = class "com/puppycrawl/tools/checkstyle/api/DetailAST";
+
+        $r0[2] = class "com/puppycrawl/tools/checkstyle/checks/indentation/ExpressionHandler";
+
+        ctor = virtualinvoke aHandlerClass.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($r0);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: java.util.Map mTypeHandlers>;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aType);
+
+        interfaceinvoke $r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r2, ctor);
+
+     label2:
+        goto label5;
+
+     label3:
+        $r16 := @caughtexception;
+
+        $r15 = new java.lang.RuntimeException;
+
+        $r18 = new java.lang.StringBuilder;
+
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+
+        $r17 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("couldn\'t find ctor for ");
+
+        $r20 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aHandlerClass);
+
+        $r19 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r15.<java.lang.RuntimeException: void <init>(java.lang.String)>($r19);
+
+        throw $r15;
+
+     label4:
+        $r4 := @caughtexception;
+
+        ctor = $r4;
+
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: org.apache.commons.logging.Log LOG>;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("couldn\'t find ctor for ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aHandlerClass);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r6.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>($r9, ctor);
+
+        $r10 = new java.lang.RuntimeException;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+
+        $r11 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("couldn\'t find ctor for ");
+
+        $r14 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aHandlerClass);
+
+        $r13 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>($r13);
+
+        throw $r10;
+
+     label5:
+        return;
+
+        catch java.lang.NoSuchMethodException from label1 to label2 with label3;
+        catch java.lang.SecurityException from label1 to label2 with label4;
+    }
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory this;
+        java.util.HashMap $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: java.util.Map mTypeHandlers> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: java.util.Map mCreatedHandlers> = $r1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(34, class "com/puppycrawl/tools/checkstyle/checks/indentation/CaseHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(91, class "com/puppycrawl/tools/checkstyle/checks/indentation/SwitchHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(7, class "com/puppycrawl/tools/checkstyle/checks/indentation/SlistHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(16, class "com/puppycrawl/tools/checkstyle/checks/indentation/PackageDefHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(94, class "com/puppycrawl/tools/checkstyle/checks/indentation/ElseHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(85, class "com/puppycrawl/tools/checkstyle/checks/indentation/IfHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(97, class "com/puppycrawl/tools/checkstyle/checks/indentation/TryHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(98, class "com/puppycrawl/tools/checkstyle/checks/indentation/CatchHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(99, class "com/puppycrawl/tools/checkstyle/checks/indentation/FinallyHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(87, class "com/puppycrawl/tools/checkstyle/checks/indentation/DoWhileHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(86, class "com/puppycrawl/tools/checkstyle/checks/indentation/WhileHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(93, class "com/puppycrawl/tools/checkstyle/checks/indentation/ForHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(9, class "com/puppycrawl/tools/checkstyle/checks/indentation/MethodDefHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(8, class "com/puppycrawl/tools/checkstyle/checks/indentation/MethodDefHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(14, class "com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(158, class "com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(6, class "com/puppycrawl/tools/checkstyle/checks/indentation/ObjectBlockHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(15, class "com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(31, class "com/puppycrawl/tools/checkstyle/checks/indentation/ImportHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(30, class "com/puppycrawl/tools/checkstyle/checks/indentation/ArrayInitHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(27, class "com/puppycrawl/tools/checkstyle/checks/indentation/MethodCallHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(44, class "com/puppycrawl/tools/checkstyle/checks/indentation/MethodCallHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(22, class "com/puppycrawl/tools/checkstyle/checks/indentation/LabelHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(12, class "com/puppycrawl/tools/checkstyle/checks/indentation/StaticInitHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(11, class "com/puppycrawl/tools/checkstyle/checks/indentation/SlistHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(10, class "com/puppycrawl/tools/checkstyle/checks/indentation/MemberDefHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(138, class "com/puppycrawl/tools/checkstyle/checks/indentation/NewHandler");
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void register(int,java.lang.Class)>(24, class "com/puppycrawl/tools/checkstyle/checks/indentation/IndexHandler");
+
+        return;
+    }
+
+    public boolean isHandledType(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory this;
+        int aType;
+        java.util.Set typeSet;
+        java.util.Map $r0;
+        java.lang.Integer $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory;
+
+        aType := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: java.util.Map mTypeHandlers>;
+
+        typeSet = interfaceinvoke $r0.<java.util.Map: java.util.Set keySet()>();
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aType);
+
+        $z0 = interfaceinvoke typeSet.<java.util.Set: boolean contains(java.lang.Object)>($r1);
+
+        return $z0;
+    }
+
+    public int[] getHandledTypes()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory this;
+        java.util.Set typeSet;
+        int[] types;
+        int index, $i0, $i1, $i2;
+        java.util.Iterator i$;
+        java.lang.Integer val;
+        java.util.Map $r0;
+        boolean $z0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: java.util.Map mTypeHandlers>;
+
+        typeSet = interfaceinvoke $r0.<java.util.Map: java.util.Set keySet()>();
+
+        $i0 = interfaceinvoke typeSet.<java.util.Set: int size()>();
+
+        types = newarray (int)[$i0];
+
+        index = 0;
+
+        i$ = interfaceinvoke typeSet.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        val = (java.lang.Integer) $r1;
+
+        $i1 = index;
+
+        index = index + 1;
+
+        $i2 = virtualinvoke val.<java.lang.Integer: int intValue()>();
+
+        types[$i1] = $i2;
+
+        goto label1;
+
+     label2:
+        return types;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler getHandler(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck, com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck aIndentCheck;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler aParent, handler, expHandler, $r13;
+        java.lang.reflect.Constructor handlerCtor;
+        java.util.Map $r0, $r2;
+        java.lang.Object $r1, $r4, $r10;
+        int $i0, $i1, $i2;
+        java.lang.Integer $r3;
+        java.lang.RuntimeException $r5, $r18, $r32, $r38;
+        java.lang.StringBuilder $r6, $r7, $r9, $r15, $r16, $r17, $r20, $r21, $r23, $r24, $r26, $r29, $r30, $r31, $r33, $r34, $r40, $r41, $r43, $r44, $r45;
+        java.lang.String $r8, $r19, $r25, $r27, $r36, $r39, $r42;
+        java.lang.Object[] $r11;
+        java.lang.reflect.InvocationTargetException $r12, handlerCtor;
+        org.apache.commons.logging.Log $r14, $r28, $r35;
+        java.lang.IllegalAccessException $r22, handlerCtor;
+        java.lang.InstantiationException $r37, handlerCtor;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory;
+
+        aIndentCheck := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAst := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParent := @parameter2: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: java.util.Map mCreatedHandlers>;
+
+        $r1 = interfaceinvoke $r0.<java.util.Map: java.lang.Object get(java.lang.Object)>(aAst);
+
+        handler = (com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler) $r1;
+
+        if handler == null goto label1;
+
+        return handler;
+
+     label1:
+        $i0 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 27 goto label2;
+
+        $r13 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler createMethodCallHandler(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)>(aIndentCheck, aAst, aParent);
+
+        return $r13;
+
+     label2:
+        expHandler = null;
+
+     label3:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: java.util.Map mTypeHandlers>;
+
+        $i1 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        $r4 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>($r3);
+
+        handlerCtor = (java.lang.reflect.Constructor) $r4;
+
+        if handlerCtor == null goto label4;
+
+        $r11 = newarray (java.lang.Object)[3];
+
+        $r11[0] = aIndentCheck;
+
+        $r11[1] = aAst;
+
+        $r11[2] = aParent;
+
+        $r10 = virtualinvoke handlerCtor.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r11);
+
+        expHandler = (com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler) $r10;
+
+     label4:
+        goto label8;
+
+     label5:
+        $r37 := @caughtexception;
+
+        handlerCtor = $r37;
+
+        $r35 = <com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: org.apache.commons.logging.Log LOG>;
+
+        $r34 = new java.lang.StringBuilder;
+
+        specialinvoke $r34.<java.lang.StringBuilder: void <init>()>();
+
+        $r41 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("couldn\'t instantiate constructor for ");
+
+        $r40 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aAst);
+
+        $r39 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r35.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>($r39, handlerCtor);
+
+        $r38 = new java.lang.RuntimeException;
+
+        $r45 = new java.lang.StringBuilder;
+
+        specialinvoke $r45.<java.lang.StringBuilder: void <init>()>();
+
+        $r44 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("couldn\'t instantiate constructor for ");
+
+        $r43 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aAst);
+
+        $r42 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r38.<java.lang.RuntimeException: void <init>(java.lang.String)>($r42);
+
+        throw $r38;
+
+     label6:
+        $r22 := @caughtexception;
+
+        handlerCtor = $r22;
+
+        $r28 = <com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: org.apache.commons.logging.Log LOG>;
+
+        $r23 = new java.lang.StringBuilder;
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>()>();
+
+        $r29 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("couldn\'t access constructor for ");
+
+        $r26 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aAst);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r28.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>($r27, handlerCtor);
+
+        $r32 = new java.lang.RuntimeException;
+
+        $r33 = new java.lang.StringBuilder;
+
+        specialinvoke $r33.<java.lang.StringBuilder: void <init>()>();
+
+        $r30 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("couldn\'t access constructor for ");
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aAst);
+
+        $r36 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r32.<java.lang.RuntimeException: void <init>(java.lang.String)>($r36);
+
+        throw $r32;
+
+     label7:
+        $r12 := @caughtexception;
+
+        handlerCtor = $r12;
+
+        $r14 = <com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: org.apache.commons.logging.Log LOG>;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+
+        $r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("couldn\'t instantiate constructor for ");
+
+        $r16 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aAst);
+
+        $r19 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r14.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>($r19, handlerCtor);
+
+        $r18 = new java.lang.RuntimeException;
+
+        $r21 = new java.lang.StringBuilder;
+
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>()>();
+
+        $r20 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("couldn\'t instantiate constructor for ");
+
+        $r24 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aAst);
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r18.<java.lang.RuntimeException: void <init>(java.lang.String)>($r25);
+
+        throw $r18;
+
+     label8:
+        if expHandler != null goto label9;
+
+        $r5 = new java.lang.RuntimeException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("no handler for type ");
+
+        $i2 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r8 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>($r8);
+
+        throw $r5;
+
+     label9:
+        return expHandler;
+
+        catch java.lang.InstantiationException from label3 to label4 with label5;
+        catch java.lang.IllegalAccessException from label3 to label4 with label6;
+        catch java.lang.reflect.InvocationTargetException from label3 to label4 with label7;
+    }
+
+    com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler createMethodCallHandler(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck, com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck aIndentCheck;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst, ast;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler aParent, theParent;
+        com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler $r0;
+        int $i0, $i1;
+        boolean $z0;
+        java.util.Map $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory;
+
+        aIndentCheck := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAst := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParent := @parameter2: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler;
+
+        theParent = aParent;
+
+        ast = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if ast == null goto label2;
+
+        $i1 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 60 goto label2;
+
+        ast = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        goto label1;
+
+     label2:
+        if ast == null goto label3;
+
+        $i0 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $z0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: boolean isHandledType(int)>($i0);
+
+        if $z0 == 0 goto label3;
+
+        theParent = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler getHandler(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)>(aIndentCheck, ast, theParent);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: java.util.Map mCreatedHandlers>;
+
+        interfaceinvoke $r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(ast, theParent);
+
+     label3:
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)>(aIndentCheck, aAst, theParent);
+
+        return $r0;
+    }
+
+    void clearCreatedHandlers()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory this;
+        java.util.Map $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: java.util.Map mCreatedHandlers>;
+
+        interfaceinvoke $r0.<java.util.Map: void clear()>();
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        org.apache.commons.logging.Log $r0;
+
+        $r0 = staticinvoke <org.apache.commons.logging.LogFactory: org.apache.commons.logging.Log getLog(java.lang.String)>("com.puppycrawl.tools.checkstyle.checks.indentation");
+
+        <com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: org.apache.commons.logging.Log LOG> = $r0;
+
+        return;
+    }
+}

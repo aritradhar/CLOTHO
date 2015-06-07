@@ -1,0 +1,15 @@
+public interface  com.puppycrawl.tools.checkstyle.api.TextBlock extends java.lang.Object
+{
+
+    public abstract java.lang.String[] getText();
+
+    public abstract int getStartLineNo();
+
+    public abstract int getEndLineNo();
+
+    public abstract int getStartColNo();
+
+    public abstract int getEndColNo();
+
+    public abstract boolean intersects(int, int, int, int);
+}

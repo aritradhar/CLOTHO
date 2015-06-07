@@ -1,0 +1,214 @@
+public final class com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck
+{
+    private static final java.lang.String DEFAULT_FORMAT;
+    private boolean mIgnoreModifier;
+    private boolean mIgnoreName;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void <init>(java.lang.String)>("^Abstract.*$|^.*Factory$");
+
+        return;
+    }
+
+    public void setIgnoreModifier(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck this;
+        boolean aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
+
+        aValue := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: boolean mIgnoreModifier> = aValue;
+
+        return;
+    }
+
+    public void setIgnoreName(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck this;
+        boolean aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
+
+        aValue := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: boolean mIgnoreName> = aValue;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 14;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 14 != $i0 goto label1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: void visitClassDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label1:
+        return;
+    }
+
+    private void visitClassDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+        java.lang.String className, $r3;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        int $i0, $i1, $i2, $i3;
+        java.lang.Object[] $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        className = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: boolean isAbstract(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label1;
+
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: boolean mIgnoreName>;
+
+        if $z3 != 0 goto label2;
+
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: boolean isMatchingClassName(java.lang.String)>(className);
+
+        if $z4 != 0 goto label2;
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r2 = newarray (java.lang.Object)[2];
+
+        $r2[0] = className;
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: java.lang.String getFormat()>();
+
+        $r2[1] = $r3;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i2, $i3, "illegal.abstract.class.name", $r2);
+
+        goto label2;
+
+     label1:
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: boolean mIgnoreModifier>;
+
+        if $z1 != 0 goto label2;
+
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: boolean isMatchingClassName(java.lang.String)>(className);
+
+        if $z2 == 0 goto label2;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r1[0] = className;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "no.abstract.class.modifier", $r1);
+
+     label2:
+        return;
+    }
+
+    private boolean isAbstract(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, abstractAST, $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        abstractAST = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(41);
+
+        if abstractAST == null goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private boolean isMatchingClassName(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck this;
+        java.lang.String aClassName;
+        java.util.regex.Pattern $r0;
+        java.util.regex.Matcher $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
+
+        aClassName := @parameter0: java.lang.String;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: java.util.regex.Pattern getRegexp()>();
+
+        $r1 = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aClassName);
+
+        $z0 = virtualinvoke $r1.<java.util.regex.Matcher: boolean find()>();
+
+        return $z0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck: java.lang.String DEFAULT_FORMAT> = "^Abstract.*$|^.*Factory$";
+
+        return;
+    }
+}

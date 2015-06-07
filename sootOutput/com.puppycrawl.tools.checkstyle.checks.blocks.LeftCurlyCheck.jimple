@@ -1,0 +1,576 @@
+public class com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck
+{
+    private static final int DEFAULT_MAX_LINE_LENGTH;
+    private int mMaxLineLength;
+    private boolean mIgnoreEnums;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck this;
+        com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption EOL>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck: void <init>(java.lang.Enum,java.lang.Class)>($r0, class "com/puppycrawl/tools/checkstyle/checks/blocks/LeftCurlyOption");
+
+        this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: int mMaxLineLength> = 80;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: boolean mIgnoreEnums> = 1;
+
+        return;
+    }
+
+    public void setMaxLineLength(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck this;
+        int aMaxLineLength;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+
+        aMaxLineLength := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: int mMaxLineLength> = aMaxLineLength;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+
+        $r0 = newarray (int)[17];
+
+        $r0[0] = 15;
+
+        $r0[1] = 14;
+
+        $r0[2] = 161;
+
+        $r0[3] = 158;
+
+        $r0[4] = 8;
+
+        $r0[5] = 9;
+
+        $r0[6] = 159;
+
+        $r0[7] = 86;
+
+        $r0[8] = 97;
+
+        $r0[9] = 98;
+
+        $r0[10] = 99;
+
+        $r0[11] = 68;
+
+        $r0[12] = 91;
+
+        $r0[13] = 87;
+
+        $r0[14] = 85;
+
+        $r0[15] = 94;
+
+        $r0[16] = 93;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, startToken, brace, objBlock, candidate, $r0, $r1;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 8: goto label01;
+            case 9: goto label01;
+            case 14: goto label02;
+            case 15: goto label02;
+            case 68: goto label05;
+            case 85: goto label05;
+            case 86: goto label05;
+            case 87: goto label05;
+            case 91: goto label09;
+            case 93: goto label05;
+            case 94: goto label06;
+            case 97: goto label05;
+            case 98: goto label05;
+            case 99: goto label05;
+            case 158: goto label02;
+            case 159: goto label02;
+            case 161: goto label02;
+            default: goto label10;
+        };
+
+     label01:
+        startToken = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: com.puppycrawl.tools.checkstyle.api.DetailAST skipAnnotationOnlyLines(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        brace = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        goto label11;
+
+     label02:
+        startToken = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: com.puppycrawl.tools.checkstyle.api.DetailAST skipAnnotationOnlyLines(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        objBlock = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(6);
+
+        if objBlock != null goto label03;
+
+        $r1 = null;
+
+        goto label04;
+
+     label03:
+        $r1 = virtualinvoke objBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label04:
+        brace = $r1;
+
+        goto label11;
+
+     label05:
+        startToken = aAST;
+
+        brace = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        goto label11;
+
+     label06:
+        startToken = aAST;
+
+        candidate = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i1 = virtualinvoke candidate.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 7 goto label07;
+
+        $r0 = candidate;
+
+        goto label08;
+
+     label07:
+        $r0 = null;
+
+     label08:
+        brace = $r0;
+
+        goto label11;
+
+     label09:
+        startToken = aAST;
+
+        brace = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(73);
+
+        goto label11;
+
+     label10:
+        startToken = null;
+
+        brace = null;
+
+     label11:
+        if brace == null goto label12;
+
+        if startToken == null goto label12;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: void verifyBrace(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(brace, startToken);
+
+     label12:
+        return;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST skipAnnotationOnlyLines(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiers, lastAnnot, tokenAfterLast, $r0, $r1, $r2, $r3;
+        int lastAnnotLineNumber, $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiers = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        if modifiers != null goto label1;
+
+        return aAST;
+
+     label1:
+        lastAnnot = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: com.puppycrawl.tools.checkstyle.api.DetailAST findLastAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST)>(modifiers);
+
+        if lastAnnot != null goto label2;
+
+        return aAST;
+
+     label2:
+        $r0 = virtualinvoke lastAnnot.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if $r0 == null goto label3;
+
+        $r1 = virtualinvoke lastAnnot.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label4;
+
+     label3:
+        $r1 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label4:
+        tokenAfterLast = $r1;
+
+        $i0 = virtualinvoke tokenAfterLast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke lastAnnot.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i0 <= $i1 goto label5;
+
+        return tokenAfterLast;
+
+     label5:
+        lastAnnotLineNumber = virtualinvoke lastAnnot.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+     label6:
+        $r2 = virtualinvoke lastAnnot.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        if $r2 == null goto label7;
+
+        $r3 = virtualinvoke lastAnnot.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        $i2 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i2 != lastAnnotLineNumber goto label7;
+
+        lastAnnot = virtualinvoke lastAnnot.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        goto label6;
+
+     label7:
+        return lastAnnot;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST findLastAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aModifiers, aAnnot, $r0, $r1;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+
+        aModifiers := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAnnot = virtualinvoke aModifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(163);
+
+     label1:
+        if aAnnot == null goto label2;
+
+        $r0 = virtualinvoke aAnnot.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if $r0 == null goto label2;
+
+        $r1 = virtualinvoke aAnnot.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        $i0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 163 goto label2;
+
+        aAnnot = virtualinvoke aAnnot.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label2:
+        return aAnnot;
+    }
+
+    private void verifyBrace(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aBrace, aStartToken;
+        java.lang.String braceLine, $r2;
+        int prevLineLen, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20, $i21, $i22, $i23, $i24, $i25, $i26, $i27, $i28, $i29, $i30, $i31, $i32, $i33, $i34, $i36;
+        java.lang.String[] $r0, $r1;
+        java.lang.Enum $r3, $r4, $r6;
+        com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption $r5, $r7, $r8;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        java.lang.Object[] $r9, $r10, $r11, $r12, $r13, $r14;
+        char $c35;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+
+        aBrace := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aStartToken := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: java.lang.String[] getLines()>();
+
+        $i0 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = $i0 - 1;
+
+        braceLine = $r0[$i1];
+
+        $i2 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i2 != 1 goto label01;
+
+        $i5 = this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: int mMaxLineLength>;
+
+        goto label02;
+
+     label01:
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: java.lang.String[] getLines()>();
+
+        $i3 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i4 = $i3 - 2;
+
+        $r2 = $r1[$i4];
+
+        $i5 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: int lengthMinusTrailingWhitespace(java.lang.String)>($r2);
+
+     label02:
+        prevLineLen = $i5;
+
+        $i6 = virtualinvoke braceLine.<java.lang.String: int length()>();
+
+        $i7 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i8 = $i7 + 1;
+
+        if $i6 <= $i8 goto label03;
+
+        $i32 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i36 = $i32 + 1;
+
+        $c35 = virtualinvoke braceLine.<java.lang.String: char charAt(int)>($i36);
+
+        if $c35 != 125 goto label03;
+
+        goto label10;
+
+     label03:
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: java.lang.Enum getAbstractOption()>();
+
+        $r5 = <com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption NL>;
+
+        if $r3 != $r5 goto label04;
+
+        $i30 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $z4 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: boolean whitespaceBefore(int,java.lang.String)>($i30, braceLine);
+
+        if $z4 != 0 goto label10;
+
+        $i34 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i33 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r14 = newarray (java.lang.Object)[1];
+
+        $r14[0] = "{";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i34, $i33, "line.new", $r14);
+
+        goto label10;
+
+     label04:
+        $r4 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: java.lang.Enum getAbstractOption()>();
+
+        $r7 = <com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption EOL>;
+
+        if $r4 != $r7 goto label06;
+
+        $i22 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $z2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: boolean whitespaceBefore(int,java.lang.String)>($i22, braceLine);
+
+        if $z2 == 0 goto label05;
+
+        $i28 = prevLineLen + 2;
+
+        $i29 = this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: int mMaxLineLength>;
+
+        if $i28 > $i29 goto label05;
+
+        $i27 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i31 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r13 = newarray (java.lang.Object)[1];
+
+        $r13[0] = "{";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i27, $i31, "line.previous", $r13);
+
+     label05:
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: boolean hasLineBreakAfter(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aBrace);
+
+        if $z3 != 0 goto label10;
+
+        $i25 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i26 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r12 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i25, $i26, "line.break.after", $r12);
+
+        goto label10;
+
+     label06:
+        $r6 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: java.lang.Enum getAbstractOption()>();
+
+        $r8 = <com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption NLOW>;
+
+        if $r6 != $r8 goto label10;
+
+        $i9 = virtualinvoke aStartToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i11 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i9 != $i11 goto label07;
+
+        goto label10;
+
+     label07:
+        $i10 = virtualinvoke aStartToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i13 = $i10 + 1;
+
+        $i12 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i13 != $i12 goto label09;
+
+        $i18 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: boolean whitespaceBefore(int,java.lang.String)>($i18, braceLine);
+
+        if $z1 != 0 goto label08;
+
+        $i23 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i24 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r11 = newarray (java.lang.Object)[1];
+
+        $r11[0] = "{";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i23, $i24, "line.new", $r11);
+
+        goto label10;
+
+     label08:
+        $i20 = prevLineLen + 2;
+
+        $i17 = this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: int mMaxLineLength>;
+
+        if $i20 > $i17 goto label10;
+
+        $i21 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i19 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r10 = newarray (java.lang.Object)[1];
+
+        $r10[0] = "{";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i21, $i19, "line.previous", $r10);
+
+        goto label10;
+
+     label09:
+        $i14 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: boolean whitespaceBefore(int,java.lang.String)>($i14, braceLine);
+
+        if $z0 != 0 goto label10;
+
+        $i16 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i15 = virtualinvoke aBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r9 = newarray (java.lang.Object)[1];
+
+        $r9[0] = "{";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i16, $i15, "line.new", $r9);
+
+     label10:
+        return;
+    }
+
+    private boolean hasLineBreakAfter(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aLeftCurly, nextToken, $r0, $r1;
+        int $i0, $i1, $i2, $i3, $i4;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+
+        aLeftCurly := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        nextToken = null;
+
+        $i0 = virtualinvoke aLeftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 7 goto label1;
+
+        nextToken = virtualinvoke aLeftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        goto label2;
+
+     label1:
+        $r0 = virtualinvoke aLeftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 158 goto label2;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: boolean mIgnoreEnums>;
+
+        if $z0 != 0 goto label2;
+
+        nextToken = virtualinvoke aLeftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label2:
+        if nextToken == null goto label3;
+
+        $i2 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 == 74 goto label3;
+
+        $i3 = virtualinvoke aLeftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i4 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i3 != $i4 goto label3;
+
+        return 0;
+
+     label3:
+        return 1;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck: int DEFAULT_MAX_LINE_LENGTH> = 80;
+
+        return;
+    }
+}

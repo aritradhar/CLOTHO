@@ -1,0 +1,337 @@
+public class asmbug.Method extends java.lang.Object
+{
+    private final java.lang.String name;
+    private final java.lang.String desc;
+    private static final java.util.Map DESCRIPTORS;
+
+    static void <clinit>()
+    {
+        java.util.HashMap $r0;
+        java.util.Map $r1, $r3, $r5, $r7, $r9, $r11, $r13, $r15, $r16;
+
+        $r0 = new java.util.HashMap;
+
+        specialinvoke $r0.<java.util.HashMap: void <init>()>();
+
+        <asmbug.Method: java.util.Map DESCRIPTORS> = $r0;
+
+        $r1 = <asmbug.Method: java.util.Map DESCRIPTORS>;
+
+        interfaceinvoke $r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("void", "V");
+
+        $r3 = <asmbug.Method: java.util.Map DESCRIPTORS>;
+
+        interfaceinvoke $r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("byte", "B");
+
+        $r5 = <asmbug.Method: java.util.Map DESCRIPTORS>;
+
+        interfaceinvoke $r5.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("char", "C");
+
+        $r7 = <asmbug.Method: java.util.Map DESCRIPTORS>;
+
+        interfaceinvoke $r7.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("double", "D");
+
+        $r9 = <asmbug.Method: java.util.Map DESCRIPTORS>;
+
+        interfaceinvoke $r9.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("float", "F");
+
+        $r11 = <asmbug.Method: java.util.Map DESCRIPTORS>;
+
+        interfaceinvoke $r11.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("int", "I");
+
+        $r13 = <asmbug.Method: java.util.Map DESCRIPTORS>;
+
+        interfaceinvoke $r13.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("long", "J");
+
+        $r15 = <asmbug.Method: java.util.Map DESCRIPTORS>;
+
+        interfaceinvoke $r15.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("short", "S");
+
+        $r16 = <asmbug.Method: java.util.Map DESCRIPTORS>;
+
+        interfaceinvoke $r16.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("boolean", "Z");
+
+        return;
+    }
+
+    public void <init>(java.lang.String, java.lang.String)
+    {
+        asmbug.Method r0;
+        java.lang.String r1, r2;
+
+        r0 := @this: asmbug.Method;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<asmbug.Method: java.lang.String name> = r1;
+
+        r0.<asmbug.Method: java.lang.String desc> = r2;
+
+        return;
+    }
+
+    public void <init>(java.lang.String, asmbug.Type, asmbug.Type[])
+    {
+        asmbug.Method r0;
+        java.lang.String r1, $r4;
+        asmbug.Type r2;
+        asmbug.Type[] r3;
+
+        r0 := @this: asmbug.Method;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: asmbug.Type;
+
+        r3 := @parameter2: asmbug.Type[];
+
+        $r4 = staticinvoke <asmbug.Type: java.lang.String getMethodDescriptor(asmbug.Type,asmbug.Type[])>(r2, r3);
+
+        specialinvoke r0.<asmbug.Method: void <init>(java.lang.String,java.lang.String)>(r1, $r4);
+
+        return;
+    }
+
+    public static asmbug.Method getMethod(java.lang.reflect.Method)
+    {
+        java.lang.reflect.Method r0;
+        asmbug.Method $r1;
+        java.lang.String $r2, $r3;
+
+        r0 := @parameter0: java.lang.reflect.Method;
+
+        $r1 = new asmbug.Method;
+
+        $r2 = virtualinvoke r0.<java.lang.reflect.Method: java.lang.String getName()>();
+
+        $r3 = staticinvoke <asmbug.Type: java.lang.String getMethodDescriptor(java.lang.reflect.Method)>(r0);
+
+        specialinvoke $r1.<asmbug.Method: void <init>(java.lang.String,java.lang.String)>($r2, $r3);
+
+        return $r1;
+    }
+
+    public static asmbug.Method getMethod(java.lang.reflect.Constructor)
+    {
+        java.lang.reflect.Constructor r0;
+        asmbug.Method $r1;
+        java.lang.String $r2;
+
+        r0 := @parameter0: java.lang.reflect.Constructor;
+
+        $r1 = new asmbug.Method;
+
+        $r2 = staticinvoke <asmbug.Type: java.lang.String getConstructorDescriptor(java.lang.reflect.Constructor)>(r0);
+
+        specialinvoke $r1.<asmbug.Method: void <init>(java.lang.String,java.lang.String)>("<init>", $r2);
+
+        return $r1;
+    }
+
+    public static asmbug.Method getMethod(java.lang.String) throws java.lang.IllegalArgumentException
+    {
+        java.lang.String r0;
+        asmbug.Method $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <asmbug.Method: asmbug.Method getMethod(java.lang.String,boolean)>(r0, 0);
+
+        return $r1;
+    }
+
+    public static asmbug.Method getMethod(java.lang.String, boolean) throws java.lang.IllegalArgumentException
+    {
+        java.lang.String r0, r1, r2, r4, $r6, $r9, $r10, $r12, $r16, $r17, $r18;
+        boolean z0;
+        int i0, i1, i2, i3, $i4, $i5, $i6;
+        java.lang.StringBuilder r3, $r7;
+        java.lang.IllegalArgumentException $r5;
+        asmbug.Method $r14;
+
+        r0 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        i0 = virtualinvoke r0.<java.lang.String: int indexOf(int)>(32);
+
+        $i4 = virtualinvoke r0.<java.lang.String: int indexOf(int,int)>(40, i0);
+
+        i1 = $i4 + 1;
+
+        i2 = virtualinvoke r0.<java.lang.String: int indexOf(int,int)>(41, i1);
+
+        if i0 == -1 goto label1;
+
+        if i1 == -1 goto label1;
+
+        if i2 != -1 goto label2;
+
+     label1:
+        $r5 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>()>();
+
+        throw $r5;
+
+     label2:
+        r1 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(0, i0);
+
+        $i6 = i0 + 1;
+
+        $i5 = i1 - 1;
+
+        $r6 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>($i6, $i5);
+
+        r2 = virtualinvoke $r6.<java.lang.String: java.lang.String trim()>();
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        r3 = $r7;
+
+        virtualinvoke r3.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(40);
+
+     label3:
+        i3 = virtualinvoke r0.<java.lang.String: int indexOf(int,int)>(44, i1);
+
+        if i3 != -1 goto label4;
+
+        $r16 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(i1, i2);
+
+        $r18 = virtualinvoke $r16.<java.lang.String: java.lang.String trim()>();
+
+        r4 = staticinvoke <asmbug.Method: java.lang.String map(java.lang.String,boolean)>($r18, z0);
+
+        goto label5;
+
+     label4:
+        $r10 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(i1, i3);
+
+        $r9 = virtualinvoke $r10.<java.lang.String: java.lang.String trim()>();
+
+        r4 = staticinvoke <asmbug.Method: java.lang.String map(java.lang.String,boolean)>($r9, z0);
+
+        i1 = i3 + 1;
+
+     label5:
+        virtualinvoke r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r4);
+
+        if i3 != -1 goto label3;
+
+        virtualinvoke r3.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(41);
+
+        $r12 = staticinvoke <asmbug.Method: java.lang.String map(java.lang.String,boolean)>(r1, z0);
+
+        virtualinvoke r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+
+        $r14 = new asmbug.Method;
+
+        $r17 = virtualinvoke r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r14.<asmbug.Method: void <init>(java.lang.String,java.lang.String)>(r2, $r17);
+
+        return $r14;
+    }
+
+    private static java.lang.String map(java.lang.String, boolean)
+    {
+        java.lang.String r0, r2, r3, $r4, $r11, $r12;
+        boolean z0, $z1;
+        java.lang.StringBuilder r1, $r5;
+        int i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.lang.Object $r7;
+        java.util.Map $r8;
+
+        r0 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        $r4 = "";
+
+        $z1 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(r0);
+
+        if $z1 == 0 goto label1;
+
+        return r0;
+
+     label1:
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        r1 = $r5;
+
+        i0 = 0;
+
+        goto label3;
+
+     label2:
+        virtualinvoke r1.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(91);
+
+     label3:
+        $i1 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String,int)>("[]", i0);
+
+        $i2 = $i1 + 1;
+
+        i0 = $i2;
+
+        if $i2 > 0 goto label2;
+
+        $i3 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        $i4 = virtualinvoke r1.<java.lang.StringBuilder: int length()>();
+
+        $i5 = $i4 * 2;
+
+        $i6 = $i3 - $i5;
+
+        r2 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(0, $i6);
+
+        $r8 = <asmbug.Method: java.util.Map DESCRIPTORS>;
+
+        $r7 = interfaceinvoke $r8.<java.util.Map: java.lang.Object get(java.lang.Object)>(r2);
+
+        r3 = (java.lang.String) $r7;
+
+        if r3 == null goto label4;
+
+        virtualinvoke r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        goto label8;
+
+     label4:
+        virtualinvoke r1.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(76);
+
+        $i7 = virtualinvoke r2.<java.lang.String: int indexOf(int)>(46);
+
+        if $i7 >= 0 goto label6;
+
+        if z0 != 0 goto label5;
+
+        virtualinvoke r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("java/lang/");
+
+     label5:
+        virtualinvoke r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        goto label7;
+
+     label6:
+        $r11 = virtualinvoke r2.<java.lang.String: java.lang.String replace(char,char)>(46, 47);
+
+        virtualinvoke r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+     label7:
+        virtualinvoke r1.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(59);
+
+     label8:
+        $r12 = virtualinvoke r1.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r12;
+    }
+}

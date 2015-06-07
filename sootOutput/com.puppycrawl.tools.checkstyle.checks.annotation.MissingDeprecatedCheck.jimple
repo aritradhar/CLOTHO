@@ -1,0 +1,300 @@
+public final class com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final java.lang.String DEPRECATED;
+    private static final java.lang.String FQ_DEPRECATED;
+    private static final java.util.regex.Pattern MATCH_DEPRECATED;
+    private static final java.util.regex.Pattern MATCH_DEPRECATED_MULTILINE_START;
+    private static final java.util.regex.Pattern MATCH_DEPRECATED_MULTILINE_CONT;
+    private static final java.lang.String END_JAVADOC;
+    private static final java.lang.String NEXT_TAG;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: int[] getAcceptableTokens()>();
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck;
+
+        $r0 = newarray (int)[9];
+
+        $r0[0] = 15;
+
+        $r0[1] = 14;
+
+        $r0[2] = 161;
+
+        $r0[3] = 158;
+
+        $r0[4] = 9;
+
+        $r0[5] = 8;
+
+        $r0[6] = 10;
+
+        $r0[7] = 159;
+
+        $r0[8] = 165;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.TextBlock javadoc;
+        boolean containsAnnotation, containsJavadocTag, $z0, $z1, $z2, $z3;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r0;
+        int $i0, $i1;
+        java.lang.Object[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        javadoc = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.TextBlock getJavadocBefore(int)>($i0);
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: boolean containsAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, "Deprecated");
+
+        if $z0 != 0 goto label1;
+
+        $z2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: boolean containsAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, "java.lang.Deprecated");
+
+        if $z2 == 0 goto label2;
+
+     label1:
+        $z3 = 1;
+
+        goto label3;
+
+     label2:
+        $z3 = 0;
+
+     label3:
+        containsAnnotation = $z3;
+
+        containsJavadocTag = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: boolean containsJavadocTag(com.puppycrawl.tools.checkstyle.api.TextBlock)>(javadoc);
+
+        $z1 = containsAnnotation ^ containsJavadocTag;
+
+        if $z1 == 0 goto label4;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: void log(int,java.lang.String,java.lang.Object[])>($i1, "annotation.missing.deprecated", $r1);
+
+     label4:
+        return;
+    }
+
+    private boolean containsJavadocTag(com.puppycrawl.tools.checkstyle.api.TextBlock)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck this;
+        com.puppycrawl.tools.checkstyle.api.TextBlock aJavadoc;
+        java.lang.String[] lines;
+        boolean found, $z0, $z1, $z2, $z3, $z4;
+        int currentLine, i, remIndex, $i0, $i1, $i2;
+        java.lang.String line, lFin, $r3, $r8, $r9, $r13;
+        java.util.regex.Matcher javadocNoargMatcher, noargMultilineStart, multilineCont;
+        java.util.regex.Pattern $r0, $r1, $r2;
+        java.lang.Object[] $r4, $r5, $r7, $r11;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r6, $r10, $r12;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck;
+
+        aJavadoc := @parameter0: com.puppycrawl.tools.checkstyle.api.TextBlock;
+
+        if aJavadoc != null goto label01;
+
+        return 0;
+
+     label01:
+        lines = interfaceinvoke aJavadoc.<com.puppycrawl.tools.checkstyle.api.TextBlock: java.lang.String[] getText()>();
+
+        found = 0;
+
+        $i0 = interfaceinvoke aJavadoc.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartLineNo()>();
+
+        currentLine = $i0 - 1;
+
+        i = 0;
+
+     label02:
+        $i1 = lengthof lines;
+
+        if i >= $i1 goto label11;
+
+        currentLine = currentLine + 1;
+
+        line = lines[i];
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: java.util.regex.Pattern MATCH_DEPRECATED>;
+
+        javadocNoargMatcher = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(line);
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: java.util.regex.Pattern MATCH_DEPRECATED_MULTILINE_START>;
+
+        noargMultilineStart = virtualinvoke $r1.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(line);
+
+        $z0 = virtualinvoke javadocNoargMatcher.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 == 0 goto label04;
+
+        if found == 0 goto label03;
+
+        $r11 = newarray (java.lang.Object)[1];
+
+        $r12 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo DEPRECATED>;
+
+        $r13 = virtualinvoke $r12.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getText()>();
+
+        $r11[0] = $r13;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: void log(int,java.lang.String,java.lang.Object[])>(currentLine, "javadoc.duplicateTag", $r11);
+
+     label03:
+        found = 1;
+
+        goto label10;
+
+     label04:
+        $z1 = virtualinvoke noargMultilineStart.<java.util.regex.Matcher: boolean find()>();
+
+        if $z1 == 0 goto label10;
+
+        remIndex = i + 1;
+
+     label05:
+        $i2 = lengthof lines;
+
+        if remIndex >= $i2 goto label10;
+
+        $r2 = <com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: java.util.regex.Pattern MATCH_DEPRECATED_MULTILINE_CONT>;
+
+        $r3 = lines[remIndex];
+
+        multilineCont = virtualinvoke $r2.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r3);
+
+        $z2 = virtualinvoke multilineCont.<java.util.regex.Matcher: boolean find()>();
+
+        if $z2 == 0 goto label09;
+
+        remIndex = lengthof lines;
+
+        lFin = virtualinvoke multilineCont.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        $z3 = virtualinvoke lFin.<java.lang.String: boolean equals(java.lang.Object)>("@");
+
+        if $z3 != 0 goto label07;
+
+        $z4 = virtualinvoke lFin.<java.lang.String: boolean equals(java.lang.Object)>("*/");
+
+        if $z4 != 0 goto label07;
+
+        if found == 0 goto label06;
+
+        $r7 = newarray (java.lang.Object)[1];
+
+        $r10 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo DEPRECATED>;
+
+        $r9 = virtualinvoke $r10.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getText()>();
+
+        $r7[0] = $r9;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: void log(int,java.lang.String,java.lang.Object[])>(currentLine, "javadoc.duplicateTag", $r7);
+
+     label06:
+        found = 1;
+
+        goto label09;
+
+     label07:
+        $r5 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: void log(int,java.lang.String,java.lang.Object[])>(currentLine, "javadoc.missing", $r5);
+
+        if found == 0 goto label08;
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r6 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo DEPRECATED>;
+
+        $r8 = virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getText()>();
+
+        $r4[0] = $r8;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: void log(int,java.lang.String,java.lang.Object[])>(currentLine, "javadoc.duplicateTag", $r4);
+
+     label08:
+        found = 1;
+
+     label09:
+        remIndex = remIndex + 1;
+
+        goto label05;
+
+     label10:
+        i = i + 1;
+
+        goto label02;
+
+     label11:
+        return found;
+    }
+
+    static void <clinit>()
+    {
+        java.util.regex.Pattern $r0, $r1, $r2;
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: java.lang.String NEXT_TAG> = "@";
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: java.lang.String END_JAVADOC> = "*/";
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: java.lang.String FQ_DEPRECATED> = "java.lang.Deprecated";
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: java.lang.String DEPRECATED> = "Deprecated";
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>("@(deprecated)\\s+\\S");
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: java.util.regex.Pattern MATCH_DEPRECATED> = $r0;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>("@(deprecated)\\s*$");
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: java.util.regex.Pattern MATCH_DEPRECATED_MULTILINE_START> = $r1;
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>("(\\*/|@|[^\\s\\*])");
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck: java.util.regex.Pattern MATCH_DEPRECATED_MULTILINE_CONT> = $r2;
+
+        return;
+    }
+}

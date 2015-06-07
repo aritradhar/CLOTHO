@@ -1,0 +1,117 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck this;
+        com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption NOSPACE>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck: void <init>(java.lang.Enum,java.lang.Class)>($r0, class "com/puppycrawl/tools/checkstyle/checks/whitespace/PadOption");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 38;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, semi;
+        java.lang.String line;
+        int after, $i0, $i1, $i2, $i3, $i4, $i6, $i8;
+        java.lang.String[] $r0;
+        com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption $r1, $r3;
+        java.lang.Enum $r2, $r4;
+        boolean $z0, $z1;
+        char $c5, $c7;
+        java.lang.Object[] $r5, $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i0 != 0 goto label2;
+
+        semi = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck: java.lang.String[] getLines()>();
+
+        $i1 = virtualinvoke semi.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = $i1 - 1;
+
+        line = $r0[$i2];
+
+        $i3 = virtualinvoke semi.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        after = $i3 + 1;
+
+        $i4 = virtualinvoke line.<java.lang.String: int length()>();
+
+        if after >= $i4 goto label2;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption NOSPACE>;
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck: java.lang.Enum getAbstractOption()>();
+
+        if $r1 != $r2 goto label1;
+
+        $c7 = virtualinvoke line.<java.lang.String: char charAt(int)>(after);
+
+        $z1 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c7);
+
+        if $z1 == 0 goto label1;
+
+        $i8 = virtualinvoke semi.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r6 = newarray (java.lang.Object)[1];
+
+        $r6[0] = ";";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i8, after, "ws.followed", $r6);
+
+        goto label2;
+
+     label1:
+        $r3 = <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption SPACE>;
+
+        $r4 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck: java.lang.Enum getAbstractOption()>();
+
+        if $r3 != $r4 goto label2;
+
+        $c5 = virtualinvoke line.<java.lang.String: char charAt(int)>(after);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c5);
+
+        if $z0 != 0 goto label2;
+
+        $i6 = virtualinvoke semi.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r5[0] = ";";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i6, after, "ws.notFollowed", $r5);
+
+     label2:
+        return;
+    }
+}

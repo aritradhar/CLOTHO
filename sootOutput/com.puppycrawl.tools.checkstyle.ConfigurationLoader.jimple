@@ -1,0 +1,720 @@
+public final class com.puppycrawl.tools.checkstyle.ConfigurationLoader extends java.lang.Object
+{
+    private static final java.lang.String DTD_PUBLIC_ID_1_0;
+    private static final java.lang.String DTD_RESOURCE_NAME_1_0;
+    private static final java.lang.String DTD_PUBLIC_ID_1_1;
+    private static final java.lang.String DTD_RESOURCE_NAME_1_1;
+    private static final java.lang.String DTD_PUBLIC_ID_1_2;
+    private static final java.lang.String DTD_RESOURCE_NAME_1_2;
+    private static final java.lang.String DTD_PUBLIC_ID_1_3;
+    private static final java.lang.String DTD_RESOURCE_NAME_1_3;
+    private final com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader mSaxHandler;
+    private final com.puppycrawl.tools.checkstyle.PropertyResolver mOverridePropsResolver;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mConfigStack;
+    private com.puppycrawl.tools.checkstyle.api.Configuration mConfiguration;
+    private final boolean mOmitIgnoredModules;
+
+    private static java.util.Map createIdToResourceNameMap()
+    {
+        java.util.HashMap map;
+
+        map = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        interfaceinvoke map.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("-//Puppy Crawl//DTD Check Configuration 1.0//EN", "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd");
+
+        interfaceinvoke map.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("-//Puppy Crawl//DTD Check Configuration 1.1//EN", "com/puppycrawl/tools/checkstyle/configuration_1_1.dtd");
+
+        interfaceinvoke map.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("-//Puppy Crawl//DTD Check Configuration 1.2//EN", "com/puppycrawl/tools/checkstyle/configuration_1_2.dtd");
+
+        interfaceinvoke map.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("-//Puppy Crawl//DTD Check Configuration 1.3//EN", "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd");
+
+        return map;
+    }
+
+    private void <init>(com.puppycrawl.tools.checkstyle.PropertyResolver, boolean) throws javax.xml.parsers.ParserConfigurationException, org.xml.sax.SAXException
+    {
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader $r0;
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader this;
+        com.puppycrawl.tools.checkstyle.PropertyResolver aOverrideProps;
+        boolean aOmitIgnoredModules;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+
+        aOverrideProps := @parameter0: com.puppycrawl.tools.checkstyle.PropertyResolver;
+
+        aOmitIgnoredModules := @parameter1: boolean;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.FastStack mConfigStack> = $r1;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader: void <init>(com.puppycrawl.tools.checkstyle.ConfigurationLoader,com.puppycrawl.tools.checkstyle.ConfigurationLoader$1)>(this, null);
+
+        this.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader mSaxHandler> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.PropertyResolver mOverridePropsResolver> = aOverrideProps;
+
+        this.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: boolean mOmitIgnoredModules> = aOmitIgnoredModules;
+
+        return;
+    }
+
+    private void parseInputSource(org.xml.sax.InputSource) throws java.io.IOException, org.xml.sax.SAXException
+    {
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader this;
+        org.xml.sax.InputSource aSource;
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+
+        aSource := @parameter0: org.xml.sax.InputSource;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader mSaxHandler>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader: void parseInputSource(org.xml.sax.InputSource)>(aSource);
+
+        return;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration(java.lang.String, com.puppycrawl.tools.checkstyle.PropertyResolver) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        java.lang.String aConfig;
+        com.puppycrawl.tools.checkstyle.PropertyResolver aOverridePropsResolver;
+        com.puppycrawl.tools.checkstyle.api.Configuration $r0;
+
+        aConfig := @parameter0: java.lang.String;
+
+        aOverridePropsResolver := @parameter1: com.puppycrawl.tools.checkstyle.PropertyResolver;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration(java.lang.String,com.puppycrawl.tools.checkstyle.PropertyResolver,boolean)>(aConfig, aOverridePropsResolver, 0);
+
+        return $r0;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration(java.lang.String, com.puppycrawl.tools.checkstyle.PropertyResolver, boolean) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        java.lang.String aConfig, $r2, $r13, $r15, $r25;
+        com.puppycrawl.tools.checkstyle.PropertyResolver aOverridePropsResolver;
+        boolean aOmitIgnoredModules, $z0;
+        java.net.URI uri;
+        java.net.URL url, configUrl, $r0;
+        org.xml.sax.InputSource $r1, url;
+        com.puppycrawl.tools.checkstyle.api.Configuration $r3;
+        java.io.File $r4, url;
+        java.lang.Class $r5;
+        java.io.FileNotFoundException $r6, $r19, $r20, uri;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r7, $r10, $r23, uri;
+        java.net.URISyntaxException $r8, $r17;
+        java.lang.StringBuilder $r9, $r11, $r12, $r14, $r16, $r21, $r22, $r24;
+        java.net.MalformedURLException $r18;
+
+        aConfig := @parameter0: java.lang.String;
+
+        aOverridePropsResolver := @parameter1: com.puppycrawl.tools.checkstyle.PropertyResolver;
+
+        aOmitIgnoredModules := @parameter2: boolean;
+
+     label01:
+        $r0 = new java.net.URL;
+
+        specialinvoke $r0.<java.net.URL: void <init>(java.lang.String)>(aConfig);
+
+        url = $r0;
+
+        uri = virtualinvoke url.<java.net.URL: java.net.URI toURI()>();
+
+     label02:
+        goto label05;
+
+     label03:
+        $r18 := @caughtexception;
+
+        uri = null;
+
+        goto label05;
+
+     label04:
+        $r8 := @caughtexception;
+
+        uri = null;
+
+     label05:
+        if uri != null goto label10;
+
+        $r4 = new java.io.File;
+
+        specialinvoke $r4.<java.io.File: void <init>(java.lang.String)>(aConfig);
+
+        url = $r4;
+
+        $z0 = virtualinvoke url.<java.io.File: boolean exists()>();
+
+        if $z0 == 0 goto label06;
+
+        uri = virtualinvoke url.<java.io.File: java.net.URI toURI()>();
+
+        goto label10;
+
+     label06:
+        $r5 = class "com/puppycrawl/tools/checkstyle/ConfigurationLoader";
+
+        configUrl = virtualinvoke $r5.<java.lang.Class: java.net.URL getResource(java.lang.String)>(aConfig);
+
+        if configUrl != null goto label07;
+
+        $r6 = new java.io.FileNotFoundException;
+
+        specialinvoke $r6.<java.io.FileNotFoundException: void <init>(java.lang.String)>(aConfig);
+
+        throw $r6;
+
+     label07:
+        uri = virtualinvoke configUrl.<java.net.URL: java.net.URI toURI()>();
+
+     label08:
+        goto label10;
+
+     label09:
+        $r17 := @caughtexception;
+
+        $r20 = new java.io.FileNotFoundException;
+
+        specialinvoke $r20.<java.io.FileNotFoundException: void <init>(java.lang.String)>(aConfig);
+
+        throw $r20;
+
+     label10:
+        $r1 = new org.xml.sax.InputSource;
+
+        $r2 = virtualinvoke uri.<java.net.URI: java.lang.String toString()>();
+
+        specialinvoke $r1.<org.xml.sax.InputSource: void <init>(java.lang.String)>($r2);
+
+        url = $r1;
+
+        $r3 = staticinvoke <com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration(org.xml.sax.InputSource,com.puppycrawl.tools.checkstyle.PropertyResolver,boolean)>(url, aOverridePropsResolver, aOmitIgnoredModules);
+
+     label11:
+        return $r3;
+
+     label12:
+        $r19 := @caughtexception;
+
+        uri = $r19;
+
+        $r23 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r24 = new java.lang.StringBuilder;
+
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>()>();
+
+        $r21 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to find ");
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aConfig);
+
+        $r25 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r23.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r25, uri);
+
+        throw $r23;
+
+     label13:
+        $r7 := @caughtexception;
+
+        uri = $r7;
+
+        $r10 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r12 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to read ");
+
+        $r11 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aConfig);
+
+        $r14 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" - ");
+
+        $r13 = virtualinvoke uri.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: java.lang.String getMessage()>();
+
+        $r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+
+        $r15 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r15, uri);
+
+        throw $r10;
+
+        catch java.net.MalformedURLException from label01 to label02 with label03;
+        catch java.net.URISyntaxException from label01 to label02 with label04;
+        catch java.net.URISyntaxException from label06 to label08 with label09;
+        catch java.io.FileNotFoundException from label01 to label11 with label12;
+        catch com.puppycrawl.tools.checkstyle.api.CheckstyleException from label01 to label11 with label13;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration(java.io.InputStream, com.puppycrawl.tools.checkstyle.PropertyResolver, boolean) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        java.io.InputStream aConfigStream;
+        com.puppycrawl.tools.checkstyle.PropertyResolver aOverridePropsResolver;
+        boolean aOmitIgnoredModules;
+        org.xml.sax.InputSource $r0;
+        com.puppycrawl.tools.checkstyle.api.Configuration $r1;
+
+        aConfigStream := @parameter0: java.io.InputStream;
+
+        aOverridePropsResolver := @parameter1: com.puppycrawl.tools.checkstyle.PropertyResolver;
+
+        aOmitIgnoredModules := @parameter2: boolean;
+
+        $r0 = new org.xml.sax.InputSource;
+
+        specialinvoke $r0.<org.xml.sax.InputSource: void <init>(java.io.InputStream)>(aConfigStream);
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration(org.xml.sax.InputSource,com.puppycrawl.tools.checkstyle.PropertyResolver,boolean)>($r0, aOverridePropsResolver, aOmitIgnoredModules);
+
+        return $r1;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration(org.xml.sax.InputSource, com.puppycrawl.tools.checkstyle.PropertyResolver, boolean) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        org.xml.sax.InputSource aConfigSource;
+        com.puppycrawl.tools.checkstyle.PropertyResolver aOverridePropsResolver;
+        boolean aOmitIgnoredModules;
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader loader, $r0;
+        com.puppycrawl.tools.checkstyle.api.Configuration $r1;
+        javax.xml.parsers.ParserConfigurationException $r2, loader;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r3, $r5, $r17, $r22;
+        org.xml.sax.SAXParseException $r4, loader;
+        java.lang.StringBuilder $r6, $r7, $r9, $r10, $r11, $r12, $r13, $r16, $r19, $r21;
+        java.lang.String $r8, $r15, $r18, $r20;
+        int $i0, $i1;
+        org.xml.sax.SAXException $r14, loader;
+        java.io.IOException $r23, loader;
+
+        aConfigSource := @parameter0: org.xml.sax.InputSource;
+
+        aOverridePropsResolver := @parameter1: com.puppycrawl.tools.checkstyle.PropertyResolver;
+
+        aOmitIgnoredModules := @parameter2: boolean;
+
+     label1:
+        $r0 = new com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: void <init>(com.puppycrawl.tools.checkstyle.PropertyResolver,boolean)>(aOverridePropsResolver, aOmitIgnoredModules);
+
+        loader = $r0;
+
+        specialinvoke loader.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: void parseInputSource(org.xml.sax.InputSource)>(aConfigSource);
+
+        $r1 = specialinvoke loader.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.Configuration getConfiguration()>();
+
+     label2:
+        return $r1;
+
+     label3:
+        $r2 := @caughtexception;
+
+        loader = $r2;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>("unable to parse configuration stream", loader);
+
+        throw $r3;
+
+     label4:
+        $r4 := @caughtexception;
+
+        loader = $r4;
+
+        $r5 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse configuration stream - ");
+
+        $r8 = virtualinvoke loader.<org.xml.sax.SAXParseException: java.lang.String getMessage()>();
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+
+        $i0 = virtualinvoke loader.<org.xml.sax.SAXParseException: int getLineNumber()>();
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r11 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+
+        $i1 = virtualinvoke loader.<org.xml.sax.SAXParseException: int getColumnNumber()>();
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r15, loader);
+
+        throw $r5;
+
+     label5:
+        $r14 := @caughtexception;
+
+        loader = $r14;
+
+        $r17 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>()>();
+
+        $r19 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse configuration stream - ");
+
+        $r18 = virtualinvoke loader.<org.xml.sax.SAXException: java.lang.String getMessage()>();
+
+        $r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r18);
+
+        $r20 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r17.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r20, loader);
+
+        throw $r17;
+
+     label6:
+        $r23 := @caughtexception;
+
+        loader = $r23;
+
+        $r22 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        specialinvoke $r22.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>("unable to read from stream", loader);
+
+        throw $r22;
+
+        catch javax.xml.parsers.ParserConfigurationException from label1 to label2 with label3;
+        catch org.xml.sax.SAXParseException from label1 to label2 with label4;
+        catch org.xml.sax.SAXException from label1 to label2 with label5;
+        catch java.io.IOException from label1 to label2 with label6;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.Configuration getConfiguration()
+    {
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader this;
+        com.puppycrawl.tools.checkstyle.api.Configuration $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.Configuration mConfiguration>;
+
+        return $r0;
+    }
+
+    static java.lang.String replaceProperties(java.lang.String, com.puppycrawl.tools.checkstyle.PropertyResolver, java.lang.String) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        java.lang.String aValue, aDefaultValue, fragment, propertyName, $r2, $r10;
+        com.puppycrawl.tools.checkstyle.PropertyResolver aProps;
+        java.util.ArrayList fragments, propertyRefs;
+        java.lang.StringBuffer sb, $r0;
+        java.util.Iterator i, j;
+        boolean $z0;
+        java.lang.Object $r1, $r3;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r5;
+        java.lang.StringBuilder $r6, $r7, $r8, $r9;
+
+        aValue := @parameter0: java.lang.String;
+
+        aProps := @parameter1: com.puppycrawl.tools.checkstyle.PropertyResolver;
+
+        aDefaultValue := @parameter2: java.lang.String;
+
+        if aValue != null goto label1;
+
+        return null;
+
+     label1:
+        fragments = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        propertyRefs = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.ConfigurationLoader: void parsePropertyString(java.lang.String,java.util.List,java.util.List)>(aValue, fragments, propertyRefs);
+
+        $r0 = new java.lang.StringBuffer;
+
+        specialinvoke $r0.<java.lang.StringBuffer: void <init>()>();
+
+        sb = $r0;
+
+        i = interfaceinvoke fragments.<java.util.List: java.util.Iterator iterator()>();
+
+        j = interfaceinvoke propertyRefs.<java.util.List: java.util.Iterator iterator()>();
+
+     label2:
+        $z0 = interfaceinvoke i.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label5;
+
+        $r1 = interfaceinvoke i.<java.util.Iterator: java.lang.Object next()>();
+
+        fragment = (java.lang.String) $r1;
+
+        if fragment != null goto label4;
+
+        $r3 = interfaceinvoke j.<java.util.Iterator: java.lang.Object next()>();
+
+        propertyName = (java.lang.String) $r3;
+
+        fragment = interfaceinvoke aProps.<com.puppycrawl.tools.checkstyle.PropertyResolver: java.lang.String resolve(java.lang.String)>(propertyName);
+
+        if fragment != null goto label4;
+
+        if aDefaultValue == null goto label3;
+
+        return aDefaultValue;
+
+     label3:
+        $r5 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Property ${");
+
+        $r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(propertyName);
+
+        $r8 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("} has not been set");
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String)>($r10);
+
+        throw $r5;
+
+     label4:
+        virtualinvoke sb.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(fragment);
+
+        goto label2;
+
+     label5:
+        $r2 = virtualinvoke sb.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r2;
+    }
+
+    private static void parsePropertyString(java.lang.String, java.util.List, java.util.List) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        java.lang.String aValue, propertyName, $r0, $r5, $r6, $r7;
+        java.util.List aFragments, aPropertyRefs;
+        int prev, pos, endName, $i0, $i1, $i2, $i3, $i4, $i6, $i7, $i8;
+        char $c5, $c9;
+        java.lang.StringBuilder $r1, $r3, $r4;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r2;
+
+        aValue := @parameter0: java.lang.String;
+
+        aFragments := @parameter1: java.util.List;
+
+        aPropertyRefs := @parameter2: java.util.List;
+
+        prev = 0;
+
+     label1:
+        $i0 = virtualinvoke aValue.<java.lang.String: int indexOf(java.lang.String,int)>("$", prev);
+
+        pos = $i0;
+
+        if $i0 < 0 goto label7;
+
+        if pos <= 0 goto label2;
+
+        $r7 = virtualinvoke aValue.<java.lang.String: java.lang.String substring(int,int)>(prev, pos);
+
+        interfaceinvoke aFragments.<java.util.List: boolean add(java.lang.Object)>($r7);
+
+     label2:
+        $i2 = virtualinvoke aValue.<java.lang.String: int length()>();
+
+        $i3 = $i2 - 1;
+
+        if pos != $i3 goto label3;
+
+        interfaceinvoke aFragments.<java.util.List: boolean add(java.lang.Object)>("$");
+
+        prev = pos + 1;
+
+        goto label1;
+
+     label3:
+        $i4 = pos + 1;
+
+        $c5 = virtualinvoke aValue.<java.lang.String: char charAt(int)>($i4);
+
+        if $c5 == 123 goto label5;
+
+        $i7 = pos + 1;
+
+        $c9 = virtualinvoke aValue.<java.lang.String: char charAt(int)>($i7);
+
+        if $c9 != 36 goto label4;
+
+        interfaceinvoke aFragments.<java.util.List: boolean add(java.lang.Object)>("$");
+
+        prev = pos + 2;
+
+        goto label1;
+
+     label4:
+        $i8 = pos + 2;
+
+        $r6 = virtualinvoke aValue.<java.lang.String: java.lang.String substring(int,int)>(pos, $i8);
+
+        interfaceinvoke aFragments.<java.util.List: boolean add(java.lang.Object)>($r6);
+
+        prev = pos + 2;
+
+        goto label1;
+
+     label5:
+        endName = virtualinvoke aValue.<java.lang.String: int indexOf(int,int)>(125, pos);
+
+        if endName >= 0 goto label6;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Syntax error in property: ");
+
+        $r3 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aValue);
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String)>($r5);
+
+        throw $r2;
+
+     label6:
+        $i6 = pos + 2;
+
+        propertyName = virtualinvoke aValue.<java.lang.String: java.lang.String substring(int,int)>($i6, endName);
+
+        interfaceinvoke aFragments.<java.util.List: boolean add(java.lang.Object)>(null);
+
+        interfaceinvoke aPropertyRefs.<java.util.List: boolean add(java.lang.Object)>(propertyName);
+
+        prev = endName + 1;
+
+        goto label1;
+
+     label7:
+        $i1 = virtualinvoke aValue.<java.lang.String: int length()>();
+
+        if prev >= $i1 goto label8;
+
+        $r0 = virtualinvoke aValue.<java.lang.String: java.lang.String substring(int)>(prev);
+
+        interfaceinvoke aFragments.<java.util.List: boolean add(java.lang.Object)>($r0);
+
+     label8:
+        return;
+    }
+
+    static java.util.Map access$000()
+    {
+        java.util.Map $r0;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.ConfigurationLoader: java.util.Map createIdToResourceNameMap()>();
+
+        return $r0;
+    }
+
+    static com.puppycrawl.tools.checkstyle.api.Configuration access$100(com.puppycrawl.tools.checkstyle.ConfigurationLoader)
+    {
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader x0;
+        com.puppycrawl.tools.checkstyle.api.Configuration $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.Configuration mConfiguration>;
+
+        return $r0;
+    }
+
+    static com.puppycrawl.tools.checkstyle.api.Configuration access$102(com.puppycrawl.tools.checkstyle.ConfigurationLoader, com.puppycrawl.tools.checkstyle.api.Configuration)
+    {
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader x0;
+        com.puppycrawl.tools.checkstyle.api.Configuration x1;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+
+        x1 := @parameter1: com.puppycrawl.tools.checkstyle.api.Configuration;
+
+        x0.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.Configuration mConfiguration> = x1;
+
+        return x1;
+    }
+
+    static com.puppycrawl.tools.checkstyle.api.FastStack access$200(com.puppycrawl.tools.checkstyle.ConfigurationLoader)
+    {
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader x0;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.FastStack mConfigStack>;
+
+        return $r0;
+    }
+
+    static com.puppycrawl.tools.checkstyle.PropertyResolver access$300(com.puppycrawl.tools.checkstyle.ConfigurationLoader)
+    {
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader x0;
+        com.puppycrawl.tools.checkstyle.PropertyResolver $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.PropertyResolver mOverridePropsResolver>;
+
+        return $r0;
+    }
+
+    static boolean access$400(com.puppycrawl.tools.checkstyle.ConfigurationLoader)
+    {
+        com.puppycrawl.tools.checkstyle.ConfigurationLoader x0;
+        boolean $z0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+
+        $z0 = x0.<com.puppycrawl.tools.checkstyle.ConfigurationLoader: boolean mOmitIgnoredModules>;
+
+        return $z0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.ConfigurationLoader: java.lang.String DTD_RESOURCE_NAME_1_3> = "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
+
+        <com.puppycrawl.tools.checkstyle.ConfigurationLoader: java.lang.String DTD_PUBLIC_ID_1_3> = "-//Puppy Crawl//DTD Check Configuration 1.3//EN";
+
+        <com.puppycrawl.tools.checkstyle.ConfigurationLoader: java.lang.String DTD_RESOURCE_NAME_1_2> = "com/puppycrawl/tools/checkstyle/configuration_1_2.dtd";
+
+        <com.puppycrawl.tools.checkstyle.ConfigurationLoader: java.lang.String DTD_PUBLIC_ID_1_2> = "-//Puppy Crawl//DTD Check Configuration 1.2//EN";
+
+        <com.puppycrawl.tools.checkstyle.ConfigurationLoader: java.lang.String DTD_RESOURCE_NAME_1_1> = "com/puppycrawl/tools/checkstyle/configuration_1_1.dtd";
+
+        <com.puppycrawl.tools.checkstyle.ConfigurationLoader: java.lang.String DTD_PUBLIC_ID_1_1> = "-//Puppy Crawl//DTD Check Configuration 1.1//EN";
+
+        <com.puppycrawl.tools.checkstyle.ConfigurationLoader: java.lang.String DTD_RESOURCE_NAME_1_0> = "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd";
+
+        <com.puppycrawl.tools.checkstyle.ConfigurationLoader: java.lang.String DTD_PUBLIC_ID_1_0> = "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
+
+        return;
+    }
+}

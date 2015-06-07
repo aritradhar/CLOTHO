@@ -1,0 +1,179 @@
+public class com.puppycrawl.tools.checkstyle.api.FilterSet extends java.lang.Object implements com.puppycrawl.tools.checkstyle.api.Filter
+{
+    private final java.util.Set mFilters;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.FilterSet this;
+        java.util.HashSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.util.Set mFilters> = $r0;
+
+        return;
+    }
+
+    public void addFilter(com.puppycrawl.tools.checkstyle.api.Filter)
+    {
+        com.puppycrawl.tools.checkstyle.api.FilterSet this;
+        com.puppycrawl.tools.checkstyle.api.Filter aFilter;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        aFilter := @parameter0: com.puppycrawl.tools.checkstyle.api.Filter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.util.Set mFilters>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(aFilter);
+
+        return;
+    }
+
+    public void removeFilter(com.puppycrawl.tools.checkstyle.api.Filter)
+    {
+        com.puppycrawl.tools.checkstyle.api.FilterSet this;
+        com.puppycrawl.tools.checkstyle.api.Filter aFilter;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        aFilter := @parameter0: com.puppycrawl.tools.checkstyle.api.Filter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.util.Set mFilters>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean remove(java.lang.Object)>(aFilter);
+
+        return;
+    }
+
+    protected java.util.Set getFilters()
+    {
+        com.puppycrawl.tools.checkstyle.api.FilterSet this;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.util.Set mFilters>;
+
+        return $r0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.api.FilterSet this;
+        java.util.Set $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.util.Set mFilters>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.String toString()>();
+
+        return $r1;
+    }
+
+    public int hashCode()
+    {
+        com.puppycrawl.tools.checkstyle.api.FilterSet this;
+        java.util.Set $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.util.Set mFilters>;
+
+        $i0 = interfaceinvoke $r0.<java.util.Set: int hashCode()>();
+
+        return $i0;
+    }
+
+    public boolean equals(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.api.FilterSet this, other;
+        java.lang.Object aObject;
+        boolean $z0, $z1;
+        java.util.Set $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        aObject := @parameter0: java.lang.Object;
+
+        $z0 = aObject instanceof com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        if $z0 == 0 goto label1;
+
+        other = (com.puppycrawl.tools.checkstyle.api.FilterSet) aObject;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.util.Set mFilters>;
+
+        $r0 = other.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.util.Set mFilters>;
+
+        $z1 = interfaceinvoke $r1.<java.util.Set: boolean equals(java.lang.Object)>($r0);
+
+        return $z1;
+
+     label1:
+        return 0;
+    }
+
+    public boolean accept(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.api.FilterSet this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvent;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.Filter filter;
+        java.util.Set $r0;
+        boolean $z0, $z1;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        aEvent := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.util.Set mFilters>;
+
+        i$ = interfaceinvoke $r0.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        filter = (com.puppycrawl.tools.checkstyle.api.Filter) $r1;
+
+        $z1 = interfaceinvoke filter.<com.puppycrawl.tools.checkstyle.api.Filter: boolean accept(com.puppycrawl.tools.checkstyle.api.AuditEvent)>(aEvent);
+
+        if $z1 != 0 goto label2;
+
+        return 0;
+
+     label2:
+        goto label1;
+
+     label3:
+        return 1;
+    }
+
+    public void clear()
+    {
+        com.puppycrawl.tools.checkstyle.api.FilterSet this;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.util.Set mFilters>;
+
+        interfaceinvoke $r0.<java.util.Set: void clear()>();
+
+        return;
+    }
+}

@@ -1,0 +1,228 @@
+public final class com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final java.lang.String OVERRIDE;
+    private static final java.lang.String FQ_OVERRIDE;
+    private static final java.util.regex.Pattern MATCH_INHERITDOC;
+    private boolean mJavaFiveCompatibility;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public void setJavaFiveCompatibility(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck this;
+        boolean aCompatibility;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck;
+
+        aCompatibility := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: boolean mJavaFiveCompatibility> = aCompatibility;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: int[] getRequiredTokens()>();
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: int[] getRequiredTokens()>();
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 9;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, defOrNew, $r2;
+        com.puppycrawl.tools.checkstyle.api.TextBlock javadoc;
+        boolean containsTag, $z0, $z1, $z2, $z3, $z4, $z5;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r0;
+        int $i0, $i1, $i2, $i3;
+        java.lang.Object[] $r1, $r5;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r3, $r4;
+        java.lang.String $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        javadoc = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.TextBlock getJavadocBefore(int)>($i0);
+
+        containsTag = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: boolean containsJavadocTag(com.puppycrawl.tools.checkstyle.api.TextBlock)>(javadoc);
+
+        if containsTag == 0 goto label1;
+
+        $r3 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo INHERIT_DOC>;
+
+        $z5 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean isValidOn(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z5 != 0 goto label1;
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r4 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo INHERIT_DOC>;
+
+        $r6 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getText()>();
+
+        $r5[0] = $r6;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: void log(int,java.lang.String,java.lang.Object[])>($i3, "tag.not.valid.on", $r5);
+
+        return;
+
+     label1:
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: boolean mJavaFiveCompatibility>;
+
+        if $z0 == 0 goto label3;
+
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        defOrNew = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $z4 = virtualinvoke defOrNew.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(18);
+
+        if $z4 != 0 goto label2;
+
+        $z3 = virtualinvoke defOrNew.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(19);
+
+        if $z3 != 0 goto label2;
+
+        $i2 = virtualinvoke defOrNew.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 138 goto label3;
+
+     label2:
+        return;
+
+     label3:
+        if containsTag == 0 goto label4;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: boolean containsAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, "Override");
+
+        if $z1 != 0 goto label4;
+
+        $z2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: boolean containsAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, "java.lang.Override");
+
+        if $z2 != 0 goto label4;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: void log(int,java.lang.String,java.lang.Object[])>($i1, "annotation.missing.override", $r1);
+
+     label4:
+        return;
+    }
+
+    private boolean containsJavadocTag(com.puppycrawl.tools.checkstyle.api.TextBlock)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck this;
+        com.puppycrawl.tools.checkstyle.api.TextBlock aJavadoc;
+        java.lang.String[] lines, arr$;
+        int len$, i$;
+        java.lang.String line;
+        java.util.regex.Matcher matchInheritDoc;
+        java.util.regex.Pattern $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck;
+
+        aJavadoc := @parameter0: com.puppycrawl.tools.checkstyle.api.TextBlock;
+
+        if aJavadoc != null goto label1;
+
+        return 0;
+
+     label1:
+        lines = interfaceinvoke aJavadoc.<com.puppycrawl.tools.checkstyle.api.TextBlock: java.lang.String[] getText()>();
+
+        arr$ = lines;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label2:
+        if i$ >= len$ goto label4;
+
+        line = arr$[i$];
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: java.util.regex.Pattern MATCH_INHERITDOC>;
+
+        matchInheritDoc = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(line);
+
+        $z0 = virtualinvoke matchInheritDoc.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 == 0 goto label3;
+
+        return 1;
+
+     label3:
+        i$ = i$ + 1;
+
+        goto label2;
+
+     label4:
+        return 0;
+    }
+
+    static void <clinit>()
+    {
+        java.util.regex.Pattern $r0;
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: java.lang.String FQ_OVERRIDE> = "java.lang.Override";
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: java.lang.String OVERRIDE> = "Override";
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>("\\{\\s*@(inheritDoc)\\s*\\}");
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck: java.util.regex.Pattern MATCH_INHERITDOC> = $r0;
+
+        return;
+    }
+}

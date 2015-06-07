@@ -1,0 +1,167 @@
+public class com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck extends com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck
+{
+    private boolean mAllowOneCharVarInForLoop;
+    private static java.util.regex.Pattern sSingleChar;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck: void <init>(java.lang.String)>("^[a-z][a-zA-Z0-9]*$");
+
+        return;
+    }
+
+    public final void setAllowOneCharVarInForLoop(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck: boolean mAllowOneCharVarInForLoop> = aAllow;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 10;
+
+        $r0[1] = 21;
+
+        return $r0;
+    }
+
+    protected final boolean mustCheckName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiersAST, $r0;
+        boolean isFinal, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7;
+        java.lang.String variableName;
+        java.util.regex.Pattern $r1;
+        java.util.regex.Matcher $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        if modifiersAST == null goto label1;
+
+        $z7 = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z7 == 0 goto label1;
+
+        $z6 = 1;
+
+        goto label2;
+
+     label1:
+        $z6 = 0;
+
+     label2:
+        isFinal = $z6;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck: boolean mAllowOneCharVarInForLoop>;
+
+        if $z0 == 0 goto label5;
+
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck: boolean isForLoopVariable(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z3 == 0 goto label5;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        variableName = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck: java.util.regex.Pattern sSingleChar>;
+
+        $r2 = virtualinvoke $r1.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(variableName);
+
+        $z4 = virtualinvoke $r2.<java.util.regex.Matcher: boolean find()>();
+
+        if $z4 != 0 goto label3;
+
+        $z5 = 1;
+
+        goto label4;
+
+     label3:
+        $z5 = 0;
+
+     label4:
+        return $z5;
+
+     label5:
+        if isFinal != 0 goto label6;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean isLocalVariableDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 == 0 goto label6;
+
+        $z2 = 1;
+
+        goto label7;
+
+     label6:
+        $z2 = 0;
+
+     label7:
+        return $z2;
+    }
+
+    private boolean isForLoopVariable(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aVariableDef, $r0;
+        int parentType;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck;
+
+        aVariableDef := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aVariableDef.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        parentType = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if parentType == 36 goto label1;
+
+        if parentType != 160 goto label2;
+
+     label1:
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+
+    static void <clinit>()
+    {
+        java.util.regex.Pattern $r0;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>("^[a-z]$");
+
+        <com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck: java.util.regex.Pattern sSingleChar> = $r0;
+
+        return;
+    }
+}

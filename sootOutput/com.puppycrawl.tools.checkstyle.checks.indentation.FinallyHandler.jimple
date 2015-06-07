@@ -1,0 +1,32 @@
+public class com.puppycrawl.tools.checkstyle.checks.indentation.FinallyHandler extends com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler
+{
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck, com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.FinallyHandler this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck aIndentCheck;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler aParent;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.FinallyHandler;
+
+        aIndentCheck := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAst := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParent := @parameter2: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,java.lang.String,com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)>(aIndentCheck, "finally", aAst, aParent);
+
+        return;
+    }
+
+    protected boolean toplevelMustStartLine()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.FinallyHandler this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.FinallyHandler;
+
+        return 0;
+    }
+}

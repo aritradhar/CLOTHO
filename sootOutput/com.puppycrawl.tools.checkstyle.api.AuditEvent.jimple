@@ -1,0 +1,192 @@
+public final class com.puppycrawl.tools.checkstyle.api.AuditEvent extends java.util.EventObject
+{
+    private static final long serialVersionUID;
+    private final java.lang.String mFileName;
+    private final transient com.puppycrawl.tools.checkstyle.api.LocalizedMessage mMessage;
+
+    public void <init>(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        java.lang.Object aSource;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        aSource := @parameter0: java.lang.Object;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: void <init>(java.lang.Object,java.lang.String)>(aSource, null);
+
+        return;
+    }
+
+    public void <init>(java.lang.Object, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        java.lang.Object aSrc;
+        java.lang.String aFileName;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        aSrc := @parameter0: java.lang.Object;
+
+        aFileName := @parameter1: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: void <init>(java.lang.Object,java.lang.String,com.puppycrawl.tools.checkstyle.api.LocalizedMessage)>(aSrc, aFileName, null);
+
+        return;
+    }
+
+    public void <init>(java.lang.Object, java.lang.String, com.puppycrawl.tools.checkstyle.api.LocalizedMessage)
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        java.lang.Object aSrc;
+        java.lang.String aFileName;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage aMessage;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        aSrc := @parameter0: java.lang.Object;
+
+        aFileName := @parameter1: java.lang.String;
+
+        aMessage := @parameter2: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        specialinvoke this.<java.util.EventObject: void <init>(java.lang.Object)>(aSrc);
+
+        this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String mFileName> = aFileName;
+
+        this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.LocalizedMessage mMessage> = aMessage;
+
+        return;
+    }
+
+    public java.lang.String getFileName()
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String mFileName>;
+
+        return $r0;
+    }
+
+    public int getLine()
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.LocalizedMessage mMessage>;
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getLineNo()>();
+
+        return $i0;
+    }
+
+    public java.lang.String getMessage()
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.LocalizedMessage mMessage>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String getMessage()>();
+
+        return $r1;
+    }
+
+    public int getColumn()
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.LocalizedMessage mMessage>;
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getColumnNo()>();
+
+        return $i0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r0, $r1;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.LocalizedMessage mMessage>;
+
+        if $r0 != null goto label1;
+
+        $r2 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel INFO>;
+
+        goto label2;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.LocalizedMessage mMessage>;
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()>();
+
+     label2:
+        return $r2;
+    }
+
+    public java.lang.String getModuleId()
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.LocalizedMessage mMessage>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String getModuleId()>();
+
+        return $r1;
+    }
+
+    public java.lang.String getSourceName()
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.LocalizedMessage mMessage>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String getSourceName()>();
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.LocalizedMessage getLocalizedMessage()
+    {
+        com.puppycrawl.tools.checkstyle.api.AuditEvent this;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.LocalizedMessage mMessage>;
+
+        return $r0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.api.AuditEvent: long serialVersionUID> = -3774725606973812736L;
+
+        return;
+    }
+}

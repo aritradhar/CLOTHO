@@ -1,0 +1,416 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mAllowSameLineSingleParametterlessAnnotation;
+    private boolean mAllowSamelineParametrizedAnnotation;
+    private boolean mAllowSamelineMultipleAnnotations;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean mAllowSameLineSingleParametterlessAnnotation> = 1;
+
+        return;
+    }
+
+    public final void setAllowSameLineSingleParrametterlessAnnotation(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean mAllowSameLineSingleParametterlessAnnotation> = aAllow;
+
+        return;
+    }
+
+    public final void setAllowSamelineParametrizedAnnotation(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean mAllowSamelineParametrizedAnnotation> = aAllow;
+
+        return;
+    }
+
+    public final void setAllowSamelineMultipleAnnotations(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean mAllowSamelineMultipleAnnotations> = aAllow;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck;
+
+        $r0 = newarray (int)[6];
+
+        $r0[0] = 14;
+
+        $r0[1] = 15;
+
+        $r0[2] = 158;
+
+        $r0[3] = 9;
+
+        $r0[4] = 8;
+
+        $r0[5] = 10;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiersNode;
+        boolean $z0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiersNode = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean hasAnnotations(com.puppycrawl.tools.checkstyle.api.DetailAST)>(modifiersNode);
+
+        if $z0 == 0 goto label1;
+
+        $i0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: int getAnnotationLevel(com.puppycrawl.tools.checkstyle.api.DetailAST)>(modifiersNode);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: void checkAnnotations(com.puppycrawl.tools.checkstyle.api.DetailAST,int)>(modifiersNode, $i0);
+
+     label1:
+        return;
+    }
+
+    private void checkAnnotations(com.puppycrawl.tools.checkstyle.api.DetailAST, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aModifierNode, 'annotation';
+        int aCorrectLevel, $i0, $i1, $i2, $i3, $i4;
+        boolean hasParameters, $z0, $z1;
+        java.lang.Object[] $r0, $r4;
+        java.lang.String $r1, $r5;
+        java.lang.Integer $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck;
+
+        aModifierNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aCorrectLevel := @parameter1: int;
+
+        'annotation' = virtualinvoke aModifierNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if 'annotation' == null goto label4;
+
+        $i0 = virtualinvoke 'annotation'.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 163 goto label4;
+
+        hasParameters = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean isParameterized(com.puppycrawl.tools.checkstyle.api.DetailAST)>('annotation');
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean isCorrectLocation(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean)>('annotation', hasParameters);
+
+        if $z0 != 0 goto label2;
+
+        $i4 = virtualinvoke 'annotation'.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r5 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: java.lang.String getAnnotationName(com.puppycrawl.tools.checkstyle.api.DetailAST)>('annotation');
+
+        $r4[0] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: void log(int,java.lang.String,java.lang.Object[])>($i4, "annotation.location.alone", $r4);
+
+        goto label3;
+
+     label2:
+        $i1 = virtualinvoke 'annotation'.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        if $i1 == aCorrectLevel goto label3;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean hasNodeBefore(com.puppycrawl.tools.checkstyle.api.DetailAST)>('annotation');
+
+        if $z1 != 0 goto label3;
+
+        $i2 = virtualinvoke 'annotation'.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r0 = newarray (java.lang.Object)[3];
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: java.lang.String getAnnotationName(com.puppycrawl.tools.checkstyle.api.DetailAST)>('annotation');
+
+        $r0[0] = $r1;
+
+        $i3 = virtualinvoke 'annotation'.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+
+        $r0[1] = $r2;
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aCorrectLevel);
+
+        $r0[2] = $r3;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: void log(int,java.lang.String,java.lang.Object[])>($i2, "annotation.location", $r0);
+
+     label3:
+        'annotation' = virtualinvoke 'annotation'.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    private boolean isCorrectLocation(com.puppycrawl.tools.checkstyle.api.DetailAST, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation;
+        boolean aHasParams, allowingCondition, $z0, $z1, $z2, $z3, $z4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aHasParams := @parameter1: boolean;
+
+        if aHasParams == 0 goto label1;
+
+        $z4 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean mAllowSamelineParametrizedAnnotation>;
+
+        goto label2;
+
+     label1:
+        $z4 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean mAllowSameLineSingleParametterlessAnnotation>;
+
+     label2:
+        allowingCondition = $z4;
+
+        if allowingCondition == 0 goto label3;
+
+        $z3 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean hasNodeBefore(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAnnotation);
+
+        if $z3 == 0 goto label5;
+
+     label3:
+        if allowingCondition != 0 goto label4;
+
+        $z2 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean hasNodeBeside(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAnnotation);
+
+        if $z2 == 0 goto label5;
+
+     label4:
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean mAllowSamelineMultipleAnnotations>;
+
+        if $z0 == 0 goto label6;
+
+     label5:
+        $z1 = 1;
+
+        goto label7;
+
+     label6:
+        $z1 = 0;
+
+     label7:
+        return $z1;
+    }
+
+    private static java.lang.String getAnnotationName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation, idenNode, $r1;
+        java.lang.String $r0;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        idenNode = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        if idenNode != null goto label1;
+
+        $r1 = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(60);
+
+        idenNode = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+     label1:
+        $r0 = virtualinvoke idenNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        return $r0;
+    }
+
+    private static boolean hasNodeAfter(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation, nextNode, $r0;
+        int annotationLineNo, $i0;
+        boolean $z0;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        annotationLineNo = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        nextNode = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if nextNode != null goto label1;
+
+        $r0 = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        nextNode = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label1:
+        if nextNode == null goto label2;
+
+        $i0 = virtualinvoke nextNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if annotationLineNo != $i0 goto label2;
+
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+
+    private static boolean hasNodeBefore(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation, previousNode;
+        int annotationLineNo, $i0;
+        boolean $z0;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        annotationLineNo = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        previousNode = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        if previousNode == null goto label1;
+
+        $i0 = virtualinvoke previousNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if annotationLineNo != $i0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private static boolean hasNodeBeside(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation;
+        boolean $z0, $z1, $z2;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean hasNodeBefore(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAnnotation);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AnnotationLocationCheck: boolean hasNodeAfter(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAnnotation);
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    private static int getAnnotationLevel(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aModifierNode, $r0;
+        int $i0;
+
+        aModifierNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aModifierNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        return $i0;
+    }
+
+    private static boolean isParameterized(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation, $r0;
+        boolean $z0;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(29);
+
+        if $r0 == null goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private static boolean hasAnnotations(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aModifierNode, $r0;
+        boolean $z0;
+
+        aModifierNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aModifierNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(163);
+
+        if $r0 == null goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+}

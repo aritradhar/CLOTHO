@@ -1,0 +1,5 @@
+public interface  com.puppycrawl.tools.checkstyle.ModuleFactory extends java.lang.Object
+{
+
+    public abstract java.lang.Object createModule(java.lang.String) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+}

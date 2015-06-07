@@ -1,0 +1,1674 @@
+public class BugTestPack.AdobeFlexBuf.OrderedProperties extends java.util.Properties implements java.io.Serializable
+{
+    private java.util.Vector keys;
+    protected java.util.Map lines;
+    private static final java.lang.String whitespace;
+    private static java.lang.String terminators;
+    private static final java.lang.String valterminators;
+    private static final char[] hexDigit;
+
+    static void <clinit>()
+    {
+        char[] $r0;
+
+        <BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String valterminators> = "\n\r\f";
+
+        <BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String whitespace> = " \t\n\r\f";
+
+        $r0 = newarray (char)[16];
+
+        $r0[0] = 48;
+
+        $r0[1] = 49;
+
+        $r0[2] = 50;
+
+        $r0[3] = 51;
+
+        $r0[4] = 52;
+
+        $r0[5] = 53;
+
+        $r0[6] = 54;
+
+        $r0[7] = 55;
+
+        $r0[8] = 56;
+
+        $r0[9] = 57;
+
+        $r0[10] = 65;
+
+        $r0[11] = 66;
+
+        $r0[12] = 67;
+
+        $r0[13] = 68;
+
+        $r0[14] = 69;
+
+        $r0[15] = 70;
+
+        <BugTestPack.AdobeFlexBuf.OrderedProperties: char[] hexDigit> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.util.Vector $r0;
+        java.util.HashMap $r1;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        specialinvoke this.<java.util.Properties: void <init>()>();
+
+        $r0 = new java.util.Vector;
+
+        specialinvoke $r0.<java.util.Vector: void <init>()>();
+
+        this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys> = $r0;
+
+        $r1 = new java.util.HashMap;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+
+        this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Map lines> = $r1;
+
+        return;
+    }
+
+    public void <init>(BugTestPack.AdobeFlexBuf.OrderedProperties)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this, props;
+        java.util.Enumeration k;
+        java.lang.String key, $r3;
+        java.util.Vector $r0;
+        java.util.HashMap $r1;
+        boolean $z0;
+        java.lang.Object $r2;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        props := @parameter0: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        specialinvoke this.<java.util.Properties: void <init>()>();
+
+        $r0 = new java.util.Vector;
+
+        specialinvoke $r0.<java.util.Vector: void <init>()>();
+
+        this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys> = $r0;
+
+        $r1 = new java.util.HashMap;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+
+        this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Map lines> = $r1;
+
+        k = virtualinvoke props.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Enumeration keys()>();
+
+        goto label2;
+
+     label1:
+        $r2 = interfaceinvoke k.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        key = (java.lang.String) $r2;
+
+        $r3 = virtualinvoke props.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String getProperty(java.lang.String)>(key);
+
+        virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.Object put(java.lang.Object,java.lang.Object)>(key, $r3);
+
+     label2:
+        $z0 = interfaceinvoke k.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+
+    public int size()
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.util.Vector $r0;
+        int $i0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        $r0 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys>;
+
+        $i0 = virtualinvoke $r0.<java.util.Vector: int size()>();
+
+        return $i0;
+    }
+
+    public java.lang.String getProperty(java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String property, $r0;
+        java.lang.Object o;
+        boolean $z0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        property := @parameter0: java.lang.String;
+
+        o = specialinvoke this.<java.util.Properties: java.lang.Object get(java.lang.Object)>(property);
+
+        if o == null goto label1;
+
+        $z0 = o instanceof java.lang.String;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = (java.lang.String) o;
+
+        return $r0;
+
+     label1:
+        return null;
+    }
+
+    public java.lang.String getProperty(java.lang.String, java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String property, defaultval, val, $r0;
+        java.lang.Object o;
+        boolean $z0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        property := @parameter0: java.lang.String;
+
+        defaultval := @parameter1: java.lang.String;
+
+        o = specialinvoke this.<java.util.Properties: java.lang.Object get(java.lang.Object)>(property);
+
+        val = null;
+
+        if o == null goto label1;
+
+        $z0 = o instanceof java.lang.String;
+
+        if $z0 == 0 goto label1;
+
+        val = (java.lang.String) o;
+
+     label1:
+        if val == null goto label2;
+
+        $r0 = val;
+
+        goto label3;
+
+     label2:
+        $r0 = defaultval;
+
+     label3:
+        return $r0;
+    }
+
+    public void replaceProperty(java.lang.String, java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String property, value;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        property := @parameter0: java.lang.String;
+
+        value := @parameter1: java.lang.String;
+
+        specialinvoke this.<java.util.Properties: java.lang.Object put(java.lang.Object,java.lang.Object)>(property, value);
+
+        return;
+    }
+
+    public java.lang.Object putProperty(java.lang.String, java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String property, value;
+        java.lang.Object $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        property := @parameter0: java.lang.String;
+
+        value := @parameter1: java.lang.String;
+
+        $r0 = virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.Object putProperty(java.lang.String,java.lang.String,java.lang.String)>(null, property, value);
+
+        return $r0;
+    }
+
+    public java.lang.Object setProperty(java.lang.String, java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String property, value;
+        java.lang.Object $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        property := @parameter0: java.lang.String;
+
+        value := @parameter1: java.lang.String;
+
+        $r0 = virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.Object putProperty(java.lang.String,java.lang.String,java.lang.String)>(null, property, value);
+
+        return $r0;
+    }
+
+    public java.lang.Object putProperty(java.lang.String, java.lang.String, java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String comment, property, value;
+        java.lang.Object old;
+        java.util.Vector $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        comment := @parameter0: java.lang.String;
+
+        property := @parameter1: java.lang.String;
+
+        value := @parameter2: java.lang.String;
+
+        old = specialinvoke this.<java.util.Properties: java.lang.Object put(java.lang.Object,java.lang.Object)>(property, value);
+
+        if old != null goto label1;
+
+        $r0 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys>;
+
+        virtualinvoke $r0.<java.util.Vector: void addElement(java.lang.Object)>(property);
+
+     label1:
+        return old;
+    }
+
+    public java.lang.Object get(java.lang.Object)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.Object property, $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        property := @parameter0: java.lang.Object;
+
+        $r0 = specialinvoke this.<java.util.Properties: java.lang.Object get(java.lang.Object)>(property);
+
+        return $r0;
+    }
+
+    public java.lang.Object put(java.lang.Object, java.lang.Object)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.Object key, value, old;
+        java.util.Vector $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        key := @parameter0: java.lang.Object;
+
+        value := @parameter1: java.lang.Object;
+
+        old = specialinvoke this.<java.util.Properties: java.lang.Object put(java.lang.Object,java.lang.Object)>(key, value);
+
+        if old != null goto label1;
+
+        $r0 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys>;
+
+        virtualinvoke $r0.<java.util.Vector: void addElement(java.lang.Object)>(key);
+
+     label1:
+        return old;
+    }
+
+    public java.lang.Object remove(java.lang.Object)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.Object key, old;
+        java.util.Vector $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        key := @parameter0: java.lang.Object;
+
+        old = specialinvoke this.<java.util.Properties: java.lang.Object remove(java.lang.Object)>(key);
+
+        if old == null goto label1;
+
+        $r0 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys>;
+
+        virtualinvoke $r0.<java.util.Vector: boolean removeElement(java.lang.Object)>(key);
+
+     label1:
+        return old;
+    }
+
+    public java.util.Enumeration keys()
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.util.Vector $r0;
+        java.util.Enumeration $r1;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        $r0 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys>;
+
+        $r1 = virtualinvoke $r0.<java.util.Vector: java.util.Enumeration elements()>();
+
+        return $r1;
+    }
+
+    public java.util.Enumeration propertyNames()
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.util.Vector $r0;
+        java.util.Enumeration $r1;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        $r0 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys>;
+
+        $r1 = virtualinvoke $r0.<java.util.Vector: java.util.Enumeration elements()>();
+
+        return $r1;
+    }
+
+    public void clear()
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        int $i0;
+        java.util.Vector $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        $i0 = specialinvoke this.<java.util.Properties: int size()>();
+
+        if $i0 <= 0 goto label1;
+
+        specialinvoke this.<java.util.Properties: void clear()>();
+
+     label1:
+        $r0 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys>;
+
+        virtualinvoke $r0.<java.util.Vector: void setSize(int)>(0);
+
+        return;
+    }
+
+    public boolean contains(java.lang.Object)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.Object value;
+        boolean $z0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        value := @parameter0: java.lang.Object;
+
+        $z0 = specialinvoke this.<java.util.Properties: boolean contains(java.lang.Object)>(value);
+
+        return $z0;
+    }
+
+    public boolean containsKey(java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String key;
+        boolean $z0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        key := @parameter0: java.lang.String;
+
+        $z0 = specialinvoke this.<java.util.Properties: boolean containsKey(java.lang.Object)>(key);
+
+        return $z0;
+    }
+
+    public java.util.Properties getProperties(java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String propPattern, value, endsWith, name, $r3, $r5;
+        java.util.Properties props, $r0;
+        int index, $i0, $i1, $i2;
+        java.util.Enumeration names;
+        java.lang.Object $r1;
+        boolean $z0, $z1, $z2;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        propPattern := @parameter0: java.lang.String;
+
+        $r0 = new java.util.Properties;
+
+        specialinvoke $r0.<java.util.Properties: void <init>()>();
+
+        props = $r0;
+
+        index = virtualinvoke propPattern.<java.lang.String: int indexOf(java.lang.String)>("*");
+
+        if index != -1 goto label1;
+
+        value = virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String getProperty(java.lang.String)>(propPattern);
+
+        if value == null goto label7;
+
+        virtualinvoke props.<java.util.Properties: java.lang.Object put(java.lang.Object,java.lang.Object)>(propPattern, value);
+
+        goto label7;
+
+     label1:
+        value = virtualinvoke propPattern.<java.lang.String: java.lang.String substring(int,int)>(0, index);
+
+        $i0 = virtualinvoke propPattern.<java.lang.String: int length()>();
+
+        $i1 = $i0 - 1;
+
+        if index != $i1 goto label2;
+
+        endsWith = null;
+
+        goto label3;
+
+     label2:
+        $i2 = index + 1;
+
+        endsWith = virtualinvoke propPattern.<java.lang.String: java.lang.String substring(int)>($i2);
+
+     label3:
+        names = virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Enumeration propertyNames()>();
+
+        goto label6;
+
+     label4:
+        $r1 = interfaceinvoke names.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        name = (java.lang.String) $r1;
+
+        $z2 = virtualinvoke name.<java.lang.String: boolean startsWith(java.lang.String)>(value);
+
+        if $z2 == 0 goto label6;
+
+        if endsWith != null goto label5;
+
+        $r5 = virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String getProperty(java.lang.String)>(name);
+
+        virtualinvoke props.<java.util.Properties: java.lang.Object put(java.lang.Object,java.lang.Object)>(name, $r5);
+
+        goto label6;
+
+     label5:
+        $z1 = virtualinvoke name.<java.lang.String: boolean endsWith(java.lang.String)>(endsWith);
+
+        if $z1 == 0 goto label6;
+
+        $r3 = virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String getProperty(java.lang.String)>(name);
+
+        virtualinvoke props.<java.util.Properties: java.lang.Object put(java.lang.Object,java.lang.Object)>(name, $r3);
+
+     label6:
+        $z0 = interfaceinvoke names.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 != 0 goto label4;
+
+     label7:
+        return props;
+    }
+
+    public void removeProperties(java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String propPattern, value, endsWith, name;
+        int index, size, i, $i0, $i1, $i2;
+        java.util.Vector cle, $r0;
+        java.lang.Object $r1, $r2;
+        boolean $z0, $z1;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        propPattern := @parameter0: java.lang.String;
+
+        index = virtualinvoke propPattern.<java.lang.String: int indexOf(java.lang.String)>("*");
+
+        if index != -1 goto label1;
+
+        value = virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String getProperty(java.lang.String)>(propPattern);
+
+        if value == null goto label8;
+
+        virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.Object remove(java.lang.Object)>(propPattern);
+
+        goto label8;
+
+     label1:
+        value = virtualinvoke propPattern.<java.lang.String: java.lang.String substring(int,int)>(0, index);
+
+        $i0 = virtualinvoke propPattern.<java.lang.String: int length()>();
+
+        $i1 = $i0 - 1;
+
+        if index != $i1 goto label2;
+
+        endsWith = null;
+
+        goto label3;
+
+     label2:
+        $i2 = index + 1;
+
+        endsWith = virtualinvoke propPattern.<java.lang.String: java.lang.String substring(int)>($i2);
+
+     label3:
+        $r0 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys>;
+
+        $r1 = virtualinvoke $r0.<java.util.Vector: java.lang.Object clone()>();
+
+        cle = (java.util.Vector) $r1;
+
+        size = virtualinvoke cle.<java.util.Vector: int size()>();
+
+        i = 0;
+
+        goto label7;
+
+     label4:
+        $r2 = virtualinvoke cle.<java.util.Vector: java.lang.Object elementAt(int)>(i);
+
+        name = (java.lang.String) $r2;
+
+        $z0 = virtualinvoke name.<java.lang.String: boolean startsWith(java.lang.String)>(value);
+
+        if $z0 == 0 goto label6;
+
+        if endsWith != null goto label5;
+
+        virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.Object remove(java.lang.Object)>(name);
+
+        goto label6;
+
+     label5:
+        $z1 = virtualinvoke name.<java.lang.String: boolean endsWith(java.lang.String)>(endsWith);
+
+        if $z1 == 0 goto label6;
+
+        virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.Object remove(java.lang.Object)>(name);
+
+     label6:
+        i = i + 1;
+
+     label7:
+        if i < size goto label4;
+
+     label8:
+        return;
+    }
+
+    public void setProperties(java.util.Properties)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.util.Properties props;
+        java.util.Enumeration names;
+        java.lang.String name, $r1;
+        boolean $z0;
+        java.lang.Object $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        props := @parameter0: java.util.Properties;
+
+        names = virtualinvoke props.<java.util.Properties: java.util.Enumeration propertyNames()>();
+
+        goto label2;
+
+     label1:
+        $r0 = interfaceinvoke names.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        name = (java.lang.String) $r0;
+
+        $r1 = virtualinvoke props.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(name);
+
+        virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.Object setProperty(java.lang.String,java.lang.String)>(name, $r1);
+
+     label2:
+        $z0 = interfaceinvoke names.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+
+    public void load(java.io.InputStream) throws java.io.IOException
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.io.InputStream is;
+        java.io.BufferedReader $r0;
+        java.io.InputStreamReader $r1;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        is := @parameter0: java.io.InputStream;
+
+        $r0 = new java.io.BufferedReader;
+
+        $r1 = new java.io.InputStreamReader;
+
+        specialinvoke $r1.<java.io.InputStreamReader: void <init>(java.io.InputStream)>(is);
+
+        specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1);
+
+        virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: void load2(java.io.BufferedReader)>($r0);
+
+        return;
+    }
+
+    public void load(java.io.Reader) throws java.io.IOException
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.io.Reader reader;
+        java.io.BufferedReader $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        reader := @parameter0: java.io.Reader;
+
+        $r0 = new java.io.BufferedReader;
+
+        specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>(reader);
+
+        virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: void load2(java.io.BufferedReader)>($r0);
+
+        return;
+    }
+
+    public void load2(java.io.BufferedReader) throws java.io.IOException
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.io.BufferedReader br;
+        java.lang.StringBuffer buffer, $r1;
+        int lineNumber, comment_length, sep_len, len, start, new_start, $i0, $i2, $i4, $i6, $i8, $i9, $i10, $i11, $i14, $i16;
+        java.lang.String sep, line, com_key, $r0, $r2, $r3, $r6, $r8, $r9, $r10, $r12, new_start;
+        char $c1, $c3, $c5, $c7, $c12, $c13, $c15;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        br := @parameter0: java.io.BufferedReader;
+
+        $r0 = virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String getTerminators()>();
+
+        <BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String terminators> = $r0;
+
+        $r1 = new java.lang.StringBuffer;
+
+        specialinvoke $r1.<java.lang.StringBuffer: void <init>(int)>(100);
+
+        buffer = $r1;
+
+        lineNumber = 0;
+
+        comment_length = 0;
+
+        sep = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("line.separator");
+
+        sep_len = virtualinvoke sep.<java.lang.String: int length()>();
+
+        goto label16;
+
+     label01:
+        lineNumber = lineNumber + 1;
+
+        len = virtualinvoke line.<java.lang.String: int length()>();
+
+        start = 0;
+
+        if lineNumber != 1 goto label03;
+
+        if len <= 0 goto label03;
+
+        $c15 = virtualinvoke line.<java.lang.String: char charAt(int)>(0);
+
+        if $c15 != 65279 goto label03;
+
+        start = 1;
+
+        goto label03;
+
+     label02:
+        start = start + 1;
+
+     label03:
+        if start >= len goto label04;
+
+        $r12 = " \t\n\r\f";
+
+        $c13 = virtualinvoke line.<java.lang.String: char charAt(int)>(start);
+
+        $i16 = virtualinvoke $r12.<java.lang.String: int indexOf(int)>($c13);
+
+        if $i16 != -1 goto label02;
+
+     label04:
+        $r3 = virtualinvoke line.<java.lang.String: java.lang.String trim()>();
+
+        $i0 = virtualinvoke $r3.<java.lang.String: int length()>();
+
+        if $i0 != 0 goto label05;
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(sep);
+
+        comment_length = comment_length + sep_len;
+
+        goto label16;
+
+     label05:
+        if len == 0 goto label06;
+
+        $c1 = virtualinvoke line.<java.lang.String: char charAt(int)>(start);
+
+        if $c1 == 33 goto label06;
+
+        $c3 = virtualinvoke line.<java.lang.String: char charAt(int)>(start);
+
+        if $c3 == 35 goto label06;
+
+        $r6 = " \t\n\r\f";
+
+        $c5 = virtualinvoke line.<java.lang.String: char charAt(int)>(start);
+
+        $i4 = virtualinvoke $r6.<java.lang.String: int indexOf(int)>($c5);
+
+        if $i4 == -1 goto label07;
+
+     label06:
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(line);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(sep);
+
+        $i2 = len + sep_len;
+
+        comment_length = comment_length + $i2;
+
+        goto label16;
+
+     label07:
+        if comment_length == 0 goto label08;
+
+        virtualinvoke buffer.<java.lang.StringBuffer: void setLength(int)>(comment_length);
+
+     label08:
+        virtualinvoke buffer.<java.lang.StringBuffer: void setLength(int)>(0);
+
+        $r8 = virtualinvoke line.<java.lang.String: java.lang.String substring(int)>(start);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r8);
+
+        goto label13;
+
+     label09:
+        $i10 = virtualinvoke buffer.<java.lang.StringBuffer: int length()>();
+
+        $i11 = $i10 - 1;
+
+        virtualinvoke buffer.<java.lang.StringBuffer: void setLength(int)>($i11);
+
+        line = virtualinvoke br.<java.io.BufferedReader: java.lang.String readLine()>();
+
+        if line == null goto label13;
+
+        lineNumber = lineNumber + 1;
+
+        new_start = 0;
+
+        len = virtualinvoke line.<java.lang.String: int length()>();
+
+        goto label11;
+
+     label10:
+        new_start = new_start + 1;
+
+     label11:
+        if new_start >= len goto label12;
+
+        $r9 = " \t\n\r\f";
+
+        $c12 = virtualinvoke line.<java.lang.String: char charAt(int)>(new_start);
+
+        $i14 = virtualinvoke $r9.<java.lang.String: int indexOf(int)>($c12);
+
+        if $i14 != -1 goto label10;
+
+     label12:
+        $r10 = virtualinvoke line.<java.lang.String: java.lang.String substring(int)>(new_start);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r10);
+
+     label13:
+        if line == null goto label14;
+
+        $i8 = virtualinvoke line.<java.lang.String: int length()>();
+
+        if $i8 <= 1 goto label14;
+
+        $i9 = virtualinvoke line.<java.lang.String: int length()>();
+
+        $i6 = $i9 - 1;
+
+        $c7 = virtualinvoke line.<java.lang.String: char charAt(int)>($i6);
+
+        if $c7 == 92 goto label09;
+
+     label14:
+        new_start = virtualinvoke buffer.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        com_key = specialinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String loadProperty(java.lang.String,int)>(new_start, lineNumber);
+
+        if comment_length == 0 goto label15;
+
+        if com_key == null goto label15;
+
+        comment_length = 0;
+
+     label15:
+        virtualinvoke buffer.<java.lang.StringBuffer: void setLength(int)>(0);
+
+     label16:
+        $r2 = virtualinvoke br.<java.io.BufferedReader: java.lang.String readLine()>();
+
+        line = $r2;
+
+        if $r2 != null goto label01;
+
+        return;
+    }
+
+    public void store(java.io.PrintWriter)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.io.PrintWriter writer;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        writer := @parameter0: java.io.PrintWriter;
+
+        specialinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: void store2(java.io.PrintWriter,java.lang.String)>(writer, null);
+
+        return;
+    }
+
+    public void store(java.io.OutputStream)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.io.OutputStream os;
+        java.io.PrintWriter $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        os := @parameter0: java.io.OutputStream;
+
+        $r0 = new java.io.PrintWriter;
+
+        specialinvoke $r0.<java.io.PrintWriter: void <init>(java.io.OutputStream)>(os);
+
+        specialinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: void store2(java.io.PrintWriter,java.lang.String)>($r0, null);
+
+        return;
+    }
+
+    public void store(java.io.OutputStream, java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.io.OutputStream os;
+        java.lang.String header;
+        java.io.PrintWriter $r0;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        os := @parameter0: java.io.OutputStream;
+
+        header := @parameter1: java.lang.String;
+
+        $r0 = new java.io.PrintWriter;
+
+        specialinvoke $r0.<java.io.PrintWriter: void <init>(java.io.OutputStream)>(os);
+
+        specialinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: void store2(java.io.PrintWriter,java.lang.String)>($r0, header);
+
+        return;
+    }
+
+    private void store2(java.io.PrintWriter, java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.io.PrintWriter out;
+        java.lang.String header, key, value, $r3, $r4, $r7, $r11, $r12;
+        java.util.Enumeration ke;
+        java.util.Vector $r0;
+        boolean $z0;
+        java.lang.Object $r1, $r2;
+        java.lang.StringBuilder $r5, $r6, $r9, $r10;
+        java.util.Date $r8;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        out := @parameter0: java.io.PrintWriter;
+
+        header := @parameter1: java.lang.String;
+
+        if header == null goto label1;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("#");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(header);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke out.<java.io.PrintWriter: void println(java.lang.String)>($r7);
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>("#");
+
+        $r8 = new java.util.Date;
+
+        specialinvoke $r8.<java.util.Date: void <init>()>();
+
+        $r11 = virtualinvoke $r8.<java.util.Date: java.lang.String toString()>();
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke out.<java.io.PrintWriter: void println(java.lang.String)>($r12);
+
+     label1:
+        $r0 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys>;
+
+        ke = virtualinvoke $r0.<java.util.Vector: java.util.Enumeration elements()>();
+
+        goto label3;
+
+     label2:
+        $r1 = interfaceinvoke ke.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        key = (java.lang.String) $r1;
+
+        $r2 = specialinvoke this.<java.util.Properties: java.lang.Object get(java.lang.Object)>(key);
+
+        value = (java.lang.String) $r2;
+
+        $r3 = specialinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String escape(java.lang.String)>(key);
+
+        virtualinvoke out.<java.io.PrintWriter: void print(java.lang.String)>($r3);
+
+        virtualinvoke out.<java.io.PrintWriter: void print(char)>(61);
+
+        $r4 = specialinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String escape(java.lang.String)>(value);
+
+        virtualinvoke out.<java.io.PrintWriter: void println(java.lang.String)>($r4);
+
+     label3:
+        $z0 = interfaceinvoke ke.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 != 0 goto label2;
+
+        virtualinvoke out.<java.io.PrintWriter: void flush()>();
+
+        return;
+    }
+
+    private java.lang.String loadProperty(java.lang.String, int)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String prop, $r0, $r1, $r7, $r9, current, current;
+        int lineNumber, prop_len, $i0, $i2, $i3, $i4, $i5, $i6, $i9, prop_index, ex;
+        char current, $c1, $c7, $c8, $c10;
+        boolean $z0;
+        java.util.Map $r3;
+        java.lang.Integer $r4;
+        java.util.Vector $r5;
+        java.lang.StringIndexOutOfBoundsException $r8;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        prop := @parameter0: java.lang.String;
+
+        lineNumber := @parameter1: int;
+
+        prop_len = virtualinvoke prop.<java.lang.String: int length()>();
+
+        prop_index = 0;
+
+        goto label04;
+
+     label01:
+        current = virtualinvoke prop.<java.lang.String: char charAt(int)>(prop_index);
+
+        if current != 92 goto label02;
+
+        prop_index = prop_index + 1;
+
+        goto label03;
+
+     label02:
+        $r0 = <BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String terminators>;
+
+        $i0 = virtualinvoke $r0.<java.lang.String: int indexOf(int)>(current);
+
+        if $i0 == -1 goto label03;
+
+        goto label05;
+
+     label03:
+        prop_index = prop_index + 1;
+
+     label04:
+        if prop_index < prop_len goto label01;
+
+     label05:
+        current = virtualinvoke prop.<java.lang.String: java.lang.String substring(int,int)>(0, prop_index);
+
+        current = virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String removeBadChars(java.lang.String,java.lang.String,boolean)>(prop, current, 0);
+
+        current = specialinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String unescape(java.lang.String)>(current);
+
+        current = virtualinvoke current.<java.lang.String: java.lang.String trim()>();
+
+        goto label07;
+
+     label06:
+        prop_index = prop_index + 1;
+
+     label07:
+        $i2 = virtualinvoke prop.<java.lang.String: int length()>();
+
+        if prop_index >= $i2 goto label08;
+
+        $r9 = " \t\n\r\f";
+
+        $c10 = virtualinvoke prop.<java.lang.String: char charAt(int)>(prop_index);
+
+        $i9 = virtualinvoke $r9.<java.lang.String: int indexOf(int)>($c10);
+
+        if $i9 != -1 goto label06;
+
+     label08:
+        $c1 = virtualinvoke prop.<java.lang.String: char charAt(int)>(prop_index);
+
+        if $c1 == 58 goto label09;
+
+        $c7 = virtualinvoke prop.<java.lang.String: char charAt(int)>(prop_index);
+
+        if $c7 != 61 goto label14;
+
+     label09:
+        prop_index = prop_index + 1;
+
+        goto label11;
+
+     label10:
+        prop_index = prop_index + 1;
+
+     label11:
+        $i4 = virtualinvoke prop.<java.lang.String: int length()>();
+
+        if prop_index >= $i4 goto label14;
+
+        $r7 = " \t\n\r\f";
+
+        $c8 = virtualinvoke prop.<java.lang.String: char charAt(int)>(prop_index);
+
+        $i6 = virtualinvoke $r7.<java.lang.String: int indexOf(int)>($c8);
+
+        if $i6 != -1 goto label10;
+
+     label12:
+        goto label14;
+
+     label13:
+        $r8 := @caughtexception;
+
+        return null;
+
+     label14:
+        ex = prop_index;
+
+        goto label18;
+
+     label15:
+        current = virtualinvoke prop.<java.lang.String: char charAt(int)>(prop_index);
+
+        if current != 92 goto label16;
+
+        prop_index = prop_index + 1;
+
+        goto label17;
+
+     label16:
+        $r1 = "\n\r\f";
+
+        $i5 = virtualinvoke $r1.<java.lang.String: int indexOf(int)>(current);
+
+        if $i5 == -1 goto label17;
+
+        goto label19;
+
+     label17:
+        prop_index = prop_index + 1;
+
+     label18:
+        $i3 = virtualinvoke prop.<java.lang.String: int length()>();
+
+        if prop_index < $i3 goto label15;
+
+     label19:
+        current = virtualinvoke prop.<java.lang.String: java.lang.String substring(int,int)>(ex, prop_index);
+
+        current = virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String removeBadChars(java.lang.String,java.lang.String,boolean)>(prop, current, 1);
+
+        current = specialinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.lang.String unescape(java.lang.String)>(current);
+
+        $z0 = specialinvoke this.<java.util.Properties: boolean containsKey(java.lang.Object)>(current);
+
+        if $z0 != 0 goto label20;
+
+        $r5 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Vector keys>;
+
+        virtualinvoke $r5.<java.util.Vector: void addElement(java.lang.Object)>(current);
+
+     label20:
+        specialinvoke this.<java.util.Properties: java.lang.Object put(java.lang.Object,java.lang.Object)>(current, current);
+
+        $r3 = this.<BugTestPack.AdobeFlexBuf.OrderedProperties: java.util.Map lines>;
+
+        $r4 = new java.lang.Integer;
+
+        specialinvoke $r4.<java.lang.Integer: void <init>(int)>(lineNumber);
+
+        interfaceinvoke $r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(current, $r4);
+
+        return current;
+
+        catch java.lang.StringIndexOutOfBoundsException from label08 to label12 with label13;
+    }
+
+    protected java.lang.String getTerminators()
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        return "=: \t";
+    }
+
+    protected java.lang.String removeBadChars(java.lang.String, java.lang.String, boolean)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String prop, string;
+        boolean isValue;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        prop := @parameter0: java.lang.String;
+
+        string := @parameter1: java.lang.String;
+
+        isValue := @parameter2: boolean;
+
+        return string;
+    }
+
+    private java.lang.String escape(java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String string, $r16;
+        java.lang.StringBuffer buffer, $r0;
+        int i, $i0, $i1, $i2;
+        char current, $c3, $c4, $c5, $c6, $c7, $c8, $c9, $c10, $c11, $c12, $c13;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        string := @parameter0: java.lang.String;
+
+        if string != null goto label01;
+
+        return null;
+
+     label01:
+        $r0 = new java.lang.StringBuffer;
+
+        $i0 = virtualinvoke string.<java.lang.String: int length()>();
+
+        $i1 = $i0 + 10;
+
+        specialinvoke $r0.<java.lang.StringBuffer: void <init>(int)>($i1);
+
+        buffer = $r0;
+
+        i = 0;
+
+        goto label11;
+
+     label02:
+        current = virtualinvoke string.<java.lang.String: char charAt(int)>(i);
+
+        lookupswitch(current)
+        {
+            case 9: goto label04;
+            case 10: goto label05;
+            case 13: goto label06;
+            case 92: goto label03;
+            default: goto label07;
+        };
+
+     label03:
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(92);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(92);
+
+        goto label10;
+
+     label04:
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(92);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(116);
+
+        goto label10;
+
+     label05:
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(92);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(110);
+
+        goto label10;
+
+     label06:
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(92);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(114);
+
+        goto label10;
+
+     label07:
+        if current < 20 goto label08;
+
+        if current <= 127 goto label09;
+
+     label08:
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(92);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(117);
+
+        $c4 = current >> 12;
+
+        $c3 = $c4 & 15;
+
+        $c5 = staticinvoke <BugTestPack.AdobeFlexBuf.OrderedProperties: char toHex(int)>($c3);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c5);
+
+        $c7 = current >> 8;
+
+        $c6 = $c7 & 15;
+
+        $c8 = staticinvoke <BugTestPack.AdobeFlexBuf.OrderedProperties: char toHex(int)>($c6);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c8);
+
+        $c10 = current >> 4;
+
+        $c9 = $c10 & 15;
+
+        $c11 = staticinvoke <BugTestPack.AdobeFlexBuf.OrderedProperties: char toHex(int)>($c9);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c11);
+
+        $c12 = current & 15;
+
+        $c13 = staticinvoke <BugTestPack.AdobeFlexBuf.OrderedProperties: char toHex(int)>($c12);
+
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c13);
+
+        goto label10;
+
+     label09:
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(current);
+
+     label10:
+        i = i + 1;
+
+     label11:
+        $i2 = virtualinvoke string.<java.lang.String: int length()>();
+
+        if i < $i2 goto label02;
+
+        $r16 = virtualinvoke buffer.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r16;
+    }
+
+    private java.lang.String unescape(java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.lang.String string, $r3;
+        java.lang.StringBuffer buffer, $r0;
+        int string_index, unicode, i, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12;
+        char add;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        string := @parameter0: java.lang.String;
+
+        if string != null goto label01;
+
+        return null;
+
+     label01:
+        $r0 = new java.lang.StringBuffer;
+
+        $i0 = virtualinvoke string.<java.lang.String: int length()>();
+
+        specialinvoke $r0.<java.lang.StringBuffer: void <init>(int)>($i0);
+
+        buffer = $r0;
+
+        string_index = 0;
+
+        goto label16;
+
+     label02:
+        $i2 = string_index;
+
+        string_index = string_index + 1;
+
+        add = virtualinvoke string.<java.lang.String: char charAt(int)>($i2);
+
+        if add != 92 goto label15;
+
+        $i3 = string_index;
+
+        string_index = string_index + 1;
+
+        add = virtualinvoke string.<java.lang.String: char charAt(int)>($i3);
+
+        if add != 117 goto label09;
+
+        unicode = 0;
+
+        i = 0;
+
+        goto label08;
+
+     label03:
+        $i4 = string_index;
+
+        string_index = string_index + 1;
+
+        add = virtualinvoke string.<java.lang.String: char charAt(int)>($i4);
+
+        tableswitch(add)
+        {
+            case 48: goto label04;
+            case 49: goto label04;
+            case 50: goto label04;
+            case 51: goto label04;
+            case 52: goto label04;
+            case 53: goto label04;
+            case 54: goto label04;
+            case 55: goto label04;
+            case 56: goto label04;
+            case 57: goto label04;
+            case 58: goto label07;
+            case 59: goto label07;
+            case 60: goto label07;
+            case 61: goto label07;
+            case 62: goto label07;
+            case 63: goto label07;
+            case 64: goto label07;
+            case 65: goto label06;
+            case 66: goto label06;
+            case 67: goto label06;
+            case 68: goto label06;
+            case 69: goto label06;
+            case 70: goto label06;
+            case 71: goto label07;
+            case 72: goto label07;
+            case 73: goto label07;
+            case 74: goto label07;
+            case 75: goto label07;
+            case 76: goto label07;
+            case 77: goto label07;
+            case 78: goto label07;
+            case 79: goto label07;
+            case 80: goto label07;
+            case 81: goto label07;
+            case 82: goto label07;
+            case 83: goto label07;
+            case 84: goto label07;
+            case 85: goto label07;
+            case 86: goto label07;
+            case 87: goto label07;
+            case 88: goto label07;
+            case 89: goto label07;
+            case 90: goto label07;
+            case 91: goto label07;
+            case 92: goto label07;
+            case 93: goto label07;
+            case 94: goto label07;
+            case 95: goto label07;
+            case 96: goto label07;
+            case 97: goto label05;
+            case 98: goto label05;
+            case 99: goto label05;
+            case 100: goto label05;
+            case 101: goto label05;
+            case 102: goto label05;
+            default: goto label07;
+        };
+
+     label04:
+        $i6 = unicode << 4;
+
+        $i5 = $i6 + add;
+
+        unicode = $i5 - 48;
+
+        goto label07;
+
+     label05:
+        $i8 = unicode << 4;
+
+        $i7 = $i8 + 10;
+
+        $i10 = $i7 + add;
+
+        unicode = $i10 - 97;
+
+        goto label07;
+
+     label06:
+        $i9 = unicode << 4;
+
+        $i12 = $i9 + 10;
+
+        $i11 = $i12 + add;
+
+        unicode = $i11 - 65;
+
+     label07:
+        i = i + 1;
+
+     label08:
+        if i < 4 goto label03;
+
+        add = (char) unicode;
+
+        goto label14;
+
+     label09:
+        lookupswitch(add)
+        {
+            case 102: goto label13;
+            case 110: goto label11;
+            case 114: goto label12;
+            case 116: goto label10;
+            default: goto label14;
+        };
+
+     label10:
+        add = 9;
+
+        goto label14;
+
+     label11:
+        add = 10;
+
+        goto label14;
+
+     label12:
+        add = 13;
+
+        goto label14;
+
+     label13:
+        add = 12;
+
+     label14:
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(add);
+
+        goto label16;
+
+     label15:
+        virtualinvoke buffer.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(add);
+
+     label16:
+        $i1 = virtualinvoke string.<java.lang.String: int length()>();
+
+        if string_index < $i1 goto label02;
+
+        $r3 = virtualinvoke buffer.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r3;
+    }
+
+    private static char toHex(int)
+    {
+        int nibble, $i0;
+        char[] $r0;
+        char $c1;
+
+        nibble := @parameter0: int;
+
+        $r0 = <BugTestPack.AdobeFlexBuf.OrderedProperties: char[] hexDigit>;
+
+        $i0 = nibble & 15;
+
+        $c1 = $r0[$i0];
+
+        return $c1;
+    }
+
+    public void save(java.io.OutputStream, java.lang.String)
+    {
+        BugTestPack.AdobeFlexBuf.OrderedProperties this;
+        java.io.OutputStream os;
+        java.lang.String header;
+
+        this := @this: BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        os := @parameter0: java.io.OutputStream;
+
+        header := @parameter1: java.lang.String;
+
+        virtualinvoke this.<BugTestPack.AdobeFlexBuf.OrderedProperties: void store(java.io.OutputStream)>(os);
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        java.io.FileInputStream fis, $r0, $r5;
+        BugTestPack.AdobeFlexBuf.OrderedProperties p, $r1;
+        java.util.Properties props, $r2;
+        java.io.BufferedReader $r3;
+        java.io.FileReader $r4;
+        java.io.PrintStream $r6, $r7, $r8, $r10;
+        java.io.IOException $r9, fis;
+
+        args := @parameter0: java.lang.String[];
+
+     label1:
+        $r0 = new java.io.FileInputStream;
+
+        specialinvoke $r0.<java.io.FileInputStream: void <init>(java.lang.String)>("C:\\Users\\Aritra\\workspace\\git\\Repair_Spec\\sootOutput\\BugTestPack\\AdobeFlexBuf\\log.txt");
+
+        fis = $r0;
+
+        $r1 = new BugTestPack.AdobeFlexBuf.OrderedProperties;
+
+        specialinvoke $r1.<BugTestPack.AdobeFlexBuf.OrderedProperties: void <init>()>();
+
+        p = $r1;
+
+        $r2 = new java.util.Properties;
+
+        specialinvoke $r2.<java.util.Properties: void <init>()>();
+
+        props = $r2;
+
+        $r3 = new java.io.BufferedReader;
+
+        $r4 = new java.io.FileReader;
+
+        specialinvoke $r4.<java.io.FileReader: void <init>(java.lang.String)>("C:\\Users\\Aritra\\workspace\\git\\Repair_Spec\\sootOutput\\BugTestPack\\AdobeFlexBuf\\log.txt");
+
+        specialinvoke $r3.<java.io.BufferedReader: void <init>(java.io.Reader)>($r4);
+
+        virtualinvoke p.<BugTestPack.AdobeFlexBuf.OrderedProperties: void load2(java.io.BufferedReader)>($r3);
+
+        virtualinvoke p.<BugTestPack.AdobeFlexBuf.OrderedProperties: void load(java.io.InputStream)>(fis);
+
+        virtualinvoke fis.<java.io.FileInputStream: void close()>();
+
+        $r5 = new java.io.FileInputStream;
+
+        specialinvoke $r5.<java.io.FileInputStream: void <init>(java.lang.String)>("log.txt");
+
+        fis = $r5;
+
+        virtualinvoke props.<java.util.Properties: void load(java.io.InputStream)>(fis);
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke p.<BugTestPack.AdobeFlexBuf.OrderedProperties: void store(java.io.OutputStream)>($r6);
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>("-------");
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke props.<java.util.Properties: void save(java.io.OutputStream,java.lang.String)>($r8, null);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r9 := @caughtexception;
+
+        fis = $r9;
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.Object)>(fis);
+
+     label4:
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+}

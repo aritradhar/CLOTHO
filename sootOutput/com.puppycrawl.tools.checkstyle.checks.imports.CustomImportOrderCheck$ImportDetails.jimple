@@ -1,0 +1,159 @@
+class com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails extends java.lang.Object
+{
+    private java.lang.String mImportFullPath;
+    private int mLineNumber;
+    private java.lang.String mImportGroup;
+    private boolean mStatic;
+    final com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this$0;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck, java.lang.String, int, java.lang.String, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails this;
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck l1;
+        java.lang.String aImportFullPath, aImportGroup;
+        int aLineNumber;
+        boolean aStatic;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aImportFullPath := @parameter1: java.lang.String;
+
+        aLineNumber := @parameter2: int;
+
+        aImportGroup := @parameter3: java.lang.String;
+
+        aStatic := @parameter4: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this$0> = l1;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: void setImportFullPath(java.lang.String)>(aImportFullPath);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: void setLineNumber(int)>(aLineNumber);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: void setImportGroup(java.lang.String)>(aImportGroup);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: void setStatic(boolean)>(aStatic);
+
+        return;
+    }
+
+    public java.lang.String getImportFullPath()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: java.lang.String mImportFullPath>;
+
+        return $r0;
+    }
+
+    public void setImportFullPath(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails this;
+        java.lang.String aImportFullPath;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        aImportFullPath := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: java.lang.String mImportFullPath> = aImportFullPath;
+
+        return;
+    }
+
+    public int getLineNumber()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: int mLineNumber>;
+
+        return $i0;
+    }
+
+    public void setLineNumber(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails this;
+        int aLineNumber;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        aLineNumber := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: int mLineNumber> = aLineNumber;
+
+        return;
+    }
+
+    public java.lang.String getImportGroup()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: java.lang.String mImportGroup>;
+
+        return $r0;
+    }
+
+    public void setImportGroup(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails this;
+        java.lang.String aImportGroup;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        aImportGroup := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: java.lang.String mImportGroup> = aImportGroup;
+
+        return;
+    }
+
+    public boolean isStatic()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: boolean mStatic>;
+
+        return $z0;
+    }
+
+    public void setStatic(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails this;
+        boolean aStatic;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        aStatic := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: boolean mStatic> = aStatic;
+
+        return;
+    }
+
+    static java.lang.String access$000(com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails x0;
+        java.lang.String $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: java.lang.String mImportFullPath>;
+
+        return $r0;
+    }
+}

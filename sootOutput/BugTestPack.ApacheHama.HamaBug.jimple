@@ -1,0 +1,99 @@
+public class BugTestPack.ApacheHama.HamaBug extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugTestPack.ApacheHama.HamaBug this;
+
+        this := @this: BugTestPack.ApacheHama.HamaBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static int getRowIndex(byte[])
+    {
+        byte[] bytes;
+        java.lang.String rKey, $r0, $r1, $r2, $r3;
+        int i, $i1, $i2, $i4, $i5;
+        boolean $z0, $z1;
+        char $c0, $c3;
+
+        bytes := @parameter0: byte[];
+
+        $r0 = new java.lang.String;
+
+        specialinvoke $r0.<java.lang.String: void <init>(byte[])>(bytes);
+
+        rKey = $r0;
+
+        $z0 = virtualinvoke rKey.<java.lang.String: boolean equals(java.lang.Object)>("000000000000000");
+
+        if $z0 == 0 goto label1;
+
+        return 0;
+
+     label1:
+        $r1 = virtualinvoke rKey.<java.lang.String: java.lang.String substring(int,int)>(0, 8);
+
+        $z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("00000000");
+
+        if $z1 == 0 goto label4;
+
+        i = 8;
+
+        goto label3;
+
+     label2:
+        i = i + 1;
+
+     label3:
+        $c3 = virtualinvoke rKey.<java.lang.String: char charAt(int)>(i);
+
+        if $c3 == 48 goto label2;
+
+        $i4 = virtualinvoke rKey.<java.lang.String: int length()>();
+
+        $r3 = virtualinvoke rKey.<java.lang.String: java.lang.String substring(int,int)>(i, $i4);
+
+        $i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        return $i5;
+
+     label4:
+        i = 0;
+
+        goto label6;
+
+     label5:
+        i = i + 1;
+
+     label6:
+        $c0 = virtualinvoke rKey.<java.lang.String: char charAt(int)>(i);
+
+        if $c0 == 48 goto label5;
+
+        $i1 = virtualinvoke rKey.<java.lang.String: int length()>();
+
+        $r2 = virtualinvoke rKey.<java.lang.String: java.lang.String substring(int,int)>(i, $i1);
+
+        $i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        return $i2;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        byte[] $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = newarray (byte)[0];
+
+        staticinvoke <BugTestPack.ApacheHama.HamaBug: int getRowIndex(byte[])>($r0);
+
+        return;
+    }
+}

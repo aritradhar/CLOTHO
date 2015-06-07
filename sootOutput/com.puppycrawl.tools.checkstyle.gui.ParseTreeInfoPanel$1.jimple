@@ -1,0 +1,49 @@
+class com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1 extends java.lang.Object implements java.lang.Runnable
+{
+    final java.awt.Component val$parent;
+    final java.lang.String val$msg;
+    final com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0;
+
+    void <init>(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel, java.awt.Component, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1 this;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel l1;
+        java.awt.Component l2;
+        java.lang.String l3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        l2 := @parameter1: java.awt.Component;
+
+        l3 := @parameter2: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0> = l1;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1: java.awt.Component val$parent> = l2;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1: java.lang.String val$msg> = l3;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1 this;
+        java.lang.String $r0;
+        java.awt.Component $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1: java.awt.Component val$parent>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1: java.lang.String val$msg>;
+
+        staticinvoke <javax.swing.JOptionPane: void showMessageDialog(java.awt.Component,java.lang.Object)>($r1, $r0);
+
+        return;
+    }
+}

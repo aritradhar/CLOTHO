@@ -1,0 +1,733 @@
+public final class com.puppycrawl.tools.checkstyle.api.DetailAST extends antlr.CommonASTWithHiddenTokens
+{
+    private static final long serialVersionUID;
+    private static final int NOT_INITIALIZED;
+    private int mLineNo;
+    private int mColumnNo;
+    private int mChildCount;
+    private com.puppycrawl.tools.checkstyle.api.DetailAST mParent;
+    private com.puppycrawl.tools.checkstyle.api.DetailAST mPreviousSibling;
+    private java.util.BitSet mBranchTokenTypes;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke this.<antlr.CommonASTWithHiddenTokens: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mLineNo> = -2147483648;
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mColumnNo> = -2147483648;
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mChildCount> = -2147483648;
+
+        return;
+    }
+
+    public void initialize(antlr.Token)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this;
+        antlr.Token aTok;
+        int $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aTok := @parameter0: antlr.Token;
+
+        specialinvoke this.<antlr.CommonASTWithHiddenTokens: void initialize(antlr.Token)>(aTok);
+
+        $i0 = virtualinvoke aTok.<antlr.Token: int getLine()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mLineNo> = $i0;
+
+        $i1 = virtualinvoke aTok.<antlr.Token: int getColumn()>();
+
+        $i2 = $i1 - 1;
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mColumnNo> = $i2;
+
+        return;
+    }
+
+    public void initialize(antlr.collections.AST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, da;
+        antlr.collections.AST aAST;
+        java.lang.String $r0;
+        int $i0, $i1, $i2;
+        antlr.CommonHiddenStreamToken $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAST := @parameter0: antlr.collections.AST;
+
+        da = (com.puppycrawl.tools.checkstyle.api.DetailAST) aAST;
+
+        $r0 = virtualinvoke da.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setText(java.lang.String)>($r0);
+
+        $i0 = virtualinvoke da.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setType(int)>($i0);
+
+        $i1 = virtualinvoke da.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mLineNo> = $i1;
+
+        $i2 = virtualinvoke da.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mColumnNo> = $i2;
+
+        $r1 = virtualinvoke da.<com.puppycrawl.tools.checkstyle.api.DetailAST: antlr.CommonHiddenStreamToken getHiddenAfter()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: antlr.CommonHiddenStreamToken hiddenAfter> = $r1;
+
+        $r2 = virtualinvoke da.<com.puppycrawl.tools.checkstyle.api.DetailAST: antlr.CommonHiddenStreamToken getHiddenBefore()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: antlr.CommonHiddenStreamToken hiddenBefore> = $r2;
+
+        return;
+    }
+
+    public void setFirstChild(antlr.collections.AST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, $r0;
+        antlr.collections.AST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAST := @parameter0: antlr.collections.AST;
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mChildCount> = -2147483648;
+
+        specialinvoke this.<antlr.CommonASTWithHiddenTokens: void setFirstChild(antlr.collections.AST)>(aAST);
+
+        if aAST == null goto label1;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.api.DetailAST) aAST;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setParent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(this);
+
+     label1:
+        return;
+    }
+
+    public void setNextSibling(antlr.collections.AST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, $r0, $r1, $r2, $r3;
+        antlr.collections.AST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAST := @parameter0: antlr.collections.AST;
+
+        specialinvoke this.<antlr.CommonASTWithHiddenTokens: void setNextSibling(antlr.collections.AST)>(aAST);
+
+        if aAST == null goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST mParent>;
+
+        if $r1 == null goto label1;
+
+        $r3 = (com.puppycrawl.tools.checkstyle.api.DetailAST) aAST;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST mParent>;
+
+        virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setParent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r2);
+
+     label1:
+        if aAST == null goto label2;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.api.DetailAST) aAST;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)>(this);
+
+     label2:
+        return;
+    }
+
+    public void addPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, aAST, previousSibling, $r0, $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        if aAST == null goto label3;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST mParent>;
+
+        virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setParent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        previousSibling = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        if previousSibling == null goto label1;
+
+        virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)>(previousSibling);
+
+        virtualinvoke previousSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setNextSibling(antlr.collections.AST)>(aAST);
+
+        goto label2;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST mParent>;
+
+        if $r1 == null goto label2;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST mParent>;
+
+        virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setFirstChild(antlr.collections.AST)>(aAST);
+
+     label2:
+        virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setNextSibling(antlr.collections.AST)>(this);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label3:
+        return;
+    }
+
+    public void addNextSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, aAST, nextSibling, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        if aAST == null goto label2;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST mParent>;
+
+        virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setParent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        nextSibling = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if nextSibling == null goto label1;
+
+        virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setNextSibling(antlr.collections.AST)>(nextSibling);
+
+        virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label1:
+        virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)>(this);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setNextSibling(antlr.collections.AST)>(aAST);
+
+     label2:
+        return;
+    }
+
+    void setPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST mPreviousSibling> = aAST;
+
+        return;
+    }
+
+    public void addChild(antlr.collections.AST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, $r0, $r1;
+        antlr.collections.AST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAST := @parameter0: antlr.collections.AST;
+
+        specialinvoke this.<antlr.CommonASTWithHiddenTokens: void addChild(antlr.collections.AST)>(aAST);
+
+        if aAST == null goto label1;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.api.DetailAST) aAST;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setParent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(this);
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setParent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(this);
+
+     label1:
+        return;
+    }
+
+    public int getChildCount()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this;
+        antlr.collections.AST child;
+        int $i0, $i1, $i2, $i3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mChildCount>;
+
+        if $i0 != -2147483648 goto label2;
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mChildCount> = 0;
+
+        child = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if child == null goto label2;
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mChildCount>;
+
+        $i3 = $i2 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mChildCount> = $i3;
+
+        child = interfaceinvoke child.<antlr.collections.AST: antlr.collections.AST getNextSibling()>();
+
+        goto label1;
+
+     label2:
+        $i1 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mChildCount>;
+
+        return $i1;
+    }
+
+    void setParent(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, aParent, nextSibling;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParent := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST mParent> = aParent;
+
+        nextSibling = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if nextSibling == null goto label1;
+
+        virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setParent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aParent);
+
+        virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)>(this);
+
+     label1:
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST getParent()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST mParent>;
+
+        return $r0;
+    }
+
+    public int getLineNo()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, child, sibling;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mLineNo>;
+
+        if $i0 != -2147483648 goto label6;
+
+        child = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if child == null goto label3;
+
+        $i4 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: boolean isCommentType(int)>($i4);
+
+        if $z1 == 0 goto label2;
+
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label2:
+        $i5 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        return $i5;
+
+     label3:
+        sibling = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label4:
+        if sibling == null goto label6;
+
+        $i2 = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: boolean isCommentType(int)>($i2);
+
+        if $z0 == 0 goto label5;
+
+        sibling = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label4;
+
+     label5:
+        $i3 = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        return $i3;
+
+     label6:
+        $i1 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mLineNo>;
+
+        return $i1;
+    }
+
+    public void setLineNo(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this;
+        int aLineNo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aLineNo := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mLineNo> = aLineNo;
+
+        return;
+    }
+
+    public int getColumnNo()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, child, sibling;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mColumnNo>;
+
+        if $i0 != -2147483648 goto label6;
+
+        child = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if child == null goto label3;
+
+        $i4 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: boolean isCommentType(int)>($i4);
+
+        if $z1 == 0 goto label2;
+
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label2:
+        $i5 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        return $i5;
+
+     label3:
+        sibling = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label4:
+        if sibling == null goto label6;
+
+        $i2 = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: boolean isCommentType(int)>($i2);
+
+        if $z0 == 0 goto label5;
+
+        sibling = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label4;
+
+     label5:
+        $i3 = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        return $i3;
+
+     label6:
+        $i1 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mColumnNo>;
+
+        return $i1;
+    }
+
+    public void setColumnNo(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this;
+        int aColumnNo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aColumnNo := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int mColumnNo> = aColumnNo;
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, ast, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        ast = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if ast == null goto label2;
+
+        $r0 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if $r0 == null goto label2;
+
+        ast = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label2:
+        return ast;
+    }
+
+    private java.util.BitSet getBranchTokenTypes()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, child;
+        java.util.BitSet childTypes, $r0, $r1, $r2, $r3, $r4;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.util.BitSet mBranchTokenTypes>;
+
+        if $r0 != null goto label2;
+
+        $r2 = new java.util.BitSet;
+
+        specialinvoke $r2.<java.util.BitSet: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.util.BitSet mBranchTokenTypes> = $r2;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.util.BitSet mBranchTokenTypes>;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        virtualinvoke $r3.<java.util.BitSet: void set(int)>($i0);
+
+        child = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if child == null goto label2;
+
+        childTypes = specialinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.util.BitSet getBranchTokenTypes()>();
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.util.BitSet mBranchTokenTypes>;
+
+        virtualinvoke $r4.<java.util.BitSet: void or(java.util.BitSet)>(childTypes);
+
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label2:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.util.BitSet mBranchTokenTypes>;
+
+        return $r1;
+    }
+
+    public boolean branchContains(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this;
+        int aType;
+        java.util.BitSet $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aType := @parameter0: int;
+
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.util.BitSet getBranchTokenTypes()>();
+
+        $z0 = virtualinvoke $r0.<java.util.BitSet: boolean get(int)>(aType);
+
+        return $z0;
+    }
+
+    public int getChildCount(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this;
+        int aType, count, $i0;
+        antlr.collections.AST i;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aType := @parameter0: int;
+
+        count = 0;
+
+        i = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if i == null goto label3;
+
+        $i0 = interfaceinvoke i.<antlr.collections.AST: int getType()>();
+
+        if $i0 != aType goto label2;
+
+        count = count + 1;
+
+     label2:
+        i = interfaceinvoke i.<antlr.collections.AST: antlr.collections.AST getNextSibling()>();
+
+        goto label1;
+
+     label3:
+        return count;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST mPreviousSibling>;
+
+        return $r0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, retVal, i;
+        int aType, $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aType := @parameter0: int;
+
+        retVal = null;
+
+        i = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if i == null goto label3;
+
+        $i0 = virtualinvoke i.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != aType goto label2;
+
+        retVal = i;
+
+        goto label3;
+
+     label2:
+        i = virtualinvoke i.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label3:
+        return retVal;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this;
+        java.lang.StringBuilder $r0, $r2, $r3, $r4, $r5, $r6, $r7;
+        java.lang.String $r1, $r8;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = specialinvoke this.<antlr.CommonASTWithHiddenTokens: java.lang.String toString()>();
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[");
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("x");
+
+        $i1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r8;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, $r1;
+        antlr.collections.AST $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = specialinvoke this.<antlr.CommonASTWithHiddenTokens: antlr.collections.AST getNextSibling()>();
+
+        $r1 = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, $r1;
+        antlr.collections.AST $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = specialinvoke this.<antlr.CommonASTWithHiddenTokens: antlr.collections.AST getFirstChild()>();
+
+        $r1 = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r0;
+
+        return $r1;
+    }
+
+    public volatile antlr.collections.AST getNextSibling()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        return $r0;
+    }
+
+    public volatile antlr.collections.AST getFirstChild()
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST this, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        return $r0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.api.DetailAST: int NOT_INITIALIZED> = -2147483648;
+
+        <com.puppycrawl.tools.checkstyle.api.DetailAST: long serialVersionUID> = -2580884815577559874L;
+
+        return;
+    }
+}

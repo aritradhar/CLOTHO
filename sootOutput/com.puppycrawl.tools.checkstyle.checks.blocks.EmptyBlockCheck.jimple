@@ -1,0 +1,295 @@
+public class com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck this;
+        com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption: com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption STMT>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck: void <init>(java.lang.Enum,java.lang.Class)>($r0, class "com/puppycrawl/tools/checkstyle/checks/blocks/BlockOption");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
+
+        $r0 = newarray (int)[11];
+
+        $r0[0] = 86;
+
+        $r0[1] = 97;
+
+        $r0[2] = 98;
+
+        $r0[3] = 99;
+
+        $r0[4] = 87;
+
+        $r0[5] = 85;
+
+        $r0[6] = 94;
+
+        $r0[7] = 93;
+
+        $r0[8] = 11;
+
+        $r0[9] = 12;
+
+        $r0[10] = 91;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, slistToken, leftCurly, $r0, $r9;
+        boolean emptyBlock, $z0, $z1, $z2;
+        java.lang.Enum $r1, $r3;
+        com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption $r2, $r4;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        java.lang.Object[] $r5, $r7;
+        java.lang.String $r6, $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        slistToken = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        if slistToken == null goto label01;
+
+        $r0 = slistToken;
+
+        goto label02;
+
+     label01:
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(73);
+
+     label02:
+        leftCurly = $r0;
+
+        if leftCurly == null goto label11;
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck: java.lang.Enum getAbstractOption()>();
+
+        $r2 = <com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption: com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption STMT>;
+
+        if $r1 != $r2 goto label10;
+
+        $i3 = virtualinvoke leftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 73 goto label05;
+
+        $r9 = virtualinvoke leftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        $i6 = virtualinvoke $r9.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i6 == 34 goto label03;
+
+        $z2 = 1;
+
+        goto label04;
+
+     label03:
+        $z2 = 0;
+
+     label04:
+        emptyBlock = $z2;
+
+        goto label08;
+
+     label05:
+        $i2 = virtualinvoke leftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i2 > 1 goto label06;
+
+        $z1 = 1;
+
+        goto label07;
+
+     label06:
+        $z1 = 0;
+
+     label07:
+        emptyBlock = $z1;
+
+     label08:
+        if emptyBlock == 0 goto label09;
+
+        $i5 = virtualinvoke leftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i4 = virtualinvoke leftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r7 = newarray (java.lang.Object)[1];
+
+        $r8 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r7[0] = $r8;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i5, $i4, "block.noStmt", $r7);
+
+     label09:
+        goto label11;
+
+     label10:
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck: java.lang.Enum getAbstractOption()>();
+
+        $r4 = <com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption: com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption TEXT>;
+
+        if $r3 != $r4 goto label11;
+
+        $z0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck: boolean hasText(com.puppycrawl.tools.checkstyle.api.DetailAST)>(leftCurly);
+
+        if $z0 != 0 goto label11;
+
+        $i0 = virtualinvoke leftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke leftCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r6 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r5[0] = $r6;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "block.empty", $r5);
+
+     label11:
+        return;
+    }
+
+    protected boolean hasText(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aSlistAST, rightCurly, rcurlyAST, $r0, $r1;
+        boolean retVal;
+        int slistLineNo, slistColNo, rcurlyLineNo, rcurlyColNo, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, txt;
+        java.lang.String[] lines;
+        java.lang.String txt, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
+
+        aSlistAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = 0;
+
+        rightCurly = virtualinvoke aSlistAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(74);
+
+        if rightCurly == null goto label1;
+
+        $r1 = rightCurly;
+
+        goto label2;
+
+     label1:
+        $r0 = virtualinvoke aSlistAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(74);
+
+     label2:
+        rcurlyAST = $r1;
+
+        if rcurlyAST == null goto label9;
+
+        slistLineNo = virtualinvoke aSlistAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        slistColNo = virtualinvoke aSlistAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        rcurlyLineNo = virtualinvoke rcurlyAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        rcurlyColNo = virtualinvoke rcurlyAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        lines = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck: java.lang.String[] getLines()>();
+
+        if slistLineNo != rcurlyLineNo goto label4;
+
+        $i6 = slistLineNo - 1;
+
+        $r11 = lines[$i6];
+
+        $i7 = slistColNo + 1;
+
+        txt = virtualinvoke $r11.<java.lang.String: java.lang.String substring(int,int)>($i7, rcurlyColNo);
+
+        $r10 = virtualinvoke txt.<java.lang.String: java.lang.String trim()>();
+
+        $i9 = virtualinvoke $r10.<java.lang.String: int length()>();
+
+        if $i9 == 0 goto label3;
+
+        retVal = 1;
+
+     label3:
+        goto label9;
+
+     label4:
+        $i0 = slistLineNo - 1;
+
+        $r2 = lines[$i0];
+
+        $i1 = slistColNo + 1;
+
+        $r4 = virtualinvoke $r2.<java.lang.String: java.lang.String substring(int)>($i1);
+
+        $r3 = virtualinvoke $r4.<java.lang.String: java.lang.String trim()>();
+
+        $i3 = virtualinvoke $r3.<java.lang.String: int length()>();
+
+        if $i3 != 0 goto label5;
+
+        $i2 = rcurlyLineNo - 1;
+
+        $r6 = lines[$i2];
+
+        $r5 = virtualinvoke $r6.<java.lang.String: java.lang.String substring(int,int)>(0, rcurlyColNo);
+
+        $r7 = virtualinvoke $r5.<java.lang.String: java.lang.String trim()>();
+
+        $i4 = virtualinvoke $r7.<java.lang.String: int length()>();
+
+        if $i4 == 0 goto label6;
+
+     label5:
+        retVal = 1;
+
+        goto label9;
+
+     label6:
+        txt = slistLineNo;
+
+     label7:
+        $i5 = rcurlyLineNo - 1;
+
+        if txt >= $i5 goto label9;
+
+        $r8 = lines[txt];
+
+        $r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>();
+
+        $i8 = virtualinvoke $r9.<java.lang.String: int length()>();
+
+        if $i8 <= 0 goto label8;
+
+        retVal = 1;
+
+        goto label9;
+
+     label8:
+        txt = txt + 1;
+
+        goto label7;
+
+     label9:
+        return retVal;
+    }
+}

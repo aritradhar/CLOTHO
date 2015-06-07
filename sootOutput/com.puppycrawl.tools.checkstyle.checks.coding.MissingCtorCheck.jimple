@@ -1,0 +1,82 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck extends com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck this;
+        java.lang.String[] $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: void <init>()>();
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String getTokenName(int)>(8);
+
+        $r0[0] = $r1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck: void setLimitedTokens(java.lang.String[])>($r0);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck: void setMinimumNumber(int)>(1);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck: void setMaximumDepth(int)>(2);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck: void setMinimumMessage(java.lang.String)>("missing.ctor");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 14;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiers;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiers = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        if modifiers == null goto label1;
+
+        $z0 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(41);
+
+        if $z0 == 0 goto label1;
+
+        return;
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        return;
+    }
+}

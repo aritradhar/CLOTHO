@@ -1,0 +1,190 @@
+public class BugTestPack.ApacheHbaseBug.ServerName extends java.lang.Object
+{
+    public static final java.lang.String SERVERNAME_SEPARATOR;
+    private final java.lang.String servername;
+    private final java.lang.String hostname;
+    private final int port;
+    private final long startcode;
+
+    public void <init>(java.lang.String, int, long)
+    {
+        BugTestPack.ApacheHbaseBug.ServerName this;
+        java.lang.String hostname, $r0;
+        int port;
+        long startcode;
+
+        this := @this: BugTestPack.ApacheHbaseBug.ServerName;
+
+        hostname := @parameter0: java.lang.String;
+
+        port := @parameter1: int;
+
+        startcode := @parameter2: long;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<BugTestPack.ApacheHbaseBug.ServerName: java.lang.String hostname> = hostname;
+
+        this.<BugTestPack.ApacheHbaseBug.ServerName: int port> = port;
+
+        this.<BugTestPack.ApacheHbaseBug.ServerName: long startcode> = startcode;
+
+        $r0 = staticinvoke <BugTestPack.ApacheHbaseBug.ServerName: java.lang.String getServerName(java.lang.String,int,long)>(hostname, port, startcode);
+
+        this.<BugTestPack.ApacheHbaseBug.ServerName: java.lang.String servername> = $r0;
+
+        return;
+    }
+
+    public void <init>(java.lang.String)
+    {
+        BugTestPack.ApacheHbaseBug.ServerName this;
+        java.lang.String serverName, $r0;
+        int $i0;
+        long $l1;
+
+        this := @this: BugTestPack.ApacheHbaseBug.ServerName;
+
+        serverName := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <BugTestPack.ApacheHbaseBug.ServerName: java.lang.String parseHostname(java.lang.String)>(serverName);
+
+        $i0 = staticinvoke <BugTestPack.ApacheHbaseBug.ServerName: int parsePort(java.lang.String)>(serverName);
+
+        $l1 = staticinvoke <BugTestPack.ApacheHbaseBug.ServerName: long parseStartcode(java.lang.String)>(serverName);
+
+        specialinvoke this.<BugTestPack.ApacheHbaseBug.ServerName: void <init>(java.lang.String,int,long)>($r0, $i0, $l1);
+
+        return;
+    }
+
+    public static java.lang.String getServerName(java.lang.String, int, long)
+    {
+        java.lang.String hostName, $r6;
+        int port, $i0, $i1, $i2, $i3, $i4;
+        long startcode;
+        java.lang.StringBuilder name, $r0;
+
+        hostName := @parameter0: java.lang.String;
+
+        port := @parameter1: int;
+
+        startcode := @parameter2: long;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $i0 = virtualinvoke hostName.<java.lang.String: int length()>();
+
+        $i1 = $i0 + 1;
+
+        $i2 = $i1 + 5;
+
+        $i3 = $i2 + 1;
+
+        $i4 = $i3 + 13;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(int)>($i4);
+
+        name = $r0;
+
+        virtualinvoke name.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(hostName);
+
+        virtualinvoke name.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(",");
+
+        virtualinvoke name.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(port);
+
+        virtualinvoke name.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(",");
+
+        virtualinvoke name.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(startcode);
+
+        $r6 = virtualinvoke name.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r6;
+    }
+
+    public static int parsePort(java.lang.String)
+    {
+        java.lang.String serverName, $r0;
+        java.lang.String[] split;
+        int $i0;
+
+        serverName := @parameter0: java.lang.String;
+
+        split = virtualinvoke serverName.<java.lang.String: java.lang.String[] split(java.lang.String)>(",");
+
+        $r0 = split[1];
+
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r0);
+
+        return $i0;
+    }
+
+    public static long parseStartcode(java.lang.String)
+    {
+        java.lang.String serverName, $r0;
+        int index, $i0;
+        long $l1;
+
+        serverName := @parameter0: java.lang.String;
+
+        index = virtualinvoke serverName.<java.lang.String: int lastIndexOf(java.lang.String)>(",");
+
+        $i0 = index + 1;
+
+        $r0 = virtualinvoke serverName.<java.lang.String: java.lang.String substring(int)>($i0);
+
+        $l1 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r0);
+
+        return $l1;
+    }
+
+    public static java.lang.String parseHostname(java.lang.String)
+    {
+        java.lang.String serverName, $r1;
+        int index, $i0;
+        java.lang.IllegalArgumentException $r0;
+
+        serverName := @parameter0: java.lang.String;
+
+        if serverName == null goto label1;
+
+        $i0 = virtualinvoke serverName.<java.lang.String: int length()>();
+
+        if $i0 > 0 goto label2;
+
+     label1:
+        $r0 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Passed hostname is null or empty");
+
+        throw $r0;
+
+     label2:
+        index = virtualinvoke serverName.<java.lang.String: int indexOf(java.lang.String)>(",");
+
+        $r1 = virtualinvoke serverName.<java.lang.String: java.lang.String substring(int,int)>(0, index);
+
+        return $r1;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        BugTestPack.ApacheHbaseBug.ServerName $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new BugTestPack.ApacheHbaseBug.ServerName;
+
+        specialinvoke $r0.<BugTestPack.ApacheHbaseBug.ServerName: void <init>(java.lang.String)>("");
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <BugTestPack.ApacheHbaseBug.ServerName: java.lang.String SERVERNAME_SEPARATOR> = ",";
+
+        return;
+    }
+}

@@ -1,0 +1,259 @@
+public final class com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck
+{
+    private static final java.lang.String DEFAULT_FORMAT;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mCheckingStack;
+    private boolean mChecking;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void <init>(java.lang.String)>("^.*Exception$|^.*Error$");
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCheckingStack> = $r0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 14;
+
+        $r0[1] = 10;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        java.lang.IllegalStateException $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 10: goto label2;
+            case 14: goto label1;
+            default: goto label3;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: void visitClassDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label4;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: void visitVariableDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label4;
+
+     label3:
+        $r0 = new java.lang.IllegalStateException;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r1);
+
+        throw $r0;
+
+     label4:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 14: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: void leaveClassDef()>();
+
+        goto label2;
+
+     label2:
+        return;
+    }
+
+    private void visitClassDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r2;
+        boolean $z0, $z1;
+        java.lang.Boolean $r0;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+        java.lang.String $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCheckingStack>;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: boolean mChecking>;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = <java.lang.Boolean: java.lang.Boolean TRUE>;
+
+        goto label2;
+
+     label1:
+        $r0 = <java.lang.Boolean: java.lang.Boolean FALSE>;
+
+     label2:
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r0);
+
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r3 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: boolean isExceptionClass(java.lang.String)>($r3);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: boolean mChecking> = $z1;
+
+        return;
+    }
+
+    private void leaveClassDef()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.lang.Object $r1;
+        java.lang.Boolean $r2;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: com.puppycrawl.tools.checkstyle.api.FastStack mCheckingStack>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        $r2 = (java.lang.Boolean) $r1;
+
+        $z0 = virtualinvoke $r2.<java.lang.Boolean: boolean booleanValue()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: boolean mChecking> = $z0;
+
+        return;
+    }
+
+    private void visitVariableDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiersAST, $r0, $r1, $r3;
+        boolean $z0;
+        int $i0, $i1, $i2;
+        java.lang.Object[] $r2;
+        java.lang.String $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: boolean mChecking>;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 6 goto label1;
+
+        modifiersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $r1 = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(40);
+
+        if $r1 != null goto label1;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r4 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r2[0] = $r4;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i2, "mutable.exception", $r2);
+
+     label1:
+        return;
+    }
+
+    private boolean isExceptionClass(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck this;
+        java.lang.String aClassName;
+        java.util.regex.Pattern $r0;
+        java.util.regex.Matcher $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck;
+
+        aClassName := @parameter0: java.lang.String;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: java.util.regex.Pattern getRegexp()>();
+
+        $r1 = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aClassName);
+
+        $z0 = virtualinvoke $r1.<java.util.regex.Matcher: boolean find()>();
+
+        return $z0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck: java.lang.String DEFAULT_FORMAT> = "^.*Exception$|^.*Error$";
+
+        return;
+    }
+}

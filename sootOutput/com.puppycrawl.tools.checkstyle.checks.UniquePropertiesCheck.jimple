@@ -1,0 +1,208 @@
+public class com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck extends com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck
+{
+    public static final java.lang.String MSG_KEY;
+    public static final java.lang.String IO_EXCEPTION_KEY;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck this;
+        java.lang.String[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void <init>()>();
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "properties";
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void setFileExtensions(java.lang.String[])>($r0);
+
+        return;
+    }
+
+    protected void processFiltered(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck this;
+        java.io.File aFile;
+        java.util.List aLines;
+        com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties properties, $r0;
+        java.io.IOException e, $r7;
+        com.google.common.collect.Multiset$Entry duplication;
+        java.lang.String keyName, $r10, $r11;
+        int lineNumber, $i0, $i1;
+        java.io.FileInputStream $r1;
+        com.google.common.collect.Multiset $r2;
+        java.util.Set $r3;
+        boolean $z0;
+        java.lang.Object $r4, $r5;
+        java.lang.Object[] $r6, $r9;
+        java.lang.Integer $r8;
+        java.util.Iterator e;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties: void <init>(com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$1)>(null);
+
+        properties = $r0;
+
+     label1:
+        $r1 = new java.io.FileInputStream;
+
+        specialinvoke $r1.<java.io.FileInputStream: void <init>(java.io.File)>(aFile);
+
+        virtualinvoke properties.<com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties: void load(java.io.InputStream)>($r1);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r7 := @caughtexception;
+
+        e = $r7;
+
+        $r9 = newarray (java.lang.Object)[2];
+
+        $r10 = virtualinvoke aFile.<java.io.File: java.lang.String getPath()>();
+
+        $r9[0] = $r10;
+
+        $r11 = virtualinvoke e.<java.io.IOException: java.lang.String getLocalizedMessage()>();
+
+        $r9[1] = $r11;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck: void log(int,java.lang.String,java.lang.Object[])>(0, "unable.open.cause", $r9);
+
+     label4:
+        $r2 = virtualinvoke properties.<com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties: com.google.common.collect.Multiset getDuplicatedStrings()>();
+
+        $r3 = interfaceinvoke $r2.<com.google.common.collect.Multiset: java.util.Set entrySet()>();
+
+        e = interfaceinvoke $r3.<java.util.Set: java.util.Iterator iterator()>();
+
+     label5:
+        $z0 = interfaceinvoke e.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label6;
+
+        $r4 = interfaceinvoke e.<java.util.Iterator: java.lang.Object next()>();
+
+        duplication = (com.google.common.collect.Multiset$Entry) $r4;
+
+        $r5 = interfaceinvoke duplication.<com.google.common.collect.Multiset$Entry: java.lang.Object getElement()>();
+
+        keyName = (java.lang.String) $r5;
+
+        lineNumber = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck: int getLineNumber(java.util.List,java.lang.String)>(aLines, keyName);
+
+        $r6 = newarray (java.lang.Object)[2];
+
+        $r6[0] = keyName;
+
+        $i1 = interfaceinvoke duplication.<com.google.common.collect.Multiset$Entry: int getCount()>();
+
+        $i0 = $i1 + 1;
+
+        $r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        $r6[1] = $r8;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck: void log(int,java.lang.String,java.lang.Object[])>(lineNumber, "properties.duplicateproperty", $r6);
+
+        goto label5;
+
+     label6:
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    protected int getLineNumber(java.util.List, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck this;
+        java.util.List aLines;
+        java.lang.String aKeyNane, keyPatternString, line, $r2;
+        java.util.regex.Pattern keyPattern;
+        int lineNumber, $i0;
+        java.util.regex.Matcher matcher;
+        java.util.Iterator i$;
+        java.lang.StringBuilder $r0, $r1, $r3, $r4;
+        boolean $z0, $z1;
+        java.lang.Object $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck;
+
+        aLines := @parameter0: java.util.List;
+
+        aKeyNane := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("^");
+
+        $r2 = virtualinvoke aKeyNane.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(" ", "\\\\ ");
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[\\s:=].*$");
+
+        keyPatternString = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        keyPattern = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(keyPatternString);
+
+        lineNumber = 1;
+
+        matcher = virtualinvoke keyPattern.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>("");
+
+        i$ = interfaceinvoke aLines.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r6 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        line = (java.lang.String) $r6;
+
+        virtualinvoke matcher.<java.util.regex.Matcher: java.util.regex.Matcher reset(java.lang.CharSequence)>(line);
+
+        $z1 = virtualinvoke matcher.<java.util.regex.Matcher: boolean matches()>();
+
+        if $z1 == 0 goto label2;
+
+        goto label3;
+
+     label2:
+        lineNumber = lineNumber + 1;
+
+        goto label1;
+
+     label3:
+        $i0 = interfaceinvoke aLines.<java.util.List: int size()>();
+
+        if lineNumber <= $i0 goto label4;
+
+        lineNumber = 0;
+
+     label4:
+        return lineNumber;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck: java.lang.String IO_EXCEPTION_KEY> = "unable.open.cause";
+
+        <com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck: java.lang.String MSG_KEY> = "properties.duplicateproperty";
+
+        return;
+    }
+}

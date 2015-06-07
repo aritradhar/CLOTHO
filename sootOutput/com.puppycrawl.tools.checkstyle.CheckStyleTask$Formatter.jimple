@@ -1,0 +1,231 @@
+public class com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter extends java.lang.Object
+{
+    private com.puppycrawl.tools.checkstyle.CheckStyleTask$FormatterType mFormatterType;
+    private java.io.File mToFile;
+    private boolean mUseFile;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: boolean mUseFile> = 1;
+
+        return;
+    }
+
+    public void setType(com.puppycrawl.tools.checkstyle.CheckStyleTask$FormatterType)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter this;
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$FormatterType aType;
+        java.lang.String val, $r0, $r1, $r6;
+        boolean $z0, $z1;
+        org.apache.tools.ant.BuildException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter;
+
+        aType := @parameter0: com.puppycrawl.tools.checkstyle.CheckStyleTask$FormatterType;
+
+        val = virtualinvoke aType.<com.puppycrawl.tools.checkstyle.CheckStyleTask$FormatterType: java.lang.String getValue()>();
+
+        $r0 = "xml";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(val);
+
+        if $z0 != 0 goto label1;
+
+        $r1 = "plain";
+
+        $z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(val);
+
+        if $z1 != 0 goto label1;
+
+        $r2 = new org.apache.tools.ant.BuildException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Invalid formatter type: ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(val);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.tools.ant.BuildException: void <init>(java.lang.String)>($r6);
+
+        throw $r2;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: com.puppycrawl.tools.checkstyle.CheckStyleTask$FormatterType mFormatterType> = aType;
+
+        return;
+    }
+
+    public void setTofile(java.io.File)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter this;
+        java.io.File aTo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter;
+
+        aTo := @parameter0: java.io.File;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: java.io.File mToFile> = aTo;
+
+        return;
+    }
+
+    public void setUseFile(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter this;
+        boolean aUse;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter;
+
+        aUse := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: boolean mUseFile> = aUse;
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.AuditListener createListener(org.apache.tools.ant.Task) throws java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter this;
+        org.apache.tools.ant.Task aTask;
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$FormatterType $r0, $r2;
+        com.puppycrawl.tools.checkstyle.api.AuditListener $r1, $r5;
+        java.lang.String $r3, $r4;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter;
+
+        aTask := @parameter0: org.apache.tools.ant.Task;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: com.puppycrawl.tools.checkstyle.CheckStyleTask$FormatterType mFormatterType>;
+
+        if $r0 == null goto label1;
+
+        $r3 = "xml";
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: com.puppycrawl.tools.checkstyle.CheckStyleTask$FormatterType mFormatterType>;
+
+        $r4 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.CheckStyleTask$FormatterType: java.lang.String getValue()>();
+
+        $z0 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>($r4);
+
+        if $z0 == 0 goto label1;
+
+        $r5 = specialinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: com.puppycrawl.tools.checkstyle.api.AuditListener createXMLLogger(org.apache.tools.ant.Task)>(aTask);
+
+        return $r5;
+
+     label1:
+        $r1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: com.puppycrawl.tools.checkstyle.api.AuditListener createDefaultLogger(org.apache.tools.ant.Task)>(aTask);
+
+        return $r1;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.AuditListener createDefaultLogger(org.apache.tools.ant.Task) throws java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter this;
+        org.apache.tools.ant.Task aTask;
+        java.io.File $r0, $r6;
+        com.puppycrawl.tools.checkstyle.DefaultLogger $r1, $r4;
+        org.apache.tools.ant.taskdefs.LogOutputStream $r2, $r3;
+        boolean $z0;
+        java.io.FileOutputStream $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter;
+
+        aTask := @parameter0: org.apache.tools.ant.Task;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: java.io.File mToFile>;
+
+        if $r0 == null goto label1;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: boolean mUseFile>;
+
+        if $z0 != 0 goto label2;
+
+     label1:
+        $r1 = new com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        $r2 = new org.apache.tools.ant.taskdefs.LogOutputStream;
+
+        specialinvoke $r2.<org.apache.tools.ant.taskdefs.LogOutputStream: void <init>(org.apache.tools.ant.Task,int)>(aTask, 4);
+
+        $r3 = new org.apache.tools.ant.taskdefs.LogOutputStream;
+
+        specialinvoke $r3.<org.apache.tools.ant.taskdefs.LogOutputStream: void <init>(org.apache.tools.ant.Task,int)>(aTask, 0);
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.DefaultLogger: void <init>(java.io.OutputStream,boolean,java.io.OutputStream,boolean)>($r2, 1, $r3, 1);
+
+        return $r1;
+
+     label2:
+        $r4 = new com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        $r5 = new java.io.FileOutputStream;
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: java.io.File mToFile>;
+
+        specialinvoke $r5.<java.io.FileOutputStream: void <init>(java.io.File)>($r6);
+
+        specialinvoke $r4.<com.puppycrawl.tools.checkstyle.DefaultLogger: void <init>(java.io.OutputStream,boolean)>($r5, 1);
+
+        return $r4;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.AuditListener createXMLLogger(org.apache.tools.ant.Task) throws java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter this;
+        org.apache.tools.ant.Task aTask;
+        java.io.File $r0, $r5;
+        com.puppycrawl.tools.checkstyle.XMLLogger $r1, $r3;
+        org.apache.tools.ant.taskdefs.LogOutputStream $r2;
+        boolean $z0;
+        java.io.FileOutputStream $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter;
+
+        aTask := @parameter0: org.apache.tools.ant.Task;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: java.io.File mToFile>;
+
+        if $r0 == null goto label1;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: boolean mUseFile>;
+
+        if $z0 != 0 goto label2;
+
+     label1:
+        $r1 = new com.puppycrawl.tools.checkstyle.XMLLogger;
+
+        $r2 = new org.apache.tools.ant.taskdefs.LogOutputStream;
+
+        specialinvoke $r2.<org.apache.tools.ant.taskdefs.LogOutputStream: void <init>(org.apache.tools.ant.Task,int)>(aTask, 2);
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.XMLLogger: void <init>(java.io.OutputStream,boolean)>($r2, 1);
+
+        return $r1;
+
+     label2:
+        $r3 = new com.puppycrawl.tools.checkstyle.XMLLogger;
+
+        $r4 = new java.io.FileOutputStream;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: java.io.File mToFile>;
+
+        specialinvoke $r4.<java.io.FileOutputStream: void <init>(java.io.File)>($r5);
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.XMLLogger: void <init>(java.io.OutputStream,boolean)>($r4, 1);
+
+        return $r3;
+    }
+}

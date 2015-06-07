@@ -1,0 +1,92 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final java.lang.String mMethodName;
+    private final java.lang.String mErrorKey;
+
+    public void <init>(java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck this;
+        java.lang.String aMethodName, aErrorKey;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck;
+
+        aMethodName := @parameter0: java.lang.String;
+
+        aErrorKey := @parameter1: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck: java.lang.String mMethodName> = aMethodName;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck: java.lang.String mErrorKey> = aErrorKey;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 9;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, mid, params;
+        java.lang.String methodName, $r0, $r2;
+        boolean hasEmptyParamList, $z0, $z1, $z2;
+        int $i0;
+        java.lang.Object[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        mid = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        methodName = virtualinvoke mid.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck: java.lang.String mMethodName>;
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(methodName);
+
+        if $z0 == 0 goto label3;
+
+        params = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        $z1 = virtualinvoke params.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(21);
+
+        if $z1 != 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        hasEmptyParamList = $z2;
+
+        if hasEmptyParamList == 0 goto label3;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck: java.lang.String mErrorKey>;
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, $r2, $r1);
+
+     label3:
+        return;
+    }
+}

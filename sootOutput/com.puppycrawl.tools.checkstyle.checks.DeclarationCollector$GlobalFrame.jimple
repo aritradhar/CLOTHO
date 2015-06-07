@@ -1,0 +1,14 @@
+class com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$GlobalFrame extends com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame
+{
+
+    protected void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$GlobalFrame this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$GlobalFrame;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: void <init>(com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame)>(null);
+
+        return;
+    }
+}

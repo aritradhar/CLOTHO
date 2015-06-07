@@ -1,0 +1,244 @@
+public class com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final java.util.List mExcludes;
+    private boolean mAllowClassImports;
+    private boolean mAllowStaticMemberImports;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck this;
+        java.util.ArrayList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: java.util.List mExcludes> = $r0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 31;
+
+        $r0[1] = 156;
+
+        return $r0;
+    }
+
+    public void setExcludes(java.lang.String[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck this;
+        java.lang.String[] aExcludes, arr$;
+        int len$, i$;
+        java.lang.String exclude, $r5;
+        java.util.List $r0, $r1;
+        boolean $z0;
+        java.lang.StringBuilder $r2, $r3, $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+
+        aExcludes := @parameter0: java.lang.String[];
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: java.util.List mExcludes>;
+
+        interfaceinvoke $r0.<java.util.List: void clear()>();
+
+        arr$ = aExcludes;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label4;
+
+        exclude = arr$[i$];
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: java.util.List mExcludes>;
+
+        $z0 = virtualinvoke exclude.<java.lang.String: boolean endsWith(java.lang.String)>(".*");
+
+        if $z0 == 0 goto label2;
+
+        $r5 = exclude;
+
+        goto label3;
+
+     label2:
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(exclude);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".*");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label3:
+        interfaceinvoke $r1.<java.util.List: boolean add(java.lang.Object)>($r5);
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    public void setAllowClassImports(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: boolean mAllowClassImports> = aAllow;
+
+        return;
+    }
+
+    public void setAllowStaticMemberImports(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: boolean mAllowStaticMemberImports> = aAllow;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, startingDot, $r0;
+        boolean $z0, $z1;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: boolean mAllowClassImports>;
+
+        if $z0 != 0 goto label1;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 31 != $i1 goto label1;
+
+        startingDot = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: void logsStarredImportViolation(com.puppycrawl.tools.checkstyle.api.DetailAST)>(startingDot);
+
+        goto label2;
+
+     label1:
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: boolean mAllowStaticMemberImports>;
+
+        if $z1 != 0 goto label2;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 156 != $i0 goto label2;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        startingDot = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: void logsStarredImportViolation(com.puppycrawl.tools.checkstyle.api.DetailAST)>(startingDot);
+
+     label2:
+        return;
+    }
+
+    private void logsStarredImportViolation(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aStartingDot;
+        com.puppycrawl.tools.checkstyle.api.FullIdent name;
+        boolean $z0, $z1;
+        java.util.List $r0;
+        java.lang.String $r1, $r3;
+        int $i0;
+        java.lang.Object[] $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+
+        aStartingDot := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        name = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aStartingDot);
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: boolean isStaredImport(com.puppycrawl.tools.checkstyle.api.FullIdent)>(name);
+
+        if $z0 == 0 goto label1;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: java.util.List mExcludes>;
+
+        $r1 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z1 = interfaceinvoke $r0.<java.util.List: boolean contains(java.lang.Object)>($r1);
+
+        if $z1 != 0 goto label1;
+
+        $i0 = virtualinvoke aStartingDot.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r3 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r2[0] = $r3;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "import.avoidStar", $r2);
+
+     label1:
+        return;
+    }
+
+    private boolean isStaredImport(com.puppycrawl.tools.checkstyle.api.FullIdent)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck this;
+        com.puppycrawl.tools.checkstyle.api.FullIdent aImportIdent;
+        java.lang.String $r0;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+
+        aImportIdent := @parameter0: com.puppycrawl.tools.checkstyle.api.FullIdent;
+
+        if null == aImportIdent goto label1;
+
+        $r0 = virtualinvoke aImportIdent.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean endsWith(java.lang.String)>(".*");
+
+        if $z0 == 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+}

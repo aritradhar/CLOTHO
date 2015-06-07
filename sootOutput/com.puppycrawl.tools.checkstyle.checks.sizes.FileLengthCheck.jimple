@@ -1,0 +1,80 @@
+public class com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck extends com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck
+{
+    private static final int DEFAULT_MAX_LINES;
+    private int mMaxFileLength;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck: int mMaxFileLength> = 2000;
+
+        return;
+    }
+
+    protected void processFiltered(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck this;
+        java.io.File aFile;
+        java.util.List aLines;
+        int $i0, $i1, $i2, $i3;
+        java.lang.Object[] $r0;
+        java.lang.Integer $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        $i0 = interfaceinvoke aLines.<java.util.List: int size()>();
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck: int mMaxFileLength>;
+
+        if $i0 <= $i1 goto label1;
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $i2 = interfaceinvoke aLines.<java.util.List: int size()>();
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+
+        $r0[0] = $r1;
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck: int mMaxFileLength>;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+
+        $r0[1] = $r2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck: void log(int,java.lang.String,java.lang.Object[])>(1, "maxLen.file", $r0);
+
+     label1:
+        return;
+    }
+
+    public void setMax(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck this;
+        int aLength;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck;
+
+        aLength := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck: int mMaxFileLength> = aLength;
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck: int DEFAULT_MAX_LINES> = 2000;
+
+        return;
+    }
+}

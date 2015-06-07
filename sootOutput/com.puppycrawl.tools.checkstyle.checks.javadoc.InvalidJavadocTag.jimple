@@ -1,0 +1,67 @@
+public final class com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag extends java.lang.Object
+{
+    private final int mLine;
+    private final int mCol;
+    private final java.lang.String mName;
+
+    public void <init>(int, int, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag this;
+        int aLine, aCol;
+        java.lang.String aName;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
+
+        aLine := @parameter0: int;
+
+        aCol := @parameter1: int;
+
+        aName := @parameter2: java.lang.String;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag: int mLine> = aLine;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag: int mCol> = aCol;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag: java.lang.String mName> = aName;
+
+        return;
+    }
+
+    public int getLine()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag: int mLine>;
+
+        return $i0;
+    }
+
+    public int getCol()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag: int mCol>;
+
+        return $i0;
+    }
+
+    public java.lang.String getName()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag: java.lang.String mName>;
+
+        return $r0;
+    }
+}

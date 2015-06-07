@@ -1,0 +1,123 @@
+public class BugTestPack.ApacheNutchBug.NutchBug extends java.lang.Object
+{
+    static int MAX_TITLE_LENGTH;
+
+    static void <clinit>()
+    {
+        <BugTestPack.ApacheNutchBug.NutchBug: int MAX_TITLE_LENGTH> = -1;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        BugTestPack.ApacheNutchBug.NutchBug this;
+
+        this := @this: BugTestPack.ApacheNutchBug.NutchBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void bg(int)
+    {
+        int i, $i0, $i1, $i2;
+        java.lang.String title;
+
+        i := @parameter0: int;
+
+        title = "acb";
+
+        $i0 = virtualinvoke title.<java.lang.String: int length()>();
+
+        $i1 = <BugTestPack.ApacheNutchBug.NutchBug: int MAX_TITLE_LENGTH>;
+
+        if $i0 <= $i1 goto label1;
+
+        $i2 = <BugTestPack.ApacheNutchBug.NutchBug: int MAX_TITLE_LENGTH>;
+
+        virtualinvoke title.<java.lang.String: java.lang.String substring(int,int)>(0, $i2);
+
+     label1:
+        return;
+    }
+
+    public static void bgP(int)
+    {
+        int i, $i0, $i1, $i2, $i3;
+        java.lang.String title;
+        java.io.PrintStream $r0;
+
+        i := @parameter0: int;
+
+        title = "acb";
+
+        $i0 = <BugTestPack.ApacheNutchBug.NutchBug: int MAX_TITLE_LENGTH>;
+
+        if $i0 <= 0 goto label1;
+
+        $i1 = virtualinvoke title.<java.lang.String: int length()>();
+
+        $i2 = <BugTestPack.ApacheNutchBug.NutchBug: int MAX_TITLE_LENGTH>;
+
+        if $i1 <= $i2 goto label1;
+
+        $i3 = <BugTestPack.ApacheNutchBug.NutchBug: int MAX_TITLE_LENGTH>;
+
+        title = virtualinvoke title.<java.lang.String: java.lang.String substring(int,int)>(0, $i3);
+
+     label1:
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(title);
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        long s, $l0, i;
+        int i;
+        java.lang.StringBuilder $r0, $r3;
+        java.io.PrintStream $r1;
+        java.lang.String $r2, $r4;
+
+        args := @parameter0: java.lang.String[];
+
+        s = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        i = 0;
+
+        goto label2;
+
+     label1:
+        staticinvoke <BugTestPack.ApacheNutchBug.NutchBug: void bg(int)>(i);
+
+        i = i + 1;
+
+     label2:
+        if i < 50000 goto label1;
+
+        i = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $l0 = i - s;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>($l0);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r4);
+
+        return;
+    }
+}

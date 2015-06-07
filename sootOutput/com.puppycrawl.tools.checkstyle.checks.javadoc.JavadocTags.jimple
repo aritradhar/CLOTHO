@@ -1,0 +1,49 @@
+public final class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags extends java.lang.Object
+{
+    private final java.util.List mValidTags;
+    private final java.util.List mInvalidTags;
+
+    public void <init>(java.util.List, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags this;
+        java.util.List aTags, aInvalidTags;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
+
+        aTags := @parameter0: java.util.List;
+
+        aInvalidTags := @parameter1: java.util.List;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags: java.util.List mValidTags> = aTags;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags: java.util.List mInvalidTags> = aInvalidTags;
+
+        return;
+    }
+
+    public java.util.List getValidTags()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags this;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags: java.util.List mValidTags>;
+
+        return $r0;
+    }
+
+    public java.util.List getInvalidTags()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags this;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags: java.util.List mInvalidTags>;
+
+        return $r0;
+    }
+}

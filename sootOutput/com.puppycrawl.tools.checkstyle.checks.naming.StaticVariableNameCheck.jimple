@@ -1,0 +1,95 @@
+public class com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck extends com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: void <init>(java.lang.String)>("^[a-z][a-zA-Z0-9]*$");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 10;
+
+        return $r0;
+    }
+
+    protected final boolean mustCheckName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiersAST;
+        boolean isStatic, isFinal, $z0, $z1, $z2, $z3, $z4, $z5, $z6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        if modifiersAST == null goto label1;
+
+        $z5 = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        if $z5 == 0 goto label1;
+
+        $z6 = 1;
+
+        goto label2;
+
+     label1:
+        $z6 = 0;
+
+     label2:
+        isStatic = $z6;
+
+        if modifiersAST == null goto label3;
+
+        $z3 = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z3 == 0 goto label3;
+
+        $z4 = 1;
+
+        goto label4;
+
+     label3:
+        $z4 = 0;
+
+     label4:
+        isFinal = $z4;
+
+        if isStatic == 0 goto label5;
+
+        if isFinal != 0 goto label5;
+
+        $z0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck: boolean shouldCheckInScope(com.puppycrawl.tools.checkstyle.api.DetailAST)>(modifiersAST);
+
+        if $z0 == 0 goto label5;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 != 0 goto label5;
+
+        $z2 = 1;
+
+        goto label6;
+
+     label5:
+        $z2 = 0;
+
+     label6:
+        return $z2;
+    }
+}

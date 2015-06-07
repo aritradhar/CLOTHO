@@ -1,0 +1,53 @@
+public class com.puppycrawl.tools.checkstyle.checks.indentation.TryHandler extends com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler
+{
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck, com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.TryHandler this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck aIndentCheck;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler aParent;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.TryHandler;
+
+        aIndentCheck := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAst := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParent := @parameter2: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,java.lang.String,com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)>(aIndentCheck, "try", aAst, aParent);
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel suggestedChildLevel(com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.TryHandler this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler aChild;
+        boolean $z0, $z1;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.TryHandler;
+
+        aChild := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler;
+
+        $z0 = aChild instanceof com.puppycrawl.tools.checkstyle.checks.indentation.CatchHandler;
+
+        if $z0 != 0 goto label1;
+
+        $z1 = aChild instanceof com.puppycrawl.tools.checkstyle.checks.indentation.FinallyHandler;
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.TryHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel getLevel()>();
+
+        return $r0;
+
+     label2:
+        $r1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel suggestedChildLevel(com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)>(aChild);
+
+        return $r1;
+    }
+}

@@ -1,0 +1,62 @@
+final enum class com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$13 extends com.puppycrawl.tools.checkstyle.api.JavadocTagInfo
+{
+
+    void <init>(java.lang.String, int, java.lang.String, java.lang.String, com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type, boolean, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$13 this;
+        java.lang.String l1, x0, x1;
+        int l2;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type x2;
+        boolean x3, x4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$13;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        x0 := @parameter2: java.lang.String;
+
+        x1 := @parameter3: java.lang.String;
+
+        x2 := @parameter4: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type;
+
+        x3 := @parameter5: boolean;
+
+        x4 := @parameter6: boolean;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: void <init>(java.lang.String,int,java.lang.String,java.lang.String,com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type,boolean,boolean,com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$1)>(l1, l2, x0, x1, x2, x3, x4, null);
+
+        return;
+    }
+
+    public boolean isValidOn(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$13 this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        int type;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$13;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        type = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type != 10 goto label1;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean isLocalVariableDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAst);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+}

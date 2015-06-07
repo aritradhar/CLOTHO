@@ -1,0 +1,749 @@
+Class file input :
+StringTest
+Constraint analysis time : 2206 ms
+Constraint analysis memory consumption : 38 MB
+Taint analysis time :540 ms
+Taint analysis memory consumption :29 MB
+Call graph analysis time :6895 ms
+Call graph analysis memory Consumption  :146 MB
+Instrumentation time + class flashing in FileSystem : 1795 ms
+Instrumentation memory Consumption  :113 MB
+Total repair count : 4
+=====================================================================================
+Class file input :
+BugTestPack.asmbug.Method
+Constraint analysis time : 2235 ms
+Constraint analysis memory consumption : 37 MB
+Taint analysis time :583 ms
+Taint analysis memory consumption :29 MB
+Call graph analysis time :8242 ms
+Call graph analysis memory Consumption  :147 MB
+Instrumentation time + class flashing in FileSystem : 1535 ms
+Instrumentation memory Consumption  :118 MB
+Total repair count : 5
+=====================================================================================
+Class file input :
+BugTestPack.apacheMathBug.ComplexFormat
+Constraint analysis time : 2672 ms
+Constraint analysis memory consumption : -4 MB
+Taint analysis time :600 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :7979 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 1681 ms
+Instrumentation memory Consumption  :128 MB
+Total repair count : 2
+=====================================================================================
+Class file input :
+BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher
+Constraint analysis time : 2310 ms
+Constraint analysis memory consumption : 40 MBTaint analysis time :494 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :27965 ms
+Call graph analysis memory Consumption  :146 MB
+Instrumentation time + class flashing in FileSystem : 952 ms
+Instrumentation memory Consumption  :115 MB
+Total repair count : 2
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonLangMathBug.NumberUtils
+Constraint analysis time : 2739 ms
+Constraint analysis memory consumption : -3 MB
+Taint analysis time :562 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :11305 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2158 ms
+Instrumentation memory Consumption  :133 MB
+Total repair count : 8
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonFileUtils.ApacheBug
+Constraint analysis time : 2235 ms
+Constraint analysis memory consumption : 38 MB
+Taint analysis time :565 ms
+Taint analysis memory consumption :29 MB
+Call graph analysis time :7422 ms
+Call graph analysis memory Consumption  :146 MB
+Instrumentation time + class flashing in FileSystem : 1619 ms
+Instrumentation memory Consumption  :118 MB
+Total repair count : 1
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonFileUtils.ApacheBug
+Constraint analysis time : 2558 ms
+Constraint analysis memory consumption : 38 MB
+Taint analysis time :572 ms
+Taint analysis memory consumption :29 MB
+Call graph analysis time :7910 ms
+Call graph analysis memory Consumption  :146 MB
+Instrumentation time + class flashing in FileSystem : 1748 ms
+Instrumentation memory Consumption  :124 MB
+Total repair count : 1
+Total unit handled : 125
+=====================================================================================
+Class file input :
+BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher
+Constraint analysis time : 2532 ms
+Constraint analysis memory consumption : 40 MB
+Taint analysis time :687 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :28355 ms
+Call graph analysis memory Consumption  :145 MB
+Instrumentation time + class flashing in FileSystem : 866 ms
+Instrumentation memory Consumption  :112 MB
+Total repair count : 2
+Total unit handled : 80
+Call graph size : 11299
+=====================================================================================
+Class file input :
+BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher
+Constraint analysis time : 2244 ms
+Constraint analysis memory consumption : 40 MB
+Taint analysis time :553 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :21986 ms
+Call graph analysis memory Consumption  :145 MB
+Instrumentation time + class flashing in FileSystem : 787 ms
+Instrumentation memory Consumption  :114 MB
+Total repair count : 2
+Total unit handled : 80
+Call graph size : 11299
+Total unit count after repair : 102
+=====================================================================================
+Class file input :
+BugTestPack.eclipseAspectJWeaverBug.WeaverBug
+Constraint analysis time : 2748 ms
+Constraint analysis memory consumption : 7 MB
+Taint analysis time :637 ms
+Taint analysis memory consumption :29 MB
+Call graph analysis time :33918 ms
+Call graph analysis memory Consumption  :150 MB
+Instrumentation time + class flashing in FileSystem : 1197 ms
+Instrumentation memory Consumption  :131 MB
+Total repair count : 0
+Total unit handled : 50
+Call graph size : 16199
+Total unit count after repair : 51
+Total instrumentation : 1
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonFileFtpBug.Ftpbug
+Constraint analysis time : 2283 ms
+Constraint analysis memory consumption : -4 MB
+Taint analysis time :504 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :7972 ms
+Call graph analysis memory Consumption  :213 MB
+Instrumentation time + class flashing in FileSystem : 1344 ms
+Instrumentation memory Consumption  :119 MB
+Total repair count : 1
+Total unit handled : 14
+Call graph size : 688
+Total unit count after repair : 17
+Total instrumentation : 3
+=====================================================================================
+Class file input :
+BugTestPack.ApacheXalan.XalanBug
+Constraint analysis time : 2295 ms
+Constraint analysis memory consumption : -4 MB
+Taint analysis time :608 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :8086 ms
+Call graph analysis memory Consumption  :213 MB
+Instrumentation time + class flashing in FileSystem : 1527 ms
+Instrumentation memory Consumption  :117 MB
+Total repair count : 0
+Total unit handled : 33
+Call graph size : 720
+Total unit count after repair : 43
+Total instrumentation : 10
+=====================================================================================
+Class file input :
+BugTestPack.ApacheSOAPbug.SoapBug
+Constraint analysis time : 2909 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :546 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :12511 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2089 ms
+Instrumentation memory Consumption  :142 MB
+Total repair count : 3
+Total unit handled : 165
+Call graph size : 3924
+Total unit count after repair : 185
+Total instrumentation : 20
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCompressBug.TarArchiveEntry
+Constraint analysis time : 2689 ms
+Constraint analysis memory consumption : 5 MB
+Taint analysis time :555 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :11517 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 1835 ms
+Instrumentation memory Consumption  :130 MB
+Total repair count : 4
+Total unit handled : 134
+Call graph size : 4024
+Total unit count after repair : 180
+Total instrumentation : 46
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCliBug.CliBug
+Constraint analysis time : 3144 ms
+Constraint analysis memory consumption : -4 MB
+Taint analysis time :634 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :13703 ms
+Call graph analysis memory Consumption  :213 MB
+Instrumentation time + class flashing in FileSystem : 2435 ms
+Instrumentation memory Consumption  :125 MB
+Total repair count : 0
+Total unit handled : 53
+Call graph size : 2680
+Total unit count after repair : 72
+Total instrumentation : 19
+=====================================================================================
+Class file input :
+BugTestPack.ApacheWicket.WicketBug
+Constraint analysis time : 3893 ms
+Constraint analysis memory consumption : 8 MB
+Taint analysis time :638 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :71571 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 1424 ms
+Instrumentation memory Consumption  :134 MB
+Total repair count : 1
+Total unit handled : 68
+Call graph size : 64658
+Total unit count after repair : 84
+Total instrumentation : 16
+=====================================================================================
+Class file input :
+BugTestPack.ApacheTapeStry.TapeStryBug
+Constraint analysis time : 3232 ms
+Constraint analysis memory consumption : 8 MB
+Taint analysis time :658 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :22364 ms
+Call graph analysis memory Consumption  :211 MB
+Instrumentation time + class flashing in FileSystem : 2014 ms
+Instrumentation memory Consumption  :137 MB
+Total repair count : 5
+Total unit handled : 71
+Call graph size : 5106
+Total unit count after repair : 102
+Total instrumentation : 31
+=====================================================================================
+Class file input :
+BugTestPack.ApacheJuddiBug.JuddiBug
+Constraint analysis time : 3031 ms
+Constraint analysis memory consumption : 10 MB
+Taint analysis time :542 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :11585 ms
+Call graph analysis memory Consumption  :211 MB
+Instrumentation time + class flashing in FileSystem : 2264 ms
+Instrumentation memory Consumption  :135 MB
+Total repair count : 2
+Total unit handled : 70
+Call graph size : 2760
+Total unit count after repair : 82
+Total instrumentation : 12
+=====================================================================================
+Class file input :
+BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel
+Constraint analysis time : 3618 ms
+Constraint analysis memory consumption : 24 MB
+Taint analysis time :548 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :43706 ms
+Call graph analysis memory Consumption  :213 MB
+Instrumentation time + class flashing in FileSystem : 1578 ms
+Instrumentation memory Consumption  :146 MB
+Total repair count : 1
+Total unit handled : 39
+Call graph size : 24695
+Total unit count after repair : 45
+Total instrumentation : 6
+=====================================================================================
+Class file input :
+BugTestPack.asmbug.Method
+Constraint analysis time : 3094 ms
+Constraint analysis memory consumption : 10 MB
+Taint analysis time :574 ms
+Taint analysis memory consumption :31 MB
+Call graph analysis time :12818 ms
+Call graph analysis memory Consumption  :146 MB
+Instrumentation time + class flashing in FileSystem : 2310 ms
+Instrumentation memory Consumption  :142 MB
+Total repair count : 5
+Total unit handled : 129
+Call graph size : 3496
+Total unit count after repair : 171
+Total instrumentation : 42
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonLangMathBug.NumberUtils
+Constraint analysis time : 3274 ms
+Constraint analysis memory consumption : 19 MB
+Taint analysis time :645 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :17298 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 3462 ms
+Instrumentation memory Consumption  :157 MB
+Total repair count : 8
+Total unit handled : 240
+Call graph size : 5121
+Total unit count after repair : 408
+Total instrumentation : 168
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCliBug.CliBug
+Constraint analysis time : 2823 ms
+Constraint analysis memory consumption : 5 MB
+Taint analysis time :557 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :11639 ms
+Call graph analysis memory Consumption  :149 MB
+Instrumentation time + class flashing in FileSystem : 1900 ms
+Instrumentation memory Consumption  :133 MB
+Total repair count : 0
+Total unit handled : 53
+Call graph size : 3224
+Total unit count after repair : 72
+Total instrumentation : 19
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonFileUtils.ApacheBug
+Constraint analysis time : 3051 ms
+Constraint analysis memory consumption : 11 MB
+Taint analysis time :493 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :12107 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2128 ms
+Instrumentation memory Consumption  :141 MB
+Total repair count : 1
+Total unit handled : 125
+Call graph size : 3363
+Total unit count after repair : 201
+Total instrumentation : 76
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonLangMathBug.NumberUtils
+Constraint analysis time : 3170 ms
+Constraint analysis memory consumption : 19 MB
+Taint analysis time :578 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :16521 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2834 ms
+Instrumentation memory Consumption  :158 MB
+Total repair count : 8
+Total unit handled : 240
+Call graph size : 5121
+Total unit count after repair : 408
+Total instrumentation : 168
+=====================================================================================
+Class file input :
+BugTestPack.apacheMathBug.ComplexFormat
+Constraint analysis time : 3112 ms
+Constraint analysis memory consumption : 20 MB
+Taint analysis time :526 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :11916 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2925 ms
+Instrumentation memory Consumption  :152 MB
+Total repair count : 2
+Total unit handled : 300
+Call graph size : 3393
+Total unit count after repair : 336
+Total instrumentation : 36
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonFileFtpBug.Ftpbug
+Constraint analysis time : 2806 ms
+Constraint analysis memory consumption : 6 MB
+Taint analysis time :573 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :11426 ms
+Call graph analysis memory Consumption  :212 MB
+Instrumentation time + class flashing in FileSystem : 1897 ms
+Instrumentation memory Consumption  :132 MB
+Total repair count : 1
+Total unit handled : 14
+Call graph size : 3309
+Total unit count after repair : 20
+Total instrumentation : 6
+=====================================================================================
+Class file input :
+StringTest
+Constraint analysis time : 2969 ms
+Constraint analysis memory consumption : 10 MB
+Call graph analysis time :12332 ms
+Call graph analysis memory Consumption  :210 MB
+Instrumentation time + class flashing in FileSystem : 2326 ms
+Instrumentation memory Consumption  :139 MB
+Total repair count : 4
+Total unit handled : 87
+Call graph size : 3495
+Total unit count after repair : 124
+Total instrumentation : 37
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 2741 ms
+Constraint analysis memory consumption : 8 MB
+Call graph analysis time :13602 ms
+Call graph analysis memory Consumption  :210 MB
+Instrumentation time + class flashing in FileSystem : 2962 ms
+Instrumentation memory Consumption  :132 MB
+Total repair count : 2
+Total unit handled : 37
+Call graph size : 3428
+Total unit count after repair : 56
+Total instrumentation : 19
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 3053 ms
+Constraint analysis memory consumption : 8 MB
+Taint analysis time :527 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :13957 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 3117 ms
+Instrumentation memory Consumption  :132 MB
+Total repair count : 1
+Total unit handled : 37
+Call graph size : 3428
+Total unit count after repair : 52
+Total instrumentation : 15
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 2844 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :491 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :14135 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 3301 ms
+Instrumentation memory Consumption  :135 MB
+Total repair count : 4
+Total unit handled : 42
+Call graph size : 3432
+Total unit count after repair : 77
+Total instrumentation : 35
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 2922 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :546 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :13818 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2746 ms
+Instrumentation memory Consumption  :135 MB
+Total repair count : 4
+Total unit handled : 42
+Call graph size : 3432
+Total unit count after repair : 77
+Total instrumentation : 35
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 2890 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :517 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :14124 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2717 ms
+Instrumentation memory Consumption  :135 MB
+Total repair count : 4
+Total unit handled : 42
+Call graph size : 3432
+Total unit count after repair : 77
+Total instrumentation : 35
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 3063 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :616 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :13088 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 1995 ms
+Instrumentation memory Consumption  :135 MB
+Total repair count : 4
+Total unit handled : 42
+Call graph size : 3432
+Total unit count after repair : 77
+Total instrumentation : 35
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 3120 ms
+Constraint analysis memory consumption : 9 MB
+Taint analysis time :524 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :13878 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2677 ms
+Instrumentation memory Consumption  :136 MB
+Total repair count : 5
+Total unit handled : 42
+Call graph size : 3432
+Total unit count after repair : 81
+Total instrumentation : 39
+=====================================================================================
+Class file input :
+StringExample
+Constraint analysis time : 2877 ms
+Constraint analysis memory consumption : 8 MB
+Taint analysis time :634 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :15050 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 3197 ms
+Instrumentation memory Consumption  :133 MB
+Total repair count : 2
+Total unit handled : 35
+Call graph size : 3427
+Total unit count after repair : 52
+Total instrumentation : 17
+=====================================================================================
+Class file input :
+BugTestPack.EclipseAspectWeaverBcelBug.AspectJBcel
+Constraint analysis time : 3800 ms
+Constraint analysis memory consumption : 24 MB
+Taint analysis time :576 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :43631 ms
+Call graph analysis memory Consumption  :214 MB
+Instrumentation time + class flashing in FileSystem : 1654 ms
+Instrumentation memory Consumption  :156 MB
+Total repair count : 1
+Total unit handled : 39
+Call graph size : 25034
+Total unit count after repair : 45
+Total instrumentation : 6
+=====================================================================================
+Class file input :
+BugTestPack.eclipseAspectJWeaverBug.WeaverBug
+Constraint analysis time : 3142 ms
+Constraint analysis memory consumption : 17 MB
+Taint analysis time :590 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :37875 ms
+Call graph analysis memory Consumption  :212 MB
+Instrumentation time + class flashing in FileSystem : 1576 ms
+Instrumentation memory Consumption  :146 MB
+Total repair count : 0
+Total unit handled : 50
+Call graph size : 20636
+Total unit count after repair : 54
+Total instrumentation : 4
+=====================================================================================
+Class file input :
+BugTestPack.eclipseAspectJWeaverBug.WeaverBug
+Constraint analysis time : 3171 ms
+Constraint analysis memory consumption : 18 MB
+Taint analysis time :581 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :41297 ms
+Call graph analysis memory Consumption  :212 MB
+Instrumentation time + class flashing in FileSystem : 1649 ms
+Instrumentation memory Consumption  :142 MB
+Total repair count : 1
+Total unit handled : 50
+Call graph size : 20636
+Total unit count after repair : 54
+Total instrumentation : 4
+=====================================================================================
+Class file input :
+BugTestPack.ApacheJuddiBug.JuddiBug
+Constraint analysis time : 3102 ms
+Constraint analysis memory consumption : 11 MB
+Taint analysis time :544 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :13644 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2880 ms
+Instrumentation memory Consumption  :138 MB
+Total repair count : 2
+Total unit handled : 70
+Call graph size : 3270
+Total unit count after repair : 80
+Total instrumentation : 10
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCommonFileFtpBug.Ftpbug
+Constraint analysis time : 2816 ms
+Constraint analysis memory consumption : 6 MB
+Taint analysis time :542 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :12394 ms
+Call graph analysis memory Consumption  :212 MB
+Instrumentation time + class flashing in FileSystem : 2694 ms
+Instrumentation memory Consumption  :131 MB
+Total repair count : 1
+Total unit handled : 14
+Call graph size : 3309
+Total unit count after repair : 20
+Total instrumentation : 6
+=====================================================================================
+Class file input :
+BugTestPack.ApacheSOAPbug.SoapBug
+Constraint analysis time : 3403 ms
+Constraint analysis memory consumption : 19 MB
+Taint analysis time :586 ms
+Taint analysis memory consumption :30 MB
+Call graph analysis time :14097 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2365 ms
+Instrumentation memory Consumption  :148 MB
+Total repair count : 5
+Total unit handled : 165
+Call graph size : 5060
+Total unit count after repair : 197
+Total instrumentation : 32
+=====================================================================================
+Class file input :
+BugTestPack.ApacheStrutsBug.CoolUriServletDispatcher
+Constraint analysis time : 3035 ms
+Constraint analysis memory consumption : 14 MB
+Taint analysis time :522 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :25889 ms
+Call graph analysis memory Consumption  :210 MB
+Instrumentation time + class flashing in FileSystem : 1378 ms
+Instrumentation memory Consumption  :140 MB
+Total repair count : 2
+Total unit handled : 80
+Call graph size : 16087
+Total unit count after repair : 105
+Total instrumentation : 25
+=====================================================================================
+Class file input :
+BugTestPack.ApacheTapeStry.TapeStryBug
+Constraint analysis time : 2905 ms
+Constraint analysis memory consumption : 10 MB
+Taint analysis time :517 ms
+Taint analysis memory consumption :34 MB
+Call graph analysis time :24365 ms
+Call graph analysis memory Consumption  :211 MB
+Instrumentation time + class flashing in FileSystem : 1906 ms
+Instrumentation memory Consumption  :136 MB
+Total repair count : 5
+Total unit handled : 71
+Call graph size : 6287
+Total unit count after repair : 102
+Total instrumentation : 31
+=====================================================================================
+Class file input :
+BugTestPack.ApacheWicket.WicketBug
+Constraint analysis time : 3059 ms
+Constraint analysis memory consumption : 14 MB
+Taint analysis time :510 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :52458 ms
+Call graph analysis memory Consumption  :210 MB
+Instrumentation time + class flashing in FileSystem : 1453 ms
+Instrumentation memory Consumption  :142 MB
+Total repair count : 1
+Total unit handled : 68
+Call graph size : 70774
+Total unit count after repair : 84
+Total instrumentation : 16
+=====================================================================================
+Class file input :
+BugTestPack.ApacheXalan.XalanBug
+Constraint analysis time : 2744 ms
+Constraint analysis memory consumption : 8 MB
+Taint analysis time :532 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :13584 ms
+Call graph analysis memory Consumption  :213 MB
+Instrumentation time + class flashing in FileSystem : 2228 ms
+Instrumentation memory Consumption  :131 MB
+Total repair count : 2
+Total unit handled : 33
+Call graph size : 3333
+Total unit count after repair : 46
+Total instrumentation : 13
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCliBug.CliBug2_x
+Constraint analysis time : 2842 ms
+Constraint analysis memory consumption : 5 MB
+Taint analysis time :650 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :12023 ms
+Call graph analysis memory Consumption  :212 MB
+Instrumentation time + class flashing in FileSystem : 2033 ms
+Instrumentation memory Consumption  :131 MB
+Total repair count : 2
+Total unit handled : 21
+Call graph size : 3229
+Total unit count after repair : 34
+Total instrumentation : 13
+=====================================================================================
+Class file input :
+BugTestPack.ApacheCliBug.CliBug2_x
+Constraint analysis time : 2759 ms
+Constraint analysis memory consumption : 5 MB
+Taint analysis time :514 ms
+Taint analysis memory consumption :33 MB
+Call graph analysis time :13271 ms
+Call graph analysis memory Consumption  :210 MB
+Instrumentation time + class flashing in FileSystem : 2688 ms
+Instrumentation memory Consumption  :132 MB
+Total repair count : 2
+Total unit handled : 22
+Call graph size : 3229
+Total unit count after repair : 37
+Total instrumentation : 15
+=====================================================================================
+Class file input :
+log4jRep
+Constraint analysis time : 2784 ms
+Constraint analysis memory consumption : 4 MB
+Taint analysis time :538 ms
+Taint analysis memory consumption :32 MB
+Call graph analysis time :12963 ms
+Call graph analysis memory Consumption  :212 MB
+Instrumentation time + class flashing in FileSystem : 2527 ms
+Instrumentation memory Consumption  :131 MB
+Total repair count : 1
+Total unit handled : 17
+Call graph size : 3221
+Total unit count after repair : 23
+Total instrumentation : 6
+=====================================================================================
+Class file input :
+BugTestPack.AdobeFlexBuf.OrderedProperties
+Constraint analysis time : 4800 ms
+Constraint analysis memory consumption : 40 MB
+Taint analysis time :468 ms
+Taint analysis memory consumption :31 MB
+Call graph analysis time :12904 ms
+Call graph analysis memory Consumption  :209 MB
+Instrumentation time + class flashing in FileSystem : 2610 ms
+Instrumentation memory Consumption  :189 MB
+Total repair count : 25
+Total unit handled : 600
+Call graph size : 6142
+Total unit count after repair : 807
+Total instrumentation : 207
+=====================================================================================

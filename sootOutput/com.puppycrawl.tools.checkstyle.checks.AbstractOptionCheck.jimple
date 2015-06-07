@@ -1,0 +1,93 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final java.lang.Class mOptionClass;
+    private java.lang.Enum mOption;
+
+    public void <init>(java.lang.Enum, java.lang.Class)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck this;
+        java.lang.Enum aDefault;
+        java.lang.Class aOptionClass;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+
+        aDefault := @parameter0: java.lang.Enum;
+
+        aOptionClass := @parameter1: java.lang.Class;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck: java.lang.Enum mOption> = aDefault;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck: java.lang.Class mOptionClass> = aOptionClass;
+
+        return;
+    }
+
+    public void setOption(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck this;
+        java.lang.String aOption, $r1, $r2, $r9;
+        java.lang.IllegalArgumentException iae, $r4;
+        java.lang.Class $r0;
+        java.lang.Enum $r3;
+        org.apache.commons.beanutils.ConversionException $r5;
+        java.lang.StringBuilder $r6, $r7, $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+
+        aOption := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck: java.lang.Class mOptionClass>;
+
+        $r1 = virtualinvoke aOption.<java.lang.String: java.lang.String trim()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.String: java.lang.String toUpperCase()>();
+
+        $r3 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>($r0, $r2);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck: java.lang.Enum mOption> = $r3;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r4 := @caughtexception;
+
+        iae = $r4;
+
+        $r5 = new org.apache.commons.beanutils.ConversionException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aOption);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r9, iae);
+
+        throw $r5;
+
+     label4:
+        return;
+
+        catch java.lang.IllegalArgumentException from label1 to label2 with label3;
+    }
+
+    public java.lang.Enum getAbstractOption()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck this;
+        java.lang.Enum $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck: java.lang.Enum mOption>;
+
+        return $r0;
+    }
+}

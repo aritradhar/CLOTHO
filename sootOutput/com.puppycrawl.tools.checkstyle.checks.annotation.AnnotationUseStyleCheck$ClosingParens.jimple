@@ -1,0 +1,95 @@
+public final enum class com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens extends java.lang.Enum
+{
+    public static final enum com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens ALWAYS;
+    public static final enum com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens NEVER;
+    public static final enum com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens IGNORE;
+    private static final com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens[] $VALUES;
+
+    public static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens[] values()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens[]) $r1;
+
+        return $r2;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens valueOf(java.lang.String)
+    {
+        java.lang.String name;
+        java.lang.Enum $r0;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens $r1;
+
+        name := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck$ClosingParens", name);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens) $r0;
+
+        return $r1;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens this;
+        java.lang.String l1;
+        int l2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        specialinvoke this.<java.lang.Enum: void <init>(java.lang.String,int)>(l1, l2);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens $r0, $r1, $r2, $r4, $r5, $r6;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens[] $r3;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: void <init>(java.lang.String,int)>("ALWAYS", 0);
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens ALWAYS> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: void <init>(java.lang.String,int)>("NEVER", 1);
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens NEVER> = $r1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: void <init>(java.lang.String,int)>("IGNORE", 2);
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens IGNORE> = $r2;
+
+        $r3 = newarray (com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens)[3];
+
+        $r4 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens ALWAYS>;
+
+        $r3[0] = $r4;
+
+        $r5 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens NEVER>;
+
+        $r3[1] = $r5;
+
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens IGNORE>;
+
+        $r3[2] = $r6;
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens[] $VALUES> = $r3;
+
+        return;
+    }
+}

@@ -1,0 +1,430 @@
+public final class com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final java.lang.String SET_UP_METHOD_NAME;
+    private static final java.lang.String TEAR_DOWN_METHOD_NAME;
+    private static final java.lang.String SUITE_METHOD_NAME;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 9;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        java.lang.IllegalStateException $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 9: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void visitMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label3;
+
+     label2:
+        $r0 = new java.lang.IllegalStateException;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r1);
+
+        throw $r0;
+
+     label3:
+        return;
+    }
+
+    private void visitMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+        java.lang.String name;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        name = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = virtualinvoke name.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>("setUp");
+
+        if $z0 == 0 goto label1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void checkSetUpTearDownMethod(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.String)>(aAST, name, "setUp");
+
+        goto label3;
+
+     label1:
+        $z1 = virtualinvoke name.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>("tearDown");
+
+        if $z1 == 0 goto label2;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void checkSetUpTearDownMethod(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.String)>(aAST, name, "tearDown");
+
+        goto label3;
+
+     label2:
+        $z2 = virtualinvoke name.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>("suite");
+
+        if $z2 == 0 goto label3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void checkSuiteMethod(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, name);
+
+     label3:
+        return;
+    }
+
+    private void checkSuiteMethod(com.puppycrawl.tools.checkstyle.api.DetailAST, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, typeAST, $r0;
+        java.lang.String aActualName, type, $r3, $r4;
+        boolean isArray, $z0, $z1, $z2, $z3, $z4;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r1;
+        java.lang.Object[] $r2, $r5, $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aActualName := @parameter1: java.lang.String;
+
+        $z0 = virtualinvoke aActualName.<java.lang.String: boolean equals(java.lang.Object)>("suite");
+
+        if $z0 != 0 goto label1;
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r5[0] = "suite";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "junit.method.name", $r5);
+
+     label1:
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: boolean isPublicAndStatic(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 != 0 goto label2;
+
+        $r6 = newarray (java.lang.Object)[1];
+
+        $r6[0] = "suite";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "junit.method.public.and.static", $r6);
+
+     label2:
+        typeAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        $r0 = virtualinvoke typeAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(17);
+
+        if $r0 == null goto label3;
+
+        $z3 = 1;
+
+        goto label4;
+
+     label3:
+        $z3 = 0;
+
+     label4:
+        isArray = $z3;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: com.puppycrawl.tools.checkstyle.api.FullIdent createFullType(com.puppycrawl.tools.checkstyle.api.DetailAST)>(typeAST);
+
+        type = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        if isArray != 0 goto label5;
+
+        $r3 = "Test";
+
+        $z2 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>(type);
+
+        if $z2 != 0 goto label6;
+
+        $r4 = "junit.framework.Test";
+
+        $z4 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(type);
+
+        if $z4 != 0 goto label6;
+
+     label5:
+        $r2 = newarray (java.lang.Object)[2];
+
+        $r2[0] = "suite";
+
+        $r2[1] = "junit.framework.Test";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "junit.method.return.type", $r2);
+
+     label6:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void checkParameters(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, "suite");
+
+        return;
+    }
+
+    private void checkSetUpTearDownMethod(com.puppycrawl.tools.checkstyle.api.DetailAST, java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.lang.String aActualName, aExpectedName;
+        boolean $z0, $z1, $z2;
+        java.lang.Object[] $r0, $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aActualName := @parameter1: java.lang.String;
+
+        aExpectedName := @parameter2: java.lang.String;
+
+        $z0 = virtualinvoke aActualName.<java.lang.String: boolean equals(java.lang.Object)>(aExpectedName);
+
+        if $z0 != 0 goto label1;
+
+        $r2 = newarray (java.lang.Object)[2];
+
+        $r2[0] = aActualName;
+
+        $r2[1] = aExpectedName;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "junit.method.name", $r2);
+
+     label1:
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: boolean isPublicOrProtected(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 != 0 goto label2;
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r1[0] = aExpectedName;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "junit.method.protected.or.public", $r1);
+
+     label2:
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: boolean isStatic(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z2 == 0 goto label3;
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r0[0] = aExpectedName;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "junit.method.static", $r0);
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void checkReturnValue(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, aActualName);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void checkParameters(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, aActualName);
+
+        return;
+    }
+
+    private void checkReturnValue(com.puppycrawl.tools.checkstyle.api.DetailAST, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, returnValueAST, $r0;
+        java.lang.String aName;
+        java.lang.Object[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aName := @parameter1: java.lang.String;
+
+        returnValueAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        $r0 = virtualinvoke returnValueAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(50);
+
+        if $r0 != null goto label1;
+
+        $r1 = newarray (java.lang.Object)[2];
+
+        $r1[0] = aName;
+
+        $r1[1] = "void";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "junit.method.return.type", $r1);
+
+     label1:
+        return;
+    }
+
+    private void checkParameters(com.puppycrawl.tools.checkstyle.api.DetailAST, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parametersAST;
+        java.lang.String aName;
+        int $i0;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aName := @parameter1: java.lang.String;
+
+        parametersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        $i0 = virtualinvoke parametersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i0 == 0 goto label1;
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r0[0] = aName;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "junit.method.parameters", $r0);
+
+     label1:
+        return;
+    }
+
+    private boolean isPublicOrProtected(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiersAST, publicAST, protectedAST;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        publicAST = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(63);
+
+        protectedAST = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(64);
+
+        if publicAST != null goto label1;
+
+        if protectedAST == null goto label2;
+
+     label1:
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+
+    private boolean isPublicAndStatic(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiersAST, publicAST, staticAST;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        publicAST = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(63);
+
+        staticAST = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(65);
+
+        if publicAST == null goto label1;
+
+        if staticAST == null goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private boolean isStatic(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiersAST, staticAST;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        staticAST = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(65);
+
+        if staticAST == null goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: java.lang.String SUITE_METHOD_NAME> = "suite";
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: java.lang.String TEAR_DOWN_METHOD_NAME> = "tearDown";
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheck: java.lang.String SET_UP_METHOD_NAME> = "setUp";
+
+        return;
+    }
+}

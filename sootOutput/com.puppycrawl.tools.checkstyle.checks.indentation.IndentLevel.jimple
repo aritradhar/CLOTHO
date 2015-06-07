@@ -1,0 +1,279 @@
+public class com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel extends java.lang.Object
+{
+    private final java.util.SortedSet mLevels;
+
+    public void <init>(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel this;
+        int aIndent;
+        java.util.TreeSet $r0;
+        java.util.SortedSet $r1;
+        java.lang.Integer $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        aIndent := @parameter0: int;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.TreeSet newTreeSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels> = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aIndent);
+
+        interfaceinvoke $r1.<java.util.SortedSet: boolean add(java.lang.Object)>($r2);
+
+        return;
+    }
+
+    public transient void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel, int[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel this, aBase;
+        int[] aOffsets, arr$;
+        java.util.Iterator i$;
+        java.lang.Integer base, $r4;
+        int len$, i$, offset, $i0, $i1;
+        java.util.TreeSet $r0;
+        java.util.SortedSet $r1, $r3;
+        boolean $z0;
+        java.lang.Object $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        aBase := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        aOffsets := @parameter1: int[];
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.TreeSet newTreeSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels> = $r0;
+
+        $r1 = aBase.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        i$ = interfaceinvoke $r1.<java.util.SortedSet: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r2 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        base = (java.lang.Integer) $r2;
+
+        arr$ = aOffsets;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label2:
+        if i$ >= len$ goto label3;
+
+        offset = arr$[i$];
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        $i0 = virtualinvoke base.<java.lang.Integer: int intValue()>();
+
+        $i1 = $i0 + offset;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        interfaceinvoke $r3.<java.util.SortedSet: boolean add(java.lang.Object)>($r4);
+
+        i$ = i$ + 1;
+
+        goto label2;
+
+     label3:
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    public final boolean isMultiLevel()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel this;
+        java.util.SortedSet $r0;
+        int $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        $i0 = interfaceinvoke $r0.<java.util.SortedSet: int size()>();
+
+        if $i0 <= 1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public boolean accept(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel this;
+        int aIndent;
+        java.util.SortedSet $r0;
+        java.lang.Integer $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        aIndent := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aIndent);
+
+        $z0 = interfaceinvoke $r0.<java.util.SortedSet: boolean contains(java.lang.Object)>($r1);
+
+        return $z0;
+    }
+
+    public boolean gt(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel this;
+        int aIndent, $i0;
+        java.util.SortedSet $r0;
+        java.lang.Object $r1;
+        java.lang.Integer $r2;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        aIndent := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        $r1 = interfaceinvoke $r0.<java.util.SortedSet: java.lang.Object first()>();
+
+        $r2 = (java.lang.Integer) $r1;
+
+        $i0 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        if $i0 <= aIndent goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public void addAcceptedIndent(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel this;
+        int aIndent;
+        java.util.SortedSet $r0;
+        java.lang.Integer $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        aIndent := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aIndent);
+
+        interfaceinvoke $r0.<java.util.SortedSet: boolean add(java.lang.Object)>($r1);
+
+        return;
+    }
+
+    public void addAcceptedIndent(com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel this, aIndent;
+        java.util.SortedSet $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        aIndent := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        $r0 = aIndent.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        interfaceinvoke $r1.<java.util.SortedSet: boolean addAll(java.util.Collection)>($r0);
+
+        return;
+    }
+
+    public int getFirstIndentLevel()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel this;
+        java.util.SortedSet $r0;
+        java.lang.Object $r1;
+        java.lang.Integer $r2;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        $r1 = interfaceinvoke $r0.<java.util.SortedSet: java.lang.Object first()>();
+
+        $r2 = (java.lang.Integer) $r1;
+
+        $i0 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        return $i0;
+    }
+
+    public int getLastIndentLevel()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel this;
+        java.util.SortedSet $r0;
+        java.lang.Object $r1;
+        java.lang.Integer $r2;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        $r1 = interfaceinvoke $r0.<java.util.SortedSet: java.lang.Object last()>();
+
+        $r2 = (java.lang.Integer) $r1;
+
+        $i0 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        return $i0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel this;
+        com.google.common.base.Joiner $r0;
+        java.util.SortedSet $r1;
+        java.lang.String $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        $r0 = staticinvoke <com.google.common.base.Joiner: com.google.common.base.Joiner on(java.lang.String)>(", ");
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: java.util.SortedSet mLevels>;
+
+        $r2 = virtualinvoke $r0.<com.google.common.base.Joiner: java.lang.String join(java.lang.Iterable)>($r1);
+
+        return $r2;
+    }
+}

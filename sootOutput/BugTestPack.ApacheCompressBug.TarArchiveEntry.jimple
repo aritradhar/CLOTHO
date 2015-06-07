@@ -1,0 +1,378 @@
+public class BugTestPack.ApacheCompressBug.TarArchiveEntry extends java.lang.Object
+{
+    private java.lang.String name;
+    private int mode;
+    private int userId;
+    private int groupId;
+    private long size;
+    private long modTime;
+    private byte linkFlag;
+    private java.lang.String linkName;
+    private java.lang.String magic;
+    private java.lang.String version;
+    private java.lang.String userName;
+    private java.lang.String groupName;
+    private int devMajor;
+    private int devMinor;
+    private java.io.File file;
+    public static final int MAX_NAMELEN;
+    public static final int DEFAULT_DIR_MODE;
+    public static final int DEFAULT_FILE_MODE;
+    public static final int MILLIS_PER_SECOND;
+
+    private void <init>()
+    {
+        BugTestPack.ApacheCompressBug.TarArchiveEntry r0;
+        java.lang.String r1;
+        int $i0;
+
+        r0 := @this: BugTestPack.ApacheCompressBug.TarArchiveEntry;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String magic> = "";
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String version> = "00";
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String name> = "";
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String linkName> = "";
+
+        r1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>("user.name", "");
+
+        $i0 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        if $i0 <= 31 goto label1;
+
+        r1 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>(0, 31);
+
+     label1:
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int userId> = 0;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int groupId> = 0;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String userName> = r1;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String groupName> = "";
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.io.File file> = null;
+
+        return;
+    }
+
+    public void <init>(java.lang.String, byte)
+    {
+        BugTestPack.ApacheCompressBug.TarArchiveEntry r0;
+        java.lang.String r1;
+        byte b0;
+
+        r0 := @this: BugTestPack.ApacheCompressBug.TarArchiveEntry;
+
+        r1 := @parameter0: java.lang.String;
+
+        b0 := @parameter1: byte;
+
+        specialinvoke r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: void <init>(java.lang.String)>(r1);
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: byte linkFlag> = b0;
+
+        return;
+    }
+
+    public void <init>(java.io.File)
+    {
+        BugTestPack.ApacheCompressBug.TarArchiveEntry r0;
+        java.io.File r1;
+        java.lang.String $r2, $r3;
+
+        r0 := @this: BugTestPack.ApacheCompressBug.TarArchiveEntry;
+
+        r1 := @parameter0: java.io.File;
+
+        $r2 = virtualinvoke r1.<java.io.File: java.lang.String getPath()>();
+
+        $r3 = staticinvoke <BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String normalizeFileName(java.lang.String)>($r2);
+
+        specialinvoke r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: void <init>(java.io.File,java.lang.String)>(r1, $r3);
+
+        return;
+    }
+
+    public void <init>(java.lang.String)
+    {
+        BugTestPack.ApacheCompressBug.TarArchiveEntry r0;
+        java.lang.String r1, r3;
+        boolean z0;
+        byte $b0, $b3;
+        java.util.Date $r2;
+        long $l1, $l2;
+        char $c4;
+
+        r0 := @this: BugTestPack.ApacheCompressBug.TarArchiveEntry;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: void <init>()>();
+
+        r3 = staticinvoke <BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String normalizeFileName(java.lang.String)>(r1);
+
+        z0 = virtualinvoke r3.<java.lang.String: boolean endsWith(java.lang.String)>("/");
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int devMajor> = 0;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int devMinor> = 0;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String name> = r3;
+
+        if z0 == 0 goto label1;
+
+        $c4 = 16877;
+
+        goto label2;
+
+     label1:
+        $c4 = 33188;
+
+     label2:
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int mode> = $c4;
+
+        if z0 == 0 goto label3;
+
+        $b3 = 53;
+
+        goto label4;
+
+     label3:
+        $b3 = 48;
+
+     label4:
+        $b0 = (byte) $b3;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: byte linkFlag> = $b0;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int userId> = 0;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int groupId> = 0;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: long size> = 0L;
+
+        $r2 = new java.util.Date;
+
+        specialinvoke $r2.<java.util.Date: void <init>()>();
+
+        $l1 = virtualinvoke $r2.<java.util.Date: long getTime()>();
+
+        $l2 = $l1 / 1000L;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: long modTime> = $l2;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String linkName> = "";
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String userName> = "";
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String groupName> = "";
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int devMajor> = 0;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int devMinor> = 0;
+
+        return;
+    }
+
+    public void <init>(java.io.File, java.lang.String)
+    {
+        BugTestPack.ApacheCompressBug.TarArchiveEntry r0;
+        java.io.File r1;
+        java.lang.String r2, $r4, $r6;
+        int i0, $i4;
+        boolean $z0;
+        long $l1, $l2, $l3;
+        char $c5;
+        java.lang.StringBuilder $r3, $r5;
+
+        r0 := @this: BugTestPack.ApacheCompressBug.TarArchiveEntry;
+
+        r1 := @parameter0: java.io.File;
+
+        r2 := @parameter1: java.lang.String;
+
+        specialinvoke r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: void <init>()>();
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.io.File file> = r1;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String linkName> = "";
+
+        $z0 = virtualinvoke r1.<java.io.File: boolean isDirectory()>();
+
+        if $z0 == 0 goto label3;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int mode> = 16877;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: byte linkFlag> = 53;
+
+        i0 = virtualinvoke r2.<java.lang.String: int length()>();
+
+        $i4 = i0 - 1;
+
+        $c5 = virtualinvoke r2.<java.lang.String: char charAt(int)>($i4);
+
+        if $c5 == 47 goto label1;
+
+        $r3 = new java.lang.StringBuilder;
+
+        $r4 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2);
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>($r4);
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String name> = $r6;
+
+        goto label2;
+
+     label1:
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String name> = r2;
+
+     label2:
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: long size> = 0L;
+
+        goto label4;
+
+     label3:
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int mode> = 33188;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: byte linkFlag> = 48;
+
+        $l1 = virtualinvoke r1.<java.io.File: long length()>();
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: long size> = $l1;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: java.lang.String name> = r2;
+
+     label4:
+        $l2 = virtualinvoke r1.<java.io.File: long lastModified()>();
+
+        $l3 = $l2 / 1000L;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: long modTime> = $l3;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int devMajor> = 0;
+
+        r0.<BugTestPack.ApacheCompressBug.TarArchiveEntry: int devMinor> = 0;
+
+        return;
+    }
+
+    private static java.lang.String normalizeFileName(java.lang.String)
+    {
+        java.lang.String r0, r1, $r2, r4;
+        char c0, c1, $c2;
+        java.util.Locale $r3;
+        boolean $z0, $z1;
+        int $i3, $i4, $i5, i6;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r2 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("os.name");
+
+        $r3 = <java.util.Locale: java.util.Locale US>;
+
+        r1 = virtualinvoke $r2.<java.lang.String: java.lang.String toLowerCase(java.util.Locale)>($r3);
+
+        if r1 == null goto label4;
+
+        $z1 = virtualinvoke r1.<java.lang.String: boolean startsWith(java.lang.String)>("windows");
+
+        if $z1 == 0 goto label3;
+
+        $i5 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        if $i5 <= 2 goto label4;
+
+        c0 = virtualinvoke r0.<java.lang.String: char charAt(int)>(0);
+
+        c1 = virtualinvoke r0.<java.lang.String: char charAt(int)>(1);
+
+        if c1 != 58 goto label4;
+
+        if c0 < 97 goto label1;
+
+        if c0 <= 122 goto label2;
+
+     label1:
+        if c0 < 65 goto label4;
+
+        if c0 > 90 goto label4;
+
+     label2:
+        r0 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int)>(2);
+
+        goto label4;
+
+     label3:
+        $i3 = virtualinvoke r1.<java.lang.String: int indexOf(java.lang.String)>("netware");
+
+        if $i3 <= -1 goto label4;
+
+        i6 = virtualinvoke r0.<java.lang.String: int indexOf(int)>(58);
+
+        if i6 == -1 goto label4;
+
+        $i4 = i6 + 1;
+
+        r0 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int)>($i4);
+
+     label4:
+        $c2 = <java.io.File: char separatorChar>;
+
+        r4 = virtualinvoke r0.<java.lang.String: java.lang.String replace(char,char)>($c2, 47);
+
+        goto label6;
+
+     label5:
+        r4 = virtualinvoke r4.<java.lang.String: java.lang.String substring(int)>(1);
+
+     label6:
+        $z0 = virtualinvoke r4.<java.lang.String: boolean startsWith(java.lang.String)>("/");
+
+        if $z0 != 0 goto label5;
+
+        return r4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        java.io.File r1, $r2;
+        BugTestPack.ApacheCompressBug.TarArchiveEntry $r3;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r2 = new java.io.File;
+
+        specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>("F:\\");
+
+        r1 = $r2;
+
+        $r3 = new BugTestPack.ApacheCompressBug.TarArchiveEntry;
+
+        specialinvoke $r3.<BugTestPack.ApacheCompressBug.TarArchiveEntry: void <init>(java.io.File)>(r1);
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <BugTestPack.ApacheCompressBug.TarArchiveEntry: int MILLIS_PER_SECOND> = 1000;
+
+        <BugTestPack.ApacheCompressBug.TarArchiveEntry: int DEFAULT_FILE_MODE> = 33188;
+
+        <BugTestPack.ApacheCompressBug.TarArchiveEntry: int DEFAULT_DIR_MODE> = 16877;
+
+        <BugTestPack.ApacheCompressBug.TarArchiveEntry: int MAX_NAMELEN> = 31;
+
+        return;
+    }
+}

@@ -1,0 +1,60 @@
+class com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator extends com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator
+{
+    final com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this$0;
+
+    private void <init>(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator this;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck l1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this$0> = l1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator: void <init>(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck,com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$1)>(l1, null);
+
+        return;
+    }
+
+    protected int calcChecksum(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator this;
+        java.lang.String aLine;
+        boolean $z0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator;
+
+        aLine := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke aLine.<java.lang.String: boolean startsWith(java.lang.String)>("import ");
+
+        if $z0 == 0 goto label1;
+
+        return -2147483648;
+
+     label1:
+        $i0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator: int calcChecksum(java.lang.String)>(aLine);
+
+        return $i0;
+    }
+
+    void <init>(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck, com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$1)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator this;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck x0;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$1 x1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        x1 := @parameter1: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator: void <init>(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck)>(x0);
+
+        return;
+    }
+}

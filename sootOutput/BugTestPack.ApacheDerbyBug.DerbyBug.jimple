@@ -1,0 +1,120 @@
+public class BugTestPack.ApacheDerbyBug.DerbyBug extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugTestPack.ApacheDerbyBug.DerbyBug this;
+
+        this := @this: BugTestPack.ApacheDerbyBug.DerbyBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.lang.String isolateAnyInitialIdentifier(java.lang.String)
+    {
+        java.lang.String sql, $r0;
+        int length, idx;
+        char next;
+        boolean $z0;
+
+        sql := @parameter0: java.lang.String;
+
+        length = virtualinvoke sql.<java.lang.String: int length()>();
+
+        if length != 0 goto label1;
+
+        return sql;
+
+     label1:
+        idx = 1;
+
+        next = virtualinvoke sql.<java.lang.String: char charAt(int)>(1);
+
+        goto label4;
+
+     label2:
+        $z0 = staticinvoke <java.lang.Character: boolean isLetter(char)>(next);
+
+        if $z0 != 0 goto label3;
+
+        goto label5;
+
+     label3:
+        idx = idx + 1;
+
+        next = virtualinvoke sql.<java.lang.String: char charAt(int)>(idx);
+
+     label4:
+        if idx < length goto label2;
+
+     label5:
+        $r0 = virtualinvoke sql.<java.lang.String: java.lang.String substring(int,int)>(0, idx);
+
+        return $r0;
+    }
+
+    public static java.lang.String isolateAnyInitialIdentifierBug2(java.lang.String)
+    {
+        java.lang.String sql, $r0;
+        int idx, length;
+        char next;
+        boolean $z0, $z1;
+
+        sql := @parameter0: java.lang.String;
+
+        idx = 0;
+
+        length = virtualinvoke sql.<java.lang.String: int length()>();
+
+        if length != 0 goto label1;
+
+        return sql;
+
+     label1:
+        next = virtualinvoke sql.<java.lang.String: char charAt(int)>(0);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isLetter(char)>(next);
+
+        if $z0 != 0 goto label4;
+
+        return sql;
+
+     label2:
+        $z1 = staticinvoke <java.lang.Character: boolean isLetter(char)>(next);
+
+        if $z1 != 0 goto label3;
+
+        goto label5;
+
+     label3:
+        idx = idx + 1;
+
+        next = virtualinvoke sql.<java.lang.String: char charAt(int)>(idx);
+
+     label4:
+        if idx < length goto label2;
+
+     label5:
+        $r0 = virtualinvoke sql.<java.lang.String: java.lang.String substring(int,int)>(0, idx);
+
+        return $r0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        java.io.PrintStream $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("haha");
+
+        staticinvoke <BugTestPack.ApacheDerbyBug.DerbyBug: java.lang.String isolateAnyInitialIdentifier(java.lang.String)>("abc");
+
+        return;
+    }
+}

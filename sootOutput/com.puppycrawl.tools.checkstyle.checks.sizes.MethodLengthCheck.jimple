@@ -1,0 +1,158 @@
+public class com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mCountEmpty;
+    private static final int DEFAULT_MAX_LINES;
+    private int mMax;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck: boolean mCountEmpty> = 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck: int mMax> = 150;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 9;
+
+        $r0[1] = 8;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, openingBrace, closingBrace;
+        int length, lastLine, i, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        com.puppycrawl.tools.checkstyle.api.FileContents contents;
+        boolean $z0, $z1, $z2;
+        java.lang.Object[] $r0;
+        java.lang.Integer $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        openingBrace = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        if openingBrace == null goto label5;
+
+        closingBrace = virtualinvoke openingBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(74);
+
+        $i0 = virtualinvoke closingBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke openingBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = $i0 - $i1;
+
+        length = $i2 + 1;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck: boolean mCountEmpty>;
+
+        if $z0 != 0 goto label4;
+
+        contents = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        lastLine = virtualinvoke closingBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i7 = virtualinvoke openingBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        i = $i7 - 1;
+
+     label1:
+        if i >= lastLine goto label4;
+
+        $z1 = virtualinvoke contents.<com.puppycrawl.tools.checkstyle.api.FileContents: boolean lineIsBlank(int)>(i);
+
+        if $z1 != 0 goto label2;
+
+        $z2 = virtualinvoke contents.<com.puppycrawl.tools.checkstyle.api.FileContents: boolean lineIsComment(int)>(i);
+
+        if $z2 == 0 goto label3;
+
+     label2:
+        length = length + -1;
+
+     label3:
+        i = i + 1;
+
+        goto label1;
+
+     label4:
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck: int mMax>;
+
+        if length <= $i3 goto label5;
+
+        $i4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i5 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(length);
+
+        $r0[0] = $r1;
+
+        $i6 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck: int mMax>;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+
+        $r0[1] = $r2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i4, $i5, "maxLen.method", $r0);
+
+     label5:
+        return;
+    }
+
+    public void setMax(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck this;
+        int aLength;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck;
+
+        aLength := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck: int mMax> = aLength;
+
+        return;
+    }
+
+    public void setCountEmpty(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck this;
+        boolean aCountEmpty;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck;
+
+        aCountEmpty := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck: boolean mCountEmpty> = aCountEmpty;
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck: int DEFAULT_MAX_LINES> = 150;
+
+        return;
+    }
+}

@@ -1,0 +1,310 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mAllowNoEmptyLineBetweenFields;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public final void setAllowNoEmptyLineBetweenFields(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: boolean mAllowNoEmptyLineBetweenFields> = aAllow;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
+
+        $r0 = newarray (int)[10];
+
+        $r0[0] = 16;
+
+        $r0[1] = 31;
+
+        $r0[2] = 14;
+
+        $r0[3] = 15;
+
+        $r0[4] = 158;
+
+        $r0[5] = 12;
+
+        $r0[6] = 11;
+
+        $r0[7] = 9;
+
+        $r0[8] = 8;
+
+        $r0[9] = 10;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nextToken, $r0;
+        int astType, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7;
+        java.lang.Object[] $r1, $r3, $r5, $r7, $r9;
+        java.lang.String $r2, $r4, $r6, $r8, $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        nextToken = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if nextToken == null goto label8;
+
+        $i0 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 74 goto label8;
+
+        astType = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch(astType)
+        {
+            case 10: goto label1;
+            case 16: goto label6;
+            case 31: goto label3;
+            default: goto label7;
+        };
+
+     label1:
+        $z5 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: boolean isTypeField(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z5 == 0 goto label8;
+
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: boolean hasEmptyLineAfter(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z4 != 0 goto label8;
+
+        $z6 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: boolean mAllowNoEmptyLineBetweenFields>;
+
+        if $z6 == 0 goto label2;
+
+        $i8 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i8 == 10 goto label2;
+
+        $i9 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r9 = newarray (java.lang.Object)[1];
+
+        $r10 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r9[0] = $r10;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: void log(int,java.lang.String,java.lang.Object[])>($i9, "empty.line.separator", $r9);
+
+        goto label8;
+
+     label2:
+        $z7 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: boolean mAllowNoEmptyLineBetweenFields>;
+
+        if $z7 != 0 goto label8;
+
+        $i7 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r7 = newarray (java.lang.Object)[1];
+
+        $r8 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r7[0] = $r8;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: void log(int,java.lang.String,java.lang.Object[])>($i7, "empty.line.separator", $r7);
+
+        goto label8;
+
+     label3:
+        $i1 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if astType == $i1 goto label4;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: boolean hasEmptyLineAfter(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 == 0 goto label5;
+
+     label4:
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i2 <= 1 goto label8;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: boolean hasEmptyLineBefore(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 != 0 goto label8;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        if $r0 != null goto label8;
+
+     label5:
+        $i3 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r2 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r1[0] = $r2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: void log(int,java.lang.String,java.lang.Object[])>($i3, "empty.line.separator", $r1);
+
+        goto label8;
+
+     label6:
+        $i4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i4 <= 1 goto label7;
+
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: boolean hasEmptyLineBefore(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z3 != 0 goto label7;
+
+        $i6 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r6 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r5[0] = $r6;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: void log(int,java.lang.String,java.lang.Object[])>($i6, "empty.line.separator", $r5);
+
+     label7:
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: boolean hasEmptyLineAfter(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z2 != 0 goto label8;
+
+        $i5 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r4 = virtualinvoke nextToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r3[0] = $r4;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: void log(int,java.lang.String,java.lang.Object[])>($i5, "empty.line.separator", $r3);
+
+     label8:
+        return;
+    }
+
+    private boolean hasEmptyLineAfter(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aToken, lastToken, $r0, $r1;
+        int $i0, $i1, $i2;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
+
+        aToken := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        lastToken = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        if null != lastToken goto label1;
+
+        lastToken = virtualinvoke aToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+     label1:
+        $r1 = virtualinvoke aToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        $i0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke lastToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = $i0 - $i1;
+
+        if $i2 <= 1 goto label2;
+
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+
+    private boolean hasEmptyLineBefore(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aToken;
+        int lineNo, $i0;
+        java.lang.String lineBefore, $r1;
+        java.lang.String[] $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
+
+        aToken := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        lineNo = virtualinvoke aToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck: java.lang.String[] getLines()>();
+
+        $i0 = lineNo - 2;
+
+        lineBefore = $r0[$i0];
+
+        $r1 = virtualinvoke lineBefore.<java.lang.String: java.lang.String trim()>();
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean isEmpty()>();
+
+        return $z0;
+    }
+
+    private boolean isTypeField(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aVariableDef, $r0, $r1;
+        int parentType;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
+
+        aVariableDef := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aVariableDef.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        parentType = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if parentType != 14 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+}

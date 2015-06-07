@@ -1,0 +1,407 @@
+public abstract class com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck extends com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter implements com.puppycrawl.tools.checkstyle.api.FileSetCheck
+{
+    private com.puppycrawl.tools.checkstyle.api.MessageDispatcher mDispatcher;
+    private java.lang.String[] mFileExtensions;
+    private final com.puppycrawl.tools.checkstyle.api.LocalizedMessages mMessages;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        java.lang.String[] $r0;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: void <init>()>();
+
+        $r0 = newarray (java.lang.String)[0];
+
+        this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String[] mFileExtensions> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.LocalizedMessages mMessages> = $r1;
+
+        return;
+    }
+
+    protected abstract void processFiltered(java.io.File, java.util.List);
+
+    public void init()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        return;
+    }
+
+    public void destroy()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        return;
+    }
+
+    public void beginProcessing(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        java.lang.String aCharset;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        aCharset := @parameter0: java.lang.String;
+
+        return;
+    }
+
+    public final java.util.TreeSet process(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        java.io.File aFile;
+        java.util.List aLines;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages $r0, $r1;
+        boolean $z0;
+        java.util.TreeSet $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void reset()>();
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: boolean fileExtensionMatches(java.io.File)>(aFile);
+
+        if $z0 == 0 goto label1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void processFiltered(java.io.File,java.util.List)>(aFile, aLines);
+
+     label1:
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: java.util.TreeSet getMessages()>();
+
+        return $r2;
+    }
+
+    public void finishProcessing()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        return;
+    }
+
+    public final void setMessageDispatcher(com.puppycrawl.tools.checkstyle.api.MessageDispatcher)
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        com.puppycrawl.tools.checkstyle.api.MessageDispatcher aDispatcher;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        aDispatcher := @parameter0: com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+
+        this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.MessageDispatcher mDispatcher> = aDispatcher;
+
+        return;
+    }
+
+    protected final com.puppycrawl.tools.checkstyle.api.MessageDispatcher getMessageDispatcher()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        com.puppycrawl.tools.checkstyle.api.MessageDispatcher $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.MessageDispatcher mDispatcher>;
+
+        return $r0;
+    }
+
+    public final void setFileExtensions(java.lang.String[])
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        java.lang.String[] aExtensions, $r0, $r2, $r6;
+        int i, $i0, $i1;
+        java.lang.String extension, $r5;
+        boolean $z0;
+        java.lang.StringBuilder $r1, $r3, $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        aExtensions := @parameter0: java.lang.String[];
+
+        if aExtensions != null goto label1;
+
+        this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String[] mFileExtensions> = null;
+
+        return;
+
+     label1:
+        $i0 = lengthof aExtensions;
+
+        $r0 = newarray (java.lang.String)[$i0];
+
+        this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String[] mFileExtensions> = $r0;
+
+        i = 0;
+
+     label2:
+        $i1 = lengthof aExtensions;
+
+        if i >= $i1 goto label5;
+
+        extension = aExtensions[i];
+
+        $z0 = virtualinvoke extension.<java.lang.String: boolean startsWith(java.lang.String)>(".");
+
+        if $z0 == 0 goto label3;
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String[] mFileExtensions>;
+
+        $r6[i] = extension;
+
+        goto label4;
+
+     label3:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String[] mFileExtensions>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(extension);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r2[i] = $r5;
+
+     label4:
+        i = i + 1;
+
+        goto label2;
+
+     label5:
+        return;
+    }
+
+    protected final com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.LocalizedMessages mMessages>;
+
+        return $r0;
+    }
+
+    public final transient void log(int, java.lang.String, java.lang.Object[])
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        int aLine;
+        java.lang.String aKey;
+        java.lang.Object[] aArgs;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        aLine := @parameter0: int;
+
+        aKey := @parameter1: java.lang.String;
+
+        aArgs := @parameter2: java.lang.Object[];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void log(int,int,java.lang.String,java.lang.Object[])>(aLine, 0, aKey, aArgs);
+
+        return;
+    }
+
+    public final transient void log(int, int, java.lang.String, java.lang.Object[])
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        int aLineNo, aColNo;
+        java.lang.String aKey, $r2, $r4, $r8;
+        java.lang.Object[] aArgs;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages $r0;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r1;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r3;
+        java.lang.Class $r5;
+        java.util.Map $r6;
+        java.lang.Object $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        aLineNo := @parameter0: int;
+
+        aColNo := @parameter1: int;
+
+        aKey := @parameter2: java.lang.String;
+
+        aArgs := @parameter3: java.lang.Object[];
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        $r1 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String getMessageBundle()>();
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()>();
+
+        $r4 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String getId()>();
+
+        $r5 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r6 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.util.Map getCustomMessages()>();
+
+        $r7 = interfaceinvoke $r6.<java.util.Map: java.lang.Object get(java.lang.Object)>(aKey);
+
+        $r8 = (java.lang.String) $r7;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,int,java.lang.String,java.lang.String,java.lang.Object[],com.puppycrawl.tools.checkstyle.api.SeverityLevel,java.lang.String,java.lang.Class,java.lang.String)>(aLineNo, aColNo, $r2, aKey, aArgs, $r3, $r4, $r5, $r8);
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void add(com.puppycrawl.tools.checkstyle.api.LocalizedMessage)>($r1);
+
+        return;
+    }
+
+    protected final void fireErrors(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        java.lang.String aFileName;
+        java.util.TreeSet errors;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages $r0, $r1;
+        com.puppycrawl.tools.checkstyle.api.MessageDispatcher $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        aFileName := @parameter0: java.lang.String;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        errors = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: java.util.TreeSet getMessages()>();
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void reset()>();
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: com.puppycrawl.tools.checkstyle.api.MessageDispatcher getMessageDispatcher()>();
+
+        interfaceinvoke $r2.<com.puppycrawl.tools.checkstyle.api.MessageDispatcher: void fireErrors(java.lang.String,java.util.SortedSet)>(aFileName, errors);
+
+        return;
+    }
+
+    private boolean fileExtensionMatches(java.io.File)
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck this;
+        java.io.File aFile;
+        java.lang.String[] withDotExtensions, $r0, $r1, $r2, $r3, $r4, extension;
+        int i, len$, i$, $i0, $i1, $i2;
+        java.lang.String extension, fileExtension, $r8, i;
+        boolean $z0, $z1;
+        java.lang.StringBuilder $r5, $r6, $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String[] mFileExtensions>;
+
+        if null == $r0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String[] mFileExtensions>;
+
+        $i0 = lengthof $r1;
+
+        if $i0 != 0 goto label2;
+
+     label1:
+        return 1;
+
+     label2:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String[] mFileExtensions>;
+
+        $i1 = lengthof $r2;
+
+        withDotExtensions = newarray (java.lang.String)[$i1];
+
+        i = 0;
+
+     label3:
+        $r3 = this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String[] mFileExtensions>;
+
+        $i2 = lengthof $r3;
+
+        if i >= $i2 goto label6;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: java.lang.String[] mFileExtensions>;
+
+        extension = $r4[i];
+
+        $z1 = virtualinvoke extension.<java.lang.String: boolean startsWith(java.lang.String)>(".");
+
+        if $z1 == 0 goto label4;
+
+        withDotExtensions[i] = extension;
+
+        goto label5;
+
+     label4:
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r6 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(extension);
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        withDotExtensions[i] = $r8;
+
+     label5:
+        i = i + 1;
+
+        goto label3;
+
+     label6:
+        i = virtualinvoke aFile.<java.io.File: java.lang.String getName()>();
+
+        extension = withDotExtensions;
+
+        len$ = lengthof extension;
+
+        i$ = 0;
+
+     label7:
+        if i$ >= len$ goto label9;
+
+        fileExtension = extension[i$];
+
+        $z0 = virtualinvoke i.<java.lang.String: boolean endsWith(java.lang.String)>(fileExtension);
+
+        if $z0 == 0 goto label8;
+
+        return 1;
+
+     label8:
+        i$ = i$ + 1;
+
+        goto label7;
+
+     label9:
+        return 0;
+    }
+}

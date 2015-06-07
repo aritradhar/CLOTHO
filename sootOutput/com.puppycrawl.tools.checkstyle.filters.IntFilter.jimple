@@ -1,0 +1,5 @@
+interface  com.puppycrawl.tools.checkstyle.filters.IntFilter extends java.lang.Object
+{
+
+    public abstract boolean accept(int);
+}

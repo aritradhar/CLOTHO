@@ -1,0 +1,646 @@
+public final class com.puppycrawl.tools.checkstyle.api.FileContents extends java.lang.Object implements com.puppycrawl.tools.checkstyle.grammars.CommentListener
+{
+    private static final java.lang.String MATCH_SINGLELINE_COMMENT_PAT;
+    private static final java.util.regex.Pattern MATCH_SINGLELINE_COMMENT;
+    private final java.lang.String mFilename;
+    private final com.puppycrawl.tools.checkstyle.api.FileText mText;
+    private final java.util.Map mJavadocComments;
+    private final java.util.Map mCPlusPlusComments;
+    private final java.util.Map mCComments;
+
+    public void <init>(java.lang.String, java.lang.String[])
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        java.lang.String aFilename;
+        java.lang.String[] aLines;
+        java.util.HashMap $r0, $r1, $r2;
+        java.io.File $r3;
+        java.util.List $r4;
+        com.puppycrawl.tools.checkstyle.api.FileText $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aFilename := @parameter0: java.lang.String;
+
+        aLines := @parameter1: java.lang.String[];
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mJavadocComments> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCPlusPlusComments> = $r1;
+
+        $r2 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCComments> = $r2;
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String mFilename> = aFilename;
+
+        $r3 = new java.io.File;
+
+        specialinvoke $r3.<java.io.File: void <init>(java.lang.String)>(aFilename);
+
+        $r4 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(aLines);
+
+        $r5 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FileText: com.puppycrawl.tools.checkstyle.api.FileText fromLines(java.io.File,java.util.List)>($r3, $r4);
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.FileText mText> = $r5;
+
+        return;
+    }
+
+    public void <init>(com.puppycrawl.tools.checkstyle.api.FileText)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        com.puppycrawl.tools.checkstyle.api.FileText aText;
+        java.util.HashMap $r0, $r1, $r2;
+        java.io.File $r3;
+        java.lang.String $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aText := @parameter0: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mJavadocComments> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCPlusPlusComments> = $r1;
+
+        $r2 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCComments> = $r2;
+
+        $r3 = virtualinvoke aText.<com.puppycrawl.tools.checkstyle.api.FileText: java.io.File getFile()>();
+
+        $r4 = virtualinvoke $r3.<java.io.File: java.lang.String toString()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String mFilename> = $r4;
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.FileText mText> = aText;
+
+        return;
+    }
+
+    public void reportSingleLineComment(java.lang.String, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        java.lang.String aType;
+        int aStartLineNo, aStartColNo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aType := @parameter0: java.lang.String;
+
+        aStartLineNo := @parameter1: int;
+
+        aStartColNo := @parameter2: int;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: void reportCppComment(int,int)>(aStartLineNo, aStartColNo);
+
+        return;
+    }
+
+    public void reportBlockComment(java.lang.String, int, int, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        java.lang.String aType;
+        int aStartLineNo, aStartColNo, aEndLineNo, aEndColNo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aType := @parameter0: java.lang.String;
+
+        aStartLineNo := @parameter1: int;
+
+        aStartColNo := @parameter2: int;
+
+        aEndLineNo := @parameter3: int;
+
+        aEndColNo := @parameter4: int;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: void reportCComment(int,int,int,int)>(aStartLineNo, aStartColNo, aEndLineNo, aEndColNo);
+
+        return;
+    }
+
+    public void reportCppComment(int, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        int aStartLineNo, aStartColNo, $i0, $i1, $i2;
+        java.lang.String line, $r1;
+        java.lang.String[] txt, $r0;
+        com.puppycrawl.tools.checkstyle.api.Comment comment, $r2;
+        java.util.Map $r3;
+        java.lang.Integer $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aStartLineNo := @parameter0: int;
+
+        aStartColNo := @parameter1: int;
+
+        $i0 = aStartLineNo - 1;
+
+        line = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String line(int)>($i0);
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r1 = virtualinvoke line.<java.lang.String: java.lang.String substring(int)>(aStartColNo);
+
+        $r0[0] = $r1;
+
+        txt = $r0;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.api.Comment;
+
+        $i1 = virtualinvoke line.<java.lang.String: int length()>();
+
+        $i2 = $i1 - 1;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.api.Comment: void <init>(java.lang.String[],int,int,int)>(txt, aStartColNo, aStartLineNo, $i2);
+
+        comment = $r2;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCPlusPlusComments>;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aStartLineNo);
+
+        interfaceinvoke $r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r4, comment);
+
+        return;
+    }
+
+    public com.google.common.collect.ImmutableMap getCppComments()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        java.util.Map $r0;
+        com.google.common.collect.ImmutableMap $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCPlusPlusComments>;
+
+        $r1 = staticinvoke <com.google.common.collect.ImmutableMap: com.google.common.collect.ImmutableMap copyOf(java.util.Map)>($r0);
+
+        return $r1;
+    }
+
+    public void reportCComment(int, int, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        int aStartLineNo, aStartColNo, aEndLineNo, aEndColNo, $i0, $i1, $i2;
+        java.lang.String[] cc;
+        com.puppycrawl.tools.checkstyle.api.Comment comment, $r0;
+        java.util.List entries;
+        java.util.Map $r1, $r3, $r8, $r9;
+        java.lang.Integer $r2, $r5, $r7, $r12;
+        boolean $z0;
+        java.lang.String $r6;
+        java.lang.Object $r11;
+        java.util.ArrayList entries;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aStartLineNo := @parameter0: int;
+
+        aStartColNo := @parameter1: int;
+
+        aEndLineNo := @parameter2: int;
+
+        aEndColNo := @parameter3: int;
+
+        cc = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String[] extractCComment(int,int,int,int)>(aStartLineNo, aStartColNo, aEndLineNo, aEndColNo);
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.Comment;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.Comment: void <init>(java.lang.String[],int,int,int)>(cc, aStartColNo, aEndLineNo, aEndColNo);
+
+        comment = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCComments>;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aStartLineNo);
+
+        $z0 = interfaceinvoke $r1.<java.util.Map: boolean containsKey(java.lang.Object)>($r2);
+
+        if $z0 == 0 goto label1;
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCComments>;
+
+        $r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aStartLineNo);
+
+        $r11 = interfaceinvoke $r9.<java.util.Map: java.lang.Object get(java.lang.Object)>($r12);
+
+        entries = (java.util.List) $r11;
+
+        interfaceinvoke entries.<java.util.List: boolean add(java.lang.Object)>(comment);
+
+        goto label2;
+
+     label1:
+        entries = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        interfaceinvoke entries.<java.util.List: boolean add(java.lang.Object)>(comment);
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCComments>;
+
+        $r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aStartLineNo);
+
+        interfaceinvoke $r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r5, entries);
+
+     label2:
+        $i0 = aStartLineNo - 1;
+
+        $r6 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String line(int)>($i0);
+
+        $i2 = virtualinvoke $r6.<java.lang.String: int indexOf(java.lang.String,int)>("/**", aStartColNo);
+
+        if $i2 == -1 goto label3;
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mJavadocComments>;
+
+        $i1 = aEndLineNo - 1;
+
+        $r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        interfaceinvoke $r8.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r7, comment);
+
+     label3:
+        return;
+    }
+
+    public com.google.common.collect.ImmutableMap getCComments()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        java.util.Map $r0;
+        com.google.common.collect.ImmutableMap $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCComments>;
+
+        $r1 = staticinvoke <com.google.common.collect.ImmutableMap: com.google.common.collect.ImmutableMap copyOf(java.util.Map)>($r0);
+
+        return $r1;
+    }
+
+    private java.lang.String[] extractCComment(int, int, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        int aStartLineNo, aStartColNo, aEndLineNo, aEndColNo, i, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10;
+        java.lang.String[] retVal;
+        java.lang.String $r0, $r1, $r2, $r3, $r4, $r5, $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aStartLineNo := @parameter0: int;
+
+        aStartColNo := @parameter1: int;
+
+        aEndLineNo := @parameter2: int;
+
+        aEndColNo := @parameter3: int;
+
+        if aStartLineNo != aEndLineNo goto label1;
+
+        retVal = newarray (java.lang.String)[1];
+
+        $i9 = aStartLineNo - 1;
+
+        $r5 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String line(int)>($i9);
+
+        $i10 = aEndColNo + 1;
+
+        $r6 = virtualinvoke $r5.<java.lang.String: java.lang.String substring(int,int)>(aStartColNo, $i10);
+
+        retVal[0] = $r6;
+
+        goto label4;
+
+     label1:
+        $i0 = aEndLineNo - aStartLineNo;
+
+        $i1 = $i0 + 1;
+
+        retVal = newarray (java.lang.String)[$i1];
+
+        $i2 = aStartLineNo - 1;
+
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String line(int)>($i2);
+
+        $r1 = virtualinvoke $r0.<java.lang.String: java.lang.String substring(int)>(aStartColNo);
+
+        retVal[0] = $r1;
+
+        i = aStartLineNo;
+
+     label2:
+        if i >= aEndLineNo goto label3;
+
+        $i7 = i - aStartLineNo;
+
+        $i8 = $i7 + 1;
+
+        $r4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String line(int)>(i);
+
+        retVal[$i8] = $r4;
+
+        i = i + 1;
+
+        goto label2;
+
+     label3:
+        $i3 = lengthof retVal;
+
+        $i5 = $i3 - 1;
+
+        $i4 = aEndLineNo - 1;
+
+        $r2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String line(int)>($i4);
+
+        $i6 = aEndColNo + 1;
+
+        $r3 = virtualinvoke $r2.<java.lang.String: java.lang.String substring(int,int)>(0, $i6);
+
+        retVal[$i5] = $r3;
+
+     label4:
+        return retVal;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.TextBlock getJavadocBefore(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        int aLineNo, lineNo;
+        java.util.Map $r0;
+        java.lang.Integer $r1;
+        java.lang.Object $r2;
+        com.puppycrawl.tools.checkstyle.api.TextBlock $r3;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aLineNo := @parameter0: int;
+
+        lineNo = aLineNo - 2;
+
+     label1:
+        if lineNo <= 0 goto label3;
+
+        $z0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: boolean lineIsBlank(int)>(lineNo);
+
+        if $z0 != 0 goto label2;
+
+        $z1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: boolean lineIsComment(int)>(lineNo);
+
+        if $z1 == 0 goto label3;
+
+     label2:
+        lineNo = lineNo + -1;
+
+        goto label1;
+
+     label3:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mJavadocComments>;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(lineNo);
+
+        $r2 = interfaceinvoke $r0.<java.util.Map: java.lang.Object get(java.lang.Object)>($r1);
+
+        $r3 = (com.puppycrawl.tools.checkstyle.api.TextBlock) $r2;
+
+        return $r3;
+    }
+
+    private java.lang.String line(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        int aLineNo;
+        com.puppycrawl.tools.checkstyle.api.FileText $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aLineNo := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.FileText mText>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String get(int)>(aLineNo);
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.FileText getText()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        com.puppycrawl.tools.checkstyle.api.FileText $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.FileText mText>;
+
+        return $r0;
+    }
+
+    public java.lang.String[] getLines()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        com.puppycrawl.tools.checkstyle.api.FileText $r0;
+        java.lang.String[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.FileText mText>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String[] toLinesArray()>();
+
+        return $r1;
+    }
+
+    public java.lang.String getFilename()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String mFilename>;
+
+        return $r0;
+    }
+
+    public boolean lineIsBlank(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        int aLineNo;
+        java.lang.String $r0, $r1, $r2;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aLineNo := @parameter0: int;
+
+        $r0 = "";
+
+        $r1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String line(int)>(aLineNo);
+
+        $r2 = virtualinvoke $r1.<java.lang.String: java.lang.String trim()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+
+        return $z0;
+    }
+
+    public boolean lineIsComment(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        int aLineNo;
+        java.util.regex.Pattern $r0;
+        java.lang.String $r1;
+        java.util.regex.Matcher $r2;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aLineNo := @parameter0: int;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.FileContents: java.util.regex.Pattern MATCH_SINGLELINE_COMMENT>;
+
+        $r1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String line(int)>(aLineNo);
+
+        $r2 = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r1);
+
+        $z0 = virtualinvoke $r2.<java.util.regex.Matcher: boolean matches()>();
+
+        return $z0;
+    }
+
+    public boolean hasIntersectionWithComment(int, int, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        int aStartLineNo, aStartColNo, aEndLineNo, aEndColNo, i$;
+        java.util.Collection values;
+        java.util.Iterator i$, i$;
+        java.util.List row;
+        com.puppycrawl.tools.checkstyle.api.TextBlock comment, row;
+        java.util.Map $r0, $r1;
+        boolean $z0, $z1, $z2, $z3;
+        java.lang.Integer $r2;
+        java.lang.Object $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aStartLineNo := @parameter0: int;
+
+        aStartColNo := @parameter1: int;
+
+        aEndLineNo := @parameter2: int;
+
+        aEndColNo := @parameter3: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCComments>;
+
+        values = interfaceinvoke $r0.<java.util.Map: java.util.Collection values()>();
+
+        i$ = interfaceinvoke values.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label5;
+
+        $r4 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        row = (java.util.List) $r4;
+
+        i$ = interfaceinvoke row.<java.util.List: java.util.Iterator iterator()>();
+
+     label2:
+        $z2 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label4;
+
+        $r5 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        comment = (com.puppycrawl.tools.checkstyle.api.TextBlock) $r5;
+
+        $z3 = interfaceinvoke comment.<com.puppycrawl.tools.checkstyle.api.TextBlock: boolean intersects(int,int,int,int)>(aStartLineNo, aStartColNo, aEndLineNo, aEndColNo);
+
+        if $z3 == 0 goto label3;
+
+        return 1;
+
+     label3:
+        goto label2;
+
+     label4:
+        goto label1;
+
+     label5:
+        i$ = aStartLineNo;
+
+     label6:
+        if i$ > aEndLineNo goto label8;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.util.Map mCPlusPlusComments>;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i$);
+
+        $r3 = interfaceinvoke $r1.<java.util.Map: java.lang.Object get(java.lang.Object)>($r2);
+
+        row = (com.puppycrawl.tools.checkstyle.api.TextBlock) $r3;
+
+        if row == null goto label7;
+
+        $z1 = interfaceinvoke row.<com.puppycrawl.tools.checkstyle.api.TextBlock: boolean intersects(int,int,int,int)>(aStartLineNo, aStartColNo, aEndLineNo, aEndColNo);
+
+        if $z1 == 0 goto label7;
+
+        return 1;
+
+     label7:
+        i$ = i$ + 1;
+
+        goto label6;
+
+     label8:
+        return 0;
+    }
+
+    public boolean inPackageInfo()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents this;
+        java.lang.String $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String getFilename()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean endsWith(java.lang.String)>("package-info.java");
+
+        return $z0;
+    }
+
+    static void <clinit>()
+    {
+        java.util.regex.Pattern $r0;
+
+        <com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String MATCH_SINGLELINE_COMMENT_PAT> = "^\\s*//.*$";
+
+        $r0 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("^\\s*//.*$");
+
+        <com.puppycrawl.tools.checkstyle.api.FileContents: java.util.regex.Pattern MATCH_SINGLELINE_COMMENT> = $r0;
+
+        return;
+    }
+}

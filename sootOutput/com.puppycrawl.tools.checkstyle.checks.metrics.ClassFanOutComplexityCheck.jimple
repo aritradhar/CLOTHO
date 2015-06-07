@@ -1,0 +1,59 @@
+public final class com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck extends com.puppycrawl.tools.checkstyle.checks.metrics.AbstractClassCouplingCheck
+{
+    private static final int DEFAULT_MAX;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractClassCouplingCheck: void <init>(int)>(20);
+
+        return;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck;
+
+        $r0 = newarray (int)[8];
+
+        $r0[0] = 16;
+
+        $r0[1] = 14;
+
+        $r0[2] = 15;
+
+        $r0[3] = 158;
+
+        $r0[4] = 13;
+
+        $r0[5] = 138;
+
+        $r0[6] = 82;
+
+        $r0[7] = 161;
+
+        return $r0;
+    }
+
+    protected java.lang.String getLogMessageId()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck;
+
+        return "classFanOutComplexity";
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck: int DEFAULT_MAX> = 20;
+
+        return;
+    }
+}

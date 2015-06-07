@@ -1,0 +1,22 @@
+public final class com.puppycrawl.tools.checkstyle.Defn extends java.lang.Object
+{
+    public static final java.lang.String CHECKSTYLE_BUNDLE;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.Defn this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Defn;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.Defn: java.lang.String CHECKSTYLE_BUNDLE> = "com.puppycrawl.tools.checkstyle.messages";
+
+        return;
+    }
+}

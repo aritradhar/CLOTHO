@@ -1,0 +1,67 @@
+class com.puppycrawl.tools.checkstyle.gui.FileDrop$1 extends java.lang.Object implements java.awt.event.HierarchyListener
+{
+    final java.awt.Component val$c;
+    final com.puppycrawl.tools.checkstyle.gui.FileDrop this$0;
+
+    void <init>(com.puppycrawl.tools.checkstyle.gui.FileDrop, java.awt.Component)
+    {
+        com.puppycrawl.tools.checkstyle.gui.FileDrop$1 this;
+        com.puppycrawl.tools.checkstyle.gui.FileDrop l1;
+        java.awt.Component l2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.FileDrop$1;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.gui.FileDrop;
+
+        l2 := @parameter1: java.awt.Component;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.FileDrop$1: com.puppycrawl.tools.checkstyle.gui.FileDrop this$0> = l1;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.FileDrop$1: java.awt.Component val$c> = l2;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void hierarchyChanged(java.awt.event.HierarchyEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.FileDrop$1 this;
+        java.awt.event.HierarchyEvent evt;
+        java.awt.Container parent;
+        java.awt.Component $r0, $r3, $r5;
+        java.awt.dnd.DropTarget $r1;
+        com.puppycrawl.tools.checkstyle.gui.FileDrop $r2;
+        java.awt.dnd.DropTargetListener $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.FileDrop$1;
+
+        evt := @parameter0: java.awt.event.HierarchyEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.FileDrop$1: java.awt.Component val$c>;
+
+        parent = virtualinvoke $r0.<java.awt.Component: java.awt.Container getParent()>();
+
+        if parent != null goto label1;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.gui.FileDrop$1: java.awt.Component val$c>;
+
+        virtualinvoke $r5.<java.awt.Component: void setDropTarget(java.awt.dnd.DropTarget)>(null);
+
+        goto label2;
+
+     label1:
+        $r1 = new java.awt.dnd.DropTarget;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.gui.FileDrop$1: java.awt.Component val$c>;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.gui.FileDrop$1: com.puppycrawl.tools.checkstyle.gui.FileDrop this$0>;
+
+        $r4 = staticinvoke <com.puppycrawl.tools.checkstyle.gui.FileDrop: java.awt.dnd.DropTargetListener access$000(com.puppycrawl.tools.checkstyle.gui.FileDrop)>($r2);
+
+        specialinvoke $r1.<java.awt.dnd.DropTarget: void <init>(java.awt.Component,java.awt.dnd.DropTargetListener)>($r3, $r4);
+
+     label2:
+        return;
+    }
+}

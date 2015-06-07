@@ -1,0 +1,199 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck extends com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck;
+
+        $r0 = newarray (int)[5];
+
+        $r0[0] = 78;
+
+        $r0[1] = 77;
+
+        $r0[2] = 44;
+
+        $r0[3] = 43;
+
+        $r0[4] = 27;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, theAst, $r0, $r1, $r2, $r3;
+        int $i0, $i1, $i2, $i3;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        theAst = aAST;
+
+        $i0 = virtualinvoke theAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 78 goto label3;
+
+        $i2 = virtualinvoke theAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 == 44 goto label1;
+
+        $i3 = virtualinvoke theAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 43 goto label2;
+
+     label1:
+        theAst = virtualinvoke theAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label2:
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck: boolean isPreceedsEmptyForInit(com.puppycrawl.tools.checkstyle.api.DetailAST)>(theAst);
+
+        if $z1 != 0 goto label5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck: void processLeft(com.puppycrawl.tools.checkstyle.api.DetailAST)>(theAst);
+
+        goto label5;
+
+     label3:
+        $r0 = virtualinvoke theAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if $r0 == null goto label4;
+
+        $r1 = virtualinvoke theAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 23 goto label4;
+
+        $r2 = virtualinvoke theAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r3 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(78);
+
+        if $r3 == theAst goto label5;
+
+     label4:
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck: boolean isFollowsEmptyForIterator(com.puppycrawl.tools.checkstyle.api.DetailAST)>(theAst);
+
+        if $z0 != 0 goto label5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck: void processRight(com.puppycrawl.tools.checkstyle.api.DetailAST)>(theAst);
+
+     label5:
+        return;
+    }
+
+    private boolean isFollowsEmptyForIterator(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, forIterator, $r0, $r1;
+        boolean followsEmptyForIterator, $z0;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        followsEmptyForIterator = 0;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if parent == null goto label3;
+
+        $i0 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 93 goto label3;
+
+        $r0 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(160);
+
+        if $r0 != null goto label3;
+
+        forIterator = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(38);
+
+        $i1 = virtualinvoke forIterator.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i1 != 0 goto label1;
+
+        $r1 = virtualinvoke forIterator.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if aAST != $r1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        followsEmptyForIterator = $z0;
+
+     label3:
+        return followsEmptyForIterator;
+    }
+
+    private boolean isPreceedsEmptyForInit(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, forIterator, $r0, $r1;
+        boolean preceedsEmptyForInintializer, $z0;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        preceedsEmptyForInintializer = 0;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if parent == null goto label3;
+
+        $i0 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 93 goto label3;
+
+        $r0 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(160);
+
+        if $r0 != null goto label3;
+
+        forIterator = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(36);
+
+        $i1 = virtualinvoke forIterator.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i1 != 0 goto label1;
+
+        $r1 = virtualinvoke forIterator.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        if aAST != $r1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        preceedsEmptyForInintializer = $z0;
+
+     label3:
+        return preceedsEmptyForInintializer;
+    }
+}

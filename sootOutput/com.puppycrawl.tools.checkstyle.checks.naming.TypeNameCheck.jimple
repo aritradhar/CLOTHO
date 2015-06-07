@@ -1,0 +1,42 @@
+public class com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck extends com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck
+{
+    public static final java.lang.String DEFAULT_PATTERN;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: void <init>(java.lang.String)>("^[A-Z][a-zA-Z0-9]*$");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
+
+        $r0 = newarray (int)[4];
+
+        $r0[0] = 14;
+
+        $r0[1] = 15;
+
+        $r0[2] = 158;
+
+        $r0[3] = 161;
+
+        return $r0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck: java.lang.String DEFAULT_PATTERN> = "^[A-Z][a-zA-Z0-9]*$";
+
+        return;
+    }
+}

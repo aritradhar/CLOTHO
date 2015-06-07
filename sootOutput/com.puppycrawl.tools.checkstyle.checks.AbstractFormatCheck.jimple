@@ -1,0 +1,156 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private int mCompileFlags;
+    private java.util.regex.Pattern mRegexp;
+    private java.lang.String mFormat;
+
+    public void <init>(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck this;
+        java.lang.String aDefaultFormat;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+
+        aDefaultFormat := @parameter0: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void <init>(java.lang.String,int)>(aDefaultFormat, 0);
+
+        return;
+    }
+
+    public void <init>(java.lang.String, int) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck this;
+        java.lang.String aDefaultFormat;
+        int aCompileFlags;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+
+        aDefaultFormat := @parameter0: java.lang.String;
+
+        aCompileFlags := @parameter1: int;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void updateRegexp(java.lang.String,int)>(aDefaultFormat, aCompileFlags);
+
+        return;
+    }
+
+    public final void setFormat(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck this;
+        java.lang.String aFormat;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+
+        aFormat := @parameter0: java.lang.String;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: int mCompileFlags>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void updateRegexp(java.lang.String,int)>(aFormat, $i0);
+
+        return;
+    }
+
+    public final void setCompileFlags(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck this;
+        int aCompileFlags;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+
+        aCompileFlags := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: java.lang.String mFormat>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void updateRegexp(java.lang.String,int)>($r0, aCompileFlags);
+
+        return;
+    }
+
+    public final java.util.regex.Pattern getRegexp()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck this;
+        java.util.regex.Pattern $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: java.util.regex.Pattern mRegexp>;
+
+        return $r0;
+    }
+
+    public final java.lang.String getFormat()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: java.lang.String mFormat>;
+
+        return $r0;
+    }
+
+    private void updateRegexp(java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck this;
+        java.lang.String aFormat, $r6;
+        int aCompileFlags, $i0, $i1;
+        java.util.regex.PatternSyntaxException e, $r1;
+        java.util.regex.Pattern $r0;
+        org.apache.commons.beanutils.ConversionException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+
+        aFormat := @parameter0: java.lang.String;
+
+        aCompileFlags := @parameter1: int;
+
+     label1:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String,int)>(aFormat, aCompileFlags);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: java.util.regex.Pattern mRegexp> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: java.lang.String mFormat> = aFormat;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: int mCompileFlags>;
+
+        $i1 = $i0 | aCompileFlags;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: int mCompileFlags> = $i1;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new org.apache.commons.beanutils.ConversionException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aFormat);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r6, e);
+
+        throw $r2;
+
+     label4:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+}

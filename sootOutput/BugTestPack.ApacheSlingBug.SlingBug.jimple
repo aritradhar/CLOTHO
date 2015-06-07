@@ -1,0 +1,147 @@
+public class BugTestPack.ApacheSlingBug.SlingBug extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugTestPack.ApacheSlingBug.SlingBug this;
+
+        this := @this: BugTestPack.ApacheSlingBug.SlingBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static java.lang.Object parsePossiblyTypedValue(java.lang.String)
+    {
+        java.lang.String value, rawValue, rawValues, $r4, $r6, $r11;
+        boolean explicitMultiValue;
+        int hintEnd, $i1, $i2, $i3, $i4, $i7, $i8, $i9;
+        java.lang.String[] values, $r0;
+        char $c0, $c5, $c6;
+        java.lang.IllegalArgumentException $r1, $r7;
+        java.lang.StringBuilder $r2, $r3, $r5, $r8, $r9, $r10;
+
+        value := @parameter0: java.lang.String;
+
+        explicitMultiValue = 0;
+
+        hintEnd = -1;
+
+        $c0 = virtualinvoke value.<java.lang.String: char charAt(int)>(0);
+
+        if $c0 == 123 goto label1;
+
+        rawValue = value;
+
+        goto label2;
+
+     label1:
+        hintEnd = virtualinvoke value.<java.lang.String: int indexOf(int)>(125);
+
+        $i1 = hintEnd + 1;
+
+        rawValue = virtualinvoke value.<java.lang.String: java.lang.String substring(int)>($i1);
+
+     label2:
+        $i2 = virtualinvoke rawValue.<java.lang.String: int length()>();
+
+        if $i2 <= 0 goto label4;
+
+        $c5 = virtualinvoke rawValue.<java.lang.String: char charAt(int)>(0);
+
+        if $c5 != 91 goto label4;
+
+        $i4 = virtualinvoke rawValue.<java.lang.String: int length()>();
+
+        $i7 = $i4 - 1;
+
+        $c6 = virtualinvoke rawValue.<java.lang.String: char charAt(int)>($i7);
+
+        if $c6 == 93 goto label3;
+
+        $r7 = new java.lang.IllegalArgumentException;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>("Invalid multi-valued property definition : \'");
+
+        $r8 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(rawValue);
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r7.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r11);
+
+        throw $r7;
+
+     label3:
+        $i8 = virtualinvoke rawValue.<java.lang.String: int length()>();
+
+        $i9 = $i8 - 1;
+
+        rawValues = virtualinvoke rawValue.<java.lang.String: java.lang.String substring(int,int)>(1, $i9);
+
+        values = virtualinvoke rawValues.<java.lang.String: java.lang.String[] split(java.lang.String)>(",");
+
+        explicitMultiValue = 1;
+
+        goto label5;
+
+     label4:
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = rawValue;
+
+        values = $r0;
+
+     label5:
+        if hintEnd != -1 goto label7;
+
+        $i3 = lengthof values;
+
+        if $i3 != 1 goto label6;
+
+        if explicitMultiValue != 0 goto label6;
+
+        $r6 = values[0];
+
+        return $r6;
+
+     label6:
+        return values;
+
+     label7:
+        rawValues = virtualinvoke value.<java.lang.String: java.lang.String substring(int,int)>(1, hintEnd);
+
+        $r1 = new java.lang.IllegalArgumentException;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("Unknown typeHint value \'");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(rawValues);
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'");
+
+        $r4 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r1.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r4);
+
+        throw $r1;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+
+        args := @parameter0: java.lang.String[];
+
+        staticinvoke <BugTestPack.ApacheSlingBug.SlingBug: java.lang.Object parsePossiblyTypedValue(java.lang.String)>("a");
+
+        staticinvoke <BugTestPack.ApacheSlingBug.SlingBug: java.lang.Object parsePossiblyTypedValue(java.lang.String)>("");
+
+        return;
+    }
+}

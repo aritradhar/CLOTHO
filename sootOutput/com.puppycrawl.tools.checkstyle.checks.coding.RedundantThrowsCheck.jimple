@@ -1,0 +1,303 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck
+{
+    private boolean mAllowUnchecked;
+    private boolean mAllowSubclasses;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void <init>()>();
+
+        return;
+    }
+
+    public void setAllowUnchecked(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck this;
+        boolean aAllowUnchecked;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck;
+
+        aAllowUnchecked := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: boolean mAllowUnchecked> = aAllowUnchecked;
+
+        return;
+    }
+
+    public void setAllowSubclasses(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck this;
+        boolean aAllowSubclasses;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck;
+
+        aAllowSubclasses := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: boolean mAllowSubclasses> = aAllowSubclasses;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck;
+
+        $r0 = newarray (int)[7];
+
+        $r0[0] = 16;
+
+        $r0[1] = 31;
+
+        $r0[2] = 14;
+
+        $r0[3] = 15;
+
+        $r0[4] = 158;
+
+        $r0[5] = 9;
+
+        $r0[6] = 8;
+
+        return $r0;
+    }
+
+    protected final void processAST(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, throwsAST, child;
+        java.util.LinkedList knownExcs;
+        com.puppycrawl.tools.checkstyle.api.FullIdent fi;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        knownExcs = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>();
+
+        throwsAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(82);
+
+        if throwsAST == null goto label4;
+
+        child = virtualinvoke throwsAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if child == null goto label4;
+
+        $i0 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 59 goto label2;
+
+        $i1 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 60 goto label3;
+
+     label2:
+        fi = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(child);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: void checkException(com.puppycrawl.tools.checkstyle.api.FullIdent,java.util.List)>(fi, knownExcs);
+
+     label3:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    protected final void logLoadError(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck this;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token aIdent;
+        int $i0, $i1;
+        java.lang.Object[] $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck;
+
+        aIdent := @parameter0: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        $i0 = virtualinvoke aIdent.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int getLineNo()>();
+
+        $i1 = virtualinvoke aIdent.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r1 = virtualinvoke aIdent.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String getText()>();
+
+        $r0[0] = $r1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: void logLoadErrorImpl(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "redundant.throws.classInfo", $r0);
+
+        return;
+    }
+
+    private void checkException(com.puppycrawl.tools.checkstyle.api.FullIdent, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck this;
+        com.puppycrawl.tools.checkstyle.api.FullIdent aExc;
+        java.util.List aKnownExcs;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo newClassInfo, ci;
+        boolean shouldAdd, $z0, $z1, $z3, $z4, $z5, $z6;
+        java.util.Iterator known;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token fi, $r0;
+        java.lang.String $r1, $r10, $r11, $r12, $r14, $r15, $r18;
+        java.lang.Object $r2;
+        java.lang.Class $r3, $r4, $r5, $r6, $r7, $r8, $r17;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.lang.Object[] $r9, $r13, $r16, $r19;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck;
+
+        aExc := @parameter0: com.puppycrawl.tools.checkstyle.api.FullIdent;
+
+        aKnownExcs := @parameter1: java.util.List;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: void <init>(com.puppycrawl.tools.checkstyle.api.FullIdent)>(aExc);
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: java.lang.String getCurrentClassName()>();
+
+        newClassInfo = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo createClassInfo(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token,java.lang.String)>($r0, $r1);
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: boolean mAllowUnchecked>;
+
+        if $z0 != 0 goto label1;
+
+        $r17 = virtualinvoke newClassInfo.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        $z6 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: boolean isUnchecked(java.lang.Class)>($r17);
+
+        if $z6 == 0 goto label1;
+
+        $i7 = virtualinvoke aExc.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getLineNo()>();
+
+        $i6 = virtualinvoke aExc.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getColumnNo()>();
+
+        $r19 = newarray (java.lang.Object)[1];
+
+        $r18 = virtualinvoke aExc.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r19[0] = $r18;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i7, $i6, "redundant.throws.unchecked", $r19);
+
+     label1:
+        shouldAdd = 1;
+
+        known = interfaceinvoke aKnownExcs.<java.util.List: java.util.Iterator iterator()>();
+
+     label2:
+        $z1 = interfaceinvoke known.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label6;
+
+        $r2 = interfaceinvoke known.<java.util.Iterator: java.lang.Object next()>();
+
+        ci = (com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo) $r2;
+
+        fi = virtualinvoke ci.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token getName()>();
+
+        $r3 = virtualinvoke ci.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        $r4 = virtualinvoke newClassInfo.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        if $r3 != $r4 goto label3;
+
+        shouldAdd = 0;
+
+        $i4 = virtualinvoke aExc.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getLineNo()>();
+
+        $i5 = virtualinvoke aExc.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getColumnNo()>();
+
+        $r16 = newarray (java.lang.Object)[1];
+
+        $r15 = virtualinvoke aExc.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r16[0] = $r15;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i4, $i5, "redundant.throws.duplicate", $r16);
+
+        goto label5;
+
+     label3:
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: boolean mAllowSubclasses>;
+
+        if $z3 != 0 goto label5;
+
+        $r6 = virtualinvoke ci.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        $r5 = virtualinvoke newClassInfo.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        $z4 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: boolean isSubclass(java.lang.Class,java.lang.Class)>($r6, $r5);
+
+        if $z4 == 0 goto label4;
+
+        interfaceinvoke known.<java.util.Iterator: void remove()>();
+
+        $i2 = virtualinvoke fi.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int getLineNo()>();
+
+        $i3 = virtualinvoke fi.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int getColumnNo()>();
+
+        $r13 = newarray (java.lang.Object)[2];
+
+        $r12 = virtualinvoke fi.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String getText()>();
+
+        $r13[0] = $r12;
+
+        $r14 = virtualinvoke aExc.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r13[1] = $r14;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i2, $i3, "redundant.throws.subclass", $r13);
+
+        goto label5;
+
+     label4:
+        $r7 = virtualinvoke newClassInfo.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        $r8 = virtualinvoke ci.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        $z5 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: boolean isSubclass(java.lang.Class,java.lang.Class)>($r7, $r8);
+
+        if $z5 == 0 goto label5;
+
+        shouldAdd = 0;
+
+        $i1 = virtualinvoke aExc.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getLineNo()>();
+
+        $i0 = virtualinvoke aExc.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getColumnNo()>();
+
+        $r9 = newarray (java.lang.Object)[2];
+
+        $r10 = virtualinvoke aExc.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r9[0] = $r10;
+
+        $r11 = virtualinvoke fi.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String getText()>();
+
+        $r9[1] = $r11;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i0, "redundant.throws.subclass", $r9);
+
+     label5:
+        goto label2;
+
+     label6:
+        if shouldAdd == 0 goto label7;
+
+        interfaceinvoke aKnownExcs.<java.util.List: boolean add(java.lang.Object)>(newClassInfo);
+
+     label7:
+        return;
+    }
+}

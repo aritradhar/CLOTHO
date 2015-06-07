@@ -1,0 +1,335 @@
+public class BugTestPack.ApacheWicket.WicketBug extends java.lang.Object
+{
+    private javax.servlet.http.HttpServletRequest httpServletRequest;
+    private org.apache.wicket.protocol.http.servlet.ErrorAttributes errorAttributes;
+
+    public void <init>()
+    {
+        BugTestPack.ApacheWicket.WicketBug this;
+
+        this := @this: BugTestPack.ApacheWicket.WicketBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public org.apache.wicket.request.Url getContextRelativeUrl(java.lang.String, java.lang.String)
+    {
+        BugTestPack.ApacheWicket.WicketBug this;
+        java.lang.String uri, filterPrefix, query, $r2, $r3, $r5, $r15, uri;
+        java.lang.StringBuilder url, $r0, $r13, $r14;
+        int start, $i0, $i1, $i2, $i3;
+        javax.servlet.http.HttpServletRequest $r1, $r9;
+        org.apache.wicket.protocol.http.servlet.ErrorAttributes $r6;
+        org.apache.wicket.request.Url $r7, $r10;
+        java.nio.charset.Charset $r8;
+        boolean $z0, $z1;
+
+        this := @this: BugTestPack.ApacheWicket.WicketBug;
+
+        uri := @parameter0: java.lang.String;
+
+        filterPrefix := @parameter1: java.lang.String;
+
+        $i0 = virtualinvoke filterPrefix.<java.lang.String: int length()>();
+
+        if $i0 <= 0 goto label1;
+
+        $z1 = virtualinvoke filterPrefix.<java.lang.String: boolean endsWith(java.lang.String)>("/");
+
+        if $z1 != 0 goto label1;
+
+        $r13 = new java.lang.StringBuilder;
+
+        $r15 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(filterPrefix);
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>($r15);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        filterPrefix = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label1:
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        url = $r0;
+
+        uri = staticinvoke <org.apache.wicket.util.string.Strings: java.lang.String stripJSessionId(java.lang.String)>(uri);
+
+        $r1 = this.<BugTestPack.ApacheWicket.WicketBug: javax.servlet.http.HttpServletRequest httpServletRequest>;
+
+        $r2 = interfaceinvoke $r1.<javax.servlet.http.HttpServletRequest: java.lang.String getContextPath()>();
+
+        $i1 = virtualinvoke $r2.<java.lang.String: int length()>();
+
+        $i2 = virtualinvoke filterPrefix.<java.lang.String: int length()>();
+
+        $i3 = $i1 + $i2;
+
+        start = $i3 + 1;
+
+        $r3 = virtualinvoke uri.<java.lang.String: java.lang.String substring(int)>(start);
+
+        virtualinvoke url.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        $r6 = this.<BugTestPack.ApacheWicket.WicketBug: org.apache.wicket.protocol.http.servlet.ErrorAttributes errorAttributes>;
+
+        if $r6 != null goto label2;
+
+        $r9 = this.<BugTestPack.ApacheWicket.WicketBug: javax.servlet.http.HttpServletRequest httpServletRequest>;
+
+        query = interfaceinvoke $r9.<javax.servlet.http.HttpServletRequest: java.lang.String getQueryString()>();
+
+        $z0 = staticinvoke <org.apache.wicket.util.string.Strings: boolean isEmpty(java.lang.CharSequence)>(query);
+
+        if $z0 != 0 goto label2;
+
+        virtualinvoke url.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(63);
+
+        virtualinvoke url.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(query);
+
+     label2:
+        $r5 = virtualinvoke url.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r8 = virtualinvoke this.<BugTestPack.ApacheWicket.WicketBug: java.nio.charset.Charset getCharset()>();
+
+        $r7 = staticinvoke <org.apache.wicket.request.Url: org.apache.wicket.request.Url parse(java.lang.String,java.nio.charset.Charset)>($r5, $r8);
+
+        $r10 = specialinvoke this.<BugTestPack.ApacheWicket.WicketBug: org.apache.wicket.request.Url setParameters(org.apache.wicket.request.Url)>($r7);
+
+        return $r10;
+    }
+
+    public org.apache.wicket.request.Url getContextRelativeUrlPatched(java.lang.String, java.lang.String)
+    {
+        BugTestPack.ApacheWicket.WicketBug this;
+        java.lang.String uri, filterPrefix, query, $r2, $r3, $r7, $r15, uri;
+        java.lang.StringBuilder url, $r0, $r16, $r17;
+        int start, $i0, $i1, $i2, $i3, $i4;
+        javax.servlet.http.HttpServletRequest $r1, $r10;
+        org.apache.wicket.protocol.http.servlet.ErrorAttributes $r4;
+        java.nio.charset.Charset $r6;
+        org.apache.wicket.request.Url $r8, $r9;
+        boolean $z0, $z1;
+
+        this := @this: BugTestPack.ApacheWicket.WicketBug;
+
+        uri := @parameter0: java.lang.String;
+
+        filterPrefix := @parameter1: java.lang.String;
+
+        $i0 = virtualinvoke filterPrefix.<java.lang.String: int length()>();
+
+        if $i0 <= 0 goto label1;
+
+        $z1 = virtualinvoke filterPrefix.<java.lang.String: boolean endsWith(java.lang.String)>("/");
+
+        if $z1 != 0 goto label1;
+
+        $r16 = new java.lang.StringBuilder;
+
+        $r15 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(filterPrefix);
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>($r15);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        filterPrefix = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label1:
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        url = $r0;
+
+        uri = staticinvoke <org.apache.wicket.util.string.Strings: java.lang.String stripJSessionId(java.lang.String)>(uri);
+
+        $r1 = this.<BugTestPack.ApacheWicket.WicketBug: javax.servlet.http.HttpServletRequest httpServletRequest>;
+
+        $r2 = interfaceinvoke $r1.<javax.servlet.http.HttpServletRequest: java.lang.String getContextPath()>();
+
+        $i1 = virtualinvoke $r2.<java.lang.String: int length()>();
+
+        $i2 = virtualinvoke filterPrefix.<java.lang.String: int length()>();
+
+        $i3 = $i1 + $i2;
+
+        start = $i3 + 1;
+
+        if start >= 0 goto label2;
+
+        virtualinvoke url.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("");
+
+        goto label4;
+
+     label2:
+        $i4 = virtualinvoke uri.<java.lang.String: int length()>();
+
+        if start <= $i4 goto label3;
+
+        virtualinvoke url.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(uri);
+
+        goto label4;
+
+     label3:
+        $r3 = virtualinvoke uri.<java.lang.String: java.lang.String substring(int)>(start);
+
+        virtualinvoke url.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+     label4:
+        $r4 = this.<BugTestPack.ApacheWicket.WicketBug: org.apache.wicket.protocol.http.servlet.ErrorAttributes errorAttributes>;
+
+        if $r4 != null goto label5;
+
+        $r10 = this.<BugTestPack.ApacheWicket.WicketBug: javax.servlet.http.HttpServletRequest httpServletRequest>;
+
+        query = interfaceinvoke $r10.<javax.servlet.http.HttpServletRequest: java.lang.String getQueryString()>();
+
+        $z0 = staticinvoke <org.apache.wicket.util.string.Strings: boolean isEmpty(java.lang.CharSequence)>(query);
+
+        if $z0 != 0 goto label5;
+
+        virtualinvoke url.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(63);
+
+        virtualinvoke url.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(query);
+
+     label5:
+        $r7 = virtualinvoke url.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6 = virtualinvoke this.<BugTestPack.ApacheWicket.WicketBug: java.nio.charset.Charset getCharset()>();
+
+        $r9 = staticinvoke <org.apache.wicket.request.Url: org.apache.wicket.request.Url parse(java.lang.String,java.nio.charset.Charset)>($r7, $r6);
+
+        $r8 = specialinvoke this.<BugTestPack.ApacheWicket.WicketBug: org.apache.wicket.request.Url setParameters(org.apache.wicket.request.Url)>($r9);
+
+        return $r8;
+    }
+
+    private org.apache.wicket.request.Url setParameters(org.apache.wicket.request.Url)
+    {
+        BugTestPack.ApacheWicket.WicketBug this;
+        org.apache.wicket.request.Url url;
+        javax.servlet.http.HttpServletRequest $r0, $r2, $r4;
+        int $i0;
+        java.lang.Integer $r1;
+        java.lang.String $r3, $r5;
+
+        this := @this: BugTestPack.ApacheWicket.WicketBug;
+
+        url := @parameter0: org.apache.wicket.request.Url;
+
+        $r0 = this.<BugTestPack.ApacheWicket.WicketBug: javax.servlet.http.HttpServletRequest httpServletRequest>;
+
+        $i0 = interfaceinvoke $r0.<javax.servlet.http.HttpServletRequest: int getServerPort()>();
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        virtualinvoke url.<org.apache.wicket.request.Url: void setPort(java.lang.Integer)>($r1);
+
+        $r2 = this.<BugTestPack.ApacheWicket.WicketBug: javax.servlet.http.HttpServletRequest httpServletRequest>;
+
+        $r3 = interfaceinvoke $r2.<javax.servlet.http.HttpServletRequest: java.lang.String getServerName()>();
+
+        virtualinvoke url.<org.apache.wicket.request.Url: void setHost(java.lang.String)>($r3);
+
+        $r4 = this.<BugTestPack.ApacheWicket.WicketBug: javax.servlet.http.HttpServletRequest httpServletRequest>;
+
+        $r5 = interfaceinvoke $r4.<javax.servlet.http.HttpServletRequest: java.lang.String getScheme()>();
+
+        virtualinvoke url.<org.apache.wicket.request.Url: void setProtocol(java.lang.String)>($r5);
+
+        return url;
+    }
+
+    public java.nio.charset.Charset getCharset()
+    {
+        BugTestPack.ApacheWicket.WicketBug this;
+        javax.servlet.http.HttpServletRequest $r0;
+        java.nio.charset.Charset $r1;
+
+        this := @this: BugTestPack.ApacheWicket.WicketBug;
+
+        $r0 = this.<BugTestPack.ApacheWicket.WicketBug: javax.servlet.http.HttpServletRequest httpServletRequest>;
+
+        $r1 = staticinvoke <org.apache.wicket.protocol.http.RequestUtils: java.nio.charset.Charset getCharset(javax.servlet.http.HttpServletRequest)>($r0);
+
+        return $r1;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        long start, $l1, i;
+        int i, $i0;
+        org.springframework.mock.web.MockHttpServletRequest request, $r0;
+        BugTestPack.ApacheWicket.WicketBug wb, $r1;
+        java.io.PrintStream $r3, $r5;
+        java.lang.StringBuilder $r4, $r6;
+        java.lang.String $r7, $r8;
+
+        args := @parameter0: java.lang.String[];
+
+        start = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        i = 0;
+
+        goto label3;
+
+     label1:
+        $r0 = new org.springframework.mock.web.MockHttpServletRequest;
+
+        specialinvoke $r0.<org.springframework.mock.web.MockHttpServletRequest: void <init>()>();
+
+        request = $r0;
+
+        virtualinvoke request.<org.springframework.mock.web.MockHttpServletRequest: void setServerName(java.lang.String)>("www.example.com");
+
+        $r1 = new BugTestPack.ApacheWicket.WicketBug;
+
+        specialinvoke $r1.<BugTestPack.ApacheWicket.WicketBug: void <init>()>();
+
+        wb = $r1;
+
+        wb.<BugTestPack.ApacheWicket.WicketBug: javax.servlet.http.HttpServletRequest httpServletRequest> = request;
+
+        virtualinvoke wb.<BugTestPack.ApacheWicket.WicketBug: org.apache.wicket.request.Url getContextRelativeUrlPatched(java.lang.String,java.lang.String)>("a.b", "aa");
+
+        $i0 = i % 100;
+
+        if $i0 != 0 goto label2;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(int)>(i);
+
+     label2:
+        i = i + 1;
+
+     label3:
+        if i < 100000 goto label1;
+
+        i = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r4 = new java.lang.StringBuilder;
+
+        $l1 = i - start;
+
+        $r7 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>($l1);
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>($r7);
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms");
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        return;
+    }
+}

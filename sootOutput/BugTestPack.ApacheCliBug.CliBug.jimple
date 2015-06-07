@@ -1,0 +1,141 @@
+public class BugTestPack.ApacheCliBug.CliBug extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugTestPack.ApacheCliBug.CliBug r0;
+
+        r0 := @this: BugTestPack.ApacheCliBug.CliBug;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    protected int findWrapPos(java.lang.String, int, int)
+    {
+        BugTestPack.ApacheCliBug.CliBug r0;
+        java.lang.String r1;
+        int i0, i1, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i13, i14, i15, i16;
+        char c3, $c11, $c12, c17;
+
+        r0 := @this: BugTestPack.ApacheCliBug.CliBug;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        $i4 = virtualinvoke r1.<java.lang.String: int indexOf(int,int)>(10, i1);
+
+        i14 = $i4;
+
+        if $i4 == -1 goto label01;
+
+        if i14 <= i0 goto label02;
+
+     label01:
+        $i5 = virtualinvoke r1.<java.lang.String: int indexOf(int,int)>(9, i1);
+
+        i14 = $i5;
+
+        if $i5 == -1 goto label03;
+
+        if i14 > i0 goto label03;
+
+     label02:
+        $i13 = i14 + 1;
+
+        return $i13;
+
+     label03:
+        $i6 = i1 + i0;
+
+        $i7 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        if $i6 < $i7 goto label04;
+
+        return -1;
+
+     label04:
+        i15 = i1 + i0;
+
+        goto label06;
+
+     label05:
+        i15 = i15 + -1;
+
+     label06:
+        if i15 < i1 goto label07;
+
+        $c12 = virtualinvoke r1.<java.lang.String: char charAt(int)>(i15);
+
+        c3 = $c12;
+
+        if $c12 == 32 goto label07;
+
+        if c3 == 10 goto label07;
+
+        if c3 != 13 goto label05;
+
+     label07:
+        if i15 <= i1 goto label08;
+
+        return i15;
+
+     label08:
+        i16 = i1 + i0;
+
+        goto label10;
+
+     label09:
+        i16 = i16 + 1;
+
+     label10:
+        $i8 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        if i16 > $i8 goto label11;
+
+        $c11 = virtualinvoke r1.<java.lang.String: char charAt(int)>(i16);
+
+        c17 = $c11;
+
+        if $c11 == 32 goto label11;
+
+        if c17 == 10 goto label11;
+
+        if c17 != 13 goto label09;
+
+     label11:
+        $i9 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        if i16 != $i9 goto label12;
+
+        $i10 = -1;
+
+        goto label13;
+
+     label12:
+        $i10 = i16;
+
+     label13:
+        return $i10;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        BugTestPack.ApacheCliBug.CliBug $r1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = new BugTestPack.ApacheCliBug.CliBug;
+
+        specialinvoke $r1.<BugTestPack.ApacheCliBug.CliBug: void <init>()>();
+
+        virtualinvoke $r1.<BugTestPack.ApacheCliBug.CliBug: int findWrapPos(java.lang.String,int,int)>("hello", 3, 0);
+
+        return;
+    }
+}

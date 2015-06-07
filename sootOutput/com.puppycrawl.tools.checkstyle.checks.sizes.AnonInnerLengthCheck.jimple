@@ -1,0 +1,105 @@
+public class com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int DEFAULT_MAX;
+    private int mMax;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck: int mMax> = 20;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 138;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, openingBrace, closingBrace;
+        int length, $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        java.lang.Object[] $r0;
+        java.lang.Integer $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        openingBrace = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(6);
+
+        if openingBrace == null goto label1;
+
+        closingBrace = virtualinvoke openingBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(74);
+
+        $i0 = virtualinvoke closingBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke openingBrace.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = $i0 - $i1;
+
+        length = $i2 + 1;
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck: int mMax>;
+
+        if length <= $i3 goto label1;
+
+        $i4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i5 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(length);
+
+        $r0[0] = $r1;
+
+        $i6 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck: int mMax>;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+
+        $r0[1] = $r2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i4, $i5, "maxLen.anonInner", $r0);
+
+     label1:
+        return;
+    }
+
+    public void setMax(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck this;
+        int aLength;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck;
+
+        aLength := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck: int mMax> = aLength;
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck: int DEFAULT_MAX> = 20;
+
+        return;
+    }
+}

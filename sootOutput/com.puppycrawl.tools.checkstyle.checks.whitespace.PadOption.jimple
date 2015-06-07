@@ -1,0 +1,84 @@
+public final enum class com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption extends java.lang.Enum
+{
+    public static final enum com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption NOSPACE;
+    public static final enum com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption SPACE;
+    private static final com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption[] $VALUES;
+
+    public static com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption[] values()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption[]) $r1;
+
+        return $r2;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption valueOf(java.lang.String)
+    {
+        java.lang.String name;
+        java.lang.Enum $r0;
+        com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption $r1;
+
+        name := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/checks/whitespace/PadOption", name);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption) $r0;
+
+        return $r1;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption this;
+        java.lang.String l1;
+        int l2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        specialinvoke this.<java.lang.Enum: void <init>(java.lang.String,int)>(l1, l2);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption $r0, $r1, $r3, $r4;
+        com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption[] $r2;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: void <init>(java.lang.String,int)>("NOSPACE", 0);
+
+        <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption NOSPACE> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: void <init>(java.lang.String,int)>("SPACE", 1);
+
+        <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption SPACE> = $r1;
+
+        $r2 = newarray (com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption)[2];
+
+        $r3 = <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption NOSPACE>;
+
+        $r2[0] = $r3;
+
+        $r4 = <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption SPACE>;
+
+        $r2[1] = $r4;
+
+        <com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption: com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption[] $VALUES> = $r2;
+
+        return;
+    }
+}

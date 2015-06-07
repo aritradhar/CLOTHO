@@ -1,0 +1,190 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final java.util.Set mEqualsMethods;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck this;
+        java.util.HashSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck: java.util.Set mEqualsMethods> = $r0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 14;
+
+        $r0[1] = 138;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, objBlock, child, equalsAST, nameNode;
+        boolean hasEqualsObject, $z0, $z1, $z2;
+        java.util.Iterator i$;
+        java.util.Set $r0, $r1, $r4;
+        java.lang.Object $r2;
+        int $i0, $i1, $i2;
+        java.lang.Object[] $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck: java.util.Set mEqualsMethods>;
+
+        interfaceinvoke $r0.<java.util.Set: void clear()>();
+
+        hasEqualsObject = 0;
+
+        objBlock = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(6);
+
+        if objBlock == null goto label6;
+
+        child = virtualinvoke objBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if child == null goto label4;
+
+        $i2 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 9 goto label3;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: boolean isEqualsMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(child);
+
+        if $z1 == 0 goto label3;
+
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck: boolean hasObjectParameter(com.puppycrawl.tools.checkstyle.api.DetailAST)>(child);
+
+        if $z2 == 0 goto label2;
+
+        hasEqualsObject = 1;
+
+        goto label3;
+
+     label2:
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck: java.util.Set mEqualsMethods>;
+
+        interfaceinvoke $r4.<java.util.Set: boolean add(java.lang.Object)>(child);
+
+     label3:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label4:
+        if hasEqualsObject != 0 goto label6;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck: java.util.Set mEqualsMethods>;
+
+        i$ = interfaceinvoke $r1.<java.util.Set: java.util.Iterator iterator()>();
+
+     label5:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label6;
+
+        $r2 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        equalsAST = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r2;
+
+        nameNode = virtualinvoke equalsAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $i1 = virtualinvoke nameNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i0 = virtualinvoke nameNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r3 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i0, "covariant.equals", $r3);
+
+        goto label5;
+
+     label6:
+        return;
+    }
+
+    private boolean hasObjectParameter(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, paramsNode, paramNode, typeNode;
+        com.puppycrawl.tools.checkstyle.api.FullIdent fullIdent;
+        java.lang.String name, $r0, $r1;
+        int $i0;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        paramsNode = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        $i0 = virtualinvoke paramsNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i0 == 1 goto label1;
+
+        return 0;
+
+     label1:
+        paramNode = virtualinvoke paramsNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(21);
+
+        typeNode = virtualinvoke paramNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        fullIdent = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdentBelow(com.puppycrawl.tools.checkstyle.api.DetailAST)>(typeNode);
+
+        name = virtualinvoke fullIdent.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r0 = "Object";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(name);
+
+        if $z0 != 0 goto label2;
+
+        $r1 = "java.lang.Object";
+
+        $z2 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(name);
+
+        if $z2 == 0 goto label3;
+
+     label2:
+        $z1 = 1;
+
+        goto label4;
+
+     label3:
+        $z1 = 0;
+
+     label4:
+        return $z1;
+    }
+}

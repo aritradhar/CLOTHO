@@ -1,0 +1,178 @@
+class com.puppycrawl.tools.checkstyle.filters.IntRangeFilter extends java.lang.Object implements com.puppycrawl.tools.checkstyle.filters.IntFilter
+{
+    private static final int HASH_MULT;
+    private final java.lang.Integer mLowerBound;
+    private final java.lang.Integer mUpperBound;
+
+    public void <init>(int, int)
+    {
+        com.puppycrawl.tools.checkstyle.filters.IntRangeFilter this;
+        int aLowerBound, aUpperBound;
+        java.lang.Integer $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.IntRangeFilter;
+
+        aLowerBound := @parameter0: int;
+
+        aUpperBound := @parameter1: int;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aLowerBound);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mLowerBound> = $r0;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aUpperBound);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mUpperBound> = $r1;
+
+        return;
+    }
+
+    public boolean accept(int)
+    {
+        com.puppycrawl.tools.checkstyle.filters.IntRangeFilter this;
+        int aInt, $i0, $i1;
+        java.lang.Integer $r0, $r1, $r2, $r3;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.IntRangeFilter;
+
+        aInt := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mLowerBound>;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aInt);
+
+        $i0 = virtualinvoke $r0.<java.lang.Integer: int compareTo(java.lang.Integer)>($r1);
+
+        if $i0 > 0 goto label1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mUpperBound>;
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aInt);
+
+        $i1 = virtualinvoke $r2.<java.lang.Integer: int compareTo(java.lang.Integer)>($r3);
+
+        if $i1 < 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public int hashCode()
+    {
+        com.puppycrawl.tools.checkstyle.filters.IntRangeFilter this;
+        java.lang.Integer $r0, $r1;
+        int $i0, $i1, $i2, $i3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.IntRangeFilter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mLowerBound>;
+
+        $i0 = virtualinvoke $r0.<java.lang.Integer: int intValue()>();
+
+        $i1 = 29 * $i0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mUpperBound>;
+
+        $i2 = virtualinvoke $r1.<java.lang.Integer: int intValue()>();
+
+        $i3 = $i1 + $i2;
+
+        return $i3;
+    }
+
+    public boolean equals(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.filters.IntRangeFilter this, other;
+        java.lang.Object aObject;
+        boolean $z0, $z1, $z2, $z3;
+        java.lang.Integer $r0, $r1, $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.IntRangeFilter;
+
+        aObject := @parameter0: java.lang.Object;
+
+        $z0 = aObject instanceof com.puppycrawl.tools.checkstyle.filters.IntRangeFilter;
+
+        if $z0 == 0 goto label3;
+
+        other = (com.puppycrawl.tools.checkstyle.filters.IntRangeFilter) aObject;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mLowerBound>;
+
+        $r0 = other.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mLowerBound>;
+
+        $z1 = virtualinvoke $r1.<java.lang.Integer: boolean equals(java.lang.Object)>($r0);
+
+        if $z1 == 0 goto label1;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mUpperBound>;
+
+        $r2 = other.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mUpperBound>;
+
+        $z2 = virtualinvoke $r3.<java.lang.Integer: boolean equals(java.lang.Object)>($r2);
+
+        if $z2 == 0 goto label1;
+
+        $z3 = 1;
+
+        goto label2;
+
+     label1:
+        $z3 = 0;
+
+     label2:
+        return $z3;
+
+     label3:
+        return 0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.filters.IntRangeFilter this;
+        java.lang.StringBuilder $r0, $r1, $r3, $r4, $r6, $r7;
+        java.lang.Integer $r2, $r5;
+        java.lang.String $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.IntRangeFilter;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("IntRangeFilter[");
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mLowerBound>;
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(",");
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: java.lang.Integer mUpperBound>;
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r8;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: int HASH_MULT> = 29;
+
+        return;
+    }
+}

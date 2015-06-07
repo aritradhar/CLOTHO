@@ -1,0 +1,808 @@
+public class com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext extends org.antlr.v4.runtime.ParserRuleContext
+{
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagCloseContext theadTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TheadTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagOpenContext colgroupTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ColgroupTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagCloseContext tbodyTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TbodyTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagCloseContext thTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ThTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagCloseContext pTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$PTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagCloseContext htmlTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$HtmlTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParagraphContext paragraph()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParagraphContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ParagraphContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParagraphContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagCloseContext ddTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$DdTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagOpenContext dtTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$DtTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupContext colgroup()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ColgroupContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrContext tr()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TrContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiContext li()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$LiContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlContext html()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$HtmlContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThContext th()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ThContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagOpenContext ddTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$DdTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagCloseContext headTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$HeadTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagOpenContext thTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ThTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagOpenContext headTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$HeadTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagOpenContext htmlTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$HtmlTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagOpenContext trTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TrTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagOpenContext tbodyTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TbodyTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyContext tbody()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TbodyContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadContext thead()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TheadContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagOpenContext theadTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TheadTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadContext head()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$HeadContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagOpenContext tfootTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TfootTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootContext tfoot()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TfootContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagCloseContext liTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$LiTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyContext body()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$BodyContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagCloseContext bodyTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$BodyTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagOpenContext optionTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$OptionTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagCloseContext tfootTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TfootTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtContext dt()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$DtContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdContext dd()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$DdContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdContext td()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TdContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagOpenContext bodyTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$BodyTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagCloseContext colgroupTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ColgroupTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagCloseContext tdTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TdTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext singletonElement()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$SingletonElementContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagOpenContext liTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$LiTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionContext option()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$OptionContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagOpenContext pTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$PTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagCloseContext dtTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$DtTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagCloseContext trTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TrTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagCloseContext optionTagClose()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagCloseContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$OptionTagCloseContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagCloseContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagContext htmlTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$HtmlTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagOpenContext tdTagOpen()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagOpenContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$TdTagOpenContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagOpenContext) $r0;
+
+        return $r1;
+    }
+
+    public void <init>(org.antlr.v4.runtime.ParserRuleContext, int)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext parent;
+        int invokingState;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        parent := @parameter0: org.antlr.v4.runtime.ParserRuleContext;
+
+        invokingState := @parameter1: int;
+
+        specialinvoke this.<org.antlr.v4.runtime.ParserRuleContext: void <init>(org.antlr.v4.runtime.ParserRuleContext,int)>(parent, invokingState);
+
+        return;
+    }
+
+    public int getRuleIndex()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        return 1;
+    }
+
+    public void enterRule(org.antlr.v4.runtime.tree.ParseTreeListener)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.tree.ParseTreeListener listener;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        listener := @parameter0: org.antlr.v4.runtime.tree.ParseTreeListener;
+
+        $z0 = listener instanceof com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener) listener;
+
+        interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener: void enterHtmlElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext)>(this);
+
+     label1:
+        return;
+    }
+
+    public void exitRule(org.antlr.v4.runtime.tree.ParseTreeListener)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.tree.ParseTreeListener listener;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        listener := @parameter0: org.antlr.v4.runtime.tree.ParseTreeListener;
+
+        $z0 = listener instanceof com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener) listener;
+
+        interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener: void exitHtmlElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext)>(this);
+
+     label1:
+        return;
+    }
+
+    public java.lang.Object accept(org.antlr.v4.runtime.tree.ParseTreeVisitor)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext this;
+        org.antlr.v4.runtime.tree.ParseTreeVisitor visitor;
+        boolean $z0;
+        java.lang.Object $r0, $r2;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        visitor := @parameter0: org.antlr.v4.runtime.tree.ParseTreeVisitor;
+
+        $z0 = visitor instanceof com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor;
+
+        if $z0 == 0 goto label1;
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor) visitor;
+
+        $r2 = interfaceinvoke $r1.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor: java.lang.Object visitHtmlElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext)>(this);
+
+        return $r2;
+
+     label1:
+        $r0 = interfaceinvoke visitor.<org.antlr.v4.runtime.tree.ParseTreeVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(this);
+
+        return $r0;
+    }
+}

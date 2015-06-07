@@ -1,0 +1,96 @@
+public class BugTestPack.ApacheXalan.XalanBug extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugTestPack.ApacheXalan.XalanBug this;
+
+        this := @this: BugTestPack.ApacheXalan.XalanBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.lang.String toJavaName(java.lang.String)
+    {
+        java.lang.String name, $r3;
+        java.lang.StringBuffer result, $r0;
+        char ch, $c0, $c1;
+        int n, i;
+        boolean $z0, $z1;
+
+        name := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.StringBuffer;
+
+        specialinvoke $r0.<java.lang.StringBuffer: void <init>()>();
+
+        result = $r0;
+
+        ch = virtualinvoke name.<java.lang.String: char charAt(int)>(0);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isJavaIdentifierStart(char)>(ch);
+
+        if $z0 == 0 goto label1;
+
+        $c1 = ch;
+
+        goto label2;
+
+     label1:
+        $c1 = 95;
+
+     label2:
+        virtualinvoke result.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c1);
+
+        n = virtualinvoke name.<java.lang.String: int length()>();
+
+        i = 1;
+
+        goto label6;
+
+     label3:
+        ch = virtualinvoke name.<java.lang.String: char charAt(int)>(i);
+
+        $z1 = staticinvoke <java.lang.Character: boolean isJavaIdentifierPart(char)>(ch);
+
+        if $z1 == 0 goto label4;
+
+        $c0 = ch;
+
+        goto label5;
+
+     label4:
+        $c0 = 95;
+
+     label5:
+        virtualinvoke result.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c0);
+
+        i = i + 1;
+
+     label6:
+        if i < n goto label3;
+
+        $r3 = virtualinvoke result.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r3;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        java.lang.String s;
+        java.io.PrintStream $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        s = staticinvoke <BugTestPack.ApacheXalan.XalanBug: java.lang.String toJavaName(java.lang.String)>("");
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(s);
+
+        return;
+    }
+}

@@ -1,0 +1,310 @@
+public class com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck
+{
+    private static final java.lang.String DEFAULT_FORMAT;
+    private java.util.regex.Pattern mLegalComment;
+
+    public void setLegalComment(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck this;
+        java.lang.String aFormat, $r6;
+        java.util.regex.PatternSyntaxException e, $r1;
+        java.util.regex.Pattern $r0;
+        org.apache.commons.beanutils.ConversionException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck;
+
+        aFormat := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aFormat);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck: java.util.regex.Pattern mLegalComment> = $r0;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new org.apache.commons.beanutils.ConversionException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aFormat);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r6, e);
+
+        throw $r2;
+
+     label4:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public void <init>() throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void <init>(java.lang.String)>("^[\\s\\}\\);]*$");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck;
+
+        $r0 = newarray (int)[0];
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.lang.IllegalStateException $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = new java.lang.IllegalStateException;
+
+        specialinvoke $r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>("visitToken() shouldn\'t be called.");
+
+        throw $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.regex.Pattern blankLinePattern;
+        com.google.common.collect.ImmutableMap cppComments, cComments;
+        java.util.HashSet lines;
+        java.util.Iterator i$;
+        java.lang.Integer lineNo;
+        java.lang.String line, lineBefore, lineAfter, $r11, $r13;
+        com.puppycrawl.tools.checkstyle.api.TextBlock comment;
+        java.util.List commentList;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r0, $r1;
+        java.util.Set $r2, $r3;
+        java.lang.Object $r4, $r8, $r9, $r12;
+        boolean $z2, $z3, $z4, $z5, $z6, $z7;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9;
+        java.lang.String[] $r5, $r10;
+        java.util.regex.Matcher $r6;
+        java.lang.Object[] $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        blankLinePattern = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck: java.util.regex.Pattern getRegexp()>();
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        cppComments = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileContents: com.google.common.collect.ImmutableMap getCppComments()>();
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        cComments = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FileContents: com.google.common.collect.ImmutableMap getCComments()>();
+
+        lines = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        $r2 = interfaceinvoke cppComments.<java.util.Map: java.util.Set keySet()>();
+
+        interfaceinvoke lines.<java.util.Set: boolean addAll(java.util.Collection)>($r2);
+
+        $r3 = interfaceinvoke cComments.<java.util.Map: java.util.Set keySet()>();
+
+        interfaceinvoke lines.<java.util.Set: boolean addAll(java.util.Collection)>($r3);
+
+        i$ = interfaceinvoke lines.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z2 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label5;
+
+        $r4 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        lineNo = (java.lang.Integer) $r4;
+
+        $r5 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck: java.lang.String[] getLines()>();
+
+        $i0 = virtualinvoke lineNo.<java.lang.Integer: int intValue()>();
+
+        $i1 = $i0 - 1;
+
+        line = $r5[$i1];
+
+        lineBefore = "";
+
+        comment = null;
+
+        $z3 = interfaceinvoke cppComments.<java.util.Map: boolean containsKey(java.lang.Object)>(lineNo);
+
+        if $z3 == 0 goto label2;
+
+        $r12 = interfaceinvoke cppComments.<java.util.Map: java.lang.Object get(java.lang.Object)>(lineNo);
+
+        comment = (com.puppycrawl.tools.checkstyle.api.TextBlock) $r12;
+
+        $i9 = interfaceinvoke comment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartColNo()>();
+
+        lineBefore = virtualinvoke line.<java.lang.String: java.lang.String substring(int,int)>(0, $i9);
+
+        goto label3;
+
+     label2:
+        $z4 = interfaceinvoke cComments.<java.util.Map: boolean containsKey(java.lang.Object)>(lineNo);
+
+        if $z4 == 0 goto label3;
+
+        $r9 = interfaceinvoke cComments.<java.util.Map: java.lang.Object get(java.lang.Object)>(lineNo);
+
+        commentList = (java.util.List) $r9;
+
+        $i4 = interfaceinvoke commentList.<java.util.List: int size()>();
+
+        $i3 = $i4 - 1;
+
+        $r8 = interfaceinvoke commentList.<java.util.List: java.lang.Object get(int)>($i3);
+
+        comment = (com.puppycrawl.tools.checkstyle.api.TextBlock) $r8;
+
+        $i5 = interfaceinvoke comment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartColNo()>();
+
+        lineBefore = virtualinvoke line.<java.lang.String: java.lang.String substring(int,int)>(0, $i5);
+
+        $r10 = interfaceinvoke comment.<com.puppycrawl.tools.checkstyle.api.TextBlock: java.lang.String[] getText()>();
+
+        $i7 = lengthof $r10;
+
+        if $i7 != 1 goto label3;
+
+        $i8 = interfaceinvoke comment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getEndColNo()>();
+
+        $i6 = $i8 + 1;
+
+        $r11 = virtualinvoke line.<java.lang.String: java.lang.String substring(int)>($i6);
+
+        lineAfter = virtualinvoke $r11.<java.lang.String: java.lang.String trim()>();
+
+        $r13 = "";
+
+        $z7 = virtualinvoke $r13.<java.lang.String: boolean equals(java.lang.Object)>(lineAfter);
+
+        if $z7 != 0 goto label3;
+
+        goto label1;
+
+     label3:
+        if comment == null goto label4;
+
+        $r6 = virtualinvoke blankLinePattern.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(lineBefore);
+
+        $z5 = virtualinvoke $r6.<java.util.regex.Matcher: boolean find()>();
+
+        if $z5 != 0 goto label4;
+
+        $z6 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck: boolean isLegalComment(com.puppycrawl.tools.checkstyle.api.TextBlock)>(comment);
+
+        if $z6 != 0 goto label4;
+
+        $i2 = virtualinvoke lineNo.<java.lang.Integer: int intValue()>();
+
+        $r7 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck: void log(int,java.lang.String,java.lang.Object[])>($i2, "trailing.comments", $r7);
+
+     label4:
+        goto label1;
+
+     label5:
+        return;
+    }
+
+    private boolean isLegalComment(com.puppycrawl.tools.checkstyle.api.TextBlock)
+    {
+        com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck this;
+        com.puppycrawl.tools.checkstyle.api.TextBlock aComment;
+        java.lang.String commentText;
+        java.util.regex.Pattern $r0, $r2;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String[] $r1;
+        boolean $z0, $z1;
+        java.util.regex.Matcher $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck;
+
+        aComment := @parameter0: com.puppycrawl.tools.checkstyle.api.TextBlock;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck: java.util.regex.Pattern mLegalComment>;
+
+        if $r0 != null goto label1;
+
+        return 0;
+
+     label1:
+        $i0 = interfaceinvoke aComment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartLineNo()>();
+
+        $i1 = interfaceinvoke aComment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getEndLineNo()>();
+
+        if $i0 == $i1 goto label2;
+
+        return 0;
+
+     label2:
+        $r1 = interfaceinvoke aComment.<com.puppycrawl.tools.checkstyle.api.TextBlock: java.lang.String[] getText()>();
+
+        commentText = $r1[0];
+
+        commentText = virtualinvoke commentText.<java.lang.String: java.lang.String substring(int)>(2);
+
+        $z0 = virtualinvoke commentText.<java.lang.String: boolean endsWith(java.lang.String)>("*/");
+
+        if $z0 == 0 goto label3;
+
+        $i2 = virtualinvoke commentText.<java.lang.String: int length()>();
+
+        $i3 = $i2 - 2;
+
+        commentText = virtualinvoke commentText.<java.lang.String: java.lang.String substring(int,int)>(0, $i3);
+
+     label3:
+        commentText = virtualinvoke commentText.<java.lang.String: java.lang.String trim()>();
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck: java.util.regex.Pattern mLegalComment>;
+
+        $r3 = virtualinvoke $r2.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(commentText);
+
+        $z1 = virtualinvoke $r3.<java.util.regex.Matcher: boolean find()>();
+
+        return $z1;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck: java.lang.String DEFAULT_FORMAT> = "^[\\s\\}\\);]*$";
+
+        return;
+    }
+}

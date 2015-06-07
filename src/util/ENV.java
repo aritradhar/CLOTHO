@@ -125,6 +125,9 @@ public class ENV
 	public static int TOTAL_SAFE = 0;
 	public static int TOTAL_UNSAFE = 0;
 	
+	/**
+	 * This is required because of a bug in Soot 2.5.0 initial version
+	 */
 	public static void classReseolver()
 	{
 		Scene.v().addBasicClass("constraintAnalysis.ConstraintStorageMapDynamic",SootClass.SIGNATURES);
@@ -143,6 +146,9 @@ public class ENV
         Scene.v().addBasicClass("StringTest",SootClass.SIGNATURES);
 	}
 	
+	/**
+	 * This is required because of a bug in Soot 2.5.0 initial version
+	 */
 	public static void classReseolverBody()
 	{
 		Scene.v().addBasicClass("java.lang.Object",SootClass.BODIES);

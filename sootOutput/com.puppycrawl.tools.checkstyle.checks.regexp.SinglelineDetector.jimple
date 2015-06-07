@@ -1,0 +1,265 @@
+class com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector extends java.lang.Object
+{
+    private final com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions;
+    private int mCurrentMatches;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector this;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions aOptions;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector;
+
+        aOptions := @parameter0: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions> = aOptions;
+
+        return;
+    }
+
+    public void processLines(java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector this;
+        java.util.List aLines;
+        int lineno;
+        java.util.Iterator i$;
+        java.lang.String line;
+        boolean $z0;
+        java.lang.Object $r0;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r1;
+        java.util.regex.Pattern $r2;
+        java.util.regex.Matcher $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector;
+
+        aLines := @parameter0: java.util.List;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: void resetState()>();
+
+        lineno = 0;
+
+        i$ = interfaceinvoke aLines.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r0 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        line = (java.lang.String) $r0;
+
+        lineno = lineno + 1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.util.regex.Pattern getPattern()>();
+
+        $r3 = virtualinvoke $r2.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(line);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: void checkLine(int,java.lang.String,java.util.regex.Matcher,int)>(lineno, line, $r3, 0);
+
+        goto label1;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: void finish()>();
+
+        return;
+    }
+
+    private void finish()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector this;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r0, $r1, $r4, $r6, $r9, $r11, $r13;
+        int $i0, $i1, $i2;
+        java.lang.String $r2, $r3, $r7, $r15;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter $r5, $r10;
+        java.lang.Object[] $r8, $r12;
+        java.lang.Integer $r14;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: int mCurrentMatches>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $i1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: int getMinimum()>();
+
+        if $i0 >= $i1 goto label2;
+
+        $r2 = "";
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r3 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String getMessage()>();
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label1;
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r10 = virtualinvoke $r9.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter getReporter()>();
+
+        $r12 = newarray (java.lang.Object)[2];
+
+        $r11 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $i2 = virtualinvoke $r11.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: int getMinimum()>();
+
+        $r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+
+        $r12[0] = $r14;
+
+        $r13 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r15 = virtualinvoke $r13.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String getFormat()>();
+
+        $r12[1] = $r15;
+
+        virtualinvoke $r10.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: void log(int,java.lang.String,java.lang.Object[])>(0, "regexp.minimum", $r12);
+
+        goto label2;
+
+     label1:
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r5 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter getReporter()>();
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r7 = virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String getMessage()>();
+
+        $r8 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r5.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: void log(int,java.lang.String,java.lang.Object[])>(0, $r7, $r8);
+
+     label2:
+        return;
+    }
+
+    private void resetState()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: int mCurrentMatches> = 0;
+
+        return;
+    }
+
+    private void checkLine(int, java.lang.String, java.util.regex.Matcher, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector this;
+        int aLineno, aStartPosition, startCol, endCol, $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.String aLine, $r3, $r5, $r8, $r15;
+        java.util.regex.Matcher aMatcher;
+        boolean foundMatch, $z0, $z1;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r0, $r2, $r4, $r7, $r9, $r10;
+        com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor $r1;
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter $r6, $r13;
+        java.lang.Object[] $r11, $r12;
+        java.util.regex.Pattern $r14;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector;
+
+        aLineno := @parameter0: int;
+
+        aLine := @parameter1: java.lang.String;
+
+        aMatcher := @parameter2: java.util.regex.Matcher;
+
+        aStartPosition := @parameter3: int;
+
+        foundMatch = virtualinvoke aMatcher.<java.util.regex.Matcher: boolean find(int)>(aStartPosition);
+
+        if foundMatch != 0 goto label1;
+
+        return;
+
+     label1:
+        startCol = virtualinvoke aMatcher.<java.util.regex.Matcher: int start(int)>(0);
+
+        endCol = virtualinvoke aMatcher.<java.util.regex.Matcher: int end(int)>(0);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor getSuppressor()>();
+
+        $i0 = endCol - 1;
+
+        $z0 = interfaceinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor: boolean shouldSuppress(int,int,int,int)>(aLineno, startCol, aLineno, $i0);
+
+        if $z0 == 0 goto label3;
+
+        $i5 = virtualinvoke aLine.<java.lang.String: int length()>();
+
+        if endCol >= $i5 goto label2;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: void checkLine(int,java.lang.String,java.util.regex.Matcher,int)>(aLineno, aLine, aMatcher, endCol);
+
+     label2:
+        return;
+
+     label3:
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: int mCurrentMatches>;
+
+        $i2 = $i1 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: int mCurrentMatches> = $i2;
+
+        $i4 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: int mCurrentMatches>;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $i3 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: int getMaximum()>();
+
+        if $i4 <= $i3 goto label5;
+
+        $r3 = "";
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r5 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String getMessage()>();
+
+        $z1 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>($r5);
+
+        if $z1 == 0 goto label4;
+
+        $r10 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r13 = virtualinvoke $r10.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter getReporter()>();
+
+        $r12 = newarray (java.lang.Object)[1];
+
+        $r14 = virtualinvoke aMatcher.<java.util.regex.Matcher: java.util.regex.Pattern pattern()>();
+
+        $r15 = virtualinvoke $r14.<java.util.regex.Pattern: java.lang.String toString()>();
+
+        $r12[0] = $r15;
+
+        virtualinvoke $r13.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: void log(int,java.lang.String,java.lang.Object[])>(aLineno, "regexp.exceeded", $r12);
+
+        goto label5;
+
+     label4:
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r6 = virtualinvoke $r7.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter getReporter()>();
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r8 = virtualinvoke $r9.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String getMessage()>();
+
+        $r11 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: void log(int,java.lang.String,java.lang.Object[])>(aLineno, $r8, $r11);
+
+     label5:
+        return;
+    }
+}

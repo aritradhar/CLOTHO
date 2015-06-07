@@ -1,0 +1,71 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 30;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aArrayInit, rcurly, prev;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck;
+
+        aArrayInit := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        rcurly = virtualinvoke aArrayInit.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(74);
+
+        $i0 = virtualinvoke aArrayInit.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke rcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i0 == $i1 goto label1;
+
+        $i2 = virtualinvoke aArrayInit.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i2 != 1 goto label2;
+
+     label1:
+        return;
+
+     label2:
+        prev = virtualinvoke rcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        $i3 = virtualinvoke prev.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 == 75 goto label3;
+
+        $i4 = virtualinvoke rcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck: void log(int,java.lang.String,java.lang.Object[])>($i4, "array.trailing.comma", $r0);
+
+     label3:
+        return;
+    }
+}

@@ -1,0 +1,399 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int[][] ALLOWED_ASSIGMENT_CONTEXT;
+    private static final int[][] CONTROL_CONTEXT;
+    private static final int[][] ALLOWED_ASSIGMENT_IN_COMPARISON_CONTEXT;
+    private static final int[] COMPARISON_TYPES;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck;
+
+        $r0 = newarray (int)[12];
+
+        $r0[0] = 81;
+
+        $r0[1] = 103;
+
+        $r0[2] = 100;
+
+        $r0[3] = 101;
+
+        $r0[4] = 102;
+
+        $r0[5] = 104;
+
+        $r0[6] = 105;
+
+        $r0[7] = 106;
+
+        $r0[8] = 107;
+
+        $r0[9] = 109;
+
+        $r0[10] = 110;
+
+        $r0[11] = 108;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int[][] $r0;
+        boolean $z0, $z1, $z2;
+        int $i0, $i1;
+        java.lang.Object[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: int[][] ALLOWED_ASSIGMENT_CONTEXT>;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: boolean isInContext(com.puppycrawl.tools.checkstyle.api.DetailAST,int[][])>(aAST, $r0);
+
+        if $z0 == 0 goto label1;
+
+        return;
+
+     label1:
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: boolean isInNoBraceControlStatement(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 == 0 goto label2;
+
+        return;
+
+     label2:
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: boolean isInWhileIdiom(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z2 == 0 goto label3;
+
+        return;
+
+     label3:
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "assignment.inner.avoid", $r1);
+
+        return;
+    }
+
+    private static boolean isInNoBraceControlStatement(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, expr, exprNext;
+        int[][] $r0;
+        boolean $z0, $z1;
+        int $i0;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: int[][] CONTROL_CONTEXT>;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: boolean isInContext(com.puppycrawl.tools.checkstyle.api.DetailAST,int[][])>(aAST, $r0);
+
+        if $z0 != 0 goto label1;
+
+        return 0;
+
+     label1:
+        expr = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        exprNext = virtualinvoke expr.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if exprNext == null goto label2;
+
+        $i0 = interfaceinvoke exprNext.<antlr.collections.AST: int getType()>();
+
+        if $i0 != 46 goto label2;
+
+        $z1 = 1;
+
+        goto label3;
+
+     label2:
+        $z1 = 0;
+
+     label3:
+        return $z1;
+    }
+
+    private boolean isInWhileIdiom(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0, $r1;
+        boolean $z0, $z1;
+        int[][] $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: boolean isComparison(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        if $z0 != 0 goto label1;
+
+        return 0;
+
+     label1:
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r2 = <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: int[][] ALLOWED_ASSIGMENT_IN_COMPARISON_CONTEXT>;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: boolean isInContext(com.puppycrawl.tools.checkstyle.api.DetailAST,int[][])>($r1, $r2);
+
+        return $z1;
+    }
+
+    private static boolean isComparison(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int astType, $i0;
+        int[] $r0;
+        boolean $z0;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        astType = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: int[] COMPARISON_TYPES>;
+
+        $i0 = staticinvoke <java.util.Arrays: int binarySearch(int[],int)>($r0, astType);
+
+        if $i0 < 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private static boolean isInContext(com.puppycrawl.tools.checkstyle.api.DetailAST, int[][])
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, current;
+        int[][] aContextSet, arr$;
+        int len$, i$, len, j, expectedType, $i0, $i1;
+        int[] element;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aContextSet := @parameter1: int[][];
+
+        arr$ = aContextSet;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label6;
+
+        element = arr$[i$];
+
+        current = aAST;
+
+        len = lengthof element;
+
+        j = 0;
+
+     label2:
+        if j >= len goto label5;
+
+        current = virtualinvoke current.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        expectedType = element[j];
+
+        if current == null goto label5;
+
+        $i0 = virtualinvoke current.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == expectedType goto label3;
+
+        goto label5;
+
+     label3:
+        $i1 = len - 1;
+
+        if j != $i1 goto label4;
+
+        return 1;
+
+     label4:
+        j = j + 1;
+
+        goto label2;
+
+     label5:
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label6:
+        return 0;
+    }
+
+    static void <clinit>()
+    {
+        int[][] $r0, $r7, $r13;
+        int[] $r1, $r2, $r3, $r4, $r5, $r6, $r8, $r9, $r10, $r11, $r12, $r14, $r15, $r16;
+
+        $r0 = newarray (int[])[6];
+
+        $r1 = newarray (int)[2];
+
+        $r1[0] = 29;
+
+        $r1[1] = 7;
+
+        $r0[0] = $r1;
+
+        $r2 = newarray (int)[1];
+
+        $r2[0] = 10;
+
+        $r0[1] = $r2;
+
+        $r3 = newarray (int)[3];
+
+        $r3[0] = 29;
+
+        $r3[1] = 35;
+
+        $r3[2] = 36;
+
+        $r0[2] = $r3;
+
+        $r4 = newarray (int)[3];
+
+        $r4[0] = 29;
+
+        $r4[1] = 35;
+
+        $r4[2] = 38;
+
+        $r0[3] = $r4;
+
+        $r5 = newarray (int)[1];
+
+        $r5[0] = 164;
+
+        $r0[4] = $r5;
+
+        $r6 = newarray (int)[3];
+
+        $r6[0] = 182;
+
+        $r6[1] = 181;
+
+        $r6[2] = 180;
+
+        $r0[5] = $r6;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: int[][] ALLOWED_ASSIGMENT_CONTEXT> = $r0;
+
+        $r7 = newarray (int[])[5];
+
+        $r8 = newarray (int)[2];
+
+        $r8[0] = 29;
+
+        $r8[1] = 87;
+
+        $r7[0] = $r8;
+
+        $r9 = newarray (int)[2];
+
+        $r9[0] = 29;
+
+        $r9[1] = 93;
+
+        $r7[1] = $r9;
+
+        $r10 = newarray (int)[2];
+
+        $r10[0] = 29;
+
+        $r10[1] = 86;
+
+        $r7[2] = $r10;
+
+        $r11 = newarray (int)[2];
+
+        $r11[0] = 29;
+
+        $r11[1] = 85;
+
+        $r7[3] = $r11;
+
+        $r12 = newarray (int)[2];
+
+        $r12[0] = 29;
+
+        $r12[1] = 94;
+
+        $r7[4] = $r12;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: int[][] CONTROL_CONTEXT> = $r7;
+
+        $r13 = newarray (int[])[1];
+
+        $r14 = newarray (int)[2];
+
+        $r14[0] = 29;
+
+        $r14[1] = 86;
+
+        $r13[0] = $r14;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: int[][] ALLOWED_ASSIGMENT_IN_COMPARISON_CONTEXT> = $r13;
+
+        $r15 = newarray (int)[6];
+
+        $r15[0] = 118;
+
+        $r15[1] = 122;
+
+        $r15[2] = 120;
+
+        $r15[3] = 121;
+
+        $r15[4] = 119;
+
+        $r15[5] = 117;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: int[] COMPARISON_TYPES> = $r15;
+
+        $r16 = <com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck: int[] COMPARISON_TYPES>;
+
+        staticinvoke <java.util.Arrays: void sort(int[])>($r16);
+
+        return;
+    }
+}

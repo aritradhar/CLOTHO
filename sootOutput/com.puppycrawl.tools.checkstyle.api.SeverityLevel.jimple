@@ -1,0 +1,151 @@
+public final enum class com.puppycrawl.tools.checkstyle.api.SeverityLevel extends java.lang.Enum
+{
+    public static final enum com.puppycrawl.tools.checkstyle.api.SeverityLevel IGNORE;
+    public static final enum com.puppycrawl.tools.checkstyle.api.SeverityLevel INFO;
+    public static final enum com.puppycrawl.tools.checkstyle.api.SeverityLevel WARNING;
+    public static final enum com.puppycrawl.tools.checkstyle.api.SeverityLevel ERROR;
+    private static final com.puppycrawl.tools.checkstyle.api.SeverityLevel[] $VALUES;
+
+    public static com.puppycrawl.tools.checkstyle.api.SeverityLevel[] values()
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.api.SeverityLevel[]) $r1;
+
+        return $r2;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.SeverityLevel valueOf(java.lang.String)
+    {
+        java.lang.String name;
+        java.lang.Enum $r0;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r1;
+
+        name := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/api/SeverityLevel", name);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.api.SeverityLevel) $r0;
+
+        return $r1;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel this;
+        java.lang.String l1;
+        int l2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        specialinvoke this.<java.lang.Enum: void <init>(java.lang.String,int)>(l1, l2);
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: java.lang.String getName()>();
+
+        return $r0;
+    }
+
+    public java.lang.String getName()
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel this;
+        java.lang.String $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: java.lang.String name()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.String: java.lang.String toLowerCase()>();
+
+        return $r1;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.SeverityLevel getInstance(java.lang.String)
+    {
+        java.lang.String aSecurityLevelName, $r0, $r1;
+        java.lang.Enum $r2;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r3;
+
+        aSecurityLevelName := @parameter0: java.lang.String;
+
+        $r0 = virtualinvoke aSecurityLevelName.<java.lang.String: java.lang.String trim()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.String: java.lang.String toUpperCase()>();
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.SeverityLevel: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/api/SeverityLevel", $r1);
+
+        $r3 = (com.puppycrawl.tools.checkstyle.api.SeverityLevel) $r2;
+
+        return $r3;
+    }
+
+    static void <clinit>()
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0, $r1, $r2, $r3, $r5, $r6, $r7, $r8;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel[] $r4;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: void <init>(java.lang.String,int)>("IGNORE", 0);
+
+        <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel IGNORE> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: void <init>(java.lang.String,int)>("INFO", 1);
+
+        <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel INFO> = $r1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: void <init>(java.lang.String,int)>("WARNING", 2);
+
+        <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel WARNING> = $r2;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: void <init>(java.lang.String,int)>("ERROR", 3);
+
+        <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel ERROR> = $r3;
+
+        $r4 = newarray (com.puppycrawl.tools.checkstyle.api.SeverityLevel)[4];
+
+        $r5 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel IGNORE>;
+
+        $r4[0] = $r5;
+
+        $r6 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel INFO>;
+
+        $r4[1] = $r6;
+
+        $r7 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel WARNING>;
+
+        $r4[2] = $r7;
+
+        $r8 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel ERROR>;
+
+        $r4[3] = $r8;
+
+        <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel[] $VALUES> = $r4;
+
+        return;
+    }
+}

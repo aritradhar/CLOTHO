@@ -1,0 +1,381 @@
+public class com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag extends java.lang.Object implements java.lang.Comparable
+{
+    private final java.lang.String mText;
+    private final int mLine;
+    private final int mColumn;
+    private final boolean mOn;
+    private java.util.regex.Pattern mTagCheckRegexp;
+    private java.util.regex.Pattern mTagMessageRegexp;
+    final com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter this$0;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter, int, int, java.lang.String, boolean) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag this;
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter l1;
+        int aLine, aColumn;
+        java.lang.String aText, format, $r1, $r4, $r5, $r9, $r11, $r12, $r20;
+        boolean aOn;
+        java.util.regex.PatternSyntaxException e, $r14;
+        java.util.regex.Pattern $r0, $r2, $r3, $r6, $r7, $r8, $r10, $r13, $r15;
+        java.lang.StringBuilder $r16, $r18, $r19;
+        org.apache.commons.beanutils.ConversionException $r17;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter;
+
+        aLine := @parameter1: int;
+
+        aColumn := @parameter2: int;
+
+        aText := @parameter3: java.lang.String;
+
+        aOn := @parameter4: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter this$0> = l1;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int mLine> = aLine;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int mColumn> = aColumn;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.lang.String mText> = aText;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: boolean mOn> = aOn;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.util.regex.Pattern access$000(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.util.regex.Pattern mTagCheckRegexp> = $r0;
+
+        format = "";
+
+     label1:
+        if aOn == 0 goto label2;
+
+        $r9 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.lang.String access$100(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        $r8 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.util.regex.Pattern access$200(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        format = specialinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.lang.String expandFromComment(java.lang.String,java.lang.String,java.util.regex.Pattern)>(aText, $r9, $r8);
+
+        $r10 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(format);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.util.regex.Pattern mTagCheckRegexp> = $r10;
+
+        $r12 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.lang.String access$300(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        if $r12 == null goto label3;
+
+        $r11 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.lang.String access$300(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        $r13 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.util.regex.Pattern access$200(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        format = specialinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.lang.String expandFromComment(java.lang.String,java.lang.String,java.util.regex.Pattern)>(aText, $r11, $r13);
+
+        $r15 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(format);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.util.regex.Pattern mTagMessageRegexp> = $r15;
+
+        goto label3;
+
+     label2:
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.lang.String access$100(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.util.regex.Pattern access$400(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        format = specialinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.lang.String expandFromComment(java.lang.String,java.lang.String,java.util.regex.Pattern)>(aText, $r1, $r2);
+
+        $r3 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(format);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.util.regex.Pattern mTagCheckRegexp> = $r3;
+
+        $r4 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.lang.String access$300(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        if $r4 == null goto label3;
+
+        $r5 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.lang.String access$300(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        $r6 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter: java.util.regex.Pattern access$400(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter)>(l1);
+
+        format = specialinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.lang.String expandFromComment(java.lang.String,java.lang.String,java.util.regex.Pattern)>(aText, $r5, $r6);
+
+        $r7 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(format);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.util.regex.Pattern mTagMessageRegexp> = $r7;
+
+     label3:
+        goto label5;
+
+     label4:
+        $r14 := @caughtexception;
+
+        e = $r14;
+
+        $r17 = new org.apache.commons.beanutils.ConversionException;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>()>();
+
+        $r19 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse expanded comment ");
+
+        $r18 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(format);
+
+        $r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r17.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r20, e);
+
+        throw $r17;
+
+     label5:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label3 with label4;
+    }
+
+    public java.lang.String getText()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.lang.String mText>;
+
+        return $r0;
+    }
+
+    public int getLine()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int mLine>;
+
+        return $i0;
+    }
+
+    public int getColumn()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int mColumn>;
+
+        return $i0;
+    }
+
+    public boolean isOn()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: boolean mOn>;
+
+        return $z0;
+    }
+
+    public int compareTo(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag this, aObject;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        aObject := @parameter0: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int mLine>;
+
+        $i0 = aObject.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int mLine>;
+
+        if $i1 != $i0 goto label1;
+
+        $i6 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int mColumn>;
+
+        $i5 = aObject.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int mColumn>;
+
+        $i7 = $i6 - $i5;
+
+        return $i7;
+
+     label1:
+        $i3 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int mLine>;
+
+        $i2 = aObject.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int mLine>;
+
+        $i4 = $i3 - $i2;
+
+        return $i4;
+    }
+
+    public boolean isMatch(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvent;
+        java.util.regex.Matcher tagMatcher, messageMatcher;
+        java.util.regex.Pattern $r0, $r2, $r3;
+        java.lang.String $r1, $r4;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        aEvent := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.util.regex.Pattern mTagCheckRegexp>;
+
+        $r1 = virtualinvoke aEvent.<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getSourceName()>();
+
+        tagMatcher = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r1);
+
+        $z0 = virtualinvoke tagMatcher.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 == 0 goto label2;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.util.regex.Pattern mTagMessageRegexp>;
+
+        if $r2 == null goto label1;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.util.regex.Pattern mTagMessageRegexp>;
+
+        $r4 = virtualinvoke aEvent.<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getMessage()>();
+
+        messageMatcher = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r4);
+
+        $z1 = virtualinvoke messageMatcher.<java.util.regex.Matcher: boolean find()>();
+
+        return $z1;
+
+     label1:
+        return 1;
+
+     label2:
+        return 0;
+    }
+
+    private java.lang.String expandFromComment(java.lang.String, java.lang.String, java.util.regex.Pattern)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag this;
+        java.lang.String aComment, aString, result, $r3, $r4;
+        java.util.regex.Pattern aRegexp;
+        java.util.regex.Matcher matcher;
+        int i, $i0;
+        boolean $z0;
+        java.lang.StringBuilder $r0, $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        aComment := @parameter0: java.lang.String;
+
+        aString := @parameter1: java.lang.String;
+
+        aRegexp := @parameter2: java.util.regex.Pattern;
+
+        matcher = virtualinvoke aRegexp.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aComment);
+
+        $z0 = virtualinvoke matcher.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label1;
+
+        return aString;
+
+     label1:
+        result = aString;
+
+        i = 0;
+
+     label2:
+        $i0 = virtualinvoke matcher.<java.util.regex.Matcher: int groupCount()>();
+
+        if i > $i0 goto label3;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\$");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r4 = virtualinvoke matcher.<java.util.regex.Matcher: java.lang.String group(int)>(i);
+
+        result = virtualinvoke result.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>($r3, $r4);
+
+        i = i + 1;
+
+        goto label2;
+
+     label3:
+        return result;
+    }
+
+    public final java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag this;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r9, $r10;
+        int $i0, $i1;
+        boolean $z0;
+        java.lang.String $r8, $r11;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Tag[line=");
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int getLine()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; col=");
+
+        $i1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int getColumn()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; on=");
+
+        $z0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: boolean isOn()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z0);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; text=\'");
+
+        $r8 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: java.lang.String getText()>();
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\']");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r11;
+    }
+
+    public volatile int compareTo(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag this, $r0;
+        java.lang.Object x0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag;
+
+        x0 := @parameter0: java.lang.Object;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag) x0;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag: int compareTo(com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag)>($r0);
+
+        return $i0;
+    }
+}

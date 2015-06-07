@@ -1,0 +1,92 @@
+class com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter extends java.lang.Object implements org.apache.commons.beanutils.Converter
+{
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object convert(java.lang.Class, java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter this;
+        java.lang.Class aType;
+        java.lang.Object aValue;
+        java.util.StringTokenizer st, $r0;
+        java.util.ArrayList result;
+        java.lang.String token, $r1, $r2, $r5;
+        boolean $z0;
+        int $i0;
+        java.lang.String[] $r3;
+        java.lang.Object[] $r4;
+        org.apache.commons.beanutils.ConversionException $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter;
+
+        aType := @parameter0: java.lang.Class;
+
+        aValue := @parameter1: java.lang.Object;
+
+        if null != aType goto label1;
+
+        $r6 = new org.apache.commons.beanutils.ConversionException;
+
+        specialinvoke $r6.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String)>("Cannot convert from null.");
+
+        throw $r6;
+
+     label1:
+        $r0 = new java.util.StringTokenizer;
+
+        $r1 = virtualinvoke aValue.<java.lang.Object: java.lang.String toString()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.String: java.lang.String trim()>();
+
+        specialinvoke $r0.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>($r2, ",");
+
+        st = $r0;
+
+        result = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+     label2:
+        $z0 = virtualinvoke st.<java.util.StringTokenizer: boolean hasMoreTokens()>();
+
+        if $z0 == 0 goto label3;
+
+        token = virtualinvoke st.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        $r5 = virtualinvoke token.<java.lang.String: java.lang.String trim()>();
+
+        interfaceinvoke result.<java.util.List: boolean add(java.lang.Object)>($r5);
+
+        goto label2;
+
+     label3:
+        $i0 = interfaceinvoke result.<java.util.List: int size()>();
+
+        $r3 = newarray (java.lang.String)[$i0];
+
+        $r4 = interfaceinvoke result.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r3);
+
+        return $r4;
+    }
+
+    void <init>(com.puppycrawl.tools.checkstyle.api.AutomaticBean$1)
+    {
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter this;
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean$1 x0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.api.AutomaticBean$1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter: void <init>()>();
+
+        return;
+    }
+}

@@ -1,0 +1,14 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck extends com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck: void <init>(java.lang.String,java.lang.String)>("finalize", "avoid.finalizer.method");
+
+        return;
+    }
+}

@@ -1,0 +1,61 @@
+public class com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck extends com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck: void <init>(java.lang.String)>("^[a-z][a-zA-Z0-9]*$");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 21;
+
+        return $r0;
+    }
+
+    protected boolean mustCheckName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0, $r1;
+        int $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if $r0 == null goto label1;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 98 goto label2;
+
+     label1:
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+}

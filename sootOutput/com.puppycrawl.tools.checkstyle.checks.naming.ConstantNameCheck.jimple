@@ -1,0 +1,123 @@
+public class com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck extends com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: void <init>(java.lang.String)>("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 10;
+
+        return $r0;
+    }
+
+    protected final boolean mustCheckName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiersAST, nameAST;
+        boolean retVal, isStatic, isFinal, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9;
+        java.lang.String $r0, $r1, $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = 0;
+
+        modifiersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        if modifiersAST == null goto label1;
+
+        $z7 = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        if $z7 == 0 goto label1;
+
+        $z9 = 1;
+
+        goto label2;
+
+     label1:
+        $z9 = 0;
+
+     label2:
+        isStatic = $z9;
+
+        if modifiersAST == null goto label3;
+
+        $z5 = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z5 == 0 goto label3;
+
+        $z8 = 1;
+
+        goto label4;
+
+     label3:
+        $z8 = 0;
+
+     label4:
+        isFinal = $z8;
+
+        if isStatic == 0 goto label5;
+
+        if isFinal == 0 goto label5;
+
+        $z6 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck: boolean shouldCheckInScope(com.puppycrawl.tools.checkstyle.api.DetailAST)>(modifiersAST);
+
+        if $z6 != 0 goto label6;
+
+     label5:
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 != 0 goto label6;
+
+        $z4 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z4 == 0 goto label7;
+
+        $z3 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inCodeBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z3 != 0 goto label7;
+
+     label6:
+        nameAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        if nameAST == null goto label7;
+
+        $r0 = "serialVersionUID";
+
+        $r1 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z1 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z1 != 0 goto label7;
+
+        $r2 = "serialPersistentFields";
+
+        $r3 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z2 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z2 != 0 goto label7;
+
+        retVal = 1;
+
+     label7:
+        return retVal;
+    }
+}

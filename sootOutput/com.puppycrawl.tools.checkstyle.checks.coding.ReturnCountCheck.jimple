@@ -1,0 +1,279 @@
+public final class com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck
+{
+    private static final int DEFAULT_MAX;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mContextStack;
+    private int mMax;
+    private com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context mContext;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void <init>(java.lang.String)>("^equals$");
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: com.puppycrawl.tools.checkstyle.api.FastStack mContextStack> = $r0;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: void setMax(int)>(2);
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 8;
+
+        $r0[1] = 9;
+
+        $r0[2] = 90;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 8;
+
+        $r0[1] = 9;
+
+        return $r0;
+    }
+
+    public int getMax()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: int mMax>;
+
+        return $i0;
+    }
+
+    public void setMax(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this;
+        int aMax;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        aMax := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: int mMax> = aMax;
+
+        return;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context mContext> = null;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: com.puppycrawl.tools.checkstyle.api.FastStack mContextStack>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: void clear()>();
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context $r0;
+        java.lang.IllegalStateException $r1;
+        java.lang.String $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 8: goto label1;
+            case 9: goto label1;
+            case 90: goto label2;
+            default: goto label3;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: void visitMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label4;
+
+     label2:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context mContext>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: void visitLiteralReturn()>();
+
+        goto label4;
+
+     label3:
+        $r1 = new java.lang.IllegalStateException;
+
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r1.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r2);
+
+        throw $r1;
+
+     label4:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        java.lang.IllegalStateException $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 8: goto label1;
+            case 9: goto label1;
+            case 90: goto label2;
+            default: goto label3;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: void leaveMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label4;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r0 = new java.lang.IllegalStateException;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r1);
+
+        throw $r0;
+
+     label4:
+        return;
+    }
+
+    private void visitMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, methodNameAST;
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context $r0, $r2;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+        java.util.regex.Pattern $r3;
+        java.lang.String $r4;
+        java.util.regex.Matcher $r5;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: com.puppycrawl.tools.checkstyle.api.FastStack mContextStack>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context mContext>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r0);
+
+        methodNameAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context;
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: java.util.regex.Pattern getRegexp()>();
+
+        $r4 = virtualinvoke methodNameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r5 = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r4);
+
+        $z0 = virtualinvoke $r5.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: void <init>(com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck,boolean)>(this, $z1);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context mContext> = $r2;
+
+        return;
+    }
+
+    private void leaveMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context $r0, $r3;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+        java.lang.Object $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context mContext>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: void checkCount(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: com.puppycrawl.tools.checkstyle.api.FastStack mContextStack>;
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        $r3 = (com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context) $r2;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context mContext> = $r3;
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: int DEFAULT_MAX> = 2;
+
+        return;
+    }
+}

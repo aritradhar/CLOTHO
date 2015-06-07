@@ -1,0 +1,100 @@
+public class com.puppycrawl.tools.checkstyle.api.LineColumn extends java.lang.Object implements java.lang.Comparable
+{
+    private final int mLine;
+    private final int mCol;
+
+    public void <init>(int, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.LineColumn this;
+        int aLine, aCol;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LineColumn;
+
+        aLine := @parameter0: int;
+
+        aCol := @parameter1: int;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.LineColumn: int mLine> = aLine;
+
+        this.<com.puppycrawl.tools.checkstyle.api.LineColumn: int mCol> = aCol;
+
+        return;
+    }
+
+    public int getLine()
+    {
+        com.puppycrawl.tools.checkstyle.api.LineColumn this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LineColumn;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.LineColumn: int mLine>;
+
+        return $i0;
+    }
+
+    public int getColumn()
+    {
+        com.puppycrawl.tools.checkstyle.api.LineColumn this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LineColumn;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.LineColumn: int mCol>;
+
+        return $i0;
+    }
+
+    public int compareTo(com.puppycrawl.tools.checkstyle.api.LineColumn)
+    {
+        com.puppycrawl.tools.checkstyle.api.LineColumn this, aLineColumn;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LineColumn;
+
+        aLineColumn := @parameter0: com.puppycrawl.tools.checkstyle.api.LineColumn;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.LineColumn: int getLine()>();
+
+        $i1 = virtualinvoke aLineColumn.<com.puppycrawl.tools.checkstyle.api.LineColumn: int getLine()>();
+
+        if $i0 == $i1 goto label1;
+
+        $i5 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.LineColumn: int getLine()>();
+
+        $i6 = virtualinvoke aLineColumn.<com.puppycrawl.tools.checkstyle.api.LineColumn: int getLine()>();
+
+        $i4 = $i5 - $i6;
+
+        goto label2;
+
+     label1:
+        $i2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.LineColumn: int getColumn()>();
+
+        $i3 = virtualinvoke aLineColumn.<com.puppycrawl.tools.checkstyle.api.LineColumn: int getColumn()>();
+
+        $i4 = $i2 - $i3;
+
+     label2:
+        return $i4;
+    }
+
+    public volatile int compareTo(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.api.LineColumn this, $r0;
+        java.lang.Object x0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LineColumn;
+
+        x0 := @parameter0: java.lang.Object;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.api.LineColumn) x0;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.LineColumn: int compareTo(com.puppycrawl.tools.checkstyle.api.LineColumn)>($r0);
+
+        return $i0;
+    }
+}

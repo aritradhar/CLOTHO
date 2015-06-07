@@ -1,0 +1,979 @@
+public final class com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck extends com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck
+{
+    private static final int BIG_PRIME;
+    private static final org.apache.commons.logging.Log LOG;
+    static final int IGNORE;
+    private static final int DEFAULT_MIN_DUPLICATE_LINES;
+    private int mMin;
+    private java.lang.String mBasedir;
+    private int[][] mLineBlockChecksums;
+    private com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo[] mChecksumInfo;
+    private final java.util.List mFiles;
+    private final java.util.Map mTrimmedLineCache;
+    private int mDuplicates;
+    private java.lang.String mCharset;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        java.util.ArrayList $r0;
+        com.google.common.collect.MapMaker $r1, $r2;
+        java.util.concurrent.ConcurrentMap $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int mMin> = 12;
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles> = $r0;
+
+        $r1 = new com.google.common.collect.MapMaker;
+
+        specialinvoke $r1.<com.google.common.collect.MapMaker: void <init>()>();
+
+        $r2 = virtualinvoke $r1.<com.google.common.collect.MapMaker: com.google.common.collect.MapMaker softValues()>();
+
+        $r3 = virtualinvoke $r2.<com.google.common.collect.MapMaker: java.util.concurrent.ConcurrentMap makeMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.Map mTrimmedLineCache> = $r3;
+
+        return;
+    }
+
+    public void setMin(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        int aMin;
+        java.lang.IllegalArgumentException $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aMin := @parameter0: int;
+
+        if aMin >= 1 goto label1;
+
+        $r0 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("min must be 1 or higher");
+
+        throw $r0;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int mMin> = aMin;
+
+        return;
+    }
+
+    public void setBasedir(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        java.lang.String aBasedir;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aBasedir := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.lang.String mBasedir> = aBasedir;
+
+        return;
+    }
+
+    public void beginProcessing(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        java.lang.String aCharset;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aCharset := @parameter0: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void beginProcessing(java.lang.String)>(aCharset);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.lang.String mCharset> = aCharset;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        interfaceinvoke $r0.<java.util.List: void clear()>();
+
+        return;
+    }
+
+    protected void processFiltered(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        java.io.File aFile;
+        java.util.List aLines, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>(aFile);
+
+        return;
+    }
+
+    public void finishProcessing()
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        long start, i, lines;
+        int i, $i0, $i1, $i2, $i3;
+        java.io.File file;
+        java.lang.String[] lines;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$ChecksumGenerator transformer;
+        java.util.List $r0, $r2, $r5, $r6, $r14;
+        int[][] $r1, $r7, $r9, $r28;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo[] $r3;
+        org.apache.commons.logging.Log $r4, $r13, $r22;
+        boolean $z0;
+        java.lang.Object $r8;
+        java.lang.StringBuilder $r10, $r12, $r17, $r18, $r19, $r20, $r21, $r23, $r24, $r25;
+        int[] $r11;
+        java.lang.String $r15, $r26, $r27;
+        java.io.IOException $r16, lines;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void finishProcessing()>();
+
+        start = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int mDuplicates> = 0;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        $i0 = interfaceinvoke $r0.<java.util.List: int size()>();
+
+        $r1 = newarray (int[])[$i0];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int[][] mLineBlockChecksums> = $r1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        $i1 = interfaceinvoke $r2.<java.util.List: int size()>();
+
+        $r3 = newarray (com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo)[$i1];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo[] mChecksumInfo> = $r3;
+
+        $r4 = <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG>;
+
+        $z0 = interfaceinvoke $r4.<org.apache.commons.logging.Log: boolean isDebugEnabled()>();
+
+        if $z0 == 0 goto label1;
+
+        $r13 = <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG>;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>()>();
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Reading ");
+
+        $r14 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        $i3 = interfaceinvoke $r14.<java.util.List: int size()>();
+
+        $r17 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" input files");
+
+        $r15 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r13.<org.apache.commons.logging.Log: void debug(java.lang.Object)>($r15);
+
+     label1:
+        i = 0;
+
+     label2:
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        $i2 = interfaceinvoke $r5.<java.util.List: int size()>();
+
+        if i >= $i2 goto label7;
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        $r8 = interfaceinvoke $r6.<java.util.List: java.lang.Object get(int)>(i);
+
+        file = (java.io.File) $r8;
+
+     label3:
+        lines = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.lang.String[] getTrimmedLines(java.io.File)>(file);
+
+        transformer = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$ChecksumGenerator findChecksumGenerator(java.io.File)>(file);
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int[][] mLineBlockChecksums>;
+
+        $r11 = interfaceinvoke transformer.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$ChecksumGenerator: int[] convertLines(java.lang.String[])>(lines);
+
+        $r9[i] = $r11;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r16 := @caughtexception;
+
+        lines = $r16;
+
+        $r22 = <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG>;
+
+        $r21 = new java.lang.StringBuilder;
+
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>()>();
+
+        $r19 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Cannot access ");
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(file);
+
+        $r25 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" (");
+
+        $r26 = virtualinvoke lines.<java.io.IOException: java.lang.String getMessage()>();
+
+        $r23 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("), ignoring");
+
+        $r27 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r22.<org.apache.commons.logging.Log: void error(java.lang.Object,java.lang.Throwable)>($r27, lines);
+
+        $r28 = newmultiarray (int)[0][0];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int[][] mLineBlockChecksums> = $r28;
+
+     label6:
+        i = i + 1;
+
+        goto label2;
+
+     label7:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: void fillSortedRelevantChecksums()>();
+
+        i = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: void findDuplicates()>();
+
+        lines = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: void dumpStats(long,long,long)>(start, i, lines);
+
+        $r7 = (int[][]) null;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int[][] mLineBlockChecksums> = $r7;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo[] mChecksumInfo> = null;
+
+        return;
+
+        catch java.io.IOException from label3 to label4 with label5;
+    }
+
+    private com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$ChecksumGenerator findChecksumGenerator(java.io.File)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        java.io.File aFile;
+        java.lang.String $r0;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator $r1;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        $r0 = virtualinvoke aFile.<java.io.File: java.lang.String getName()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean endsWith(java.lang.String)>(".java");
+
+        if $z0 == 0 goto label1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$JavaChecksumGenerator: void <init>(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck,com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$1)>(this, null);
+
+        return $r2;
+
+     label1:
+        $r1 = new com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator: void <init>(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck,com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$1)>(this, null);
+
+        return $r1;
+    }
+
+    private void dumpStats(long, long, long)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        long aStart, aEndReading, aEndSearching, initTime, workTime;
+        java.lang.String $r0, $r6, $r11;
+        org.apache.commons.logging.Log $r1, $r3, $r8, $r13;
+        boolean $z0;
+        java.lang.StringBuilder $r2, $r4, $r7, $r9, $r10, $r12, $r14, $r15, $r16, $r17, $r18;
+        int $i0, $i1;
+        java.util.List $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aStart := @parameter0: long;
+
+        aEndReading := @parameter1: long;
+
+        aEndSearching := @parameter2: long;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG>;
+
+        $z0 = interfaceinvoke $r1.<org.apache.commons.logging.Log: boolean isDebugEnabled()>();
+
+        if $z0 == 0 goto label1;
+
+        initTime = aEndReading - aStart;
+
+        workTime = aEndSearching - aEndReading;
+
+        $r3 = <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG>;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("files = ");
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        $i0 = interfaceinvoke $r5.<java.util.List: int size()>();
+
+        $r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r6 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r3.<org.apache.commons.logging.Log: void debug(java.lang.Object)>($r6);
+
+        $r8 = <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG>;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("duplicates = ");
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int mDuplicates>;
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r11 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r8.<org.apache.commons.logging.Log: void debug(java.lang.Object)>($r11);
+
+        $r13 = <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG>;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+
+        $r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Runtime = ");
+
+        $r15 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(initTime);
+
+        $r18 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" + ");
+
+        $r17 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(workTime);
+
+        $r0 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r13.<org.apache.commons.logging.Log: void debug(java.lang.Object)>($r0);
+
+     label1:
+        return;
+    }
+
+    private void fillSortedRelevantChecksums()
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        int i, $i0;
+        int[] checksums;
+        int[][] $r0, $r1;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo $r2;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo[] $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        i = 0;
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int[][] mLineBlockChecksums>;
+
+        $i0 = lengthof $r0;
+
+        if i >= $i0 goto label2;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int[][] mLineBlockChecksums>;
+
+        checksums = $r1[i];
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo[] mChecksumInfo>;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: void <init>(int[])>(checksums);
+
+        $r3[i] = $r2;
+
+        i = i + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    private void findDuplicates()
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        int len, i, j;
+        java.lang.String path;
+        com.puppycrawl.tools.checkstyle.api.MessageDispatcher dispatcher;
+        org.apache.commons.logging.Log $r0, $r6;
+        boolean $z0;
+        java.util.List $r1, $r2;
+        java.lang.Object $r3;
+        java.io.File $r4;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG>;
+
+        $z0 = interfaceinvoke $r0.<org.apache.commons.logging.Log: boolean isDebugEnabled()>();
+
+        if $z0 == 0 goto label1;
+
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG>;
+
+        interfaceinvoke $r6.<org.apache.commons.logging.Log: void debug(java.lang.Object)>("Analysis phase");
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        len = interfaceinvoke $r1.<java.util.List: int size()>();
+
+        i = 0;
+
+     label2:
+        if i >= len goto label5;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(i);
+
+        $r4 = (java.io.File) $r3;
+
+        path = virtualinvoke $r4.<java.io.File: java.lang.String getPath()>();
+
+        $r5 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        virtualinvoke $r5.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void reset()>();
+
+        dispatcher = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: com.puppycrawl.tools.checkstyle.api.MessageDispatcher getMessageDispatcher()>();
+
+        interfaceinvoke dispatcher.<com.puppycrawl.tools.checkstyle.api.MessageDispatcher: void fireFileStarted(java.lang.String)>(path);
+
+        j = 0;
+
+     label3:
+        if j > i goto label4;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: void findDuplicatesInFiles(int,int)>(i, j);
+
+        j = j + 1;
+
+        goto label3;
+
+     label4:
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: void fireErrors(java.lang.String)>(path);
+
+        interfaceinvoke dispatcher.<com.puppycrawl.tools.checkstyle.api.MessageDispatcher: void fireFileFinished(java.lang.String)>(path);
+
+        i = i + 1;
+
+        goto label2;
+
+     label5:
+        return;
+    }
+
+    private void findDuplicatesInFiles(int, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        int aI, aJ, iBlockCount, iLine, iSum, $i0;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo iChecksumInfo, jChecksumInfo;
+        int[] iLineBlockChecksums, jLines;
+        com.google.common.collect.ArrayListMultimap ignorePairs;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo[] $r0, $r1;
+        boolean $z0;
+        int[][] $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aI := @parameter0: int;
+
+        aJ := @parameter1: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo[] mChecksumInfo>;
+
+        iChecksumInfo = $r0[aI];
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo[] mChecksumInfo>;
+
+        jChecksumInfo = $r1[aJ];
+
+        $z0 = virtualinvoke iChecksumInfo.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: boolean hasChecksumOverlapsWith(com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo)>(jChecksumInfo);
+
+        if $z0 != 0 goto label1;
+
+        return;
+
+     label1:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int[][] mLineBlockChecksums>;
+
+        iLineBlockChecksums = $r2[aI];
+
+        iBlockCount = lengthof iLineBlockChecksums;
+
+        ignorePairs = staticinvoke <com.google.common.collect.ArrayListMultimap: com.google.common.collect.ArrayListMultimap create()>();
+
+        iLine = 0;
+
+     label2:
+        if iLine >= iBlockCount goto label4;
+
+        iSum = iLineBlockChecksums[iLine];
+
+        jLines = virtualinvoke jChecksumInfo.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] findLinesWithChecksum(int)>(iSum);
+
+        $i0 = lengthof jLines;
+
+        if $i0 <= 0 goto label3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: void findDuplicateFromLine(int,int,int,int[],com.google.common.collect.Multimap)>(aI, aJ, iLine, jLines, ignorePairs);
+
+     label3:
+        iLine = iLine + 1;
+
+        goto label2;
+
+     label4:
+        return;
+    }
+
+    private void findDuplicateFromLine(int, int, int, int[], com.google.common.collect.Multimap)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        int aI, aJ, aILine, len$, i$, jLine, duplicateLines, i, extend, offset, $i0, $i2, $i4, $i5, $i6, $i7;
+        int[] aJLines, iCheckSums, jCheckSums, arr$;
+        com.google.common.collect.Multimap aIgnore;
+        long checkSum, $l1;
+        java.util.Collection ignoreEntries;
+        int[][] $r0, $r1;
+        java.lang.Integer $r2, $r6, $r7, $r8;
+        byte $b3;
+        java.util.List $r3;
+        java.io.File $r4;
+        java.lang.Object $r5;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aI := @parameter0: int;
+
+        aJ := @parameter1: int;
+
+        aILine := @parameter2: int;
+
+        aJLines := @parameter3: int[];
+
+        aIgnore := @parameter4: com.google.common.collect.Multimap;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int[][] mLineBlockChecksums>;
+
+        iCheckSums = $r0[aI];
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int[][] mLineBlockChecksums>;
+
+        jCheckSums = $r1[aJ];
+
+        $i0 = iCheckSums[aILine];
+
+        checkSum = (long) $i0;
+
+        arr$ = aJLines;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label7;
+
+        jLine = arr$[i$];
+
+        if aI != aJ goto label2;
+
+        if aILine < jLine goto label2;
+
+        goto label6;
+
+     label2:
+        $i2 = jCheckSums[jLine];
+
+        $l1 = (long) $i2;
+
+        $b3 = $l1 cmp checkSum;
+
+        if $b3 == 0 goto label3;
+
+        goto label6;
+
+     label3:
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aILine);
+
+        ignoreEntries = interfaceinvoke aIgnore.<com.google.common.collect.Multimap: java.util.Collection get(java.lang.Object)>($r2);
+
+        if ignoreEntries == null goto label4;
+
+        $r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(jLine);
+
+        $z0 = interfaceinvoke ignoreEntries.<java.util.Collection: boolean contains(java.lang.Object)>($r7);
+
+        if $z0 == 0 goto label4;
+
+        goto label6;
+
+     label4:
+        duplicateLines = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int verifiyDuplicateLines(int,int,int,int)>(aI, aJ, aILine, jLine);
+
+        $i4 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int mMin>;
+
+        if duplicateLines < $i4 goto label6;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        $r5 = interfaceinvoke $r3.<java.util.List: java.lang.Object get(int)>(aJ);
+
+        $r4 = (java.io.File) $r5;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: void reportDuplicate(int,int,java.io.File,int)>(duplicateLines, aILine, $r4, jLine);
+
+        $i6 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int mMin>;
+
+        extend = duplicateLines - $i6;
+
+        i = 0;
+
+     label5:
+        if i >= extend goto label6;
+
+        offset = i + 1;
+
+        $i7 = aILine + offset;
+
+        $r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i7);
+
+        $i5 = jLine + offset;
+
+        $r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+
+        interfaceinvoke aIgnore.<com.google.common.collect.Multimap: boolean put(java.lang.Object,java.lang.Object)>($r6, $r8);
+
+        i = i + 1;
+
+        goto label5;
+
+     label6:
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label7:
+        return;
+    }
+
+    private int verifiyDuplicateLines(int, int, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        int aI, aJ, aIStartLine, aJStartLine, verified, i, j, $i0, $i1, $i2, $i3;
+        java.io.File iFile, jFile;
+        java.lang.String[] iLines, jLines;
+        java.util.List $r0, $r2;
+        java.lang.Object $r1, $r3;
+        java.lang.String $r4, $r5, $r13;
+        java.io.IOException $r6, iLines;
+        boolean $z0;
+        org.apache.commons.logging.Log $r7;
+        java.lang.StringBuilder $r8, $r9, $r10, $r11, $r12;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aI := @parameter0: int;
+
+        aJ := @parameter1: int;
+
+        aIStartLine := @parameter2: int;
+
+        aJStartLine := @parameter3: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.lang.Object get(int)>(aI);
+
+        iFile = (java.io.File) $r1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.List mFiles>;
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(aJ);
+
+        jFile = (java.io.File) $r3;
+
+     label1:
+        iLines = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.lang.String[] getTrimmedLines(java.io.File)>(iFile);
+
+        jLines = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.lang.String[] getTrimmedLines(java.io.File)>(jFile);
+
+        verified = 0;
+
+        i = aIStartLine;
+
+        j = aJStartLine;
+
+     label2:
+        $i1 = lengthof iLines;
+
+        if i >= $i1 goto label3;
+
+        $i0 = lengthof jLines;
+
+        if j >= $i0 goto label3;
+
+        $i3 = i;
+
+        i = i + 1;
+
+        $r4 = iLines[$i3];
+
+        $i2 = j;
+
+        j = j + 1;
+
+        $r5 = jLines[$i2];
+
+        $z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>($r5);
+
+        if $z0 == 0 goto label3;
+
+        verified = verified + 1;
+
+        goto label2;
+
+     label3:
+        return verified;
+
+     label4:
+        $r6 := @caughtexception;
+
+        iLines = $r6;
+
+        $r7 = <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG>;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to verify potential duplicate for ");
+
+        $r9 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(iFile);
+
+        $r12 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" and ");
+
+        $r11 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(jFile);
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r7.<org.apache.commons.logging.Log: void error(java.lang.Object,java.lang.Throwable)>($r13, iLines);
+
+        return 0;
+
+        catch java.io.IOException from label1 to label3 with label4;
+    }
+
+    private java.lang.String[] getTrimmedLines(java.io.File) throws java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        java.io.File aFile;
+        java.lang.String path, charset;
+        java.lang.String[] cachedLines, lines, $r3;
+        com.puppycrawl.tools.checkstyle.api.FileText text, $r2;
+        java.util.Map $r0, $r4;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        path = virtualinvoke aFile.<java.io.File: java.lang.String getPath()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.Map mTrimmedLineCache>;
+
+        $r1 = interfaceinvoke $r0.<java.util.Map: java.lang.Object get(java.lang.Object)>(path);
+
+        cachedLines = (java.lang.String[]) $r1;
+
+        if cachedLines == null goto label1;
+
+        return cachedLines;
+
+     label1:
+        charset = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.lang.String mCharset>;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.api.FileText;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.api.FileText: void <init>(java.io.File,java.lang.String)>(aFile, charset);
+
+        text = $r2;
+
+        $r3 = virtualinvoke text.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String[] toLinesArray()>();
+
+        lines = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.lang.String[] getTrimmed(java.lang.String[])>($r3);
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.util.Map mTrimmedLineCache>;
+
+        interfaceinvoke $r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(path, lines);
+
+        return lines;
+    }
+
+    private java.lang.String[] getTrimmed(java.lang.String[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        java.lang.String[] aLines, 'ret';
+        int i, $i0, $i1;
+        java.lang.String $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aLines := @parameter0: java.lang.String[];
+
+        $i0 = lengthof aLines;
+
+        'ret' = newarray (java.lang.String)[$i0];
+
+        i = 0;
+
+     label1:
+        $i1 = lengthof 'ret';
+
+        if i >= $i1 goto label2;
+
+        $r0 = aLines[i];
+
+        $r1 = virtualinvoke $r0.<java.lang.String: java.lang.String trim()>();
+
+        'ret'[i] = $r1;
+
+        i = i + 1;
+
+        goto label1;
+
+     label2:
+        return 'ret';
+    }
+
+    private void reportDuplicate(int, int, java.io.File, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this;
+        int aEquivalent, aILine, aJLine, $i0, $i1, $i2, $i3;
+        java.io.File aJFile;
+        java.lang.String fileName, $r0, $r1;
+        java.lang.Object[] $r2;
+        java.lang.Integer $r3, $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        aEquivalent := @parameter0: int;
+
+        aILine := @parameter1: int;
+
+        aJFile := @parameter2: java.io.File;
+
+        aJLine := @parameter3: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: java.lang.String mBasedir>;
+
+        $r1 = virtualinvoke aJFile.<java.io.File: java.lang.String getPath()>();
+
+        fileName = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.lang.String getStrippedFileName(java.lang.String,java.lang.String)>($r0, $r1);
+
+        $i0 = aILine + 1;
+
+        $r2 = newarray (java.lang.Object)[3];
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aEquivalent);
+
+        $r2[0] = $r3;
+
+        $r2[1] = fileName;
+
+        $i1 = aJLine + 1;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        $r2[2] = $r4;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "duplicates.lines", $r2);
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int mDuplicates>;
+
+        $i3 = $i2 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int mDuplicates> = $i3;
+
+        return;
+    }
+
+    static int access$000(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck x0;
+        int $i0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        $i0 = x0.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int mMin>;
+
+        return $i0;
+    }
+
+    static void <clinit>()
+    {
+        org.apache.commons.logging.Log $r0;
+
+        <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int DEFAULT_MIN_DUPLICATE_LINES> = 12;
+
+        <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int IGNORE> = -2147483648;
+
+        <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int BIG_PRIME> = 317;
+
+        $r0 = staticinvoke <org.apache.commons.logging.LogFactory: org.apache.commons.logging.Log getLog(java.lang.Class)>(class "com/puppycrawl/tools/checkstyle/checks/duplicates/StrictDuplicateCodeCheck");
+
+        <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: org.apache.commons.logging.Log LOG> = $r0;
+
+        return;
+    }
+}

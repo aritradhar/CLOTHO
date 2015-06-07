@@ -1,0 +1,400 @@
+public class com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mProtectedAllowed;
+    private boolean mPackageAllowed;
+    private java.lang.String mPublicMemberFormat;
+    private java.util.regex.Pattern mPublicMemberPattern;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: java.lang.String mPublicMemberFormat> = "^serialVersionUID$";
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: java.lang.String mPublicMemberFormat>;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: void setPublicMemberPattern(java.lang.String)>($r0);
+
+        return;
+    }
+
+    public boolean isProtectedAllowed()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: boolean mProtectedAllowed>;
+
+        return $z0;
+    }
+
+    public void setProtectedAllowed(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        boolean aProtectedAllowed;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        aProtectedAllowed := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: boolean mProtectedAllowed> = aProtectedAllowed;
+
+        return;
+    }
+
+    public boolean isPackageAllowed()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: boolean mPackageAllowed>;
+
+        return $z0;
+    }
+
+    public void setPackageAllowed(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        boolean aPackageAllowed;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        aPackageAllowed := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: boolean mPackageAllowed> = aPackageAllowed;
+
+        return;
+    }
+
+    public void setPublicMemberPattern(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        java.lang.String aPattern, $r6;
+        java.util.regex.PatternSyntaxException e, $r1;
+        java.util.regex.Pattern $r0;
+        org.apache.commons.beanutils.ConversionException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        aPattern := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aPattern);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: java.util.regex.Pattern mPublicMemberPattern> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: java.lang.String mPublicMemberFormat> = aPattern;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new org.apache.commons.beanutils.ConversionException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aPattern);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r6, e);
+
+        throw $r2;
+
+     label4:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    private java.util.regex.Pattern getPublicMemberRegexp()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        java.util.regex.Pattern $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: java.util.regex.Pattern mPublicMemberPattern>;
+
+        return $r0;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 10;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, varNameAST, $r0;
+        java.lang.String varName, declaredScope, variableScope, $r1, $r2, $r3, $r4, $r8;
+        boolean inInterfaceOrAnnotationBlock, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8;
+        java.util.Set mods;
+        int $i0, $i1, $i2, $i3;
+        java.lang.Object[] $r5;
+        java.util.regex.Matcher $r6;
+        java.util.regex.Pattern $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 10 goto label1;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 6 goto label2;
+
+     label1:
+        return;
+
+     label2:
+        varNameAST = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getVarNameAST(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        varName = virtualinvoke varNameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        inInterfaceOrAnnotationBlock = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        mods = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: java.util.Set getModifiers(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        declaredScope = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: java.lang.String getVisibilityScope(java.util.Set)>(mods);
+
+        if inInterfaceOrAnnotationBlock == 0 goto label3;
+
+        $r8 = "public";
+
+        goto label4;
+
+     label3:
+        $r8 = declaredScope;
+
+     label4:
+        variableScope = $r8;
+
+        $r1 = "private";
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(variableScope);
+
+        if $z0 != 0 goto label9;
+
+        if inInterfaceOrAnnotationBlock != 0 goto label9;
+
+        $z1 = interfaceinvoke mods.<java.util.Set: boolean contains(java.lang.Object)>("static");
+
+        if $z1 == 0 goto label5;
+
+        $z8 = interfaceinvoke mods.<java.util.Set: boolean contains(java.lang.Object)>("final");
+
+        if $z8 != 0 goto label9;
+
+     label5:
+        $r2 = "package";
+
+        $z2 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>(variableScope);
+
+        if $z2 == 0 goto label6;
+
+        $z7 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: boolean isPackageAllowed()>();
+
+        if $z7 != 0 goto label9;
+
+     label6:
+        $r3 = "protected";
+
+        $z3 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>(variableScope);
+
+        if $z3 == 0 goto label7;
+
+        $z5 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: boolean isProtectedAllowed()>();
+
+        if $z5 != 0 goto label9;
+
+     label7:
+        $r4 = "public";
+
+        $z4 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(variableScope);
+
+        if $z4 == 0 goto label8;
+
+        $r7 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: java.util.regex.Pattern getPublicMemberRegexp()>();
+
+        $r6 = virtualinvoke $r7.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(varName);
+
+        $z6 = virtualinvoke $r6.<java.util.regex.Matcher: boolean find()>();
+
+        if $z6 != 0 goto label9;
+
+     label8:
+        $i2 = virtualinvoke varNameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke varNameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r5[0] = varName;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i2, $i3, "variable.notPrivate", $r5);
+
+     label9:
+        return;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST getVarNameAST(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aVariableDefAST, ast, nextSibling;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        aVariableDefAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        ast = virtualinvoke aVariableDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if ast == null goto label3;
+
+        nextSibling = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        $i0 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 13 goto label2;
+
+        return nextSibling;
+
+     label2:
+        ast = nextSibling;
+
+        goto label1;
+
+     label3:
+        return null;
+    }
+
+    private java.util.Set getModifiers(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aVariableDefAST, modifiersAST;
+        java.util.HashSet retVal;
+        antlr.collections.AST modifier;
+        int $i0;
+        java.lang.String $r0;
+        java.lang.IllegalStateException $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        aVariableDefAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiersAST = virtualinvoke aVariableDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i0 = interfaceinvoke modifiersAST.<antlr.collections.AST: int getType()>();
+
+        if $i0 == 5 goto label1;
+
+        $r1 = new java.lang.IllegalStateException;
+
+        specialinvoke $r1.<java.lang.IllegalStateException: void <init>(java.lang.String)>("Strange parse tree");
+
+        throw $r1;
+
+     label1:
+        retVal = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        modifier = interfaceinvoke modifiersAST.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+     label2:
+        if modifier == null goto label3;
+
+        $r0 = interfaceinvoke modifier.<antlr.collections.AST: java.lang.String getText()>();
+
+        interfaceinvoke retVal.<java.util.Set: boolean add(java.lang.Object)>($r0);
+
+        modifier = interfaceinvoke modifier.<antlr.collections.AST: antlr.collections.AST getNextSibling()>();
+
+        goto label2;
+
+     label3:
+        return retVal;
+    }
+
+    private java.lang.String getVisibilityScope(java.util.Set)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck this;
+        java.util.Set aModifiers;
+        java.lang.String[] explicitModifiers, arr$, $r0;
+        int len$, i$;
+        java.lang.String candidate;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
+
+        aModifiers := @parameter0: java.util.Set;
+
+        $r0 = newarray (java.lang.String)[3];
+
+        $r0[0] = "public";
+
+        $r0[1] = "private";
+
+        $r0[2] = "protected";
+
+        explicitModifiers = $r0;
+
+        arr$ = explicitModifiers;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label3;
+
+        candidate = arr$[i$];
+
+        $z0 = interfaceinvoke aModifiers.<java.util.Set: boolean contains(java.lang.Object)>(candidate);
+
+        if $z0 == 0 goto label2;
+
+        return candidate;
+
+     label2:
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label3:
+        return "package";
+    }
+}

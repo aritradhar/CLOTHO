@@ -1,0 +1,195 @@
+public final class com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private int mLastStatementEnd;
+    private int mExprDepth;
+    private boolean mInForHeader;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mLastStatementEnd> = -1;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
+
+        $r0 = newarray (int)[4];
+
+        $r0[0] = 29;
+
+        $r0[1] = 46;
+
+        $r0[2] = 36;
+
+        $r0[3] = 38;
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mExprDepth> = 0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: boolean mInForHeader> = 0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mLastStatementEnd> = -1;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 29: goto label1;
+            case 36: goto label3;
+            case 46: goto label2;
+            default: goto label4;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: void visitExpr(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAst);
+
+        goto label4;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: void visitSemi(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAst);
+
+        goto label4;
+
+     label3:
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: boolean mInForHeader> = 1;
+
+        goto label4;
+
+     label4:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        int $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 29: goto label2;
+            case 38: goto label1;
+            default: goto label3;
+        };
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: boolean mInForHeader> = 0;
+
+        goto label3;
+
+     label2:
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mExprDepth>;
+
+        $i2 = $i1 - 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mExprDepth> = $i2;
+
+        goto label3;
+
+     label3:
+        return;
+    }
+
+    private void visitExpr(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        int $i0, $i1, $i2, $i3, $i4;
+        boolean $z0;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mExprDepth>;
+
+        $i1 = $i0 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mExprDepth> = $i1;
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mExprDepth>;
+
+        if $i2 != 1 goto label1;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: boolean mInForHeader>;
+
+        if $z0 != 0 goto label1;
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mLastStatementEnd>;
+
+        $i4 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i3 != $i4 goto label1;
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAst, "multiple.statements.line", $r0);
+
+     label1:
+        return;
+    }
+
+    private void visitSemi(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mExprDepth>;
+
+        if $i0 != 0 goto label1;
+
+        $i1 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck: int mLastStatementEnd> = $i1;
+
+     label1:
+        return;
+    }
+}

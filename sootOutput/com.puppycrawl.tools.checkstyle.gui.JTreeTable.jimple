@@ -1,0 +1,256 @@
+public class com.puppycrawl.tools.checkstyle.gui.JTreeTable extends javax.swing.JTable
+{
+    private static final long serialVersionUID;
+    protected com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree;
+    private javax.swing.JTextArea editor;
+    private java.util.List lines2position;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.gui.TreeTableModel)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable this;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModel treeTableModel;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper selectionWrapper, $r3;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$1 expand, $r10;
+        javax.swing.KeyStroke stroke;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer $r0, $r2, $r4, $r6, $r9;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter $r1;
+        javax.swing.ListSelectionModel $r5;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellEditor $r7;
+        java.awt.Dimension $r8;
+        int $i0, $i1;
+        javax.swing.ActionMap $r11;
+        javax.swing.InputMap $r12;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        treeTableModel := @parameter0: com.puppycrawl.tools.checkstyle.gui.TreeTableModel;
+
+        specialinvoke this.<javax.swing.JTable: void <init>()>();
+
+        $r0 = new com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: void <init>(com.puppycrawl.tools.checkstyle.gui.JTreeTable,javax.swing.tree.TreeModel)>(this, treeTableModel);
+
+        this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: void <init>(com.puppycrawl.tools.checkstyle.gui.TreeTableModel,javax.swing.JTree)>(treeTableModel, $r2);
+
+        specialinvoke this.<javax.swing.JTable: void setModel(javax.swing.table.TableModel)>($r1);
+
+        $r3 = new com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper: void <init>(com.puppycrawl.tools.checkstyle.gui.JTreeTable)>(this);
+
+        selectionWrapper = $r3;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: void setSelectionModel(javax.swing.tree.TreeSelectionModel)>(selectionWrapper);
+
+        $r5 = virtualinvoke selectionWrapper.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper: javax.swing.ListSelectionModel getListSelectionModel()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: void setSelectionModel(javax.swing.ListSelectionModel)>($r5);
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: void setDefaultRenderer(java.lang.Class,javax.swing.table.TableCellRenderer)>(class "com/puppycrawl/tools/checkstyle/gui/TreeTableModel", $r6);
+
+        $r7 = new com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellEditor;
+
+        specialinvoke $r7.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellEditor: void <init>(com.puppycrawl.tools.checkstyle.gui.JTreeTable)>(this);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: void setDefaultEditor(java.lang.Class,javax.swing.table.TableCellEditor)>(class "com/puppycrawl/tools/checkstyle/gui/TreeTableModel", $r7);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: void setShowGrid(boolean)>(0);
+
+        $r8 = new java.awt.Dimension;
+
+        specialinvoke $r8.<java.awt.Dimension: void <init>(int,int)>(0, 0);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: void setIntercellSpacing(java.awt.Dimension)>($r8);
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        $i0 = virtualinvoke $r9.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: int getRowHeight()>();
+
+        if $i0 >= 1 goto label1;
+
+        $i1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: int getRowHeight()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: void setRowHeight(int)>($i1);
+
+     label1:
+        $r10 = new com.puppycrawl.tools.checkstyle.gui.JTreeTable$1;
+
+        specialinvoke $r10.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$1: void <init>(com.puppycrawl.tools.checkstyle.gui.JTreeTable)>(this);
+
+        expand = $r10;
+
+        stroke = staticinvoke <javax.swing.KeyStroke: javax.swing.KeyStroke getKeyStroke(java.lang.String)>("ENTER");
+
+        $r12 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: javax.swing.InputMap getInputMap()>();
+
+        virtualinvoke $r12.<javax.swing.InputMap: void put(javax.swing.KeyStroke,java.lang.Object)>(stroke, "expand/collapse");
+
+        $r11 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: javax.swing.ActionMap getActionMap()>();
+
+        virtualinvoke $r11.<javax.swing.ActionMap: void put(java.lang.Object,javax.swing.Action)>("expand/collapse", expand);
+
+        return;
+    }
+
+    public void updateUI()
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable this;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        specialinvoke this.<javax.swing.JTable: void updateUI()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        if $r0 == null goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: void updateUI()>();
+
+     label1:
+        staticinvoke <javax.swing.LookAndFeel: void installColorsAndFont(javax.swing.JComponent,java.lang.String,java.lang.String,java.lang.String)>(this, "Tree.background", "Tree.foreground", "Tree.font");
+
+        return;
+    }
+
+    public int getEditingRow()
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable this;
+        java.lang.Class editingClass;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: int editingColumn>;
+
+        editingClass = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: java.lang.Class getColumnClass(int)>($i0);
+
+        if editingClass != class "com/puppycrawl/tools/checkstyle/gui/TreeTableModel" goto label1;
+
+        $i1 = -1;
+
+        goto label2;
+
+     label1:
+        $i1 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: int editingRow>;
+
+     label2:
+        return $i1;
+    }
+
+    public void setRowHeight(int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable this;
+        int newRowHeight, $i0, $i1;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer $r0, $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        newRowHeight := @parameter0: int;
+
+        specialinvoke this.<javax.swing.JTable: void setRowHeight(int)>(newRowHeight);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        if $r0 == null goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        $i0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: int getRowHeight()>();
+
+        if $i0 == newRowHeight goto label1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        $i1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: int getRowHeight()>();
+
+        virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: void setRowHeight(int)>($i1);
+
+     label1:
+        return;
+    }
+
+    public javax.swing.JTree getTree()
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable this;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        return $r0;
+    }
+
+    public void setEditor(javax.swing.JTextArea)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable this;
+        javax.swing.JTextArea mJTextArea;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        mJTextArea := @parameter0: javax.swing.JTextArea;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: javax.swing.JTextArea editor> = mJTextArea;
+
+        return;
+    }
+
+    public void setLinePositionMap(java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable this;
+        java.util.List lines2position;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        lines2position := @parameter0: java.util.List;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: java.util.List lines2position> = lines2position;
+
+        return;
+    }
+
+    static javax.swing.JTextArea access$000(com.puppycrawl.tools.checkstyle.gui.JTreeTable)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable x0;
+        javax.swing.JTextArea $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: javax.swing.JTextArea editor>;
+
+        return $r0;
+    }
+
+    static java.util.List access$100(com.puppycrawl.tools.checkstyle.gui.JTreeTable)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable x0;
+        java.util.List $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: java.util.List lines2position>;
+
+        return $r0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.gui.JTreeTable: long serialVersionUID> = -8493693409423365387L;
+
+        return;
+    }
+}

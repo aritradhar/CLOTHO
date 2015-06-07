@@ -1,0 +1,520 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int[] ALLOWED_PATH_TOKENTYPES;
+    private double[] mIgnoreNumbers;
+    private boolean mIgnoreHashCodeMethod;
+    private boolean mIgnoreAnnotation;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        double[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = newarray (double)[4];
+
+        $r0[0] = -1.0;
+
+        $r0[1] = 0.0;
+
+        $r0[2] = 1.0;
+
+        $r0[3] = 2.0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: double[] mIgnoreNumbers> = $r0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        $r0 = newarray (int)[4];
+
+        $r0[0] = 144;
+
+        $r0[1] = 142;
+
+        $r0[2] = 139;
+
+        $r0[3] = 143;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, constantDefAST, ast;
+        int type, $i0;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: boolean mIgnoreAnnotation>;
+
+        if $z0 == 0 goto label1;
+
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: boolean isInAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z4 == 0 goto label1;
+
+        return;
+
+     label1:
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: boolean inIgnoreList(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 != 0 goto label2;
+
+        $z2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: boolean mIgnoreHashCodeMethod>;
+
+        if $z2 == 0 goto label3;
+
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: boolean isInHashCodeMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z3 == 0 goto label3;
+
+     label2:
+        return;
+
+     label3:
+        constantDefAST = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: com.puppycrawl.tools.checkstyle.api.DetailAST findContainingConstantDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if constantDefAST != null goto label4;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: void reportMagicNumber(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label7;
+
+     label4:
+        ast = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label5:
+        if ast == constantDefAST goto label7;
+
+        type = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: int[] ALLOWED_PATH_TOKENTYPES>;
+
+        $i0 = staticinvoke <java.util.Arrays: int binarySearch(int[],int)>($r0, type);
+
+        if $i0 >= 0 goto label6;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: void reportMagicNumber(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label7;
+
+     label6:
+        ast = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label5;
+
+     label7:
+        return;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST findContainingConstantDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, varDefAST, modifiersAST;
+        boolean $z0, $z1;
+        int $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        varDefAST = aAST;
+
+     label1:
+        if varDefAST == null goto label2;
+
+        $i1 = virtualinvoke varDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 10 goto label2;
+
+        $i2 = virtualinvoke varDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 == 159 goto label2;
+
+        varDefAST = virtualinvoke varDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label2:
+        if varDefAST != null goto label3;
+
+        return null;
+
+     label3:
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(varDefAST);
+
+        if $z0 != 0 goto label4;
+
+        $i0 = virtualinvoke varDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 159 goto label5;
+
+     label4:
+        return varDefAST;
+
+     label5:
+        modifiersAST = virtualinvoke varDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z1 = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z1 == 0 goto label6;
+
+        return varDefAST;
+
+     label6:
+        return null;
+    }
+
+    private void reportMagicNumber(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, reportAST;
+        java.lang.String text;
+        int $i0, $i1, $i2, $i3;
+        java.lang.Object[] $r0;
+        java.lang.StringBuilder $r1, $r2, $r3, $r4, $r5, $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        text = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        reportAST = aAST;
+
+        $i0 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 32 goto label1;
+
+        reportAST = parent;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("-");
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(text);
+
+        text = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label2;
+
+     label1:
+        $i1 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 33 goto label2;
+
+        reportAST = parent;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("+");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(text);
+
+        text = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label2:
+        $i2 = virtualinvoke reportAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke reportAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r0[0] = text;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i2, $i3, "magic.number", $r0);
+
+        return;
+    }
+
+    private boolean isInHashCodeMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, methodDefAST, identAST, paramAST;
+        boolean $z0, $z1;
+        java.lang.String $r0, $r1;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inCodeBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 != 0 goto label1;
+
+        return 0;
+
+     label1:
+        methodDefAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label2:
+        if null == methodDefAST goto label3;
+
+        $i1 = virtualinvoke methodDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 9 == $i1 goto label3;
+
+        methodDefAST = virtualinvoke methodDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label2;
+
+     label3:
+        if null != methodDefAST goto label4;
+
+        return 0;
+
+     label4:
+        identAST = virtualinvoke methodDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r0 = "hashCode";
+
+        $r1 = virtualinvoke identAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z1 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z1 != 0 goto label5;
+
+        return 0;
+
+     label5:
+        paramAST = virtualinvoke methodDefAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        $i0 = virtualinvoke paramAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if 0 == $i0 goto label6;
+
+        return 0;
+
+     label6:
+        return 1;
+    }
+
+    private boolean inIgnoreList(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent;
+        double value;
+        java.lang.String $r0;
+        int $i0, $i1, $i2;
+        double[] $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        value = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: double parseDouble(java.lang.String,int)>($r0, $i0);
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 32 goto label1;
+
+        value = -1.0 * value;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: double[] mIgnoreNumbers>;
+
+        $i2 = staticinvoke <java.util.Arrays: int binarySearch(double[],double)>($r1, value);
+
+        if $i2 < 0 goto label2;
+
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+
+    public void setIgnoreNumbers(double[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        double[] aList, $r0, $r1, $r2, $r3;
+        int $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        aList := @parameter0: double[];
+
+        if aList == null goto label1;
+
+        $i0 = lengthof aList;
+
+        if $i0 != 0 goto label2;
+
+     label1:
+        $r0 = newarray (double)[0];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: double[] mIgnoreNumbers> = $r0;
+
+        goto label3;
+
+     label2:
+        $i1 = lengthof aList;
+
+        $r1 = newarray (double)[$i1];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: double[] mIgnoreNumbers> = $r1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: double[] mIgnoreNumbers>;
+
+        $i2 = lengthof aList;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(aList, 0, $r2, 0, $i2);
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: double[] mIgnoreNumbers>;
+
+        staticinvoke <java.util.Arrays: void sort(double[])>($r3);
+
+     label3:
+        return;
+    }
+
+    public void setIgnoreHashCodeMethod(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        boolean aIgnoreHashCodeMethod;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        aIgnoreHashCodeMethod := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: boolean mIgnoreHashCodeMethod> = aIgnoreHashCodeMethod;
+
+        return;
+    }
+
+    public void setIgnoreAnnotation(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        boolean aIgnoreAnnotation;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        aIgnoreAnnotation := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: boolean mIgnoreAnnotation> = aIgnoreAnnotation;
+
+        return;
+    }
+
+    private boolean isInAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0, $r1, $r2, $r3, $r4, $r5, $r6;
+        int $i0, $i1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if null == $r0 goto label1;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if null != $r2 goto label2;
+
+     label1:
+        return 0;
+
+     label2:
+        $r3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r4 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i0 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 163 == $i0 goto label3;
+
+        $r5 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r6 = virtualinvoke $r5.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 164 != $i1 goto label4;
+
+     label3:
+        $z0 = 1;
+
+        goto label5;
+
+     label4:
+        $z0 = 0;
+
+     label5:
+        return $z0;
+    }
+
+    static void <clinit>()
+    {
+        int[] $r0, $r1;
+
+        $r0 = newarray (int)[10];
+
+        $r0[0] = 81;
+
+        $r0[1] = 30;
+
+        $r0[2] = 29;
+
+        $r0[3] = 33;
+
+        $r0[4] = 32;
+
+        $r0[5] = 23;
+
+        $r0[6] = 35;
+
+        $r0[7] = 138;
+
+        $r0[8] = 27;
+
+        $r0[9] = 61;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: int[] ALLOWED_PATH_TOKENTYPES> = $r0;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck: int[] ALLOWED_PATH_TOKENTYPES>;
+
+        staticinvoke <java.util.Arrays: void sort(int[])>($r1);
+
+        return;
+    }
+}

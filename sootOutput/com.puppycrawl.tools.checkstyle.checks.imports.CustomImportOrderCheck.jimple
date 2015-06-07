@@ -1,0 +1,1303 @@
+public class com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final java.lang.String STATIC_RULE_GROUP;
+    private static final java.lang.String SAME_PACKAGE_RULE_GROUP;
+    private static final java.lang.String THIRD_PARTY_PACKAGE_RULE_GROUP;
+    private static final java.lang.String STANDARD_JAVA_PACKAGE_RULE_GROUP;
+    private static final java.lang.String SPECIAL_IMPORTS_RULE_GROUP;
+    private static final java.lang.String NON_GROUP_RULE_GROUP;
+    private java.lang.String mSamePackageDomainsRegExp;
+    private java.util.regex.Pattern mStandardPackageRegExp;
+    private java.util.regex.Pattern mThirdPartyPackageRegExp;
+    private java.util.regex.Pattern mSpecialImportsRegExp;
+    private boolean mSeparateLineBetweenGroups;
+    private boolean mSortImportsInGroupAlphabetically;
+    private final java.util.List mCustomImportOrderRules;
+    private int mSamePackageMatchingDepth;
+    private java.util.List mImportToGroupList;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        java.util.regex.Pattern $r0, $r1, $r2;
+        java.util.ArrayList $r3, $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String mSamePackageDomainsRegExp> = "";
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>("java|javax");
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.regex.Pattern mStandardPackageRegExp> = $r0;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>("^$");
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.regex.Pattern mThirdPartyPackageRegExp> = $r1;
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>("^$");
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.regex.Pattern mSpecialImportsRegExp> = $r2;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean mSeparateLineBetweenGroups> = 1;
+
+        $r3 = new java.util.ArrayList;
+
+        specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules> = $r3;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: int mSamePackageMatchingDepth> = 2;
+
+        $r4 = new java.util.ArrayList;
+
+        specialinvoke $r4.<java.util.ArrayList: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mImportToGroupList> = $r4;
+
+        return;
+    }
+
+    public final void setStandardPackageRegExp(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        java.lang.String aRegexp;
+        java.util.regex.Pattern $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aRegexp := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aRegexp);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.regex.Pattern mStandardPackageRegExp> = $r0;
+
+        return;
+    }
+
+    public final void setThirdPartyPackageRegExp(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        java.lang.String aRegexp;
+        java.util.regex.Pattern $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aRegexp := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aRegexp);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.regex.Pattern mThirdPartyPackageRegExp> = $r0;
+
+        return;
+    }
+
+    public final void setSpecialImportsRegExp(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        java.lang.String aRegexp;
+        java.util.regex.Pattern $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aRegexp := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aRegexp);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.regex.Pattern mSpecialImportsRegExp> = $r0;
+
+        return;
+    }
+
+    public final void setSeparateLineBetweenGroups(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        boolean aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aValue := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean mSeparateLineBetweenGroups> = aValue;
+
+        return;
+    }
+
+    public final void setSortImportsInGroupAlphabetically(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        boolean aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aValue := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean mSortImportsInGroupAlphabetically> = aValue;
+
+        return;
+    }
+
+    public final void setCustomImportOrderRules(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        java.lang.String aInputCustomImportOrder, currentState, $r7;
+        java.lang.String[] arr$;
+        int len$, i$;
+        java.util.List $r0, $r1;
+        java.lang.StringIndexOutOfBoundsException $r2, arr$;
+        java.lang.RuntimeException $r3;
+        java.lang.StringBuilder $r4, $r5, $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aInputCustomImportOrder := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        interfaceinvoke $r0.<java.util.List: void clear()>();
+
+     label1:
+        arr$ = virtualinvoke aInputCustomImportOrder.<java.lang.String: java.lang.String[] split(java.lang.String)>("\\s*###\\s*");
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label2:
+        if i$ >= len$ goto label3;
+
+        currentState = arr$[i$];
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: void addRulesToList(java.lang.String)>(currentState);
+
+        i$ = i$ + 1;
+
+        goto label2;
+
+     label3:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        interfaceinvoke $r1.<java.util.List: boolean add(java.lang.Object)>("NON_GROUP");
+
+     label4:
+        goto label6;
+
+     label5:
+        $r2 := @caughtexception;
+
+        arr$ = $r2;
+
+        $r3 = new java.lang.RuntimeException;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to parse input rule: ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(arr$);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7);
+
+        throw $r3;
+
+     label6:
+        return;
+
+        catch java.lang.StringIndexOutOfBoundsException from label1 to label4 with label5;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 31;
+
+        $r0[1] = 156;
+
+        $r0[2] = 16;
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mImportToGroupList>;
+
+        interfaceinvoke $r0.<java.util.List: void clear()>();
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.lang.String importFullPath, $r2, $r4;
+        int lineNo, $i0, $i1, $i2, $i3;
+        boolean isStatic, $z1, $z2;
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails $r0;
+        java.util.List $r1, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 16 goto label1;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        $z2 = interfaceinvoke $r3.<java.util.List: boolean contains(java.lang.Object)>("SAME_PACKAGE");
+
+        if $z2 == 0 goto label4;
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: int mSamePackageMatchingDepth>;
+
+        if $i3 == -1 goto label4;
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: int mSamePackageMatchingDepth>;
+
+        $r4 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String createSamePackageRegexp(int,com.puppycrawl.tools.checkstyle.api.DetailAST)>($i2, aAST);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String mSamePackageDomainsRegExp> = $r4;
+
+        goto label4;
+
+     label1:
+        importFullPath = staticinvoke <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String getFullImportIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        lineNo = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 156 goto label2;
+
+        $z1 = 1;
+
+        goto label3;
+
+     label2:
+        $z1 = 0;
+
+     label3:
+        isStatic = $z1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mImportToGroupList>;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails;
+
+        $r2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String getImportGroup(boolean,java.lang.String)>(isStatic, importFullPath);
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: void <init>(com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck,java.lang.String,int,java.lang.String,boolean)>(this, importFullPath, lineNo, $r2, isStatic);
+
+        interfaceinvoke $r1.<java.util.List: boolean add(java.lang.Object)>($r0);
+
+     label4:
+        return;
+    }
+
+    public void finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails firstImport, importObject;
+        java.lang.String currentGroup, previousImport, importGroup, fullImportIdent, nextGroup, $r3;
+        int groupNumber, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8;
+        java.util.Iterator i$;
+        java.util.List $r0, $r1, $r4, $r5, $r8, $r9;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9;
+        java.lang.Object $r2, $r6;
+        java.lang.Object[] $r7, $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mImportToGroupList>;
+
+        $z0 = interfaceinvoke $r0.<java.util.List: boolean isEmpty()>();
+
+        if $z0 == 0 goto label1;
+
+        return;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mImportToGroupList>;
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.lang.Object get(int)>(0);
+
+        firstImport = (com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails) $r2;
+
+        $z1 = virtualinvoke firstImport.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: boolean isStatic()>();
+
+        $r3 = virtualinvoke firstImport.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: java.lang.String getImportFullPath()>();
+
+        currentGroup = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String getImportGroup(boolean,java.lang.String)>($z1, $r3);
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        groupNumber = interfaceinvoke $r4.<java.util.List: int indexOf(java.lang.Object)>(currentGroup);
+
+        previousImport = null;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mImportToGroupList>;
+
+        i$ = interfaceinvoke $r5.<java.util.List: java.util.Iterator iterator()>();
+
+     label2:
+        $z2 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label9;
+
+        $r6 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        importObject = (com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails) $r6;
+
+        importGroup = virtualinvoke importObject.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: java.lang.String getImportGroup()>();
+
+        fullImportIdent = staticinvoke <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: java.lang.String access$000(com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails)>(importObject);
+
+        $z4 = virtualinvoke importGroup.<java.lang.String: boolean equals(java.lang.Object)>(currentGroup);
+
+        if $z4 != 0 goto label7;
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        $i2 = interfaceinvoke $r8.<java.util.List: int size()>();
+
+        $i3 = groupNumber + 1;
+
+        if $i2 <= $i3 goto label6;
+
+        $i5 = groupNumber + 1;
+
+        nextGroup = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String getNextImportGroup(int)>($i5);
+
+        $z7 = virtualinvoke importGroup.<java.lang.String: boolean equals(java.lang.Object)>(nextGroup);
+
+        if $z7 == 0 goto label4;
+
+        $z8 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean mSeparateLineBetweenGroups>;
+
+        if $z8 == 0 goto label3;
+
+        if previousImport == null goto label3;
+
+        $i8 = virtualinvoke importObject.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: int getLineNumber()>();
+
+        $z9 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean hasEmptyLineBefore(int)>($i8);
+
+        if $z9 != 0 goto label3;
+
+        $i7 = virtualinvoke importObject.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: int getLineNumber()>();
+
+        $r10 = newarray (java.lang.Object)[1];
+
+        $r10[0] = fullImportIdent;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: void log(int,java.lang.String,java.lang.Object[])>($i7, "custom.import.order.line.separator", $r10);
+
+     label3:
+        currentGroup = nextGroup;
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        groupNumber = interfaceinvoke $r9.<java.util.List: int indexOf(java.lang.Object)>(nextGroup);
+
+        goto label5;
+
+     label4:
+        $i6 = virtualinvoke importObject.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: int getLineNumber()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: void logWrongImportGroupOrder(int,java.lang.String)>($i6, importGroup);
+
+     label5:
+        goto label8;
+
+     label6:
+        $i4 = virtualinvoke importObject.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: int getLineNumber()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: void logWrongImportGroupOrder(int,java.lang.String)>($i4, importGroup);
+
+        goto label8;
+
+     label7:
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean mSortImportsInGroupAlphabetically>;
+
+        if $z3 == 0 goto label8;
+
+        if previousImport == null goto label8;
+
+        $z6 = virtualinvoke importObject.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: boolean isStatic()>();
+
+        $z5 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean matchesImportGroup(boolean,java.lang.String,java.lang.String)>($z6, fullImportIdent, currentGroup);
+
+        if $z5 == 0 goto label8;
+
+        $i1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: int compare(java.lang.String,java.lang.String)>(fullImportIdent, previousImport);
+
+        if $i1 >= 0 goto label8;
+
+        $i0 = virtualinvoke importObject.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: int getLineNumber()>();
+
+        $r7 = newarray (java.lang.Object)[1];
+
+        $r7[0] = fullImportIdent;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "custom.import.order.lex", $r7);
+
+     label8:
+        previousImport = fullImportIdent;
+
+        goto label2;
+
+     label9:
+        return;
+    }
+
+    private void logWrongImportGroupOrder(int, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        int aCurrentImportLine;
+        java.lang.String aImportGroup, $r0;
+        boolean $z0;
+        java.lang.Object[] $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aCurrentImportLine := @parameter0: int;
+
+        aImportGroup := @parameter1: java.lang.String;
+
+        $r0 = "NON_GROUP";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aImportGroup);
+
+        if $z0 == 0 goto label1;
+
+        $r2 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: void log(int,java.lang.String,java.lang.Object[])>(aCurrentImportLine, "custom.import.order.nongroup.import", $r2);
+
+        goto label2;
+
+     label1:
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r1[0] = aImportGroup;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: void log(int,java.lang.String,java.lang.Object[])>(aCurrentImportLine, "custom.import.order", $r1);
+
+     label2:
+        return;
+    }
+
+    private java.lang.String getNextImportGroup(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        int aCurrentGroupNumber, nextGroupNumber, $i0, $i1;
+        java.util.List $r0, $r1, $r4;
+        java.lang.Object $r2, $r5;
+        java.lang.String $r3, $r6;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aCurrentGroupNumber := @parameter0: int;
+
+        nextGroupNumber = aCurrentGroupNumber;
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        $i0 = interfaceinvoke $r0.<java.util.List: int size()>();
+
+        $i1 = nextGroupNumber + 1;
+
+        if $i0 <= $i1 goto label3;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        $r5 = interfaceinvoke $r4.<java.util.List: java.lang.Object get(int)>(nextGroupNumber);
+
+        $r6 = (java.lang.String) $r5;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean hasAnyImportInCurrentGroup(java.lang.String)>($r6);
+
+        if $z0 == 0 goto label2;
+
+        goto label3;
+
+     label2:
+        nextGroupNumber = nextGroupNumber + 1;
+
+        goto label1;
+
+     label3:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.lang.Object get(int)>(nextGroupNumber);
+
+        $r3 = (java.lang.String) $r2;
+
+        return $r3;
+    }
+
+    private boolean hasAnyImportInCurrentGroup(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        java.lang.String aCurrentGroup, $r2;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails currentImport;
+        java.util.List $r0;
+        boolean $z0, $z1;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aCurrentGroup := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mImportToGroupList>;
+
+        i$ = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        currentImport = (com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails) $r1;
+
+        $r2 = virtualinvoke currentImport.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck$ImportDetails: java.lang.String getImportGroup()>();
+
+        $z1 = virtualinvoke aCurrentGroup.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+
+        if $z1 == 0 goto label2;
+
+        return 1;
+
+     label2:
+        goto label1;
+
+     label3:
+        return 0;
+    }
+
+    private java.lang.String getImportGroup(boolean, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        boolean aStatic, $z0, $z1;
+        java.lang.String aImportPath, group;
+        java.util.Iterator i$;
+        java.util.List $r0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aStatic := @parameter0: boolean;
+
+        aImportPath := @parameter1: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        i$ = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        group = (java.lang.String) $r1;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean matchesImportGroup(boolean,java.lang.String,java.lang.String)>(aStatic, aImportPath, group);
+
+        if $z1 == 0 goto label2;
+
+        return group;
+
+     label2:
+        goto label1;
+
+     label3:
+        return "NON_GROUP";
+    }
+
+    private boolean matchesImportGroup(boolean, java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        boolean aStatic, $z0, $z1, $z2, $z3, $z4, $z5;
+        java.lang.String aImportPath, aCurrentGroup;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aStatic := @parameter0: boolean;
+
+        aImportPath := @parameter1: java.lang.String;
+
+        aCurrentGroup := @parameter2: java.lang.String;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean matchesStaticImportGroup(boolean,java.lang.String)>(aStatic, aCurrentGroup);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean matchesSamePackageImportGroup(boolean,java.lang.String,java.lang.String)>(aStatic, aImportPath, aCurrentGroup);
+
+        if $z1 != 0 goto label1;
+
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean matchesSpecialImportsGroup(boolean,java.lang.String,java.lang.String)>(aStatic, aImportPath, aCurrentGroup);
+
+        if $z2 != 0 goto label1;
+
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean matchesStandartImportGroup(boolean,java.lang.String,java.lang.String)>(aStatic, aImportPath, aCurrentGroup);
+
+        if $z3 != 0 goto label1;
+
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: boolean matchesThirdPartyImportGroup(boolean,java.lang.String,java.lang.String)>(aStatic, aImportPath, aCurrentGroup);
+
+        if $z4 == 0 goto label2;
+
+     label1:
+        $z5 = 1;
+
+        goto label3;
+
+     label2:
+        $z5 = 0;
+
+     label3:
+        return $z5;
+    }
+
+    private boolean matchesStaticImportGroup(boolean, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        boolean aStatic, $z0, $z1;
+        java.lang.String aCurrentGroup, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aStatic := @parameter0: boolean;
+
+        aCurrentGroup := @parameter1: java.lang.String;
+
+        if aStatic == 0 goto label1;
+
+        $r0 = "STATIC";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aCurrentGroup);
+
+        if $z0 == 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+
+    private boolean matchesSamePackageImportGroup(boolean, java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        boolean aStatic, $z0, $z1, $z2;
+        java.lang.String aImportPath, aCurrentGroup, importPath, $r0, $r1;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aStatic := @parameter0: boolean;
+
+        aImportPath := @parameter1: java.lang.String;
+
+        aCurrentGroup := @parameter2: java.lang.String;
+
+        $i0 = virtualinvoke aImportPath.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+
+        importPath = virtualinvoke aImportPath.<java.lang.String: java.lang.String substring(int,int)>(0, $i0);
+
+        if aStatic != 0 goto label1;
+
+        $r0 = "SAME_PACKAGE";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aCurrentGroup);
+
+        if $z0 == 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String mSamePackageDomainsRegExp>;
+
+        $z1 = virtualinvoke $r1.<java.lang.String: boolean contains(java.lang.CharSequence)>(importPath);
+
+        if $z1 == 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    private boolean matchesStandartImportGroup(boolean, java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        boolean aStatic, $z0, $z1, $z2;
+        java.lang.String aCurrentImport, aCurrentGroup, $r0;
+        java.util.regex.Pattern $r1;
+        java.util.regex.Matcher $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aStatic := @parameter0: boolean;
+
+        aCurrentImport := @parameter1: java.lang.String;
+
+        aCurrentGroup := @parameter2: java.lang.String;
+
+        if aStatic != 0 goto label1;
+
+        $r0 = "STANDARD_JAVA_PACKAGE";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aCurrentGroup);
+
+        if $z0 == 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.regex.Pattern mStandardPackageRegExp>;
+
+        $r2 = virtualinvoke $r1.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aCurrentImport);
+
+        $z1 = virtualinvoke $r2.<java.util.regex.Matcher: boolean find()>();
+
+        if $z1 == 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    private boolean matchesSpecialImportsGroup(boolean, java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        boolean aStatic, $z0, $z1, $z2;
+        java.lang.String aCurrentImport, aCurrentGroup, $r0;
+        java.util.regex.Pattern $r1;
+        java.util.regex.Matcher $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aStatic := @parameter0: boolean;
+
+        aCurrentImport := @parameter1: java.lang.String;
+
+        aCurrentGroup := @parameter2: java.lang.String;
+
+        if aStatic != 0 goto label1;
+
+        $r0 = "SPECIAL_IMPORTS";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aCurrentGroup);
+
+        if $z0 == 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.regex.Pattern mSpecialImportsRegExp>;
+
+        $r2 = virtualinvoke $r1.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aCurrentImport);
+
+        $z1 = virtualinvoke $r2.<java.util.regex.Matcher: boolean find()>();
+
+        if $z1 == 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    private boolean matchesThirdPartyImportGroup(boolean, java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        boolean aStatic, $z0, $z1, $z2, $z3;
+        java.lang.String aCurrentImport, aCurrentGroup, $r0;
+        java.util.regex.Pattern $r1, $r3;
+        java.util.regex.Matcher $r2, $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aStatic := @parameter0: boolean;
+
+        aCurrentImport := @parameter1: java.lang.String;
+
+        aCurrentGroup := @parameter2: java.lang.String;
+
+        if aStatic != 0 goto label1;
+
+        $r0 = "THIRD_PARTY_PACKAGE";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aCurrentGroup);
+
+        if $z0 == 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.regex.Pattern mThirdPartyPackageRegExp>;
+
+        $r2 = virtualinvoke $r1.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aCurrentImport);
+
+        $z1 = virtualinvoke $r2.<java.util.regex.Matcher: boolean find()>();
+
+        if $z1 == 0 goto label1;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.regex.Pattern mStandardPackageRegExp>;
+
+        $r4 = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aCurrentImport);
+
+        $z2 = virtualinvoke $r4.<java.util.regex.Matcher: boolean find()>();
+
+        if $z2 != 0 goto label1;
+
+        $z3 = 1;
+
+        goto label2;
+
+     label1:
+        $z3 = 0;
+
+     label2:
+        return $z3;
+    }
+
+    private int compare(java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        java.lang.String aCurrentImport, aPreviousImport, tokenCurrent, tokenPrevious, $r0, $r2;
+        int indexOfPreviousDotCurrent, indexOfNextDotCurrent, indexOfPreviousDotPrevious, indexOfNextDotPrevious, currentImportDomainCount, previousImportDomainCount, result, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aCurrentImport := @parameter0: java.lang.String;
+
+        aPreviousImport := @parameter1: java.lang.String;
+
+        indexOfPreviousDotCurrent = 0;
+
+        indexOfNextDotCurrent = 0;
+
+        indexOfPreviousDotPrevious = 0;
+
+        indexOfNextDotPrevious = 0;
+
+        currentImportDomainCount = staticinvoke <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: int countDomains(java.lang.String)>(aCurrentImport);
+
+        previousImportDomainCount = staticinvoke <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: int countDomains(java.lang.String)>(aPreviousImport);
+
+        result = 0;
+
+     label1:
+        $i0 = virtualinvoke aCurrentImport.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+
+        $i1 = indexOfPreviousDotCurrent - 1;
+
+        if $i0 == $i1 goto label3;
+
+        $i9 = virtualinvoke aPreviousImport.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+
+        $i8 = indexOfPreviousDotPrevious - 1;
+
+        if $i9 == $i8 goto label3;
+
+        $i10 = indexOfPreviousDotCurrent + 1;
+
+        indexOfNextDotCurrent = virtualinvoke aCurrentImport.<java.lang.String: int indexOf(java.lang.String,int)>(".", $i10);
+
+        $i11 = indexOfPreviousDotPrevious + 1;
+
+        indexOfNextDotPrevious = virtualinvoke aPreviousImport.<java.lang.String: int indexOf(java.lang.String,int)>(".", $i11);
+
+        tokenCurrent = virtualinvoke aCurrentImport.<java.lang.String: java.lang.String substring(int,int)>(indexOfPreviousDotCurrent, indexOfNextDotCurrent);
+
+        tokenPrevious = virtualinvoke aPreviousImport.<java.lang.String: java.lang.String substring(int,int)>(indexOfPreviousDotPrevious, indexOfNextDotPrevious);
+
+        result = virtualinvoke tokenCurrent.<java.lang.String: int compareToIgnoreCase(java.lang.String)>(tokenPrevious);
+
+        if result == 0 goto label2;
+
+        return result;
+
+     label2:
+        indexOfPreviousDotCurrent = indexOfNextDotCurrent + 1;
+
+        indexOfPreviousDotPrevious = indexOfNextDotPrevious + 1;
+
+        goto label1;
+
+     label3:
+        if result != 0 goto label6;
+
+        $i3 = virtualinvoke aCurrentImport.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+
+        $i2 = indexOfPreviousDotCurrent - 1;
+
+        if $i3 == $i2 goto label4;
+
+        $i7 = virtualinvoke aPreviousImport.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+
+        $i6 = indexOfPreviousDotPrevious - 1;
+
+        if $i7 != $i6 goto label6;
+
+     label4:
+        if currentImportDomainCount == previousImportDomainCount goto label5;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String getClassName(int,java.lang.String)>(indexOfNextDotPrevious, aPreviousImport);
+
+        $i5 = currentImportDomainCount - previousImportDomainCount;
+
+        return $i5;
+
+     label5:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String getClassName(int,java.lang.String)>(indexOfNextDotPrevious, aPreviousImport);
+
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String getClassName(int,java.lang.String)>(indexOfNextDotCurrent, aCurrentImport);
+
+        $r2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String getClassName(int,java.lang.String)>(indexOfNextDotPrevious, aPreviousImport);
+
+        $i4 = virtualinvoke $r0.<java.lang.String: int compareToIgnoreCase(java.lang.String)>($r2);
+
+        return $i4;
+
+     label6:
+        return 0;
+    }
+
+    private java.lang.String getClassName(int, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        int aStartFrom, $i0;
+        java.lang.String aImport, className, $r1;
+        java.util.StringTokenizer token, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aStartFrom := @parameter0: int;
+
+        aImport := @parameter1: java.lang.String;
+
+        className = aImport;
+
+        $i0 = virtualinvoke className.<java.lang.String: int length()>();
+
+        className = virtualinvoke className.<java.lang.String: java.lang.String substring(int,int)>(aStartFrom, $i0);
+
+        $r0 = new java.util.StringTokenizer;
+
+        specialinvoke $r0.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(className, ".\r");
+
+        token = $r0;
+
+        $r1 = virtualinvoke token.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        return $r1;
+    }
+
+    private static int countDomains(java.lang.String)
+    {
+        java.lang.String aImportPath, $r1, $r2;
+        java.util.StringTokenizer tokens, $r0;
+        int count, $i0;
+        boolean $z0, $z1;
+        char $c1;
+
+        aImportPath := @parameter0: java.lang.String;
+
+        $r0 = new java.util.StringTokenizer;
+
+        specialinvoke $r0.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(aImportPath, ".");
+
+        tokens = $r0;
+
+        count = 0;
+
+     label1:
+        $z0 = virtualinvoke tokens.<java.util.StringTokenizer: boolean hasMoreTokens()>();
+
+        if $z0 == 0 goto label2;
+
+        $r1 = virtualinvoke tokens.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.String: java.lang.String toString()>();
+
+        $c1 = virtualinvoke $r2.<java.lang.String: char charAt(int)>(0);
+
+        $z1 = staticinvoke <java.lang.Character: boolean isUpperCase(char)>($c1);
+
+        if $z1 != 0 goto label2;
+
+        count = count + 1;
+
+        goto label1;
+
+     label2:
+        $i0 = count - 1;
+
+        return $i0;
+    }
+
+    private boolean hasEmptyLineBefore(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        int aLineNo, $i0;
+        java.lang.String lineBefore, $r1;
+        java.lang.String[] $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aLineNo := @parameter0: int;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String[] getLines()>();
+
+        $i0 = aLineNo - 2;
+
+        lineBefore = $r0[$i0];
+
+        $r1 = virtualinvoke lineBefore.<java.lang.String: java.lang.String trim()>();
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean isEmpty()>();
+
+        return $z0;
+    }
+
+    private static java.lang.String getFullImportIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aToken, $r0;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r1;
+        java.lang.String $r2;
+
+        aToken := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        if aToken == null goto label1;
+
+        $r0 = virtualinvoke aToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(60);
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        goto label2;
+
+     label1:
+        $r2 = "";
+
+     label2:
+        return $r2;
+    }
+
+    private void addRulesToList(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck this;
+        java.lang.String aRule, rule, $r0, $r2, $r3, $r4, $r8;
+        boolean $z0, $z2, $z3, $z4, $z5;
+        java.util.List $r1, $r10;
+        java.lang.RuntimeException $r5;
+        java.lang.StringBuilder $r6, $r7, $r9;
+        int $i0, $i1, $i2, $i3;
+        java.lang.Exception $r11;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+
+        aRule := @parameter0: java.lang.String;
+
+        $r0 = "STATIC";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aRule);
+
+        if $z0 != 0 goto label1;
+
+        $r2 = "THIRD_PARTY_PACKAGE";
+
+        $z2 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>(aRule);
+
+        if $z2 != 0 goto label1;
+
+        $r3 = "STANDARD_JAVA_PACKAGE";
+
+        $z3 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>(aRule);
+
+        if $z3 != 0 goto label1;
+
+        $r4 = "SPECIAL_IMPORTS";
+
+        $z4 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(aRule);
+
+        if $z4 == 0 goto label2;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        interfaceinvoke $r1.<java.util.List: boolean add(java.lang.Object)>(aRule);
+
+        goto label8;
+
+     label2:
+        $z5 = virtualinvoke aRule.<java.lang.String: boolean startsWith(java.lang.String)>("SAME_PACKAGE");
+
+        if $z5 == 0 goto label7;
+
+        $i1 = virtualinvoke aRule.<java.lang.String: int indexOf(java.lang.String)>("(");
+
+        $i0 = $i1 + 1;
+
+        $i2 = virtualinvoke aRule.<java.lang.String: int indexOf(java.lang.String)>(")");
+
+        rule = virtualinvoke aRule.<java.lang.String: java.lang.String substring(int,int)>($i0, $i2);
+
+     label3:
+        $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(rule);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: int mSamePackageMatchingDepth> = $i3;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r11 := @caughtexception;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String mSamePackageDomainsRegExp> = rule;
+
+     label6:
+        $r10 = this.<com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.util.List mCustomImportOrderRules>;
+
+        interfaceinvoke $r10.<java.util.List: boolean add(java.lang.Object)>("SAME_PACKAGE");
+
+        goto label8;
+
+     label7:
+        $r5 = new java.lang.RuntimeException;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unexpected rule: ");
+
+        $r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aRule);
+
+        $r8 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>($r8);
+
+        throw $r5;
+
+     label8:
+        return;
+
+        catch java.lang.Exception from label3 to label4 with label5;
+    }
+
+    private static java.lang.String createSamePackageRegexp(int, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        int aCount, count;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aPackageNode;
+        java.lang.StringBuilder builder, $r0, $r2, $r5;
+        java.lang.String packageFullPath, $r3, $r4;
+        java.util.StringTokenizer tokens, $r1;
+        boolean $z0;
+
+        aCount := @parameter0: int;
+
+        aPackageNode := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        builder = $r0;
+
+        packageFullPath = staticinvoke <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String getFullImportIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aPackageNode);
+
+        $r1 = new java.util.StringTokenizer;
+
+        specialinvoke $r1.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(packageFullPath, ".");
+
+        tokens = $r1;
+
+        count = aCount;
+
+     label1:
+        $z0 = virtualinvoke tokens.<java.util.StringTokenizer: boolean hasMoreTokens()>();
+
+        if $z0 == 0 goto label2;
+
+        if count <= 0 goto label2;
+
+        $r4 = virtualinvoke tokens.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        $r5 = virtualinvoke builder.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        count = count + -1;
+
+        goto label1;
+
+     label2:
+        $r2 = virtualinvoke builder.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("*");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r3;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String NON_GROUP_RULE_GROUP> = "NON_GROUP";
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String SPECIAL_IMPORTS_RULE_GROUP> = "SPECIAL_IMPORTS";
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String STANDARD_JAVA_PACKAGE_RULE_GROUP> = "STANDARD_JAVA_PACKAGE";
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String THIRD_PARTY_PACKAGE_RULE_GROUP> = "THIRD_PARTY_PACKAGE";
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String SAME_PACKAGE_RULE_GROUP> = "SAME_PACKAGE";
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck: java.lang.String STATIC_RULE_GROUP> = "STATIC";
+
+        return;
+    }
+}

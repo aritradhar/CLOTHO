@@ -1,0 +1,600 @@
+public class com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler extends java.lang.Object
+{
+    private final com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck mIndentCheck;
+    private com.puppycrawl.tools.checkstyle.api.DetailAST mFirstNode;
+    private com.puppycrawl.tools.checkstyle.api.DetailAST mLastNode;
+    private int mIndentLevel;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck aInstance, $r2;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aFirstNode, $r0, $r1;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        aInstance := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aFirstNode := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck mIndentCheck> = aInstance;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST mFirstNode> = aFirstNode;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST mFirstNode>;
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST findLastNode(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST mLastNode> = $r1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck mIndentCheck>;
+
+        $i0 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int getLineWrappingIndentation()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: int mIndentLevel> = $i0;
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST findLastNode(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aFirstNode, $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        aFirstNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aFirstNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        return $r1;
+    }
+
+    public int getCurrentIndentation()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0;
+        int $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST mFirstNode>;
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: int mIndentLevel>;
+
+        $i2 = $i0 + $i1;
+
+        return $i2;
+    }
+
+    public final com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNode()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST mFirstNode>;
+
+        return $r0;
+    }
+
+    public final com.puppycrawl.tools.checkstyle.api.DetailAST getLastNode()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST mLastNode>;
+
+        return $r0;
+    }
+
+    public final int getIndentLevel()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: int mIndentLevel>;
+
+        return $i0;
+    }
+
+    public void checkIndentation()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        java.util.NavigableMap firstNodesOnLines;
+        com.puppycrawl.tools.checkstyle.api.DetailAST firstNode, node, parent;
+        int firstNodeIndent, currentIndent, currentType, $i0, $i1, $i2;
+        java.util.Iterator i$;
+        java.lang.Object $r0, $r1, $r2, $r5;
+        java.util.Collection $r4;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        firstNodesOnLines = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: java.util.NavigableMap collectFirstNodes()>();
+
+        $r0 = interfaceinvoke firstNodesOnLines.<java.util.NavigableMap: java.lang.Object firstKey()>();
+
+        $r1 = interfaceinvoke firstNodesOnLines.<java.util.NavigableMap: java.lang.Object get(java.lang.Object)>($r0);
+
+        firstNode = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r1;
+
+        $i0 = virtualinvoke firstNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 174 goto label1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: void checkAnnotationIndentation(com.puppycrawl.tools.checkstyle.api.DetailAST,java.util.NavigableMap)>(firstNode, firstNodesOnLines);
+
+     label1:
+        $r2 = interfaceinvoke firstNodesOnLines.<java.util.NavigableMap: java.lang.Object firstKey()>();
+
+        interfaceinvoke firstNodesOnLines.<java.util.NavigableMap: java.lang.Object remove(java.lang.Object)>($r2);
+
+        firstNodeIndent = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: int getFirstNodeIndent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(firstNode);
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: int mIndentLevel>;
+
+        currentIndent = firstNodeIndent + $i1;
+
+        $r4 = interfaceinvoke firstNodesOnLines.<java.util.NavigableMap: java.util.Collection values()>();
+
+        i$ = interfaceinvoke $r4.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label2:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label8;
+
+        $r5 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        node = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r5;
+
+        currentType = virtualinvoke node.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if currentType == 74 goto label3;
+
+        if currentType == 78 goto label3;
+
+        if currentType != 30 goto label4;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: void logWarningMessage(com.puppycrawl.tools.checkstyle.api.DetailAST,int)>(node, firstNodeIndent);
+
+        goto label7;
+
+     label4:
+        if currentType != 85 goto label6;
+
+        parent = virtualinvoke node.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i2 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 94 goto label5;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: void logWarningMessage(com.puppycrawl.tools.checkstyle.api.DetailAST,int)>(parent, currentIndent);
+
+     label5:
+        goto label7;
+
+     label6:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: void logWarningMessage(com.puppycrawl.tools.checkstyle.api.DetailAST,int)>(node, currentIndent);
+
+     label7:
+        goto label2;
+
+     label8:
+        return;
+    }
+
+    private int getFirstNodeIndent(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aNode, lcurly, rcurly, $r0, $r1, $r2;
+        int indentLevel, $i0, $i1, $i2, $i3, $i4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        aNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        indentLevel = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i0 = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 85 goto label2;
+
+        $r0 = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 94 goto label2;
+
+        $r1 = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        lcurly = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        rcurly = virtualinvoke lcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $i2 = virtualinvoke lcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 7 goto label1;
+
+        $i3 = virtualinvoke rcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i4 = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i3 != $i4 goto label1;
+
+        indentLevel = virtualinvoke rcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        goto label2;
+
+     label1:
+        $r2 = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        indentLevel = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+     label2:
+        return indentLevel;
+    }
+
+    private java.util.NavigableMap collectFirstNodes()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        java.util.TreeMap result, $r0;
+        com.puppycrawl.tools.checkstyle.api.DetailAST curNode, firstTokenOnLine, $r1, $r3, $r5, $r6;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.Integer $r2, $r7, $r10;
+        java.lang.Object $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        $r0 = new java.util.TreeMap;
+
+        specialinvoke $r0.<java.util.TreeMap: void <init>()>();
+
+        result = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST mFirstNode>;
+
+        $i0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST mFirstNode>;
+
+        interfaceinvoke result.<java.util.NavigableMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r2, $r3);
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST mFirstNode>;
+
+        curNode = virtualinvoke $r5.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if curNode == null goto label5;
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST mLastNode>;
+
+        if curNode == $r6 goto label5;
+
+        $i1 = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 6 goto label2;
+
+        curNode = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label2:
+        if curNode == null goto label1;
+
+        $i2 = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+
+        $r8 = interfaceinvoke result.<java.util.NavigableMap: java.lang.Object get(java.lang.Object)>($r7);
+
+        firstTokenOnLine = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r8;
+
+        if firstTokenOnLine == null goto label3;
+
+        if firstTokenOnLine == null goto label4;
+
+        $i4 = virtualinvoke firstTokenOnLine.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i5 = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        if $i4 < $i5 goto label4;
+
+     label3:
+        $i3 = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+
+        interfaceinvoke result.<java.util.NavigableMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r10, curNode);
+
+     label4:
+        curNode = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.api.DetailAST getNextCurNode(com.puppycrawl.tools.checkstyle.api.DetailAST)>(curNode);
+
+        goto label1;
+
+     label5:
+        return result;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST getNextCurNode(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aCurNode, nodeToVisit, currentNode;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        aCurNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        nodeToVisit = virtualinvoke aCurNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        currentNode = aCurNode;
+
+     label1:
+        if currentNode == null goto label2;
+
+        if nodeToVisit != null goto label2;
+
+        nodeToVisit = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if nodeToVisit != null goto label1;
+
+        currentNode = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label2:
+        return nodeToVisit;
+    }
+
+    private void checkAnnotationIndentation(com.puppycrawl.tools.checkstyle.api.DetailAST, java.util.NavigableMap)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aModifiersNode, node, $r0, $r2;
+        java.util.NavigableMap aFirstNodesOnLines;
+        int currentIndent, firstNodeIndent, parentType, $i0, $i1, $i2, $i3, $i4;
+        java.util.Collection values;
+        java.util.Iterator itr;
+        boolean $z0, $z1, $z2;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        aModifiersNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aFirstNodesOnLines := @parameter1: java.util.NavigableMap;
+
+        $i0 = virtualinvoke aModifiersNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: int mIndentLevel>;
+
+        currentIndent = $i0 + $i1;
+
+        firstNodeIndent = virtualinvoke aModifiersNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        values = interfaceinvoke aFirstNodesOnLines.<java.util.NavigableMap: java.util.Collection values()>();
+
+        itr = interfaceinvoke values.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke itr.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $i2 = interfaceinvoke aFirstNodesOnLines.<java.util.NavigableMap: int size()>();
+
+        if $i2 <= 1 goto label4;
+
+        $r1 = interfaceinvoke itr.<java.util.Iterator: java.lang.Object next()>();
+
+        node = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r1;
+
+        $r0 = virtualinvoke node.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        parentType = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $i3 = virtualinvoke node.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 174 goto label2;
+
+        $r2 = virtualinvoke node.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: boolean isAnnotationAloneOnLine(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r2);
+
+        if $z2 == 0 goto label3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: void logWarningMessage(com.puppycrawl.tools.checkstyle.api.DetailAST,int)>(node, firstNodeIndent);
+
+        interfaceinvoke itr.<java.util.Iterator: void remove()>();
+
+        goto label3;
+
+     label2:
+        if parentType == 5 goto label3;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: boolean hasTypeNodeAsParent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(node);
+
+        if $z1 != 0 goto label3;
+
+        if parentType == 158 goto label3;
+
+        if parentType == 8 goto label3;
+
+        $i4 = virtualinvoke node.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i4 == 70 goto label3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: void logWarningMessage(com.puppycrawl.tools.checkstyle.api.DetailAST,int)>(node, currentIndent);
+
+        interfaceinvoke itr.<java.util.Iterator: void remove()>();
+
+     label3:
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    private boolean isAnnotationAloneOnLine(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotationNode, nextSibling, typeNode, $r0;
+        int $i0, $i1, $i2, $i3, $i4;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        aAnnotationNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        nextSibling = virtualinvoke aAnnotationNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if nextSibling != null goto label3;
+
+        $r0 = virtualinvoke aAnnotationNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        typeNode = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        $i3 = virtualinvoke aAnnotationNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i4 = virtualinvoke typeNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i3 == $i4 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+
+     label3:
+        $i0 = virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 163 goto label4;
+
+        $i1 = virtualinvoke aAnnotationNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i1 == $i2 goto label5;
+
+     label4:
+        $z0 = 1;
+
+        goto label6;
+
+     label5:
+        $z0 = 0;
+
+     label6:
+        return $z0;
+    }
+
+    private boolean hasTypeNodeAsParent(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aCurrentNode, typeNode;
+        boolean result;
+        int $i0, $i1, $i2, $i3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        aCurrentNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        typeNode = aCurrentNode;
+
+        result = 0;
+
+     label1:
+        if typeNode == null goto label4;
+
+        $i0 = virtualinvoke typeNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 7 goto label4;
+
+        $i1 = virtualinvoke typeNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 6 goto label4;
+
+        $i2 = virtualinvoke typeNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 == 13 goto label2;
+
+        $i3 = virtualinvoke typeNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 169 goto label3;
+
+     label2:
+        result = 1;
+
+     label3:
+        typeNode = virtualinvoke typeNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label4:
+        return result;
+    }
+
+    private void logWarningMessage(com.puppycrawl.tools.checkstyle.api.DetailAST, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aCurrentNode;
+        int aCurrentIndent, $i0, $i1, $i2;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck $r0;
+        java.lang.Object[] $r1;
+        java.lang.String $r2;
+        java.lang.Integer $r3, $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler;
+
+        aCurrentNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aCurrentIndent := @parameter1: int;
+
+        $i0 = virtualinvoke aCurrentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        if $i0 >= aCurrentIndent goto label1;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck mIndentCheck>;
+
+        $i1 = virtualinvoke aCurrentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r1 = newarray (java.lang.Object)[3];
+
+        $r2 = virtualinvoke aCurrentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r1[0] = $r2;
+
+        $i2 = virtualinvoke aCurrentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+
+        $r1[1] = $r3;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aCurrentIndent);
+
+        $r1[2] = $r4;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: void indentationLog(int,java.lang.String,java.lang.Object[])>($i1, "indentation.error", $r1);
+
+     label1:
+        return;
+    }
+}

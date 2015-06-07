@@ -1,0 +1,13 @@
+public interface  com.puppycrawl.tools.checkstyle.api.Configuration extends java.lang.Object implements java.io.Serializable
+{
+
+    public abstract java.lang.String[] getAttributeNames();
+
+    public abstract java.lang.String getAttribute(java.lang.String) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+    public abstract com.puppycrawl.tools.checkstyle.api.Configuration[] getChildren();
+
+    public abstract java.lang.String getName();
+
+    public abstract com.google.common.collect.ImmutableMap getMessages();
+}

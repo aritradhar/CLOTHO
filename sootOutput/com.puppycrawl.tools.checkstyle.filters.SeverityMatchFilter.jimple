@@ -1,0 +1,91 @@
+public class com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter extends com.puppycrawl.tools.checkstyle.api.AutomaticBean implements com.puppycrawl.tools.checkstyle.api.Filter
+{
+    private com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel;
+    private boolean mAcceptOnMatch;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter this;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void <init>()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel ERROR>;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter: boolean mAcceptOnMatch> = 1;
+
+        return;
+    }
+
+    public final void setSeverity(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter this;
+        java.lang.String aSeverity;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter;
+
+        aSeverity := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel getInstance(java.lang.String)>(aSeverity);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel> = $r0;
+
+        return;
+    }
+
+    public final void setAcceptOnMatch(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter this;
+        boolean aAcceptOnMatch;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter;
+
+        aAcceptOnMatch := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter: boolean mAcceptOnMatch> = aAcceptOnMatch;
+
+        return;
+    }
+
+    public boolean accept(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvent;
+        boolean result, $z0, $z1;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter;
+
+        aEvent := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel>;
+
+        $r1 = virtualinvoke aEvent.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()>();
+
+        result = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: boolean equals(java.lang.Object)>($r1);
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter: boolean mAcceptOnMatch>;
+
+        if $z0 == 0 goto label1;
+
+        return result;
+
+     label1:
+        if result != 0 goto label2;
+
+        $z1 = 1;
+
+        goto label3;
+
+     label2:
+        $z1 = 0;
+
+     label3:
+        return $z1;
+    }
+}

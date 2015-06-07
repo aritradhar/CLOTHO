@@ -1,0 +1,1128 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    public static final java.lang.String MSG_KEY;
+    public static final java.lang.String MSG_KEY_EXT;
+    private static final int DEFAULT_DISTANCE;
+    private int mAllowedDistance;
+    private java.util.regex.Pattern mIgnoreVariablePattern;
+    private boolean mValidateBetweenScopes;
+    private boolean mIgnoreFinal;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        java.util.regex.Pattern $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: int mAllowedDistance> = 3;
+
+        $r0 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("");
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: java.util.regex.Pattern mIgnoreVariablePattern> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean mIgnoreFinal> = 1;
+
+        return;
+    }
+
+    public void setAllowedDistance(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        int aAllowedDistance;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aAllowedDistance := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: int mAllowedDistance> = aAllowedDistance;
+
+        return;
+    }
+
+    public void setIgnoreVariablePattern(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        java.lang.String aIgnorePattern;
+        java.util.regex.Pattern $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aIgnorePattern := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(aIgnorePattern);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: java.util.regex.Pattern mIgnoreVariablePattern> = $r0;
+
+        return;
+    }
+
+    public void setValidateBetweenScopes(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        boolean aValidateBetweenScopes;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aValidateBetweenScopes := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean mValidateBetweenScopes> = aValidateBetweenScopes;
+
+        return;
+    }
+
+    public void setIgnoreFinal(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        boolean aIgnoreFinal;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aIgnoreFinal := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean mIgnoreFinal> = aIgnoreFinal;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 10;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiers, variable, semicolonAst, variableUsageAst, $r0;
+        int parentType, dist, $i0, $i1, $i2, $i3, $i4;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5;
+        java.lang.String $r1, $r5, $r7, $r12;
+        java.lang.Object $r2, $r4;
+        java.lang.Integer $r3, $r8, $r10, $r11, $r13;
+        java.lang.Object[] $r6, $r9;
+        java.util.Map$Entry entry;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        parentType = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        modifiers = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean mIgnoreFinal>;
+
+        if $z0 == 0 goto label1;
+
+        $z5 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z5 != 0 goto label6;
+
+     label1:
+        if parentType != 6 goto label2;
+
+        goto label6;
+
+     label2:
+        variable = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r1 = virtualinvoke variable.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isVariableMatchesIgnorePattern(java.lang.String)>($r1);
+
+        if $z1 != 0 goto label6;
+
+        semicolonAst = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        $z2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean mValidateBetweenScopes>;
+
+        if $z2 == 0 goto label3;
+
+        entry = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: java.util.Map$Entry calculateDistanceBetweenScopes(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(semicolonAst, variable);
+
+        goto label4;
+
+     label3:
+        entry = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: java.util.Map$Entry calculateDistanceInSingleScope(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(semicolonAst, variable);
+
+     label4:
+        $r2 = interfaceinvoke entry.<java.util.Map$Entry: java.lang.Object getKey()>();
+
+        variableUsageAst = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r2;
+
+        $r4 = interfaceinvoke entry.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        $r3 = (java.lang.Integer) $r4;
+
+        dist = virtualinvoke $r3.<java.lang.Integer: int intValue()>();
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: int mAllowedDistance>;
+
+        if dist <= $i0 goto label6;
+
+        $r5 = virtualinvoke variable.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z3 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isInitializationSequence(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(variableUsageAst, $r5);
+
+        if $z3 != 0 goto label6;
+
+        $z4 = this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean mIgnoreFinal>;
+
+        if $z4 == 0 goto label5;
+
+        $i3 = virtualinvoke variable.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r9 = newarray (java.lang.Object)[3];
+
+        $r12 = virtualinvoke variable.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r9[0] = $r12;
+
+        $r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(dist);
+
+        $r9[1] = $r11;
+
+        $i4 = this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: int mAllowedDistance>;
+
+        $r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+
+        $r9[2] = $r13;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: void log(int,java.lang.String,java.lang.Object[])>($i3, "variable.declaration.usage.distance.extend", $r9);
+
+        goto label6;
+
+     label5:
+        $i1 = virtualinvoke variable.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r6 = newarray (java.lang.Object)[3];
+
+        $r7 = virtualinvoke variable.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r6[0] = $r7;
+
+        $r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(dist);
+
+        $r6[1] = $r8;
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: int mAllowedDistance>;
+
+        $r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+
+        $r6[2] = $r10;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: void log(int,java.lang.String,java.lang.Object[])>($i1, "variable.declaration.usage.distance", $r6);
+
+     label6:
+        return;
+    }
+
+    private static java.lang.String getInstanceName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethodCallAst;
+        java.lang.String methodCallName, instanceName;
+        int lastDotIndex;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r0;
+
+        aMethodCallAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdentBelow(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aMethodCallAst);
+
+        methodCallName = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        lastDotIndex = virtualinvoke methodCallName.<java.lang.String: int lastIndexOf(int)>(46);
+
+        instanceName = "";
+
+        if lastDotIndex == -1 goto label1;
+
+        instanceName = virtualinvoke methodCallName.<java.lang.String: java.lang.String substring(int,int)>(0, lastDotIndex);
+
+     label1:
+        return instanceName;
+    }
+
+    private static boolean isInitializationSequence(com.puppycrawl.tools.checkstyle.api.DetailAST, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aVariableUsageAst, currentSiblingAst, methodCallAst, $r0;
+        java.lang.String aVariableName, initInstanceName, instanceName;
+        boolean result, isUsedVariableDeclarationFound, $z0, $z1, $z2;
+        int $i0, $i1;
+
+        aVariableUsageAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aVariableName := @parameter1: java.lang.String;
+
+        result = 1;
+
+        isUsedVariableDeclarationFound = 0;
+
+        currentSiblingAst = aVariableUsageAst;
+
+        initInstanceName = "";
+
+     label01:
+        if result == 0 goto label11;
+
+        if isUsedVariableDeclarationFound != 0 goto label11;
+
+        if currentSiblingAst == null goto label11;
+
+        $i0 = virtualinvoke currentSiblingAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 10: goto label07;
+            case 29: goto label02;
+            case 46: goto label08;
+            default: goto label09;
+        };
+
+     label02:
+        methodCallAst = virtualinvoke currentSiblingAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        if methodCallAst == null goto label06;
+
+        $i1 = virtualinvoke methodCallAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 27 goto label06;
+
+        instanceName = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: java.lang.String getInstanceName(com.puppycrawl.tools.checkstyle.api.DetailAST)>(methodCallAst);
+
+        $z0 = virtualinvoke instanceName.<java.lang.String: boolean isEmpty()>();
+
+        if $z0 == 0 goto label03;
+
+        result = 0;
+
+        goto label05;
+
+     label03:
+        $z1 = virtualinvoke instanceName.<java.lang.String: boolean equals(java.lang.Object)>(initInstanceName);
+
+        if $z1 != 0 goto label05;
+
+        $z2 = virtualinvoke initInstanceName.<java.lang.String: boolean isEmpty()>();
+
+        if $z2 != 0 goto label04;
+
+        result = 0;
+
+        goto label05;
+
+     label04:
+        initInstanceName = instanceName;
+
+     label05:
+        goto label10;
+
+     label06:
+        result = 0;
+
+        goto label10;
+
+     label07:
+        $r0 = virtualinvoke currentSiblingAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        instanceName = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        isUsedVariableDeclarationFound = virtualinvoke aVariableName.<java.lang.String: boolean equals(java.lang.Object)>(instanceName);
+
+        goto label10;
+
+     label08:
+        goto label10;
+
+     label09:
+        result = 0;
+
+     label10:
+        currentSiblingAst = virtualinvoke currentSiblingAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        goto label01;
+
+     label11:
+        return result;
+    }
+
+    private java.util.Map$Entry calculateDistanceInSingleScope(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aSemicolonAst, aVariableIdentAst, currentAst, variableUsageAst, $r2;
+        int dist, $i0, $i1, $i2;
+        boolean firstUsageFound, $z0, $z1, $z2;
+        java.util.AbstractMap$SimpleEntry $r0;
+        java.lang.Integer $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aSemicolonAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aVariableIdentAst := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        dist = 0;
+
+        firstUsageFound = 0;
+
+        currentAst = aSemicolonAst;
+
+        variableUsageAst = null;
+
+     label01:
+        if firstUsageFound != 0 goto label11;
+
+        if currentAst == null goto label11;
+
+        $i0 = virtualinvoke currentAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 74 goto label11;
+
+        $r2 = virtualinvoke currentAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        if $r2 == null goto label10;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(currentAst, aVariableIdentAst);
+
+        if $z0 == 0 goto label09;
+
+        $i2 = virtualinvoke currentAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i2)
+        {
+            case 7: goto label03;
+            case 10: goto label02;
+            case 85: goto label04;
+            case 86: goto label04;
+            case 87: goto label04;
+            case 91: goto label04;
+            case 93: goto label04;
+            default: goto label06;
+        };
+
+     label02:
+        dist = dist + 1;
+
+        goto label08;
+
+     label03:
+        dist = 0;
+
+        goto label08;
+
+     label04:
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isVariableInOperatorExpr(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(currentAst, aVariableIdentAst);
+
+        if $z1 == 0 goto label05;
+
+        dist = dist + 1;
+
+        goto label08;
+
+     label05:
+        dist = 0;
+
+        goto label08;
+
+     label06:
+        $z2 = virtualinvoke currentAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(7);
+
+        if $z2 == 0 goto label07;
+
+        dist = 0;
+
+        goto label08;
+
+     label07:
+        dist = dist + 1;
+
+     label08:
+        variableUsageAst = currentAst;
+
+        firstUsageFound = 1;
+
+        goto label10;
+
+     label09:
+        $i1 = virtualinvoke currentAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 10 goto label10;
+
+        dist = dist + 1;
+
+     label10:
+        currentAst = virtualinvoke currentAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label01;
+
+     label11:
+        if firstUsageFound != 0 goto label12;
+
+        dist = 0;
+
+     label12:
+        $r0 = new java.util.AbstractMap$SimpleEntry;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(dist);
+
+        specialinvoke $r0.<java.util.AbstractMap$SimpleEntry: void <init>(java.lang.Object,java.lang.Object)>(variableUsageAst, $r1);
+
+        return $r0;
+    }
+
+    private java.util.Map$Entry calculateDistanceBetweenScopes(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, aVariable, currentScopeAst, variableUsageAst, currentStatementAst, blockWithVariableUsage, exprWithVariableUsage, $r5;
+        int dist, $i0, $i1, $i2, $i3, $i4, $i5;
+        java.util.ArrayList variableUsageExpressions, $r2;
+        java.util.AbstractMap$SimpleEntry $r0;
+        java.lang.Integer $r1;
+        java.lang.Object $r3, $r4;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aVariable := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        dist = 0;
+
+        currentScopeAst = aAST;
+
+        variableUsageAst = null;
+
+     label01:
+        if currentScopeAst == null goto label18;
+
+        $r2 = new java.util.ArrayList;
+
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+
+        variableUsageExpressions = $r2;
+
+        currentStatementAst = currentScopeAst;
+
+        currentScopeAst = null;
+
+     label02:
+        if currentStatementAst == null goto label05;
+
+        $i3 = virtualinvoke currentStatementAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 == 74 goto label05;
+
+        $r5 = virtualinvoke currentStatementAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        if $r5 == null goto label04;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(currentStatementAst, aVariable);
+
+        if $z0 == 0 goto label03;
+
+        interfaceinvoke variableUsageExpressions.<java.util.List: boolean add(java.lang.Object)>(currentStatementAst);
+
+        goto label04;
+
+     label03:
+        $i4 = interfaceinvoke variableUsageExpressions.<java.util.List: int size()>();
+
+        if $i4 != 0 goto label04;
+
+        $i5 = virtualinvoke currentStatementAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i5 == 10 goto label04;
+
+        dist = dist + 1;
+
+     label04:
+        currentStatementAst = virtualinvoke currentStatementAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label02;
+
+     label05:
+        $i0 = interfaceinvoke variableUsageExpressions.<java.util.List: int size()>();
+
+        if $i0 != 1 goto label15;
+
+        $r4 = interfaceinvoke variableUsageExpressions.<java.util.List: java.lang.Object get(int)>(0);
+
+        blockWithVariableUsage = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r4;
+
+        exprWithVariableUsage = null;
+
+        $i2 = virtualinvoke blockWithVariableUsage.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i2)
+        {
+            case 10: goto label06;
+            case 29: goto label06;
+            case 85: goto label08;
+            case 86: goto label07;
+            case 87: goto label07;
+            case 91: goto label09;
+            case 93: goto label07;
+            case 97: goto label10;
+            default: goto label11;
+        };
+
+     label06:
+        dist = dist + 1;
+
+        goto label12;
+
+     label07:
+        exprWithVariableUsage = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNodeInsideForWhileDoWhileBlocks(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(blockWithVariableUsage, aVariable);
+
+        goto label12;
+
+     label08:
+        exprWithVariableUsage = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNodeInsideIfBlock(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(blockWithVariableUsage, aVariable);
+
+        goto label12;
+
+     label09:
+        exprWithVariableUsage = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNodeInsideSwitchBlock(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(blockWithVariableUsage, aVariable);
+
+        goto label12;
+
+     label10:
+        exprWithVariableUsage = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNodeInsideTryCatchFinallyBlocks(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(blockWithVariableUsage, aVariable);
+
+        goto label12;
+
+     label11:
+        exprWithVariableUsage = virtualinvoke blockWithVariableUsage.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label12:
+        currentScopeAst = exprWithVariableUsage;
+
+        if exprWithVariableUsage == null goto label13;
+
+        variableUsageAst = exprWithVariableUsage;
+
+        goto label14;
+
+     label13:
+        variableUsageAst = blockWithVariableUsage;
+
+     label14:
+        goto label17;
+
+     label15:
+        $i1 = interfaceinvoke variableUsageExpressions.<java.util.List: int size()>();
+
+        if $i1 <= 1 goto label16;
+
+        dist = dist + 1;
+
+        $r3 = interfaceinvoke variableUsageExpressions.<java.util.List: java.lang.Object get(int)>(0);
+
+        variableUsageAst = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r3;
+
+        goto label17;
+
+     label16:
+        variableUsageAst = null;
+
+     label17:
+        goto label01;
+
+     label18:
+        $r0 = new java.util.AbstractMap$SimpleEntry;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(dist);
+
+        specialinvoke $r0.<java.util.AbstractMap$SimpleEntry: void <init>(java.lang.Object,java.lang.Object)>(variableUsageAst, $r1);
+
+        return $r0;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNodeInsideForWhileDoWhileBlocks(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aBlock, aVariable, firstNodeInsideBlock, currentNode;
+        int currentNodeType, $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aBlock := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aVariable := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        firstNodeInsideBlock = null;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isVariableInOperatorExpr(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(aBlock, aVariable);
+
+        if $z0 != 0 goto label5;
+
+        $i0 = virtualinvoke aBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 87 goto label1;
+
+        currentNode = virtualinvoke aBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        goto label2;
+
+     label1:
+        currentNode = virtualinvoke aBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(78);
+
+        if currentNode == null goto label2;
+
+        currentNode = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label2:
+        if currentNode == null goto label5;
+
+        currentNodeType = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if currentNodeType != 7 goto label3;
+
+        firstNodeInsideBlock = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        goto label5;
+
+     label3:
+        if currentNodeType == 10 goto label5;
+
+        if currentNodeType != 29 goto label4;
+
+        goto label5;
+
+     label4:
+        firstNodeInsideBlock = currentNode;
+
+     label5:
+        return firstNodeInsideBlock;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNodeInsideIfBlock(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aBlock, aVariable, firstNodeInsideBlock, currentNode, previousNode;
+        java.util.ArrayList variableUsageExpressions, $r0;
+        boolean $z0, $z1, $z3, $z4;
+        int $i0, $i1, $i2;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aBlock := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aVariable := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        firstNodeInsideBlock = null;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isVariableInOperatorExpr(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(aBlock, aVariable);
+
+        if $z0 != 0 goto label7;
+
+        currentNode = virtualinvoke aBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        variableUsageExpressions = $r0;
+
+     label1:
+        if currentNode == null goto label5;
+
+        $i1 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 94 goto label5;
+
+        previousNode = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        $z3 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(previousNode, aVariable);
+
+        if $z3 == 0 goto label2;
+
+        interfaceinvoke variableUsageExpressions.<java.util.List: boolean add(java.lang.Object)>(previousNode);
+
+     label2:
+        currentNode = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i2 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 85 goto label3;
+
+        currentNode = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        goto label4;
+
+     label3:
+        $z4 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(currentNode, aVariable);
+
+        if $z4 == 0 goto label4;
+
+        interfaceinvoke variableUsageExpressions.<java.util.List: boolean add(java.lang.Object)>(currentNode);
+
+        currentNode = null;
+
+     label4:
+        goto label1;
+
+     label5:
+        if currentNode == null goto label6;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(currentNode, aVariable);
+
+        if $z1 == 0 goto label6;
+
+        interfaceinvoke variableUsageExpressions.<java.util.List: boolean add(java.lang.Object)>(currentNode);
+
+     label6:
+        $i0 = interfaceinvoke variableUsageExpressions.<java.util.List: int size()>();
+
+        if $i0 != 1 goto label7;
+
+        $r1 = interfaceinvoke variableUsageExpressions.<java.util.List: java.lang.Object get(int)>(0);
+
+        firstNodeInsideBlock = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r1;
+
+     label7:
+        return firstNodeInsideBlock;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNodeInsideSwitchBlock(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aBlock, aVariable, firstNodeInsideBlock, currentNode, lastNodeInCaseGroup;
+        java.util.ArrayList variableUsageExpressions, $r0;
+        boolean $z0, $z1;
+        int $i0, $i1;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aBlock := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aVariable := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        firstNodeInsideBlock = null;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isVariableInOperatorExpr(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(aBlock, aVariable);
+
+        if $z0 != 0 goto label4;
+
+        currentNode = virtualinvoke aBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(34);
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        variableUsageExpressions = $r0;
+
+     label1:
+        if currentNode == null goto label3;
+
+        $i1 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 34 goto label3;
+
+        lastNodeInCaseGroup = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(lastNodeInCaseGroup, aVariable);
+
+        if $z1 == 0 goto label2;
+
+        interfaceinvoke variableUsageExpressions.<java.util.List: boolean add(java.lang.Object)>(lastNodeInCaseGroup);
+
+     label2:
+        currentNode = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label3:
+        $i0 = interfaceinvoke variableUsageExpressions.<java.util.List: int size()>();
+
+        if $i0 != 1 goto label4;
+
+        $r1 = interfaceinvoke variableUsageExpressions.<java.util.List: java.lang.Object get(int)>(0);
+
+        firstNodeInsideBlock = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r1;
+
+     label4:
+        return firstNodeInsideBlock;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNodeInsideTryCatchFinallyBlocks(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aBlock, aVariable, currentNode, catchBlock, $r2;
+        java.util.ArrayList variableUsageExpressions, $r0;
+        boolean $z0, $z1, $z3;
+        int $i0, $i1;
+        java.lang.Object $r1;
+
+        aBlock := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aVariable := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        currentNode = virtualinvoke aBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        variableUsageExpressions = $r0;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(currentNode, aVariable);
+
+        if $z0 == 0 goto label1;
+
+        interfaceinvoke variableUsageExpressions.<java.util.List: boolean add(java.lang.Object)>(currentNode);
+
+     label1:
+        currentNode = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label2:
+        if currentNode == null goto label4;
+
+        $i1 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 98 goto label4;
+
+        catchBlock = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $z3 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(catchBlock, aVariable);
+
+        if $z3 == 0 goto label3;
+
+        interfaceinvoke variableUsageExpressions.<java.util.List: boolean add(java.lang.Object)>(catchBlock);
+
+     label3:
+        currentNode = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label2;
+
+     label4:
+        if currentNode == null goto label5;
+
+        catchBlock = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(catchBlock, aVariable);
+
+        if $z1 == 0 goto label5;
+
+        interfaceinvoke variableUsageExpressions.<java.util.List: boolean add(java.lang.Object)>(catchBlock);
+
+     label5:
+        catchBlock = null;
+
+        $i0 = interfaceinvoke variableUsageExpressions.<java.util.List: int size()>();
+
+        if $i0 != 1 goto label6;
+
+        $r1 = interfaceinvoke variableUsageExpressions.<java.util.List: java.lang.Object get(int)>(0);
+
+        $r2 = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r1;
+
+        catchBlock = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label6:
+        return catchBlock;
+    }
+
+    private boolean isVariableInOperatorExpr(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aOperator, aVariable, openingBracket, exprBetweenBrackets, elseBlock, firstNodeInsideElseBlock, firstNodeInsideCaseBlock;
+        boolean isVarInOperatorDeclr, $z0, $z1, $z2;
+        int $i0, $i1, $i2, $i3, $i4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aOperator := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aVariable := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        isVarInOperatorDeclr = 0;
+
+        openingBracket = virtualinvoke aOperator.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(77);
+
+        if openingBracket == null goto label9;
+
+        exprBetweenBrackets = virtualinvoke openingBracket.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label1:
+        $i0 = virtualinvoke exprBetweenBrackets.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 78 goto label3;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(exprBetweenBrackets, aVariable);
+
+        if $z1 == 0 goto label2;
+
+        isVarInOperatorDeclr = 1;
+
+        goto label3;
+
+     label2:
+        exprBetweenBrackets = virtualinvoke exprBetweenBrackets.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label3:
+        if isVarInOperatorDeclr != 0 goto label9;
+
+        $i1 = virtualinvoke aOperator.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i1)
+        {
+            case 85: goto label4;
+            case 91: goto label6;
+            default: goto label9;
+        };
+
+     label4:
+        elseBlock = virtualinvoke aOperator.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $i3 = virtualinvoke elseBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 94 goto label9;
+
+        firstNodeInsideElseBlock = virtualinvoke elseBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i4 = virtualinvoke firstNodeInsideElseBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i4 != 85 goto label5;
+
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isVariableInOperatorExpr(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(firstNodeInsideElseBlock, aVariable);
+
+        isVarInOperatorDeclr = isVarInOperatorDeclr | $z2;
+
+     label5:
+        goto label9;
+
+     label6:
+        firstNodeInsideElseBlock = virtualinvoke aOperator.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(34);
+
+     label7:
+        if firstNodeInsideElseBlock == null goto label9;
+
+        $i2 = virtualinvoke firstNodeInsideElseBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 34 goto label9;
+
+        firstNodeInsideCaseBlock = virtualinvoke firstNodeInsideElseBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(firstNodeInsideCaseBlock, aVariable);
+
+        if $z0 == 0 goto label8;
+
+        isVarInOperatorDeclr = 1;
+
+        goto label9;
+
+     label8:
+        firstNodeInsideElseBlock = virtualinvoke firstNodeInsideElseBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label7;
+
+     label9:
+        return isVarInOperatorDeclr;
+    }
+
+    private static boolean isChild(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aParent, aAST, ast, astParent;
+        boolean isChild, $z0, $z1;
+        antlr.collections.ASTEnumeration astList;
+        antlr.collections.AST $r0;
+        int $i0, $i1;
+
+        aParent := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAST := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        isChild = 0;
+
+        astList = virtualinvoke aParent.<com.puppycrawl.tools.checkstyle.api.DetailAST: antlr.collections.ASTEnumeration findAllPartial(antlr.collections.AST)>(aAST);
+
+     label1:
+        $z0 = interfaceinvoke astList.<antlr.collections.ASTEnumeration: boolean hasMoreNodes()>();
+
+        if $z0 == 0 goto label5;
+
+        $r0 = interfaceinvoke astList.<antlr.collections.ASTEnumeration: antlr.collections.AST nextNode()>();
+
+        ast = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r0;
+
+        astParent = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label2:
+        if astParent == null goto label4;
+
+        $z1 = virtualinvoke astParent.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean equals(antlr.collections.AST)>(aParent);
+
+        if $z1 == 0 goto label3;
+
+        $i0 = virtualinvoke astParent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke aParent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i0 != $i1 goto label3;
+
+        isChild = 1;
+
+        goto label4;
+
+     label3:
+        astParent = virtualinvoke astParent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label2;
+
+     label4:
+        goto label1;
+
+     label5:
+        return isChild;
+    }
+
+    private boolean isVariableMatchesIgnorePattern(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck this;
+        java.lang.String aVariable;
+        java.util.regex.Matcher matcher;
+        java.util.regex.Pattern $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
+
+        aVariable := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: java.util.regex.Pattern mIgnoreVariablePattern>;
+
+        matcher = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aVariable);
+
+        $z0 = virtualinvoke matcher.<java.util.regex.Matcher: boolean matches()>();
+
+        return $z0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: int DEFAULT_DISTANCE> = 3;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: java.lang.String MSG_KEY_EXT> = "variable.declaration.usage.distance.extend";
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck: java.lang.String MSG_KEY> = "variable.declaration.usage.distance";
+
+        return;
+    }
+}

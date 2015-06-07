@@ -1,0 +1,173 @@
+public class com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int DEFAULT_MAX_COLUMNS;
+    private int mMax;
+    private java.util.regex.Pattern mIgnorePattern;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: int mMax> = 80;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: void setIgnorePattern(java.lang.String)>("^$");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
+
+        $r0 = newarray (int)[0];
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.lang.String[] lines;
+        int i, realLength, $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.String line;
+        java.util.regex.Pattern $r0;
+        java.util.regex.Matcher $r1;
+        boolean $z0;
+        java.lang.Object[] $r2;
+        java.lang.Integer $r3, $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        lines = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: java.lang.String[] getLines()>();
+
+        i = 0;
+
+     label1:
+        $i0 = lengthof lines;
+
+        if i >= $i0 goto label3;
+
+        line = lines[i];
+
+        $i1 = virtualinvoke line.<java.lang.String: int length()>();
+
+        $i2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: int getTabWidth()>();
+
+        realLength = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: int lengthExpandedTabs(java.lang.String,int,int)>(line, $i1, $i2);
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: int mMax>;
+
+        if realLength <= $i3 goto label2;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: java.util.regex.Pattern mIgnorePattern>;
+
+        $r1 = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(line);
+
+        $z0 = virtualinvoke $r1.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label2;
+
+        $i4 = i + 1;
+
+        $r2 = newarray (java.lang.Object)[2];
+
+        $i5 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: int mMax>;
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+
+        $r2[0] = $r3;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(realLength);
+
+        $r2[1] = $r4;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: void log(int,java.lang.String,java.lang.Object[])>($i4, "maxLineLen", $r2);
+
+     label2:
+        i = i + 1;
+
+        goto label1;
+
+     label3:
+        return;
+    }
+
+    public void setMax(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck this;
+        int aLength;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
+
+        aLength := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: int mMax> = aLength;
+
+        return;
+    }
+
+    public void setIgnorePattern(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck this;
+        java.lang.String aFormat, $r6;
+        java.util.regex.PatternSyntaxException e, $r1;
+        java.util.regex.Pattern $r0;
+        org.apache.commons.beanutils.ConversionException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
+
+        aFormat := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aFormat);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: java.util.regex.Pattern mIgnorePattern> = $r0;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new org.apache.commons.beanutils.ConversionException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aFormat);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r6, e);
+
+        throw $r2;
+
+     label4:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck: int DEFAULT_MAX_COLUMNS> = 80;
+
+        return;
+    }
+}

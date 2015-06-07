@@ -1,0 +1,60 @@
+public final class com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck extends com.puppycrawl.tools.checkstyle.checks.metrics.AbstractClassCouplingCheck
+{
+    private static final int DEFAULT_MAX;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck this;
+        java.lang.String[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractClassCouplingCheck: void <init>(int)>(7);
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "LITERAL_NEW";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck: void setTokens(java.lang.String[])>($r0);
+
+        return;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck;
+
+        $r0 = newarray (int)[5];
+
+        $r0[0] = 16;
+
+        $r0[1] = 14;
+
+        $r0[2] = 15;
+
+        $r0[3] = 158;
+
+        $r0[4] = 138;
+
+        return $r0;
+    }
+
+    protected java.lang.String getLogMessageId()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck;
+
+        return "classDataAbstractionCoupling";
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck: int DEFAULT_MAX> = 7;
+
+        return;
+    }
+}

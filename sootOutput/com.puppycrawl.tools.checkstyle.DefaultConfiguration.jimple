@@ -1,0 +1,277 @@
+public final class com.puppycrawl.tools.checkstyle.DefaultConfiguration extends java.lang.Object implements com.puppycrawl.tools.checkstyle.api.Configuration
+{
+    private static final long serialVersionUID;
+    private final java.lang.String mName;
+    private final java.util.List mChildren;
+    private final java.util.Map mAttributeMap;
+    private final java.util.Map mMessages;
+
+    public void <init>(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultConfiguration this;
+        java.lang.String aName;
+        java.util.ArrayList $r0;
+        java.util.HashMap $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+        aName := @parameter0: java.lang.String;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.List mChildren> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.Map mAttributeMap> = $r1;
+
+        $r2 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.Map mMessages> = $r2;
+
+        this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.lang.String mName> = aName;
+
+        return;
+    }
+
+    public java.lang.String[] getAttributeNames()
+    {
+        com.puppycrawl.tools.checkstyle.DefaultConfiguration this;
+        java.util.Set keySet;
+        java.util.Map $r0;
+        int $i0;
+        java.lang.String[] $r1, $r3;
+        java.lang.Object[] $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.Map mAttributeMap>;
+
+        keySet = interfaceinvoke $r0.<java.util.Map: java.util.Set keySet()>();
+
+        $i0 = interfaceinvoke keySet.<java.util.Set: int size()>();
+
+        $r1 = newarray (java.lang.String)[$i0];
+
+        $r2 = interfaceinvoke keySet.<java.util.Set: java.lang.Object[] toArray(java.lang.Object[])>($r1);
+
+        $r3 = (java.lang.String[]) $r2;
+
+        return $r3;
+    }
+
+    public java.lang.String getAttribute(java.lang.String) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.DefaultConfiguration this;
+        java.lang.String aName, $r3, $r9, $r11;
+        java.util.Map $r0, $r1;
+        boolean $z0;
+        java.lang.Object $r2;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r4;
+        java.lang.StringBuilder $r5, $r6, $r7, $r8, $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+        aName := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.Map mAttributeMap>;
+
+        $z0 = interfaceinvoke $r0.<java.util.Map: boolean containsKey(java.lang.Object)>(aName);
+
+        if $z0 != 0 goto label1;
+
+        $r4 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("missing key \'");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aName);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' in ");
+
+        $r9 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.lang.String getName()>();
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r4.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String)>($r11);
+
+        throw $r4;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.Map mAttributeMap>;
+
+        $r2 = interfaceinvoke $r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(aName);
+
+        $r3 = (java.lang.String) $r2;
+
+        return $r3;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.Configuration[] getChildren()
+    {
+        com.puppycrawl.tools.checkstyle.DefaultConfiguration this;
+        java.util.List $r0, $r1;
+        int $i0;
+        com.puppycrawl.tools.checkstyle.api.Configuration[] $r2, $r4;
+        java.lang.Object[] $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.List mChildren>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.List mChildren>;
+
+        $i0 = interfaceinvoke $r0.<java.util.List: int size()>();
+
+        $r2 = newarray (com.puppycrawl.tools.checkstyle.api.Configuration)[$i0];
+
+        $r3 = interfaceinvoke $r1.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r2);
+
+        $r4 = (com.puppycrawl.tools.checkstyle.api.Configuration[]) $r3;
+
+        return $r4;
+    }
+
+    public java.lang.String getName()
+    {
+        com.puppycrawl.tools.checkstyle.DefaultConfiguration this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.lang.String mName>;
+
+        return $r0;
+    }
+
+    public void addChild(com.puppycrawl.tools.checkstyle.api.Configuration)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultConfiguration this;
+        com.puppycrawl.tools.checkstyle.api.Configuration aConfiguration;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+        aConfiguration := @parameter0: com.puppycrawl.tools.checkstyle.api.Configuration;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.List mChildren>;
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>(aConfiguration);
+
+        return;
+    }
+
+    public void removeChild(com.puppycrawl.tools.checkstyle.api.Configuration)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultConfiguration this;
+        com.puppycrawl.tools.checkstyle.api.Configuration aConfiguration;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+        aConfiguration := @parameter0: com.puppycrawl.tools.checkstyle.api.Configuration;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.List mChildren>;
+
+        interfaceinvoke $r0.<java.util.List: boolean remove(java.lang.Object)>(aConfiguration);
+
+        return;
+    }
+
+    public void addAttribute(java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultConfiguration this;
+        java.lang.String aName, aValue, current, $r7;
+        java.util.Map $r0, $r3, $r9;
+        java.lang.Object $r1;
+        java.lang.StringBuilder $r2, $r4, $r5, $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+        aName := @parameter0: java.lang.String;
+
+        aValue := @parameter1: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.Map mAttributeMap>;
+
+        $r1 = interfaceinvoke $r0.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(aName, aValue);
+
+        current = (java.lang.String) $r1;
+
+        if null != current goto label1;
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.Map mAttributeMap>;
+
+        interfaceinvoke $r9.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(aName, aValue);
+
+        goto label2;
+
+     label1:
+        $r3 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.Map mAttributeMap>;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(current);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(",");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aValue);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(aName, $r7);
+
+     label2:
+        return;
+    }
+
+    public void addMessage(java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultConfiguration this;
+        java.lang.String aKey, aValue;
+        java.util.Map $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+        aKey := @parameter0: java.lang.String;
+
+        aValue := @parameter1: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.Map mMessages>;
+
+        interfaceinvoke $r0.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(aKey, aValue);
+
+        return;
+    }
+
+    public com.google.common.collect.ImmutableMap getMessages()
+    {
+        com.puppycrawl.tools.checkstyle.DefaultConfiguration this;
+        java.util.Map $r0;
+        com.google.common.collect.ImmutableMap $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultConfiguration: java.util.Map mMessages>;
+
+        $r1 = staticinvoke <com.google.common.collect.ImmutableMap: com.google.common.collect.ImmutableMap copyOf(java.util.Map)>($r0);
+
+        return $r1;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.DefaultConfiguration: long serialVersionUID> = 1157875385356127169L;
+
+        return;
+    }
+}

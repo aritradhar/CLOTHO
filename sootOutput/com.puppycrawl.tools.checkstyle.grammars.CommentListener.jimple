@@ -1,0 +1,7 @@
+public interface  com.puppycrawl.tools.checkstyle.grammars.CommentListener extends java.lang.Object
+{
+
+    public abstract void reportSingleLineComment(java.lang.String, int, int);
+
+    public abstract void reportBlockComment(java.lang.String, int, int, int, int);
+}

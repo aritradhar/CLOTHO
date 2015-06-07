@@ -1,0 +1,117 @@
+public final enum class com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption extends java.lang.Enum
+{
+    public static final enum com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption TOP;
+    public static final enum com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption ABOVE;
+    public static final enum com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption INFLOW;
+    public static final enum com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption UNDER;
+    public static final enum com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption BOTTOM;
+    private static final com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption[] $VALUES;
+
+    public static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption[] values()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption[]) $r1;
+
+        return $r2;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption valueOf(java.lang.String)
+    {
+        java.lang.String name;
+        java.lang.Enum $r0;
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption $r1;
+
+        name := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/checks/imports/ImportOrderOption", name);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption) $r0;
+
+        return $r1;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption this;
+        java.lang.String l1;
+        int l2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        specialinvoke this.<java.lang.Enum: void <init>(java.lang.String,int)>(l1, l2);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption $r0, $r1, $r2, $r3, $r4, $r6, $r7, $r8, $r9, $r10;
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption[] $r5;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: void <init>(java.lang.String,int)>("TOP", 0);
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption TOP> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: void <init>(java.lang.String,int)>("ABOVE", 1);
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption ABOVE> = $r1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: void <init>(java.lang.String,int)>("INFLOW", 2);
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption INFLOW> = $r2;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: void <init>(java.lang.String,int)>("UNDER", 3);
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption UNDER> = $r3;
+
+        $r4 = new com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
+
+        specialinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: void <init>(java.lang.String,int)>("BOTTOM", 4);
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption BOTTOM> = $r4;
+
+        $r5 = newarray (com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption)[5];
+
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption TOP>;
+
+        $r5[0] = $r6;
+
+        $r7 = <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption ABOVE>;
+
+        $r5[1] = $r7;
+
+        $r8 = <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption INFLOW>;
+
+        $r5[2] = $r8;
+
+        $r9 = <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption UNDER>;
+
+        $r5[3] = $r9;
+
+        $r10 = <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption BOTTOM>;
+
+        $r5[4] = $r10;
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption: com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption[] $VALUES> = $r5;
+
+        return;
+    }
+}

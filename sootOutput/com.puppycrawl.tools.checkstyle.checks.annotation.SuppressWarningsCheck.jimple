@@ -1,0 +1,427 @@
+public class com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck
+{
+    private static final java.lang.String SUPPRESS_WARNINGS;
+    private static final java.lang.String FQ_SUPPRESS_WARNINGS;
+    static final boolean $assertionsDisabled;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void <init>(java.lang.String)>("^$|^\\s+$");
+
+        return;
+    }
+
+    public final int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: int[] getAcceptableTokens()>();
+
+        return $r0;
+    }
+
+    public final int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        $r0 = newarray (int)[10];
+
+        $r0[0] = 14;
+
+        $r0[1] = 15;
+
+        $r0[2] = 158;
+
+        $r0[3] = 161;
+
+        $r0[4] = 165;
+
+        $r0[5] = 159;
+
+        $r0[6] = 21;
+
+        $r0[7] = 10;
+
+        $r0[8] = 9;
+
+        $r0[9] = 8;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, 'annotation', warningHolder, warning, fChild, $r7;
+        java.lang.String warningText, $r6, $r8, $r9;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        boolean $z0;
+        java.lang.StringBuilder $r0, $r2, $r3, $r4, $r5;
+        java.lang.AssertionError $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        'annotation' = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getSuppressWarnings(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if 'annotation' != null goto label1;
+
+        return;
+
+     label1:
+        warningHolder = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: com.puppycrawl.tools.checkstyle.api.DetailAST findWarningsHolder(com.puppycrawl.tools.checkstyle.api.DetailAST)>('annotation');
+
+        warning = virtualinvoke warningHolder.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(29);
+
+        if warning != null goto label2;
+
+        $i7 = virtualinvoke warningHolder.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i6 = virtualinvoke warningHolder.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: void logMatch(int,int,java.lang.String)>($i7, $i6, "");
+
+        return;
+
+     label2:
+        if warning == null goto label6;
+
+        $i0 = virtualinvoke warning.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 29 goto label5;
+
+        fChild = virtualinvoke warning.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i1 = virtualinvoke fChild.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 141 goto label3;
+
+        $r7 = virtualinvoke warning.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $r9 = virtualinvoke $r7.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        warningText = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: java.lang.String removeQuotes(java.lang.String)>($r9);
+
+        $i5 = virtualinvoke warning.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i4 = virtualinvoke warning.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: void logMatch(int,int,java.lang.String)>($i5, $i4, warningText);
+
+        goto label5;
+
+     label3:
+        $i2 = virtualinvoke fChild.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 111 goto label4;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: void walkConditional(com.puppycrawl.tools.checkstyle.api.DetailAST)>(fChild);
+
+        goto label5;
+
+     label4:
+        $z0 = <com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label5;
+
+        $r1 = new java.lang.AssertionError;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Should never get here, type: ");
+
+        $i3 = virtualinvoke fChild.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r3 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" text: ");
+
+        $r6 = virtualinvoke fChild.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r1.<java.lang.AssertionError: void <init>(java.lang.Object)>($r8);
+
+        throw $r1;
+
+     label5:
+        warning = virtualinvoke warning.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label2;
+
+     label6:
+        return;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST getSuppressWarnings(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, 'annotation', $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        'annotation' = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: com.puppycrawl.tools.checkstyle.api.DetailAST getAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, "SuppressWarnings");
+
+        if 'annotation' == null goto label1;
+
+        $r0 = 'annotation';
+
+        goto label2;
+
+     label1:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: com.puppycrawl.tools.checkstyle.api.DetailAST getAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, "java.lang.SuppressWarnings");
+
+     label2:
+        return $r0;
+    }
+
+    private void logMatch(int, int, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+        int aLineNo, aColNum;
+        java.lang.String aWarningText;
+        java.util.regex.Matcher matcher;
+        java.util.regex.Pattern $r0;
+        boolean $z0;
+        java.lang.Object[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        aLineNo := @parameter0: int;
+
+        aColNum := @parameter1: int;
+
+        aWarningText := @parameter2: java.lang.String;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: java.util.regex.Pattern getRegexp()>();
+
+        matcher = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aWarningText);
+
+        $z0 = virtualinvoke matcher.<java.util.regex.Matcher: boolean matches()>();
+
+        if $z0 == 0 goto label1;
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r1[0] = aWarningText;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: void log(int,int,java.lang.String,java.lang.Object[])>(aLineNo, aColNum, "suppressed.warning.not.allowed", $r1);
+
+     label1:
+        return;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST findWarningsHolder(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation, annValuePair, annArrayInit;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        annValuePair = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(164);
+
+        if annValuePair == null goto label1;
+
+        annArrayInit = virtualinvoke annValuePair.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(166);
+
+        goto label2;
+
+     label1:
+        annArrayInit = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(166);
+
+     label2:
+        if annArrayInit == null goto label3;
+
+        return annArrayInit;
+
+     label3:
+        return aAnnotation;
+    }
+
+    private java.lang.String removeQuotes(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+        java.lang.String aWarning, $r0;
+        boolean $z0, $z1, $z2;
+        int $i0, $i1, $i2, $i3;
+        char $c4, $c5;
+        java.lang.AssertionError $r1, $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        aWarning := @parameter0: java.lang.String;
+
+        $z0 = <com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label1;
+
+        if aWarning != null goto label1;
+
+        $r3 = new java.lang.AssertionError;
+
+        specialinvoke $r3.<java.lang.AssertionError: void <init>(java.lang.Object)>("the aWarning was null");
+
+        throw $r3;
+
+     label1:
+        $z1 = <com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: boolean $assertionsDisabled>;
+
+        if $z1 != 0 goto label2;
+
+        $c5 = virtualinvoke aWarning.<java.lang.String: char charAt(int)>(0);
+
+        if $c5 == 34 goto label2;
+
+        $r2 = new java.lang.AssertionError;
+
+        specialinvoke $r2.<java.lang.AssertionError: void <init>()>();
+
+        throw $r2;
+
+     label2:
+        $z2 = <com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: boolean $assertionsDisabled>;
+
+        if $z2 != 0 goto label3;
+
+        $i2 = virtualinvoke aWarning.<java.lang.String: int length()>();
+
+        $i3 = $i2 - 1;
+
+        $c4 = virtualinvoke aWarning.<java.lang.String: char charAt(int)>($i3);
+
+        if $c4 == 34 goto label3;
+
+        $r1 = new java.lang.AssertionError;
+
+        specialinvoke $r1.<java.lang.AssertionError: void <init>()>();
+
+        throw $r1;
+
+     label3:
+        $i0 = virtualinvoke aWarning.<java.lang.String: int length()>();
+
+        $i1 = $i0 - 1;
+
+        $r0 = virtualinvoke aWarning.<java.lang.String: java.lang.String substring(int,int)>(1, $i1);
+
+        return $r0;
+    }
+
+    private void walkConditional(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aCond, $r0, $r1;
+        java.lang.String warningText, $r2;
+        int $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        aCond := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aCond.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 111 goto label1;
+
+        $r2 = virtualinvoke aCond.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        warningText = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: java.lang.String removeQuotes(java.lang.String)>($r2);
+
+        $i1 = virtualinvoke aCond.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = virtualinvoke aCond.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: void logMatch(int,int,java.lang.String)>($i1, $i2, warningText);
+
+        return;
+
+     label1:
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getCondLeft(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aCond);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: void walkConditional(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        $r1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getCondRight(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aCond);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: void walkConditional(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r1);
+
+        return;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST getCondLeft(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aCond, colon, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        aCond := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        colon = virtualinvoke aCond.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(83);
+
+        $r0 = virtualinvoke colon.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        return $r0;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST getCondRight(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aCond, colon, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
+
+        aCond := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        colon = virtualinvoke aCond.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(83);
+
+        $r0 = virtualinvoke colon.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: java.lang.String FQ_SUPPRESS_WARNINGS> = "java.lang.SuppressWarnings";
+
+        <com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: java.lang.String SUPPRESS_WARNINGS> = "SuppressWarnings";
+
+        $r0 = class "com/puppycrawl/tools/checkstyle/checks/annotation/SuppressWarningsCheck";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck: boolean $assertionsDisabled> = $z1;
+
+        return;
+    }
+}

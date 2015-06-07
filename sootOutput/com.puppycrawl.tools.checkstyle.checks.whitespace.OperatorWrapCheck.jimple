@@ -1,0 +1,258 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck this;
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption: com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption NL>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck: void <init>(java.lang.Enum,java.lang.Class)>($r0, class "com/puppycrawl/tools/checkstyle/checks/whitespace/WrapOption");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck;
+
+        $r0 = newarray (int)[23];
+
+        $r0[0] = 111;
+
+        $r0[1] = 83;
+
+        $r0[2] = 118;
+
+        $r0[3] = 117;
+
+        $r0[4] = 129;
+
+        $r0[5] = 127;
+
+        $r0[6] = 128;
+
+        $r0[7] = 61;
+
+        $r0[8] = 130;
+
+        $r0[9] = 125;
+
+        $r0[10] = 126;
+
+        $r0[11] = 122;
+
+        $r0[12] = 120;
+
+        $r0[13] = 124;
+
+        $r0[14] = 121;
+
+        $r0[15] = 119;
+
+        $r0[16] = 115;
+
+        $r0[17] = 114;
+
+        $r0[18] = 112;
+
+        $r0[19] = 116;
+
+        $r0[20] = 113;
+
+        $r0[21] = 178;
+
+        $r0[22] = 123;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck;
+
+        $r0 = newarray (int)[35];
+
+        $r0[0] = 111;
+
+        $r0[1] = 83;
+
+        $r0[2] = 118;
+
+        $r0[3] = 117;
+
+        $r0[4] = 129;
+
+        $r0[5] = 127;
+
+        $r0[6] = 128;
+
+        $r0[7] = 61;
+
+        $r0[8] = 130;
+
+        $r0[9] = 125;
+
+        $r0[10] = 126;
+
+        $r0[11] = 122;
+
+        $r0[12] = 120;
+
+        $r0[13] = 124;
+
+        $r0[14] = 121;
+
+        $r0[15] = 119;
+
+        $r0[16] = 115;
+
+        $r0[17] = 114;
+
+        $r0[18] = 112;
+
+        $r0[19] = 116;
+
+        $r0[20] = 113;
+
+        $r0[21] = 123;
+
+        $r0[22] = 178;
+
+        $r0[23] = 81;
+
+        $r0[24] = 103;
+
+        $r0[25] = 100;
+
+        $r0[26] = 101;
+
+        $r0[27] = 102;
+
+        $r0[28] = 104;
+
+        $r0[29] = 105;
+
+        $r0[30] = 106;
+
+        $r0[31] = 107;
+
+        $r0[32] = 109;
+
+        $r0[33] = 110;
+
+        $r0[34] = 108;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent;
+        java.lang.String text, currentLine, $r4, $r6, $r7;
+        int colNo, lineNo, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.lang.Enum $r0;
+        java.lang.String[] $r1;
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption $r2, $r3, parent;
+        boolean $z0, $z1;
+        java.lang.Object[] $r5, $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 83 goto label2;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i7 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i7 == 96 goto label1;
+
+        $i6 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i6 != 95 goto label2;
+
+     label1:
+        return;
+
+     label2:
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck: java.lang.Enum getAbstractOption()>();
+
+        parent = (com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption) $r0;
+
+        text = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        colNo = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        lineNo = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck: java.lang.String[] getLines()>();
+
+        $i1 = lineNo - 1;
+
+        currentLine = $r1[$i1];
+
+        $r2 = <com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption: com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption NL>;
+
+        if parent != $r2 goto label3;
+
+        $r4 = virtualinvoke currentLine.<java.lang.String: java.lang.String trim()>();
+
+        $z1 = virtualinvoke text.<java.lang.String: boolean equals(java.lang.Object)>($r4);
+
+        if $z1 != 0 goto label3;
+
+        $i3 = virtualinvoke text.<java.lang.String: int length()>();
+
+        $i4 = colNo + $i3;
+
+        $r6 = virtualinvoke currentLine.<java.lang.String: java.lang.String substring(int)>($i4);
+
+        $r7 = virtualinvoke $r6.<java.lang.String: java.lang.String trim()>();
+
+        $i5 = virtualinvoke $r7.<java.lang.String: int length()>();
+
+        if $i5 != 0 goto label3;
+
+        $r8 = newarray (java.lang.Object)[1];
+
+        $r8[0] = text;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck: void log(int,int,java.lang.String,java.lang.Object[])>(lineNo, colNo, "line.new", $r8);
+
+        goto label4;
+
+     label3:
+        $r3 = <com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption: com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption EOL>;
+
+        if parent != $r3 goto label4;
+
+        $i2 = colNo - 1;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: boolean whitespaceBefore(int,java.lang.String)>($i2, currentLine);
+
+        if $z0 == 0 goto label4;
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r5[0] = text;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck: void log(int,int,java.lang.String,java.lang.Object[])>(lineNo, colNo, "line.previous", $r5);
+
+     label4:
+        return;
+    }
+}

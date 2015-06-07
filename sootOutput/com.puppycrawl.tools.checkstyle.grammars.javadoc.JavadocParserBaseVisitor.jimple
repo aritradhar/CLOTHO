@@ -1,0 +1,1139 @@
+public class com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor extends org.antlr.v4.runtime.tree.AbstractParseTreeVisitor implements com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        specialinvoke this.<org.antlr.v4.runtime.tree.AbstractParseTreeVisitor: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object visitBody(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitLiTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitParagraph(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParagraphContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParagraphContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParagraphContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTr(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitColgroup(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitJavadoc(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTfootTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTd(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitLinkTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LinkTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LinkTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LinkTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitThTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitBasefrontTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BasefrontTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BasefrontTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BasefrontTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTh(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTdTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTbodyTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitDescription(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DescriptionContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DescriptionContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DescriptionContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitParameters(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParametersContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParametersContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParametersContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitMetaTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$MetaTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$MetaTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$MetaTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHead(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHtmlTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitOption(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitBodyTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitSingletonTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitDdTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitText(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TextContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TextContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TextContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitJavadocInlineTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocInlineTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocInlineTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocInlineTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTrTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTfootTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitIsindexTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$IsindexTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$IsindexTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$IsindexTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTheadTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTdTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitPTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitOptionTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTfoot(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitLi(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHtmlElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHtmlComment(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlCommentContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlCommentContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlCommentContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitDtTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitLiTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitAreaTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AreaTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AreaTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AreaTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitPTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitInputTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$InputTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$InputTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$InputTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTbodyTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitJavadocTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHtmlTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitDt(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHeadTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHeadTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitThTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitDdTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitOptionTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitAttribute(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AttributeContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AttributeContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AttributeContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitDd(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTrTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitSingletonTagName(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagNameContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagNameContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagNameContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitDtTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHtmlElementOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitBrTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BrTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BrTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BrTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitThead(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitParamTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParamTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParamTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParamTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitSingletonElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTheadTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHtmlElementClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitWrongSinletonTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$WrongSinletonTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$WrongSinletonTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$WrongSinletonTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitBodyTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHtmlTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitBaseTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BaseTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BaseTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BaseTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitReference(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ReferenceContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ReferenceContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ReferenceContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitImgTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ImgTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ImgTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ImgTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitFrameTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$FrameTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$FrameTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$FrameTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitColgroupTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagCloseContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagCloseContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagCloseContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitColgroupTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagOpenContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagOpenContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagOpenContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitTbody(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHtml(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitColTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+
+    public java.lang.Object visitHrTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HrTagContext)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor this;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HrTagContext ctx;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor;
+
+        ctx := @parameter0: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HrTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserBaseVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(ctx);
+
+        return $r0;
+    }
+}

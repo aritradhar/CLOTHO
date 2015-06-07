@@ -1,0 +1,99 @@
+public class com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int DEFAULT_MAX_PARAMETERS;
+    private int mMax;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck: int mMax> = 7;
+
+        return;
+    }
+
+    public void setMax(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck this;
+        int aMax;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
+
+        aMax := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck: int mMax> = aMax;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 9;
+
+        $r0[1] = 8;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, params, name;
+        int count, $i0, $i1, $i2, $i3;
+        java.lang.Object[] $r0;
+        java.lang.Integer $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        params = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        count = virtualinvoke params.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount(int)>(21);
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck: int mMax>;
+
+        if count <= $i0 goto label1;
+
+        name = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $i1 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck: int mMax>;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+
+        $r0[0] = $r1;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(count);
+
+        $r0[1] = $r2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i2, "maxParam", $r0);
+
+     label1:
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck: int DEFAULT_MAX_PARAMETERS> = 7;
+
+        return;
+    }
+}

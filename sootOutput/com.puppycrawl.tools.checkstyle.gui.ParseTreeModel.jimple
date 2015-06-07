@@ -1,0 +1,297 @@
+public class com.puppycrawl.tools.checkstyle.gui.ParseTreeModel extends com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel
+{
+    private static final java.lang.String[] COLUMN_NAMES;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST parseTree, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel;
+
+        parseTree := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.gui.ParseTreeModel: com.puppycrawl.tools.checkstyle.api.DetailAST createArtificialTreeRoot()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: void <init>(java.lang.Object)>($r0);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeModel: void setParseTree(com.puppycrawl.tools.checkstyle.api.DetailAST)>(parseTree);
+
+        return;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.api.DetailAST createArtificialTreeRoot()
+    {
+        antlr.ASTFactory factory, $r0;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+        antlr.collections.AST $r3;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r4;
+
+        $r0 = new antlr.ASTFactory;
+
+        specialinvoke $r0.<antlr.ASTFactory: void <init>()>();
+
+        factory = $r0;
+
+        $r1 = class "com/puppycrawl/tools/checkstyle/api/DetailAST";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke factory.<antlr.ASTFactory: void setASTNodeClass(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke factory.<antlr.ASTFactory: antlr.collections.AST create(int,java.lang.String)>(1, "ROOT");
+
+        $r4 = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r3;
+
+        return $r4;
+    }
+
+    void setParseTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST parseTree, root;
+        java.lang.Object[] path, $r1;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel;
+
+        parseTree := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeModel: java.lang.Object getRoot()>();
+
+        root = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r0;
+
+        virtualinvoke root.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setFirstChild(antlr.collections.AST)>(parseTree);
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r1[0] = root;
+
+        path = $r1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeModel: void fireTreeStructureChanged(java.lang.Object,java.lang.Object[],int[],java.lang.Object[])>(this, path, null, null);
+
+        return;
+    }
+
+    public int getColumnCount()
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel this;
+        java.lang.String[] $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.gui.ParseTreeModel: java.lang.String[] COLUMN_NAMES>;
+
+        $i0 = lengthof $r0;
+
+        return $i0;
+    }
+
+    public java.lang.String getColumnName(int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel this;
+        int column;
+        java.lang.String[] $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel;
+
+        column := @parameter0: int;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.gui.ParseTreeModel: java.lang.String[] COLUMN_NAMES>;
+
+        $r1 = $r0[column];
+
+        return $r1;
+    }
+
+    public java.lang.Class getColumnClass(int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel this;
+        int column;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel;
+
+        column := @parameter0: int;
+
+        tableswitch(column)
+        {
+            case 0: goto label1;
+            case 1: goto label2;
+            case 2: goto label3;
+            case 3: goto label4;
+            case 4: goto label5;
+            default: goto label6;
+        };
+
+     label1:
+        return class "com/puppycrawl/tools/checkstyle/gui/TreeTableModel";
+
+     label2:
+        return class "java/lang/String";
+
+     label3:
+        return class "java/lang/Integer";
+
+     label4:
+        return class "java/lang/Integer";
+
+     label5:
+        return class "java/lang/String";
+
+     label6:
+        return class "java/lang/Object";
+    }
+
+    public java.lang.Object getValueAt(java.lang.Object, int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel this;
+        java.lang.Object node;
+        int column, $i0, $i1, $i2;
+        com.puppycrawl.tools.checkstyle.api.DetailAST ast;
+        java.lang.String $r0, $r3;
+        java.lang.Integer $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel;
+
+        node := @parameter0: java.lang.Object;
+
+        column := @parameter1: int;
+
+        ast = (com.puppycrawl.tools.checkstyle.api.DetailAST) node;
+
+        tableswitch(column)
+        {
+            case 0: goto label1;
+            case 1: goto label2;
+            case 2: goto label3;
+            case 3: goto label4;
+            case 4: goto label5;
+            default: goto label6;
+        };
+
+     label1:
+        return null;
+
+     label2:
+        $i2 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $r3 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String getTokenName(int)>($i2);
+
+        return $r3;
+
+     label3:
+        $i1 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        return $r2;
+
+     label4:
+        $i0 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        return $r1;
+
+     label5:
+        $r0 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        return $r0;
+
+     label6:
+        return null;
+    }
+
+    public void setValueAt(java.lang.Object, java.lang.Object, int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel this;
+        java.lang.Object aValue, node;
+        int column;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel;
+
+        aValue := @parameter0: java.lang.Object;
+
+        node := @parameter1: java.lang.Object;
+
+        column := @parameter2: int;
+
+        return;
+    }
+
+    public java.lang.Object getChild(java.lang.Object, int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel this;
+        java.lang.Object parent;
+        int index, i;
+        com.puppycrawl.tools.checkstyle.api.DetailAST ast;
+        antlr.collections.AST child;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel;
+
+        parent := @parameter0: java.lang.Object;
+
+        index := @parameter1: int;
+
+        ast = (com.puppycrawl.tools.checkstyle.api.DetailAST) parent;
+
+        i = 0;
+
+        child = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if i >= index goto label2;
+
+        child = interfaceinvoke child.<antlr.collections.AST: antlr.collections.AST getNextSibling()>();
+
+        i = i + 1;
+
+        goto label1;
+
+     label2:
+        return child;
+    }
+
+    public int getChildCount(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel this;
+        java.lang.Object parent;
+        com.puppycrawl.tools.checkstyle.api.DetailAST ast;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel;
+
+        parent := @parameter0: java.lang.Object;
+
+        ast = (com.puppycrawl.tools.checkstyle.api.DetailAST) parent;
+
+        $i0 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        return $i0;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        $r0 = newarray (java.lang.String)[5];
+
+        $r0[0] = "Tree";
+
+        $r0[1] = "Type";
+
+        $r0[2] = "Line";
+
+        $r0[3] = "Column";
+
+        $r0[4] = "Text";
+
+        <com.puppycrawl.tools.checkstyle.gui.ParseTreeModel: java.lang.String[] COLUMN_NAMES> = $r0;
+
+        return;
+    }
+}

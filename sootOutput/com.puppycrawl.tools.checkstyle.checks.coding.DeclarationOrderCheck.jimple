@@ -1,0 +1,336 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int STATE_STATIC_VARIABLE_DEF;
+    private static final int STATE_INSTANCE_VARIABLE_DEF;
+    private static final int STATE_CTOR_DEF;
+    private static final int STATE_METHOD_DEF;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mScopeStates;
+    private boolean mIgnoreConstructors;
+    private boolean mIgnoreMethods;
+    private boolean mIgnoreModifiers;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStates> = $r0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
+
+        $r0 = newarray (int)[4];
+
+        $r0[0] = 8;
+
+        $r0[1] = 9;
+
+        $r0[2] = 5;
+
+        $r0[3] = 6;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0, $r9, $r10, $r12;
+        int parentType, $i0, $i1, $i4, $i5, $i6, $i7, $i8, $i10, $i12;
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState state, $r1;
+        com.puppycrawl.tools.checkstyle.api.Scope access, $r14, $r18;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r2, $r3, $r7, $r11;
+        java.lang.Object $r4, $r6, $r13;
+        boolean $z0, $z1, $z2, $z3;
+        java.lang.Object[] $r5, $r8, $r15, $r17, $r20;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        parentType = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        tableswitch($i0)
+        {
+            case 5: goto label08;
+            case 6: goto label01;
+            case 7: goto label17;
+            case 8: goto label02;
+            case 9: goto label05;
+            default: goto label17;
+        };
+
+     label01:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStates>;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: void <init>(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$1)>(null);
+
+        virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r1);
+
+        goto label17;
+
+     label02:
+        if parentType == 6 goto label03;
+
+        return;
+
+     label03:
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStates>;
+
+        $r6 = virtualinvoke $r7.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object peek()>();
+
+        state = (com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState) $r6;
+
+        $i4 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int access$100(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState)>(state);
+
+        if $i4 <= 3 goto label04;
+
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: boolean mIgnoreConstructors>;
+
+        if $z1 != 0 goto label17;
+
+        $r8 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "declaration.order.constructor", $r8);
+
+        goto label17;
+
+     label04:
+        staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int access$102(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState,int)>(state, 3);
+
+        goto label17;
+
+     label05:
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStates>;
+
+        $r4 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object peek()>();
+
+        state = (com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState) $r4;
+
+        if parentType == 6 goto label06;
+
+        return;
+
+     label06:
+        $i1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int access$100(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState)>(state);
+
+        if $i1 <= 4 goto label07;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: boolean mIgnoreMethods>;
+
+        if $z0 != 0 goto label17;
+
+        $r5 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "declaration.order.method", $r5);
+
+        goto label17;
+
+     label07:
+        staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int access$102(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState,int)>(state, 4);
+
+        goto label17;
+
+     label08:
+        if parentType != 10 goto label09;
+
+        $r10 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r9 = virtualinvoke $r10.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i5 = virtualinvoke $r9.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i5 == 6 goto label10;
+
+     label09:
+        return;
+
+     label10:
+        $r11 = this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStates>;
+
+        $r13 = virtualinvoke $r11.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object peek()>();
+
+        state = (com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState) $r13;
+
+        $r12 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(65);
+
+        if $r12 == null goto label13;
+
+        $i10 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int access$100(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState)>(state);
+
+        if $i10 <= 1 goto label12;
+
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: boolean mIgnoreModifiers>;
+
+        if $z3 == 0 goto label11;
+
+        $i12 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int access$100(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState)>(state);
+
+        if $i12 <= 2 goto label15;
+
+     label11:
+        $r20 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "declaration.order.static", $r20);
+
+        goto label15;
+
+     label12:
+        staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int access$102(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState,int)>(state, 1);
+
+        goto label15;
+
+     label13:
+        $i7 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int access$100(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState)>(state);
+
+        if $i7 <= 2 goto label14;
+
+        $r17 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "declaration.order.instance", $r17);
+
+        goto label15;
+
+     label14:
+        $i6 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int access$100(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState)>(state);
+
+        if $i6 != 1 goto label15;
+
+        $r18 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PUBLIC>;
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: com.puppycrawl.tools.checkstyle.api.Scope access$202(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState,com.puppycrawl.tools.checkstyle.api.Scope)>(state, $r18);
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int access$102(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState,int)>(state, 2);
+
+     label15:
+        access = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: com.puppycrawl.tools.checkstyle.api.Scope getScopeFromMods(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $r14 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: com.puppycrawl.tools.checkstyle.api.Scope access$200(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState)>(state);
+
+        $i8 = virtualinvoke $r14.<com.puppycrawl.tools.checkstyle.api.Scope: int compareTo(java.lang.Enum)>(access);
+
+        if $i8 <= 0 goto label16;
+
+        $z2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: boolean mIgnoreModifiers>;
+
+        if $z2 != 0 goto label17;
+
+        $r15 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "declaration.order.access", $r15);
+
+        goto label17;
+
+     label16:
+        staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: com.puppycrawl.tools.checkstyle.api.Scope access$202(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState,com.puppycrawl.tools.checkstyle.api.Scope)>(state, access);
+
+        goto label17;
+
+     label17:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 6: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStates>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        goto label2;
+
+     label2:
+        return;
+    }
+
+    public void setIgnoreConstructors(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck this;
+        boolean aIgnoreConstructors;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
+
+        aIgnoreConstructors := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: boolean mIgnoreConstructors> = aIgnoreConstructors;
+
+        return;
+    }
+
+    public void setIgnoreMethods(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck this;
+        boolean aIgnoreMethods;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
+
+        aIgnoreMethods := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: boolean mIgnoreMethods> = aIgnoreMethods;
+
+        return;
+    }
+
+    public void setIgnoreModifiers(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck this;
+        boolean aIgnoreModifiers;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
+
+        aIgnoreModifiers := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: boolean mIgnoreModifiers> = aIgnoreModifiers;
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: int STATE_METHOD_DEF> = 4;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: int STATE_CTOR_DEF> = 3;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: int STATE_INSTANCE_VARIABLE_DEF> = 2;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck: int STATE_STATIC_VARIABLE_DEF> = 1;
+
+        return;
+    }
+}

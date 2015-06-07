@@ -1,0 +1,23 @@
+public class com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck extends com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck: void <init>(java.lang.String)>("^[A-Z]$");
+
+        return;
+    }
+
+    protected final int getLocation()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck;
+
+        return 14;
+    }
+}

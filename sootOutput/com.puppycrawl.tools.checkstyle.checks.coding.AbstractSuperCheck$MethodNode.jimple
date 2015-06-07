@@ -1,0 +1,58 @@
+class com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode extends java.lang.Object
+{
+    private final com.puppycrawl.tools.checkstyle.api.DetailAST mMethod;
+    private boolean mCallsSuper;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode: com.puppycrawl.tools.checkstyle.api.DetailAST mMethod> = aAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode: boolean mCallsSuper> = 0;
+
+        return;
+    }
+
+    public void setCallsSuper()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode: boolean mCallsSuper> = 1;
+
+        return;
+    }
+
+    public boolean getCallsSuper()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode: boolean mCallsSuper>;
+
+        return $z0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST getMethod()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode: com.puppycrawl.tools.checkstyle.api.DetailAST mMethod>;
+
+        return $r0;
+    }
+}

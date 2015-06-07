@@ -1,0 +1,574 @@
+class com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser extends java.lang.Object
+{
+    private final java.util.List mTags;
+
+    public void <init>(java.lang.String[], int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        java.lang.String[] aText;
+        int aLineNo;
+        java.util.LinkedList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        aText := @parameter0: java.lang.String[];
+
+        aLineNo := @parameter1: int;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: java.util.List mTags> = $r0;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: void parseTags(java.lang.String[],int)>(aText, aLineNo);
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag nextTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        java.util.List $r0;
+        java.lang.Object $r1;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: java.util.List mTags>;
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.lang.Object remove(int)>(0);
+
+        $r2 = (com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag) $r1;
+
+        return $r2;
+    }
+
+    public boolean hasNextTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        java.util.List $r0;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: java.util.List mTags>;
+
+        $z0 = interfaceinvoke $r0.<java.util.List: boolean isEmpty()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+
+    private void add(com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag aTag;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        aTag := @parameter0: com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: java.util.List mTags>;
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>(aTag);
+
+        return;
+    }
+
+    private void parseTags(java.lang.String[], int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        java.lang.String[] aText;
+        int aLineNo, nLines, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point position, endTag, $r0;
+        boolean incompleteTag, closedTag, $z0, $z1, $z2, $z3;
+        java.lang.String tagId, $r1, $r3, $r4;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag $r2;
+        char $c11;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        aText := @parameter0: java.lang.String[];
+
+        aLineNo := @parameter1: int;
+
+        nLines = lengthof aText;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: void <init>(int,int)>(0, 0);
+
+        position = $r0;
+
+        position = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point findChar(java.lang.String[],char,com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, 60, position);
+
+     label01:
+        $i0 = virtualinvoke position.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        if $i0 >= nLines goto label11;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: boolean isCommentTag(java.lang.String[],com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, position);
+
+        if $z0 == 0 goto label02;
+
+        position = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point skipHtmlComment(java.lang.String[],com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, position);
+
+        goto label10;
+
+     label02:
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: boolean isTag(java.lang.String[],com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, position);
+
+        if $z1 != 0 goto label03;
+
+        position = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point getNextCharPos(java.lang.String[],com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, position);
+
+        goto label10;
+
+     label03:
+        endTag = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point findChar(java.lang.String[],char,com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, 62, position);
+
+        $i1 = virtualinvoke endTag.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        if $i1 < nLines goto label04;
+
+        $z3 = 1;
+
+        goto label05;
+
+     label04:
+        $z3 = 0;
+
+     label05:
+        incompleteTag = $z3;
+
+        if incompleteTag == 0 goto label06;
+
+        $r1 = "";
+
+        goto label07;
+
+     label06:
+        $r1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: java.lang.String getTagId(java.lang.String[],com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, position);
+
+     label07:
+        tagId = $r1;
+
+        $i2 = virtualinvoke endTag.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        if $i2 >= nLines goto label08;
+
+        $i7 = virtualinvoke endTag.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getColumnNo()>();
+
+        if $i7 <= 0 goto label08;
+
+        $i8 = virtualinvoke endTag.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        $r4 = aText[$i8];
+
+        $i10 = virtualinvoke endTag.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getColumnNo()>();
+
+        $i9 = $i10 - 1;
+
+        $c11 = virtualinvoke $r4.<java.lang.String: char charAt(int)>($i9);
+
+        if $c11 != 47 goto label08;
+
+        $z2 = 1;
+
+        goto label09;
+
+     label08:
+        $z2 = 0;
+
+     label09:
+        closedTag = $z2;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
+
+        $i3 = virtualinvoke position.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        $i5 = $i3 + aLineNo;
+
+        $i4 = virtualinvoke position.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getColumnNo()>();
+
+        $i6 = virtualinvoke position.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        $r3 = aText[$i6];
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: void <init>(java.lang.String,int,int,boolean,boolean,java.lang.String)>(tagId, $i5, $i4, closedTag, incompleteTag, $r3);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: void add(com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag)>($r2);
+
+        position = endTag;
+
+     label10:
+        position = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point findChar(java.lang.String[],char,com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, 60, position);
+
+        goto label01;
+
+     label11:
+        return;
+    }
+
+    private boolean isTag(java.lang.String[], com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        java.lang.String[] aText;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point aPos;
+        int column, $i0, $i1, $i2, $i3;
+        java.lang.String text;
+        boolean $z0, $z1, $z2;
+        char $c4, $c5, $c6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        aText := @parameter0: java.lang.String[];
+
+        aPos := @parameter1: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        $i0 = virtualinvoke aPos.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getColumnNo()>();
+
+        column = $i0 + 1;
+
+        $i1 = virtualinvoke aPos.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        text = aText[$i1];
+
+        $i2 = virtualinvoke text.<java.lang.String: int length()>();
+
+        if column >= $i2 goto label1;
+
+        $c4 = virtualinvoke text.<java.lang.String: char charAt(int)>(column);
+
+        $z1 = staticinvoke <java.lang.Character: boolean isJavaIdentifierStart(char)>($c4);
+
+        if $z1 != 0 goto label2;
+
+        $c5 = virtualinvoke text.<java.lang.String: char charAt(int)>(column);
+
+        $z2 = staticinvoke <java.lang.Character: boolean isJavaIdentifierPart(char)>($c5);
+
+        if $z2 != 0 goto label2;
+
+        $c6 = virtualinvoke text.<java.lang.String: char charAt(int)>(column);
+
+        if $c6 == 47 goto label2;
+
+     label1:
+        $i3 = virtualinvoke text.<java.lang.String: int length()>();
+
+        if column < $i3 goto label3;
+
+     label2:
+        $z0 = 1;
+
+        goto label4;
+
+     label3:
+        $z0 = 0;
+
+     label4:
+        return $z0;
+    }
+
+    private java.lang.String getTagId(java.lang.String[], com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        java.lang.String[] aText;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point aTagStart;
+        int column, $i0, $i1, $i2, $i4;
+        java.lang.String text, $r0, $r1;
+        char $c3, $c5, $c6;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        aText := @parameter0: java.lang.String[];
+
+        aTagStart := @parameter1: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        $i0 = virtualinvoke aTagStart.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getColumnNo()>();
+
+        column = $i0 + 1;
+
+        $i1 = virtualinvoke aTagStart.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        text = aText[$i1];
+
+        $i2 = virtualinvoke text.<java.lang.String: int length()>();
+
+        if column < $i2 goto label1;
+
+        return "";
+
+     label1:
+        $c3 = virtualinvoke text.<java.lang.String: char charAt(int)>(column);
+
+        if $c3 != 47 goto label2;
+
+        column = column + 1;
+
+     label2:
+        $r0 = virtualinvoke text.<java.lang.String: java.lang.String substring(int)>(column);
+
+        text = virtualinvoke $r0.<java.lang.String: java.lang.String trim()>();
+
+        column = 0;
+
+     label3:
+        $i4 = virtualinvoke text.<java.lang.String: int length()>();
+
+        if column >= $i4 goto label5;
+
+        $c5 = virtualinvoke text.<java.lang.String: char charAt(int)>(column);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isJavaIdentifierStart(char)>($c5);
+
+        if $z0 != 0 goto label4;
+
+        $c6 = virtualinvoke text.<java.lang.String: char charAt(int)>(column);
+
+        $z1 = staticinvoke <java.lang.Character: boolean isJavaIdentifierPart(char)>($c6);
+
+        if $z1 == 0 goto label5;
+
+     label4:
+        column = column + 1;
+
+        goto label3;
+
+     label5:
+        $r1 = virtualinvoke text.<java.lang.String: java.lang.String substring(int,int)>(0, column);
+
+        return $r1;
+    }
+
+    private boolean isCommentTag(java.lang.String[], com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        java.lang.String[] aText;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point aPos;
+        int $i0, $i1;
+        java.lang.String $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        aText := @parameter0: java.lang.String[];
+
+        aPos := @parameter1: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        $i0 = virtualinvoke aPos.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        $r0 = aText[$i0];
+
+        $i1 = virtualinvoke aPos.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getColumnNo()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean startsWith(java.lang.String,int)>("<!--", $i1);
+
+        return $z0;
+    }
+
+    private com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point skipHtmlComment(java.lang.String[], com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        java.lang.String[] aText;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point aFrom, 'to', $r2;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.String $r0, $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        aText := @parameter0: java.lang.String[];
+
+        aFrom := @parameter1: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        'to' = aFrom;
+
+        'to' = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point findChar(java.lang.String[],char,com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, 62, 'to');
+
+     label1:
+        $i0 = virtualinvoke 'to'.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        $i1 = lengthof aText;
+
+        if $i0 >= $i1 goto label2;
+
+        $i2 = virtualinvoke 'to'.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        $r0 = aText[$i2];
+
+        $i3 = virtualinvoke 'to'.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getColumnNo()>();
+
+        $i4 = $i3 + 1;
+
+        $r1 = virtualinvoke $r0.<java.lang.String: java.lang.String substring(int,int)>(0, $i4);
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean endsWith(java.lang.String)>("-->");
+
+        if $z0 != 0 goto label2;
+
+        $r2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point getNextCharPos(java.lang.String[],com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, 'to');
+
+        'to' = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point findChar(java.lang.String[],char,com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, 62, $r2);
+
+        goto label1;
+
+     label2:
+        return 'to';
+    }
+
+    private com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point findChar(java.lang.String[], char, com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        java.lang.String[] aText;
+        char aChar, $c6;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point aFrom, curr, $r0;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        aText := @parameter0: java.lang.String[];
+
+        aChar := @parameter1: char;
+
+        aFrom := @parameter2: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        $i0 = virtualinvoke aFrom.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        $i1 = virtualinvoke aFrom.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getColumnNo()>();
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: void <init>(int,int)>($i0, $i1);
+
+        curr = $r0;
+
+     label1:
+        $i2 = virtualinvoke curr.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        $i3 = lengthof aText;
+
+        if $i2 >= $i3 goto label2;
+
+        $i4 = virtualinvoke curr.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        $r1 = aText[$i4];
+
+        $i5 = virtualinvoke curr.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getColumnNo()>();
+
+        $c6 = virtualinvoke $r1.<java.lang.String: char charAt(int)>($i5);
+
+        if $c6 == aChar goto label2;
+
+        curr = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point getNextCharPos(java.lang.String[],com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)>(aText, curr);
+
+        goto label1;
+
+     label2:
+        return curr;
+    }
+
+    private com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point getNextCharPos(java.lang.String[], com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser this;
+        java.lang.String[] aText;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point aFrom, $r0;
+        int line, column, $i0, $i1, $i2, $i3, $i4, $i6, $i7;
+        java.lang.String currentLine, $r1;
+        char $c5, $c8, $c9, $c10;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser;
+
+        aText := @parameter0: java.lang.String[];
+
+        aFrom := @parameter1: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        line = virtualinvoke aFrom.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getLineNo()>();
+
+        $i0 = virtualinvoke aFrom.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int getColumnNo()>();
+
+        column = $i0 + 1;
+
+     label1:
+        $i1 = lengthof aText;
+
+        if line >= $i1 goto label5;
+
+        $r1 = aText[line];
+
+        $i2 = virtualinvoke $r1.<java.lang.String: int length()>();
+
+        if column < $i2 goto label5;
+
+        line = line + 1;
+
+        column = 0;
+
+        $i3 = lengthof aText;
+
+        if line >= $i3 goto label1;
+
+        currentLine = aText[line];
+
+     label2:
+        $i4 = virtualinvoke currentLine.<java.lang.String: int length()>();
+
+        if column >= $i4 goto label4;
+
+        $c5 = virtualinvoke currentLine.<java.lang.String: char charAt(int)>(column);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c5);
+
+        if $z0 != 0 goto label3;
+
+        $c10 = virtualinvoke currentLine.<java.lang.String: char charAt(int)>(column);
+
+        if $c10 != 42 goto label4;
+
+     label3:
+        column = column + 1;
+
+        $i7 = virtualinvoke currentLine.<java.lang.String: int length()>();
+
+        if column >= $i7 goto label2;
+
+        $i6 = column - 1;
+
+        $c9 = virtualinvoke currentLine.<java.lang.String: char charAt(int)>($i6);
+
+        if $c9 != 42 goto label2;
+
+        $c8 = virtualinvoke currentLine.<java.lang.String: char charAt(int)>(column);
+
+        if $c8 != 47 goto label2;
+
+        column = virtualinvoke currentLine.<java.lang.String: int length()>();
+
+        goto label2;
+
+     label4:
+        goto label1;
+
+     label5:
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: void <init>(int,int)>(line, column);
+
+        return $r0;
+    }
+}

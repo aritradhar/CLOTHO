@@ -1,0 +1,80 @@
+public class com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void <init>(java.lang.String)>("^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 16;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nameAST, $r0;
+        com.puppycrawl.tools.checkstyle.api.FullIdent full;
+        java.util.regex.Pattern $r1;
+        java.lang.String $r2, $r5, $r6;
+        java.util.regex.Matcher $r3;
+        boolean $z0;
+        int $i0, $i1;
+        java.lang.Object[] $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        nameAST = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        full = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(nameAST);
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck: java.util.regex.Pattern getRegexp()>();
+
+        $r2 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r3 = virtualinvoke $r1.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r2);
+
+        $z0 = virtualinvoke $r3.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label1;
+
+        $i0 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getLineNo()>();
+
+        $i1 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getColumnNo()>();
+
+        $r4 = newarray (java.lang.Object)[2];
+
+        $r5 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r4[0] = $r5;
+
+        $r6 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck: java.lang.String getFormat()>();
+
+        $r4[1] = $r6;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "name.invalidPattern", $r4);
+
+     label1:
+        return;
+    }
+}

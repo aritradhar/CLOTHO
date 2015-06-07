@@ -1,0 +1,213 @@
+public class com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 9;
+
+        $r0[1] = 8;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck;
+
+        $r0 = newarray (int)[4];
+
+        $r0[0] = 9;
+
+        $r0[1] = 8;
+
+        $r0[2] = 98;
+
+        $r0[3] = 160;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, container, $r0;
+        int $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        container = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i0 = virtualinvoke container.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 15 goto label1;
+
+        return;
+
+     label1:
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 98 goto label2;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck: void visitCatch(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label4;
+
+     label2:
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 160 goto label3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck: void visitForEachClause(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label4;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck: void visitMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label4:
+        return;
+    }
+
+    private void visitMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethod, modifiers, parameters, child;
+        boolean $z0, $z1;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck;
+
+        aMethod := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = virtualinvoke aMethod.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(21);
+
+        if $z0 != 0 goto label1;
+
+        return;
+
+     label1:
+        modifiers = virtualinvoke aMethod.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z1 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(41);
+
+        if $z1 == 0 goto label2;
+
+        return;
+
+     label2:
+        parameters = virtualinvoke aMethod.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        child = virtualinvoke parameters.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label3:
+        if child == null goto label5;
+
+        $i0 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 21 goto label4;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck: void checkParam(com.puppycrawl.tools.checkstyle.api.DetailAST)>(child);
+
+     label4:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label3;
+
+     label5:
+        return;
+    }
+
+    private void visitCatch(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aCatch, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck;
+
+        aCatch := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aCatch.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(21);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck: void checkParam(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        return;
+    }
+
+    private void visitForEachClause(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aForEachClause, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck;
+
+        aForEachClause := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aForEachClause.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(10);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck: void checkParam(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        return;
+    }
+
+    private void checkParam(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aParam, paramName, firstNode;
+        boolean $z0;
+        int $i0, $i1;
+        java.lang.Object[] $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck;
+
+        aParam := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = virtualinvoke aParam.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z0 != 0 goto label1;
+
+        paramName = virtualinvoke aParam.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        firstNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNode(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aParam);
+
+        $i0 = virtualinvoke firstNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke firstNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r1 = virtualinvoke paramName.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r0[0] = $r1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "final.parameter", $r0);
+
+     label1:
+        return;
+    }
+}

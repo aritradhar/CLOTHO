@@ -1,0 +1,75 @@
+class com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter extends javax.swing.filechooser.FileFilter
+{
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter;
+
+        specialinvoke this.<javax.swing.filechooser.FileFilter: void <init>()>();
+
+        return;
+    }
+
+    public boolean accept(java.io.File)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter this;
+        java.io.File f;
+        boolean $z0, $z1, $z2;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter;
+
+        f := @parameter0: java.io.File;
+
+        if f != null goto label1;
+
+        return 0;
+
+     label1:
+        $z0 = virtualinvoke f.<java.io.File: boolean isDirectory()>();
+
+        if $z0 != 0 goto label2;
+
+        $r0 = virtualinvoke f.<java.io.File: java.lang.String getName()>();
+
+        $z1 = virtualinvoke $r0.<java.lang.String: boolean endsWith(java.lang.String)>(".java");
+
+        if $z1 == 0 goto label3;
+
+     label2:
+        $z2 = 1;
+
+        goto label4;
+
+     label3:
+        $z2 = 0;
+
+     label4:
+        return $z2;
+    }
+
+    public java.lang.String getDescription()
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter;
+
+        return "Java Source Code";
+    }
+
+    void <init>(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter this;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1 x0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter: void <init>()>();
+
+        return;
+    }
+}

@@ -1,0 +1,66 @@
+final enum class com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$11 extends com.puppycrawl.tools.checkstyle.api.JavadocTagInfo
+{
+
+    void <init>(java.lang.String, int, java.lang.String, java.lang.String, com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type, boolean, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$11 this;
+        java.lang.String l1, x0, x1;
+        int l2;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type x2;
+        boolean x3, x4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$11;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        x0 := @parameter2: java.lang.String;
+
+        x1 := @parameter3: java.lang.String;
+
+        x2 := @parameter4: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type;
+
+        x3 := @parameter5: boolean;
+
+        x4 := @parameter6: boolean;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: void <init>(java.lang.String,int,java.lang.String,java.lang.String,com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type,boolean,boolean,com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$1)>(l1, l2, x0, x1, x2, x3, x4, null);
+
+        return;
+    }
+
+    public boolean isValidOn(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$11 this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst, returnType, $r0;
+        int type, $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$11;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        type = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        returnType = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        if type != 9 goto label1;
+
+        $r0 = virtualinvoke returnType.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 50 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+}

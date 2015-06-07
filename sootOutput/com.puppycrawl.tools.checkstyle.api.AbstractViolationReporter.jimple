@@ -1,0 +1,187 @@
+public abstract class com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter extends com.puppycrawl.tools.checkstyle.api.AutomaticBean
+{
+    private com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel;
+    private java.lang.String mId;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter this;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void <init>()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel ERROR>;
+
+        this.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel> = $r0;
+
+        return;
+    }
+
+    public final com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter this;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel>;
+
+        return $r0;
+    }
+
+    public final void setSeverity(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter this;
+        java.lang.String aSeverity;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        aSeverity := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel getInstance(java.lang.String)>(aSeverity);
+
+        this.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel> = $r0;
+
+        return;
+    }
+
+    public final java.lang.String getSeverity()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter this;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: java.lang.String getName()>();
+
+        return $r1;
+    }
+
+    public final java.lang.String getId()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: java.lang.String mId>;
+
+        return $r0;
+    }
+
+    public final void setId(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter this;
+        java.lang.String aId;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        aId := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: java.lang.String mId> = aId;
+
+        return;
+    }
+
+    protected final transient void log(com.puppycrawl.tools.checkstyle.api.DetailAST, java.lang.String, java.lang.Object[])
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.lang.String aKey;
+        java.lang.Object[] aArgs;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aKey := @parameter1: java.lang.String;
+
+        aArgs := @parameter2: java.lang.Object[];
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, aKey, aArgs);
+
+        return;
+    }
+
+    protected java.lang.String getMessageBundle()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter this;
+        java.lang.String className, $r1;
+        java.lang.Class $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        $r0 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        className = virtualinvoke $r0.<java.lang.Class: java.lang.String getName()>();
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: java.lang.String getMessageBundle(java.lang.String)>(className);
+
+        return $r1;
+    }
+
+    protected java.util.Map getCustomMessages()
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter this;
+        com.puppycrawl.tools.checkstyle.api.Configuration $r0;
+        com.google.common.collect.ImmutableMap $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter: com.puppycrawl.tools.checkstyle.api.Configuration getConfiguration()>();
+
+        $r1 = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.api.Configuration: com.google.common.collect.ImmutableMap getMessages()>();
+
+        return $r1;
+    }
+
+    java.lang.String getMessageBundle(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter this;
+        java.lang.String aClassName, packageName, $r4;
+        int endIndex;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        aClassName := @parameter0: java.lang.String;
+
+        endIndex = virtualinvoke aClassName.<java.lang.String: int lastIndexOf(int)>(46);
+
+        if endIndex >= 0 goto label1;
+
+        return "messages";
+
+     label1:
+        packageName = virtualinvoke aClassName.<java.lang.String: java.lang.String substring(int,int)>(0, endIndex);
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(packageName);
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("messages");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r4;
+    }
+
+    public abstract transient void log(int, java.lang.String, java.lang.Object[]);
+
+    public abstract transient void log(int, int, java.lang.String, java.lang.Object[]);
+}

@@ -1,0 +1,367 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.DeclarationCollector extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private java.util.Map mFrames;
+    private com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame mCurrent;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST, curNode, toVisit;
+        java.util.LinkedList aFrameStack;
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$GlobalFrame $r0;
+        java.util.HashMap $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aFrameStack = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>();
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$GlobalFrame;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$GlobalFrame: void <init>()>();
+
+        interfaceinvoke aFrameStack.<java.util.Deque: boolean add(java.lang.Object)>($r0);
+
+        $r1 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector: java.util.Map mFrames> = $r1;
+
+        curNode = aRootAST;
+
+     label1:
+        if curNode == null goto label4;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector: void collectDeclarations(java.util.Deque,com.puppycrawl.tools.checkstyle.api.DetailAST)>(aFrameStack, curNode);
+
+        toVisit = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label2:
+        if curNode == null goto label3;
+
+        if toVisit != null goto label3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector: void endCollectingDeclarations(java.util.Queue,com.puppycrawl.tools.checkstyle.api.DetailAST)>(aFrameStack, curNode);
+
+        toVisit = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if toVisit != null goto label2;
+
+        curNode = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label2;
+
+     label3:
+        curNode = toVisit;
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        java.util.Map $r0;
+        java.lang.Object $r1;
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 7: goto label1;
+            case 8: goto label1;
+            case 9: goto label1;
+            case 14: goto label1;
+            case 15: goto label1;
+            case 158: goto label1;
+            case 161: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector: java.util.Map mFrames>;
+
+        $r1 = interfaceinvoke $r0.<java.util.Map: java.lang.Object get(java.lang.Object)>(aAST);
+
+        $r2 = (com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame) $r1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame mCurrent> = $r2;
+
+        goto label2;
+
+     label2:
+        return;
+    }
+
+    private void collectDeclarations(java.util.Deque, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector this;
+        java.util.Deque aFrameStack;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, mods, $r4, $r6, name;
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame frame;
+        java.lang.String name, $r1, $r2;
+        java.lang.Object $r0;
+        int $i0;
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame $r3, $r5, $r7, $r9, $r11;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$MethodFrame $r8;
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$BlockFrame $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
+
+        aFrameStack := @parameter0: java.util.Deque;
+
+        aAST := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = interfaceinvoke aFrameStack.<java.util.Deque: java.lang.Object peek()>();
+
+        frame = (com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame) $r0;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 7: goto label08;
+            case 8: goto label11;
+            case 9: goto label09;
+            case 10: goto label01;
+            case 14: goto label07;
+            case 15: goto label07;
+            case 21: goto label06;
+            case 158: goto label07;
+            case 161: goto label07;
+            default: goto label12;
+        };
+
+     label01:
+        $r4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        name = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = frame instanceof com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame;
+
+        if $z0 == 0 goto label05;
+
+        mods = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 != 0 goto label02;
+
+        $z2 = virtualinvoke mods.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        if $z2 == 0 goto label03;
+
+     label02:
+        $r5 = (com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame) frame;
+
+        virtualinvoke $r5.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: void addStaticMember(java.lang.String)>(name);
+
+        goto label04;
+
+     label03:
+        $r7 = (com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame) frame;
+
+        virtualinvoke $r7.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: void addInstanceMember(java.lang.String)>(name);
+
+     label04:
+        goto label12;
+
+     label05:
+        virtualinvoke frame.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: void addName(java.lang.String)>(name);
+
+        goto label12;
+
+     label06:
+        name = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r1 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        virtualinvoke frame.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: void addName(java.lang.String)>($r1);
+
+        goto label12;
+
+     label07:
+        name = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r2 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        virtualinvoke frame.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: void addName(java.lang.String)>($r2);
+
+        $r3 = new com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: void <init>(com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame)>(frame);
+
+        interfaceinvoke aFrameStack.<java.util.Deque: void addFirst(java.lang.Object)>($r3);
+
+        goto label12;
+
+     label08:
+        $r10 = new com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$BlockFrame;
+
+        specialinvoke $r10.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$BlockFrame: void <init>(com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame)>(frame);
+
+        interfaceinvoke aFrameStack.<java.util.Deque: void addFirst(java.lang.Object)>($r10);
+
+        goto label12;
+
+     label09:
+        $r6 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        name = virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z3 = frame instanceof com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame;
+
+        if $z3 == 0 goto label11;
+
+        mods = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z4 = virtualinvoke mods.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        if $z4 == 0 goto label10;
+
+        $r11 = (com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame) frame;
+
+        virtualinvoke $r11.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: void addStaticMember(java.lang.String)>(name);
+
+        goto label11;
+
+     label10:
+        $r9 = (com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame) frame;
+
+        virtualinvoke $r9.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: void addInstanceMember(java.lang.String)>(name);
+
+     label11:
+        $r8 = new com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$MethodFrame;
+
+        specialinvoke $r8.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$MethodFrame: void <init>(com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame)>(frame);
+
+        interfaceinvoke aFrameStack.<java.util.Deque: void addFirst(java.lang.Object)>($r8);
+
+        goto label12;
+
+     label12:
+        return;
+    }
+
+    private void endCollectingDeclarations(java.util.Queue, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector this;
+        java.util.Queue aFrameStack;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        java.util.Map $r0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
+
+        aFrameStack := @parameter0: java.util.Queue;
+
+        aAST := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 7: goto label1;
+            case 8: goto label1;
+            case 9: goto label1;
+            case 14: goto label1;
+            case 15: goto label1;
+            case 158: goto label1;
+            case 161: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector: java.util.Map mFrames>;
+
+        $r1 = interfaceinvoke aFrameStack.<java.util.Queue: java.lang.Object poll()>();
+
+        interfaceinvoke $r0.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(aAST, $r1);
+
+        goto label2;
+
+     label2:
+        return;
+    }
+
+    protected final boolean isClassField(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector this;
+        java.lang.String aName;
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame frame;
+        boolean $z0, $z1, $z2;
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
+
+        aName := @parameter0: java.lang.String;
+
+        frame = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame findFrame(java.lang.String)>(aName);
+
+        $z0 = frame instanceof com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame) frame;
+
+        $z1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: boolean hasInstanceMember(java.lang.String)>(aName);
+
+        if $z1 == 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    private com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame findFrame(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector this;
+        java.lang.String aName;
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame $r0, $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
+
+        aName := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame mCurrent>;
+
+        if $r0 == null goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame mCurrent>;
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame getIfContains(java.lang.String)>(aName);
+
+        return $r2;
+
+     label1:
+        return null;
+    }
+}

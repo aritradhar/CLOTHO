@@ -1,0 +1,77 @@
+final enum class com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$7 extends com.puppycrawl.tools.checkstyle.api.JavadocTagInfo
+{
+
+    void <init>(java.lang.String, int, java.lang.String, java.lang.String, com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type, boolean, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$7 this;
+        java.lang.String l1, x0, x1;
+        int l2;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type x2;
+        boolean x3, x4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$7;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        x0 := @parameter2: java.lang.String;
+
+        x1 := @parameter3: java.lang.String;
+
+        x2 := @parameter4: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type;
+
+        x3 := @parameter5: boolean;
+
+        x4 := @parameter6: boolean;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: void <init>(java.lang.String,int,java.lang.String,java.lang.String,com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type,boolean,boolean,com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$1)>(l1, l2, x0, x1, x2, x3, x4, null);
+
+        return;
+    }
+
+    public boolean isValidOn(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$7 this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        int type;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$7;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        type = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 16 goto label1;
+
+        if type == 14 goto label1;
+
+        if type == 15 goto label1;
+
+        if type == 158 goto label1;
+
+        if type == 161 goto label1;
+
+        if type == 9 goto label1;
+
+        if type == 8 goto label1;
+
+        if type != 10 goto label2;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean isLocalVariableDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAst);
+
+        if $z1 != 0 goto label2;
+
+     label1:
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+}

@@ -1,0 +1,216 @@
+public class com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 14;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, objBlock, child, modifiers, $r0;
+        boolean hasStaticModifier, hasMethodOrField, hasNonStaticMethodOrField, hasNonPrivateStaticMethodOrField, hasDefaultCtor, hasPublicCtor, isStatic, isPrivate, $z0, $z1, $z2, $z3, $z4, $z5, type, modifiers;
+        int type, $i0, $i1;
+        java.lang.Object[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck: boolean isAbstract(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label01;
+
+        return;
+
+     label01:
+        objBlock = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(6);
+
+        child = virtualinvoke objBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        hasStaticModifier = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck: boolean isStatic(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        hasMethodOrField = 0;
+
+        hasNonStaticMethodOrField = 0;
+
+        hasNonPrivateStaticMethodOrField = 0;
+
+        hasDefaultCtor = 1;
+
+        hasPublicCtor = 0;
+
+     label02:
+        if child == null goto label07;
+
+        type = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 9 goto label03;
+
+        if type != 10 goto label05;
+
+     label03:
+        hasMethodOrField = 1;
+
+        modifiers = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        isStatic = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        isPrivate = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(62);
+
+        if isStatic != 0 goto label04;
+
+        if isPrivate != 0 goto label04;
+
+        hasNonStaticMethodOrField = 1;
+
+     label04:
+        if isStatic == 0 goto label05;
+
+        if isPrivate != 0 goto label05;
+
+        hasNonPrivateStaticMethodOrField = 1;
+
+     label05:
+        if type != 8 goto label06;
+
+        hasDefaultCtor = 0;
+
+        modifiers = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z4 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(62);
+
+        if $z4 != 0 goto label06;
+
+        $z5 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(64);
+
+        if $z5 != 0 goto label06;
+
+        hasPublicCtor = 1;
+
+     label06:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label02;
+
+     label07:
+        if hasDefaultCtor != 0 goto label08;
+
+        if hasPublicCtor == 0 goto label09;
+
+     label08:
+        $z3 = 1;
+
+        goto label10;
+
+     label09:
+        $z3 = 0;
+
+     label10:
+        type = $z3;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(18);
+
+        if $r0 != null goto label11;
+
+        $z1 = 1;
+
+        goto label12;
+
+     label11:
+        $z1 = 0;
+
+     label12:
+        modifiers = $z1;
+
+        if modifiers == 0 goto label13;
+
+        if hasMethodOrField == 0 goto label13;
+
+        if hasNonStaticMethodOrField != 0 goto label13;
+
+        if hasNonPrivateStaticMethodOrField == 0 goto label13;
+
+        $z2 = 1;
+
+        goto label14;
+
+     label13:
+        $z2 = 0;
+
+     label14:
+        isStatic = $z2;
+
+        if isStatic == 0 goto label15;
+
+        if type == 0 goto label15;
+
+        if hasStaticModifier != 0 goto label15;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "hide.utility.class", $r1);
+
+     label15:
+        return;
+    }
+
+    private boolean isAbstract(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(41);
+
+        return $z0;
+    }
+
+    private boolean isStatic(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        return $z0;
+    }
+}

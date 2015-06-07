@@ -1,0 +1,146 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 75;
+
+        $r0[1] = 46;
+
+        $r0[2] = 23;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, targetAST, sibling;
+        java.lang.Object[] message, $r0, $r5;
+        java.lang.String line, $r1, $r3, $r4;
+        int after, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13;
+        char charAfter;
+        java.lang.String[] $r2;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 23 goto label1;
+
+        targetAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(78);
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r5[0] = "cast";
+
+        message = $r5;
+
+        goto label2;
+
+     label1:
+        targetAST = aAST;
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r0[0] = $r1;
+
+        message = $r0;
+
+     label2:
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck: java.lang.String[] getLines()>();
+
+        $i1 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = $i1 - 1;
+
+        line = $r2[$i2];
+
+        $i3 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r3 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $i4 = virtualinvoke $r3.<java.lang.String: int length()>();
+
+        after = $i3 + $i4;
+
+        $i5 = virtualinvoke line.<java.lang.String: int length()>();
+
+        if after >= $i5 goto label6;
+
+        charAfter = virtualinvoke line.<java.lang.String: char charAt(int)>(after);
+
+        $i6 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i6 != 46 goto label4;
+
+        if charAfter == 59 goto label3;
+
+        if charAfter != 41 goto label4;
+
+     label3:
+        return;
+
+     label4:
+        $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(charAfter);
+
+        if $z0 != 0 goto label6;
+
+        $i8 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i8 != 46 goto label5;
+
+        sibling = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if sibling == null goto label5;
+
+        $i12 = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i12 != 38 goto label5;
+
+        $i13 = virtualinvoke sibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i13 != 0 goto label5;
+
+        return;
+
+     label5:
+        $i7 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i9 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r4 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $i11 = virtualinvoke $r4.<java.lang.String: int length()>();
+
+        $i10 = $i9 + $i11;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i7, $i10, "ws.notFollowed", message);
+
+     label6:
+        return;
+    }
+}

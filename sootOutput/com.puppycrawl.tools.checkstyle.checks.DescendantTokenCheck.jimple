@@ -1,0 +1,545 @@
+public class com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private int mMinimumDepth;
+    private int mMaximumDepth;
+    private int mMinimumNumber;
+    private int mMaximumNumber;
+    private boolean mSumTokenCounts;
+    private int[] mLimitedTokens;
+    private java.lang.String mMinimumMessage;
+    private java.lang.String mMaximumMessage;
+    private int[] mCounts;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        int[] $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMaximumDepth> = 2147483647;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMaximumNumber> = 2147483647;
+
+        $r0 = newarray (int)[0];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mLimitedTokens> = $r0;
+
+        $r1 = newarray (int)[0];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mCounts> = $r1;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        $r0 = newarray (int)[0];
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.lang.String name, descendantName, $r3, $r4, $r5, $r6, $r7, $r8, $r10, $r11, $r13, $r14, $r15, $r16, $r17, $r19, $r20, $r21;
+        int total, len$, i$, element, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, arr$;
+        int[] arr$, $r0, $r1, $r22, total;
+        boolean $z0;
+        java.lang.Object[] $r2, $r9, $r12, $r18;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mCounts>;
+
+        staticinvoke <java.util.Arrays: void fill(int[],int)>($r0, 0);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: void countTokens(antlr.collections.AST,int)>(aAST, 0);
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        name = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String getTokenName(int)>($i0);
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: boolean mSumTokenCounts>;
+
+        if $z0 == 0 goto label09;
+
+        total = 0;
+
+        arr$ = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mLimitedTokens>;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label01:
+        if i$ >= len$ goto label02;
+
+        element = arr$[i$];
+
+        $r22 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mCounts>;
+
+        $i18 = element - 1;
+
+        $i19 = $r22[$i18];
+
+        total = total + $i19;
+
+        i$ = i$ + 1;
+
+        goto label01;
+
+     label02:
+        $i12 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMinimumNumber>;
+
+        if total >= $i12 goto label05;
+
+        $i16 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i15 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r19 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.lang.String mMinimumMessage>;
+
+        if null != $r19 goto label03;
+
+        $r17 = "descendant.token.sum.min";
+
+        goto label04;
+
+     label03:
+        $r17 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.lang.String mMinimumMessage>;
+
+     label04:
+        $r18 = newarray (java.lang.Object)[3];
+
+        $r21 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(total);
+
+        $r18[0] = $r21;
+
+        $i17 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMinimumNumber>;
+
+        $r20 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i17);
+
+        $r18[1] = $r20;
+
+        $r18[2] = name;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i16, $i15, $r17, $r18);
+
+     label05:
+        $i10 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMaximumNumber>;
+
+        if total <= $i10 goto label08;
+
+        $i11 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i13 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r14 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.lang.String mMaximumMessage>;
+
+        if null != $r14 goto label06;
+
+        $r13 = "descendant.token.sum.max";
+
+        goto label07;
+
+     label06:
+        $r13 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.lang.String mMaximumMessage>;
+
+     label07:
+        $r12 = newarray (java.lang.Object)[3];
+
+        $r15 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(total);
+
+        $r12[0] = $r15;
+
+        $i14 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMaximumNumber>;
+
+        $r16 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i14);
+
+        $r12[1] = $r16;
+
+        $r12[2] = name;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i11, $i13, $r13, $r12);
+
+     label08:
+        goto label17;
+
+     label09:
+        total = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mLimitedTokens>;
+
+        arr$ = lengthof total;
+
+        len$ = 0;
+
+     label10:
+        if len$ >= arr$ goto label17;
+
+        i$ = total[len$];
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mCounts>;
+
+        $i1 = i$ - 1;
+
+        element = $r1[$i1];
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMinimumNumber>;
+
+        if element >= $i2 goto label13;
+
+        descendantName = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String getTokenName(int)>(i$);
+
+        $i8 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i7 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.lang.String mMinimumMessage>;
+
+        if null != $r8 goto label11;
+
+        $r7 = "descendant.token.min";
+
+        goto label12;
+
+     label11:
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.lang.String mMinimumMessage>;
+
+     label12:
+        $r9 = newarray (java.lang.Object)[4];
+
+        $r11 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(element);
+
+        $r9[0] = $r11;
+
+        $i9 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMinimumNumber>;
+
+        $r10 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i9);
+
+        $r9[1] = $r10;
+
+        $r9[2] = name;
+
+        $r9[3] = descendantName;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i8, $i7, $r7, $r9);
+
+     label13:
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMaximumNumber>;
+
+        if element <= $i3 goto label16;
+
+        descendantName = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String getTokenName(int)>(i$);
+
+        $i5 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.lang.String mMaximumMessage>;
+
+        if null != $r3 goto label14;
+
+        $r4 = "descendant.token.max";
+
+        goto label15;
+
+     label14:
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.lang.String mMaximumMessage>;
+
+     label15:
+        $r2 = newarray (java.lang.Object)[4];
+
+        $r5 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(element);
+
+        $r2[0] = $r5;
+
+        $i6 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMaximumNumber>;
+
+        $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i6);
+
+        $r2[1] = $r6;
+
+        $r2[2] = name;
+
+        $r2[3] = descendantName;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i5, $i4, $r4, $r2);
+
+     label16:
+        len$ = len$ + 1;
+
+        goto label10;
+
+     label17:
+        return;
+    }
+
+    private void countTokens(antlr.collections.AST, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        antlr.collections.AST aAST, type;
+        int aDepth, type, nextDepth, $i0, $i1, $i2, $i3, $i4, $i5;
+        int[] $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        aAST := @parameter0: antlr.collections.AST;
+
+        aDepth := @parameter1: int;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMaximumDepth>;
+
+        if aDepth > $i0 goto label3;
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMinimumDepth>;
+
+        if aDepth < $i1 goto label1;
+
+        type = interfaceinvoke aAST.<antlr.collections.AST: int getType()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mCounts>;
+
+        $i2 = lengthof $r0;
+
+        if type > $i2 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mCounts>;
+
+        $i3 = type - 1;
+
+        $i4 = $r1[$i3];
+
+        $i5 = $i4 + 1;
+
+        $r1[$i3] = $i5;
+
+     label1:
+        type = interfaceinvoke aAST.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        nextDepth = aDepth + 1;
+
+     label2:
+        if type == null goto label3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: void countTokens(antlr.collections.AST,int)>(type, nextDepth);
+
+        type = interfaceinvoke type.<antlr.collections.AST: antlr.collections.AST getNextSibling()>();
+
+        goto label2;
+
+     label3:
+        return;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        java.util.Set tokenNames;
+        int[] result;
+        int i, $i0, $i1, $i2;
+        java.util.Iterator i$;
+        java.lang.String name;
+        boolean $z0;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        tokenNames = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.util.Set getTokenNames()>();
+
+        $i0 = interfaceinvoke tokenNames.<java.util.Set: int size()>();
+
+        result = newarray (int)[$i0];
+
+        i = 0;
+
+        i$ = interfaceinvoke tokenNames.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r0 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        name = (java.lang.String) $r0;
+
+        $i1 = i;
+
+        i = i + 1;
+
+        $i2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: int getTokenId(java.lang.String)>(name);
+
+        result[$i1] = $i2;
+
+        goto label1;
+
+     label2:
+        return result;
+    }
+
+    public void setLimitedTokens(java.lang.String[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        java.lang.String[] aLimitedTokens;
+        int maxToken, i, $i0, $i1, $i2, $i3;
+        int[] $r0, $r1, $r3, $r4, $r5;
+        java.lang.String $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        aLimitedTokens := @parameter0: java.lang.String[];
+
+        $i0 = lengthof aLimitedTokens;
+
+        $r0 = newarray (int)[$i0];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mLimitedTokens> = $r0;
+
+        maxToken = 0;
+
+        i = 0;
+
+     label1:
+        $i1 = lengthof aLimitedTokens;
+
+        if i >= $i1 goto label3;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mLimitedTokens>;
+
+        $r2 = aLimitedTokens[i];
+
+        $i2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: int getTokenId(java.lang.String)>($r2);
+
+        $r3[i] = $i2;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mLimitedTokens>;
+
+        $i3 = $r4[i];
+
+        if $i3 <= maxToken goto label2;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mLimitedTokens>;
+
+        maxToken = $r5[i];
+
+     label2:
+        i = i + 1;
+
+        goto label1;
+
+     label3:
+        $r1 = newarray (int)[maxToken];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int[] mCounts> = $r1;
+
+        return;
+    }
+
+    public void setMinimumDepth(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        int aMinimumDepth;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        aMinimumDepth := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMinimumDepth> = aMinimumDepth;
+
+        return;
+    }
+
+    public void setMaximumDepth(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        int aMaximumDepth;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        aMaximumDepth := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMaximumDepth> = aMaximumDepth;
+
+        return;
+    }
+
+    public void setMinimumNumber(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        int aMinimumNumber;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        aMinimumNumber := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMinimumNumber> = aMinimumNumber;
+
+        return;
+    }
+
+    public void setMaximumNumber(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        int aMaximumNumber;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        aMaximumNumber := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: int mMaximumNumber> = aMaximumNumber;
+
+        return;
+    }
+
+    public void setMinimumMessage(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        java.lang.String aMessage;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        aMessage := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.lang.String mMinimumMessage> = aMessage;
+
+        return;
+    }
+
+    public void setMaximumMessage(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        java.lang.String aMessage;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        aMessage := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: java.lang.String mMaximumMessage> = aMessage;
+
+        return;
+    }
+
+    public void setSumTokenCounts(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck this;
+        boolean aSum;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+
+        aSum := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck: boolean mSumTokenCounts> = aSum;
+
+        return;
+    }
+}

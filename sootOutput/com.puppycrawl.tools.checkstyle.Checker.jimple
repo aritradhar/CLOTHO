@@ -1,0 +1,1367 @@
+public class com.puppycrawl.tools.checkstyle.Checker extends com.puppycrawl.tools.checkstyle.api.AutomaticBean implements com.puppycrawl.tools.checkstyle.api.MessageDispatcher
+{
+    private final com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter mCounter;
+    private final java.util.List mListeners;
+    private final java.util.List mFileSetChecks;
+    private java.lang.ClassLoader mLoader;
+    private java.lang.String mBasedir;
+    private java.lang.String mLocaleCountry;
+    private java.lang.String mLocaleLanguage;
+    private com.puppycrawl.tools.checkstyle.ModuleFactory mModuleFactory;
+    private java.lang.ClassLoader mModuleClassLoader;
+    private com.puppycrawl.tools.checkstyle.api.Context mChildContext;
+    private final com.puppycrawl.tools.checkstyle.api.FilterSet mFilters;
+    private com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel;
+    private java.lang.String mCharset;
+
+    public void <init>() throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter $r0, $r13;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r1, $r11;
+        java.util.ArrayList $r2, $r3;
+        java.lang.Thread $r4;
+        java.lang.ClassLoader $r5;
+        java.util.Locale $r6, $r8;
+        java.lang.String $r7, $r9, $r12;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void <init>()>();
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel ERROR>;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: void <init>(com.puppycrawl.tools.checkstyle.api.SeverityLevel)>($r1);
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter mCounter> = $r0;
+
+        $r2 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mListeners> = $r2;
+
+        $r3 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mFileSetChecks> = $r3;
+
+        $r4 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.Thread: java.lang.ClassLoader getContextClassLoader()>();
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.ClassLoader mLoader> = $r5;
+
+        $r6 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+
+        $r7 = virtualinvoke $r6.<java.util.Locale: java.lang.String getCountry()>();
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mLocaleCountry> = $r7;
+
+        $r8 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+
+        $r9 = virtualinvoke $r8.<java.util.Locale: java.lang.String getLanguage()>();
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mLocaleLanguage> = $r9;
+
+        $r10 = new com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        specialinvoke $r10.<com.puppycrawl.tools.checkstyle.api.FilterSet: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters> = $r10;
+
+        $r11 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel ERROR>;
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel> = $r11;
+
+        $r12 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>("file.encoding", "UTF-8");
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mCharset> = $r12;
+
+        $r13 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter mCounter>;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.Checker: void addListener(com.puppycrawl.tools.checkstyle.api.AuditListener)>($r13);
+
+        return;
+    }
+
+    public void finishLocalSetup() throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.util.Locale locale, $r0;
+        java.util.Set packageNames;
+        java.lang.String $r1, $r2, $r5, $r9, $r10;
+        com.puppycrawl.tools.checkstyle.ModuleFactory $r3, $r7;
+        com.puppycrawl.tools.checkstyle.DefaultContext $r4, packageNames;
+        java.lang.ClassLoader $r6, $r11, $r12, $r13;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r8;
+        com.puppycrawl.tools.checkstyle.PackageObjectFactory $r14;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r15;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        $r0 = new java.util.Locale;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mLocaleLanguage>;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mLocaleCountry>;
+
+        specialinvoke $r0.<java.util.Locale: void <init>(java.lang.String,java.lang.String)>($r2, $r1);
+
+        locale = $r0;
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void setLocale(java.util.Locale)>(locale);
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.ModuleFactory mModuleFactory>;
+
+        if $r3 != null goto label2;
+
+        $r11 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.ClassLoader mModuleClassLoader>;
+
+        if $r11 != null goto label1;
+
+        $r15 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        specialinvoke $r15.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String)>("if no custom moduleFactory is set, moduleClassLoader must be specified");
+
+        throw $r15;
+
+     label1:
+        $r12 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.ClassLoader mModuleClassLoader>;
+
+        packageNames = staticinvoke <com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.util.Set getPackageNames(java.lang.ClassLoader)>($r12);
+
+        $r14 = new com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+
+        $r13 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.ClassLoader mModuleClassLoader>;
+
+        specialinvoke $r14.<com.puppycrawl.tools.checkstyle.PackageObjectFactory: void <init>(java.util.Set,java.lang.ClassLoader)>(packageNames, $r13);
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.ModuleFactory mModuleFactory> = $r14;
+
+     label2:
+        $r4 = new com.puppycrawl.tools.checkstyle.DefaultContext;
+
+        specialinvoke $r4.<com.puppycrawl.tools.checkstyle.DefaultContext: void <init>()>();
+
+        packageNames = $r4;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mCharset>;
+
+        virtualinvoke packageNames.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("charset", $r5);
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.ClassLoader mLoader>;
+
+        virtualinvoke packageNames.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("classLoader", $r6);
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.ModuleFactory mModuleFactory>;
+
+        virtualinvoke packageNames.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("moduleFactory", $r7);
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel>;
+
+        $r9 = virtualinvoke $r8.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: java.lang.String getName()>();
+
+        virtualinvoke packageNames.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("severity", $r9);
+
+        $r10 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mBasedir>;
+
+        virtualinvoke packageNames.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("basedir", $r10);
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.Context mChildContext> = packageNames;
+
+        return;
+    }
+
+    protected void setupChild(com.puppycrawl.tools.checkstyle.api.Configuration) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        com.puppycrawl.tools.checkstyle.api.Configuration aChildConf;
+        java.lang.String name, $r6, $r14, $r15;
+        java.lang.Object child;
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean bean;
+        com.puppycrawl.tools.checkstyle.ModuleFactory $r0;
+        boolean $z0, $z1, $z2, $z3;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r1, $r7;
+        java.lang.StringBuilder $r2, $r3, $r4, $r9, $r10, $r11, $r12, $r13;
+        com.puppycrawl.tools.checkstyle.api.Context $r5;
+        java.lang.Exception $r8, child;
+        com.puppycrawl.tools.checkstyle.api.FileSetCheck bean;
+        com.puppycrawl.tools.checkstyle.api.Filter bean;
+        com.puppycrawl.tools.checkstyle.api.AuditListener bean;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aChildConf := @parameter0: com.puppycrawl.tools.checkstyle.api.Configuration;
+
+        name = interfaceinvoke aChildConf.<com.puppycrawl.tools.checkstyle.api.Configuration: java.lang.String getName()>();
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.ModuleFactory mModuleFactory>;
+
+        child = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.ModuleFactory: java.lang.Object createModule(java.lang.String)>(name);
+
+        $z0 = child instanceof com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+
+        if $z0 == 0 goto label2;
+
+        bean = (com.puppycrawl.tools.checkstyle.api.AutomaticBean) child;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.Context mChildContext>;
+
+        virtualinvoke bean.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void contextualize(com.puppycrawl.tools.checkstyle.api.Context)>($r5);
+
+        virtualinvoke bean.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void configure(com.puppycrawl.tools.checkstyle.api.Configuration)>(aChildConf);
+
+     label2:
+        $z1 = child instanceof com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+
+        if $z1 == 0 goto label3;
+
+        bean = (com.puppycrawl.tools.checkstyle.api.FileSetCheck) child;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.Checker: void addFileSetCheck(com.puppycrawl.tools.checkstyle.api.FileSetCheck)>(bean);
+
+        goto label6;
+
+     label3:
+        $z2 = child instanceof com.puppycrawl.tools.checkstyle.api.Filter;
+
+        if $z2 == 0 goto label4;
+
+        bean = (com.puppycrawl.tools.checkstyle.api.Filter) child;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.Checker: void addFilter(com.puppycrawl.tools.checkstyle.api.Filter)>(bean);
+
+        goto label6;
+
+     label4:
+        $z3 = child instanceof com.puppycrawl.tools.checkstyle.api.AuditListener;
+
+        if $z3 == 0 goto label5;
+
+        bean = (com.puppycrawl.tools.checkstyle.api.AuditListener) child;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.Checker: void addListener(com.puppycrawl.tools.checkstyle.api.AuditListener)>(bean);
+
+        goto label6;
+
+     label5:
+        $r1 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(name);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" is not allowed as a child in Checker");
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String)>($r6);
+
+        throw $r1;
+
+     label6:
+        goto label8;
+
+     label7:
+        $r8 := @caughtexception;
+
+        child = $r8;
+
+        $r7 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>()>();
+
+        $r9 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("cannot initialize module ");
+
+        $r12 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(name);
+
+        $r11 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" - ");
+
+        $r14 = virtualinvoke child.<java.lang.Exception: java.lang.String getMessage()>();
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14);
+
+        $r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r7.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r15, child);
+
+        throw $r7;
+
+     label8:
+        return;
+
+        catch java.lang.Exception from label1 to label6 with label7;
+    }
+
+    public void addFileSetCheck(com.puppycrawl.tools.checkstyle.api.FileSetCheck)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        com.puppycrawl.tools.checkstyle.api.FileSetCheck aFileSetCheck;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aFileSetCheck := @parameter0: com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+
+        interfaceinvoke aFileSetCheck.<com.puppycrawl.tools.checkstyle.api.FileSetCheck: void setMessageDispatcher(com.puppycrawl.tools.checkstyle.api.MessageDispatcher)>(this);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mFileSetChecks>;
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>(aFileSetCheck);
+
+        return;
+    }
+
+    public void addFilter(com.puppycrawl.tools.checkstyle.api.Filter)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        com.puppycrawl.tools.checkstyle.api.Filter aFilter;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aFilter := @parameter0: com.puppycrawl.tools.checkstyle.api.Filter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FilterSet: void addFilter(com.puppycrawl.tools.checkstyle.api.Filter)>(aFilter);
+
+        return;
+    }
+
+    public void removeFilter(com.puppycrawl.tools.checkstyle.api.Filter)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        com.puppycrawl.tools.checkstyle.api.Filter aFilter;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aFilter := @parameter0: com.puppycrawl.tools.checkstyle.api.Filter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FilterSet: void removeFilter(com.puppycrawl.tools.checkstyle.api.Filter)>(aFilter);
+
+        return;
+    }
+
+    public void destroy()
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.util.List $r0;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mListeners>;
+
+        interfaceinvoke $r0.<java.util.List: void clear()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FilterSet: void clear()>();
+
+        return;
+    }
+
+    public final void addListener(com.puppycrawl.tools.checkstyle.api.AuditListener)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        com.puppycrawl.tools.checkstyle.api.AuditListener aListener;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aListener := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditListener;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mListeners>;
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>(aListener);
+
+        return;
+    }
+
+    public void removeListener(com.puppycrawl.tools.checkstyle.api.AuditListener)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        com.puppycrawl.tools.checkstyle.api.AuditListener aListener;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aListener := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditListener;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mListeners>;
+
+        interfaceinvoke $r0.<java.util.List: boolean remove(java.lang.Object)>(aListener);
+
+        return;
+    }
+
+    public int process(java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.util.List aFiles, $r0, $r1, $r8;
+        java.util.Iterator i$, i$;
+        com.puppycrawl.tools.checkstyle.api.FileSetCheck fsc;
+        java.lang.String fileName, $r6, $r14, $r17;
+        java.util.TreeSet fileMessages, $r10;
+        com.puppycrawl.tools.checkstyle.api.FileText theText, $r5;
+        boolean $z0, $z1, $z2, $z3;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter $r2;
+        java.lang.Object $r3, $r4, $r9, $r13;
+        java.io.File $r7, fsc;
+        java.io.IOException $r11, theText;
+        org.apache.commons.logging.Log $r12, $r19;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r15, $r21;
+        java.lang.String[] $r16;
+        java.io.FileNotFoundException $r18, theText;
+        java.lang.Class $r20, $r22;
+        int i$;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aFiles := @parameter0: java.util.List;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.Checker: void fireAuditStarted()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mFileSetChecks>;
+
+        i$ = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label01:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label02;
+
+        $r13 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        fsc = (com.puppycrawl.tools.checkstyle.api.FileSetCheck) $r13;
+
+        $r14 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mCharset>;
+
+        interfaceinvoke fsc.<com.puppycrawl.tools.checkstyle.api.FileSetCheck: void beginProcessing(java.lang.String)>($r14);
+
+        goto label01;
+
+     label02:
+        i$ = interfaceinvoke aFiles.<java.util.List: java.util.Iterator iterator()>();
+
+     label03:
+        $z1 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label10;
+
+        $r4 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        fsc = (java.io.File) $r4;
+
+        fileName = virtualinvoke fsc.<java.io.File: java.lang.String getAbsolutePath()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.Checker: void fireFileStarted(java.lang.String)>(fileName);
+
+        fileMessages = staticinvoke <com.google.common.collect.Sets: java.util.TreeSet newTreeSet()>();
+
+     label04:
+        $r5 = new com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r7 = virtualinvoke fsc.<java.io.File: java.io.File getAbsoluteFile()>();
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mCharset>;
+
+        specialinvoke $r5.<com.puppycrawl.tools.checkstyle.api.FileText: void <init>(java.io.File,java.lang.String)>($r7, $r6);
+
+        theText = $r5;
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mFileSetChecks>;
+
+        i$ = interfaceinvoke $r8.<java.util.List: java.util.Iterator iterator()>();
+
+     label05:
+        $z3 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z3 == 0 goto label06;
+
+        $r9 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        fsc = (com.puppycrawl.tools.checkstyle.api.FileSetCheck) $r9;
+
+        $r10 = interfaceinvoke fsc.<com.puppycrawl.tools.checkstyle.api.FileSetCheck: java.util.TreeSet process(java.io.File,java.util.List)>(fsc, theText);
+
+        interfaceinvoke fileMessages.<java.util.SortedSet: boolean addAll(java.util.Collection)>($r10);
+
+        goto label05;
+
+     label06:
+        goto label09;
+
+     label07:
+        $r18 := @caughtexception;
+
+        theText = $r18;
+
+        $r19 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: org.apache.commons.logging.Log getExceptionLogger()>();
+
+        interfaceinvoke $r19.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>("FileNotFoundException occured.", theText);
+
+        $r21 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r22 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        specialinvoke $r21.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,java.lang.String,java.lang.String,java.lang.Object[],java.lang.String,java.lang.Class,java.lang.String)>(0, "com.puppycrawl.tools.checkstyle.messages", "general.fileNotFound", null, null, $r22, null);
+
+        interfaceinvoke fileMessages.<java.util.SortedSet: boolean add(java.lang.Object)>($r21);
+
+        goto label09;
+
+     label08:
+        $r11 := @caughtexception;
+
+        theText = $r11;
+
+        $r12 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: org.apache.commons.logging.Log getExceptionLogger()>();
+
+        interfaceinvoke $r12.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>("IOException occured.", theText);
+
+        $r15 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r16 = newarray (java.lang.String)[1];
+
+        $r17 = virtualinvoke theText.<java.io.IOException: java.lang.String getMessage()>();
+
+        $r16[0] = $r17;
+
+        $r20 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        specialinvoke $r15.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,java.lang.String,java.lang.String,java.lang.Object[],java.lang.String,java.lang.Class,java.lang.String)>(0, "com.puppycrawl.tools.checkstyle.messages", "general.exception", $r16, null, $r20, null);
+
+        interfaceinvoke fileMessages.<java.util.SortedSet: boolean add(java.lang.Object)>($r15);
+
+     label09:
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.Checker: void fireErrors(java.lang.String,java.util.SortedSet)>(fileName, fileMessages);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.Checker: void fireFileFinished(java.lang.String)>(fileName);
+
+        goto label03;
+
+     label10:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mFileSetChecks>;
+
+        i$ = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+
+     label11:
+        $z2 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label12;
+
+        $r3 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        fsc = (com.puppycrawl.tools.checkstyle.api.FileSetCheck) $r3;
+
+        interfaceinvoke fsc.<com.puppycrawl.tools.checkstyle.api.FileSetCheck: void finishProcessing()>();
+
+        interfaceinvoke fsc.<com.puppycrawl.tools.checkstyle.api.FileSetCheck: void destroy()>();
+
+        goto label11;
+
+     label12:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter mCounter>;
+
+        i$ = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: int getCount()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.Checker: void fireAuditFinished()>();
+
+        return i$;
+
+        catch java.io.FileNotFoundException from label04 to label06 with label07;
+        catch java.io.IOException from label04 to label06 with label08;
+    }
+
+    private java.lang.String getStrippedFileName(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String aFileName, $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aFileName := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mBasedir>;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.lang.String getStrippedFileName(java.lang.String,java.lang.String)>($r0, aFileName);
+
+        return $r1;
+    }
+
+    public void setBasedir(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String aBasedir, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aBasedir := @parameter0: java.lang.String;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String normalize(java.lang.String)>(aBasedir);
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mBasedir> = $r0;
+
+        return;
+    }
+
+    public java.lang.String normalize(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String aPath, osName, path, msg, $r0, $r2, $r3, $r4, $r8, $r9, $r10, $r12, $r16, $r18, $r20, $r23, $r30, root, i;
+        boolean onNetWare, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, msg;
+        int colon, i, $i0, $i3, $i6, $i8, $i9, $i12, $i13, $i19, $i23, $i24;
+        char[] ca;
+        java.lang.StringBuffer sbRoot, $r6, $r22, $r24, i;
+        java.util.Locale $r1;
+        char $c1, $c2, $c4, $c5, $c7, $c10, $c11, $c14, $c15, $c16, $c17, $c18, $c20, $c21, $c22, $c25;
+        java.util.StringTokenizer $r5, sbRoot;
+        java.lang.Object $r7;
+        java.lang.IllegalArgumentException $r11, $r31, $r32;
+        java.lang.StringBuilder $r13, $r14, $r15, $r17, $r19, $r21, $r25, $r26, $r27, $r28, $r29, $r33;
+        com.puppycrawl.tools.checkstyle.api.FastStack ca;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aPath := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("os.name");
+
+        $r1 = <java.util.Locale: java.util.Locale US>;
+
+        osName = virtualinvoke $r0.<java.lang.String: java.lang.String toLowerCase(java.util.Locale)>($r1);
+
+        $i0 = virtualinvoke osName.<java.lang.String: int indexOf(java.lang.String)>("netware");
+
+        if $i0 <= -1 goto label01;
+
+        $z7 = 1;
+
+        goto label02;
+
+     label01:
+        $z7 = 0;
+
+     label02:
+        onNetWare = $z7;
+
+        $c1 = <java.io.File: char separatorChar>;
+
+        $r2 = virtualinvoke aPath.<java.lang.String: java.lang.String replace(char,char)>(47, $c1);
+
+        $c2 = <java.io.File: char separatorChar>;
+
+        path = virtualinvoke $r2.<java.lang.String: java.lang.String replace(char,char)>(92, $c2);
+
+        colon = virtualinvoke path.<java.lang.String: int indexOf(java.lang.String)>(":");
+
+        if onNetWare != 0 goto label04;
+
+        $r30 = <java.io.File: java.lang.String separator>;
+
+        $z5 = virtualinvoke path.<java.lang.String: boolean startsWith(java.lang.String)>($r30);
+
+        if $z5 != 0 goto label05;
+
+        $i24 = virtualinvoke path.<java.lang.String: int length()>();
+
+        if $i24 < 2 goto label03;
+
+        $c25 = virtualinvoke path.<java.lang.String: char charAt(int)>(0);
+
+        $z6 = staticinvoke <java.lang.Character: boolean isLetter(char)>($c25);
+
+        if $z6 == 0 goto label03;
+
+        if colon == 1 goto label05;
+
+     label03:
+        $r28 = new java.lang.StringBuilder;
+
+        specialinvoke $r28.<java.lang.StringBuilder: void <init>()>();
+
+        $r27 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(path);
+
+        $r33 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" is not an absolute path");
+
+        msg = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r32 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r32.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(msg);
+
+        throw $r32;
+
+     label04:
+        $r3 = <java.io.File: java.lang.String separator>;
+
+        $z0 = virtualinvoke path.<java.lang.String: boolean startsWith(java.lang.String)>($r3);
+
+        if $z0 != 0 goto label05;
+
+        if colon != -1 goto label05;
+
+        $r26 = new java.lang.StringBuilder;
+
+        specialinvoke $r26.<java.lang.StringBuilder: void <init>()>();
+
+        $r25 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(path);
+
+        $r29 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" is not an absolute path");
+
+        msg = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r31 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r31.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(msg);
+
+        throw $r31;
+
+     label05:
+        msg = 0;
+
+        if onNetWare != 0 goto label06;
+
+        $i23 = virtualinvoke path.<java.lang.String: int length()>();
+
+        if $i23 < 2 goto label06;
+
+        $c22 = virtualinvoke path.<java.lang.String: char charAt(int)>(0);
+
+        $z4 = staticinvoke <java.lang.Character: boolean isLetter(char)>($c22);
+
+        if $z4 == 0 goto label06;
+
+        $c20 = virtualinvoke path.<java.lang.String: char charAt(int)>(1);
+
+        if $c20 == 58 goto label07;
+
+     label06:
+        if onNetWare == 0 goto label15;
+
+        if colon <= -1 goto label15;
+
+     label07:
+        msg = 1;
+
+        $r20 = virtualinvoke path.<java.lang.String: java.lang.String replace(char,char)>(47, 92);
+
+        ca = virtualinvoke $r20.<java.lang.String: char[] toCharArray()>();
+
+        $r22 = new java.lang.StringBuffer;
+
+        specialinvoke $r22.<java.lang.StringBuffer: void <init>()>();
+
+        sbRoot = $r22;
+
+        i = 0;
+
+     label08:
+        if i >= colon goto label09;
+
+        $c16 = ca[i];
+
+        $c21 = staticinvoke <java.lang.Character: char toUpperCase(char)>($c16);
+
+        virtualinvoke sbRoot.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c21);
+
+        i = i + 1;
+
+        goto label08;
+
+     label09:
+        virtualinvoke sbRoot.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(58);
+
+        $i9 = colon + 1;
+
+        $i12 = virtualinvoke path.<java.lang.String: int length()>();
+
+        if $i9 >= $i12 goto label10;
+
+        $c15 = <java.io.File: char separatorChar>;
+
+        virtualinvoke sbRoot.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c15);
+
+     label10:
+        root = virtualinvoke sbRoot.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        $r24 = new java.lang.StringBuffer;
+
+        specialinvoke $r24.<java.lang.StringBuffer: void <init>()>();
+
+        i = $r24;
+
+        i = colon + 1;
+
+     label11:
+        $i13 = lengthof ca;
+
+        if i >= $i13 goto label14;
+
+        $c11 = ca[i];
+
+        if $c11 != 92 goto label12;
+
+        $c18 = ca[i];
+
+        if $c18 != 92 goto label13;
+
+        $i19 = i - 1;
+
+        $c14 = ca[$i19];
+
+        if $c14 == 92 goto label13;
+
+     label12:
+        $c17 = ca[i];
+
+        virtualinvoke i.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c17);
+
+     label13:
+        i = i + 1;
+
+        goto label11;
+
+     label14:
+        $r23 = virtualinvoke i.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        $c10 = <java.io.File: char separatorChar>;
+
+        path = virtualinvoke $r23.<java.lang.String: java.lang.String replace(char,char)>(92, $c10);
+
+        goto label18;
+
+     label15:
+        $i3 = virtualinvoke path.<java.lang.String: int length()>();
+
+        if $i3 != 1 goto label16;
+
+        root = <java.io.File: java.lang.String separator>;
+
+        path = "";
+
+        goto label18;
+
+     label16:
+        $c5 = virtualinvoke path.<java.lang.String: char charAt(int)>(1);
+
+        $c4 = <java.io.File: char separatorChar>;
+
+        if $c5 != $c4 goto label17;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>()>();
+
+        $r18 = <java.io.File: java.lang.String separator>;
+
+        $r17 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r18);
+
+        $r16 = <java.io.File: java.lang.String separator>;
+
+        $r21 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16);
+
+        root = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        path = virtualinvoke path.<java.lang.String: java.lang.String substring(int)>(2);
+
+        goto label18;
+
+     label17:
+        root = <java.io.File: java.lang.String separator>;
+
+        path = virtualinvoke path.<java.lang.String: java.lang.String substring(int)>(1);
+
+     label18:
+        ca = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        virtualinvoke ca.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>(root);
+
+        $r5 = new java.util.StringTokenizer;
+
+        $r4 = <java.io.File: java.lang.String separator>;
+
+        specialinvoke $r5.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(path, $r4);
+
+        sbRoot = $r5;
+
+     label19:
+        $z1 = virtualinvoke sbRoot.<java.util.StringTokenizer: boolean hasMoreTokens()>();
+
+        if $z1 == 0 goto label24;
+
+        i = virtualinvoke sbRoot.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        $r10 = ".";
+
+        $z2 = virtualinvoke $r10.<java.lang.String: boolean equals(java.lang.Object)>(i);
+
+        if $z2 == 0 goto label20;
+
+        goto label19;
+
+     label20:
+        $r9 = "..";
+
+        $z3 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>(i);
+
+        if $z3 == 0 goto label22;
+
+        $i8 = virtualinvoke ca.<com.puppycrawl.tools.checkstyle.api.FastStack: int size()>();
+
+        if $i8 >= 2 goto label21;
+
+        $r11 = new java.lang.IllegalArgumentException;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+
+        $r14 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Cannot resolve path ");
+
+        $r13 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aPath);
+
+        $r12 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r11.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r12);
+
+        throw $r11;
+
+     label21:
+        virtualinvoke ca.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        goto label23;
+
+     label22:
+        virtualinvoke ca.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>(i);
+
+     label23:
+        goto label19;
+
+     label24:
+        $r6 = new java.lang.StringBuffer;
+
+        specialinvoke $r6.<java.lang.StringBuffer: void <init>()>();
+
+        i = $r6;
+
+        i = 0;
+
+     label25:
+        $i6 = virtualinvoke ca.<com.puppycrawl.tools.checkstyle.api.FastStack: int size()>();
+
+        if i >= $i6 goto label27;
+
+        if i <= 1 goto label26;
+
+        $c7 = <java.io.File: char separatorChar>;
+
+        virtualinvoke i.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c7);
+
+     label26:
+        $r7 = virtualinvoke ca.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object peek(int)>(i);
+
+        $r8 = (java.lang.String) $r7;
+
+        virtualinvoke i.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r8);
+
+        i = i + 1;
+
+        goto label25;
+
+     label27:
+        path = virtualinvoke i.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        if msg == 0 goto label28;
+
+        path = virtualinvoke path.<java.lang.String: java.lang.String replace(char,char)>(47, 92);
+
+     label28:
+        return path;
+    }
+
+    public final java.lang.String getBasedir()
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mBasedir>;
+
+        return $r0;
+    }
+
+    protected void fireAuditStarted()
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent evt, $r0;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.AuditListener listener;
+        java.util.List $r1;
+        boolean $z0;
+        java.lang.Object $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.AuditEvent: void <init>(java.lang.Object)>(this);
+
+        evt = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mListeners>;
+
+        i$ = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r2 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        listener = (com.puppycrawl.tools.checkstyle.api.AuditListener) $r2;
+
+        interfaceinvoke listener.<com.puppycrawl.tools.checkstyle.api.AuditListener: void auditStarted(com.puppycrawl.tools.checkstyle.api.AuditEvent)>(evt);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    protected void fireAuditFinished()
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent evt, $r0;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.AuditListener listener;
+        java.util.List $r1;
+        boolean $z0;
+        java.lang.Object $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.AuditEvent: void <init>(java.lang.Object)>(this);
+
+        evt = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mListeners>;
+
+        i$ = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r2 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        listener = (com.puppycrawl.tools.checkstyle.api.AuditListener) $r2;
+
+        interfaceinvoke listener.<com.puppycrawl.tools.checkstyle.api.AuditListener: void auditFinished(com.puppycrawl.tools.checkstyle.api.AuditEvent)>(evt);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    public void fireFileStarted(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String aFileName, stripped;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent evt, $r0;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.AuditListener listener;
+        java.util.List $r1;
+        boolean $z0;
+        java.lang.Object $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aFileName := @parameter0: java.lang.String;
+
+        stripped = specialinvoke this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String getStrippedFileName(java.lang.String)>(aFileName);
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.AuditEvent: void <init>(java.lang.Object,java.lang.String)>(this, stripped);
+
+        evt = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mListeners>;
+
+        i$ = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r2 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        listener = (com.puppycrawl.tools.checkstyle.api.AuditListener) $r2;
+
+        interfaceinvoke listener.<com.puppycrawl.tools.checkstyle.api.AuditListener: void fileStarted(com.puppycrawl.tools.checkstyle.api.AuditEvent)>(evt);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    public void fireFileFinished(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String aFileName, stripped;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent evt, $r0;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.AuditListener listener;
+        java.util.List $r1;
+        boolean $z0;
+        java.lang.Object $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aFileName := @parameter0: java.lang.String;
+
+        stripped = specialinvoke this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String getStrippedFileName(java.lang.String)>(aFileName);
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.AuditEvent: void <init>(java.lang.Object,java.lang.String)>(this, stripped);
+
+        evt = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mListeners>;
+
+        i$ = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r2 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        listener = (com.puppycrawl.tools.checkstyle.api.AuditListener) $r2;
+
+        interfaceinvoke listener.<com.puppycrawl.tools.checkstyle.api.AuditListener: void fileFinished(com.puppycrawl.tools.checkstyle.api.AuditEvent)>(evt);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    public void fireErrors(java.lang.String, java.util.SortedSet)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String aFileName, stripped;
+        java.util.SortedSet aErrors;
+        java.util.Iterator i$, i$;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage element;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent evt, $r1;
+        com.puppycrawl.tools.checkstyle.api.AuditListener listener;
+        boolean $z0, $z1, $z2;
+        java.lang.Object $r0, $r4;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r2;
+        java.util.List $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aFileName := @parameter0: java.lang.String;
+
+        aErrors := @parameter1: java.util.SortedSet;
+
+        stripped = specialinvoke this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String getStrippedFileName(java.lang.String)>(aFileName);
+
+        i$ = interfaceinvoke aErrors.<java.util.SortedSet: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r0 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        element = (com.puppycrawl.tools.checkstyle.api.LocalizedMessage) $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.api.AuditEvent: void <init>(java.lang.Object,java.lang.String,com.puppycrawl.tools.checkstyle.api.LocalizedMessage)>(this, stripped, element);
+
+        evt = $r1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters>;
+
+        $z1 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.FilterSet: boolean accept(com.puppycrawl.tools.checkstyle.api.AuditEvent)>(evt);
+
+        if $z1 == 0 goto label3;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.Checker: java.util.List mListeners>;
+
+        i$ = interfaceinvoke $r3.<java.util.List: java.util.Iterator iterator()>();
+
+     label2:
+        $z2 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label3;
+
+        $r4 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        listener = (com.puppycrawl.tools.checkstyle.api.AuditListener) $r4;
+
+        interfaceinvoke listener.<com.puppycrawl.tools.checkstyle.api.AuditListener: void addError(com.puppycrawl.tools.checkstyle.api.AuditEvent)>(evt);
+
+        goto label2;
+
+     label3:
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    public void setModuleFactory(com.puppycrawl.tools.checkstyle.ModuleFactory)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        com.puppycrawl.tools.checkstyle.ModuleFactory aModuleFactory;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aModuleFactory := @parameter0: com.puppycrawl.tools.checkstyle.ModuleFactory;
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.ModuleFactory mModuleFactory> = aModuleFactory;
+
+        return;
+    }
+
+    public void setLocaleCountry(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String aLocaleCountry;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aLocaleCountry := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mLocaleCountry> = aLocaleCountry;
+
+        return;
+    }
+
+    public void setLocaleLanguage(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String aLocaleLanguage;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aLocaleLanguage := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mLocaleLanguage> = aLocaleLanguage;
+
+        return;
+    }
+
+    public final void setSeverity(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String aSeverity;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aSeverity := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel getInstance(java.lang.String)>(aSeverity);
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel> = $r0;
+
+        return;
+    }
+
+    public final void setClassloader(java.lang.ClassLoader)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.ClassLoader aLoader;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aLoader := @parameter0: java.lang.ClassLoader;
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.ClassLoader mLoader> = aLoader;
+
+        return;
+    }
+
+    public final void setModuleClassLoader(java.lang.ClassLoader)
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.ClassLoader aModuleClassLoader;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aModuleClassLoader := @parameter0: java.lang.ClassLoader;
+
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.ClassLoader mModuleClassLoader> = aModuleClassLoader;
+
+        return;
+    }
+
+    public void setCharset(java.lang.String) throws java.io.UnsupportedEncodingException
+    {
+        com.puppycrawl.tools.checkstyle.Checker this;
+        java.lang.String aCharset, message;
+        boolean $z0;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3;
+        java.io.UnsupportedEncodingException $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Checker;
+
+        aCharset := @parameter0: java.lang.String;
+
+        $z0 = staticinvoke <java.nio.charset.Charset: boolean isSupported(java.lang.String)>(aCharset);
+
+        if $z0 != 0 goto label1;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unsupported charset: \'");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aCharset);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'");
+
+        message = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r4 = new java.io.UnsupportedEncodingException;
+
+        specialinvoke $r4.<java.io.UnsupportedEncodingException: void <init>(java.lang.String)>(message);
+
+        throw $r4;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.Checker: java.lang.String mCharset> = aCharset;
+
+        return;
+    }
+}

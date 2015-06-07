@@ -1,0 +1,451 @@
+public final class com.puppycrawl.tools.checkstyle.api.ScopeUtils extends java.lang.Object
+{
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.ScopeUtils this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.ScopeUtils;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.Scope getScopeFromMods(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMods;
+        com.puppycrawl.tools.checkstyle.api.Scope retVal;
+        antlr.collections.AST token;
+        java.lang.String $r0, $r1, $r2, $r3, $r4, $r5;
+        boolean $z0, $z1, $z2;
+
+        aMods := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PACKAGE>;
+
+        token = virtualinvoke aMods.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if token == null goto label5;
+
+        $r0 = "public";
+
+        $r1 = interfaceinvoke token.<antlr.collections.AST: java.lang.String getText()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label2;
+
+        retVal = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PUBLIC>;
+
+        goto label5;
+
+     label2:
+        $r2 = "protected";
+
+        $r3 = interfaceinvoke token.<antlr.collections.AST: java.lang.String getText()>();
+
+        $z1 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z1 == 0 goto label3;
+
+        retVal = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PROTECTED>;
+
+        goto label5;
+
+     label3:
+        $r4 = "private";
+
+        $r5 = interfaceinvoke token.<antlr.collections.AST: java.lang.String getText()>();
+
+        $z2 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>($r5);
+
+        if $z2 == 0 goto label4;
+
+        retVal = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PRIVATE>;
+
+        goto label5;
+
+     label4:
+        token = interfaceinvoke token.<antlr.collections.AST: antlr.collections.AST getNextSibling()>();
+
+        goto label1;
+
+     label5:
+        return retVal;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.Scope getSurroundingScope(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, token, mods;
+        com.puppycrawl.tools.checkstyle.api.Scope retVal, modScope;
+        int type;
+        boolean $z0;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = null;
+
+        token = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label1:
+        if token == null goto label7;
+
+        type = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 14 goto label2;
+
+        if type == 15 goto label2;
+
+        if type == 161 goto label2;
+
+        if type != 158 goto label5;
+
+     label2:
+        mods = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        modScope = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: com.puppycrawl.tools.checkstyle.api.Scope getScopeFromMods(com.puppycrawl.tools.checkstyle.api.DetailAST)>(mods);
+
+        if retVal == null goto label3;
+
+        $z0 = virtualinvoke retVal.<com.puppycrawl.tools.checkstyle.api.Scope: boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)>(modScope);
+
+        if $z0 == 0 goto label4;
+
+     label3:
+        retVal = modScope;
+
+     label4:
+        goto label6;
+
+     label5:
+        if type != 138 goto label6;
+
+        retVal = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope ANONINNER>;
+
+        goto label7;
+
+     label6:
+        token = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label7:
+        return retVal;
+    }
+
+    public static boolean inInterfaceBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, token;
+        boolean retVal;
+        int type;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = 0;
+
+        token = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label1:
+        if token == null goto label5;
+
+        type = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 14 goto label5;
+
+        if type == 158 goto label5;
+
+        if type != 161 goto label2;
+
+        goto label5;
+
+     label2:
+        if type != 138 goto label3;
+
+        goto label5;
+
+     label3:
+        if type != 15 goto label4;
+
+        retVal = 1;
+
+        goto label5;
+
+     label4:
+        token = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label5:
+        return retVal;
+    }
+
+    public static boolean inAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, token;
+        boolean retVal;
+        int type;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = 0;
+
+        token = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label1:
+        if token == null goto label5;
+
+        type = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 14 goto label5;
+
+        if type == 158 goto label5;
+
+        if type != 15 goto label2;
+
+        goto label5;
+
+     label2:
+        if type != 138 goto label3;
+
+        goto label5;
+
+     label3:
+        if type != 161 goto label4;
+
+        retVal = 1;
+
+        goto label5;
+
+     label4:
+        token = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label5:
+        return retVal;
+    }
+
+    public static boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        boolean $z0, $z1, $z2;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    public static boolean inEnumBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, token;
+        boolean retVal;
+        int type;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = 0;
+
+        token = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label1:
+        if token == null goto label5;
+
+        type = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 15 goto label5;
+
+        if type == 161 goto label5;
+
+        if type != 14 goto label2;
+
+        goto label5;
+
+     label2:
+        if type != 138 goto label3;
+
+        goto label5;
+
+     label3:
+        if type != 158 goto label4;
+
+        retVal = 1;
+
+        goto label5;
+
+     label4:
+        token = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label5:
+        return retVal;
+    }
+
+    public static boolean inCodeBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, token;
+        boolean retVal;
+        int type;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = 0;
+
+        token = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label1:
+        if token == null goto label4;
+
+        type = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 9 goto label2;
+
+        if type == 8 goto label2;
+
+        if type == 11 goto label2;
+
+        if type != 12 goto label3;
+
+     label2:
+        retVal = 1;
+
+        goto label4;
+
+     label3:
+        token = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label4:
+        return retVal;
+    }
+
+    public static boolean isOuterMostType(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent;
+        boolean retVal;
+        int $i0, $i1, $i2, $i3;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = 1;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label1:
+        if parent == null goto label4;
+
+        $i0 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 14 goto label2;
+
+        $i1 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 15 goto label2;
+
+        $i2 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 == 161 goto label2;
+
+        $i3 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 158 goto label3;
+
+     label2:
+        retVal = 0;
+
+        goto label4;
+
+     label3:
+        parent = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label4:
+        return retVal;
+    }
+
+    public static boolean isLocalVariableDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent;
+        int type, $i0, $i1, $i2;
+        boolean $z0, $z1;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 10 goto label5;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if parent == null goto label4;
+
+        type = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 7 goto label1;
+
+        if type == 36 goto label1;
+
+        if type != 160 goto label2;
+
+     label1:
+        $z1 = 1;
+
+        goto label3;
+
+     label2:
+        $z1 = 0;
+
+     label3:
+        return $z1;
+
+     label4:
+        goto label8;
+
+     label5:
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 21 goto label8;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if parent == null goto label8;
+
+        $i2 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 98 goto label6;
+
+        $z0 = 1;
+
+        goto label7;
+
+     label6:
+        $z0 = 0;
+
+     label7:
+        return $z0;
+
+     label8:
+        return 0;
+    }
+}

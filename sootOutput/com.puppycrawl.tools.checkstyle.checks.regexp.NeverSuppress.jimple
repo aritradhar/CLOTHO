@@ -1,0 +1,46 @@
+public final class com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress extends java.lang.Object implements com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor
+{
+    public static final com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor INSTANCE;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public boolean shouldSuppress(int, int, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress this;
+        int aStartLineNo, aStartColNo, aEndLineNo, aEndColNo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress;
+
+        aStartLineNo := @parameter0: int;
+
+        aStartColNo := @parameter1: int;
+
+        aEndLineNo := @parameter2: int;
+
+        aEndColNo := @parameter3: int;
+
+        return 0;
+    }
+
+    static void <clinit>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress $r0;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress: void <init>()>();
+
+        <com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress: com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor INSTANCE> = $r0;
+
+        return;
+    }
+}

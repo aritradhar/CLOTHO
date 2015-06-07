@@ -1,0 +1,203 @@
+class com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag extends java.lang.Object
+{
+    private static final int MAX_TEXT_LEN;
+    private final java.lang.String mId;
+    private final int mLineNo;
+    private final int mPosition;
+    private final java.lang.String mText;
+    private final boolean mClosedTag;
+    private final boolean mIncomplete;
+
+    void <init>(java.lang.String, int, int, boolean, boolean, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag this;
+        java.lang.String aId, aText, $r0, $r1;
+        int aLineNo, aPosition;
+        boolean aClosedTag, aIncomplete, $z0;
+        char $c0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
+
+        aId := @parameter0: java.lang.String;
+
+        aLineNo := @parameter1: int;
+
+        aPosition := @parameter2: int;
+
+        aClosedTag := @parameter3: boolean;
+
+        aIncomplete := @parameter4: boolean;
+
+        aText := @parameter5: java.lang.String;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = "";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aId);
+
+        if $z0 != 0 goto label1;
+
+        $c0 = virtualinvoke aId.<java.lang.String: char charAt(int)>(0);
+
+        if $c0 != 47 goto label1;
+
+        $r1 = virtualinvoke aId.<java.lang.String: java.lang.String substring(int)>(1);
+
+        goto label2;
+
+     label1:
+        $r1 = aId;
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: java.lang.String mId> = $r1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: int mLineNo> = aLineNo;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: int mPosition> = aPosition;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: java.lang.String mText> = aText;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: boolean mClosedTag> = aClosedTag;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: boolean mIncomplete> = aIncomplete;
+
+        return;
+    }
+
+    public java.lang.String getId()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: java.lang.String mId>;
+
+        return $r0;
+    }
+
+    public boolean isCloseTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag this;
+        java.lang.String $r0, $r1;
+        int $i0, $i1, $i2, $i3, $i4;
+        char $c5;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: int mPosition>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: java.lang.String mText>;
+
+        $i1 = virtualinvoke $r0.<java.lang.String: int length()>();
+
+        $i2 = $i1 - 1;
+
+        if $i0 != $i2 goto label1;
+
+        return 0;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: java.lang.String mText>;
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: int mPosition>;
+
+        $i4 = $i3 + 1;
+
+        $c5 = virtualinvoke $r1.<java.lang.String: char charAt(int)>($i4);
+
+        if $c5 != 47 goto label2;
+
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+
+    public boolean isClosedTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: boolean mClosedTag>;
+
+        return $z0;
+    }
+
+    public boolean isIncompleteTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: boolean mIncomplete>;
+
+        return $z0;
+    }
+
+    public int getLineno()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: int mLineNo>;
+
+        return $i0;
+    }
+
+    public int getPosition()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: int mPosition>;
+
+        return $i0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag this;
+        int startOfText, endOfText, $i0, $i1;
+        java.lang.String $r0, $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
+
+        startOfText = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: int mPosition>;
+
+        $i0 = startOfText + 60;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: java.lang.String mText>;
+
+        $i1 = virtualinvoke $r0.<java.lang.String: int length()>();
+
+        endOfText = staticinvoke <java.lang.Math: int min(int,int)>($i0, $i1);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: java.lang.String mText>;
+
+        $r2 = virtualinvoke $r1.<java.lang.String: java.lang.String substring(int,int)>(startOfText, endOfText);
+
+        return $r2;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag: int MAX_TEXT_LEN> = 60;
+
+        return;
+    }
+}

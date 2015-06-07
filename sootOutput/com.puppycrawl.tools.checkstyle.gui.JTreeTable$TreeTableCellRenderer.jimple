@@ -1,0 +1,190 @@
+class com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer extends javax.swing.JTree implements javax.swing.table.TableCellRenderer
+{
+    private static final long serialVersionUID;
+    protected int visibleRow;
+    final com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.gui.JTreeTable, javax.swing.tree.TreeModel)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer this;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable l1;
+        javax.swing.tree.TreeModel model;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        model := @parameter1: javax.swing.tree.TreeModel;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0> = l1;
+
+        specialinvoke this.<javax.swing.JTree: void <init>(javax.swing.tree.TreeModel)>(model);
+
+        return;
+    }
+
+    public void updateUI()
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer this;
+        javax.swing.tree.TreeCellRenderer tcr;
+        javax.swing.tree.DefaultTreeCellRenderer dtcr;
+        boolean $z0;
+        java.awt.Color $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer;
+
+        specialinvoke this.<javax.swing.JTree: void updateUI()>();
+
+        tcr = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: javax.swing.tree.TreeCellRenderer getCellRenderer()>();
+
+        $z0 = tcr instanceof javax.swing.tree.DefaultTreeCellRenderer;
+
+        if $z0 == 0 goto label1;
+
+        dtcr = (javax.swing.tree.DefaultTreeCellRenderer) tcr;
+
+        $r0 = staticinvoke <javax.swing.UIManager: java.awt.Color getColor(java.lang.Object)>("Table.selectionForeground");
+
+        virtualinvoke dtcr.<javax.swing.tree.DefaultTreeCellRenderer: void setTextSelectionColor(java.awt.Color)>($r0);
+
+        $r1 = staticinvoke <javax.swing.UIManager: java.awt.Color getColor(java.lang.Object)>("Table.selectionBackground");
+
+        virtualinvoke dtcr.<javax.swing.tree.DefaultTreeCellRenderer: void setBackgroundSelectionColor(java.awt.Color)>($r1);
+
+     label1:
+        return;
+    }
+
+    public void setRowHeight(int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer this;
+        int newRowHeight, $i0, $i1;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable $r0, $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer;
+
+        newRowHeight := @parameter0: int;
+
+        if newRowHeight <= 0 goto label1;
+
+        specialinvoke this.<javax.swing.JTree: void setRowHeight(int)>(newRowHeight);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        if $r0 == null goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        $i0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: int getRowHeight()>();
+
+        if $i0 == newRowHeight goto label1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        $i1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: int getRowHeight()>();
+
+        virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: void setRowHeight(int)>($i1);
+
+     label1:
+        return;
+    }
+
+    public void setBounds(int, int, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer this;
+        int x, y, w, h, $i0;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer;
+
+        x := @parameter0: int;
+
+        y := @parameter1: int;
+
+        w := @parameter2: int;
+
+        h := @parameter3: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: int getHeight()>();
+
+        specialinvoke this.<javax.swing.JTree: void setBounds(int,int,int,int)>(x, 0, w, $i0);
+
+        return;
+    }
+
+    public void paint(java.awt.Graphics)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer this;
+        java.awt.Graphics g;
+        int $i0, $i1, $i2, $i3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer;
+
+        g := @parameter0: java.awt.Graphics;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: int visibleRow>;
+
+        $i1 = neg $i0;
+
+        $i2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: int getRowHeight()>();
+
+        $i3 = $i1 * $i2;
+
+        virtualinvoke g.<java.awt.Graphics: void translate(int,int)>(0, $i3);
+
+        specialinvoke this.<javax.swing.JTree: void paint(java.awt.Graphics)>(g);
+
+        return;
+    }
+
+    public java.awt.Component getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer this;
+        javax.swing.JTable table;
+        java.lang.Object value;
+        boolean isSelected, hasFocus;
+        int row, column;
+        java.awt.Color $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer;
+
+        table := @parameter0: javax.swing.JTable;
+
+        value := @parameter1: java.lang.Object;
+
+        isSelected := @parameter2: boolean;
+
+        hasFocus := @parameter3: boolean;
+
+        row := @parameter4: int;
+
+        column := @parameter5: int;
+
+        if isSelected == 0 goto label1;
+
+        $r1 = virtualinvoke table.<javax.swing.JTable: java.awt.Color getSelectionBackground()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: void setBackground(java.awt.Color)>($r1);
+
+        goto label2;
+
+     label1:
+        $r0 = virtualinvoke table.<javax.swing.JTable: java.awt.Color getBackground()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: void setBackground(java.awt.Color)>($r0);
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: int visibleRow> = row;
+
+        return this;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: long serialVersionUID> = 4324031590789321581L;
+
+        return;
+    }
+}

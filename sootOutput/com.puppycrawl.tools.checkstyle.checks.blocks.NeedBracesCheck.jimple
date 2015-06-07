@@ -1,0 +1,82 @@
+public class com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck;
+
+        $r0 = newarray (int)[5];
+
+        $r0[0] = 87;
+
+        $r0[1] = 94;
+
+        $r0[2] = 93;
+
+        $r0[3] = 85;
+
+        $r0[4] = 86;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, slistAST, $r2;
+        boolean isElseIf;
+        int $i0, $i1;
+        java.lang.Object[] $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        slistAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        isElseIf = 0;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 94 goto label1;
+
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(85);
+
+        if $r2 == null goto label1;
+
+        isElseIf = 1;
+
+     label1:
+        if slistAST != null goto label2;
+
+        if isElseIf != 0 goto label2;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r0[0] = $r1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck: void log(int,java.lang.String,java.lang.Object[])>($i1, "needBraces", $r0);
+
+     label2:
+        return;
+    }
+}

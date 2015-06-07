@@ -1,0 +1,646 @@
+public final class com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final java.lang.String ANNOTATION_ELEMENT_SINGLE_NAME;
+    private com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle mStyle;
+    private com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma mComma;
+    private com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens mParens;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle $r0;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma $r1;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle COMPACT_NO_ARRAY>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle mStyle> = $r0;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma NEVER>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma mComma> = $r1;
+
+        $r2 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens NEVER>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens mParens> = $r2;
+
+        return;
+    }
+
+    public void setElementStyle(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        java.lang.String aStyle;
+        java.lang.Enum $r0;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aStyle := @parameter0: java.lang.String;
+
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: java.lang.Enum getOption(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck$ElementStyle", aStyle);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle) $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle mStyle> = $r1;
+
+        return;
+    }
+
+    public void setTrailingArrayComma(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        java.lang.String aComma;
+        java.lang.Enum $r0;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aComma := @parameter0: java.lang.String;
+
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: java.lang.Enum getOption(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck$TrailingArrayComma", aComma);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma) $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma mComma> = $r1;
+
+        return;
+    }
+
+    public void setClosingParens(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        java.lang.String aParens;
+        java.lang.Enum $r0;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aParens := @parameter0: java.lang.String;
+
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: java.lang.Enum getOption(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck$ClosingParens", aParens);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens) $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens mParens> = $r1;
+
+        return;
+    }
+
+    private java.lang.Enum getOption(java.lang.Class, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        java.lang.Class aEnumClass;
+        java.lang.String aString, $r0, $r1, $r8;
+        java.lang.IllegalArgumentException iae, $r3;
+        java.lang.Enum $r2;
+        org.apache.commons.beanutils.ConversionException $r4;
+        java.lang.StringBuilder $r5, $r6, $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aEnumClass := @parameter0: java.lang.Class;
+
+        aString := @parameter1: java.lang.String;
+
+     label1:
+        $r0 = virtualinvoke aString.<java.lang.String: java.lang.String trim()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.String: java.lang.String toUpperCase()>();
+
+        $r2 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(aEnumClass, $r1);
+
+     label2:
+        return $r2;
+
+     label3:
+        $r3 := @caughtexception;
+
+        iae = $r3;
+
+        $r4 = new org.apache.commons.beanutils.ConversionException;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aString);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r4.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r8, iae);
+
+        throw $r4;
+
+        catch java.lang.IllegalArgumentException from label1 to label2 with label3;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: int[] getRequiredTokens()>();
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 163;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: int[] getRequiredTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void checkStyleType(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void checkCheckClosingParens(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void checkTrailingComma(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        return;
+    }
+
+    private void checkStyleType(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8;
+        boolean $z0, $z1, $z2, $z3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle IGNORE>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle mStyle>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: boolean equals(java.lang.Object)>($r0);
+
+        if $z0 != 0 goto label1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle mStyle>;
+
+        if $r2 != null goto label2;
+
+     label1:
+        return;
+
+     label2:
+        $r4 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle COMPACT_NO_ARRAY>;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle mStyle>;
+
+        $z1 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: boolean equals(java.lang.Object)>($r3);
+
+        if $z1 == 0 goto label3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void checkCompactNoArrayStyle(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAnnotation);
+
+        goto label5;
+
+     label3:
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle COMPACT>;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle mStyle>;
+
+        $z2 = virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: boolean equals(java.lang.Object)>($r5);
+
+        if $z2 == 0 goto label4;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void checkCompactStyle(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAnnotation);
+
+        goto label5;
+
+     label4:
+        $r8 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle EXPANDED>;
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle mStyle>;
+
+        $z3 = virtualinvoke $r8.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: boolean equals(java.lang.Object)>($r7);
+
+        if $z3 == 0 goto label5;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void checkExpandedStyle(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAnnotation);
+
+     label5:
+        return;
+    }
+
+    private void checkExpandedStyle(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation;
+        int valuePairCount, $i0;
+        boolean $z0;
+        java.lang.Object[] $r0;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        valuePairCount = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount(int)>(164);
+
+        if valuePairCount != 0 goto label1;
+
+        $z0 = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(29);
+
+        if $z0 == 0 goto label1;
+
+        $i0 = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle EXPANDED>;
+
+        $r0[0] = $r1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "annotation.incorrect.style", $r0);
+
+     label1:
+        return;
+    }
+
+    private void checkCompactStyle(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation, valuePair, $r1;
+        int valuePairCount, $i0;
+        java.lang.String $r0, $r2;
+        boolean $z0;
+        java.lang.Object[] $r3;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        valuePairCount = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount(int)>(164);
+
+        valuePair = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(164);
+
+        if valuePairCount != 1 goto label1;
+
+        $r0 = "value";
+
+        $r1 = virtualinvoke valuePair.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+
+        if $z0 == 0 goto label1;
+
+        $i0 = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r4 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle COMPACT>;
+
+        $r3[0] = $r4;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "annotation.incorrect.style", $r3);
+
+     label1:
+        return;
+    }
+
+    private void checkCompactNoArrayStyle(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation, arrayInit, valuePair, nestedArrayInit, $r1;
+        int valuePairCount, $i0, $i1, $i2, $i3;
+        java.lang.String $r0, $r2;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle $r3, $r5;
+        java.lang.Object[] $r4, $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        arrayInit = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(166);
+
+        valuePairCount = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount(int)>(164);
+
+        valuePair = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(164);
+
+        if arrayInit == null goto label1;
+
+        $i3 = virtualinvoke arrayInit.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount(int)>(29);
+
+        if $i3 != 1 goto label1;
+
+        $i2 = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r6 = newarray (java.lang.Object)[1];
+
+        $r5 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle COMPACT_NO_ARRAY>;
+
+        $r6[0] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void log(int,java.lang.String,java.lang.Object[])>($i2, "annotation.incorrect.style", $r6);
+
+        goto label2;
+
+     label1:
+        if valuePairCount != 1 goto label2;
+
+        nestedArrayInit = virtualinvoke valuePair.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(166);
+
+        if nestedArrayInit == null goto label2;
+
+        $r0 = "value";
+
+        $r1 = virtualinvoke valuePair.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+
+        if $z0 == 0 goto label2;
+
+        $i0 = virtualinvoke nestedArrayInit.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount(int)>(29);
+
+        if $i0 != 1 goto label2;
+
+        $i1 = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r3 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyle COMPACT_NO_ARRAY>;
+
+        $r4[0] = $r3;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void log(int,java.lang.String,java.lang.Object[])>($i1, "annotation.incorrect.style", $r4);
+
+     label2:
+        return;
+    }
+
+    private void checkTrailingComma(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAnnotation, child, arrayInit;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma $r0, $r1, $r2;
+        boolean $z0;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aAnnotation := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma IGNORE>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma mComma>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma: boolean equals(java.lang.Object)>($r0);
+
+        if $z0 != 0 goto label1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma mComma>;
+
+        if $r2 != null goto label2;
+
+     label1:
+        return;
+
+     label2:
+        child = virtualinvoke aAnnotation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label3:
+        if child == null goto label7;
+
+        arrayInit = null;
+
+        $i0 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 164 goto label4;
+
+        arrayInit = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(166);
+
+        goto label5;
+
+     label4:
+        $i1 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 166 goto label5;
+
+        arrayInit = child;
+
+     label5:
+        if arrayInit == null goto label6;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void logCommaViolation(com.puppycrawl.tools.checkstyle.api.DetailAST)>(arrayInit);
+
+     label6:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label3;
+
+     label7:
+        return;
+    }
+
+    private void logCommaViolation(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, rCurly, comma;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma $r0, $r1, $r2, $r3;
+        boolean $z0, $z1;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.Object[] $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        rCurly = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(74);
+
+        comma = virtualinvoke rCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma ALWAYS>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma mComma>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma: boolean equals(java.lang.Object)>($r0);
+
+        if $z0 == 0 goto label2;
+
+        if comma == null goto label1;
+
+        $i5 = virtualinvoke comma.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i5 == 75 goto label2;
+
+     label1:
+        $i4 = virtualinvoke rCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke rCurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r5 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i4, $i3, "annotation.trailing.comma.missing", $r5);
+
+        goto label3;
+
+     label2:
+        $r3 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma NEVER>;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma mComma>;
+
+        $z1 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayComma: boolean equals(java.lang.Object)>($r2);
+
+        if $z1 == 0 goto label3;
+
+        if comma == null goto label3;
+
+        $i0 = virtualinvoke comma.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 75 goto label3;
+
+        $i1 = virtualinvoke comma.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = virtualinvoke comma.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r4 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i2, "annotation.trailing.comma.present", $r4);
+
+     label3:
+        return;
+    }
+
+    private void checkCheckClosingParens(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, paren;
+        boolean parenExists, $z0, $z1, $z2, $z3, $z4;
+        com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens $r0, $r1, $r2, $r3, $r4, $r5, $r6;
+        int $i0, $i1, $i2;
+        java.lang.Object[] $r7, $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens IGNORE>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens mParens>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: boolean equals(java.lang.Object)>($r0);
+
+        if $z0 != 0 goto label1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens mParens>;
+
+        if $r2 != null goto label2;
+
+     label1:
+        return;
+
+     label2:
+        paren = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $i0 = virtualinvoke paren.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 78 goto label3;
+
+        $z4 = 1;
+
+        goto label4;
+
+     label3:
+        $z4 = 0;
+
+     label4:
+        parenExists = $z4;
+
+        $r4 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens ALWAYS>;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens mParens>;
+
+        $z1 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: boolean equals(java.lang.Object)>($r3);
+
+        if $z1 == 0 goto label5;
+
+        if parenExists != 0 goto label5;
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r8 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void log(int,java.lang.String,java.lang.Object[])>($i2, "annotation.parens.missing", $r8);
+
+        goto label6;
+
+     label5:
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens NEVER>;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens mParens>;
+
+        $z2 = virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParens: boolean equals(java.lang.Object)>($r5);
+
+        if $z2 == 0 goto label6;
+
+        $z3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(29);
+
+        if $z3 != 0 goto label6;
+
+        if parenExists == 0 goto label6;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r7 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: void log(int,java.lang.String,java.lang.Object[])>($i1, "annotation.parens.present", $r7);
+
+     label6:
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck: java.lang.String ANNOTATION_ELEMENT_SINGLE_NAME> = "value";
+
+        return;
+    }
+}

@@ -1,0 +1,675 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mCurrentFrame;
+    private java.util.regex.Pattern mRegexp;
+    private boolean mIgnoreSetter;
+    private boolean mIgnoreConstructorParameter;
+    private boolean mIgnoreAbstractMethods;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        $r0 = newarray (int)[5];
+
+        $r0[0] = 10;
+
+        $r0[1] = 21;
+
+        $r0[2] = 14;
+
+        $r0[3] = 158;
+
+        $r0[4] = 159;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 10;
+
+        $r0[1] = 21;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 14;
+
+        $r0[1] = 158;
+
+        $r0[2] = 159;
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: void <init>(com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame,boolean)>(null, 1);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mCurrentFrame> = $r0;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, typeMods, objBlock, child, mods, $r2;
+        boolean isStaticInnerType, $z0, $z1, $z2;
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame frame, $r0, $r1;
+        java.lang.String name;
+        int $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 10 goto label1;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 21 goto label2;
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: void processVariable(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        return;
+
+     label2:
+        typeMods = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        if typeMods == null goto label3;
+
+        $z2 = virtualinvoke typeMods.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        if $z2 == 0 goto label3;
+
+        $z1 = 1;
+
+        goto label4;
+
+     label3:
+        $z1 = 0;
+
+     label4:
+        isStaticInnerType = $z1;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mCurrentFrame>;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: void <init>(com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame,boolean)>($r1, isStaticInnerType);
+
+        frame = $r0;
+
+        objBlock = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(6);
+
+        if objBlock == null goto label8;
+
+        child = virtualinvoke objBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label5:
+        if child == null goto label8;
+
+        $i2 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 10 goto label7;
+
+        $r2 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        name = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        mods = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z0 = virtualinvoke mods.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        if $z0 == 0 goto label6;
+
+        virtualinvoke frame.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: void addStaticField(java.lang.String)>(name);
+
+        goto label7;
+
+     label6:
+        virtualinvoke frame.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: void addInstanceField(java.lang.String)>(name);
+
+     label7:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label5;
+
+     label8:
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mCurrentFrame> = frame;
+
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0, $i1, $i2;
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 14 goto label1;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 158 goto label1;
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 159 goto label2;
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mCurrentFrame>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame getParent()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mCurrentFrame> = $r1;
+
+     label2:
+        return;
+    }
+
+    private void processVariable(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nameAST;
+        java.lang.String name;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8;
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame $r0, $r5;
+        java.util.regex.Pattern $r1, $r3;
+        java.lang.Object[] $r2;
+        java.util.regex.Matcher $r4;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean isLocalVariableDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 != 0 goto label2;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 21 goto label2;
+
+     label1:
+        return;
+
+     label2:
+        nameAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        name = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mCurrentFrame>;
+
+        $z2 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: boolean containsStaticField(java.lang.String)>(name);
+
+        if $z2 != 0 goto label3;
+
+        $z7 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: boolean inStatic(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z7 != 0 goto label5;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mCurrentFrame>;
+
+        $z8 = virtualinvoke $r5.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: boolean containsInstanceField(java.lang.String)>(name);
+
+        if $z8 == 0 goto label5;
+
+     label3:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: java.util.regex.Pattern mRegexp>;
+
+        if $r1 == null goto label4;
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: java.util.regex.Pattern getRegexp()>();
+
+        $r4 = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(name);
+
+        $z6 = virtualinvoke $r4.<java.util.regex.Matcher: boolean find()>();
+
+        if $z6 != 0 goto label5;
+
+     label4:
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: boolean isIgnoredSetterParam(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, name);
+
+        if $z3 != 0 goto label5;
+
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: boolean isIgnoredConstructorParam(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z4 != 0 goto label5;
+
+        $z5 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: boolean isIgnoredParamOfAbstractMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z5 != 0 goto label5;
+
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r2[0] = name;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(nameAST, "hidden.field", $r2);
+
+     label5:
+        return;
+    }
+
+    private static boolean inStatic(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, mods;
+        int $i0;
+        boolean $z0;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label1:
+        if parent == null goto label5;
+
+        $i0 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 9: goto label3;
+            case 12: goto label2;
+            default: goto label4;
+        };
+
+     label2:
+        return 1;
+
+     label3:
+        mods = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z0 = virtualinvoke mods.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        return $z0;
+
+     label4:
+        parent = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label5:
+        return 0;
+    }
+
+    private boolean isIgnoredSetterParam(com.puppycrawl.tools.checkstyle.api.DetailAST, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parametersAST, methodAST, typeAST, $r0;
+        java.lang.String aName, methodName, expectedName, $r4;
+        int $i0, $i1, $i2;
+        boolean $z0, $z1, $z2;
+        java.lang.StringBuilder $r1, $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aName := @parameter1: java.lang.String;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 21 goto label1;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: boolean mIgnoreSetter>;
+
+        if $z0 != 0 goto label2;
+
+     label1:
+        return 0;
+
+     label2:
+        parametersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke parametersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i1 == 1 goto label3;
+
+        return 0;
+
+     label3:
+        methodAST = virtualinvoke parametersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i2 = virtualinvoke methodAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 == 9 goto label4;
+
+        return 0;
+
+     label4:
+        typeAST = virtualinvoke methodAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        $z1 = virtualinvoke typeAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(50);
+
+        if $z1 != 0 goto label5;
+
+        return 0;
+
+     label5:
+        $r0 = virtualinvoke methodAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        methodName = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("set");
+
+        $r4 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: java.lang.String capitalize(java.lang.String)>(aName);
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        expectedName = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $z2 = virtualinvoke methodName.<java.lang.String: boolean equals(java.lang.Object)>(expectedName);
+
+        return $z2;
+    }
+
+    private static java.lang.String capitalize(java.lang.String)
+    {
+        java.lang.String aName, $r1, $r2, $r4, $r6;
+        int $i0, $i1;
+        java.lang.StringBuilder $r0, $r3, $r5;
+        char $c2;
+        boolean $z0;
+
+        aName := @parameter0: java.lang.String;
+
+        if aName == null goto label1;
+
+        $i0 = virtualinvoke aName.<java.lang.String: int length()>();
+
+        if $i0 != 0 goto label2;
+
+     label1:
+        return aName;
+
+     label2:
+        $i1 = virtualinvoke aName.<java.lang.String: int length()>();
+
+        if $i1 <= 1 goto label3;
+
+        $c2 = virtualinvoke aName.<java.lang.String: char charAt(int)>(1);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isUpperCase(char)>($c2);
+
+        if $z0 == 0 goto label3;
+
+        return aName;
+
+     label3:
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke aName.<java.lang.String: java.lang.String substring(int,int)>(0, 1);
+
+        $r2 = virtualinvoke $r1.<java.lang.String: java.lang.String toUpperCase()>();
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke aName.<java.lang.String: java.lang.String substring(int)>(1);
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r6;
+    }
+
+    private boolean isIgnoredConstructorParam(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parametersAST, constructorAST;
+        int $i0, $i1;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 21 goto label1;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: boolean mIgnoreConstructorParameter>;
+
+        if $z0 != 0 goto label2;
+
+     label1:
+        return 0;
+
+     label2:
+        parametersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        constructorAST = virtualinvoke parametersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke constructorAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 8 goto label3;
+
+        $z1 = 1;
+
+        goto label4;
+
+     label3:
+        $z1 = 0;
+
+     label4:
+        return $z1;
+    }
+
+    private boolean isIgnoredParamOfAbstractMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, method, mods, $r0;
+        int $i0, $i1;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 21 goto label1;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: boolean mIgnoreAbstractMethods>;
+
+        if $z0 != 0 goto label2;
+
+     label1:
+        return 0;
+
+     label2:
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        method = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke method.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 9 goto label3;
+
+        return 0;
+
+     label3:
+        mods = virtualinvoke method.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        if mods == null goto label4;
+
+        $z1 = virtualinvoke mods.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(41);
+
+        if $z1 == 0 goto label4;
+
+        $z2 = 1;
+
+        goto label5;
+
+     label4:
+        $z2 = 0;
+
+     label5:
+        return $z2;
+    }
+
+    public void setIgnoreFormat(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        java.lang.String aFormat, $r6;
+        java.util.regex.PatternSyntaxException e, $r1;
+        java.util.regex.Pattern $r0;
+        org.apache.commons.beanutils.ConversionException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aFormat := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aFormat);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: java.util.regex.Pattern mRegexp> = $r0;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new org.apache.commons.beanutils.ConversionException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aFormat);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r6, e);
+
+        throw $r2;
+
+     label4:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public void setIgnoreSetter(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        boolean aIgnoreSetter;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aIgnoreSetter := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: boolean mIgnoreSetter> = aIgnoreSetter;
+
+        return;
+    }
+
+    public void setIgnoreConstructorParameter(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        boolean aIgnoreConstructorParameter;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aIgnoreConstructorParameter := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: boolean mIgnoreConstructorParameter> = aIgnoreConstructorParameter;
+
+        return;
+    }
+
+    public void setIgnoreAbstractMethods(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        boolean aIgnoreAbstractMethods;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        aIgnoreAbstractMethods := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: boolean mIgnoreAbstractMethods> = aIgnoreAbstractMethods;
+
+        return;
+    }
+
+    public java.util.regex.Pattern getRegexp()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck this;
+        java.util.regex.Pattern $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck: java.util.regex.Pattern mRegexp>;
+
+        return $r0;
+    }
+}

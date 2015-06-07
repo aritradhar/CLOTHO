@@ -1,0 +1,508 @@
+public class com.puppycrawl.tools.checkstyle.checks.RegexpCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck
+{
+    private static final int DEFAULT_DUPLICATE_LIMIT;
+    private static final int DEFAULT_ERROR_LIMIT;
+    private static final java.lang.String ERROR_LIMIT_EXCEEDED_MESSAGE;
+    private java.lang.String mMessage;
+    private boolean mIgnoreComments;
+    private boolean mIllegalPattern;
+    private int mErrorLimit;
+    private int mDuplicateLimit;
+    private boolean mCheckForDuplicates;
+    private int mMatchCount;
+    private int mErrorCount;
+    private final java.util.List mCharacters;
+    private java.util.regex.Matcher mMatcher;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        java.util.ArrayList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void <init>(java.lang.String,int)>("$^", 8);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.lang.String mMessage> = "";
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mErrorLimit> = 100;
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.List mCharacters> = $r0;
+
+        return;
+    }
+
+    public void setMessage(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        java.lang.String aMessage, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        aMessage := @parameter0: java.lang.String;
+
+        if aMessage != null goto label1;
+
+        $r0 = "";
+
+        goto label2;
+
+     label1:
+        $r0 = aMessage;
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.lang.String mMessage> = $r0;
+
+        return;
+    }
+
+    public java.lang.String getMessage()
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.lang.String mMessage>;
+
+        return $r0;
+    }
+
+    public void setIgnoreComments(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        boolean aIgnoreComments;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        aIgnoreComments := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: boolean mIgnoreComments> = aIgnoreComments;
+
+        return;
+    }
+
+    public void setIllegalPattern(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        boolean aIllegalPattern;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        aIllegalPattern := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: boolean mIllegalPattern> = aIllegalPattern;
+
+        return;
+    }
+
+    public void setErrorLimit(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        int aErrorLimit;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        aErrorLimit := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mErrorLimit> = aErrorLimit;
+
+        return;
+    }
+
+    public void setDuplicateLimit(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        int aDuplicateLimit, $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        aDuplicateLimit := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mDuplicateLimit> = aDuplicateLimit;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mDuplicateLimit>;
+
+        if $i0 <= -1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: boolean mCheckForDuplicates> = $z0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        $r0 = newarray (int)[0];
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.regex.Pattern pattern;
+        java.lang.String[] lines;
+        java.lang.StringBuffer sb, $r1;
+        int i, j, $i0, $i1, $i2, $i3;
+        java.util.List $r0, $r9;
+        java.lang.String $r2, $r4, $r6;
+        java.util.regex.Matcher $r3;
+        java.lang.Integer[] $r8;
+        java.lang.Integer $r10, $r11;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.List mCharacters>;
+
+        interfaceinvoke $r0.<java.util.List: void clear()>();
+
+        pattern = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.regex.Pattern getRegexp()>();
+
+        lines = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.lang.String[] getLines()>();
+
+        $r1 = new java.lang.StringBuffer;
+
+        specialinvoke $r1.<java.lang.StringBuffer: void <init>()>();
+
+        sb = $r1;
+
+        i = 0;
+
+     label1:
+        $i0 = lengthof lines;
+
+        if i >= $i0 goto label4;
+
+        $r4 = lines[i];
+
+        virtualinvoke sb.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r4);
+
+        virtualinvoke sb.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(10);
+
+        j = 0;
+
+     label2:
+        $r6 = lines[i];
+
+        $i2 = virtualinvoke $r6.<java.lang.String: int length()>();
+
+        $i1 = $i2 + 1;
+
+        if j >= $i1 goto label3;
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.List mCharacters>;
+
+        $r8 = newarray (java.lang.Integer)[2];
+
+        $i3 = i + 1;
+
+        $r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+
+        $r8[0] = $r10;
+
+        $r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(j);
+
+        $r8[1] = $r11;
+
+        interfaceinvoke $r9.<java.util.List: boolean add(java.lang.Object)>($r8);
+
+        j = j + 1;
+
+        goto label2;
+
+     label3:
+        i = i + 1;
+
+        goto label1;
+
+     label4:
+        $r2 = virtualinvoke sb.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        $r3 = virtualinvoke pattern.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r2);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.regex.Matcher mMatcher> = $r3;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mMatchCount> = 0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mErrorCount> = 0;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: void findMatch()>();
+
+        return;
+    }
+
+    private void findMatch()
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        int startLine, startColumn, endLine, endColumn, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15;
+        boolean foundMatch, ignore, $z0, $z1, $z2, $z3, $z4, $z5;
+        com.puppycrawl.tools.checkstyle.api.FileContents theFileContents;
+        java.util.regex.Matcher $r0, $r1, $r6, $r12, $r16;
+        java.util.List $r2, $r7, $r11, $r17;
+        java.lang.Object $r3, $r9, $r14, $r19;
+        java.lang.Integer[] $r4, $r8, $r13, $r20;
+        java.lang.Integer $r5, $r10, $r15, $r18;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        ignore = 0;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.regex.Matcher mMatcher>;
+
+        foundMatch = virtualinvoke $r0.<java.util.regex.Matcher: boolean find()>();
+
+        if foundMatch != 0 goto label1;
+
+        $z5 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: boolean mIllegalPattern>;
+
+        if $z5 != 0 goto label1;
+
+        $i15 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mMatchCount>;
+
+        if $i15 != 0 goto label1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: void logMessage(int)>(0);
+
+        goto label6;
+
+     label1:
+        if foundMatch == 0 goto label6;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.List mCharacters>;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.regex.Matcher mMatcher>;
+
+        $i0 = virtualinvoke $r1.<java.util.regex.Matcher: int start()>();
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>($i0);
+
+        $r4 = (java.lang.Integer[]) $r3;
+
+        $r5 = $r4[0];
+
+        startLine = virtualinvoke $r5.<java.lang.Integer: int intValue()>();
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.List mCharacters>;
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.regex.Matcher mMatcher>;
+
+        $i1 = virtualinvoke $r6.<java.util.regex.Matcher: int start()>();
+
+        $r9 = interfaceinvoke $r7.<java.util.List: java.lang.Object get(int)>($i1);
+
+        $r8 = (java.lang.Integer[]) $r9;
+
+        $r10 = $r8[1];
+
+        startColumn = virtualinvoke $r10.<java.lang.Integer: int intValue()>();
+
+        $r11 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.List mCharacters>;
+
+        $r12 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.regex.Matcher mMatcher>;
+
+        $i3 = virtualinvoke $r12.<java.util.regex.Matcher: int end()>();
+
+        $i2 = $i3 - 1;
+
+        $r14 = interfaceinvoke $r11.<java.util.List: java.lang.Object get(int)>($i2);
+
+        $r13 = (java.lang.Integer[]) $r14;
+
+        $r15 = $r13[0];
+
+        endLine = virtualinvoke $r15.<java.lang.Integer: int intValue()>();
+
+        $r17 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.List mCharacters>;
+
+        $r16 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.util.regex.Matcher mMatcher>;
+
+        $i4 = virtualinvoke $r16.<java.util.regex.Matcher: int end()>();
+
+        $i5 = $i4 - 1;
+
+        $r19 = interfaceinvoke $r17.<java.util.List: java.lang.Object get(int)>($i5);
+
+        $r20 = (java.lang.Integer[]) $r19;
+
+        $r18 = $r20[1];
+
+        endColumn = virtualinvoke $r18.<java.lang.Integer: int intValue()>();
+
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: boolean mIgnoreComments>;
+
+        if $z1 == 0 goto label2;
+
+        theFileContents = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        ignore = virtualinvoke theFileContents.<com.puppycrawl.tools.checkstyle.api.FileContents: boolean hasIntersectionWithComment(int,int,int,int)>(startLine, startColumn, endLine, endColumn);
+
+     label2:
+        if ignore != 0 goto label4;
+
+        $i9 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mMatchCount>;
+
+        $i8 = $i9 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mMatchCount> = $i8;
+
+        $z2 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: boolean mIllegalPattern>;
+
+        if $z2 != 0 goto label3;
+
+        $z4 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: boolean mCheckForDuplicates>;
+
+        if $z4 == 0 goto label4;
+
+        $i10 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mMatchCount>;
+
+        $i13 = $i10 - 1;
+
+        $i14 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mDuplicateLimit>;
+
+        if $i13 <= $i14 goto label4;
+
+     label3:
+        $i12 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mErrorCount>;
+
+        $i11 = $i12 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mErrorCount> = $i11;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: void logMessage(int)>(startLine);
+
+     label4:
+        $i6 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mErrorCount>;
+
+        $i7 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mErrorLimit>;
+
+        if $i6 >= $i7 goto label6;
+
+        if ignore != 0 goto label5;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: boolean mIllegalPattern>;
+
+        if $z0 != 0 goto label5;
+
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: boolean mCheckForDuplicates>;
+
+        if $z3 == 0 goto label6;
+
+     label5:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: void findMatch()>();
+
+     label6:
+        return;
+    }
+
+    private void logMessage(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.RegexpCheck this;
+        int aLineNumber, $i0, $i1;
+        java.lang.String message, $r0, $r1, $r8;
+        boolean $z0, $z1;
+        java.lang.Object[] $r2, $r3, $r4;
+        java.lang.StringBuilder $r5, $r6, $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.RegexpCheck;
+
+        aLineNumber := @parameter0: int;
+
+        $r0 = "";
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.lang.String getMessage()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label1;
+
+        $r8 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.lang.String getFormat()>();
+
+        goto label2;
+
+     label1:
+        $r8 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.lang.String mMessage>;
+
+     label2:
+        message = $r8;
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mErrorCount>;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int mErrorLimit>;
+
+        if $i1 < $i0 goto label3;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("The error limit has been exceeded, the check is aborting, there may be more unreported errors.");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(message);
+
+        message = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label3:
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: boolean mIllegalPattern>;
+
+        if $z1 == 0 goto label4;
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r4[0] = message;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: void log(int,java.lang.String,java.lang.Object[])>(aLineNumber, "illegal.regexp", $r4);
+
+        goto label6;
+
+     label4:
+        if aLineNumber <= 0 goto label5;
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r3[0] = message;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: void log(int,java.lang.String,java.lang.Object[])>(aLineNumber, "duplicate.regexp", $r3);
+
+        goto label6;
+
+     label5:
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r2[0] = message;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.RegexpCheck: void log(int,java.lang.String,java.lang.Object[])>(aLineNumber, "required.regexp", $r2);
+
+     label6:
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.RegexpCheck: java.lang.String ERROR_LIMIT_EXCEEDED_MESSAGE> = "The error limit has been exceeded, the check is aborting, there may be more unreported errors.";
+
+        <com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int DEFAULT_ERROR_LIMIT> = 100;
+
+        <com.puppycrawl.tools.checkstyle.checks.RegexpCheck: int DEFAULT_DUPLICATE_LIMIT> = -1;
+
+        return;
+    }
+}

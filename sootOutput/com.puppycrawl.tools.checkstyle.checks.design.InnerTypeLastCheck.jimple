@@ -1,0 +1,113 @@
+public class com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mRootClass;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck: boolean mRootClass> = 1;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 14;
+
+        $r0[1] = 15;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nextSibling;
+        boolean $z0;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck: boolean mRootClass>;
+
+        if $z0 == 0 goto label1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck: boolean mRootClass> = 0;
+
+        goto label6;
+
+     label1:
+        nextSibling = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label2:
+        if null == nextSibling goto label6;
+
+        $i0 = virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 14 goto label3;
+
+        $i5 = virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i5 == 15 goto label6;
+
+     label3:
+        $i1 = virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 10 goto label4;
+
+        $i4 = virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i4 != 9 goto label5;
+
+     label4:
+        $i2 = virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i2, $i3, "arrangement.members.before.inner", $r0);
+
+     label5:
+        nextSibling = virtualinvoke nextSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label2;
+
+     label6:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if null != $r0 goto label1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck: boolean mRootClass> = 1;
+
+     label1:
+        return;
+    }
+}

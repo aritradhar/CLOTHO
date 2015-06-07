@@ -1,0 +1,15 @@
+public interface  com.puppycrawl.tools.checkstyle.api.AuditListener extends java.lang.Object implements java.util.EventListener
+{
+
+    public abstract void auditStarted(com.puppycrawl.tools.checkstyle.api.AuditEvent);
+
+    public abstract void auditFinished(com.puppycrawl.tools.checkstyle.api.AuditEvent);
+
+    public abstract void fileStarted(com.puppycrawl.tools.checkstyle.api.AuditEvent);
+
+    public abstract void fileFinished(com.puppycrawl.tools.checkstyle.api.AuditEvent);
+
+    public abstract void addError(com.puppycrawl.tools.checkstyle.api.AuditEvent);
+
+    public abstract void addException(com.puppycrawl.tools.checkstyle.api.AuditEvent, java.lang.Throwable);
+}

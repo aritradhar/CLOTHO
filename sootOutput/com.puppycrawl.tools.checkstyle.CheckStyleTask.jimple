@@ -1,0 +1,1164 @@
+public class com.puppycrawl.tools.checkstyle.CheckStyleTask extends org.apache.tools.ant.Task
+{
+    private static final java.lang.String E_XML;
+    private static final java.lang.String E_PLAIN;
+    private org.apache.tools.ant.types.Path mClasspath;
+    private java.lang.String mFileName;
+    private java.lang.String mConfigLocation;
+    private boolean mFailOnViolation;
+    private java.lang.String mFailureProperty;
+    private final java.util.List mFileSets;
+    private final java.util.List mFormatters;
+    private final java.util.List mOverrideProps;
+    private java.io.File mPropertiesFile;
+    private int mMaxErrors;
+    private int mMaxWarnings;
+    private boolean mOmitIgnoredModules;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.util.ArrayList $r0, $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        specialinvoke this.<org.apache.tools.ant.Task: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: boolean mFailOnViolation> = 1;
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mFileSets> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mFormatters> = $r1;
+
+        $r2 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mOverrideProps> = $r2;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: int mMaxWarnings> = 2147483647;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: boolean mOmitIgnoredModules> = 1;
+
+        return;
+    }
+
+    public void setFailureProperty(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.lang.String aPropertyName;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aPropertyName := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mFailureProperty> = aPropertyName;
+
+        return;
+    }
+
+    public void setFailOnViolation(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        boolean aFail;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aFail := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: boolean mFailOnViolation> = aFail;
+
+        return;
+    }
+
+    public void setMaxErrors(int)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        int aMaxErrors;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aMaxErrors := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: int mMaxErrors> = aMaxErrors;
+
+        return;
+    }
+
+    public void setMaxWarnings(int)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        int aMaxWarnings;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aMaxWarnings := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: int mMaxWarnings> = aMaxWarnings;
+
+        return;
+    }
+
+    public void addFileset(org.apache.tools.ant.types.FileSet)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        org.apache.tools.ant.types.FileSet aFS;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aFS := @parameter0: org.apache.tools.ant.types.FileSet;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mFileSets>;
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>(aFS);
+
+        return;
+    }
+
+    public void addFormatter(com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter aFormatter;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aFormatter := @parameter0: com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mFormatters>;
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>(aFormatter);
+
+        return;
+    }
+
+    public void addProperty(com.puppycrawl.tools.checkstyle.CheckStyleTask$Property)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Property aProperty;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aProperty := @parameter0: com.puppycrawl.tools.checkstyle.CheckStyleTask$Property;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mOverrideProps>;
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>(aProperty);
+
+        return;
+    }
+
+    public void setClasspath(org.apache.tools.ant.types.Path)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        org.apache.tools.ant.types.Path aClasspath, $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aClasspath := @parameter0: org.apache.tools.ant.types.Path;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.types.Path mClasspath>;
+
+        if $r0 != null goto label1;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.types.Path mClasspath> = aClasspath;
+
+        goto label2;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.types.Path mClasspath>;
+
+        virtualinvoke $r1.<org.apache.tools.ant.types.Path: void append(org.apache.tools.ant.types.Path)>(aClasspath);
+
+     label2:
+        return;
+    }
+
+    public void setClasspathRef(org.apache.tools.ant.types.Reference)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        org.apache.tools.ant.types.Reference aClasspathRef;
+        org.apache.tools.ant.types.Path $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aClasspathRef := @parameter0: org.apache.tools.ant.types.Reference;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.types.Path createClasspath()>();
+
+        virtualinvoke $r0.<org.apache.tools.ant.types.Path: void setRefid(org.apache.tools.ant.types.Reference)>(aClasspathRef);
+
+        return;
+    }
+
+    public org.apache.tools.ant.types.Path createClasspath()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        org.apache.tools.ant.types.Path $r0, $r1, $r2, $r3;
+        org.apache.tools.ant.Project $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.types.Path mClasspath>;
+
+        if $r0 != null goto label1;
+
+        $r3 = new org.apache.tools.ant.types.Path;
+
+        $r4 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.Project getProject()>();
+
+        specialinvoke $r3.<org.apache.tools.ant.types.Path: void <init>(org.apache.tools.ant.Project)>($r4);
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.types.Path mClasspath> = $r3;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.types.Path mClasspath>;
+
+        $r2 = virtualinvoke $r1.<org.apache.tools.ant.types.Path: org.apache.tools.ant.types.Path createPath()>();
+
+        return $r2;
+    }
+
+    public void setFile(java.io.File)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.io.File aFile;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aFile := @parameter0: java.io.File;
+
+        $r0 = virtualinvoke aFile.<java.io.File: java.lang.String getAbsolutePath()>();
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mFileName> = $r0;
+
+        return;
+    }
+
+    public void setConfig(java.io.File)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.io.File aFile;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aFile := @parameter0: java.io.File;
+
+        $r0 = virtualinvoke aFile.<java.io.File: java.lang.String getAbsolutePath()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void setConfigLocation(java.lang.String)>($r0);
+
+        return;
+    }
+
+    public void setConfigURL(java.net.URL)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.net.URL aURL;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aURL := @parameter0: java.net.URL;
+
+        $r0 = virtualinvoke aURL.<java.net.URL: java.lang.String toExternalForm()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void setConfigLocation(java.lang.String)>($r0);
+
+        return;
+    }
+
+    private void setConfigLocation(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.lang.String aLocation, $r0;
+        org.apache.tools.ant.BuildException $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aLocation := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mConfigLocation>;
+
+        if $r0 == null goto label1;
+
+        $r1 = new org.apache.tools.ant.BuildException;
+
+        specialinvoke $r1.<org.apache.tools.ant.BuildException: void <init>(java.lang.String)>("Attributes \'config\' and \'configURL\' must not be set at the same time");
+
+        throw $r1;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mConfigLocation> = aLocation;
+
+        return;
+    }
+
+    public void setOmitIgnoredModules(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        boolean aOmit;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aOmit := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: boolean mOmitIgnoredModules> = aOmit;
+
+        return;
+    }
+
+    public void setProperties(java.io.File)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.io.File aProps;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        aProps := @parameter0: java.io.File;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.io.File mPropertiesFile> = aProps;
+
+        return;
+    }
+
+    public void execute() throws org.apache.tools.ant.BuildException
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        long startTime, endTime, $l0, $l1;
+        java.lang.Throwable l5, $r5;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3, $r6, $r7, $r8, $r10;
+        java.lang.String $r4, $r9;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        startTime = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void realExecute()>();
+
+     label2:
+        endTime = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Total execution took ");
+
+        $l0 = endTime - startTime;
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms.");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void log(java.lang.String,int)>($r4, 3);
+
+        goto label5;
+
+     label3:
+        $r5 := @caughtexception;
+
+        l5 = $r5;
+
+     label4:
+        endTime = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Total execution took ");
+
+        $l1 = endTime - startTime;
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms.");
+
+        $r9 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void log(java.lang.String,int)>($r9, 3);
+
+        throw l5;
+
+     label5:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+        catch java.lang.Throwable from label3 to label4 with label3;
+    }
+
+    private void realExecute()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.util.ResourceBundle compilationProperties;
+        java.lang.String version, compileTimestamp, failureMsg, $r4, $r7, $r8, $r9, $r18, $r23, $r26, $r27, $r31, $r41, $r42;
+        com.puppycrawl.tools.checkstyle.Checker c;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter warningCounter, $r11;
+        long startTime, endTime, $l0, $l2;
+        java.util.List files, $r48;
+        int numErrs, numWarnings, $i1, $i3, $i4;
+        boolean ok, $z0, $z1, $z2;
+        java.lang.Throwable l15, $r50;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3, $r5, $r6, $r12, $r13, $r14, $r15, $r16, $r17, $r19, $r20, $r21, $r22, $r24, $r25, $r28, $r29, $r30, $r32, $r33, $r34, $r35, $r36, $r37, $r38, $r39;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r10;
+        org.apache.tools.ant.Project $r40;
+        org.apache.tools.ant.BuildException $r43, $r45, $r47;
+        org.apache.tools.ant.Location $r44, $r46, $r49;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        compilationProperties = staticinvoke <java.util.ResourceBundle: java.util.ResourceBundle getBundle(java.lang.String)>("checkstylecompilation");
+
+        version = virtualinvoke compilationProperties.<java.util.ResourceBundle: java.lang.String getString(java.lang.String)>("checkstyle.compile.version");
+
+        compileTimestamp = virtualinvoke compilationProperties.<java.util.ResourceBundle: java.lang.String getString(java.lang.String)>("checkstyle.compile.timestamp");
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("checkstyle version ");
+
+        $r1 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(version);
+
+        $r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void log(java.lang.String,int)>($r4, 3);
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("compiled on ");
+
+        $r5 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(compileTimestamp);
+
+        $r8 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void log(java.lang.String,int)>($r8, 3);
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mFileName>;
+
+        if $r7 != null goto label01;
+
+        $r48 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mFileSets>;
+
+        $z2 = interfaceinvoke $r48.<java.util.List: boolean isEmpty()>();
+
+        if $z2 == 0 goto label01;
+
+        $r45 = new org.apache.tools.ant.BuildException;
+
+        $r46 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.Location getLocation()>();
+
+        specialinvoke $r45.<org.apache.tools.ant.BuildException: void <init>(java.lang.String,org.apache.tools.ant.Location)>("Must specify at least one of \'file\' or nested \'fileset\'.", $r46);
+
+        throw $r45;
+
+     label01:
+        $r9 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mConfigLocation>;
+
+        if $r9 != null goto label02;
+
+        $r47 = new org.apache.tools.ant.BuildException;
+
+        $r49 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.Location getLocation()>();
+
+        specialinvoke $r47.<org.apache.tools.ant.BuildException: void <init>(java.lang.String,org.apache.tools.ant.Location)>("Must specify \'config\'.", $r49);
+
+        throw $r47;
+
+     label02:
+        c = null;
+
+     label03:
+        c = specialinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: com.puppycrawl.tools.checkstyle.Checker createChecker()>();
+
+        $r11 = new com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+
+        $r10 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel WARNING>;
+
+        specialinvoke $r11.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: void <init>(com.puppycrawl.tools.checkstyle.api.SeverityLevel)>($r10);
+
+        warningCounter = $r11;
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: void addListener(com.puppycrawl.tools.checkstyle.api.AuditListener)>(warningCounter);
+
+        startTime = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        files = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List scanFileSets()>();
+
+        endTime = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+
+        $r15 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("To locate the files took ");
+
+        $l0 = endTime - startTime;
+
+        $r13 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms.");
+
+        $r18 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void log(java.lang.String,int)>($r18, 3);
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>()>();
+
+        $r16 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Running Checkstyle ");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(version);
+
+        $r22 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" on ");
+
+        $i1 = interfaceinvoke files.<java.util.List: int size()>();
+
+        $r20 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" files");
+
+        $r26 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void log(java.lang.String,int)>($r26, 2);
+
+        $r25 = new java.lang.StringBuilder;
+
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+
+        $r24 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Using configuration ");
+
+        $r23 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mConfigLocation>;
+
+        $r28 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+
+        $r27 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void log(java.lang.String,int)>($r27, 3);
+
+        startTime = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        numErrs = virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: int process(java.util.List)>(files);
+
+        endTime = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r30 = new java.lang.StringBuilder;
+
+        specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+
+        $r29 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("To process the files took ");
+
+        $l2 = endTime - startTime;
+
+        $r33 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r32 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms.");
+
+        $r31 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void log(java.lang.String,int)>($r31, 3);
+
+        numWarnings = virtualinvoke warningCounter.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: int getCount()>();
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: int mMaxErrors>;
+
+        if numErrs > $i3 goto label04;
+
+        $i4 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: int mMaxWarnings>;
+
+        if numWarnings > $i4 goto label04;
+
+        $z0 = 1;
+
+        goto label05;
+
+     label04:
+        $z0 = 0;
+
+     label05:
+        ok = $z0;
+
+        if ok != 0 goto label07;
+
+        $r37 = new java.lang.StringBuilder;
+
+        specialinvoke $r37.<java.lang.StringBuilder: void <init>()>();
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Got ");
+
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(numErrs);
+
+        $r34 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" errors and ");
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(numWarnings);
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" warnings.");
+
+        failureMsg = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r42 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mFailureProperty>;
+
+        if $r42 == null goto label06;
+
+        $r40 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.Project getProject()>();
+
+        $r41 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mFailureProperty>;
+
+        virtualinvoke $r40.<org.apache.tools.ant.Project: void setProperty(java.lang.String,java.lang.String)>($r41, failureMsg);
+
+     label06:
+        $z1 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: boolean mFailOnViolation>;
+
+        if $z1 == 0 goto label07;
+
+        $r43 = new org.apache.tools.ant.BuildException;
+
+        $r44 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.Location getLocation()>();
+
+        specialinvoke $r43.<org.apache.tools.ant.BuildException: void <init>(java.lang.String,org.apache.tools.ant.Location)>(failureMsg, $r44);
+
+        throw $r43;
+
+     label07:
+        if c == null goto label11;
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: void destroy()>();
+
+        goto label11;
+
+     label08:
+        $r50 := @caughtexception;
+
+        l15 = $r50;
+
+     label09:
+        if c == null goto label10;
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: void destroy()>();
+
+     label10:
+        throw l15;
+
+     label11:
+        return;
+
+        catch java.lang.Throwable from label03 to label07 with label08;
+        catch java.lang.Throwable from label08 to label09 with label08;
+    }
+
+    private com.puppycrawl.tools.checkstyle.Checker createChecker()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.util.Properties props;
+        com.puppycrawl.tools.checkstyle.api.Configuration config;
+        com.puppycrawl.tools.checkstyle.DefaultContext context, $r2;
+        org.apache.tools.ant.AntClassLoader loader, $r4;
+        java.lang.ClassLoader moduleClassLoader;
+        com.puppycrawl.tools.checkstyle.api.AuditListener[] listeners, arr$;
+        int len$, i$;
+        com.puppycrawl.tools.checkstyle.api.AuditListener element;
+        com.puppycrawl.tools.checkstyle.PropertiesExpander $r0;
+        java.lang.String $r1, $r11, $r13;
+        boolean $z0;
+        org.apache.tools.ant.Project $r3;
+        java.lang.Class $r5;
+        org.apache.tools.ant.types.Path $r6;
+        com.puppycrawl.tools.checkstyle.Checker $r7, c;
+        java.lang.Exception $r8, props;
+        java.lang.StringBuilder $r9, $r12, $r14;
+        org.apache.tools.ant.BuildException $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+     label1:
+        props = specialinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.Properties createOverridingProperties()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mConfigLocation>;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.PropertiesExpander;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.PropertiesExpander: void <init>(java.util.Properties)>(props);
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: boolean mOmitIgnoredModules>;
+
+        config = staticinvoke <com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration(java.lang.String,com.puppycrawl.tools.checkstyle.PropertyResolver,boolean)>($r1, $r0, $z0);
+
+        $r2 = new com.puppycrawl.tools.checkstyle.DefaultContext;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.DefaultContext: void <init>()>();
+
+        context = $r2;
+
+        $r4 = new org.apache.tools.ant.AntClassLoader;
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.Project getProject()>();
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.types.Path mClasspath>;
+
+        specialinvoke $r4.<org.apache.tools.ant.AntClassLoader: void <init>(org.apache.tools.ant.Project,org.apache.tools.ant.types.Path)>($r3, $r6);
+
+        loader = $r4;
+
+        virtualinvoke context.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("classloader", loader);
+
+        $r5 = class "com/puppycrawl/tools/checkstyle/Checker";
+
+        moduleClassLoader = virtualinvoke $r5.<java.lang.Class: java.lang.ClassLoader getClassLoader()>();
+
+        virtualinvoke context.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("moduleClassLoader", moduleClassLoader);
+
+        $r7 = new com.puppycrawl.tools.checkstyle.Checker;
+
+        specialinvoke $r7.<com.puppycrawl.tools.checkstyle.Checker: void <init>()>();
+
+        c = $r7;
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: void contextualize(com.puppycrawl.tools.checkstyle.api.Context)>(context);
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: void configure(com.puppycrawl.tools.checkstyle.api.Configuration)>(config);
+
+        listeners = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: com.puppycrawl.tools.checkstyle.api.AuditListener[] getListeners()>();
+
+        arr$ = listeners;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label2:
+        if i$ >= len$ goto label3;
+
+        element = arr$[i$];
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: void addListener(com.puppycrawl.tools.checkstyle.api.AuditListener)>(element);
+
+        i$ = i$ + 1;
+
+        goto label2;
+
+     label3:
+        goto label5;
+
+     label4:
+        $r8 := @caughtexception;
+
+        props = $r8;
+
+        $r10 = new org.apache.tools.ant.BuildException;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r12 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to create a Checker: ");
+
+        $r11 = virtualinvoke props.<java.lang.Exception: java.lang.String getMessage()>();
+
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+        $r13 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<org.apache.tools.ant.BuildException: void <init>(java.lang.String,java.lang.Throwable)>($r13, props);
+
+        throw $r10;
+
+     label5:
+        return c;
+
+        catch java.lang.Exception from label1 to label3 with label4;
+    }
+
+    private java.util.Properties createOverridingProperties()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.util.Properties retVal, $r0;
+        java.io.FileInputStream inStream, $r10;
+        java.io.FileNotFoundException e, $r12;
+        java.lang.Throwable name, $r31;
+        java.lang.String key, value, $r6, $r7, $r18, $r27;
+        java.io.File $r1, $r13, $r16, $r28;
+        org.apache.tools.ant.Project $r2;
+        java.util.Set $r3;
+        boolean $z0, $z1;
+        java.util.List $r4;
+        java.lang.Object $r5, $r9, name;
+        java.lang.StringBuilder $r14, $r17, $r20, $r21, $r22, $r23, $r26, $r29;
+        org.apache.tools.ant.BuildException $r15, $r25;
+        org.apache.tools.ant.Location $r19, $r30;
+        java.io.IOException $r24, e;
+        java.util.Hashtable inStream;
+        java.util.Iterator e;
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Property name;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        $r0 = new java.util.Properties;
+
+        specialinvoke $r0.<java.util.Properties: void <init>()>();
+
+        retVal = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.io.File mPropertiesFile>;
+
+        if $r1 == null goto label07;
+
+        inStream = null;
+
+     label01:
+        $r10 = new java.io.FileInputStream;
+
+        $r13 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.io.File mPropertiesFile>;
+
+        specialinvoke $r10.<java.io.FileInputStream: void <init>(java.io.File)>($r13);
+
+        inStream = $r10;
+
+        virtualinvoke retVal.<java.util.Properties: void load(java.io.InputStream)>(inStream);
+
+     label02:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(inStream);
+
+        goto label07;
+
+     label03:
+        $r12 := @caughtexception;
+
+        e = $r12;
+
+        $r15 = new org.apache.tools.ant.BuildException;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+
+        $r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Could not find Properties file \'");
+
+        $r16 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.io.File mPropertiesFile>;
+
+        $r20 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r16);
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'");
+
+        $r18 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r19 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.Location getLocation()>();
+
+        specialinvoke $r15.<org.apache.tools.ant.BuildException: void <init>(java.lang.String,java.lang.Throwable,org.apache.tools.ant.Location)>($r18, e, $r19);
+
+        throw $r15;
+
+     label04:
+        $r24 := @caughtexception;
+
+        e = $r24;
+
+        $r25 = new org.apache.tools.ant.BuildException;
+
+        $r22 = new java.lang.StringBuilder;
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>()>();
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Error loading Properties file \'");
+
+        $r28 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.io.File mPropertiesFile>;
+
+        $r29 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r28);
+
+        $r26 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'");
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r30 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.Location getLocation()>();
+
+        specialinvoke $r25.<org.apache.tools.ant.BuildException: void <init>(java.lang.String,java.lang.Throwable,org.apache.tools.ant.Location)>($r27, e, $r30);
+
+        throw $r25;
+
+     label05:
+        $r31 := @caughtexception;
+
+        name = $r31;
+
+     label06:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(inStream);
+
+        throw name;
+
+     label07:
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.Project getProject()>();
+
+        inStream = virtualinvoke $r2.<org.apache.tools.ant.Project: java.util.Hashtable getProperties()>();
+
+        $r3 = virtualinvoke inStream.<java.util.Hashtable: java.util.Set keySet()>();
+
+        e = interfaceinvoke $r3.<java.util.Set: java.util.Iterator iterator()>();
+
+     label08:
+        $z0 = interfaceinvoke e.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label09;
+
+        name = interfaceinvoke e.<java.util.Iterator: java.lang.Object next()>();
+
+        key = (java.lang.String) name;
+
+        $r9 = virtualinvoke inStream.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(key);
+
+        value = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r9);
+
+        virtualinvoke retVal.<java.util.Properties: java.lang.Object put(java.lang.Object,java.lang.Object)>(key, value);
+
+        goto label08;
+
+     label09:
+        $r4 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mOverrideProps>;
+
+        e = interfaceinvoke $r4.<java.util.List: java.util.Iterator iterator()>();
+
+     label10:
+        $z1 = interfaceinvoke e.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label11;
+
+        $r5 = interfaceinvoke e.<java.util.Iterator: java.lang.Object next()>();
+
+        name = (com.puppycrawl.tools.checkstyle.CheckStyleTask$Property) $r5;
+
+        $r7 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Property: java.lang.String getKey()>();
+
+        $r6 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Property: java.lang.String getValue()>();
+
+        virtualinvoke retVal.<java.util.Properties: java.lang.Object put(java.lang.Object,java.lang.Object)>($r7, $r6);
+
+        goto label10;
+
+     label11:
+        return retVal;
+
+        catch java.io.FileNotFoundException from label01 to label02 with label03;
+        catch java.io.IOException from label01 to label02 with label04;
+        catch java.lang.Throwable from label01 to label02 with label05;
+        catch java.lang.Throwable from label03 to label06 with label05;
+    }
+
+    protected com.puppycrawl.tools.checkstyle.api.AuditListener[] getListeners() throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException, java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        int formatterCount, $i0, debug;
+        com.puppycrawl.tools.checkstyle.api.AuditListener[] listeners;
+        org.apache.tools.ant.taskdefs.LogOutputStream debug, err, $r5, $r6;
+        java.util.List $r0, $r1, $r2;
+        boolean $z0;
+        java.lang.Object $r3;
+        com.puppycrawl.tools.checkstyle.api.AuditListener $r4;
+        com.puppycrawl.tools.checkstyle.DefaultLogger $r7;
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter err;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mFormatters>;
+
+        $i0 = interfaceinvoke $r0.<java.util.List: int size()>();
+
+        formatterCount = staticinvoke <java.lang.Math: int max(int,int)>(1, $i0);
+
+        listeners = newarray (com.puppycrawl.tools.checkstyle.api.AuditListener)[formatterCount];
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mFormatters>;
+
+        $z0 = interfaceinvoke $r1.<java.util.List: boolean isEmpty()>();
+
+        if $z0 == 0 goto label1;
+
+        $r5 = new org.apache.tools.ant.taskdefs.LogOutputStream;
+
+        specialinvoke $r5.<org.apache.tools.ant.taskdefs.LogOutputStream: void <init>(org.apache.tools.ant.Task,int)>(this, 4);
+
+        debug = $r5;
+
+        $r6 = new org.apache.tools.ant.taskdefs.LogOutputStream;
+
+        specialinvoke $r6.<org.apache.tools.ant.taskdefs.LogOutputStream: void <init>(org.apache.tools.ant.Task,int)>(this, 0);
+
+        err = $r6;
+
+        $r7 = new com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        specialinvoke $r7.<com.puppycrawl.tools.checkstyle.DefaultLogger: void <init>(java.io.OutputStream,boolean,java.io.OutputStream,boolean)>(debug, 1, err, 1);
+
+        listeners[0] = $r7;
+
+        goto label3;
+
+     label1:
+        debug = 0;
+
+     label2:
+        if debug >= formatterCount goto label3;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mFormatters>;
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(debug);
+
+        err = (com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter) $r3;
+
+        $r4 = virtualinvoke err.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Formatter: com.puppycrawl.tools.checkstyle.api.AuditListener createListener(org.apache.tools.ant.Task)>(this);
+
+        listeners[debug] = $r4;
+
+        debug = debug + 1;
+
+        goto label2;
+
+     label3:
+        return listeners;
+    }
+
+    protected java.util.List scanFileSets()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask this;
+        java.util.ArrayList list;
+        int i, len$, i$, $i0, $i1;
+        org.apache.tools.ant.types.FileSet fs;
+        org.apache.tools.ant.DirectoryScanner ds;
+        java.lang.String[] names, arr$;
+        java.lang.String element, pathname, $r0, $r13, $r17, $r20;
+        java.util.List $r1, $r2;
+        org.apache.tools.ant.Project $r3;
+        java.lang.Object $r4;
+        java.lang.StringBuilder $r5, $r6, $r7, $r8, $r9, $r10, $r12, $r14, $r16, $r18;
+        java.io.File $r11, $r15, $r19, $r21;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask;
+
+        list = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mFileName>;
+
+        if $r0 == null goto label1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void log(java.lang.String,int)>("Adding standalone file for audit", 3);
+
+        $r19 = new java.io.File;
+
+        $r20 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String mFileName>;
+
+        specialinvoke $r19.<java.io.File: void <init>(java.lang.String)>($r20);
+
+        interfaceinvoke list.<java.util.List: boolean add(java.lang.Object)>($r19);
+
+     label1:
+        i = 0;
+
+     label2:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mFileSets>;
+
+        $i0 = interfaceinvoke $r1.<java.util.List: int size()>();
+
+        if i >= $i0 goto label5;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: java.util.List mFileSets>;
+
+        $r4 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(i);
+
+        fs = (org.apache.tools.ant.types.FileSet) $r4;
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: org.apache.tools.ant.Project getProject()>();
+
+        ds = virtualinvoke fs.<org.apache.tools.ant.types.FileSet: org.apache.tools.ant.DirectoryScanner getDirectoryScanner(org.apache.tools.ant.Project)>($r3);
+
+        virtualinvoke ds.<org.apache.tools.ant.DirectoryScanner: void scan()>();
+
+        names = virtualinvoke ds.<org.apache.tools.ant.DirectoryScanner: java.lang.String[] getIncludedFiles()>();
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i);
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(") Adding ");
+
+        $i1 = lengthof names;
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r8 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" files from directory ");
+
+        $r11 = virtualinvoke ds.<org.apache.tools.ant.DirectoryScanner: java.io.File getBasedir()>();
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r11);
+
+        $r13 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask: void log(java.lang.String,int)>($r13, 3);
+
+        arr$ = names;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label3:
+        if i$ >= len$ goto label4;
+
+        element = arr$[i$];
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+
+        $r15 = virtualinvoke ds.<org.apache.tools.ant.DirectoryScanner: java.io.File getBasedir()>();
+
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r15);
+
+        $r17 = <java.io.File: java.lang.String separator>;
+
+        $r18 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+
+        $r16 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(element);
+
+        pathname = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r21 = new java.io.File;
+
+        specialinvoke $r21.<java.io.File: void <init>(java.lang.String)>(pathname);
+
+        interfaceinvoke list.<java.util.List: boolean add(java.lang.Object)>($r21);
+
+        i$ = i$ + 1;
+
+        goto label3;
+
+     label4:
+        i = i + 1;
+
+        goto label2;
+
+     label5:
+        return list;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String E_PLAIN> = "plain";
+
+        <com.puppycrawl.tools.checkstyle.CheckStyleTask: java.lang.String E_XML> = "xml";
+
+        return;
+    }
+}

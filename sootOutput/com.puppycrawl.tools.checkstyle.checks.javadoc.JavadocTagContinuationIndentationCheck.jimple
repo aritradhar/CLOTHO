@@ -1,0 +1,211 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck extends com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
+{
+    private static final int DEFAULT_INDENTATION;
+    private int mOffset;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck: int mOffset> = 4;
+
+        return;
+    }
+
+    public void setOffset(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck this;
+        int aOffset;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck;
+
+        aOffset := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck: int mOffset> = aOffset;
+
+        return;
+    }
+
+    public int[] getDefaultJavadocTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 10068;
+
+        return $r0;
+    }
+
+    public void visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aAst, newlineNode, textNode, whitespace, $r1;
+        java.util.List textNodes;
+        java.util.Iterator i$;
+        boolean $z0, $z1;
+        java.lang.Object $r0;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        com.puppycrawl.tools.checkstyle.api.DetailNode[] $r2;
+        java.lang.String $r3;
+        java.lang.Object[] $r4;
+        java.lang.Integer $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        textNodes = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck: java.util.List getAllNewlineNodes(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aAst);
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck: boolean isInlineDescription(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aAst);
+
+        if $z0 == 0 goto label1;
+
+        return;
+
+     label1:
+        i$ = interfaceinvoke textNodes.<java.util.List: java.util.Iterator iterator()>();
+
+     label2:
+        $z1 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label4;
+
+        $r0 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        newlineNode = (com.puppycrawl.tools.checkstyle.api.DetailNode) $r0;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(newlineNode);
+
+        textNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>($r1);
+
+        if textNode == null goto label3;
+
+        $i0 = interfaceinvoke textNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 != 10074 goto label3;
+
+        $r2 = interfaceinvoke textNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren()>();
+
+        $i1 = lengthof $r2;
+
+        if $i1 <= 1 goto label3;
+
+        whitespace = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getFirstChild(com.puppycrawl.tools.checkstyle.api.DetailNode)>(textNode);
+
+        $i2 = interfaceinvoke whitespace.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i2 != 4 goto label3;
+
+        $r3 = interfaceinvoke whitespace.<com.puppycrawl.tools.checkstyle.api.DetailNode: java.lang.String getText()>();
+
+        $i4 = virtualinvoke $r3.<java.lang.String: int length()>();
+
+        $i6 = $i4 - 1;
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck: int mOffset>;
+
+        if $i6 >= $i3 goto label3;
+
+        $i5 = interfaceinvoke textNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getLineNumber()>();
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $i7 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck: int mOffset>;
+
+        $r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i7);
+
+        $r4[0] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck: void log(int,java.lang.String,java.lang.Object[])>($i5, "tag.continuation.indent", $r4);
+
+     label3:
+        goto label2;
+
+     label4:
+        return;
+    }
+
+    private java.util.List getAllNewlineNodes(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aDescriptionNode, node, $r1;
+        java.util.ArrayList textNodes, $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck;
+
+        aDescriptionNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        textNodes = $r0;
+
+        node = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getFirstChild(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aDescriptionNode);
+
+     label1:
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(node);
+
+        if $r1 == null goto label3;
+
+        $i0 = interfaceinvoke node.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 != 6 goto label2;
+
+        interfaceinvoke textNodes.<java.util.List: boolean add(java.lang.Object)>(node);
+
+     label2:
+        node = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(node);
+
+        goto label1;
+
+     label3:
+        return textNodes;
+    }
+
+    private boolean isInlineDescription(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aDescription, inlineTag;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck;
+
+        aDescription := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        inlineTag = interfaceinvoke aDescription.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode getParent()>();
+
+     label1:
+        if inlineTag == null goto label3;
+
+        $i0 = interfaceinvoke inlineTag.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 != 10072 goto label2;
+
+        return 1;
+
+     label2:
+        inlineTag = interfaceinvoke inlineTag.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode getParent()>();
+
+        goto label1;
+
+     label3:
+        return 0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck: int DEFAULT_INDENTATION> = 4;
+
+        return;
+    }
+}

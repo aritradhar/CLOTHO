@@ -1,0 +1,201 @@
+public class ApacheStrutsBug.CoolUriServletDispatcher extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        ApacheStrutsBug.CoolUriServletDispatcher r0;
+
+        r0 := @this: ApacheStrutsBug.CoolUriServletDispatcher;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException
+    {
+        ApacheStrutsBug.CoolUriServletDispatcher r0;
+        javax.servlet.http.HttpServletRequest r1;
+        javax.servlet.http.HttpServletResponse r2;
+        java.lang.String r3, r5, r7, $r8, $r9, $r12, $r15, $r17, $r19, $r23, $r25, $r27, r29;
+        java.util.HashMap r4, $r10;
+        int i0, $i1, $i2, $i3, $i4, $i5;
+        java.util.StringTokenizer r6, $r24;
+        boolean z0, $z1;
+        java.io.PrintStream $r11, $r13, $r14, $r16, $r18, $r22, $r28;
+        java.lang.StringBuilder $r20, $r21;
+        java.lang.Exception $r26, r30;
+
+        r0 := @this: ApacheStrutsBug.CoolUriServletDispatcher;
+
+        r1 := @parameter0: javax.servlet.http.HttpServletRequest;
+
+        r2 := @parameter1: javax.servlet.http.HttpServletResponse;
+
+        $r8 = interfaceinvoke r1.<javax.servlet.http.HttpServletRequest: java.lang.String getServletPath()>();
+
+        $r9 = interfaceinvoke r1.<javax.servlet.http.HttpServletRequest: java.lang.String getServletPath()>();
+
+        $i1 = virtualinvoke $r9.<java.lang.String: int indexOf(int,int)>(47, 1);
+
+        r3 = virtualinvoke $r8.<java.lang.String: java.lang.String substring(int,int)>(1, $i1);
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>("First success");
+
+        $r10 = new java.util.HashMap;
+
+        specialinvoke $r10.<java.util.HashMap: void <init>()>();
+
+        r4 = $r10;
+
+     label1:
+        $r12 = interfaceinvoke r1.<javax.servlet.http.HttpServletRequest: java.lang.String getServletPath()>();
+
+        i0 = virtualinvoke $r12.<java.lang.String: int indexOf(int,int)>(47, 1);
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>("Second");
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(int)>(i0);
+
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        $r15 = interfaceinvoke r1.<javax.servlet.http.HttpServletRequest: java.lang.String getServletPath()>();
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r15);
+
+        $r18 = <java.lang.System: java.io.PrintStream out>;
+
+        $r17 = interfaceinvoke r1.<javax.servlet.http.HttpServletRequest: java.lang.String getServletPath()>();
+
+        $i2 = virtualinvoke $r17.<java.lang.String: int length()>();
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(int)>($i2);
+
+        $r19 = interfaceinvoke r1.<javax.servlet.http.HttpServletRequest: java.lang.String getServletPath()>();
+
+        r5 = virtualinvoke $r19.<java.lang.String: java.lang.String substring(int)>(i0);
+
+        $r22 = <java.lang.System: java.io.PrintStream out>;
+
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>(java.lang.String)>("Second : ");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5);
+
+        $r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r23);
+
+        $r24 = new java.util.StringTokenizer;
+
+        specialinvoke $r24.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r5, "/");
+
+        r6 = $r24;
+
+        z0 = 1;
+
+        r7 = null;
+
+        $i3 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>();
+
+        $i4 = $i3 % 2;
+
+        if $i4 == 0 goto label5;
+
+        z0 = 0;
+
+        r7 = r3;
+
+        goto label5;
+
+     label2:
+        if z0 == 0 goto label3;
+
+        $r27 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        r7 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String)>($r27);
+
+        z0 = 0;
+
+        goto label5;
+
+     label3:
+        $r25 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        r29 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String)>($r25);
+
+        if r7 == null goto label4;
+
+        $i5 = virtualinvoke r7.<java.lang.String: int length()>();
+
+        if $i5 <= 0 goto label4;
+
+        interfaceinvoke r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r7, r29);
+
+     label4:
+        z0 = 1;
+
+     label5:
+        $z1 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>();
+
+        if $z1 != 0 goto label2;
+
+     label6:
+        goto label8;
+
+     label7:
+        $r26 := @caughtexception;
+
+        r30 = $r26;
+
+        $r28 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>("Caught here");
+
+        virtualinvoke r30.<java.lang.Exception: void printStackTrace()>();
+
+     label8:
+        return;
+
+        catch java.lang.Exception from label1 to label6 with label7;
+    }
+
+    public static void main(java.lang.String[]) throws javax.servlet.ServletException
+    {
+        java.lang.String[] r0;
+        org.springframework.mock.web.MockHttpServletRequest r1, $r3;
+        org.springframework.mock.web.MockHttpServletResponse r2, $r4;
+        ApacheStrutsBug.CoolUriServletDispatcher $r5;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r3 = new org.springframework.mock.web.MockHttpServletRequest;
+
+        specialinvoke $r3.<org.springframework.mock.web.MockHttpServletRequest: void <init>()>();
+
+        r1 = $r3;
+
+        virtualinvoke r1.<org.springframework.mock.web.MockHttpServletRequest: void setServerName(java.lang.String)>("www.example.com");
+
+        $r4 = new org.springframework.mock.web.MockHttpServletResponse;
+
+        specialinvoke $r4.<org.springframework.mock.web.MockHttpServletResponse: void <init>()>();
+
+        r2 = $r4;
+
+        $r5 = new ApacheStrutsBug.CoolUriServletDispatcher;
+
+        specialinvoke $r5.<ApacheStrutsBug.CoolUriServletDispatcher: void <init>()>();
+
+        virtualinvoke $r5.<ApacheStrutsBug.CoolUriServletDispatcher: void service(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)>(r1, r2);
+
+        return;
+    }
+}

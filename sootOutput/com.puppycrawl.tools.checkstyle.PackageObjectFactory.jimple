@@ -1,0 +1,292 @@
+class com.puppycrawl.tools.checkstyle.PackageObjectFactory extends java.lang.Object implements com.puppycrawl.tools.checkstyle.ModuleFactory
+{
+    private final java.util.Set mPackages;
+    private final java.lang.ClassLoader mModuleClassLoader;
+
+    public void <init>(java.util.Set, java.lang.ClassLoader)
+    {
+        com.puppycrawl.tools.checkstyle.PackageObjectFactory this;
+        java.util.Set aPackageNames;
+        java.lang.ClassLoader aModuleClassLoader;
+        java.util.LinkedHashSet $r0;
+        java.lang.IllegalArgumentException $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+
+        aPackageNames := @parameter0: java.util.Set;
+
+        aModuleClassLoader := @parameter1: java.lang.ClassLoader;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        if aModuleClassLoader != null goto label1;
+
+        $r1 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r1.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("aModuleClassLoader must not be null");
+
+        throw $r1;
+
+     label1:
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.LinkedHashSet newLinkedHashSet(java.lang.Iterable)>(aPackageNames);
+
+        this.<com.puppycrawl.tools.checkstyle.PackageObjectFactory: java.util.Set mPackages> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.PackageObjectFactory: java.lang.ClassLoader mModuleClassLoader> = aModuleClassLoader;
+
+        return;
+    }
+
+    void addPackage(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.PackageObjectFactory this;
+        java.lang.String aPackageName;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+
+        aPackageName := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.PackageObjectFactory: java.util.Set mPackages>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(aPackageName);
+
+        return;
+    }
+
+    private java.lang.Object doMakeObject(java.lang.String) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.PackageObjectFactory this;
+        java.lang.String aName, packageName, className, $r7;
+        java.lang.Object $r0, $r9, $r12;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r1, $r3, $r13;
+        java.util.Set $r2;
+        boolean $z0;
+        java.lang.StringBuilder $r4, $r5, $r6, $r8, $r10, $r11;
+        java.util.Iterator ex;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+
+        aName := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.PackageObjectFactory: java.lang.Object createObject(java.lang.String)>(aName);
+
+     label2:
+        return $r0;
+
+     label3:
+        $r1 := @caughtexception;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.PackageObjectFactory: java.util.Set mPackages>;
+
+        ex = interfaceinvoke $r2.<java.util.Set: java.util.Iterator iterator()>();
+
+     label4:
+        $z0 = interfaceinvoke ex.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label8;
+
+        $r9 = interfaceinvoke ex.<java.util.Iterator: java.lang.Object next()>();
+
+        packageName = (java.lang.String) $r9;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+
+        $r11 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(packageName);
+
+        $r10 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aName);
+
+        className = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label5:
+        $r12 = specialinvoke this.<com.puppycrawl.tools.checkstyle.PackageObjectFactory: java.lang.Object createObject(java.lang.String)>(className);
+
+     label6:
+        return $r12;
+
+     label7:
+        $r13 := @caughtexception;
+
+        goto label4;
+
+     label8:
+        $r3 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to instantiate ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aName);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String)>($r7);
+
+        throw $r3;
+
+        catch com.puppycrawl.tools.checkstyle.api.CheckstyleException from label1 to label2 with label3;
+        catch com.puppycrawl.tools.checkstyle.api.CheckstyleException from label5 to label6 with label7;
+    }
+
+    private java.lang.Object createObject(java.lang.String) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.PackageObjectFactory this;
+        java.lang.String aClassName, $r7, $r12, $r18;
+        java.lang.Class clazz;
+        java.lang.ClassLoader $r0;
+        java.lang.Object $r1;
+        java.lang.ClassNotFoundException $r2, clazz;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r3, $r9, $r14;
+        java.lang.StringBuilder $r4, $r5, $r6, $r10, $r11, $r13, $r16, $r17, $r19;
+        java.lang.IllegalAccessException $r8, clazz;
+        java.lang.InstantiationException $r15, clazz;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+
+        aClassName := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.PackageObjectFactory: java.lang.ClassLoader mModuleClassLoader>;
+
+        clazz = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>(aClassName, 1, $r0);
+
+        $r1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>();
+
+     label2:
+        return $r1;
+
+     label3:
+        $r2 := @caughtexception;
+
+        clazz = $r2;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to find class for ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aClassName);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r7, clazz);
+
+        throw $r3;
+
+     label4:
+        $r15 := @caughtexception;
+
+        clazz = $r15;
+
+        $r14 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>()>();
+
+        $r16 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to instantiate ");
+
+        $r19 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aClassName);
+
+        $r18 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r14.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r18, clazz);
+
+        throw $r14;
+
+     label5:
+        $r8 := @caughtexception;
+
+        clazz = $r8;
+
+        $r9 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>()>();
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to instantiate ");
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aClassName);
+
+        $r12 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r9.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r12, clazz);
+
+        throw $r9;
+
+        catch java.lang.ClassNotFoundException from label1 to label2 with label3;
+        catch java.lang.InstantiationException from label1 to label2 with label4;
+        catch java.lang.IllegalAccessException from label1 to label2 with label5;
+    }
+
+    public java.lang.Object createModule(java.lang.String) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.PackageObjectFactory this;
+        java.lang.String aName, $r6, $r11;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException ex2, $r1, $r2, $r7;
+        java.lang.Object $r0, $r12;
+        java.lang.StringBuilder $r3, $r4, $r5, $r8, $r9, $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+
+        aName := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.PackageObjectFactory: java.lang.Object doMakeObject(java.lang.String)>(aName);
+
+     label2:
+        return $r0;
+
+     label3:
+        $r7 := @caughtexception;
+
+     label4:
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aName);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Check");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r12 = specialinvoke this.<com.puppycrawl.tools.checkstyle.PackageObjectFactory: java.lang.Object doMakeObject(java.lang.String)>($r11);
+
+     label5:
+        return $r12;
+
+     label6:
+        $r1 := @caughtexception;
+
+        ex2 = $r1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to instantiate ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aName);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r6, ex2);
+
+        throw $r2;
+
+        catch com.puppycrawl.tools.checkstyle.api.CheckstyleException from label1 to label2 with label3;
+        catch com.puppycrawl.tools.checkstyle.api.CheckstyleException from label4 to label5 with label6;
+    }
+}

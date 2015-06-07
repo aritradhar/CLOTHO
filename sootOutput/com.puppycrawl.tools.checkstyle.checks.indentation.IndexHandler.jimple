@@ -1,0 +1,47 @@
+public class com.puppycrawl.tools.checkstyle.checks.indentation.IndexHandler extends com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler
+{
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck, com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndexHandler this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck aIndentCheck;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler aParent;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndexHandler;
+
+        aIndentCheck := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAST := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParent := @parameter2: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,java.lang.String,com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)>(aIndentCheck, "index op", aAST, aParent);
+
+        return;
+    }
+
+    public void checkIndentation()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndexHandler this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndexHandler;
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel suggestedChildLevel(com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndexHandler this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler aChild;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndexHandler;
+
+        aChild := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndexHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel getLevel()>();
+
+        return $r0;
+    }
+}

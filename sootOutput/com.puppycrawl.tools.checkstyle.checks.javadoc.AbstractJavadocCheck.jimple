@@ -1,0 +1,789 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener mErrorListener;
+    private com.puppycrawl.tools.checkstyle.api.DetailAST mBlockCommentAst;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: void <init>(com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck)>(this);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener mErrorListener> = $r0;
+
+        return;
+    }
+
+    public abstract int[] getDefaultJavadocTokens();
+
+    public void beginJavadocTree(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aRootAst;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aRootAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        return;
+    }
+
+    public void finishJavadocTree(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aRootAst;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aRootAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        return;
+    }
+
+    public void visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aAst;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        return;
+    }
+
+    public void leaveJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aAst;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        return;
+    }
+
+    public final int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 152;
+
+        return $r0;
+    }
+
+    public final int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: int[] getAcceptableTokens()>();
+
+        return $r0;
+    }
+
+    public final int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: int[] getRequiredTokens()>();
+
+        return $r0;
+    }
+
+    public final boolean isCommentNodesRequired()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        return 1;
+    }
+
+    public final void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        return;
+    }
+
+    public final void finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        return;
+    }
+
+    public final void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        return;
+    }
+
+    public final void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aBlockCommentAst;
+        java.lang.String commentContent, javadocComment, $r3;
+        org.antlr.v4.runtime.tree.ParseTree parseTree;
+        com.puppycrawl.tools.checkstyle.api.DetailNode node;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener $r0;
+        int $i0, $i1, $i2;
+        java.io.IOException $r1, parseTree;
+        java.lang.Object[] $r2;
+        org.antlr.v4.runtime.misc.ParseCancellationException $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aBlockCommentAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mBlockCommentAst> = aBlockCommentAst;
+
+        commentContent = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: java.lang.String getBlockCommentContent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aBlockCommentAst);
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: boolean isJavadocComment(java.lang.String)>(commentContent);
+
+        if $z0 == 0 goto label5;
+
+        javadocComment = virtualinvoke commentContent.<java.lang.String: java.lang.String substring(int)>(1);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener mErrorListener>;
+
+        $i0 = virtualinvoke aBlockCommentAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = $i0 - 1;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: void setOffset(int)>($i1);
+
+     label1:
+        parseTree = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: org.antlr.v4.runtime.tree.ParseTree parseJavadoc(java.lang.String)>(javadocComment);
+
+        node = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.api.DetailNode convertParseTree2DetailNode(org.antlr.v4.runtime.tree.ParseTree)>(parseTree);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void processTree(com.puppycrawl.tools.checkstyle.api.DetailNode)>(node);
+
+     label2:
+        goto label5;
+
+     label3:
+        $r1 := @caughtexception;
+
+        parseTree = $r1;
+
+        $i2 = virtualinvoke aBlockCommentAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r3 = virtualinvoke parseTree.<java.io.IOException: java.lang.String getMessage()>();
+
+        $r2[0] = $r3;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void log(int,java.lang.String,java.lang.Object[])>($i2, "javadoc.parse.error", $r2);
+
+        goto label5;
+
+     label4:
+        $r4 := @caughtexception;
+
+        return;
+
+     label5:
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+        catch org.antlr.v4.runtime.misc.ParseCancellationException from label1 to label2 with label4;
+    }
+
+    protected com.puppycrawl.tools.checkstyle.api.DetailAST getBlockCommentAst()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mBlockCommentAst>;
+
+        return $r0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailNode convertParseTree2DetailNode(org.antlr.v4.runtime.tree.ParseTree)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        org.antlr.v4.runtime.tree.ParseTree aRootParseTree, currentParseTreeNode, currentParseTreeNodeChild, $r10, $r11, child, currentJavadocNode, subChildren;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl rootJavadocNode, child, currentJavadocNode, i, i, currentParseTreeNodeChild;
+        int childCount, i, j, $i0;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl[] children, subChildren, $r0, $r2, $r8;
+        com.puppycrawl.tools.checkstyle.api.DetailNode[] $r1, $r3, $r9;
+        com.puppycrawl.tools.checkstyle.api.DetailNode $r4, $r5, $r6, $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aRootParseTree := @parameter0: org.antlr.v4.runtime.tree.ParseTree;
+
+        currentParseTreeNode = aRootParseTree;
+
+        rootJavadocNode = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl createJavadocNode(org.antlr.v4.runtime.tree.ParseTree,com.puppycrawl.tools.checkstyle.api.DetailNode,int)>(currentParseTreeNode, null, -1);
+
+        childCount = interfaceinvoke currentParseTreeNode.<org.antlr.v4.runtime.tree.ParseTree: int getChildCount()>();
+
+        $r1 = virtualinvoke rootJavadocNode.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren()>();
+
+        $r0 = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl[]) $r1;
+
+        children = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl[]) $r0;
+
+        i = 0;
+
+     label01:
+        if i >= childCount goto label02;
+
+        $r10 = interfaceinvoke currentParseTreeNode.<org.antlr.v4.runtime.tree.ParseTree: org.antlr.v4.runtime.tree.ParseTree getChild(int)>(i);
+
+        child = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl createJavadocNode(org.antlr.v4.runtime.tree.ParseTree,com.puppycrawl.tools.checkstyle.api.DetailNode,int)>($r10, rootJavadocNode, i);
+
+        children[i] = child;
+
+        i = i + 1;
+
+        goto label01;
+
+     label02:
+        i = rootJavadocNode;
+
+        child = currentParseTreeNode;
+
+     label03:
+        if i == null goto label11;
+
+        $r3 = virtualinvoke i.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl[]) $r3;
+
+        children = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl[]) $r2;
+
+        childCount = lengthof children;
+
+        i = 0;
+
+     label04:
+        if i >= childCount goto label07;
+
+        currentJavadocNode = children[i];
+
+        currentParseTreeNodeChild = interfaceinvoke child.<org.antlr.v4.runtime.tree.ParseTree: org.antlr.v4.runtime.tree.ParseTree getChild(int)>(i);
+
+        $r9 = virtualinvoke currentJavadocNode.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren()>();
+
+        $r8 = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl[]) $r9;
+
+        subChildren = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl[]) $r8;
+
+        j = 0;
+
+     label05:
+        $i0 = lengthof subChildren;
+
+        if j >= $i0 goto label06;
+
+        $r11 = interfaceinvoke currentParseTreeNodeChild.<org.antlr.v4.runtime.tree.ParseTree: org.antlr.v4.runtime.tree.ParseTree getChild(int)>(j);
+
+        child = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl createJavadocNode(org.antlr.v4.runtime.tree.ParseTree,com.puppycrawl.tools.checkstyle.api.DetailNode,int)>($r11, currentJavadocNode, j);
+
+        subChildren[j] = child;
+
+        j = j + 1;
+
+        goto label05;
+
+     label06:
+        i = i + 1;
+
+        goto label04;
+
+     label07:
+        if childCount <= 0 goto label08;
+
+        i = children[0];
+
+        child = interfaceinvoke child.<org.antlr.v4.runtime.tree.ParseTree: org.antlr.v4.runtime.tree.ParseTree getChild(int)>(0);
+
+        goto label03;
+
+     label08:
+        $r4 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(i);
+
+        i = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl) $r4;
+
+        currentJavadocNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: org.antlr.v4.runtime.tree.ParseTree getNextSibling(org.antlr.v4.runtime.tree.ParseTree)>(child);
+
+        if i != null goto label10;
+
+        $r5 = virtualinvoke i.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: com.puppycrawl.tools.checkstyle.api.DetailNode getParent()>();
+
+        currentParseTreeNodeChild = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl) $r5;
+
+        subChildren = interfaceinvoke child.<org.antlr.v4.runtime.tree.ParseTree: org.antlr.v4.runtime.tree.ParseTree getParent()>();
+
+     label09:
+        if i != null goto label10;
+
+        if currentParseTreeNodeChild == null goto label10;
+
+        $r6 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(currentParseTreeNodeChild);
+
+        i = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl) $r6;
+
+        currentJavadocNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: org.antlr.v4.runtime.tree.ParseTree getNextSibling(org.antlr.v4.runtime.tree.ParseTree)>(subChildren);
+
+        $r7 = virtualinvoke currentParseTreeNodeChild.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: com.puppycrawl.tools.checkstyle.api.DetailNode getParent()>();
+
+        currentParseTreeNodeChild = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl) $r7;
+
+        subChildren = interfaceinvoke subChildren.<org.antlr.v4.runtime.tree.ParseTree: org.antlr.v4.runtime.tree.ParseTree getParent()>();
+
+        goto label09;
+
+     label10:
+        i = i;
+
+        child = currentJavadocNode;
+
+        goto label03;
+
+     label11:
+        return rootJavadocNode;
+    }
+
+    private com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl createJavadocNode(org.antlr.v4.runtime.tree.ParseTree, com.puppycrawl.tools.checkstyle.api.DetailNode, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        org.antlr.v4.runtime.tree.ParseTree aParseTree;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aParent;
+        int aIndex, $i0, $i1, $i2, $i3, $i4, $i5;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl node, $r0;
+        java.lang.String $r1;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r2;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl[] $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aParseTree := @parameter0: org.antlr.v4.runtime.tree.ParseTree;
+
+        aParent := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        aIndex := @parameter2: int;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: void <init>()>();
+
+        node = $r0;
+
+        $r1 = interfaceinvoke aParseTree.<org.antlr.v4.runtime.tree.ParseTree: java.lang.String getText()>();
+
+        virtualinvoke node.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: void setText(java.lang.String)>($r1);
+
+        $i0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: int getColumn(org.antlr.v4.runtime.tree.ParseTree)>(aParseTree);
+
+        virtualinvoke node.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: void setColumnNumber(int)>($i0);
+
+        $i1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: int getLine(org.antlr.v4.runtime.tree.ParseTree)>(aParseTree);
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mBlockCommentAst>;
+
+        $i2 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = $i1 + $i2;
+
+        virtualinvoke node.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: void setLineNumber(int)>($i3);
+
+        virtualinvoke node.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: void setIndex(int)>(aIndex);
+
+        $i4 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: int getTokenType(org.antlr.v4.runtime.tree.ParseTree)>(aParseTree);
+
+        virtualinvoke node.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: void setType(int)>($i4);
+
+        virtualinvoke node.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: void setParent(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aParent);
+
+        $i5 = interfaceinvoke aParseTree.<org.antlr.v4.runtime.tree.ParseTree: int getChildCount()>();
+
+        $r3 = newarray (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl)[$i5];
+
+        virtualinvoke node.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: void setChildren(com.puppycrawl.tools.checkstyle.api.DetailNode[])>($r3);
+
+        return node;
+    }
+
+    private static org.antlr.v4.runtime.tree.ParseTree getNextSibling(org.antlr.v4.runtime.tree.ParseTree)
+    {
+        org.antlr.v4.runtime.tree.ParseTree aNode, parent, currentNode, $r0, $r1;
+        int childCount, i, $i0, $i1;
+        boolean $z0;
+
+        aNode := @parameter0: org.antlr.v4.runtime.tree.ParseTree;
+
+        $r0 = interfaceinvoke aNode.<org.antlr.v4.runtime.tree.ParseTree: org.antlr.v4.runtime.tree.ParseTree getParent()>();
+
+        if $r0 != null goto label1;
+
+        return null;
+
+     label1:
+        parent = interfaceinvoke aNode.<org.antlr.v4.runtime.tree.ParseTree: org.antlr.v4.runtime.tree.ParseTree getParent()>();
+
+        childCount = interfaceinvoke parent.<org.antlr.v4.runtime.tree.ParseTree: int getChildCount()>();
+
+        i = 0;
+
+     label2:
+        if i >= childCount goto label5;
+
+        currentNode = interfaceinvoke parent.<org.antlr.v4.runtime.tree.ParseTree: org.antlr.v4.runtime.tree.ParseTree getChild(int)>(i);
+
+        $z0 = virtualinvoke currentNode.<java.lang.Object: boolean equals(java.lang.Object)>(aNode);
+
+        if $z0 == 0 goto label4;
+
+        $i0 = childCount - 1;
+
+        if i != $i0 goto label3;
+
+        return null;
+
+     label3:
+        $i1 = i + 1;
+
+        $r1 = interfaceinvoke parent.<org.antlr.v4.runtime.tree.ParseTree: org.antlr.v4.runtime.tree.ParseTree getChild(int)>($i1);
+
+        return $r1;
+
+     label4:
+        i = i + 1;
+
+        goto label2;
+
+     label5:
+        return null;
+    }
+
+    private static int getTokenType(org.antlr.v4.runtime.tree.ParseTree)
+    {
+        org.antlr.v4.runtime.tree.ParseTree aNode;
+        int tokenType, $i0;
+        java.lang.String className, typeName;
+        com.google.common.base.CaseFormat $r0, $r1;
+        org.antlr.v4.runtime.tree.TerminalNode $r2;
+        org.antlr.v4.runtime.Token $r3;
+
+        aNode := @parameter0: org.antlr.v4.runtime.tree.ParseTree;
+
+        $i0 = interfaceinvoke aNode.<org.antlr.v4.runtime.tree.ParseTree: int getChildCount()>();
+
+        if $i0 != 0 goto label1;
+
+        $r2 = (org.antlr.v4.runtime.tree.TerminalNode) aNode;
+
+        $r3 = interfaceinvoke $r2.<org.antlr.v4.runtime.tree.TerminalNode: org.antlr.v4.runtime.Token getSymbol()>();
+
+        tokenType = interfaceinvoke $r3.<org.antlr.v4.runtime.Token: int getType()>();
+
+        goto label2;
+
+     label1:
+        className = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: java.lang.String getNodeClassNameWithoutContext(org.antlr.v4.runtime.tree.ParseTree)>(aNode);
+
+        $r1 = <com.google.common.base.CaseFormat: com.google.common.base.CaseFormat UPPER_CAMEL>;
+
+        $r0 = <com.google.common.base.CaseFormat: com.google.common.base.CaseFormat UPPER_UNDERSCORE>;
+
+        typeName = virtualinvoke $r1.<com.google.common.base.CaseFormat: java.lang.String 'to'(com.google.common.base.CaseFormat,java.lang.String)>($r0, className);
+
+        tokenType = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: int getTokenId(java.lang.String)>(typeName);
+
+     label2:
+        return tokenType;
+    }
+
+    private static java.lang.String getNodeClassNameWithoutContext(org.antlr.v4.runtime.tree.ParseTree)
+    {
+        org.antlr.v4.runtime.tree.ParseTree aNode;
+        java.lang.String className, $r1;
+        java.lang.Class $r0;
+        int $i0, $i1;
+
+        aNode := @parameter0: org.antlr.v4.runtime.tree.ParseTree;
+
+        $r0 = virtualinvoke aNode.<java.lang.Object: java.lang.Class getClass()>();
+
+        className = virtualinvoke $r0.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $i0 = virtualinvoke className.<java.lang.String: int length()>();
+
+        $i1 = $i0 - 7;
+
+        $r1 = virtualinvoke className.<java.lang.String: java.lang.String substring(int,int)>(0, $i1);
+
+        return $r1;
+    }
+
+    private static int getLine(org.antlr.v4.runtime.tree.ParseTree)
+    {
+        org.antlr.v4.runtime.tree.ParseTree aTree;
+        org.antlr.v4.runtime.ParserRuleContext rule;
+        boolean $z0;
+        org.antlr.v4.runtime.Token $r0, $r2;
+        int $i0, $i1, $i2, $i3;
+        org.antlr.v4.runtime.tree.TerminalNode $r1;
+
+        aTree := @parameter0: org.antlr.v4.runtime.tree.ParseTree;
+
+        $z0 = aTree instanceof org.antlr.v4.runtime.tree.TerminalNode;
+
+        if $z0 == 0 goto label1;
+
+        $r1 = (org.antlr.v4.runtime.tree.TerminalNode) aTree;
+
+        $r2 = interfaceinvoke $r1.<org.antlr.v4.runtime.tree.TerminalNode: org.antlr.v4.runtime.Token getSymbol()>();
+
+        $i2 = interfaceinvoke $r2.<org.antlr.v4.runtime.Token: int getLine()>();
+
+        $i3 = $i2 - 1;
+
+        return $i3;
+
+     label1:
+        rule = (org.antlr.v4.runtime.ParserRuleContext) aTree;
+
+        $r0 = rule.<org.antlr.v4.runtime.ParserRuleContext: org.antlr.v4.runtime.Token start>;
+
+        $i0 = interfaceinvoke $r0.<org.antlr.v4.runtime.Token: int getLine()>();
+
+        $i1 = $i0 - 1;
+
+        return $i1;
+    }
+
+    private static int getColumn(org.antlr.v4.runtime.tree.ParseTree)
+    {
+        org.antlr.v4.runtime.tree.ParseTree aTree;
+        org.antlr.v4.runtime.ParserRuleContext rule;
+        boolean $z0;
+        org.antlr.v4.runtime.Token $r0, $r2;
+        int $i0, $i1;
+        org.antlr.v4.runtime.tree.TerminalNode $r1;
+
+        aTree := @parameter0: org.antlr.v4.runtime.tree.ParseTree;
+
+        $z0 = aTree instanceof org.antlr.v4.runtime.tree.TerminalNode;
+
+        if $z0 == 0 goto label1;
+
+        $r1 = (org.antlr.v4.runtime.tree.TerminalNode) aTree;
+
+        $r2 = interfaceinvoke $r1.<org.antlr.v4.runtime.tree.TerminalNode: org.antlr.v4.runtime.Token getSymbol()>();
+
+        $i1 = interfaceinvoke $r2.<org.antlr.v4.runtime.Token: int getCharPositionInLine()>();
+
+        return $i1;
+
+     label1:
+        rule = (org.antlr.v4.runtime.ParserRuleContext) aTree;
+
+        $r0 = rule.<org.antlr.v4.runtime.ParserRuleContext: org.antlr.v4.runtime.Token start>;
+
+        $i0 = interfaceinvoke $r0.<org.antlr.v4.runtime.Token: int getCharPositionInLine()>();
+
+        return $i0;
+    }
+
+    private org.antlr.v4.runtime.tree.ParseTree parseJavadoc(java.lang.String) throws java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        java.lang.String aBlockComment;
+        java.nio.charset.Charset utf8Charset;
+        java.io.ByteArrayInputStream in, $r0;
+        org.antlr.v4.runtime.ANTLRInputStream input, $r2;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer lexer, $r3;
+        org.antlr.v4.runtime.CommonTokenStream tokens, $r5;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser parser, $r6;
+        byte[] $r1;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener $r4, $r8;
+        org.antlr.v4.runtime.BailErrorStrategy $r7;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocContext $r9;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aBlockComment := @parameter0: java.lang.String;
+
+        utf8Charset = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8");
+
+        $r0 = new java.io.ByteArrayInputStream;
+
+        $r1 = virtualinvoke aBlockComment.<java.lang.String: byte[] getBytes(java.nio.charset.Charset)>(utf8Charset);
+
+        specialinvoke $r0.<java.io.ByteArrayInputStream: void <init>(byte[])>($r1);
+
+        in = $r0;
+
+        $r2 = new org.antlr.v4.runtime.ANTLRInputStream;
+
+        specialinvoke $r2.<org.antlr.v4.runtime.ANTLRInputStream: void <init>(java.io.InputStream)>(in);
+
+        input = $r2;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer: void <init>(org.antlr.v4.runtime.CharStream)>(input);
+
+        lexer = $r3;
+
+        virtualinvoke lexer.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer: void removeErrorListeners()>();
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener mErrorListener>;
+
+        virtualinvoke lexer.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer: void addErrorListener(org.antlr.v4.runtime.ANTLRErrorListener)>($r4);
+
+        $r5 = new org.antlr.v4.runtime.CommonTokenStream;
+
+        specialinvoke $r5.<org.antlr.v4.runtime.CommonTokenStream: void <init>(org.antlr.v4.runtime.TokenSource)>(lexer);
+
+        tokens = $r5;
+
+        $r6 = new com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
+
+        specialinvoke $r6.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser: void <init>(org.antlr.v4.runtime.TokenStream)>(tokens);
+
+        parser = $r6;
+
+        virtualinvoke parser.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser: void removeErrorListeners()>();
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener mErrorListener>;
+
+        virtualinvoke parser.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser: void addErrorListener(org.antlr.v4.runtime.ANTLRErrorListener)>($r8);
+
+        $r7 = new org.antlr.v4.runtime.BailErrorStrategy;
+
+        specialinvoke $r7.<org.antlr.v4.runtime.BailErrorStrategy: void <init>()>();
+
+        virtualinvoke parser.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser: void setErrorHandler(org.antlr.v4.runtime.ANTLRErrorStrategy)>($r7);
+
+        $r9 = virtualinvoke parser.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocContext javadoc()>();
+
+        return $r9;
+    }
+
+    private void processTree(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aRoot;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aRoot := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void beginJavadocTree(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aRoot);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void walk(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aRoot);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void finishJavadocTree(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aRoot);
+
+        return;
+    }
+
+    private void walk(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aRoot, curNode, toVisit;
+        int[] defaultTokenTypes;
+        boolean waitsFor;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        aRoot := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        defaultTokenTypes = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: int[] getDefaultJavadocTokens()>();
+
+        if defaultTokenTypes != null goto label1;
+
+        return;
+
+     label1:
+        curNode = aRoot;
+
+     label2:
+        if curNode == null goto label7;
+
+        $i0 = interfaceinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        waitsFor = staticinvoke <com.google.common.primitives.Ints: boolean contains(int[],int)>(defaultTokenTypes, $i0);
+
+        if waitsFor == 0 goto label3;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)>(curNode);
+
+     label3:
+        toVisit = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getFirstChild(com.puppycrawl.tools.checkstyle.api.DetailNode)>(curNode);
+
+     label4:
+        if curNode == null goto label6;
+
+        if toVisit != null goto label6;
+
+        if waitsFor == 0 goto label5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void leaveJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)>(curNode);
+
+     label5:
+        toVisit = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(curNode);
+
+        if toVisit != null goto label4;
+
+        curNode = interfaceinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode getParent()>();
+
+        goto label4;
+
+     label6:
+        curNode = toVisit;
+
+        goto label2;
+
+     label7:
+        return;
+    }
+}

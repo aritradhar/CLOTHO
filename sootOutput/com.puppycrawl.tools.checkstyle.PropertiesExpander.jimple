@@ -1,0 +1,47 @@
+public final class com.puppycrawl.tools.checkstyle.PropertiesExpander extends java.lang.Object implements com.puppycrawl.tools.checkstyle.PropertyResolver
+{
+    private final java.util.Properties mProperties;
+
+    public void <init>(java.util.Properties)
+    {
+        com.puppycrawl.tools.checkstyle.PropertiesExpander this;
+        java.util.Properties aProperties;
+        java.lang.IllegalArgumentException $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PropertiesExpander;
+
+        aProperties := @parameter0: java.util.Properties;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        if aProperties != null goto label1;
+
+        $r0 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("cannot pass null");
+
+        throw $r0;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.PropertiesExpander: java.util.Properties mProperties> = aProperties;
+
+        return;
+    }
+
+    public java.lang.String resolve(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.PropertiesExpander this;
+        java.lang.String aPropertyName, $r1;
+        java.util.Properties $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PropertiesExpander;
+
+        aPropertyName := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.PropertiesExpander: java.util.Properties mProperties>;
+
+        $r1 = virtualinvoke $r0.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(aPropertyName);
+
+        return $r1;
+    }
+}

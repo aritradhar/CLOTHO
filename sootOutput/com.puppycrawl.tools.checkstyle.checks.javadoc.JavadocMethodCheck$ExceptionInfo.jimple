@@ -1,0 +1,86 @@
+class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo extends java.lang.Object
+{
+    private boolean mFound;
+    private final com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo mClassInfo;
+    final com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this$0;
+
+    void <init>(com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck, com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo this;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck l1;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token aIdent;
+        java.lang.String aCurrentClass;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aIdent := @parameter1: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        aCurrentClass := @parameter2: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this$0> = l1;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo access$000(com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck,com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token,java.lang.String)>(l1, aIdent, aCurrentClass);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo mClassInfo> = $r0;
+
+        return;
+    }
+
+    final void setFound()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: boolean mFound> = 1;
+
+        return;
+    }
+
+    final boolean isFound()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: boolean mFound>;
+
+        return $z0;
+    }
+
+    final com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token getName()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo this;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo $r0;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo mClassInfo>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token getName()>();
+
+        return $r1;
+    }
+
+    final java.lang.Class getClazz()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo this;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo $r0;
+        java.lang.Class $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo mClassInfo>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        return $r1;
+    }
+}

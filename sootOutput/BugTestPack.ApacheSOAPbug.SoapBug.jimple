@@ -1,0 +1,503 @@
+public class BugTestPack.ApacheSOAPbug.SoapBug extends java.lang.Object
+{
+    protected java.util.Hashtable bag;
+    protected java.lang.ClassLoader loader;
+    protected boolean rootPartSet;
+    private static final java.lang.String[] ignoreHeaders;
+    protected javax.mail.internet.MimeMultipart parts;
+    private static final java.lang.String DEFAULT_BASEURI;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        <BugTestPack.ApacheSOAPbug.SoapBug: java.lang.String DEFAULT_BASEURI> = "thismessage:/";
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "Message-ID";
+
+        $r0[1] = "Mime-Version";
+
+        <BugTestPack.ApacheSOAPbug.SoapBug: java.lang.String[] ignoreHeaders> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        BugTestPack.ApacheSOAPbug.SoapBug this;
+        java.util.Hashtable $r0;
+
+        this := @this: BugTestPack.ApacheSOAPbug.SoapBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = new java.util.Hashtable;
+
+        specialinvoke $r0.<java.util.Hashtable: void <init>()>();
+
+        this.<BugTestPack.ApacheSOAPbug.SoapBug: java.util.Hashtable bag> = $r0;
+
+        this.<BugTestPack.ApacheSOAPbug.SoapBug: java.lang.ClassLoader loader> = null;
+
+        this.<BugTestPack.ApacheSOAPbug.SoapBug: boolean rootPartSet> = 0;
+
+        this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts> = null;
+
+        return;
+    }
+
+    public javax.mail.internet.MimeBodyPart getBodyPart(java.lang.String)
+    {
+        BugTestPack.ApacheSOAPbug.SoapBug this;
+        java.lang.String paramString;
+        javax.mail.internet.MimeMultipart $r0, $r1;
+        javax.mail.BodyPart $r2;
+        javax.mail.internet.MimeBodyPart $r3;
+        java.lang.NullPointerException $r4;
+        javax.mail.MessagingException $r5;
+        java.lang.IndexOutOfBoundsException $r6;
+
+        this := @this: BugTestPack.ApacheSOAPbug.SoapBug;
+
+        paramString := @parameter0: java.lang.String;
+
+        $r0 = this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts>;
+
+        if $r0 != null goto label1;
+
+        return null;
+
+     label1:
+        $r1 = this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts>;
+
+        $r2 = virtualinvoke $r1.<javax.mail.internet.MimeMultipart: javax.mail.BodyPart getBodyPart(java.lang.String)>(paramString);
+
+        $r3 = (javax.mail.internet.MimeBodyPart) $r2;
+
+     label2:
+        return $r3;
+
+     label3:
+        $r5 := @caughtexception;
+
+        return null;
+
+     label4:
+        $r4 := @caughtexception;
+
+        return null;
+
+     label5:
+        $r6 := @caughtexception;
+
+        return null;
+
+        catch javax.mail.MessagingException from label1 to label2 with label3;
+        catch java.lang.NullPointerException from label1 to label2 with label4;
+        catch java.lang.IndexOutOfBoundsException from label1 to label2 with label5;
+    }
+
+    public javax.mail.internet.MimeBodyPart getBodyPart(int)
+    {
+        BugTestPack.ApacheSOAPbug.SoapBug this;
+        int paramInt;
+        javax.mail.MessagingException localMessagingException, $r5;
+        javax.mail.internet.MimeMultipart $r0, $r1;
+        javax.mail.BodyPart $r2;
+        javax.mail.internet.MimeBodyPart $r3;
+        java.lang.IndexOutOfBoundsException $r4, $r6;
+        java.lang.String $r7;
+        java.lang.NullPointerException $r8;
+
+        this := @this: BugTestPack.ApacheSOAPbug.SoapBug;
+
+        paramInt := @parameter0: int;
+
+        $r0 = this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts>;
+
+        if $r0 != null goto label1;
+
+        return null;
+
+     label1:
+        $r1 = this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts>;
+
+        $r2 = virtualinvoke $r1.<javax.mail.internet.MimeMultipart: javax.mail.BodyPart getBodyPart(int)>(paramInt);
+
+        $r3 = (javax.mail.internet.MimeBodyPart) $r2;
+
+     label2:
+        return $r3;
+
+     label3:
+        $r5 := @caughtexception;
+
+        localMessagingException = $r5;
+
+        $r6 = new java.lang.IndexOutOfBoundsException;
+
+        $r7 = virtualinvoke localMessagingException.<javax.mail.MessagingException: java.lang.String getMessage()>();
+
+        specialinvoke $r6.<java.lang.IndexOutOfBoundsException: void <init>(java.lang.String)>($r7);
+
+        throw $r6;
+
+     label4:
+        $r4 := @caughtexception;
+
+        return null;
+
+     label5:
+        $r8 := @caughtexception;
+
+        return null;
+
+        catch javax.mail.MessagingException from label1 to label2 with label3;
+        catch java.lang.IndexOutOfBoundsException from label1 to label2 with label4;
+        catch java.lang.NullPointerException from label1 to label2 with label5;
+    }
+
+    public javax.mail.internet.MimeBodyPart findPartByLocation(java.lang.String)
+    {
+        BugTestPack.ApacheSOAPbug.SoapBug this;
+        java.lang.String paramString, str1, str2, $r1, paramString;
+        int i, $i0;
+        javax.mail.internet.MimeBodyPart localMimeBodyPart;
+        javax.mail.internet.MimeMultipart $r0;
+        boolean $z0;
+        javax.mail.MessagingException $r2;
+
+        this := @this: BugTestPack.ApacheSOAPbug.SoapBug;
+
+        paramString := @parameter0: java.lang.String;
+
+     label01:
+        str1 = virtualinvoke this.<BugTestPack.ApacheSOAPbug.SoapBug: java.lang.String getBaseURI()>();
+
+        paramString = specialinvoke this.<BugTestPack.ApacheSOAPbug.SoapBug: java.lang.String normalizeURI(java.lang.String,java.lang.String)>(paramString, str1);
+
+        if paramString != null goto label03;
+
+     label02:
+        return null;
+
+     label03:
+        i = 0;
+
+        goto label07;
+
+     label04:
+        localMimeBodyPart = virtualinvoke this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeBodyPart getBodyPart(int)>(i);
+
+        if localMimeBodyPart == null goto label06;
+
+        str2 = virtualinvoke localMimeBodyPart.<javax.mail.internet.MimeBodyPart: java.lang.String getHeader(java.lang.String,java.lang.String)>("Content-Location", null);
+
+        $r1 = specialinvoke this.<BugTestPack.ApacheSOAPbug.SoapBug: java.lang.String normalizeURI(java.lang.String,java.lang.String)>(str2, str1);
+
+        $z0 = virtualinvoke paramString.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label06;
+
+     label05:
+        return localMimeBodyPart;
+
+     label06:
+        i = i + 1;
+
+     label07:
+        $r0 = this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts>;
+
+        $i0 = virtualinvoke $r0.<javax.mail.internet.MimeMultipart: int getCount()>();
+
+        if i < $i0 goto label04;
+
+     label08:
+        goto label10;
+
+     label09:
+        $r2 := @caughtexception;
+
+     label10:
+        return null;
+
+        catch javax.mail.MessagingException from label01 to label02 with label09;
+        catch javax.mail.MessagingException from label03 to label05 with label09;
+        catch javax.mail.MessagingException from label06 to label08 with label09;
+    }
+
+    public java.lang.String getBaseURI()
+    {
+        BugTestPack.ApacheSOAPbug.SoapBug this;
+        java.lang.String str;
+        javax.mail.internet.MimeBodyPart $r0;
+        javax.mail.MessagingException $r1;
+
+        this := @this: BugTestPack.ApacheSOAPbug.SoapBug;
+
+        str = null;
+
+     label1:
+        $r0 = virtualinvoke this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeBodyPart getRootPart()>();
+
+        str = virtualinvoke $r0.<javax.mail.internet.MimeBodyPart: java.lang.String getHeader(java.lang.String,java.lang.String)>("Content-Location", null);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+     label4:
+        if str != null goto label5;
+
+        str = "thismessage:/";
+
+     label5:
+        return str;
+
+        catch javax.mail.MessagingException from label1 to label2 with label3;
+    }
+
+    public javax.mail.internet.MimeBodyPart getRootPart() throws javax.mail.MessagingException
+    {
+        BugTestPack.ApacheSOAPbug.SoapBug this;
+        javax.mail.internet.MimeBodyPart localMimeBodyPart;
+        java.lang.String str, $r2, $r3;
+        int $i0;
+        javax.mail.internet.ContentType $r0;
+        javax.mail.internet.MimeMultipart $r1;
+
+        this := @this: BugTestPack.ApacheSOAPbug.SoapBug;
+
+        localMimeBodyPart = null;
+
+        $i0 = virtualinvoke this.<BugTestPack.ApacheSOAPbug.SoapBug: int getCount()>();
+
+        if $i0 <= 1 goto label1;
+
+        $r0 = new javax.mail.internet.ContentType;
+
+        $r1 = this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts>;
+
+        $r2 = virtualinvoke $r1.<javax.mail.internet.MimeMultipart: java.lang.String getContentType()>();
+
+        specialinvoke $r0.<javax.mail.internet.ContentType: void <init>(java.lang.String)>($r2);
+
+        str = virtualinvoke $r0.<javax.mail.internet.ContentType: java.lang.String getParameter(java.lang.String)>("start");
+
+        if str == null goto label1;
+
+        $r3 = staticinvoke <org.apache.soap.util.mime.MimeUtils: java.lang.String decode(java.lang.String)>(str);
+
+        localMimeBodyPart = virtualinvoke this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeBodyPart getBodyPart(java.lang.String)>($r3);
+
+     label1:
+        if localMimeBodyPart != null goto label2;
+
+        localMimeBodyPart = virtualinvoke this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeBodyPart getBodyPart(int)>(0);
+
+     label2:
+        return localMimeBodyPart;
+    }
+
+    public int getCount() throws javax.mail.MessagingException
+    {
+        BugTestPack.ApacheSOAPbug.SoapBug this;
+        javax.mail.internet.MimeMultipart $r0, $r1;
+        int $i0;
+
+        this := @this: BugTestPack.ApacheSOAPbug.SoapBug;
+
+        $r0 = this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts>;
+
+        if $r0 != null goto label1;
+
+        return 0;
+
+     label1:
+        $r1 = this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts>;
+
+        $i0 = virtualinvoke $r1.<javax.mail.internet.MimeMultipart: int getCount()>();
+
+        return $i0;
+    }
+
+    private java.lang.String normalizeURI(java.lang.String, java.lang.String)
+    {
+        BugTestPack.ApacheSOAPbug.SoapBug this;
+        java.lang.String paramString1, paramString2, str, $r1, $r3;
+        int i, $i0, $i1, $i2;
+        java.lang.StringBuilder $r0, $r2;
+
+        this := @this: BugTestPack.ApacheSOAPbug.SoapBug;
+
+        paramString1 := @parameter0: java.lang.String;
+
+        paramString2 := @parameter1: java.lang.String;
+
+        i = virtualinvoke paramString1.<java.lang.String: int indexOf(int)>(58);
+
+        if i < 0 goto label1;
+
+        str = virtualinvoke paramString1.<java.lang.String: java.lang.String substring(int,int)>(0, i);
+
+        $i0 = virtualinvoke str.<java.lang.String: int indexOf(int)>(47);
+
+        if $i0 != -1 goto label1;
+
+        $i1 = virtualinvoke str.<java.lang.String: int indexOf(int)>(63);
+
+        if $i1 != -1 goto label1;
+
+        $i2 = virtualinvoke str.<java.lang.String: int indexOf(int)>(35);
+
+        if $i2 != -1 goto label1;
+
+        return paramString1;
+
+     label1:
+        $r0 = new java.lang.StringBuilder;
+
+        $r1 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(paramString2);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r1);
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(paramString1);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r3;
+    }
+
+    public javax.mail.internet.MimeBodyPart findBodyPart(java.lang.String)
+    {
+        BugTestPack.ApacheSOAPbug.SoapBug this;
+        java.lang.String uri, cid, $r2, $r3, $r5;
+        javax.mail.internet.MimeMultipart $r0, $r8;
+        int $i0, $i3;
+        javax.mail.internet.MimeBodyPart $r1, $r9;
+        boolean $z0;
+        char $c1, $c2;
+        java.lang.StringBuilder $r4, $r6, $r7;
+        javax.mail.BodyPart $r10;
+        java.lang.NullPointerException $r11, $r13;
+        javax.mail.MessagingException $r12;
+
+        this := @this: BugTestPack.ApacheSOAPbug.SoapBug;
+
+        uri := @parameter0: java.lang.String;
+
+        $r0 = this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts>;
+
+        if $r0 == null goto label01;
+
+        if uri != null goto label02;
+
+     label01:
+        return null;
+
+     label02:
+        $i0 = virtualinvoke uri.<java.lang.String: int length()>();
+
+        if $i0 <= 4 goto label07;
+
+        $r2 = virtualinvoke uri.<java.lang.String: java.lang.String substring(int,int)>(0, 4);
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>("cid:");
+
+        if $z0 == 0 goto label07;
+
+        $r3 = virtualinvoke uri.<java.lang.String: java.lang.String substring(int)>(4);
+
+        cid = staticinvoke <org.apache.soap.util.mime.MimeUtils: java.lang.String decode(java.lang.String)>($r3);
+
+        $c1 = virtualinvoke cid.<java.lang.String: char charAt(int)>(0);
+
+        if $c1 != 60 goto label03;
+
+        $i3 = virtualinvoke cid.<java.lang.String: int length()>();
+
+        $c2 = virtualinvoke cid.<java.lang.String: char charAt(int)>($i3);
+
+        if $c2 == 62 goto label04;
+
+     label03:
+        $r4 = new java.lang.StringBuilder;
+
+        $r5 = staticinvoke <java.lang.String: java.lang.String valueOf(char)>(60);
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>($r5);
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(cid);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(62);
+
+        cid = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label04:
+        $r8 = this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts>;
+
+        $r10 = virtualinvoke $r8.<javax.mail.internet.MimeMultipart: javax.mail.BodyPart getBodyPart(java.lang.String)>(cid);
+
+        $r9 = (javax.mail.internet.MimeBodyPart) $r10;
+
+     label05:
+        return $r9;
+
+     label06:
+        $r11 := @caughtexception;
+
+        goto label11;
+
+     label07:
+        $r1 = virtualinvoke this.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeBodyPart findPartByLocation(java.lang.String)>(uri);
+
+     label08:
+        return $r1;
+
+     label09:
+        $r12 := @caughtexception;
+
+        goto label11;
+
+     label10:
+        $r13 := @caughtexception;
+
+     label11:
+        return null;
+
+        catch java.lang.NullPointerException from label04 to label05 with label06;
+        catch javax.mail.MessagingException from label02 to label05 with label09;
+        catch javax.mail.MessagingException from label06 to label08 with label09;
+        catch java.lang.NullPointerException from label02 to label05 with label10;
+        catch java.lang.NullPointerException from label06 to label08 with label10;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        BugTestPack.ApacheSOAPbug.SoapBug sb, $r0;
+        javax.mail.internet.MimeMultipart $r1;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new BugTestPack.ApacheSOAPbug.SoapBug;
+
+        specialinvoke $r0.<BugTestPack.ApacheSOAPbug.SoapBug: void <init>()>();
+
+        sb = $r0;
+
+        $r1 = new javax.mail.internet.MimeMultipart;
+
+        specialinvoke $r1.<javax.mail.internet.MimeMultipart: void <init>(java.lang.String)>("thismessage:/");
+
+        sb.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeMultipart parts> = $r1;
+
+        virtualinvoke sb.<BugTestPack.ApacheSOAPbug.SoapBug: javax.mail.internet.MimeBodyPart findBodyPart(java.lang.String)>("cid:<bla");
+
+        return;
+    }
+}

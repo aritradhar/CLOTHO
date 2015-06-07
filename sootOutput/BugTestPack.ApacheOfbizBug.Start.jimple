@@ -1,0 +1,86 @@
+public class BugTestPack.ApacheOfbizBug.Start extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugTestPack.ApacheOfbizBug.Start this;
+
+        this := @this: BugTestPack.ApacheOfbizBug.Start;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void processClientRequest() throws java.io.IOException
+    {
+        BugTestPack.ApacheOfbizBug.Start this;
+        java.io.BufferedReader reader, $r0;
+        java.lang.String request, key;
+        java.lang.Throwable l4, $r3;
+        java.io.InputStreamReader $r1;
+        java.io.InputStream $r2;
+        int $i0;
+
+        this := @this: BugTestPack.ApacheOfbizBug.Start;
+
+        reader = null;
+
+     label1:
+        $r0 = new java.io.BufferedReader;
+
+        $r1 = new java.io.InputStreamReader;
+
+        $r2 = <java.lang.System: java.io.InputStream in>;
+
+        specialinvoke $r1.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r2);
+
+        specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1);
+
+        reader = $r0;
+
+        request = virtualinvoke reader.<java.io.BufferedReader: java.lang.String readLine()>();
+
+        if request == null goto label3;
+
+        $i0 = virtualinvoke request.<java.lang.String: int indexOf(int)>(58);
+
+        key = virtualinvoke request.<java.lang.String: java.lang.String substring(int,int)>(0, $i0);
+
+        virtualinvoke key.<java.lang.String: java.lang.String concat(java.lang.String)>(key);
+
+        goto label3;
+
+     label2:
+        $r3 := @caughtexception;
+
+        l4 = $r3;
+
+        virtualinvoke reader.<java.io.BufferedReader: void close()>();
+
+        throw l4;
+
+     label3:
+        virtualinvoke reader.<java.io.BufferedReader: void close()>();
+
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label2;
+    }
+
+    public static void main(java.lang.String[]) throws java.io.IOException
+    {
+        java.lang.String[] args;
+        BugTestPack.ApacheOfbizBug.Start $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new BugTestPack.ApacheOfbizBug.Start;
+
+        specialinvoke $r0.<BugTestPack.ApacheOfbizBug.Start: void <init>()>();
+
+        virtualinvoke $r0.<BugTestPack.ApacheOfbizBug.Start: void processClientRequest()>();
+
+        return;
+    }
+}

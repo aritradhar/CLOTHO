@@ -1,0 +1,55 @@
+public class log4jRep extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        log4jRep this;
+
+        this := @this: log4jRep;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void foo()
+    {
+        log4jRep this;
+        char[] c, $r0;
+        java.lang.String $r1;
+
+        this := @this: log4jRep;
+
+        $r0 = newarray (char)[3];
+
+        $r0[0] = 97;
+
+        $r0[1] = 98;
+
+        $r0[2] = 99;
+
+        c = $r0;
+
+        $r1 = new java.lang.String;
+
+        specialinvoke $r1.<java.lang.String: void <init>(char[],int,int)>(c, 2, 5);
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        log4jRep $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new log4jRep;
+
+        specialinvoke $r0.<log4jRep: void <init>()>();
+
+        virtualinvoke $r0.<log4jRep: void foo()>();
+
+        return;
+    }
+}

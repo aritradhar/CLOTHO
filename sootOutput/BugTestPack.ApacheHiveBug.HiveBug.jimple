@@ -1,0 +1,151 @@
+public class BugTestPack.ApacheHiveBug.HiveBug extends java.lang.Object
+{
+    public java.lang.String resultExprString;
+
+    public void <init>()
+    {
+        BugTestPack.ApacheHiveBug.HiveBug this;
+
+        this := @this: BugTestPack.ApacheHiveBug.HiveBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private void fixResultExprString()
+    {
+        BugTestPack.ApacheHiveBug.HiveBug this;
+        java.lang.String r, prefix, $r0, $r1;
+        boolean $z0;
+        java.lang.StringBuilder $r2, $r3;
+
+        this := @this: BugTestPack.ApacheHiveBug.HiveBug;
+
+        $r0 = this.<BugTestPack.ApacheHiveBug.HiveBug: java.lang.String resultExprString>;
+
+        r = virtualinvoke $r0.<java.lang.String: java.lang.String trim()>();
+
+        prefix = virtualinvoke r.<java.lang.String: java.lang.String substring(int,int)>(0, 6);
+
+        $r1 = virtualinvoke prefix.<java.lang.String: java.lang.String toLowerCase()>();
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("select");
+
+        if $z0 != 0 goto label1;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("select ");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r);
+
+        r = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label1:
+        this.<BugTestPack.ApacheHiveBug.HiveBug: java.lang.String resultExprString> = r;
+
+        return;
+    }
+
+    private void fixResultExprStringP()
+    {
+        BugTestPack.ApacheHiveBug.HiveBug this;
+        java.lang.String r, prefix, $r0, $r1;
+        int $i0;
+        boolean $z0;
+        java.lang.StringBuilder $r2, $r3;
+
+        this := @this: BugTestPack.ApacheHiveBug.HiveBug;
+
+        $r0 = this.<BugTestPack.ApacheHiveBug.HiveBug: java.lang.String resultExprString>;
+
+        r = virtualinvoke $r0.<java.lang.String: java.lang.String trim()>();
+
+        $i0 = virtualinvoke r.<java.lang.String: int length()>();
+
+        if $i0 < 6 goto label1;
+
+        prefix = virtualinvoke r.<java.lang.String: java.lang.String substring(int,int)>(0, 6);
+
+        goto label2;
+
+     label1:
+        prefix = r;
+
+     label2:
+        $r1 = virtualinvoke prefix.<java.lang.String: java.lang.String toLowerCase()>();
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("select");
+
+        if $z0 != 0 goto label3;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("select ");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r);
+
+        r = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label3:
+        this.<BugTestPack.ApacheHiveBug.HiveBug: java.lang.String resultExprString> = r;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        long s, $l0, i;
+        int i;
+        BugTestPack.ApacheHiveBug.HiveBug h, $r0;
+        java.lang.StringBuilder $r1, $r4;
+        java.io.PrintStream $r2;
+        java.lang.String $r3, $r5;
+
+        args := @parameter0: java.lang.String[];
+
+        s = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        i = 0;
+
+        goto label2;
+
+     label1:
+        $r0 = new BugTestPack.ApacheHiveBug.HiveBug;
+
+        specialinvoke $r0.<BugTestPack.ApacheHiveBug.HiveBug: void <init>()>();
+
+        h = $r0;
+
+        h.<BugTestPack.ApacheHiveBug.HiveBug: java.lang.String resultExprString> = "sas";
+
+        specialinvoke h.<BugTestPack.ApacheHiveBug.HiveBug: void fixResultExprString()>();
+
+        i = i + 1;
+
+     label2:
+        if i < 50000 goto label1;
+
+        i = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        $l0 = i - s;
+
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>($l0);
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+
+        $r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ms");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        return;
+    }
+}

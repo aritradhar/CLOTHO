@@ -1,0 +1,103 @@
+class com.puppycrawl.tools.checkstyle.gui.JTreeTable$1 extends javax.swing.AbstractAction
+{
+    private static final long serialVersionUID;
+    final com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0;
+
+    void <init>(com.puppycrawl.tools.checkstyle.gui.JTreeTable)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$1 this;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable l1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable$1;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$1: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0> = l1;
+
+        specialinvoke this.<javax.swing.AbstractAction: void <init>()>();
+
+        return;
+    }
+
+    public void actionPerformed(java.awt.event.ActionEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$1 this;
+        java.awt.event.ActionEvent e;
+        javax.swing.tree.TreePath selected;
+        com.puppycrawl.tools.checkstyle.api.DetailAST ast;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable $r0, $r4, $r6, $r8, $r11, $r13, $r15;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer $r1, $r9, $r10, $r12, $r14;
+        java.lang.Object $r2;
+        com.puppycrawl.tools.checkstyle.gui.CodeSelector $r3;
+        javax.swing.JTextArea $r5;
+        java.util.List $r7;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable$1;
+
+        e := @parameter0: java.awt.event.ActionEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$1: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        $r1 = $r0.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        selected = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: javax.swing.tree.TreePath getSelectionPath()>();
+
+        $r2 = virtualinvoke selected.<javax.swing.tree.TreePath: java.lang.Object getLastPathComponent()>();
+
+        ast = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r2;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.gui.CodeSelector;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$1: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        $r5 = staticinvoke <com.puppycrawl.tools.checkstyle.gui.JTreeTable: javax.swing.JTextArea access$000(com.puppycrawl.tools.checkstyle.gui.JTreeTable)>($r4);
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$1: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        $r7 = staticinvoke <com.puppycrawl.tools.checkstyle.gui.JTreeTable: java.util.List access$100(com.puppycrawl.tools.checkstyle.gui.JTreeTable)>($r6);
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: void <init>(com.puppycrawl.tools.checkstyle.api.DetailAST,javax.swing.JTextArea,java.util.List)>(ast, $r5, $r7);
+
+        virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: void select()>();
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$1: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        $r9 = $r8.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        $z0 = virtualinvoke $r9.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: boolean isExpanded(javax.swing.tree.TreePath)>(selected);
+
+        if $z0 == 0 goto label1;
+
+        $r15 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$1: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        $r14 = $r15.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        virtualinvoke $r14.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: void collapsePath(javax.swing.tree.TreePath)>(selected);
+
+        goto label2;
+
+     label1:
+        $r11 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$1: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        $r10 = $r11.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        virtualinvoke $r10.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: void expandPath(javax.swing.tree.TreePath)>(selected);
+
+     label2:
+        $r13 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$1: com.puppycrawl.tools.checkstyle.gui.JTreeTable this$0>;
+
+        $r12 = $r13.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer tree>;
+
+        virtualinvoke $r12.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$TreeTableCellRenderer: void setSelectionPath(javax.swing.tree.TreePath)>(selected);
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.gui.JTreeTable$1: long serialVersionUID> = -5859674518660156121L;
+
+        return;
+    }
+}

@@ -1,0 +1,432 @@
+public final class com.puppycrawl.tools.checkstyle.PackageNamesLoader extends com.puppycrawl.tools.checkstyle.api.AbstractLoader
+{
+    private static final java.lang.String DTD_PUBLIC_ID;
+    private static final java.lang.String DTD_RESOURCE_NAME;
+    private static final java.lang.String CHECKSTYLE_PACKAGES;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mPackageStack;
+    private final java.util.Set mPackageNames;
+
+    private void <init>() throws javax.xml.parsers.ParserConfigurationException, org.xml.sax.SAXException
+    {
+        com.puppycrawl.tools.checkstyle.PackageNamesLoader this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.util.LinkedHashSet $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PackageNamesLoader;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractLoader: void <init>(java.lang.String,java.lang.String)>("-//Puppy Crawl//DTD Package Names 1.0//EN", "com/puppycrawl/tools/checkstyle/packages_1_0.dtd");
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: com.puppycrawl.tools.checkstyle.api.FastStack mPackageStack> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Sets: java.util.LinkedHashSet newLinkedHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.util.Set mPackageNames> = $r1;
+
+        return;
+    }
+
+    private java.util.Set getPackageNames()
+    {
+        com.puppycrawl.tools.checkstyle.PackageNamesLoader this;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PackageNamesLoader;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.util.Set mPackageNames>;
+
+        return $r0;
+    }
+
+    public void startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes) throws org.xml.sax.SAXException
+    {
+        com.puppycrawl.tools.checkstyle.PackageNamesLoader this;
+        java.lang.String aNamespaceURI, aLocalName, aQName, name, $r0;
+        org.xml.sax.Attributes aAtts;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+        org.xml.sax.SAXException $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PackageNamesLoader;
+
+        aNamespaceURI := @parameter0: java.lang.String;
+
+        aLocalName := @parameter1: java.lang.String;
+
+        aQName := @parameter2: java.lang.String;
+
+        aAtts := @parameter3: org.xml.sax.Attributes;
+
+        $r0 = "package";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aQName);
+
+        if $z0 == 0 goto label2;
+
+        name = interfaceinvoke aAtts.<org.xml.sax.Attributes: java.lang.String getValue(java.lang.String)>("name");
+
+        if name != null goto label1;
+
+        $r2 = new org.xml.sax.SAXException;
+
+        specialinvoke $r2.<org.xml.sax.SAXException: void <init>(java.lang.String)>("missing package name");
+
+        throw $r2;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: com.puppycrawl.tools.checkstyle.api.FastStack mPackageStack>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>(name);
+
+     label2:
+        return;
+    }
+
+    private java.lang.String getPackageName()
+    {
+        com.puppycrawl.tools.checkstyle.PackageNamesLoader this;
+        java.lang.StringBuffer buf, $r0;
+        java.util.Iterator i$;
+        java.lang.String subPackage, $r2;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+        boolean $z0, $z1;
+        java.lang.Object $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PackageNamesLoader;
+
+        $r0 = new java.lang.StringBuffer;
+
+        specialinvoke $r0.<java.lang.StringBuffer: void <init>()>();
+
+        buf = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: com.puppycrawl.tools.checkstyle.api.FastStack mPackageStack>;
+
+        i$ = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r3 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        subPackage = (java.lang.String) $r3;
+
+        virtualinvoke buf.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(subPackage);
+
+        $z1 = virtualinvoke subPackage.<java.lang.String: boolean endsWith(java.lang.String)>(".");
+
+        if $z1 != 0 goto label2;
+
+        virtualinvoke buf.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(".");
+
+     label2:
+        goto label1;
+
+     label3:
+        $r2 = virtualinvoke buf.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r2;
+    }
+
+    public void endElement(java.lang.String, java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.PackageNamesLoader this;
+        java.lang.String aNamespaceURI, aLocalName, aQName, $r0, $r2;
+        boolean $z0;
+        java.util.Set $r1;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.PackageNamesLoader;
+
+        aNamespaceURI := @parameter0: java.lang.String;
+
+        aLocalName := @parameter1: java.lang.String;
+
+        aQName := @parameter2: java.lang.String;
+
+        $r0 = "package";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aQName);
+
+        if $z0 == 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.util.Set mPackageNames>;
+
+        $r2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.lang.String getPackageName()>();
+
+        interfaceinvoke $r1.<java.util.Set: boolean add(java.lang.Object)>($r2);
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: com.puppycrawl.tools.checkstyle.api.FastStack mPackageStack>;
+
+        virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+     label1:
+        return;
+    }
+
+    public static java.util.Set getPackageNames(java.lang.ClassLoader) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        java.lang.ClassLoader aClassLoader;
+        java.io.IOException e, $r7, $r13, source;
+        java.net.URL aPackageFile;
+        java.io.BufferedInputStream stream, $r2;
+        org.xml.sax.InputSource source, $r4;
+        java.lang.Throwable l6, $r5;
+        java.util.Set $r0;
+        boolean $z0;
+        java.lang.Object $r1;
+        java.io.InputStream $r3;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r6, $r12;
+        java.lang.StringBuilder $r8, $r9, $r11;
+        java.lang.String $r10;
+        java.util.Enumeration packageFiles;
+        com.puppycrawl.tools.checkstyle.PackageNamesLoader e;
+
+        aClassLoader := @parameter0: java.lang.ClassLoader;
+
+     label01:
+        packageFiles = virtualinvoke aClassLoader.<java.lang.ClassLoader: java.util.Enumeration getResources(java.lang.String)>("checkstyle_packages.xml");
+
+     label02:
+        goto label04;
+
+     label03:
+        $r13 := @caughtexception;
+
+        e = $r13;
+
+        $r12 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        specialinvoke $r12.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>("unable to get package file resources", e);
+
+        throw $r12;
+
+     label04:
+        e = staticinvoke <com.puppycrawl.tools.checkstyle.PackageNamesLoader: com.puppycrawl.tools.checkstyle.PackageNamesLoader newPackageNamesLoader()>();
+
+     label05:
+        if null == packageFiles goto label12;
+
+        $z0 = interfaceinvoke packageFiles.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 == 0 goto label12;
+
+        $r1 = interfaceinvoke packageFiles.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        aPackageFile = (java.net.URL) $r1;
+
+        stream = null;
+
+     label06:
+        $r2 = new java.io.BufferedInputStream;
+
+        $r3 = virtualinvoke aPackageFile.<java.net.URL: java.io.InputStream openStream()>();
+
+        specialinvoke $r2.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>($r3);
+
+        stream = $r2;
+
+        $r4 = new org.xml.sax.InputSource;
+
+        specialinvoke $r4.<org.xml.sax.InputSource: void <init>(java.io.InputStream)>(stream);
+
+        source = $r4;
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.PackageNamesLoader: void loadPackageNamesSource(org.xml.sax.InputSource,java.lang.String,com.puppycrawl.tools.checkstyle.PackageNamesLoader)>(source, "default package names", e);
+
+     label07:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(stream);
+
+        goto label11;
+
+     label08:
+        $r7 := @caughtexception;
+
+        source = $r7;
+
+        $r6 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to open ");
+
+        $r11 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aPackageFile);
+
+        $r10 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r6.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r10, source);
+
+        throw $r6;
+
+     label09:
+        $r5 := @caughtexception;
+
+        l6 = $r5;
+
+     label10:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(stream);
+
+        throw l6;
+
+     label11:
+        goto label05;
+
+     label12:
+        $r0 = specialinvoke e.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.util.Set getPackageNames()>();
+
+        return $r0;
+
+        catch java.io.IOException from label01 to label02 with label03;
+        catch java.io.IOException from label06 to label07 with label08;
+        catch java.lang.Throwable from label06 to label07 with label09;
+        catch java.lang.Throwable from label08 to label10 with label09;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.PackageNamesLoader newPackageNamesLoader() throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        javax.xml.parsers.ParserConfigurationException e, $r1;
+        com.puppycrawl.tools.checkstyle.PackageNamesLoader $r0;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r2, $r4;
+        org.xml.sax.SAXException $r3, e;
+        java.lang.StringBuilder $r5, $r6, $r8;
+        java.lang.String $r7, $r9;
+
+     label1:
+        $r0 = new com.puppycrawl.tools.checkstyle.PackageNamesLoader;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: void <init>()>();
+
+     label2:
+        return $r0;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>("unable to create PackageNamesLoader ", e);
+
+        throw $r2;
+
+     label4:
+        $r3 := @caughtexception;
+
+        e = $r3;
+
+        $r4 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to create PackageNamesLoader - ");
+
+        $r7 = virtualinvoke e.<org.xml.sax.SAXException: java.lang.String getMessage()>();
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r4.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r9, e);
+
+        throw $r4;
+
+        catch javax.xml.parsers.ParserConfigurationException from label1 to label2 with label3;
+        catch org.xml.sax.SAXException from label1 to label2 with label4;
+    }
+
+    private static void loadPackageNamesSource(org.xml.sax.InputSource, java.lang.String, com.puppycrawl.tools.checkstyle.PackageNamesLoader) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        org.xml.sax.InputSource aSource;
+        java.lang.String aSourceName, $r5, $r13, $r14;
+        com.puppycrawl.tools.checkstyle.PackageNamesLoader aNameLoader;
+        org.xml.sax.SAXException e, $r6;
+        java.io.IOException $r0, e;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r1, $r7;
+        java.lang.StringBuilder $r2, $r3, $r4, $r8, $r9, $r10, $r11, $r12;
+
+        aSource := @parameter0: org.xml.sax.InputSource;
+
+        aSourceName := @parameter1: java.lang.String;
+
+        aNameLoader := @parameter2: com.puppycrawl.tools.checkstyle.PackageNamesLoader;
+
+     label1:
+        virtualinvoke aNameLoader.<com.puppycrawl.tools.checkstyle.PackageNamesLoader: void parseInputSource(org.xml.sax.InputSource)>(aSource);
+
+     label2:
+        goto label5;
+
+     label3:
+        $r6 := @caughtexception;
+
+        e = $r6;
+
+        $r7 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aSourceName);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" - ");
+
+        $r13 = virtualinvoke e.<org.xml.sax.SAXException: java.lang.String getMessage()>();
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r7.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r14, e);
+
+        throw $r7;
+
+     label4:
+        $r0 := @caughtexception;
+
+        e = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to read ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aSourceName);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r5, e);
+
+        throw $r1;
+
+     label5:
+        return;
+
+        catch org.xml.sax.SAXException from label1 to label2 with label3;
+        catch java.io.IOException from label1 to label2 with label4;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.lang.String CHECKSTYLE_PACKAGES> = "checkstyle_packages.xml";
+
+        <com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.lang.String DTD_RESOURCE_NAME> = "com/puppycrawl/tools/checkstyle/packages_1_0.dtd";
+
+        <com.puppycrawl.tools.checkstyle.PackageNamesLoader: java.lang.String DTD_PUBLIC_ID> = "-//Puppy Crawl//DTD Package Names 1.0//EN";
+
+        return;
+    }
+}

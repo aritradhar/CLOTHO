@@ -1,0 +1,89 @@
+public class com.puppycrawl.tools.checkstyle.checks.FileContentsHolder extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final java.lang.ThreadLocal FILE_CONTENTS;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.FileContentsHolder this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.FileContents getContents()
+    {
+        java.lang.ThreadLocal $r0;
+        java.lang.Object $r1;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r2;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.FileContentsHolder: java.lang.ThreadLocal FILE_CONTENTS>;
+
+        $r1 = virtualinvoke $r0.<java.lang.ThreadLocal: java.lang.Object get()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.api.FileContents) $r1;
+
+        return $r2;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.FileContentsHolder this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
+
+        $r0 = newarray (int)[0];
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.FileContentsHolder this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.lang.ThreadLocal $r0;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.FileContentsHolder: java.lang.ThreadLocal FILE_CONTENTS>;
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.FileContentsHolder: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        virtualinvoke $r0.<java.lang.ThreadLocal: void set(java.lang.Object)>($r1);
+
+        return;
+    }
+
+    public void destroy()
+    {
+        com.puppycrawl.tools.checkstyle.checks.FileContentsHolder this;
+        java.lang.ThreadLocal $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.FileContentsHolder: java.lang.ThreadLocal FILE_CONTENTS>;
+
+        virtualinvoke $r0.<java.lang.ThreadLocal: void remove()>();
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.ThreadLocal $r0;
+
+        $r0 = new java.lang.ThreadLocal;
+
+        specialinvoke $r0.<java.lang.ThreadLocal: void <init>()>();
+
+        <com.puppycrawl.tools.checkstyle.checks.FileContentsHolder: java.lang.ThreadLocal FILE_CONTENTS> = $r0;
+
+        return;
+    }
+}

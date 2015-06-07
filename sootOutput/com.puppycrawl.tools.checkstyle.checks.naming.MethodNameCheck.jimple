@@ -1,0 +1,96 @@
+public class com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck extends com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck
+{
+    private boolean mAllowClassName;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: void <init>(java.lang.String)>("^[a-z][a-zA-Z0-9]*$");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 9;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst, method, classDefOrNew, classIdent, $r0;
+        boolean $z0, $z1;
+        java.lang.String $r1, $r2, $r4;
+        int $i0, $i1;
+        java.lang.Object[] $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAst);
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck: boolean mAllowClassName>;
+
+        if $z0 != 0 goto label1;
+
+        method = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r0 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        classDefOrNew = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        classIdent = virtualinvoke classDefOrNew.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        if null == classIdent goto label1;
+
+        $r1 = virtualinvoke method.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r2 = virtualinvoke classIdent.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+
+        if $z1 == 0 goto label1;
+
+        $i0 = virtualinvoke method.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke method.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r4 = virtualinvoke method.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r3[0] = $r4;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "method.name.equals.class.name", $r3);
+
+     label1:
+        return;
+    }
+
+    public void setAllowClassName(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck this;
+        boolean aAllowClassName;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
+
+        aAllowClassName := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck: boolean mAllowClassName> = aAllowClassName;
+
+        return;
+    }
+}

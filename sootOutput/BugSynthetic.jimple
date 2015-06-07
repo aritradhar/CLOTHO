@@ -1,0 +1,119 @@
+public class BugSynthetic extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugSynthetic this;
+
+        this := @this: BugSynthetic;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        java.lang.String st, in, st1, $r3, $r9, $r12, $r16, $r20;
+        java.util.Scanner s, $r4;
+        java.lang.StringBuilder $r0, $r2, $r6, $r7, $r11, $r13, $r15, $r17, $r19, $r21;
+        java.io.PrintStream $r1, $r8, $r10, $r14, $r18;
+        boolean $z0, $z1;
+        java.io.InputStream $r5;
+
+        args := @parameter0: java.lang.String[];
+
+        st = "abc";
+
+        st = virtualinvoke st.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>("After 1st failure : ");
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(st);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r3);
+
+        $z0 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>("abcd");
+
+        if $z0 == 0 goto label1;
+
+        $r18 = <java.lang.System: java.io.PrintStream out>;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>("Static : ");
+
+        $r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(st);
+
+        $r20 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>($r20);
+
+     label1:
+        $r4 = new java.util.Scanner;
+
+        $r5 = <java.lang.System: java.io.InputStream in>;
+
+        specialinvoke $r4.<java.util.Scanner: void <init>(java.io.InputStream)>($r5);
+
+        s = $r4;
+
+        in = virtualinvoke s.<java.util.Scanner: java.lang.String next()>();
+
+        $z1 = virtualinvoke st.<java.lang.String: boolean startsWith(java.lang.String)>(in);
+
+        if $z1 == 0 goto label2;
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("Dynamic : ");
+
+        $r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(st);
+
+        $r16 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+     label2:
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("After Dynamic : ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(st);
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        st1 = "pqrs";
+
+        st1 = virtualinvoke st1.<java.lang.String: java.lang.String substring(int,int)>(1, 50);
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("After 2nd failure : ");
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(st1);
+
+        $r12 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        virtualinvoke s.<java.util.Scanner: void close()>();
+
+        return;
+    }
+}

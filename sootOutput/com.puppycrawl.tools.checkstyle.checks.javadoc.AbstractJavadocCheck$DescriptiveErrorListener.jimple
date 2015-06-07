@@ -1,0 +1,172 @@
+class com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener extends org.antlr.v4.runtime.BaseErrorListener
+{
+    private static final java.lang.String JAVADOC_MISSED_HTML_CLOSE;
+    private static final java.lang.String JAVADOC_WRONG_SINGLETON_TAG;
+    private int mOffset;
+    final com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this$0;
+
+    void <init>(com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener this;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck l1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this$0> = l1;
+
+        specialinvoke this.<org.antlr.v4.runtime.BaseErrorListener: void <init>()>();
+
+        return;
+    }
+
+    public void setOffset(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener this;
+        int aOffset;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener;
+
+        aOffset := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: int mOffset> = aOffset;
+
+        return;
+    }
+
+    public void syntaxError(org.antlr.v4.runtime.Recognizer, java.lang.Object, int, int, java.lang.String, org.antlr.v4.runtime.RecognitionException)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener this;
+        org.antlr.v4.runtime.Recognizer aRecognizer;
+        java.lang.Object aOffendingSymbol;
+        int aLine, aCharPositionInLine, lineNumber, ruleIndex, $i0;
+        java.lang.String aMsg, ruleName, upperCaseRuleName, $r0, $r1, $r14, $r15;
+        org.antlr.v4.runtime.RecognitionException aEx;
+        org.antlr.v4.runtime.Token token;
+        org.antlr.v4.runtime.RuleContext ruleContext, $r3;
+        boolean $z0, $z1;
+        java.lang.Object[] $r2, $r8, $r9, $r13;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck $r4, $r10, $r11, $r16;
+        java.lang.String[] $r5;
+        com.google.common.base.CaseFormat $r6, $r7;
+        org.antlr.v4.runtime.misc.ParseCancellationException $r12, $r17;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener;
+
+        aRecognizer := @parameter0: org.antlr.v4.runtime.Recognizer;
+
+        aOffendingSymbol := @parameter1: java.lang.Object;
+
+        aLine := @parameter2: int;
+
+        aCharPositionInLine := @parameter3: int;
+
+        aMsg := @parameter4: java.lang.String;
+
+        aEx := @parameter5: org.antlr.v4.runtime.RecognitionException;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: int mOffset>;
+
+        lineNumber = $i0 + aLine;
+
+        token = (org.antlr.v4.runtime.Token) aOffendingSymbol;
+
+        $r0 = "javadoc.missed.html.close";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aMsg);
+
+        if $z0 == 0 goto label1;
+
+        $r16 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this$0>;
+
+        $r13 = newarray (java.lang.Object)[1];
+
+        $r15 = interfaceinvoke token.<org.antlr.v4.runtime.Token: java.lang.String getText()>();
+
+        $r13[0] = $r15;
+
+        virtualinvoke $r16.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void log(int,java.lang.String,java.lang.Object[])>(lineNumber, "javadoc.missed.html.close", $r13);
+
+        $r17 = new org.antlr.v4.runtime.misc.ParseCancellationException;
+
+        specialinvoke $r17.<org.antlr.v4.runtime.misc.ParseCancellationException: void <init>()>();
+
+        throw $r17;
+
+     label1:
+        $r1 = "javadoc.wrong.singleton.html.tag";
+
+        $z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(aMsg);
+
+        if $z1 == 0 goto label2;
+
+        $r11 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this$0>;
+
+        $r9 = newarray (java.lang.Object)[1];
+
+        $r14 = interfaceinvoke token.<org.antlr.v4.runtime.Token: java.lang.String getText()>();
+
+        $r9[0] = $r14;
+
+        virtualinvoke $r11.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void log(int,java.lang.String,java.lang.Object[])>(lineNumber, "javadoc.wrong.singleton.html.tag", $r9);
+
+        $r12 = new org.antlr.v4.runtime.misc.ParseCancellationException;
+
+        specialinvoke $r12.<org.antlr.v4.runtime.misc.ParseCancellationException: void <init>()>();
+
+        throw $r12;
+
+     label2:
+        ruleContext = virtualinvoke aEx.<org.antlr.v4.runtime.RecognitionException: org.antlr.v4.runtime.RuleContext getCtx()>();
+
+        if ruleContext == null goto label3;
+
+        $r3 = virtualinvoke aEx.<org.antlr.v4.runtime.RecognitionException: org.antlr.v4.runtime.RuleContext getCtx()>();
+
+        ruleIndex = virtualinvoke $r3.<org.antlr.v4.runtime.RuleContext: int getRuleIndex()>();
+
+        $r5 = virtualinvoke aRecognizer.<org.antlr.v4.runtime.Recognizer: java.lang.String[] getRuleNames()>();
+
+        ruleName = $r5[ruleIndex];
+
+        $r6 = <com.google.common.base.CaseFormat: com.google.common.base.CaseFormat UPPER_CAMEL>;
+
+        $r7 = <com.google.common.base.CaseFormat: com.google.common.base.CaseFormat UPPER_UNDERSCORE>;
+
+        upperCaseRuleName = virtualinvoke $r6.<com.google.common.base.CaseFormat: java.lang.String 'to'(com.google.common.base.CaseFormat,java.lang.String)>($r7, ruleName);
+
+        $r10 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this$0>;
+
+        $r8 = newarray (java.lang.Object)[2];
+
+        $r8[0] = aMsg;
+
+        $r8[1] = upperCaseRuleName;
+
+        virtualinvoke $r10.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void log(int,java.lang.String,java.lang.Object[])>(lineNumber, "javadoc.parse.rule.error", $r8);
+
+        goto label4;
+
+     label3:
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck this$0>;
+
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r2[0] = aMsg;
+
+        virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void log(int,java.lang.String,java.lang.Object[])>(lineNumber, "javadoc.parse.token.error", $r2);
+
+     label4:
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: java.lang.String JAVADOC_WRONG_SINGLETON_TAG> = "javadoc.wrong.singleton.html.tag";
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck$DescriptiveErrorListener: java.lang.String JAVADOC_MISSED_HTML_CLOSE> = "javadoc.missed.html.close";
+
+        return;
+    }
+}

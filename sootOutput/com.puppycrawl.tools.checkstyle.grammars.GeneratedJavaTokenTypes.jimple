@@ -1,0 +1,596 @@
+public interface  com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes extends java.lang.Object
+{
+    public static final int EOF;
+    public static final int NULL_TREE_LOOKAHEAD;
+    public static final int BLOCK;
+    public static final int MODIFIERS;
+    public static final int OBJBLOCK;
+    public static final int SLIST;
+    public static final int CTOR_DEF;
+    public static final int METHOD_DEF;
+    public static final int VARIABLE_DEF;
+    public static final int INSTANCE_INIT;
+    public static final int STATIC_INIT;
+    public static final int TYPE;
+    public static final int CLASS_DEF;
+    public static final int INTERFACE_DEF;
+    public static final int PACKAGE_DEF;
+    public static final int ARRAY_DECLARATOR;
+    public static final int EXTENDS_CLAUSE;
+    public static final int IMPLEMENTS_CLAUSE;
+    public static final int PARAMETERS;
+    public static final int PARAMETER_DEF;
+    public static final int LABELED_STAT;
+    public static final int TYPECAST;
+    public static final int INDEX_OP;
+    public static final int POST_INC;
+    public static final int POST_DEC;
+    public static final int METHOD_CALL;
+    public static final int METHOD_REF;
+    public static final int EXPR;
+    public static final int ARRAY_INIT;
+    public static final int IMPORT;
+    public static final int UNARY_MINUS;
+    public static final int UNARY_PLUS;
+    public static final int CASE_GROUP;
+    public static final int ELIST;
+    public static final int FOR_INIT;
+    public static final int FOR_CONDITION;
+    public static final int FOR_ITERATOR;
+    public static final int EMPTY_STAT;
+    public static final int FINAL;
+    public static final int ABSTRACT;
+    public static final int STRICTFP;
+    public static final int SUPER_CTOR_CALL;
+    public static final int CTOR_CALL;
+    public static final int LITERAL_package;
+    public static final int SEMI;
+    public static final int LITERAL_import;
+    public static final int LBRACK;
+    public static final int RBRACK;
+    public static final int LITERAL_void;
+    public static final int LITERAL_boolean;
+    public static final int LITERAL_byte;
+    public static final int LITERAL_char;
+    public static final int LITERAL_short;
+    public static final int LITERAL_int;
+    public static final int LITERAL_float;
+    public static final int LITERAL_long;
+    public static final int LITERAL_double;
+    public static final int IDENT;
+    public static final int DOT;
+    public static final int STAR;
+    public static final int LITERAL_private;
+    public static final int LITERAL_public;
+    public static final int LITERAL_protected;
+    public static final int LITERAL_static;
+    public static final int LITERAL_transient;
+    public static final int LITERAL_native;
+    public static final int LITERAL_synchronized;
+    public static final int LITERAL_volatile;
+    public static final int LITERAL_class;
+    public static final int LITERAL_extends;
+    public static final int LITERAL_interface;
+    public static final int LCURLY;
+    public static final int RCURLY;
+    public static final int COMMA;
+    public static final int LITERAL_implements;
+    public static final int LPAREN;
+    public static final int RPAREN;
+    public static final int LITERAL_this;
+    public static final int LITERAL_super;
+    public static final int ASSIGN;
+    public static final int LITERAL_throws;
+    public static final int COLON;
+    public static final int DOUBLE_COLON;
+    public static final int LITERAL_if;
+    public static final int LITERAL_while;
+    public static final int LITERAL_do;
+    public static final int LITERAL_break;
+    public static final int LITERAL_continue;
+    public static final int LITERAL_return;
+    public static final int LITERAL_switch;
+    public static final int LITERAL_throw;
+    public static final int LITERAL_for;
+    public static final int LITERAL_else;
+    public static final int LITERAL_case;
+    public static final int LITERAL_default;
+    public static final int LITERAL_try;
+    public static final int LITERAL_catch;
+    public static final int LITERAL_finally;
+    public static final int PLUS_ASSIGN;
+    public static final int MINUS_ASSIGN;
+    public static final int STAR_ASSIGN;
+    public static final int DIV_ASSIGN;
+    public static final int MOD_ASSIGN;
+    public static final int SR_ASSIGN;
+    public static final int BSR_ASSIGN;
+    public static final int SL_ASSIGN;
+    public static final int BAND_ASSIGN;
+    public static final int BXOR_ASSIGN;
+    public static final int BOR_ASSIGN;
+    public static final int QUESTION;
+    public static final int LOR;
+    public static final int LAND;
+    public static final int BOR;
+    public static final int BXOR;
+    public static final int BAND;
+    public static final int NOT_EQUAL;
+    public static final int EQUAL;
+    public static final int LT;
+    public static final int GT;
+    public static final int LE;
+    public static final int GE;
+    public static final int LITERAL_instanceof;
+    public static final int SL;
+    public static final int SR;
+    public static final int BSR;
+    public static final int PLUS;
+    public static final int MINUS;
+    public static final int DIV;
+    public static final int MOD;
+    public static final int INC;
+    public static final int DEC;
+    public static final int BNOT;
+    public static final int LNOT;
+    public static final int LITERAL_true;
+    public static final int LITERAL_false;
+    public static final int LITERAL_null;
+    public static final int LITERAL_new;
+    public static final int NUM_INT;
+    public static final int CHAR_LITERAL;
+    public static final int STRING_LITERAL;
+    public static final int NUM_FLOAT;
+    public static final int NUM_LONG;
+    public static final int NUM_DOUBLE;
+    public static final int WS;
+    public static final int ESC;
+    public static final int HEX_DIGIT;
+    public static final int VOCAB;
+    public static final int EXPONENT;
+    public static final int FLOAT_SUFFIX;
+    public static final int SINGLE_LINE_COMMENT;
+    public static final int BLOCK_COMMENT_BEGIN;
+    public static final int BLOCK_COMMENT_END;
+    public static final int COMMENT_CONTENT;
+    public static final int ASSERT;
+    public static final int STATIC_IMPORT;
+    public static final int ENUM;
+    public static final int ENUM_DEF;
+    public static final int ENUM_CONSTANT_DEF;
+    public static final int FOR_EACH_CLAUSE;
+    public static final int ANNOTATION_DEF;
+    public static final int ANNOTATIONS;
+    public static final int ANNOTATION;
+    public static final int ANNOTATION_MEMBER_VALUE_PAIR;
+    public static final int ANNOTATION_FIELD_DEF;
+    public static final int ANNOTATION_ARRAY_INIT;
+    public static final int TYPE_ARGUMENTS;
+    public static final int TYPE_ARGUMENT;
+    public static final int TYPE_PARAMETERS;
+    public static final int TYPE_PARAMETER;
+    public static final int WILDCARD_TYPE;
+    public static final int TYPE_UPPER_BOUNDS;
+    public static final int TYPE_LOWER_BOUNDS;
+    public static final int AT;
+    public static final int ELLIPSIS;
+    public static final int GENERIC_START;
+    public static final int GENERIC_END;
+    public static final int TYPE_EXTENSION_AND;
+    public static final int DO_WHILE;
+    public static final int RESOURCE_SPECIFICATION;
+    public static final int RESOURCES;
+    public static final int RESOURCE;
+    public static final int LAMBDA;
+    public static final int SINGLE_LINE_COMMENT_CONTENT;
+    public static final int BLOCK_COMMENT_CONTENT;
+    public static final int STD_ESC;
+    public static final int BINARY_DIGIT;
+    public static final int ID_START;
+    public static final int ID_PART;
+    public static final int INT_LITERAL;
+    public static final int LONG_LITERAL;
+    public static final int FLOAT_LITERAL;
+    public static final int DOUBLE_LITERAL;
+    public static final int HEX_FLOAT_LITERAL;
+    public static final int HEX_DOUBLE_LITERAL;
+    public static final int SIGNED_INTEGER;
+    public static final int BINARY_EXPONENT;
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BINARY_EXPONENT> = 197;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int SIGNED_INTEGER> = 196;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int HEX_DOUBLE_LITERAL> = 195;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int HEX_FLOAT_LITERAL> = 194;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int DOUBLE_LITERAL> = 193;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int FLOAT_LITERAL> = 192;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LONG_LITERAL> = 191;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int INT_LITERAL> = 190;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ID_PART> = 189;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ID_START> = 188;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BINARY_DIGIT> = 187;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int STD_ESC> = 186;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BLOCK_COMMENT_CONTENT> = 185;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int SINGLE_LINE_COMMENT_CONTENT> = 184;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LAMBDA> = 183;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int RESOURCE> = 182;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int RESOURCES> = 181;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int RESOURCE_SPECIFICATION> = 180;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int DO_WHILE> = 179;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int TYPE_EXTENSION_AND> = 178;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int GENERIC_END> = 177;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int GENERIC_START> = 176;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ELLIPSIS> = 175;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int AT> = 174;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int TYPE_LOWER_BOUNDS> = 173;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int TYPE_UPPER_BOUNDS> = 172;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int WILDCARD_TYPE> = 171;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int TYPE_PARAMETER> = 170;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int TYPE_PARAMETERS> = 169;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int TYPE_ARGUMENT> = 168;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int TYPE_ARGUMENTS> = 167;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ANNOTATION_ARRAY_INIT> = 166;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ANNOTATION_FIELD_DEF> = 165;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ANNOTATION_MEMBER_VALUE_PAIR> = 164;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ANNOTATION> = 163;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ANNOTATIONS> = 162;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ANNOTATION_DEF> = 161;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int FOR_EACH_CLAUSE> = 160;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ENUM_CONSTANT_DEF> = 159;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ENUM_DEF> = 158;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ENUM> = 157;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int STATIC_IMPORT> = 156;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ASSERT> = 155;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int COMMENT_CONTENT> = 154;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BLOCK_COMMENT_END> = 153;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BLOCK_COMMENT_BEGIN> = 152;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int SINGLE_LINE_COMMENT> = 151;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int FLOAT_SUFFIX> = 150;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int EXPONENT> = 149;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int VOCAB> = 148;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int HEX_DIGIT> = 147;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ESC> = 146;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int WS> = 145;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int NUM_DOUBLE> = 144;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int NUM_LONG> = 143;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int NUM_FLOAT> = 142;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int STRING_LITERAL> = 141;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int CHAR_LITERAL> = 140;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int NUM_INT> = 139;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_new> = 138;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_null> = 137;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_false> = 136;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_true> = 135;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LNOT> = 134;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BNOT> = 133;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int DEC> = 132;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int INC> = 131;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int MOD> = 130;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int DIV> = 129;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int MINUS> = 128;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int PLUS> = 127;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BSR> = 126;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int SR> = 125;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int SL> = 124;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_instanceof> = 123;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int GE> = 122;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LE> = 121;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int GT> = 120;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LT> = 119;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int EQUAL> = 118;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int NOT_EQUAL> = 117;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BAND> = 116;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BXOR> = 115;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BOR> = 114;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LAND> = 113;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LOR> = 112;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int QUESTION> = 111;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BOR_ASSIGN> = 110;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BXOR_ASSIGN> = 109;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BAND_ASSIGN> = 108;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int SL_ASSIGN> = 107;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BSR_ASSIGN> = 106;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int SR_ASSIGN> = 105;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int MOD_ASSIGN> = 104;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int DIV_ASSIGN> = 103;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int STAR_ASSIGN> = 102;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int MINUS_ASSIGN> = 101;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int PLUS_ASSIGN> = 100;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_finally> = 99;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_catch> = 98;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_try> = 97;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_default> = 96;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_case> = 95;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_else> = 94;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_for> = 93;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_throw> = 92;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_switch> = 91;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_return> = 90;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_continue> = 89;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_break> = 88;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_do> = 87;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_while> = 86;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_if> = 85;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int DOUBLE_COLON> = 84;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int COLON> = 83;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_throws> = 82;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ASSIGN> = 81;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_super> = 80;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_this> = 79;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int RPAREN> = 78;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LPAREN> = 77;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_implements> = 76;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int COMMA> = 75;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int RCURLY> = 74;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LCURLY> = 73;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_interface> = 72;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_extends> = 71;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_class> = 70;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_volatile> = 69;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_synchronized> = 68;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_native> = 67;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_transient> = 66;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_static> = 65;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_protected> = 64;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_public> = 63;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_private> = 62;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int STAR> = 61;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int DOT> = 60;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int IDENT> = 59;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_double> = 58;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_long> = 57;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_float> = 56;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_int> = 55;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_short> = 54;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_char> = 53;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_byte> = 52;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_boolean> = 51;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_void> = 50;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int RBRACK> = 49;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LBRACK> = 48;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_import> = 47;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int SEMI> = 46;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LITERAL_package> = 45;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int CTOR_CALL> = 44;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int SUPER_CTOR_CALL> = 43;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int STRICTFP> = 42;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ABSTRACT> = 41;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int FINAL> = 40;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int EMPTY_STAT> = 39;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int FOR_ITERATOR> = 38;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int FOR_CONDITION> = 37;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int FOR_INIT> = 36;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ELIST> = 35;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int CASE_GROUP> = 34;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int UNARY_PLUS> = 33;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int UNARY_MINUS> = 32;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int IMPORT> = 31;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ARRAY_INIT> = 30;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int EXPR> = 29;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int METHOD_REF> = 28;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int METHOD_CALL> = 27;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int POST_DEC> = 26;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int POST_INC> = 25;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int INDEX_OP> = 24;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int TYPECAST> = 23;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int LABELED_STAT> = 22;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int PARAMETER_DEF> = 21;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int PARAMETERS> = 20;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int IMPLEMENTS_CLAUSE> = 19;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int EXTENDS_CLAUSE> = 18;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int ARRAY_DECLARATOR> = 17;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int PACKAGE_DEF> = 16;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int INTERFACE_DEF> = 15;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int CLASS_DEF> = 14;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int TYPE> = 13;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int STATIC_INIT> = 12;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int INSTANCE_INIT> = 11;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int VARIABLE_DEF> = 10;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int METHOD_DEF> = 9;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int CTOR_DEF> = 8;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int SLIST> = 7;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int OBJBLOCK> = 6;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int MODIFIERS> = 5;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int BLOCK> = 4;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int NULL_TREE_LOOKAHEAD> = 3;
+
+        <com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes: int EOF> = 1;
+
+        return;
+    }
+}

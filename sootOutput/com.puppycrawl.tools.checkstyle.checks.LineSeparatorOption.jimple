@@ -1,0 +1,153 @@
+public final enum class com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption extends java.lang.Enum
+{
+    public static final enum com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption CRLF;
+    public static final enum com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption CR;
+    public static final enum com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption LF;
+    public static final enum com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption SYSTEM;
+    private final java.lang.String mLineSeparator;
+    private static final com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption[] $VALUES;
+
+    public static com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption[] values()
+    {
+        com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption[]) $r1;
+
+        return $r2;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption valueOf(java.lang.String)
+    {
+        java.lang.String name;
+        java.lang.Enum $r0;
+        com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption $r1;
+
+        name := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/checks/LineSeparatorOption", name);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption) $r0;
+
+        return $r1;
+    }
+
+    private void <init>(java.lang.String, int, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption this;
+        java.lang.String l1, aSep;
+        int l2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        aSep := @parameter2: java.lang.String;
+
+        specialinvoke this.<java.lang.Enum: void <init>(java.lang.String,int)>(l1, l2);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: java.lang.String mLineSeparator> = aSep;
+
+        return;
+    }
+
+    public boolean matches(byte[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption this;
+        byte[] aBytes;
+        java.lang.String s, $r0, $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
+
+        aBytes := @parameter0: byte[];
+
+        $r0 = new java.lang.String;
+
+        specialinvoke $r0.<java.lang.String: void <init>(byte[])>(aBytes);
+
+        s = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: java.lang.String mLineSeparator>;
+
+        $z0 = virtualinvoke s.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        return $z0;
+    }
+
+    public int length()
+    {
+        com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption this;
+        java.lang.String $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: java.lang.String mLineSeparator>;
+
+        $i0 = virtualinvoke $r0.<java.lang.String: int length()>();
+
+        return $i0;
+    }
+
+    static void <clinit>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption $r0, $r1, $r2, $r3, $r6, $r7, $r8, $r9;
+        java.lang.String $r4;
+        com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption[] $r5;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: void <init>(java.lang.String,int,java.lang.String)>("CRLF", 0, "\r\n");
+
+        <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption CRLF> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: void <init>(java.lang.String,int,java.lang.String)>("CR", 1, "\r");
+
+        <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption CR> = $r1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: void <init>(java.lang.String,int,java.lang.String)>("LF", 2, "\n");
+
+        <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption LF> = $r2;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
+
+        $r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("line.separator");
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: void <init>(java.lang.String,int,java.lang.String)>("SYSTEM", 3, $r4);
+
+        <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption SYSTEM> = $r3;
+
+        $r5 = newarray (com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption)[4];
+
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption CRLF>;
+
+        $r5[0] = $r6;
+
+        $r7 = <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption CR>;
+
+        $r5[1] = $r7;
+
+        $r8 = <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption LF>;
+
+        $r5[2] = $r8;
+
+        $r9 = <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption SYSTEM>;
+
+        $r5[3] = $r9;
+
+        <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption[] $VALUES> = $r5;
+
+        return;
+    }
+}

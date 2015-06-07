@@ -1,0 +1,558 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mCheckLastGroup;
+    private java.lang.String mReliefPattern;
+    private java.util.regex.Pattern mRegExp;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: java.lang.String mReliefPattern> = "fallthru|falls? ?through";
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 34;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void setReliefPattern(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        java.lang.String aPattern;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aPattern := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: java.lang.String mReliefPattern> = aPattern;
+
+        return;
+    }
+
+    public void setCheckLastCaseGroup(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        boolean aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aValue := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean mCheckLastGroup> = aValue;
+
+        return;
+    }
+
+    public void init()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        java.lang.String $r0;
+        java.util.regex.Pattern $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void init()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: java.lang.String mReliefPattern>;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>($r0);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: java.util.regex.Pattern mRegExp> = $r1;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nextGroup, slist;
+        boolean isLastGroup, $z0, $z1, $z2, $z3;
+        java.lang.Object[] $r0, $r1;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        nextGroup = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if nextGroup == null goto label1;
+
+        $i0 = virtualinvoke nextGroup.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 34 goto label2;
+
+     label1:
+        $z3 = 1;
+
+        goto label3;
+
+     label2:
+        $z3 = 0;
+
+     label3:
+        isLastGroup = $z3;
+
+        if isLastGroup == 0 goto label4;
+
+        $z2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean mCheckLastGroup>;
+
+        if $z2 != 0 goto label4;
+
+        return;
+
+     label4:
+        slist = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean isTerminated(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>(slist, 1, 1);
+
+        if $z0 != 0 goto label6;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean hasFallTruComment(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST, nextGroup);
+
+        if $z1 != 0 goto label6;
+
+        if isLastGroup != 0 goto label5;
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(nextGroup, "fall.through", $r1);
+
+        goto label6;
+
+     label5:
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "fall.through.last", $r0);
+
+     label6:
+        return;
+    }
+
+    private boolean isTerminated(com.puppycrawl.tools.checkstyle.api.DetailAST, boolean, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        boolean aUseBreak, aUseContinue, $z0, $z1, $z2, $z3, $z4;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aUseBreak := @parameter1: boolean;
+
+        aUseContinue := @parameter2: boolean;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 7: goto label4;
+            case 85: goto label5;
+            case 86: goto label6;
+            case 87: goto label6;
+            case 88: goto label2;
+            case 89: goto label3;
+            case 90: goto label1;
+            case 91: goto label8;
+            case 92: goto label1;
+            case 93: goto label6;
+            case 97: goto label7;
+            default: goto label9;
+        };
+
+     label1:
+        return 1;
+
+     label2:
+        return aUseBreak;
+
+     label3:
+        return aUseContinue;
+
+     label4:
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean checkSlist(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>(aAST, aUseBreak, aUseContinue);
+
+        return $z4;
+
+     label5:
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean checkIf(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>(aAST, aUseBreak, aUseContinue);
+
+        return $z3;
+
+     label6:
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean checkLoop(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        return $z2;
+
+     label7:
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean checkTry(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>(aAST, aUseBreak, aUseContinue);
+
+        return $z0;
+
+     label8:
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean checkSwitch(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean)>(aAST, aUseContinue);
+
+        return $z1;
+
+     label9:
+        return 0;
+    }
+
+    private boolean checkSlist(com.puppycrawl.tools.checkstyle.api.DetailAST, boolean, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, lastStmt;
+        boolean aUseBreak, aUseContinue, $z0, $z1;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aUseBreak := @parameter1: boolean;
+
+        aUseContinue := @parameter2: boolean;
+
+        lastStmt = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        if lastStmt != null goto label1;
+
+        return 1;
+
+     label1:
+        $i0 = virtualinvoke lastStmt.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 74 goto label2;
+
+        lastStmt = virtualinvoke lastStmt.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+     label2:
+        if lastStmt == null goto label3;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean isTerminated(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>(lastStmt, aUseBreak, aUseContinue);
+
+        if $z0 == 0 goto label3;
+
+        $z1 = 1;
+
+        goto label4;
+
+     label3:
+        $z1 = 0;
+
+     label4:
+        return $z1;
+    }
+
+    private boolean checkIf(com.puppycrawl.tools.checkstyle.api.DetailAST, boolean, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, thenStmt, elseStmt, $r0, $r1;
+        boolean aUseBreak, aUseContinue, isTerminated;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aUseBreak := @parameter1: boolean;
+
+        aUseContinue := @parameter2: boolean;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(78);
+
+        thenStmt = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        elseStmt = virtualinvoke thenStmt.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        isTerminated = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean isTerminated(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>(thenStmt, aUseBreak, aUseContinue);
+
+        if isTerminated == 0 goto label1;
+
+        if elseStmt == null goto label1;
+
+        $r1 = virtualinvoke elseStmt.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        isTerminated = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean isTerminated(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>($r1, aUseBreak, aUseContinue);
+
+     label1:
+        return isTerminated;
+    }
+
+    private boolean checkLoop(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, lparen, loopBody;
+        int $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 87 goto label1;
+
+        lparen = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(179);
+
+        loopBody = virtualinvoke lparen.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        goto label2;
+
+     label1:
+        lparen = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(78);
+
+        loopBody = virtualinvoke lparen.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label2:
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean isTerminated(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>(loopBody, 0, 0);
+
+        return $z0;
+    }
+
+    private boolean checkTry(com.puppycrawl.tools.checkstyle.api.DetailAST, boolean, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, finalStmt, catchStmt, catchBody, $r0, $r1;
+        boolean aUseBreak, aUseContinue, isTerminated, $z0, $z1;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aUseBreak := @parameter1: boolean;
+
+        aUseContinue := @parameter2: boolean;
+
+        finalStmt = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $i0 = virtualinvoke finalStmt.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 99 goto label1;
+
+        $r1 = virtualinvoke finalStmt.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean isTerminated(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>($r1, aUseBreak, aUseContinue);
+
+        return $z1;
+
+     label1:
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        isTerminated = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean isTerminated(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>($r0, aUseBreak, aUseContinue);
+
+        catchStmt = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(98);
+
+     label2:
+        if catchStmt == null goto label3;
+
+        if isTerminated == 0 goto label3;
+
+        catchBody = virtualinvoke catchStmt.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean isTerminated(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>(catchBody, aUseBreak, aUseContinue);
+
+        isTerminated = isTerminated & $z0;
+
+        catchStmt = virtualinvoke catchStmt.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label2;
+
+     label3:
+        return isTerminated;
+    }
+
+    private boolean checkSwitch(com.puppycrawl.tools.checkstyle.api.DetailAST, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, caseGroup, caseBody;
+        boolean aUseContinue, isTerminated, $z0, $z1;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aUseContinue := @parameter1: boolean;
+
+        caseGroup = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(34);
+
+        if caseGroup == null goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        isTerminated = $z1;
+
+     label3:
+        if isTerminated == 0 goto label4;
+
+        if caseGroup == null goto label4;
+
+        $i0 = virtualinvoke caseGroup.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 74 goto label4;
+
+        caseBody = virtualinvoke caseGroup.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean isTerminated(com.puppycrawl.tools.checkstyle.api.DetailAST,boolean,boolean)>(caseBody, 0, aUseContinue);
+
+        isTerminated = isTerminated & $z0;
+
+        caseGroup = virtualinvoke caseGroup.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label3;
+
+     label4:
+        return isTerminated;
+    }
+
+    private boolean hasFallTruComment(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aCurrentCase, aNextCase;
+        int startLineNo, endLineNo, endColNo, i, $i0, $i1, $i2, $i3;
+        java.lang.String[] lines;
+        java.lang.String linepart, $r0, $r2, $r3, $r4;
+        boolean $z0, $z1;
+        java.util.regex.Pattern $r1, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aCurrentCase := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aNextCase := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        startLineNo = virtualinvoke aCurrentCase.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        endLineNo = virtualinvoke aNextCase.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        endColNo = virtualinvoke aNextCase.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        lines = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: java.lang.String[] getLines()>();
+
+        $i0 = endLineNo - 1;
+
+        $r0 = lines[$i0];
+
+        linepart = virtualinvoke $r0.<java.lang.String: java.lang.String substring(int,int)>(0, endColNo);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: java.util.regex.Pattern mRegExp>;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean commentMatch(java.util.regex.Pattern,java.lang.String,int)>($r1, linepart, endLineNo);
+
+        if $z0 == 0 goto label1;
+
+        return 1;
+
+     label1:
+        i = endLineNo - 2;
+
+     label2:
+        $i1 = startLineNo - 1;
+
+        if i <= $i1 goto label4;
+
+        $r2 = lines[i];
+
+        $r3 = virtualinvoke $r2.<java.lang.String: java.lang.String trim()>();
+
+        $i2 = virtualinvoke $r3.<java.lang.String: int length()>();
+
+        if $i2 == 0 goto label3;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: java.util.regex.Pattern mRegExp>;
+
+        $r4 = lines[i];
+
+        $i3 = i + 1;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: boolean commentMatch(java.util.regex.Pattern,java.lang.String,int)>($r5, $r4, $i3);
+
+        return $z1;
+
+     label3:
+        i = i + -1;
+
+        goto label2;
+
+     label4:
+        return 0;
+    }
+
+    private boolean commentMatch(java.util.regex.Pattern, java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck this;
+        java.util.regex.Pattern aPattern;
+        java.lang.String aLine;
+        int aLineNo, startMatch, endMatch, $i0;
+        java.util.regex.Matcher matcher;
+        boolean hit, $z0;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+
+        aPattern := @parameter0: java.util.regex.Pattern;
+
+        aLine := @parameter1: java.lang.String;
+
+        aLineNo := @parameter2: int;
+
+        matcher = virtualinvoke aPattern.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aLine);
+
+        hit = virtualinvoke matcher.<java.util.regex.Matcher: boolean find()>();
+
+        if hit == 0 goto label1;
+
+        startMatch = virtualinvoke matcher.<java.util.regex.Matcher: int start()>();
+
+        $i0 = virtualinvoke matcher.<java.util.regex.Matcher: int end()>();
+
+        endMatch = $i0 - 1;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        $z0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileContents: boolean hasIntersectionWithComment(int,int,int,int)>(aLineNo, startMatch, aLineNo, endMatch);
+
+        return $z0;
+
+     label1:
+        return 0;
+    }
+}

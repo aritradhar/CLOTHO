@@ -1,0 +1,362 @@
+public class com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int DEFAULT_INDENTATION;
+    private int mBasicOffset;
+    private int mCaseIndentationAmount;
+    private int mBraceAdjustment;
+    private int mThrowsIndentationAmount;
+    private int mArrayInitIndentationAmount;
+    private int mLineWrappingIndentation;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mHandlers;
+    private final com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory mHandlerFactory;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mBasicOffset> = 4;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mCaseIndentationAmount> = 4;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mThrowsIndentationAmount> = 4;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mArrayInitIndentationAmount> = 4;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mLineWrappingIndentation> = 4;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.api.FastStack mHandlers> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory mHandlerFactory> = $r1;
+
+        return;
+    }
+
+    public void setBasicOffset(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int aBasicOffset;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aBasicOffset := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mBasicOffset> = aBasicOffset;
+
+        return;
+    }
+
+    public int getBasicOffset()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mBasicOffset>;
+
+        return $i0;
+    }
+
+    public void setBraceAdjustment(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int aAdjustmentAmount;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAdjustmentAmount := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mBraceAdjustment> = aAdjustmentAmount;
+
+        return;
+    }
+
+    public int getBraceAdjustement()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mBraceAdjustment>;
+
+        return $i0;
+    }
+
+    public void setCaseIndent(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int aAmount;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAmount := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mCaseIndentationAmount> = aAmount;
+
+        return;
+    }
+
+    public int getCaseIndent()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mCaseIndentationAmount>;
+
+        return $i0;
+    }
+
+    public void setThrowsIndent(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int aThrowsIndent;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aThrowsIndent := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mThrowsIndentationAmount> = aThrowsIndent;
+
+        return;
+    }
+
+    public int getThrowsIndent()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mThrowsIndentationAmount>;
+
+        return $i0;
+    }
+
+    public void setArrayInitIndent(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int aArrayInitIndent;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aArrayInitIndent := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mArrayInitIndentationAmount> = aArrayInitIndent;
+
+        return;
+    }
+
+    public int getArrayInitIndent()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mArrayInitIndentationAmount>;
+
+        return $i0;
+    }
+
+    public int getLineWrappingIndentation()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mLineWrappingIndentation>;
+
+        return $i0;
+    }
+
+    public void setLineWrappingIndentation(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int aLineWrappingIndentation;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aLineWrappingIndentation := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int mLineWrappingIndentation> = aLineWrappingIndentation;
+
+        return;
+    }
+
+    public transient void indentationLog(int, java.lang.String, java.lang.Object[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int aLine;
+        java.lang.String aKey;
+        java.lang.Object[] aArgs;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aLine := @parameter0: int;
+
+        aKey := @parameter1: java.lang.String;
+
+        aArgs := @parameter2: java.lang.Object[];
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void log(int,java.lang.String,java.lang.Object[])>(aLine, aKey, aArgs);
+
+        return;
+    }
+
+    public int getIndentationTabWidth()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int getTabWidth()>();
+
+        return $i0;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory $r0;
+        int[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory mHandlerFactory>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: int[] getHandledTypes()>();
+
+        return $r1;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory $r0;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1, $r3;
+        com.puppycrawl.tools.checkstyle.checks.indentation.PrimordialHandler $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory mHandlerFactory>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: void clearCreatedHandlers()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.api.FastStack mHandlers>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: void clear()>();
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.api.FastStack mHandlers>;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.indentation.PrimordialHandler;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.indentation.PrimordialHandler: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck)>(this);
+
+        virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r2);
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler handler, $r3;
+        java.lang.NullPointerException npe, $r5;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0, $r4;
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory $r1;
+        java.lang.Object $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory mHandlerFactory>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.api.FastStack mHandlers>;
+
+        $r2 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object peek()>();
+
+        $r3 = (com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler) $r2;
+
+        handler = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler getHandler(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)>(this, aAST, $r3);
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.api.FastStack mHandlers>;
+
+        virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>(handler);
+
+     label1:
+        virtualinvoke handler.<com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler: void checkIndentation()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r5 := @caughtexception;
+
+        npe = $r5;
+
+        virtualinvoke npe.<java.lang.NullPointerException: void printStackTrace()>();
+
+     label4:
+        return;
+
+        catch java.lang.NullPointerException from label1 to label2 with label3;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.api.FastStack mHandlers>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        return;
+    }
+
+    final com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory getHandlerFactory()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory mHandlerFactory>;
+
+        return $r0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck: int DEFAULT_INDENTATION> = 4;
+
+        return;
+    }
+}

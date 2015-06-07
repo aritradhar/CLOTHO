@@ -1,0 +1,101 @@
+class com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry extends java.lang.Object
+{
+    private final java.lang.String mCheckName;
+    private final int mFirstLine;
+    private final int mFirstColumn;
+    private final int mLastLine;
+    private final int mLastColumn;
+
+    public void <init>(java.lang.String, int, int, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry this;
+        java.lang.String aCheckName;
+        int aFirstLine, aFirstColumn, aLastLine, aLastColumn;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry;
+
+        aCheckName := @parameter0: java.lang.String;
+
+        aFirstLine := @parameter1: int;
+
+        aFirstColumn := @parameter2: int;
+
+        aLastLine := @parameter3: int;
+
+        aLastColumn := @parameter4: int;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry: java.lang.String mCheckName> = aCheckName;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry: int mFirstLine> = aFirstLine;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry: int mFirstColumn> = aFirstColumn;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry: int mLastLine> = aLastLine;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry: int mLastColumn> = aLastColumn;
+
+        return;
+    }
+
+    public java.lang.String getCheckName()
+    {
+        com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry: java.lang.String mCheckName>;
+
+        return $r0;
+    }
+
+    public int getFirstLine()
+    {
+        com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry: int mFirstLine>;
+
+        return $i0;
+    }
+
+    public int getFirstColumn()
+    {
+        com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry: int mFirstColumn>;
+
+        return $i0;
+    }
+
+    public int getLastLine()
+    {
+        com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry: int mLastLine>;
+
+        return $i0;
+    }
+
+    public int getLastColumn()
+    {
+        com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry: int mLastColumn>;
+
+        return $i0;
+    }
+}

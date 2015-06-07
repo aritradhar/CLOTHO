@@ -1,0 +1,5 @@
+interface  com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor extends java.lang.Object
+{
+
+    public abstract boolean shouldSuppress(int, int, int, int);
+}

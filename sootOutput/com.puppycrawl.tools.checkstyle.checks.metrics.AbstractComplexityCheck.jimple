@@ -1,0 +1,326 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final java.math.BigInteger INITIAL_VALUE;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mValueStack;
+    private java.math.BigInteger mCurrentValue;
+    private int mMax;
+
+    public void <init>(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        int aMax;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.math.BigInteger $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        aMax := @parameter0: int;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: com.puppycrawl.tools.checkstyle.api.FastStack mValueStack> = $r0;
+
+        $r1 = <java.math.BigInteger: java.math.BigInteger ZERO>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger mCurrentValue> = $r1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: int mMax> = aMax;
+
+        return;
+    }
+
+    protected abstract java.lang.String getMessageID();
+
+    protected void visitTokenHook(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        return;
+    }
+
+    protected void leaveTokenHook(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        return;
+    }
+
+    public final int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        $r0 = newarray (int)[4];
+
+        $r0[0] = 8;
+
+        $r0[1] = 9;
+
+        $r0[2] = 11;
+
+        $r0[3] = 12;
+
+        return $r0;
+    }
+
+    public final int getMax()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: int mMax>;
+
+        return $i0;
+    }
+
+    public final void setMax(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        int aMax;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        aMax := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: int mMax> = aMax;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        tableswitch($i0)
+        {
+            case 8: goto label1;
+            case 9: goto label1;
+            case 10: goto label2;
+            case 11: goto label1;
+            case 12: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void visitMethodDef()>();
+
+        goto label3;
+
+     label2:
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void visitTokenHook(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label3:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        tableswitch($i0)
+        {
+            case 8: goto label1;
+            case 9: goto label1;
+            case 10: goto label2;
+            case 11: goto label1;
+            case 12: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void leaveMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label3;
+
+     label2:
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void leaveTokenHook(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label3:
+        return;
+    }
+
+    protected final java.math.BigInteger getCurrentValue()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        java.math.BigInteger $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger mCurrentValue>;
+
+        return $r0;
+    }
+
+    protected final void setCurrentValue(java.math.BigInteger)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        java.math.BigInteger aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        aValue := @parameter0: java.math.BigInteger;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger mCurrentValue> = aValue;
+
+        return;
+    }
+
+    protected final void incrementCurrentValue(java.math.BigInteger)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        java.math.BigInteger aBy, $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        aBy := @parameter0: java.math.BigInteger;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger getCurrentValue()>();
+
+        $r1 = virtualinvoke $r0.<java.math.BigInteger: java.math.BigInteger add(java.math.BigInteger)>(aBy);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void setCurrentValue(java.math.BigInteger)>($r1);
+
+        return;
+    }
+
+    protected final void pushValue()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        java.math.BigInteger $r0, $r2;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: com.puppycrawl.tools.checkstyle.api.FastStack mValueStack>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger mCurrentValue>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r0);
+
+        $r2 = <com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger INITIAL_VALUE>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger mCurrentValue> = $r2;
+
+        return;
+    }
+
+    protected final java.math.BigInteger popValue()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.lang.Object $r1;
+        java.math.BigInteger $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: com.puppycrawl.tools.checkstyle.api.FastStack mValueStack>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        $r2 = (java.math.BigInteger) $r1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger mCurrentValue> = $r2;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger mCurrentValue>;
+
+        return $r3;
+    }
+
+    private void visitMethodDef()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void pushValue()>();
+
+        return;
+    }
+
+    private void leaveMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.math.BigInteger max, $r0, $r4;
+        int $i0, $i2;
+        long $l1;
+        java.lang.String $r2;
+        java.lang.Object[] $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: int mMax>;
+
+        $l1 = (long) $i0;
+
+        max = staticinvoke <java.math.BigInteger: java.math.BigInteger valueOf(long)>($l1);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger mCurrentValue>;
+
+        $i2 = virtualinvoke $r0.<java.math.BigInteger: int compareTo(java.math.BigInteger)>(max);
+
+        if $i2 <= 0 goto label1;
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.lang.String getMessageID()>();
+
+        $r3 = newarray (java.lang.Object)[2];
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger mCurrentValue>;
+
+        $r3[0] = $r4;
+
+        $r3[1] = max;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, $r2, $r3);
+
+     label1:
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger popValue()>();
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.math.BigInteger $r0;
+
+        $r0 = <java.math.BigInteger: java.math.BigInteger ONE>;
+
+        <com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: java.math.BigInteger INITIAL_VALUE> = $r0;
+
+        return;
+    }
+}

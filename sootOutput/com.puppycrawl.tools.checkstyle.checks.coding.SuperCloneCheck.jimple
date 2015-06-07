@@ -1,0 +1,23 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck extends com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.String getMethodName()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck;
+
+        return "clone";
+    }
+}

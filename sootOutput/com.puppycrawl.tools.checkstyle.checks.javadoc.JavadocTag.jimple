@@ -1,0 +1,349 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag extends java.lang.Object
+{
+    private final int mLineNo;
+    private int mColumnNo;
+    private final java.lang.String mArg1;
+    private final com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo;
+
+    public void <init>(int, int, java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        int aLine, aColumn;
+        java.lang.String aTag, aArg1;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        aLine := @parameter0: int;
+
+        aColumn := @parameter1: int;
+
+        aTag := @parameter2: java.lang.String;
+
+        aArg1 := @parameter3: java.lang.String;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int mLineNo> = aLine;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int mColumnNo> = aColumn;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String mArg1> = aArg1;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo fromName(java.lang.String)>(aTag);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo> = $r0;
+
+        return;
+    }
+
+    public void <init>(int, int, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        int aLine, aColumn;
+        java.lang.String aTag;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        aLine := @parameter0: int;
+
+        aColumn := @parameter1: int;
+
+        aTag := @parameter2: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: void <init>(int,int,java.lang.String,java.lang.String)>(aLine, aColumn, aTag, null);
+
+        return;
+    }
+
+    public java.lang.String getTagName()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getName()>();
+
+        return $r1;
+    }
+
+    public java.lang.String getArg1()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String mArg1>;
+
+        return $r0;
+    }
+
+    public int getLineNo()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int mLineNo>;
+
+        return $i0;
+    }
+
+    public int getColumnNo()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int mColumnNo>;
+
+        return $i0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        java.lang.StringBuilder $r0, $r1, $r3, $r4, $r5, $r6, $r7, $r8, $r10, $r11;
+        java.lang.String $r2, $r9, $r12;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("{Tag = \'");
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getTagName()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\', lineNo = ");
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int getLineNo()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", columnNo=");
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int mColumnNo>;
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", Arg1 = \'");
+
+        $r9 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'}");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r12;
+    }
+
+    public boolean isAuthorTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r0, $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo AUTHOR>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r0);
+
+        return $z0;
+    }
+
+    public boolean isReturnTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r0, $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo RETURN>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r0);
+
+        return $z0;
+    }
+
+    public boolean isParamTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r0, $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo PARAM>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r0);
+
+        return $z0;
+    }
+
+    public boolean isThrowsTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r0, $r1, $r2, $r3;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo THROWS>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r0);
+
+        if $z0 != 0 goto label1;
+
+        $r3 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo EXCEPTION>;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z1 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r2);
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    public boolean isSeeOrInheritDocTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r0, $r1;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo SEE>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r0);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: boolean isInheritDocTag()>();
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    public boolean isInheritDocTag()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r0, $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo INHERIT_DOC>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r0);
+
+        return $z0;
+    }
+
+    public boolean canReferenceImports()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag this;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo SEE>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r0);
+
+        if $z0 != 0 goto label1;
+
+        $r3 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo LINK>;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z1 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r2);
+
+        if $z1 != 0 goto label1;
+
+        $r5 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo LINKPLAIN>;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z2 = virtualinvoke $r5.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r4);
+
+        if $z2 != 0 goto label1;
+
+        $r7 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo THROWS>;
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z3 = virtualinvoke $r7.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r6);
+
+        if $z3 != 0 goto label1;
+
+        $r9 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo EXCEPTION>;
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo mTagInfo>;
+
+        $z4 = virtualinvoke $r9.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean equals(java.lang.Object)>($r8);
+
+        if $z4 == 0 goto label2;
+
+     label1:
+        $z5 = 1;
+
+        goto label3;
+
+     label2:
+        $z5 = 0;
+
+     label3:
+        return $z5;
+    }
+}

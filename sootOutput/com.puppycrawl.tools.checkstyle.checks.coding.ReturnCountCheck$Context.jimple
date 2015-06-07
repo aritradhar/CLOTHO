@@ -1,0 +1,99 @@
+class com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context extends java.lang.Object
+{
+    private final boolean mChecking;
+    private int mCount;
+    final com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this$0;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context this;
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck l1;
+        boolean aChecking;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
+
+        aChecking := @parameter1: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this$0> = l1;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: boolean mChecking> = aChecking;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: int mCount> = 0;
+
+        return;
+    }
+
+    public void visitLiteralReturn()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context this;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: int mCount>;
+
+        $i1 = $i0 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: int mCount> = $i1;
+
+        return;
+    }
+
+    public void checkCount(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck $r0, $r1, $r4;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.Object[] $r2;
+        java.lang.Integer $r3, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: boolean mChecking>;
+
+        if $z0 == 0 goto label1;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: int mCount>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this$0>;
+
+        $i1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: int getMax()>();
+
+        if $i0 <= $i1 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this$0>;
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r2 = newarray (java.lang.Object)[2];
+
+        $i4 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: int mCount>;
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+
+        $r2[0] = $r3;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck$Context: com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck this$0>;
+
+        $i5 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: int getMax()>();
+
+        $r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+
+        $r2[1] = $r5;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i2, $i3, "return.count", $r2);
+
+     label1:
+        return;
+    }
+}

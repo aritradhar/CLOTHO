@@ -1,0 +1,84 @@
+final enum class com.puppycrawl.tools.checkstyle.TreeWalker$AstState extends java.lang.Enum
+{
+    public static final enum com.puppycrawl.tools.checkstyle.TreeWalker$AstState ORDINARY;
+    public static final enum com.puppycrawl.tools.checkstyle.TreeWalker$AstState WITH_COMMENTS;
+    private static final com.puppycrawl.tools.checkstyle.TreeWalker$AstState[] $VALUES;
+
+    public static com.puppycrawl.tools.checkstyle.TreeWalker$AstState[] values()
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.TreeWalker$AstState[]) $r1;
+
+        return $r2;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.TreeWalker$AstState valueOf(java.lang.String)
+    {
+        java.lang.String name;
+        java.lang.Enum $r0;
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState $r1;
+
+        name := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/TreeWalker$AstState", name);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.TreeWalker$AstState) $r0;
+
+        return $r1;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState this;
+        java.lang.String l1;
+        int l2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker$AstState;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        specialinvoke this.<java.lang.Enum: void <init>(java.lang.String,int)>(l1, l2);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState $r0, $r1, $r3, $r4;
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState[] $r2;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.TreeWalker$AstState;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.TreeWalker$AstState: void <init>(java.lang.String,int)>("ORDINARY", 0);
+
+        <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState ORDINARY> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.TreeWalker$AstState;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.TreeWalker$AstState: void <init>(java.lang.String,int)>("WITH_COMMENTS", 1);
+
+        <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState WITH_COMMENTS> = $r1;
+
+        $r2 = newarray (com.puppycrawl.tools.checkstyle.TreeWalker$AstState)[2];
+
+        $r3 = <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState ORDINARY>;
+
+        $r2[0] = $r3;
+
+        $r4 = <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState WITH_COMMENTS>;
+
+        $r2[1] = $r4;
+
+        <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState[] $VALUES> = $r2;
+
+        return;
+    }
+}

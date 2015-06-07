@@ -1,0 +1,314 @@
+class com.puppycrawl.tools.checkstyle.checks.imports.Guard extends java.lang.Object
+{
+    private final boolean mAllowed;
+    private final java.lang.String mPkgName;
+    private final java.lang.String mClassName;
+    private final boolean mExactMatch;
+    private final boolean mLocalOnly;
+    private final boolean mRegExp;
+    static final boolean $assertionsDisabled;
+
+    void <init>(boolean, boolean, java.lang.String, boolean, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.Guard this;
+        boolean aAllow, aLocalOnly, aExactMatch, aRegExp;
+        java.lang.String aPkgName;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.Guard;
+
+        aAllow := @parameter0: boolean;
+
+        aLocalOnly := @parameter1: boolean;
+
+        aPkgName := @parameter2: java.lang.String;
+
+        aExactMatch := @parameter3: boolean;
+
+        aRegExp := @parameter4: boolean;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mAllowed> = aAllow;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mLocalOnly> = aLocalOnly;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mPkgName> = aPkgName;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mRegExp> = aRegExp;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mClassName> = null;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mExactMatch> = aExactMatch;
+
+        return;
+    }
+
+    void <init>(boolean, boolean, java.lang.String, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.Guard this;
+        boolean aAllow, aLocalOnly, aRegExp;
+        java.lang.String aClassName;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.Guard;
+
+        aAllow := @parameter0: boolean;
+
+        aLocalOnly := @parameter1: boolean;
+
+        aClassName := @parameter2: java.lang.String;
+
+        aRegExp := @parameter3: boolean;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mAllowed> = aAllow;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mLocalOnly> = aLocalOnly;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mRegExp> = aRegExp;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mPkgName> = null;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mClassName> = aClassName;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mExactMatch> = 1;
+
+        return;
+    }
+
+    com.puppycrawl.tools.checkstyle.checks.imports.AccessResult verifyImport(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.Guard this;
+        java.lang.String aForImport, $r0, $r2, $r5, $r7, $r10, $r11, $r13, $r17, $r18, $r19, $r23;
+        boolean classMatch, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9;
+        java.lang.StringBuilder $r1, $r3, $r4, $r8, $r9, $r12, $r14, $r15, $r16;
+        com.puppycrawl.tools.checkstyle.checks.imports.AccessResult $r6, $r22;
+        int $i0, $i1, $i2;
+        java.lang.AssertionError $r20, $r21;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.Guard;
+
+        aForImport := @parameter0: java.lang.String;
+
+        $z0 = <com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label01;
+
+        if aForImport != null goto label01;
+
+        $r21 = new java.lang.AssertionError;
+
+        specialinvoke $r21.<java.lang.AssertionError: void <init>()>();
+
+        throw $r21;
+
+     label01:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mClassName>;
+
+        if $r0 == null goto label04;
+
+        $z9 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mRegExp>;
+
+        if $z9 == 0 goto label02;
+
+        $r23 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mClassName>;
+
+        $z8 = virtualinvoke aForImport.<java.lang.String: boolean matches(java.lang.String)>($r23);
+
+        goto label03;
+
+     label02:
+        $r19 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mClassName>;
+
+        $z8 = virtualinvoke aForImport.<java.lang.String: boolean equals(java.lang.Object)>($r19);
+
+     label03:
+        classMatch = $z8;
+
+        $r22 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: com.puppycrawl.tools.checkstyle.checks.imports.AccessResult calculateResult(boolean)>(classMatch);
+
+        return $r22;
+
+     label04:
+        $z1 = <com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean $assertionsDisabled>;
+
+        if $z1 != 0 goto label05;
+
+        $r17 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mPkgName>;
+
+        if $r17 != null goto label05;
+
+        $r20 = new java.lang.AssertionError;
+
+        specialinvoke $r20.<java.lang.AssertionError: void <init>()>();
+
+        throw $r20;
+
+     label05:
+        $z2 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mRegExp>;
+
+        if $z2 == 0 goto label08;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mPkgName>;
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r12 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\..*");
+
+        $r11 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        classMatch = virtualinvoke aForImport.<java.lang.String: boolean matches(java.lang.String)>($r11);
+
+        if classMatch == 0 goto label11;
+
+        $z5 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mExactMatch>;
+
+        if $z5 == 0 goto label11;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+
+        $r13 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mPkgName>;
+
+        $r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+
+        $r15 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\..*\\..*");
+
+        $r18 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $z7 = virtualinvoke aForImport.<java.lang.String: boolean matches(java.lang.String)>($r18);
+
+        if $z7 != 0 goto label06;
+
+        $z6 = 1;
+
+        goto label07;
+
+     label06:
+        $z6 = 0;
+
+     label07:
+        classMatch = $z6;
+
+        goto label11;
+
+     label08:
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mPkgName>;
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        classMatch = virtualinvoke aForImport.<java.lang.String: boolean startsWith(java.lang.String)>($r5);
+
+        if classMatch == 0 goto label11;
+
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mExactMatch>;
+
+        if $z3 == 0 goto label11;
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: java.lang.String mPkgName>;
+
+        $i0 = virtualinvoke $r7.<java.lang.String: int length()>();
+
+        $i2 = $i0 + 1;
+
+        $i1 = virtualinvoke aForImport.<java.lang.String: int indexOf(int,int)>(46, $i2);
+
+        if $i1 != -1 goto label09;
+
+        $z4 = 1;
+
+        goto label10;
+
+     label09:
+        $z4 = 0;
+
+     label10:
+        classMatch = $z4;
+
+     label11:
+        $r6 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: com.puppycrawl.tools.checkstyle.checks.imports.AccessResult calculateResult(boolean)>(classMatch);
+
+        return $r6;
+    }
+
+    boolean isLocalOnly()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.Guard this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.Guard;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mLocalOnly>;
+
+        return $z0;
+    }
+
+    private com.puppycrawl.tools.checkstyle.checks.imports.AccessResult calculateResult(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.Guard this;
+        boolean aMatched, $z0;
+        com.puppycrawl.tools.checkstyle.checks.imports.AccessResult $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.Guard;
+
+        aMatched := @parameter0: boolean;
+
+        if aMatched == 0 goto label3;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean mAllowed>;
+
+        if $z0 == 0 goto label1;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.imports.AccessResult: com.puppycrawl.tools.checkstyle.checks.imports.AccessResult ALLOWED>;
+
+        goto label2;
+
+     label1:
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.imports.AccessResult: com.puppycrawl.tools.checkstyle.checks.imports.AccessResult DISALLOWED>;
+
+     label2:
+        return $r1;
+
+     label3:
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.imports.AccessResult: com.puppycrawl.tools.checkstyle.checks.imports.AccessResult UNKNOWN>;
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+
+        $r0 = class "com/puppycrawl/tools/checkstyle/checks/imports/Guard";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <com.puppycrawl.tools.checkstyle.checks.imports.Guard: boolean $assertionsDisabled> = $z1;
+
+        return;
+    }
+}

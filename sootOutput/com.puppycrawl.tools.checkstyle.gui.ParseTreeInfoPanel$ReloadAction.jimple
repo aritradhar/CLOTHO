@@ -1,0 +1,60 @@
+class com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction extends javax.swing.AbstractAction
+{
+    private static final long serialVersionUID;
+    final com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction this;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel l1;
+        java.lang.Integer $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0> = l1;
+
+        specialinvoke this.<javax.swing.AbstractAction: void <init>(java.lang.String)>("Reload Java File");
+
+        $r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(82);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction: void putValue(java.lang.String,java.lang.Object)>("MnemonicKey", $r0);
+
+        return;
+    }
+
+    public void actionPerformed(java.awt.event.ActionEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction this;
+        java.awt.event.ActionEvent e;
+        java.awt.Component parent;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel $r0, $r1, $r2;
+        java.io.File $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction;
+
+        e := @parameter0: java.awt.event.ActionEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0>;
+
+        parent = staticinvoke <javax.swing.SwingUtilities: java.awt.Component getRoot(java.awt.Component)>($r0);
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0>;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0>;
+
+        $r3 = staticinvoke <com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.io.File access$200(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel)>($r1);
+
+        virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void openFile(java.io.File,java.awt.Component)>($r3, parent);
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction: long serialVersionUID> = -1021880396046355863L;
+
+        return;
+    }
+}

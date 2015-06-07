@@ -1,0 +1,137 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck extends com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck
+{
+    private int mLocation;
+    static final boolean $assertionsDisabled;
+
+    public void <init>(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck this;
+        java.lang.String aFormat;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck;
+
+        aFormat := @parameter0: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck: void <init>(java.lang.String)>(aFormat);
+
+        return;
+    }
+
+    public final int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 170;
+
+        return $r0;
+    }
+
+    public final void init()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck this;
+        int $i0, $i1, $i2, $i3;
+        boolean $z0;
+        java.lang.AssertionError $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck: int getLocation()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck: int mLocation> = $i0;
+
+        $z0 = <com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label1;
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck: int mLocation>;
+
+        if $i1 == 14 goto label1;
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck: int mLocation>;
+
+        if $i2 == 9 goto label1;
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck: int mLocation>;
+
+        if $i3 == 15 goto label1;
+
+        $r0 = new java.lang.AssertionError;
+
+        specialinvoke $r0.<java.lang.AssertionError: void <init>()>();
+
+        throw $r0;
+
+     label1:
+        return;
+    }
+
+    protected final boolean mustCheckName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, location, $r0;
+        int $i0, $i1, $i2;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        location = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i0 = virtualinvoke location.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 5 goto label1;
+
+        location = virtualinvoke location.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label1:
+        $i1 = virtualinvoke location.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck: int mLocation>;
+
+        if $i1 != $i2 goto label2;
+
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+
+    protected abstract int getLocation();
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+
+        $r0 = class "com/puppycrawl/tools/checkstyle/checks/naming/AbstractTypeParameterNameCheck";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck: boolean $assertionsDisabled> = $z1;
+
+        return;
+    }
+}

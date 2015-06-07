@@ -1,0 +1,322 @@
+public class com.puppycrawl.tools.checkstyle.DefaultLogger extends com.puppycrawl.tools.checkstyle.api.AutomaticBean implements com.puppycrawl.tools.checkstyle.api.AuditListener
+{
+    private static final int BUFFER_CUSHION;
+    private final java.io.PrintWriter mInfoWriter;
+    private final boolean mCloseInfo;
+    private final java.io.PrintWriter mErrorWriter;
+    private final boolean mCloseError;
+
+    public void <init>(java.io.OutputStream, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultLogger this;
+        java.io.OutputStream aOS;
+        boolean aCloseStreamsAfterUse;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        aOS := @parameter0: java.io.OutputStream;
+
+        aCloseStreamsAfterUse := @parameter1: boolean;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.DefaultLogger: void <init>(java.io.OutputStream,boolean,java.io.OutputStream,boolean)>(aOS, aCloseStreamsAfterUse, aOS, 0);
+
+        return;
+    }
+
+    public void <init>(java.io.OutputStream, boolean, java.io.OutputStream, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultLogger this;
+        java.io.OutputStream aInfoStream, aErrorStream;
+        boolean aCloseInfoAfterUse, aCloseErrorAfterUse;
+        java.io.PrintWriter $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        aInfoStream := @parameter0: java.io.OutputStream;
+
+        aCloseInfoAfterUse := @parameter1: boolean;
+
+        aErrorStream := @parameter2: java.io.OutputStream;
+
+        aCloseErrorAfterUse := @parameter3: boolean;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.DefaultLogger: boolean mCloseInfo> = aCloseInfoAfterUse;
+
+        this.<com.puppycrawl.tools.checkstyle.DefaultLogger: boolean mCloseError> = aCloseErrorAfterUse;
+
+        $r0 = new java.io.PrintWriter;
+
+        specialinvoke $r0.<java.io.PrintWriter: void <init>(java.io.OutputStream)>(aInfoStream);
+
+        this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mInfoWriter> = $r0;
+
+        if aInfoStream != aErrorStream goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mInfoWriter>;
+
+        goto label2;
+
+     label1:
+        $r1 = new java.io.PrintWriter;
+
+        specialinvoke $r1.<java.io.PrintWriter: void <init>(java.io.OutputStream)>(aErrorStream);
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mErrorWriter> = $r1;
+
+        return;
+    }
+
+    public void addError(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultLogger this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel severityLevel, $r0, $r5;
+        java.lang.String fileName, message, $r10;
+        int bufLen, $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.StringBuffer sb, $r1, $r2, $r6, $r11;
+        boolean $z0, $z1;
+        java.io.PrintWriter $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        severityLevel = virtualinvoke aEvt.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel IGNORE>;
+
+        $z0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: boolean equals(java.lang.Object)>(severityLevel);
+
+        if $z0 != 0 goto label3;
+
+        fileName = virtualinvoke aEvt.<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getFileName()>();
+
+        message = virtualinvoke aEvt.<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getMessage()>();
+
+        $i0 = virtualinvoke fileName.<java.lang.String: int length()>();
+
+        $i1 = virtualinvoke message.<java.lang.String: int length()>();
+
+        $i2 = $i0 + $i1;
+
+        bufLen = $i2 + 12;
+
+        $r1 = new java.lang.StringBuffer;
+
+        specialinvoke $r1.<java.lang.StringBuffer: void <init>(int)>(bufLen);
+
+        sb = $r1;
+
+        virtualinvoke sb.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(fileName);
+
+        $r2 = virtualinvoke sb.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(58);
+
+        $i3 = virtualinvoke aEvt.<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getLine()>();
+
+        virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>($i3);
+
+        $i4 = virtualinvoke aEvt.<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getColumn()>();
+
+        if $i4 <= 0 goto label1;
+
+        $r11 = virtualinvoke sb.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(58);
+
+        $i5 = virtualinvoke aEvt.<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getColumn()>();
+
+        virtualinvoke $r11.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>($i5);
+
+     label1:
+        $r5 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel WARNING>;
+
+        $z1 = virtualinvoke $r5.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: boolean equals(java.lang.Object)>(severityLevel);
+
+        if $z1 == 0 goto label2;
+
+        virtualinvoke sb.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(": warning");
+
+     label2:
+        $r6 = virtualinvoke sb.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(": ");
+
+        virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(message);
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mErrorWriter>;
+
+        $r10 = virtualinvoke sb.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintWriter: void println(java.lang.String)>($r10);
+
+     label3:
+        return;
+    }
+
+    public void addException(com.puppycrawl.tools.checkstyle.api.AuditEvent, java.lang.Throwable)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultLogger this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+        java.lang.Throwable aThrowable, l4, $r8;
+        java.io.PrintWriter l3, $r0, $r2, $r7;
+        java.lang.StringBuilder $r1, $r3, $r5;
+        java.lang.String $r4, $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        aThrowable := @parameter1: java.lang.Throwable;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mErrorWriter>;
+
+        l3 = $r0;
+
+        entermonitor $r0;
+
+     label1:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mErrorWriter>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Error auditing ");
+
+        $r4 = virtualinvoke aEvt.<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getFileName()>();
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintWriter: void println(java.lang.String)>($r6);
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mErrorWriter>;
+
+        virtualinvoke aThrowable.<java.lang.Throwable: void printStackTrace(java.io.PrintWriter)>($r7);
+
+        exitmonitor l3;
+
+     label2:
+        goto label5;
+
+     label3:
+        $r8 := @caughtexception;
+
+        l4 = $r8;
+
+        exitmonitor l3;
+
+     label4:
+        throw l4;
+
+     label5:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+        catch java.lang.Throwable from label3 to label4 with label3;
+    }
+
+    public void auditStarted(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultLogger this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+        java.io.PrintWriter $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mInfoWriter>;
+
+        virtualinvoke $r0.<java.io.PrintWriter: void println(java.lang.String)>("Starting audit...");
+
+        return;
+    }
+
+    public void fileFinished(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultLogger this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        return;
+    }
+
+    public void fileStarted(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultLogger this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        return;
+    }
+
+    public void auditFinished(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.DefaultLogger this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+        java.io.PrintWriter $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mInfoWriter>;
+
+        virtualinvoke $r0.<java.io.PrintWriter: void println(java.lang.String)>("Audit done.");
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.DefaultLogger: void closeStreams()>();
+
+        return;
+    }
+
+    protected void closeStreams()
+    {
+        com.puppycrawl.tools.checkstyle.DefaultLogger this;
+        java.io.PrintWriter $r0, $r1, $r2, $r3;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mInfoWriter>;
+
+        virtualinvoke $r0.<java.io.PrintWriter: void flush()>();
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: boolean mCloseInfo>;
+
+        if $z0 == 0 goto label1;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mInfoWriter>;
+
+        virtualinvoke $r3.<java.io.PrintWriter: void close()>();
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mErrorWriter>;
+
+        virtualinvoke $r1.<java.io.PrintWriter: void flush()>();
+
+        $z1 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: boolean mCloseError>;
+
+        if $z1 == 0 goto label2;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.DefaultLogger: java.io.PrintWriter mErrorWriter>;
+
+        virtualinvoke $r2.<java.io.PrintWriter: void close()>();
+
+     label2:
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.DefaultLogger: int BUFFER_CUSHION> = 12;
+
+        return;
+    }
+}

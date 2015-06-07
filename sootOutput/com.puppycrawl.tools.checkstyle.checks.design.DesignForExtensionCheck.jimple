@@ -1,0 +1,196 @@
+public class com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 9;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiers, implementation, classDef, classMods, objBlock, candidate, ctorMods, $r2, $r4;
+        boolean hasDefaultConstructor, hasExplNonPrivateCtor, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7;
+        com.puppycrawl.tools.checkstyle.api.Scope $r0, $r1;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.Object[] $r3;
+        java.lang.String ctorMods;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label01;
+
+        return;
+
+     label01:
+        modifiers = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z1 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(62);
+
+        if $z1 != 0 goto label02;
+
+        $z2 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(41);
+
+        if $z2 != 0 goto label02;
+
+        $z3 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z3 != 0 goto label02;
+
+        $z4 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        if $z4 == 0 goto label03;
+
+     label02:
+        return;
+
+     label03:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: com.puppycrawl.tools.checkstyle.api.Scope getSurroundingScope(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PROTECTED>;
+
+        $z5 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.Scope: boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)>($r1);
+
+        if $z5 != 0 goto label04;
+
+        return;
+
+     label04:
+        implementation = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        if implementation == null goto label05;
+
+        $r4 = virtualinvoke implementation.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i4 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i4 != 74 goto label05;
+
+        return;
+
+     label05:
+        classDef = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck: com.puppycrawl.tools.checkstyle.api.DetailAST findContainingClass(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        classMods = virtualinvoke classDef.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $i0 = virtualinvoke classDef.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 158 goto label06;
+
+        $z6 = virtualinvoke classMods.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z6 == 0 goto label07;
+
+     label06:
+        return;
+
+     label07:
+        objBlock = virtualinvoke classDef.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(6);
+
+        hasDefaultConstructor = 1;
+
+        hasExplNonPrivateCtor = 0;
+
+        candidate = virtualinvoke objBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label08:
+        if candidate == null goto label10;
+
+        $i3 = virtualinvoke candidate.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 8 goto label09;
+
+        hasDefaultConstructor = 0;
+
+        ctorMods = virtualinvoke candidate.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z7 = virtualinvoke ctorMods.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(62);
+
+        if $z7 != 0 goto label09;
+
+        hasExplNonPrivateCtor = 1;
+
+        goto label10;
+
+     label09:
+        candidate = virtualinvoke candidate.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label08;
+
+     label10:
+        if hasDefaultConstructor != 0 goto label11;
+
+        if hasExplNonPrivateCtor == 0 goto label12;
+
+     label11:
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        ctorMods = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r3[0] = ctorMods;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i2, "design.forExtension", $r3);
+
+     label12:
+        return;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailAST findContainingClass(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, searchAST;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        searchAST = aAST;
+
+     label1:
+        $i0 = virtualinvoke searchAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 14 goto label2;
+
+        $i1 = virtualinvoke searchAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 158 goto label2;
+
+        searchAST = virtualinvoke searchAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label2:
+        return searchAST;
+    }
+}

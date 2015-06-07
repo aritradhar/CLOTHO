@@ -1,0 +1,136 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private int mMax;
+    private int mDepth;
+
+    public void <init>(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck this;
+        int aMax;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck;
+
+        aMax := @parameter0: int;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: void setMax(int)>(aMax);
+
+        return;
+    }
+
+    public final int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mDepth> = 0;
+
+        return;
+    }
+
+    public final int getMax()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mMax>;
+
+        return $i0;
+    }
+
+    public final void setMax(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck this;
+        int aMax;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck;
+
+        aMax := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mMax> = aMax;
+
+        return;
+    }
+
+    protected final void nestIn(com.puppycrawl.tools.checkstyle.api.DetailAST, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.lang.String aMessageId;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.Object[] $r0;
+        java.lang.Integer $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aMessageId := @parameter1: java.lang.String;
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mDepth>;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mMax>;
+
+        if $i1 <= $i0 goto label1;
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $i4 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mDepth>;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+
+        $r0[0] = $r1;
+
+        $i5 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mMax>;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+
+        $r0[1] = $r2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, aMessageId, $r0);
+
+     label1:
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mDepth>;
+
+        $i3 = $i2 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mDepth> = $i3;
+
+        return;
+    }
+
+    protected final void nestOut()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck this;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mDepth>;
+
+        $i1 = $i0 - 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: int mDepth> = $i1;
+
+        return;
+    }
+}

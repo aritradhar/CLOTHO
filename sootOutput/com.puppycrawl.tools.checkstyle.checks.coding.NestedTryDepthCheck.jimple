@@ -1,0 +1,137 @@
+public final class com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck extends com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck
+{
+    private static final int DEFAULT_MAX;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck: void <init>(int)>(1);
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 97;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        java.lang.IllegalStateException $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 97: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck: void visitLiteralTry(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label3;
+
+     label2:
+        $r0 = new java.lang.IllegalStateException;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r1);
+
+        throw $r0;
+
+     label3:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        java.lang.IllegalStateException $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 97: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck: void leaveLiteralTry()>();
+
+        goto label3;
+
+     label2:
+        $r0 = new java.lang.IllegalStateException;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r1);
+
+        throw $r0;
+
+     label3:
+        return;
+    }
+
+    private void visitLiteralTry(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aTry;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck;
+
+        aTry := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck: void nestIn(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aTry, "nested.try.depth");
+
+        return;
+    }
+
+    private void leaveLiteralTry()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck: void nestOut()>();
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck: int DEFAULT_MAX> = 1;
+
+        return;
+    }
+}

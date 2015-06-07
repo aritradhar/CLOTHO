@@ -1,0 +1,71 @@
+public class BugTestPack.ApacheCliBug.CliBug2_x extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugTestPack.ApacheCliBug.CliBug2_x this;
+
+        this := @this: BugTestPack.ApacheCliBug.CliBug2_x;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.String rtrim(java.lang.String)
+    {
+        BugTestPack.ApacheCliBug.CliBug2_x this;
+        java.lang.String s, $r0;
+        int pos, $i0;
+        char $c1;
+        boolean $z0;
+
+        this := @this: BugTestPack.ApacheCliBug.CliBug2_x;
+
+        s := @parameter0: java.lang.String;
+
+        if s != null goto label1;
+
+        return s;
+
+     label1:
+        pos = virtualinvoke s.<java.lang.String: int length()>();
+
+        goto label3;
+
+     label2:
+        pos = pos + -1;
+
+     label3:
+        if pos < 0 goto label4;
+
+        $i0 = pos - 1;
+
+        $c1 = virtualinvoke s.<java.lang.String: char charAt(int)>($i0);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c1);
+
+        if $z0 != 0 goto label2;
+
+     label4:
+        $r0 = virtualinvoke s.<java.lang.String: java.lang.String substring(int,int)>(0, pos);
+
+        return $r0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        BugTestPack.ApacheCliBug.CliBug2_x $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new BugTestPack.ApacheCliBug.CliBug2_x;
+
+        specialinvoke $r0.<BugTestPack.ApacheCliBug.CliBug2_x: void <init>()>();
+
+        virtualinvoke $r0.<BugTestPack.ApacheCliBug.CliBug2_x: java.lang.String rtrim(java.lang.String)>("");
+
+        return;
+    }
+}

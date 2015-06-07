@@ -1,0 +1,195 @@
+public class BugTestPack.ApacheTapeStry.TapeStryBug extends java.lang.Object
+{
+    private org.apache.tapestry5.internal.test.TestableRequest request;
+
+    public void <init>()
+    {
+        BugTestPack.ApacheTapeStry.TapeStryBug this;
+
+        this := @this: BugTestPack.ApacheTapeStry.TapeStryBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private void setupRequestFromURI(java.lang.String)
+    {
+        BugTestPack.ApacheTapeStry.TapeStryBug this;
+        java.lang.String URI, linkPath, path, $r0, $r4;
+        int comma, $i0;
+        org.apache.tapestry5.internal.test.TestableRequest $r1, $r2;
+
+        this := @this: BugTestPack.ApacheTapeStry.TapeStryBug;
+
+        URI := @parameter0: java.lang.String;
+
+        linkPath = specialinvoke this.<BugTestPack.ApacheTapeStry.TapeStryBug: java.lang.String stripContextFromPath(java.lang.String)>(URI);
+
+        comma = virtualinvoke linkPath.<java.lang.String: int indexOf(int)>(63);
+
+        if comma >= 0 goto label1;
+
+        $r0 = linkPath;
+
+        goto label2;
+
+     label1:
+        $r0 = virtualinvoke linkPath.<java.lang.String: java.lang.String substring(int,int)>(0, comma);
+
+     label2:
+        path = $r0;
+
+        $r1 = this.<BugTestPack.ApacheTapeStry.TapeStryBug: org.apache.tapestry5.internal.test.TestableRequest request>;
+
+        $r2 = interfaceinvoke $r1.<org.apache.tapestry5.internal.test.TestableRequest: org.apache.tapestry5.internal.test.TestableRequest clear()>();
+
+        interfaceinvoke $r2.<org.apache.tapestry5.internal.test.TestableRequest: org.apache.tapestry5.internal.test.TestableRequest setPath(java.lang.String)>(path);
+
+        if comma <= 0 goto label3;
+
+        $i0 = comma + 1;
+
+        $r4 = virtualinvoke path.<java.lang.String: java.lang.String substring(int)>($i0);
+
+        specialinvoke this.<BugTestPack.ApacheTapeStry.TapeStryBug: void decodeParametersIntoRequest(java.lang.String)>($r4);
+
+     label3:
+        return;
+    }
+
+    private java.lang.String stripContextFromPath(java.lang.String)
+    {
+        BugTestPack.ApacheTapeStry.TapeStryBug this;
+        java.lang.String path, contextPath, $r1, $r4;
+        org.apache.tapestry5.internal.test.TestableRequest $r0;
+        boolean $z0, $z1;
+        int $i0;
+        java.lang.RuntimeException $r2;
+        java.lang.Object[] $r3;
+
+        this := @this: BugTestPack.ApacheTapeStry.TapeStryBug;
+
+        path := @parameter0: java.lang.String;
+
+        $r0 = this.<BugTestPack.ApacheTapeStry.TapeStryBug: org.apache.tapestry5.internal.test.TestableRequest request>;
+
+        contextPath = interfaceinvoke $r0.<org.apache.tapestry5.internal.test.TestableRequest: java.lang.String getContextPath()>();
+
+        $z0 = virtualinvoke contextPath.<java.lang.String: boolean equals(java.lang.Object)>("");
+
+        if $z0 == 0 goto label1;
+
+        return path;
+
+     label1:
+        $z1 = virtualinvoke path.<java.lang.String: boolean startsWith(java.lang.String)>(contextPath);
+
+        if $z1 != 0 goto label2;
+
+        $r2 = new java.lang.RuntimeException;
+
+        $r3 = newarray (java.lang.Object)[2];
+
+        $r3[0] = path;
+
+        $r3[1] = contextPath;
+
+        $r4 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Path \'%s\' does not start with context path \'%s\'.", $r3);
+
+        specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>($r4);
+
+        throw $r2;
+
+     label2:
+        $i0 = virtualinvoke contextPath.<java.lang.String: int length()>();
+
+        $r1 = virtualinvoke path.<java.lang.String: java.lang.String substring(int)>($i0);
+
+        return $r1;
+    }
+
+    private void decodeParametersIntoRequest(java.lang.String)
+    {
+        BugTestPack.ApacheTapeStry.TapeStryBug this;
+        java.lang.String queryString, term, key, value, $r1, $r2;
+        int l3, l4, eqx, $i0;
+        java.lang.String[] l5, $r0;
+        boolean $z0;
+        org.apache.tapestry5.internal.test.TestableRequest $r3;
+
+        this := @this: BugTestPack.ApacheTapeStry.TapeStryBug;
+
+        queryString := @parameter0: java.lang.String;
+
+        $z0 = staticinvoke <org.apache.tapestry5.ioc.internal.util.InternalUtils: boolean isBlank(java.lang.String)>(queryString);
+
+        if $z0 == 0 goto label1;
+
+        return;
+
+     label1:
+        $r0 = virtualinvoke queryString.<java.lang.String: java.lang.String[] split(java.lang.String)>("&");
+
+        l5 = $r0;
+
+        l4 = lengthof $r0;
+
+        l3 = 0;
+
+        goto label3;
+
+     label2:
+        term = l5[l3];
+
+        eqx = virtualinvoke term.<java.lang.String: int indexOf(java.lang.String)>("=");
+
+        $r1 = virtualinvoke term.<java.lang.String: java.lang.String substring(int,int)>(0, eqx);
+
+        key = virtualinvoke $r1.<java.lang.String: java.lang.String trim()>();
+
+        $i0 = eqx + 1;
+
+        $r2 = virtualinvoke term.<java.lang.String: java.lang.String substring(int)>($i0);
+
+        value = virtualinvoke $r2.<java.lang.String: java.lang.String trim()>();
+
+        $r3 = this.<BugTestPack.ApacheTapeStry.TapeStryBug: org.apache.tapestry5.internal.test.TestableRequest request>;
+
+        interfaceinvoke $r3.<org.apache.tapestry5.internal.test.TestableRequest: org.apache.tapestry5.internal.test.TestableRequest loadParameter(java.lang.String,java.lang.String)>(key, value);
+
+        l3 = l3 + 1;
+
+     label3:
+        if l3 < l4 goto label2;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        org.apache.tapestry5.internal.test.TestableRequestImpl tr, $r0;
+        BugTestPack.ApacheTapeStry.TapeStryBug tb, $r1;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new org.apache.tapestry5.internal.test.TestableRequestImpl;
+
+        specialinvoke $r0.<org.apache.tapestry5.internal.test.TestableRequestImpl: void <init>(java.lang.String)>("//folder");
+
+        tr = $r0;
+
+        $r1 = new BugTestPack.ApacheTapeStry.TapeStryBug;
+
+        specialinvoke $r1.<BugTestPack.ApacheTapeStry.TapeStryBug: void <init>()>();
+
+        tb = $r1;
+
+        tb.<BugTestPack.ApacheTapeStry.TapeStryBug: org.apache.tapestry5.internal.test.TestableRequest request> = tr;
+
+        specialinvoke tb.<BugTestPack.ApacheTapeStry.TapeStryBug: void setupRequestFromURI(java.lang.String)>("//folder//test?");
+
+        return;
+    }
+}

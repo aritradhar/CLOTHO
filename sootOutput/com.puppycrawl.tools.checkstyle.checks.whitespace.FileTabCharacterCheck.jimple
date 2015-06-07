@@ -1,0 +1,94 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck extends com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck
+{
+    private boolean mEachLine;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void <init>()>();
+
+        return;
+    }
+
+    protected void processFiltered(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck this;
+        java.io.File aFile;
+        java.util.List aLines;
+        int lineNum, tabPosition, $i0, $i1;
+        java.util.Iterator i$;
+        java.lang.String line;
+        boolean $z0, $z1;
+        java.lang.Object $r0;
+        java.lang.Object[] $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        lineNum = 0;
+
+        i$ = interfaceinvoke aLines.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r0 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        line = (java.lang.String) $r0;
+
+        lineNum = lineNum + 1;
+
+        tabPosition = virtualinvoke line.<java.lang.String: int indexOf(int)>(9);
+
+        if tabPosition == -1 goto label3;
+
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck: boolean mEachLine>;
+
+        if $z1 == 0 goto label2;
+
+        $i1 = tabPosition + 1;
+
+        $r2 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck: void log(int,int,java.lang.String,java.lang.Object[])>(lineNum, $i1, "containsTab", $r2);
+
+        goto label3;
+
+     label2:
+        $i0 = tabPosition + 1;
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck: void log(int,int,java.lang.String,java.lang.Object[])>(lineNum, $i0, "file.containsTab", $r1);
+
+        goto label4;
+
+     label3:
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    public void setEachLine(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck this;
+        boolean aEachLine;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
+
+        aEachLine := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck: boolean mEachLine> = aEachLine;
+
+        return;
+    }
+}

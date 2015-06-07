@@ -1,0 +1,80 @@
+class com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction extends javax.swing.AbstractAction
+{
+    private static final long serialVersionUID;
+    final com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction this;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel l1;
+        java.lang.Integer $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0> = l1;
+
+        specialinvoke this.<javax.swing.AbstractAction: void <init>(java.lang.String)>("Select Java File");
+
+        $r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(83);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction: void putValue(java.lang.String,java.lang.Object)>("MnemonicKey", $r0);
+
+        return;
+    }
+
+    public void actionPerformed(java.awt.event.ActionEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction this;
+        java.awt.event.ActionEvent e;
+        javax.swing.JFileChooser fc, $r0;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter filter, $r3;
+        java.awt.Component parent;
+        java.io.File file, $r2;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel $r1, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction;
+
+        e := @parameter0: java.awt.event.ActionEvent;
+
+        $r0 = new javax.swing.JFileChooser;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0>;
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.io.File access$000(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel)>($r1);
+
+        specialinvoke $r0.<javax.swing.JFileChooser: void <init>(java.io.File)>($r2);
+
+        fc = $r0;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$JavaFileFilter: void <init>(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1)>(null);
+
+        filter = $r3;
+
+        virtualinvoke fc.<javax.swing.JFileChooser: void setFileFilter(javax.swing.filechooser.FileFilter)>(filter);
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0>;
+
+        parent = staticinvoke <javax.swing.SwingUtilities: java.awt.Component getRoot(java.awt.Component)>($r4);
+
+        virtualinvoke fc.<javax.swing.JFileChooser: int showDialog(java.awt.Component,java.lang.String)>(parent, "Open");
+
+        file = virtualinvoke fc.<javax.swing.JFileChooser: java.io.File getSelectedFile()>();
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0>;
+
+        virtualinvoke $r5.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void openFile(java.io.File,java.awt.Component)>(file, parent);
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction: long serialVersionUID> = -1926935338069418119L;
+
+        return;
+    }
+}

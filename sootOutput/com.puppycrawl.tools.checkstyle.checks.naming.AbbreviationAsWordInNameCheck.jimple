@@ -1,0 +1,504 @@
+public class com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    public static final java.lang.String MSG_KEY;
+    private static final int DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH;
+    private int mAllowedAbbreviationLength;
+    private java.util.Set mAllowedAbbreviations;
+    private boolean mIgnoreFinal;
+    private boolean mIgnoreStatic;
+    private boolean mIgnoreOverriddenMethods;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck this;
+        java.util.HashSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: int mAllowedAbbreviationLength> = 3;
+
+        $r0 = new java.util.HashSet;
+
+        specialinvoke $r0.<java.util.HashSet: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: java.util.Set mAllowedAbbreviations> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreFinal> = 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreStatic> = 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreOverriddenMethods> = 1;
+
+        return;
+    }
+
+    public void setIgnoreFinal(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck this;
+        boolean aIgnoreFinal;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
+
+        aIgnoreFinal := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreFinal> = aIgnoreFinal;
+
+        return;
+    }
+
+    public void setIgnoreStatic(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck this;
+        boolean aIgnoreStatic;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
+
+        aIgnoreStatic := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreStatic> = aIgnoreStatic;
+
+        return;
+    }
+
+    public void setIgnoreOverriddenMethods(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck this;
+        boolean aIgnoreOverriddenMethods;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
+
+        aIgnoreOverriddenMethods := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreOverriddenMethods> = aIgnoreOverriddenMethods;
+
+        return;
+    }
+
+    public void setAllowedAbbreviationLength(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck this;
+        int aAllowedAbbreviationLength;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
+
+        aAllowedAbbreviationLength := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: int mAllowedAbbreviationLength> = aAllowedAbbreviationLength;
+
+        return;
+    }
+
+    public void setAllowedAbbreviations(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck this;
+        java.lang.String aAllowedAbbreviations;
+        java.util.HashSet $r0;
+        java.lang.String[] $r1;
+        java.util.List $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
+
+        aAllowedAbbreviations := @parameter0: java.lang.String;
+
+        if aAllowedAbbreviations == null goto label1;
+
+        $r0 = new java.util.HashSet;
+
+        $r1 = virtualinvoke aAllowedAbbreviations.<java.lang.String: java.lang.String[] split(java.lang.String)>(",");
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r1);
+
+        specialinvoke $r0.<java.util.HashSet: void <init>(java.util.Collection)>($r2);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: java.util.Set mAllowedAbbreviations> = $r0;
+
+     label1:
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
+
+        $r0 = newarray (int)[8];
+
+        $r0[0] = 14;
+
+        $r0[1] = 15;
+
+        $r0[2] = 158;
+
+        $r0[3] = 161;
+
+        $r0[4] = 165;
+
+        $r0[5] = 21;
+
+        $r0[6] = 10;
+
+        $r0[7] = 9;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst, nameAst;
+        java.lang.String typeName, abbr;
+        boolean $z0;
+        int $i0, $i1;
+        java.lang.Object[] $r0;
+        java.lang.Integer $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean isIgnoreSituation(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAst);
+
+        if $z0 != 0 goto label1;
+
+        nameAst = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        typeName = virtualinvoke nameAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        abbr = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: java.lang.String getDisallowedAbbreviation(java.lang.String)>(typeName);
+
+        if abbr == null goto label1;
+
+        $i0 = virtualinvoke nameAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: int mAllowedAbbreviationLength>;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        $r0[0] = $r1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "abbreviation.as.word", $r0);
+
+     label1:
+        return;
+    }
+
+    private boolean isIgnoreSituation(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst, modifiers;
+        boolean result, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9, $z10;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiers = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        result = 0;
+
+        $i0 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 10 goto label07;
+
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreFinal>;
+
+        if $z3 != 0 goto label01;
+
+        $z9 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreStatic>;
+
+        if $z9 == 0 goto label02;
+
+     label01:
+        $z4 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean isInterfaceDeclaration(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAst);
+
+        if $z4 == 0 goto label02;
+
+        result = 1;
+
+        goto label10;
+
+     label02:
+        $z5 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreFinal>;
+
+        if $z5 == 0 goto label03;
+
+        $z10 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z10 != 0 goto label04;
+
+     label03:
+        $z6 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreStatic>;
+
+        if $z6 == 0 goto label05;
+
+        $z7 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        if $z7 == 0 goto label05;
+
+     label04:
+        $z8 = 1;
+
+        goto label06;
+
+     label05:
+        $z8 = 0;
+
+     label06:
+        result = $z8;
+
+        goto label10;
+
+     label07:
+        $i1 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 9 goto label10;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean mIgnoreOverriddenMethods>;
+
+        if $z0 == 0 goto label08;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: boolean hasOverrideAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST)>(modifiers);
+
+        if $z1 == 0 goto label08;
+
+        $z2 = 1;
+
+        goto label09;
+
+     label08:
+        $z2 = 0;
+
+     label09:
+        result = $z2;
+
+     label10:
+        return result;
+    }
+
+    private static boolean isInterfaceDeclaration(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aVariableDefAst, astBlock, astParent2;
+        boolean result;
+        int $i0;
+
+        aVariableDefAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        result = 0;
+
+        astBlock = virtualinvoke aVariableDefAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if astBlock == null goto label1;
+
+        astParent2 = virtualinvoke astBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if astParent2 == null goto label1;
+
+        $i0 = virtualinvoke astParent2.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 15 goto label1;
+
+        result = 1;
+
+     label1:
+        return result;
+    }
+
+    private static boolean hasOverrideAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethodModifiersAST, child, annotationIdent;
+        boolean result, $z0, $z1;
+        java.util.Iterator i$;
+        java.util.List $r0;
+        java.lang.Object $r1;
+        int $i0;
+        java.lang.String $r2, $r3;
+
+        aMethodModifiersAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        result = 0;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: java.util.List getChildren(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aMethodModifiersAST);
+
+        i$ = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        child = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r1;
+
+        $i0 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 163 goto label2;
+
+        annotationIdent = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        if annotationIdent == null goto label2;
+
+        $r2 = "Override";
+
+        $r3 = virtualinvoke annotationIdent.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z1 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z1 == 0 goto label2;
+
+        result = 1;
+
+        goto label3;
+
+     label2:
+        goto label1;
+
+     label3:
+        return result;
+    }
+
+    private java.lang.String getDisallowedAbbreviation(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck this;
+        java.lang.String aString, result;
+        int beginIndex, index, endIndex, abbrLength, $i0, $i1, $i2, symbol;
+        boolean abbrStarted, $z0, $z1, $z2;
+        char symbol;
+        java.util.Set $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
+
+        aString := @parameter0: java.lang.String;
+
+        beginIndex = 0;
+
+        abbrStarted = 0;
+
+        result = null;
+
+        index = 0;
+
+     label1:
+        $i0 = virtualinvoke aString.<java.lang.String: int length()>();
+
+        if index >= $i0 goto label6;
+
+        symbol = virtualinvoke aString.<java.lang.String: char charAt(int)>(index);
+
+        $z1 = staticinvoke <java.lang.Character: boolean isUpperCase(char)>(symbol);
+
+        if $z1 == 0 goto label2;
+
+        if abbrStarted != 0 goto label5;
+
+        abbrStarted = 1;
+
+        beginIndex = index;
+
+        goto label5;
+
+     label2:
+        if abbrStarted == 0 goto label5;
+
+        abbrStarted = 0;
+
+        endIndex = index - 1;
+
+        abbrLength = endIndex - beginIndex;
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: int mAllowedAbbreviationLength>;
+
+        if abbrLength <= $i2 goto label4;
+
+        result = virtualinvoke aString.<java.lang.String: java.lang.String substring(int,int)>(beginIndex, endIndex);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: java.util.Set mAllowedAbbreviations>;
+
+        $z2 = interfaceinvoke $r1.<java.util.Set: boolean contains(java.lang.Object)>(result);
+
+        if $z2 != 0 goto label3;
+
+        goto label6;
+
+     label3:
+        result = null;
+
+     label4:
+        beginIndex = -1;
+
+     label5:
+        index = index + 1;
+
+        goto label1;
+
+     label6:
+        if abbrStarted == 0 goto label7;
+
+        index = virtualinvoke aString.<java.lang.String: int length()>();
+
+        symbol = index - beginIndex;
+
+        if symbol <= 1 goto label7;
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: int mAllowedAbbreviationLength>;
+
+        if symbol <= $i1 goto label7;
+
+        result = virtualinvoke aString.<java.lang.String: java.lang.String substring(int,int)>(beginIndex, index);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: java.util.Set mAllowedAbbreviations>;
+
+        $z0 = interfaceinvoke $r0.<java.util.Set: boolean contains(java.lang.Object)>(result);
+
+        if $z0 == 0 goto label7;
+
+        result = null;
+
+     label7:
+        return result;
+    }
+
+    private static java.util.List getChildren(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aNode, curNode;
+        java.util.LinkedList result, $r0;
+
+        aNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>()>();
+
+        result = $r0;
+
+        curNode = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if curNode == null goto label2;
+
+        interfaceinvoke result.<java.util.List: boolean add(java.lang.Object)>(curNode);
+
+        curNode = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label2:
+        return result;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: int DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH> = 3;
+
+        <com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck: java.lang.String MSG_KEY> = "abbreviation.as.word";
+
+        return;
+    }
+}

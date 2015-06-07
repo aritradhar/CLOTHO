@@ -1,0 +1,156 @@
+public final class com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter extends java.lang.Object implements com.puppycrawl.tools.checkstyle.api.AuditListener
+{
+    private com.puppycrawl.tools.checkstyle.api.SeverityLevel mLevel;
+    private int mCount;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.api.SeverityLevel)
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter this;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel aLevel;
+        java.lang.IllegalArgumentException $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+
+        aLevel := @parameter0: com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        if aLevel != null goto label1;
+
+        $r0 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>()>();
+
+        throw $r0;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: com.puppycrawl.tools.checkstyle.api.SeverityLevel mLevel> = aLevel;
+
+        return;
+    }
+
+    public void addError(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0, $r1;
+        boolean $z0;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: com.puppycrawl.tools.checkstyle.api.SeverityLevel mLevel>;
+
+        $r1 = virtualinvoke aEvt.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()>();
+
+        $z0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label1;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: int mCount>;
+
+        $i1 = $i0 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: int mCount> = $i1;
+
+     label1:
+        return;
+    }
+
+    public void addException(com.puppycrawl.tools.checkstyle.api.AuditEvent, java.lang.Throwable)
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+        java.lang.Throwable aThrowable;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0, $r1;
+        boolean $z0;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        aThrowable := @parameter1: java.lang.Throwable;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel ERROR>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: com.puppycrawl.tools.checkstyle.api.SeverityLevel mLevel>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: boolean equals(java.lang.Object)>($r0);
+
+        if $z0 == 0 goto label1;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: int mCount>;
+
+        $i1 = $i0 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: int mCount> = $i1;
+
+     label1:
+        return;
+    }
+
+    public void auditStarted(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        this.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: int mCount> = 0;
+
+        return;
+    }
+
+    public void fileStarted(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        return;
+    }
+
+    public void auditFinished(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        return;
+    }
+
+    public void fileFinished(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvt;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+
+        aEvt := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        return;
+    }
+
+    public int getCount()
+    {
+        com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter: int mCount>;
+
+        return $i0;
+    }
+}

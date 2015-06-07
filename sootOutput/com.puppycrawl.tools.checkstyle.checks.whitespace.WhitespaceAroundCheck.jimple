@@ -1,0 +1,603 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mAllowEmptyCtors;
+    private boolean mAllowEmptyMethods;
+    private boolean mAllowEmptyTypes;
+    private boolean mAllowEmptyLoops;
+    private boolean mIgnoreEnhancedForColon;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mIgnoreEnhancedForColon> = 1;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        $r0 = newarray (int)[50];
+
+        $r0[0] = 81;
+
+        $r0[1] = 116;
+
+        $r0[2] = 108;
+
+        $r0[3] = 114;
+
+        $r0[4] = 110;
+
+        $r0[5] = 126;
+
+        $r0[6] = 106;
+
+        $r0[7] = 115;
+
+        $r0[8] = 109;
+
+        $r0[9] = 83;
+
+        $r0[10] = 129;
+
+        $r0[11] = 103;
+
+        $r0[12] = 179;
+
+        $r0[13] = 118;
+
+        $r0[14] = 122;
+
+        $r0[15] = 120;
+
+        $r0[16] = 113;
+
+        $r0[17] = 73;
+
+        $r0[18] = 121;
+
+        $r0[19] = 98;
+
+        $r0[20] = 87;
+
+        $r0[21] = 94;
+
+        $r0[22] = 99;
+
+        $r0[23] = 93;
+
+        $r0[24] = 85;
+
+        $r0[25] = 90;
+
+        $r0[26] = 91;
+
+        $r0[27] = 68;
+
+        $r0[28] = 97;
+
+        $r0[29] = 86;
+
+        $r0[30] = 112;
+
+        $r0[31] = 119;
+
+        $r0[32] = 128;
+
+        $r0[33] = 101;
+
+        $r0[34] = 130;
+
+        $r0[35] = 104;
+
+        $r0[36] = 117;
+
+        $r0[37] = 127;
+
+        $r0[38] = 100;
+
+        $r0[39] = 111;
+
+        $r0[40] = 74;
+
+        $r0[41] = 124;
+
+        $r0[42] = 7;
+
+        $r0[43] = 107;
+
+        $r0[44] = 125;
+
+        $r0[45] = 105;
+
+        $r0[46] = 61;
+
+        $r0[47] = 102;
+
+        $r0[48] = 155;
+
+        $r0[49] = 178;
+
+        return $r0;
+    }
+
+    public void setAllowEmptyMethods(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mAllowEmptyMethods> = aAllow;
+
+        return;
+    }
+
+    public void setAllowEmptyConstructors(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mAllowEmptyCtors> = aAllow;
+
+        return;
+    }
+
+    public void setIgnoreEnhancedForColon(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        boolean aIgnore;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aIgnore := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mIgnoreEnhancedForColon> = aIgnore;
+
+        return;
+    }
+
+    public void setAllowEmptyTypes(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mAllowEmptyTypes> = aAllow;
+
+        return;
+    }
+
+    public void setAllowEmptyLoops(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        boolean aAllow;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aAllow := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mAllowEmptyLoops> = aAllow;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0, $r5;
+        int currentType, parentType, before, after, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i13;
+        java.lang.String[] lines;
+        java.lang.String line, $r1, $r2, $r4, $r7;
+        char nextChar, $c12;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7;
+        java.lang.Object[] $r3, $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        currentType = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        parentType = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if currentType == 74 goto label01;
+
+        if currentType != 73 goto label03;
+
+     label01:
+        if parentType == 30 goto label02;
+
+        if parentType != 166 goto label03;
+
+     label02:
+        return;
+
+     label03:
+        if currentType != 61 goto label04;
+
+        if parentType != 60 goto label04;
+
+        return;
+
+     label04:
+        if currentType != 7 goto label05;
+
+        if parentType != 34 goto label05;
+
+        return;
+
+     label05:
+        if currentType != 83 goto label08;
+
+        if parentType == 96 goto label06;
+
+        if parentType != 95 goto label07;
+
+     label06:
+        return;
+
+     label07:
+        if parentType != 160 goto label08;
+
+        $z6 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mIgnoreEnhancedForColon>;
+
+        if $z6 == 0 goto label08;
+
+        return;
+
+     label08:
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean isEmptyMethodBlock(com.puppycrawl.tools.checkstyle.api.DetailAST,int)>(aAST, parentType);
+
+        if $z0 != 0 goto label09;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean isEmptyCtorBlock(com.puppycrawl.tools.checkstyle.api.DetailAST,int)>(aAST, parentType);
+
+        if $z1 != 0 goto label09;
+
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean isEmptyLoop(com.puppycrawl.tools.checkstyle.api.DetailAST,int)>(aAST, parentType);
+
+        if $z2 == 0 goto label10;
+
+     label09:
+        return;
+
+     label10:
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mAllowEmptyTypes>;
+
+        if $z3 == 0 goto label11;
+
+        $z7 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean isEmptyType(com.puppycrawl.tools.checkstyle.api.DetailAST,int)>(aAST, parentType);
+
+        if $z7 == 0 goto label11;
+
+        return;
+
+     label11:
+        lines = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: java.lang.String[] getLines()>();
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = $i0 - 1;
+
+        line = lines[$i2];
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        before = $i1 - 1;
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $i5 = virtualinvoke $r1.<java.lang.String: int length()>();
+
+        after = $i3 + $i5;
+
+        if before < 0 goto label12;
+
+        $c12 = virtualinvoke line.<java.lang.String: char charAt(int)>(before);
+
+        $z5 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c12);
+
+        if $z5 != 0 goto label12;
+
+        $i10 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i13 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r6 = newarray (java.lang.Object)[1];
+
+        $r7 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r6[0] = $r7;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i10, $i13, "ws.notPreceded", $r6);
+
+     label12:
+        $i4 = virtualinvoke line.<java.lang.String: int length()>();
+
+        if after < $i4 goto label13;
+
+        return;
+
+     label13:
+        nextChar = virtualinvoke line.<java.lang.String: char charAt(int)>(after);
+
+        $z4 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(nextChar);
+
+        if $z4 != 0 goto label16;
+
+        if currentType != 90 goto label14;
+
+        $r5 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i11 = virtualinvoke $r5.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i11 == 46 goto label16;
+
+     label14:
+        if currentType != 74 goto label15;
+
+        if nextChar == 41 goto label16;
+
+        if nextChar == 59 goto label16;
+
+        if nextChar == 44 goto label16;
+
+        if nextChar == 46 goto label16;
+
+     label15:
+        $i7 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i6 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $i8 = virtualinvoke $r2.<java.lang.String: int length()>();
+
+        $i9 = $i6 + $i8;
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r3[0] = $r4;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i7, $i9, "ws.notFollowed", $r3);
+
+     label16:
+        return;
+    }
+
+    private boolean isEmptyMethodBlock(com.puppycrawl.tools.checkstyle.api.DetailAST, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int aParentType;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParentType := @parameter1: int;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mAllowEmptyMethods>;
+
+        if $z0 == 0 goto label1;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean isEmptyBlock(com.puppycrawl.tools.checkstyle.api.DetailAST,int,int)>(aAST, aParentType, 9);
+
+        if $z1 == 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    private boolean isEmptyCtorBlock(com.puppycrawl.tools.checkstyle.api.DetailAST, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int aParentType;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParentType := @parameter1: int;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mAllowEmptyCtors>;
+
+        if $z0 == 0 goto label1;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean isEmptyBlock(com.puppycrawl.tools.checkstyle.api.DetailAST,int,int)>(aAST, aParentType, 8);
+
+        if $z1 == 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    private boolean isEmptyLoop(com.puppycrawl.tools.checkstyle.api.DetailAST, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int aParentType;
+        boolean $z0, $z1, $z2, $z3, $z4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParentType := @parameter1: int;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean mAllowEmptyLoops>;
+
+        if $z0 == 0 goto label2;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean isEmptyBlock(com.puppycrawl.tools.checkstyle.api.DetailAST,int,int)>(aAST, aParentType, 93);
+
+        if $z1 != 0 goto label1;
+
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean isEmptyBlock(com.puppycrawl.tools.checkstyle.api.DetailAST,int,int)>(aAST, aParentType, 86);
+
+        if $z3 != 0 goto label1;
+
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck: boolean isEmptyBlock(com.puppycrawl.tools.checkstyle.api.DetailAST,int,int)>(aAST, aParentType, 87);
+
+        if $z4 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    private boolean isEmptyType(com.puppycrawl.tools.checkstyle.api.DetailAST, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, typeNode, $r0;
+        int aParentType, type, matchType;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParentType := @parameter1: int;
+
+        type = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 74 goto label1;
+
+        if type != 73 goto label3;
+
+     label1:
+        if aParentType != 6 goto label3;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        typeNode = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        matchType = virtualinvoke typeNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if matchType == 14 goto label2;
+
+        if matchType == 15 goto label2;
+
+        if matchType == 158 goto label2;
+
+        if matchType == 138 goto label2;
+
+        if matchType != 161 goto label3;
+
+     label2:
+        return 1;
+
+     label3:
+        return 0;
+    }
+
+    private boolean isEmptyBlock(com.puppycrawl.tools.checkstyle.api.DetailAST, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, grandParent, $r0, $r1;
+        int aParentType, aMatch, type, $i0, $i1;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParentType := @parameter1: int;
+
+        aMatch := @parameter2: int;
+
+        type = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type != 74 goto label3;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        grandParent = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if aParentType != 7 goto label1;
+
+        $i1 = virtualinvoke grandParent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != aMatch goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+
+     label3:
+        if type != 7 goto label4;
+
+        if aParentType != aMatch goto label4;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 74 goto label4;
+
+        $z0 = 1;
+
+        goto label5;
+
+     label4:
+        $z0 = 0;
+
+     label5:
+        return $z0;
+    }
+}

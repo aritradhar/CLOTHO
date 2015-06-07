@@ -1,0 +1,405 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mScopeStack;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStack> = $r0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
+
+        $r0 = newarray (int)[9];
+
+        $r0[0] = 59;
+
+        $r0[1] = 8;
+
+        $r0[2] = 9;
+
+        $r0[3] = 10;
+
+        $r0[4] = 11;
+
+        $r0[5] = 12;
+
+        $r0[6] = 93;
+
+        $r0[7] = 7;
+
+        $r0[8] = 6;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 10;
+
+        $r0[1] = 21;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
+
+        $r0 = newarray (int)[8];
+
+        $r0[0] = 59;
+
+        $r0[1] = 8;
+
+        $r0[2] = 9;
+
+        $r0[3] = 11;
+
+        $r0[4] = 12;
+
+        $r0[5] = 93;
+
+        $r0[6] = 7;
+
+        $r0[7] = 6;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0, $r1, $r2, $r3, $r4;
+        int parentType, $i0, $i1, $i2;
+        boolean $z0, $z1;
+        java.util.HashMap $r5;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 6: goto label1;
+            case 7: goto label1;
+            case 8: goto label1;
+            case 9: goto label1;
+            case 10: goto label3;
+            case 11: goto label1;
+            case 12: goto label1;
+            case 21: goto label2;
+            case 59: goto label4;
+            case 93: goto label1;
+            default: goto label6;
+        };
+
+     label1:
+        $r6 = this.<com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStack>;
+
+        $r5 = new java.util.HashMap;
+
+        specialinvoke $r5.<java.util.HashMap: void <init>()>();
+
+        virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r5);
+
+        goto label6;
+
+     label2:
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 != 0 goto label6;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck: boolean inAbstractMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 == 0 goto label3;
+
+        goto label6;
+
+     label3:
+        $r3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 6 goto label6;
+
+        $r4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i2 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 == 160 goto label6;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck: void insertVariable(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label6;
+
+     label4:
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        parentType = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 26 == parentType goto label5;
+
+        if 132 == parentType goto label5;
+
+        if 25 == parentType goto label5;
+
+        if 131 == parentType goto label5;
+
+        if 81 == parentType goto label5;
+
+        if 100 == parentType goto label5;
+
+        if 101 == parentType goto label5;
+
+        if 103 == parentType goto label5;
+
+        if 102 == parentType goto label5;
+
+        if 104 == parentType goto label5;
+
+        if 105 == parentType goto label5;
+
+        if 106 == parentType goto label5;
+
+        if 107 == parentType goto label5;
+
+        if 109 == parentType goto label5;
+
+        if 110 == parentType goto label5;
+
+        if 108 != parentType goto label6;
+
+     label5:
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        if $r2 != aAST goto label6;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck: void removeVariable(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label6;
+
+     label6:
+        return;
+    }
+
+    private boolean inAbstractMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, modifiers;
+        int $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+     label1:
+        if parent == null goto label3;
+
+        $i0 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 9 goto label2;
+
+        modifiers = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z0 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(41);
+
+        return $z0;
+
+     label2:
+        parent = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label3:
+        return 0;
+    }
+
+    private void insertVariable(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, ast;
+        java.util.Map state;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.lang.Object $r1;
+        java.lang.String $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z0 != 0 goto label1;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStack>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object peek()>();
+
+        state = (java.util.Map) $r1;
+
+        ast = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r2 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        interfaceinvoke state.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r2, ast);
+
+     label1:
+        return;
+    }
+
+    private void removeVariable(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int i, $i0;
+        java.util.Map state;
+        java.lang.Object obj, $r2;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0, $r1;
+        java.lang.String $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStack>;
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: int size()>();
+
+        i = $i0 - 1;
+
+     label1:
+        if i < 0 goto label3;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStack>;
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object peek(int)>(i);
+
+        state = (java.util.Map) $r2;
+
+        $r3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        obj = interfaceinvoke state.<java.util.Map: java.lang.Object remove(java.lang.Object)>($r3);
+
+        if obj == null goto label2;
+
+        goto label3;
+
+     label2:
+        i = i + -1;
+
+        goto label1;
+
+     label3:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, var;
+        java.util.Map state;
+        java.util.Iterator i$;
+        int $i0, $i1, $i2;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.lang.Object $r1, $r3;
+        java.util.Collection $r2;
+        boolean $z0;
+        java.lang.Object[] $r4;
+        java.lang.String $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 6: goto label1;
+            case 7: goto label1;
+            case 8: goto label1;
+            case 9: goto label1;
+            case 11: goto label1;
+            case 12: goto label1;
+            case 93: goto label1;
+            default: goto label4;
+        };
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck: com.puppycrawl.tools.checkstyle.api.FastStack mScopeStack>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        state = (java.util.Map) $r1;
+
+        $r2 = interfaceinvoke state.<java.util.Map: java.util.Collection values()>();
+
+        i$ = interfaceinvoke $r2.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label2:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r3 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        var = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r3;
+
+        $i1 = virtualinvoke var.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = virtualinvoke var.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r5 = virtualinvoke var.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r4[0] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i2, "final.variable", $r4);
+
+        goto label2;
+
+     label3:
+        goto label4;
+
+     label4:
+        return;
+    }
+}

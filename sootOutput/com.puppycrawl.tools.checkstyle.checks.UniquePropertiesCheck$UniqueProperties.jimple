@@ -1,0 +1,86 @@
+class com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties extends java.util.Properties
+{
+    private static final long serialVersionUID;
+    private final com.google.common.collect.Multiset mDuplicatedStrings;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties this;
+        com.google.common.collect.HashMultiset $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties;
+
+        specialinvoke this.<java.util.Properties: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.HashMultiset: com.google.common.collect.HashMultiset create()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties: com.google.common.collect.Multiset mDuplicatedStrings> = $r0;
+
+        return;
+    }
+
+    public synchronized java.lang.Object put(java.lang.Object, java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties this;
+        java.lang.Object aKey, aValue, oldValue;
+        java.lang.String keyString;
+        boolean $z0;
+        com.google.common.collect.Multiset $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties;
+
+        aKey := @parameter0: java.lang.Object;
+
+        aValue := @parameter1: java.lang.Object;
+
+        oldValue = specialinvoke this.<java.util.Properties: java.lang.Object put(java.lang.Object,java.lang.Object)>(aKey, aValue);
+
+        if oldValue == null goto label1;
+
+        $z0 = aKey instanceof java.lang.String;
+
+        if $z0 == 0 goto label1;
+
+        keyString = (java.lang.String) aKey;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties: com.google.common.collect.Multiset mDuplicatedStrings>;
+
+        interfaceinvoke $r0.<com.google.common.collect.Multiset: boolean add(java.lang.Object)>(keyString);
+
+     label1:
+        return oldValue;
+    }
+
+    public com.google.common.collect.Multiset getDuplicatedStrings()
+    {
+        com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties this;
+        com.google.common.collect.Multiset $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties: com.google.common.collect.Multiset mDuplicatedStrings>;
+
+        return $r0;
+    }
+
+    void <init>(com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$1)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties this;
+        com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$1 x0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties: void <init>()>();
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties: long serialVersionUID> = 1L;
+
+        return;
+    }
+}

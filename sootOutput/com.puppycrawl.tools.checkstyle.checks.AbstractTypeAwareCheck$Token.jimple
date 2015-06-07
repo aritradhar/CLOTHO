@@ -1,0 +1,133 @@
+public class com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token extends java.lang.Object
+{
+    private final int mColumn;
+    private final int mLine;
+    private final java.lang.String mText;
+
+    public void <init>(java.lang.String, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token this;
+        java.lang.String aText;
+        int aLine, aColumn;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        aText := @parameter0: java.lang.String;
+
+        aLine := @parameter1: int;
+
+        aColumn := @parameter2: int;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String mText> = aText;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int mLine> = aLine;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int mColumn> = aColumn;
+
+        return;
+    }
+
+    public void <init>(com.puppycrawl.tools.checkstyle.api.FullIdent)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token this;
+        com.puppycrawl.tools.checkstyle.api.FullIdent aFullIdent;
+        java.lang.String $r0;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        aFullIdent := @parameter0: com.puppycrawl.tools.checkstyle.api.FullIdent;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = virtualinvoke aFullIdent.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String mText> = $r0;
+
+        $i0 = virtualinvoke aFullIdent.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getLineNo()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int mLine> = $i0;
+
+        $i1 = virtualinvoke aFullIdent.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getColumnNo()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int mColumn> = $i1;
+
+        return;
+    }
+
+    public int getLineNo()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int mLine>;
+
+        return $i0;
+    }
+
+    public int getColumnNo()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int mColumn>;
+
+        return $i0;
+    }
+
+    public java.lang.String getText()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String mText>;
+
+        return $r0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token this;
+        java.lang.StringBuilder $r0, $r1, $r3, $r4, $r5, $r6, $r7, $r8;
+        java.lang.String $r2, $r9;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Token[");
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String getText()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("(");
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int getLineNo()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("x");
+
+        $i1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int getColumnNo()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")]");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r9;
+    }
+}

@@ -1,0 +1,14 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck extends com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck: void <init>(java.lang.String,java.lang.String)>("clone", "avoid.clone.method");
+
+        return;
+    }
+}

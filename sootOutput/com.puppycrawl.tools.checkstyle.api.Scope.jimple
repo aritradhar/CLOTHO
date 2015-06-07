@@ -1,0 +1,198 @@
+public final enum class com.puppycrawl.tools.checkstyle.api.Scope extends java.lang.Enum
+{
+    public static final enum com.puppycrawl.tools.checkstyle.api.Scope NOTHING;
+    public static final enum com.puppycrawl.tools.checkstyle.api.Scope PUBLIC;
+    public static final enum com.puppycrawl.tools.checkstyle.api.Scope PROTECTED;
+    public static final enum com.puppycrawl.tools.checkstyle.api.Scope PACKAGE;
+    public static final enum com.puppycrawl.tools.checkstyle.api.Scope PRIVATE;
+    public static final enum com.puppycrawl.tools.checkstyle.api.Scope ANONINNER;
+    private static final com.puppycrawl.tools.checkstyle.api.Scope[] $VALUES;
+
+    public static com.puppycrawl.tools.checkstyle.api.Scope[] values()
+    {
+        com.puppycrawl.tools.checkstyle.api.Scope[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.api.Scope[]) $r1;
+
+        return $r2;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.Scope valueOf(java.lang.String)
+    {
+        java.lang.String name;
+        java.lang.Enum $r0;
+        com.puppycrawl.tools.checkstyle.api.Scope $r1;
+
+        name := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/api/Scope", name);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.api.Scope) $r0;
+
+        return $r1;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.Scope this;
+        java.lang.String l1;
+        int l2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Scope;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        specialinvoke this.<java.lang.Enum: void <init>(java.lang.String,int)>(l1, l2);
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.api.Scope this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Scope;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.Scope: java.lang.String getName()>();
+
+        return $r0;
+    }
+
+    public java.lang.String getName()
+    {
+        com.puppycrawl.tools.checkstyle.api.Scope this;
+        java.lang.String $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Scope;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.Scope: java.lang.String name()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.String: java.lang.String toLowerCase()>();
+
+        return $r1;
+    }
+
+    public boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)
+    {
+        com.puppycrawl.tools.checkstyle.api.Scope this, aScope;
+        int $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Scope;
+
+        aScope := @parameter0: com.puppycrawl.tools.checkstyle.api.Scope;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.Scope: int compareTo(java.lang.Enum)>(aScope);
+
+        if $i0 > 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.Scope getInstance(java.lang.String)
+    {
+        java.lang.String aScopeName, $r0, $r1;
+        java.lang.Enum $r2;
+        com.puppycrawl.tools.checkstyle.api.Scope $r3;
+
+        aScopeName := @parameter0: java.lang.String;
+
+        $r0 = virtualinvoke aScopeName.<java.lang.String: java.lang.String trim()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.String: java.lang.String toUpperCase()>();
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Scope: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/api/Scope", $r1);
+
+        $r3 = (com.puppycrawl.tools.checkstyle.api.Scope) $r2;
+
+        return $r3;
+    }
+
+    static void <clinit>()
+    {
+        com.puppycrawl.tools.checkstyle.api.Scope $r0, $r1, $r2, $r3, $r4, $r5, $r7, $r8, $r9, $r10, $r11, $r12;
+        com.puppycrawl.tools.checkstyle.api.Scope[] $r6;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.Scope;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.Scope: void <init>(java.lang.String,int)>("NOTHING", 0);
+
+        <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope NOTHING> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.api.Scope;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.api.Scope: void <init>(java.lang.String,int)>("PUBLIC", 1);
+
+        <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PUBLIC> = $r1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.api.Scope;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.api.Scope: void <init>(java.lang.String,int)>("PROTECTED", 2);
+
+        <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PROTECTED> = $r2;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.api.Scope;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.api.Scope: void <init>(java.lang.String,int)>("PACKAGE", 3);
+
+        <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PACKAGE> = $r3;
+
+        $r4 = new com.puppycrawl.tools.checkstyle.api.Scope;
+
+        specialinvoke $r4.<com.puppycrawl.tools.checkstyle.api.Scope: void <init>(java.lang.String,int)>("PRIVATE", 4);
+
+        <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PRIVATE> = $r4;
+
+        $r5 = new com.puppycrawl.tools.checkstyle.api.Scope;
+
+        specialinvoke $r5.<com.puppycrawl.tools.checkstyle.api.Scope: void <init>(java.lang.String,int)>("ANONINNER", 5);
+
+        <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope ANONINNER> = $r5;
+
+        $r6 = newarray (com.puppycrawl.tools.checkstyle.api.Scope)[6];
+
+        $r7 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope NOTHING>;
+
+        $r6[0] = $r7;
+
+        $r8 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PUBLIC>;
+
+        $r6[1] = $r8;
+
+        $r9 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PROTECTED>;
+
+        $r6[2] = $r9;
+
+        $r10 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PACKAGE>;
+
+        $r6[3] = $r10;
+
+        $r11 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PRIVATE>;
+
+        $r6[4] = $r11;
+
+        $r12 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope ANONINNER>;
+
+        $r6[5] = $r12;
+
+        <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope[] $VALUES> = $r6;
+
+        return;
+    }
+}

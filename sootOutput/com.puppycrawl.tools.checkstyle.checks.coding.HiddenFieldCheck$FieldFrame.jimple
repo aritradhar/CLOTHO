@@ -1,0 +1,175 @@
+class com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame extends java.lang.Object
+{
+    private final boolean mStaticType;
+    private final com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mParent;
+    private final java.util.Set mInstanceFields;
+    private final java.util.Set mStaticFields;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame, boolean)
+    {
+        java.util.HashSet $r0, $r1;
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame this, aParent;
+        boolean aStaticType;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame;
+
+        aParent := @parameter0: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame;
+
+        aStaticType := @parameter1: boolean;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r1 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: java.util.Set mInstanceFields> = $r1;
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: java.util.Set mStaticFields> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mParent> = aParent;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: boolean mStaticType> = aStaticType;
+
+        return;
+    }
+
+    boolean isStaticType()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: boolean mStaticType>;
+
+        return $z0;
+    }
+
+    public void addInstanceField(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame this;
+        java.lang.String aField;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame;
+
+        aField := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: java.util.Set mInstanceFields>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(aField);
+
+        return;
+    }
+
+    public void addStaticField(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame this;
+        java.lang.String aField;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame;
+
+        aField := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: java.util.Set mStaticFields>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(aField);
+
+        return;
+    }
+
+    public boolean containsInstanceField(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame this, $r1, $r2;
+        java.lang.String aField;
+        java.util.Set $r0;
+        boolean $z0, $z1, $z2, $z3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame;
+
+        aField := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: java.util.Set mInstanceFields>;
+
+        $z0 = interfaceinvoke $r0.<java.util.Set: boolean contains(java.lang.Object)>(aField);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: boolean isStaticType()>();
+
+        if $z1 != 0 goto label2;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mParent>;
+
+        if $r1 == null goto label2;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mParent>;
+
+        $z3 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: boolean containsInstanceField(java.lang.String)>(aField);
+
+        if $z3 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    public boolean containsStaticField(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame this, $r1, $r2;
+        java.lang.String aField;
+        java.util.Set $r0;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame;
+
+        aField := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: java.util.Set mStaticFields>;
+
+        $z0 = interfaceinvoke $r0.<java.util.Set: boolean contains(java.lang.Object)>(aField);
+
+        if $z0 != 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mParent>;
+
+        if $r1 == null goto label2;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mParent>;
+
+        $z2 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: boolean containsStaticField(java.lang.String)>(aField);
+
+        if $z2 == 0 goto label2;
+
+     label1:
+        $z1 = 1;
+
+        goto label3;
+
+     label2:
+        $z1 = 0;
+
+     label3:
+        return $z1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame getParent()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame this, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame: com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame mParent>;
+
+        return $r0;
+    }
+}

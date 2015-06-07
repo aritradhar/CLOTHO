@@ -1,0 +1,144 @@
+public class com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler extends com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler
+{
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck, com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck aIndentCheck;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler aParent;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler;
+
+        aIndentCheck := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        aAST := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParent := @parameter2: com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,java.lang.String,com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler)>(aIndentCheck, "operator new", aAST, aParent);
+
+        return;
+    }
+
+    public void checkIndentation()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST type, lparen, rparen, $r0, $r1, $r2, $r3, $r4, $r5;
+        int $i0, $i1, $i2, $i3;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel $r6, $r7, $r9;
+        int[] $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: com.puppycrawl.tools.checkstyle.api.DetailAST getMainAst()>();
+
+        type = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        if type == null goto label1;
+
+        $r9 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel getLevel()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: void checkExpressionSubtree(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel,boolean,boolean)>(type, $r9, 0, 0);
+
+     label1:
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: com.puppycrawl.tools.checkstyle.api.DetailAST getMainAst()>();
+
+        lparen = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(77);
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: com.puppycrawl.tools.checkstyle.api.DetailAST getMainAst()>();
+
+        rparen = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(78);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: void checkLParen(com.puppycrawl.tools.checkstyle.api.DetailAST)>(lparen);
+
+        if rparen == null goto label2;
+
+        if lparen == null goto label2;
+
+        $i0 = virtualinvoke rparen.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke lparen.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i0 != $i1 goto label3;
+
+     label2:
+        return;
+
+     label3:
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: com.puppycrawl.tools.checkstyle.api.DetailAST getMainAst()>();
+
+        $i2 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 == 6 goto label4;
+
+        return;
+
+     label4:
+        $r4 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: com.puppycrawl.tools.checkstyle.api.DetailAST getMainAst()>();
+
+        $r5 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(35);
+
+        $r7 = new com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        $r6 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel getLevel()>();
+
+        $r8 = newarray (int)[1];
+
+        $i3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: int getBasicOffset()>();
+
+        $r8[0] = $i3;
+
+        specialinvoke $r7.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel,int[])>($r6, $r8);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: void checkExpressionSubtree(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel,boolean,boolean)>($r5, $r7, 0, 1);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: void checkRParen(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(lparen, rparen);
+
+        return;
+    }
+
+    protected com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel getLevelImpl()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0, $r1, $r4;
+        int $i0, $i1, $i2;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: com.puppycrawl.tools.checkstyle.api.DetailAST getMainAst()>();
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: int getLineStart(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: com.puppycrawl.tools.checkstyle.api.DetailAST getMainAst()>();
+
+        $i1 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        if $i0 == $i1 goto label1;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel;
+
+        $r4 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: com.puppycrawl.tools.checkstyle.api.DetailAST getMainAst()>();
+
+        $i2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler: int getLineStart(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r4);
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel: void <init>(int)>($i2);
+
+        return $r3;
+
+     label1:
+        $r2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler: com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel getLevelImpl()>();
+
+        return $r2;
+    }
+
+    protected boolean shouldIncreaseIndent()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler;
+
+        return 0;
+    }
+}

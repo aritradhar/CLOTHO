@@ -1,0 +1,258 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final java.util.Map mObjBlockEquals;
+    private final java.util.Set mObjBlockWithHashCode;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck this;
+        java.util.HashMap $r0;
+        java.util.HashSet $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Map mObjBlockEquals> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Set mObjBlockWithHashCode> = $r1;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 9;
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.Map $r0;
+        java.util.Set $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Map mObjBlockEquals>;
+
+        interfaceinvoke $r0.<java.util.Map: void clear()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Set mObjBlockWithHashCode>;
+
+        interfaceinvoke $r1.<java.util.Set: void clear()>();
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiers, type, methodName, parameters, $r5, $r6, $r9, $r12;
+        antlr.collections.AST $r0, $r1;
+        int $i0, $i1, $i2;
+        java.lang.String $r2, $r3, $r7, $r8;
+        boolean $z0, $z1, $z3, $z4, $z5;
+        java.util.Set $r4;
+        java.util.Map $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiers = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        type = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        methodName = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        parameters = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        $r0 = interfaceinvoke type.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        $i0 = interfaceinvoke $r0.<antlr.collections.AST: int getType()>();
+
+        if $i0 != 51 goto label1;
+
+        $r8 = "equals";
+
+        $r7 = interfaceinvoke methodName.<antlr.collections.AST: java.lang.String getText()>();
+
+        $z4 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>($r7);
+
+        if $z4 == 0 goto label1;
+
+        $z3 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(63);
+
+        if $z3 == 0 goto label1;
+
+        $i2 = virtualinvoke parameters.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i2 != 1 goto label1;
+
+        $r9 = virtualinvoke parameters.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $z5 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: boolean isObjectParam(antlr.collections.AST)>($r9);
+
+        if $z5 == 0 goto label1;
+
+        $r10 = this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Map mObjBlockEquals>;
+
+        $r12 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        interfaceinvoke $r10.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r12, aAST);
+
+        goto label2;
+
+     label1:
+        $r1 = interfaceinvoke type.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        $i1 = interfaceinvoke $r1.<antlr.collections.AST: int getType()>();
+
+        if $i1 != 55 goto label2;
+
+        $r2 = "hashCode";
+
+        $r3 = interfaceinvoke methodName.<antlr.collections.AST: java.lang.String getText()>();
+
+        $z1 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z1 == 0 goto label2;
+
+        $z0 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(63);
+
+        if $z0 == 0 goto label2;
+
+        $r5 = virtualinvoke parameters.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        if $r5 != null goto label2;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Set mObjBlockWithHashCode>;
+
+        $r6 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        interfaceinvoke $r4.<java.util.Set: boolean add(java.lang.Object)>($r6);
+
+     label2:
+        return;
+    }
+
+    private boolean isObjectParam(antlr.collections.AST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck this;
+        antlr.collections.AST aFirstChild, modifiers, type, $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck;
+
+        aFirstChild := @parameter0: antlr.collections.AST;
+
+        modifiers = interfaceinvoke aFirstChild.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        type = interfaceinvoke modifiers.<antlr.collections.AST: antlr.collections.AST getNextSibling()>();
+
+        $r0 = interfaceinvoke type.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        $i0 = interfaceinvoke $r0.<antlr.collections.AST: int getType()>();
+
+        tableswitch($i0)
+        {
+            case 51: goto label1;
+            case 52: goto label1;
+            case 53: goto label1;
+            case 54: goto label1;
+            case 55: goto label1;
+            case 56: goto label1;
+            case 57: goto label1;
+            case 58: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        return 0;
+
+     label2:
+        return 1;
+    }
+
+    public void finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST, objBlock, equalsAST;
+        java.util.Set equalsDefs, $r2, $r4;
+        java.util.Iterator i$;
+        java.util.Map $r0, $r1, $r5;
+        boolean $z0, $z1;
+        java.lang.Object $r3, $r6;
+        int $i0, $i1;
+        java.lang.Object[] $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Map mObjBlockEquals>;
+
+        equalsDefs = interfaceinvoke $r0.<java.util.Map: java.util.Set keySet()>();
+
+        i$ = interfaceinvoke equalsDefs.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r3 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        objBlock = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r3;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Set mObjBlockWithHashCode>;
+
+        $z1 = interfaceinvoke $r4.<java.util.Set: boolean contains(java.lang.Object)>(objBlock);
+
+        if $z1 != 0 goto label2;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Map mObjBlockEquals>;
+
+        $r6 = interfaceinvoke $r5.<java.util.Map: java.lang.Object get(java.lang.Object)>(objBlock);
+
+        equalsAST = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r6;
+
+        $i0 = virtualinvoke equalsAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke equalsAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r7 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "equals.noHashCode", $r7);
+
+     label2:
+        goto label1;
+
+     label3:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Map mObjBlockEquals>;
+
+        interfaceinvoke $r1.<java.util.Map: void clear()>();
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck: java.util.Set mObjBlockWithHashCode>;
+
+        interfaceinvoke $r2.<java.util.Set: void clear()>();
+
+        return;
+    }
+}

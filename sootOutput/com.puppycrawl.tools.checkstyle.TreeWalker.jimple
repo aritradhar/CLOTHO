@@ -1,0 +1,1512 @@
+public final class com.puppycrawl.tools.checkstyle.TreeWalker extends com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck
+{
+    private static final int DEFAULT_TAB_WIDTH;
+    private final com.google.common.collect.Multimap mTokenToOrdinaryChecks;
+    private final com.google.common.collect.Multimap mTokenToCommentChecks;
+    private final java.util.Set mOrdinaryChecks;
+    private final java.util.Set mCommentChecks;
+    private int mTabWidth;
+    private com.puppycrawl.tools.checkstyle.PropertyCacheFile mCache;
+    private java.lang.ClassLoader mClassLoader;
+    private com.puppycrawl.tools.checkstyle.api.Context mChildContext;
+    private com.puppycrawl.tools.checkstyle.ModuleFactory mModuleFactory;
+    private static final org.apache.commons.logging.Log LOG;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.google.common.collect.HashMultimap $r0, $r1;
+        java.util.HashSet $r2, $r3;
+        com.puppycrawl.tools.checkstyle.PropertyCacheFile $r4;
+        java.lang.String[] $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.HashMultimap: com.google.common.collect.HashMultimap create()>();
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.google.common.collect.Multimap mTokenToOrdinaryChecks> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.HashMultimap: com.google.common.collect.HashMultimap create()>();
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.google.common.collect.Multimap mTokenToCommentChecks> = $r1;
+
+        $r2 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Set mOrdinaryChecks> = $r2;
+
+        $r3 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Set mCommentChecks> = $r3;
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: int mTabWidth> = 8;
+
+        $r4 = new com.puppycrawl.tools.checkstyle.PropertyCacheFile;
+
+        specialinvoke $r4.<com.puppycrawl.tools.checkstyle.PropertyCacheFile: void <init>(com.puppycrawl.tools.checkstyle.api.Configuration,java.lang.String)>(null, null);
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.PropertyCacheFile mCache> = $r4;
+
+        $r5 = newarray (java.lang.String)[1];
+
+        $r5[0] = "java";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void setFileExtensions(java.lang.String[])>($r5);
+
+        return;
+    }
+
+    public void setTabWidth(int)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        int aTabWidth;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aTabWidth := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: int mTabWidth> = aTabWidth;
+
+        return;
+    }
+
+    public void setCacheFile(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        java.lang.String aFileName;
+        com.puppycrawl.tools.checkstyle.api.Configuration configuration;
+        com.puppycrawl.tools.checkstyle.PropertyCacheFile $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aFileName := @parameter0: java.lang.String;
+
+        configuration = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.Configuration getConfiguration()>();
+
+        $r0 = new com.puppycrawl.tools.checkstyle.PropertyCacheFile;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.PropertyCacheFile: void <init>(com.puppycrawl.tools.checkstyle.api.Configuration,java.lang.String)>(configuration, aFileName);
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.PropertyCacheFile mCache> = $r0;
+
+        return;
+    }
+
+    public void setClassLoader(java.lang.ClassLoader)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        java.lang.ClassLoader aClassLoader;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aClassLoader := @parameter0: java.lang.ClassLoader;
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.lang.ClassLoader mClassLoader> = aClassLoader;
+
+        return;
+    }
+
+    public void setModuleFactory(com.puppycrawl.tools.checkstyle.ModuleFactory)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.puppycrawl.tools.checkstyle.ModuleFactory aModuleFactory;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aModuleFactory := @parameter0: com.puppycrawl.tools.checkstyle.ModuleFactory;
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.ModuleFactory mModuleFactory> = aModuleFactory;
+
+        return;
+    }
+
+    public void finishLocalSetup()
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.puppycrawl.tools.checkstyle.DefaultContext checkContext, $r0;
+        java.lang.ClassLoader $r1;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages $r2;
+        java.lang.String $r3, $r4;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.DefaultContext;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.DefaultContext: void <init>()>();
+
+        checkContext = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.lang.ClassLoader mClassLoader>;
+
+        virtualinvoke checkContext.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("classLoader", $r1);
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        virtualinvoke checkContext.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("messages", $r2);
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.lang.String getSeverity()>();
+
+        virtualinvoke checkContext.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("severity", $r3);
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: int mTabWidth>;
+
+        $r4 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i0);
+
+        virtualinvoke checkContext.<com.puppycrawl.tools.checkstyle.DefaultContext: void add(java.lang.String,java.lang.Object)>("tabWidth", $r4);
+
+        this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.Context mChildContext> = checkContext;
+
+        return;
+    }
+
+    public void setupChild(com.puppycrawl.tools.checkstyle.api.Configuration) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.puppycrawl.tools.checkstyle.api.Configuration aChildConf;
+        java.lang.String name, $r6;
+        java.lang.Object module;
+        com.puppycrawl.tools.checkstyle.api.Check c;
+        com.puppycrawl.tools.checkstyle.ModuleFactory $r0;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.api.Context $r1;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aChildConf := @parameter0: com.puppycrawl.tools.checkstyle.api.Configuration;
+
+        name = interfaceinvoke aChildConf.<com.puppycrawl.tools.checkstyle.api.Configuration: java.lang.String getName()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.ModuleFactory mModuleFactory>;
+
+        module = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.ModuleFactory: java.lang.Object createModule(java.lang.String)>(name);
+
+        $z0 = module instanceof com.puppycrawl.tools.checkstyle.api.Check;
+
+        if $z0 != 0 goto label1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("TreeWalker is not allowed as a parent of ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(name);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String)>($r6);
+
+        throw $r2;
+
+     label1:
+        c = (com.puppycrawl.tools.checkstyle.api.Check) module;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.Context mChildContext>;
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.api.Check: void contextualize(com.puppycrawl.tools.checkstyle.api.Context)>($r1);
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.api.Check: void configure(com.puppycrawl.tools.checkstyle.api.Configuration)>(aChildConf);
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.api.Check: void init()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void registerCheck(com.puppycrawl.tools.checkstyle.api.Check)>(c);
+
+        return;
+    }
+
+    protected void processFiltered(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        java.io.File aFile;
+        java.util.List aLines;
+        java.lang.String fileName, $r12, $r14, $r22, $r25, $r26, $r35, $r36, $r45, $r46;
+        long timestamp;
+        com.puppycrawl.tools.checkstyle.api.FileText text;
+        com.puppycrawl.tools.checkstyle.api.FileContents contents, $r1;
+        com.puppycrawl.tools.checkstyle.api.DetailAST rootAST, astWithComments;
+        com.puppycrawl.tools.checkstyle.PropertyCacheFile $r0, $r6;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessages $r2, $r4, $r10, $r15, $r20, $r27, $r42;
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState $r3, $r5;
+        int $i0, $i1, $i2, $i3, $i4;
+        org.apache.commons.logging.Log $r7, $r18, $r28, $r41;
+        antlr.TokenStreamException $r8, text;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r9, $r16, $r21, $r33, $r43;
+        java.lang.String[] $r11, $r19, $r24, $r32, $r39;
+        java.lang.Class $r13, $r23, $r30, $r37, $r44;
+        antlr.TokenStreamRecognitionException $r17, text;
+        java.lang.Throwable $r29, text;
+        java.lang.StringBuilder $r31, $r34, $r38;
+        antlr.RecognitionException $r40, text, contents;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        fileName = virtualinvoke aFile.<java.io.File: java.lang.String getPath()>();
+
+        timestamp = virtualinvoke aFile.<java.io.File: long lastModified()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.PropertyCacheFile mCache>;
+
+        $z0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.PropertyCacheFile: boolean alreadyChecked(java.lang.String,long)>(fileName, timestamp);
+
+        if $z0 == 0 goto label01;
+
+        return;
+
+     label01:
+        text = staticinvoke <com.puppycrawl.tools.checkstyle.api.FileText: com.puppycrawl.tools.checkstyle.api.FileText fromLines(java.io.File,java.util.List)>(aFile, aLines);
+
+        $r1 = new com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FileContents: void <init>(com.puppycrawl.tools.checkstyle.api.FileText)>(text);
+
+        contents = $r1;
+
+        rootAST = staticinvoke <com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.DetailAST parse(com.puppycrawl.tools.checkstyle.api.FileContents)>(contents);
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void reset()>();
+
+        $r3 = <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState ORDINARY>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void walk(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.FileContents,com.puppycrawl.tools.checkstyle.TreeWalker$AstState)>(rootAST, contents, $r3);
+
+        astWithComments = staticinvoke <com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.DetailAST appendHiddenCommentNodes(com.puppycrawl.tools.checkstyle.api.DetailAST)>(rootAST);
+
+        $r5 = <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState WITH_COMMENTS>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void walk(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.FileContents,com.puppycrawl.tools.checkstyle.TreeWalker$AstState)>(astWithComments, contents, $r5);
+
+     label02:
+        goto label09;
+
+     label03:
+        $r40 := @caughtexception;
+
+        text = $r40;
+
+        $r41 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: org.apache.commons.logging.Log getExceptionLogger()>();
+
+        interfaceinvoke $r41.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>("RecognitionException occured.", text);
+
+        $r42 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        $r43 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $i3 = virtualinvoke text.<antlr.RecognitionException: int getLine()>();
+
+        $i4 = virtualinvoke text.<antlr.RecognitionException: int getColumn()>();
+
+        $r39 = newarray (java.lang.String)[1];
+
+        $r46 = virtualinvoke text.<antlr.RecognitionException: java.lang.String getMessage()>();
+
+        $r39[0] = $r46;
+
+        $r45 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.lang.String getId()>();
+
+        $r44 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        specialinvoke $r43.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,int,java.lang.String,java.lang.String,java.lang.Object[],java.lang.String,java.lang.Class,java.lang.String)>($i3, $i4, "com.puppycrawl.tools.checkstyle.messages", "general.exception", $r39, $r45, $r44, null);
+
+        virtualinvoke $r42.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void add(com.puppycrawl.tools.checkstyle.api.LocalizedMessage)>($r43);
+
+        goto label09;
+
+     label04:
+        $r17 := @caughtexception;
+
+        text = $r17;
+
+        $r18 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: org.apache.commons.logging.Log getExceptionLogger()>();
+
+        interfaceinvoke $r18.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>("TokenStreamRecognitionException occured.", text);
+
+        contents = text.<antlr.TokenStreamRecognitionException: antlr.RecognitionException recog>;
+
+        if contents == null goto label05;
+
+        $r20 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        $r21 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $i2 = virtualinvoke contents.<antlr.RecognitionException: int getLine()>();
+
+        $i1 = virtualinvoke contents.<antlr.RecognitionException: int getColumn()>();
+
+        $r24 = newarray (java.lang.String)[1];
+
+        $r26 = virtualinvoke contents.<antlr.RecognitionException: java.lang.String getMessage()>();
+
+        $r24[0] = $r26;
+
+        $r25 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.lang.String getId()>();
+
+        $r30 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        specialinvoke $r21.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,int,java.lang.String,java.lang.String,java.lang.Object[],java.lang.String,java.lang.Class,java.lang.String)>($i2, $i1, "com.puppycrawl.tools.checkstyle.messages", "general.exception", $r24, $r25, $r30, null);
+
+        virtualinvoke $r20.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void add(com.puppycrawl.tools.checkstyle.api.LocalizedMessage)>($r21);
+
+        goto label06;
+
+     label05:
+        $r15 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        $r16 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r19 = newarray (java.lang.String)[1];
+
+        $r19[0] = "TokenStreamRecognitionException occured.";
+
+        $r22 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.lang.String getId()>();
+
+        $r23 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        specialinvoke $r16.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,java.lang.String,java.lang.String,java.lang.Object[],java.lang.String,java.lang.Class,java.lang.String)>(0, "com.puppycrawl.tools.checkstyle.messages", "general.exception", $r19, $r22, $r23, null);
+
+        virtualinvoke $r15.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void add(com.puppycrawl.tools.checkstyle.api.LocalizedMessage)>($r16);
+
+     label06:
+        goto label09;
+
+     label07:
+        $r8 := @caughtexception;
+
+        text = $r8;
+
+        $r7 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: org.apache.commons.logging.Log getExceptionLogger()>();
+
+        interfaceinvoke $r7.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>("TokenStreamException occured.", text);
+
+        $r10 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        $r9 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r11 = newarray (java.lang.String)[1];
+
+        $r14 = virtualinvoke text.<antlr.TokenStreamException: java.lang.String getMessage()>();
+
+        $r11[0] = $r14;
+
+        $r12 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.lang.String getId()>();
+
+        $r13 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        specialinvoke $r9.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,java.lang.String,java.lang.String,java.lang.Object[],java.lang.String,java.lang.Class,java.lang.String)>(0, "com.puppycrawl.tools.checkstyle.messages", "general.exception", $r11, $r12, $r13, null);
+
+        virtualinvoke $r10.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void add(com.puppycrawl.tools.checkstyle.api.LocalizedMessage)>($r9);
+
+        goto label09;
+
+     label08:
+        $r29 := @caughtexception;
+
+        text = $r29;
+
+        virtualinvoke text.<java.lang.Throwable: void printStackTrace()>();
+
+        $r28 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: org.apache.commons.logging.Log getExceptionLogger()>();
+
+        interfaceinvoke $r28.<org.apache.commons.logging.Log: void debug(java.lang.Object,java.lang.Throwable)>("Throwable occured.", text);
+
+        $r27 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        $r33 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r32 = newarray (java.lang.String)[1];
+
+        $r31 = new java.lang.StringBuilder;
+
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>()>();
+
+        $r38 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("");
+
+        $r34 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(text);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r32[0] = $r35;
+
+        $r36 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.lang.String getId()>();
+
+        $r37 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        specialinvoke $r33.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,java.lang.String,java.lang.String,java.lang.Object[],java.lang.String,java.lang.Class,java.lang.String)>(0, "com.puppycrawl.tools.checkstyle.messages", "general.exception", $r32, $r36, $r37, null);
+
+        virtualinvoke $r27.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: void add(com.puppycrawl.tools.checkstyle.api.LocalizedMessage)>($r33);
+
+     label09:
+        $r4 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.LocalizedMessages getMessageCollector()>();
+
+        $i0 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.LocalizedMessages: int size()>();
+
+        if $i0 != 0 goto label10;
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.PropertyCacheFile mCache>;
+
+        virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.PropertyCacheFile: void checkedOk(java.lang.String,long)>(fileName, timestamp);
+
+     label10:
+        return;
+
+        catch antlr.RecognitionException from label01 to label02 with label03;
+        catch antlr.TokenStreamRecognitionException from label01 to label02 with label04;
+        catch antlr.TokenStreamException from label01 to label02 with label07;
+        catch java.lang.Throwable from label01 to label02 with label08;
+    }
+
+    private void registerCheck(com.puppycrawl.tools.checkstyle.api.Check) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.puppycrawl.tools.checkstyle.api.Check aCheck;
+        int[] tokens, acceptableTokens;
+        java.util.Set checkTokens, $r0, $r1;
+        java.util.Iterator i$;
+        java.lang.String token, $r10;
+        int tokenId, $i0, i$, token;
+        boolean $z0, $z1, $z4;
+        java.lang.Object $r2;
+        java.lang.IllegalArgumentException $r3, tokenId;
+        java.lang.StringBuilder $r4, $r6, $r7, $r8, $r9;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aCheck := @parameter0: com.puppycrawl.tools.checkstyle.api.Check;
+
+        checkTokens = virtualinvoke aCheck.<com.puppycrawl.tools.checkstyle.api.Check: java.util.Set getTokenNames()>();
+
+        $z0 = interfaceinvoke checkTokens.<java.util.Set: boolean isEmpty()>();
+
+        if $z0 != 0 goto label07;
+
+        tokens = virtualinvoke aCheck.<com.puppycrawl.tools.checkstyle.api.Check: int[] getRequiredTokens()>();
+
+        acceptableTokens = virtualinvoke aCheck.<com.puppycrawl.tools.checkstyle.api.Check: int[] getAcceptableTokens()>();
+
+        staticinvoke <java.util.Arrays: void sort(int[])>(acceptableTokens);
+
+        i$ = interfaceinvoke checkTokens.<java.util.Set: java.util.Iterator iterator()>();
+
+     label01:
+        $z4 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z4 == 0 goto label06;
+
+        $r2 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        token = (java.lang.String) $r2;
+
+     label02:
+        tokenId = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: int getTokenId(java.lang.String)>(token);
+
+        $i0 = staticinvoke <java.util.Arrays: int binarySearch(int[],int)>(acceptableTokens, tokenId);
+
+        if $i0 < 0 goto label03;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void registerCheck(java.lang.String,com.puppycrawl.tools.checkstyle.api.Check)>(token, aCheck);
+
+     label03:
+        goto label05;
+
+     label04:
+        $r3 := @caughtexception;
+
+        tokenId = $r3;
+
+        $r5 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("illegal token \"");
+
+        $r6 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(token);
+
+        $r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\" in check ");
+
+        $r8 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aCheck);
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r10, tokenId);
+
+        throw $r5;
+
+     label05:
+        goto label01;
+
+     label06:
+        goto label08;
+
+     label07:
+        tokens = virtualinvoke aCheck.<com.puppycrawl.tools.checkstyle.api.Check: int[] getDefaultTokens()>();
+
+     label08:
+        acceptableTokens = tokens;
+
+        i$ = lengthof acceptableTokens;
+
+        token = 0;
+
+     label09:
+        if token >= i$ goto label10;
+
+        tokenId = acceptableTokens[token];
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void registerCheck(int,com.puppycrawl.tools.checkstyle.api.Check)>(tokenId, aCheck);
+
+        token = token + 1;
+
+        goto label09;
+
+     label10:
+        $z1 = virtualinvoke aCheck.<com.puppycrawl.tools.checkstyle.api.Check: boolean isCommentNodesRequired()>();
+
+        if $z1 == 0 goto label11;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Set mCommentChecks>;
+
+        interfaceinvoke $r1.<java.util.Set: boolean add(java.lang.Object)>(aCheck);
+
+        goto label12;
+
+     label11:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Set mOrdinaryChecks>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(aCheck);
+
+     label12:
+        return;
+
+        catch java.lang.IllegalArgumentException from label02 to label03 with label04;
+    }
+
+    private void registerCheck(int, com.puppycrawl.tools.checkstyle.api.Check)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        int aTokenID;
+        com.puppycrawl.tools.checkstyle.api.Check aCheck;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aTokenID := @parameter0: int;
+
+        aCheck := @parameter1: com.puppycrawl.tools.checkstyle.api.Check;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String getTokenName(int)>(aTokenID);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void registerCheck(java.lang.String,com.puppycrawl.tools.checkstyle.api.Check)>($r0, aCheck);
+
+        return;
+    }
+
+    private void registerCheck(java.lang.String, com.puppycrawl.tools.checkstyle.api.Check)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        java.lang.String aToken, $r5, $r10;
+        com.puppycrawl.tools.checkstyle.api.Check aCheck;
+        boolean $z0, $z1;
+        com.google.common.collect.Multimap $r0, $r12;
+        java.lang.StringBuilder $r1, $r3, $r6, $r7, $r8, $r9, $r11;
+        org.apache.commons.logging.Log $r2;
+        java.lang.Class $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aToken := @parameter0: java.lang.String;
+
+        aCheck := @parameter1: com.puppycrawl.tools.checkstyle.api.Check;
+
+        $z0 = virtualinvoke aCheck.<com.puppycrawl.tools.checkstyle.api.Check: boolean isCommentNodesRequired()>();
+
+        if $z0 == 0 goto label1;
+
+        $r12 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.google.common.collect.Multimap mTokenToCommentChecks>;
+
+        interfaceinvoke $r12.<com.google.common.collect.Multimap: boolean put(java.lang.Object,java.lang.Object)>(aToken, aCheck);
+
+        goto label3;
+
+     label1:
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: boolean isCommentType(java.lang.String)>(aToken);
+
+        if $z1 == 0 goto label2;
+
+        $r2 = <com.puppycrawl.tools.checkstyle.TreeWalker: org.apache.commons.logging.Log LOG>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Check \'");
+
+        $r4 = virtualinvoke aCheck.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.Class: java.lang.String getName()>();
+
+        $r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' waits for comment type token (\'");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aToken);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\') and should override \'isCommentNodesRequred()\'");
+
+        $r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" method to return \'true\'");
+
+        $r10 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r2.<org.apache.commons.logging.Log: void warn(java.lang.Object)>($r10);
+
+        goto label3;
+
+     label2:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.google.common.collect.Multimap mTokenToOrdinaryChecks>;
+
+        interfaceinvoke $r0.<com.google.common.collect.Multimap: boolean put(java.lang.Object,java.lang.Object)>(aToken, aCheck);
+
+     label3:
+        return;
+    }
+
+    private void walk(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.FileContents, com.puppycrawl.tools.checkstyle.TreeWalker$AstState)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.FileContents aContents;
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState aAstState;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aContents := @parameter1: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aAstState := @parameter2: com.puppycrawl.tools.checkstyle.TreeWalker$AstState;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void notifyBegin(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.FileContents,com.puppycrawl.tools.checkstyle.TreeWalker$AstState)>(aAST, aContents, aAstState);
+
+        if aAST == null goto label1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void processIter(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.TreeWalker$AstState)>(aAST, aAstState);
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void notifyEnd(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.TreeWalker$AstState)>(aAST, aAstState);
+
+        return;
+    }
+
+    private void notifyBegin(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.FileContents, com.puppycrawl.tools.checkstyle.TreeWalker$AstState)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        com.puppycrawl.tools.checkstyle.api.FileContents aContents;
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState aAstState, $r0;
+        java.util.Set checks;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.Check ch;
+        boolean $z0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aContents := @parameter1: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        aAstState := @parameter2: com.puppycrawl.tools.checkstyle.TreeWalker$AstState;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState WITH_COMMENTS>;
+
+        if aAstState != $r0 goto label1;
+
+        checks = this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Set mCommentChecks>;
+
+        goto label2;
+
+     label1:
+        checks = this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Set mOrdinaryChecks>;
+
+     label2:
+        i$ = interfaceinvoke checks.<java.util.Set: java.util.Iterator iterator()>();
+
+     label3:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        ch = (com.puppycrawl.tools.checkstyle.api.Check) $r1;
+
+        virtualinvoke ch.<com.puppycrawl.tools.checkstyle.api.Check: void setFileContents(com.puppycrawl.tools.checkstyle.api.FileContents)>(aContents);
+
+        virtualinvoke ch.<com.puppycrawl.tools.checkstyle.api.Check: void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aRootAST);
+
+        goto label3;
+
+     label4:
+        return;
+    }
+
+    private void notifyEnd(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.TreeWalker$AstState)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState aAstState, $r0;
+        java.util.Set checks;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.Check ch;
+        boolean $z0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAstState := @parameter1: com.puppycrawl.tools.checkstyle.TreeWalker$AstState;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState WITH_COMMENTS>;
+
+        if aAstState != $r0 goto label1;
+
+        checks = this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Set mCommentChecks>;
+
+        goto label2;
+
+     label1:
+        checks = this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Set mOrdinaryChecks>;
+
+     label2:
+        i$ = interfaceinvoke checks.<java.util.Set: java.util.Iterator iterator()>();
+
+     label3:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        ch = (com.puppycrawl.tools.checkstyle.api.Check) $r1;
+
+        virtualinvoke ch.<com.puppycrawl.tools.checkstyle.api.Check: void finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aRootAST);
+
+        goto label3;
+
+     label4:
+        return;
+    }
+
+    private void notifyVisit(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.TreeWalker$AstState)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState aAstState, $r0;
+        java.util.Collection visitors;
+        java.lang.String tokenType;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.Check c;
+        int $i0;
+        com.google.common.collect.Multimap $r1, $r3;
+        boolean $z0;
+        java.lang.Object $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAstState := @parameter1: com.puppycrawl.tools.checkstyle.TreeWalker$AstState;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        tokenType = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String getTokenName(int)>($i0);
+
+        $r0 = <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState WITH_COMMENTS>;
+
+        if aAstState != $r0 goto label1;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.google.common.collect.Multimap mTokenToCommentChecks>;
+
+        visitors = interfaceinvoke $r3.<com.google.common.collect.Multimap: java.util.Collection get(java.lang.Object)>(tokenType);
+
+        goto label2;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.google.common.collect.Multimap mTokenToOrdinaryChecks>;
+
+        visitors = interfaceinvoke $r1.<com.google.common.collect.Multimap: java.util.Collection get(java.lang.Object)>(tokenType);
+
+     label2:
+        i$ = interfaceinvoke visitors.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label3:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r2 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        c = (com.puppycrawl.tools.checkstyle.api.Check) $r2;
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.api.Check: void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label3;
+
+     label4:
+        return;
+    }
+
+    private void notifyLeave(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.TreeWalker$AstState)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState aAstState, $r0;
+        java.util.Collection visitors;
+        java.lang.String tokenType;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.Check ch;
+        int $i0;
+        com.google.common.collect.Multimap $r1, $r3;
+        boolean $z0;
+        java.lang.Object $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAstState := @parameter1: com.puppycrawl.tools.checkstyle.TreeWalker$AstState;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        tokenType = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String getTokenName(int)>($i0);
+
+        $r0 = <com.puppycrawl.tools.checkstyle.TreeWalker$AstState: com.puppycrawl.tools.checkstyle.TreeWalker$AstState WITH_COMMENTS>;
+
+        if aAstState != $r0 goto label1;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.google.common.collect.Multimap mTokenToCommentChecks>;
+
+        visitors = interfaceinvoke $r3.<com.google.common.collect.Multimap: java.util.Collection get(java.lang.Object)>(tokenType);
+
+        goto label2;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.google.common.collect.Multimap mTokenToOrdinaryChecks>;
+
+        visitors = interfaceinvoke $r1.<com.google.common.collect.Multimap: java.util.Collection get(java.lang.Object)>(tokenType);
+
+     label2:
+        i$ = interfaceinvoke visitors.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label3:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r2 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        ch = (com.puppycrawl.tools.checkstyle.api.Check) $r2;
+
+        virtualinvoke ch.<com.puppycrawl.tools.checkstyle.api.Check: void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label3;
+
+     label4:
+        return;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.DetailAST parse(com.puppycrawl.tools.checkstyle.api.FileContents) throws antlr.RecognitionException, antlr.TokenStreamException
+    {
+        com.puppycrawl.tools.checkstyle.api.FileContents aContents;
+        java.lang.String fullText, $r4, $r7, $r10;
+        java.io.StringReader sr, $r2;
+        com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer lexer, $r3;
+        antlr.TokenStreamHiddenTokenFilter filter, $r5;
+        com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer parser, $r6;
+        com.puppycrawl.tools.checkstyle.api.FileText $r0;
+        java.lang.CharSequence $r1;
+        java.lang.Class $r8;
+        antlr.collections.AST $r9;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r11;
+
+        aContents := @parameter0: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        $r0 = virtualinvoke aContents.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.FileText getText()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.CharSequence getFullText()>();
+
+        fullText = interfaceinvoke $r1.<java.lang.CharSequence: java.lang.String toString()>();
+
+        $r2 = new java.io.StringReader;
+
+        specialinvoke $r2.<java.io.StringReader: void <init>(java.lang.String)>(fullText);
+
+        sr = $r2;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer: void <init>(java.io.Reader)>(sr);
+
+        lexer = $r3;
+
+        $r4 = virtualinvoke aContents.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String getFilename()>();
+
+        virtualinvoke lexer.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer: void setFilename(java.lang.String)>($r4);
+
+        virtualinvoke lexer.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer: void setCommentListener(com.puppycrawl.tools.checkstyle.grammars.CommentListener)>(aContents);
+
+        virtualinvoke lexer.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer: void setTreatAssertAsKeyword(boolean)>(1);
+
+        virtualinvoke lexer.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer: void setTreatEnumAsKeyword(boolean)>(1);
+
+        virtualinvoke lexer.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer: void setTokenObjectClass(java.lang.String)>("antlr.CommonHiddenStreamToken");
+
+        $r5 = new antlr.TokenStreamHiddenTokenFilter;
+
+        specialinvoke $r5.<antlr.TokenStreamHiddenTokenFilter: void <init>(antlr.TokenStream)>(lexer);
+
+        filter = $r5;
+
+        virtualinvoke filter.<antlr.TokenStreamHiddenTokenFilter: void hide(int)>(151);
+
+        virtualinvoke filter.<antlr.TokenStreamHiddenTokenFilter: void hide(int)>(152);
+
+        $r6 = new com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
+
+        specialinvoke $r6.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer: void <init>(antlr.TokenStream)>(filter);
+
+        parser = $r6;
+
+        $r7 = virtualinvoke aContents.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String getFilename()>();
+
+        virtualinvoke parser.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer: void setFilename(java.lang.String)>($r7);
+
+        $r8 = class "com/puppycrawl/tools/checkstyle/api/DetailAST";
+
+        $r10 = virtualinvoke $r8.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke parser.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer: void setASTNodeClass(java.lang.String)>($r10);
+
+        virtualinvoke parser.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer: void compilationUnit()>();
+
+        $r9 = virtualinvoke parser.<com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer: antlr.collections.AST getAST()>();
+
+        $r11 = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r9;
+
+        return $r11;
+    }
+
+    public void destroy()
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.Check c;
+        java.util.Set $r0, $r1;
+        boolean $z0, $z1;
+        com.puppycrawl.tools.checkstyle.PropertyCacheFile $r2;
+        java.lang.Object $r3, $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Set mOrdinaryChecks>;
+
+        i$ = interfaceinvoke $r0.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r4 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        c = (com.puppycrawl.tools.checkstyle.api.Check) $r4;
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.api.Check: void destroy()>();
+
+        goto label1;
+
+     label2:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Set mCommentChecks>;
+
+        i$ = interfaceinvoke $r1.<java.util.Set: java.util.Iterator iterator()>();
+
+     label3:
+        $z1 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label4;
+
+        $r3 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        c = (com.puppycrawl.tools.checkstyle.api.Check) $r3;
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.api.Check: void destroy()>();
+
+        goto label3;
+
+     label4:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.PropertyCacheFile mCache>;
+
+        virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.PropertyCacheFile: void destroy()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void destroy()>();
+
+        return;
+    }
+
+    private void processIter(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.TreeWalker$AstState)
+    {
+        com.puppycrawl.tools.checkstyle.TreeWalker this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRoot, curNode, toVisit;
+        com.puppycrawl.tools.checkstyle.TreeWalker$AstState aAstState;
+
+        this := @this: com.puppycrawl.tools.checkstyle.TreeWalker;
+
+        aRoot := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAstState := @parameter1: com.puppycrawl.tools.checkstyle.TreeWalker$AstState;
+
+        curNode = aRoot;
+
+     label1:
+        if curNode == null goto label4;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void notifyVisit(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.TreeWalker$AstState)>(curNode, aAstState);
+
+        toVisit = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label2:
+        if curNode == null goto label3;
+
+        if toVisit != null goto label3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.TreeWalker: void notifyLeave(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.TreeWalker$AstState)>(curNode, aAstState);
+
+        toVisit = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if toVisit != null goto label2;
+
+        curNode = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label2;
+
+     label3:
+        curNode = toVisit;
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.api.DetailAST appendHiddenCommentNodes(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRoot, result, curNode, lastNode, currentSibling, newCommentNode;
+        antlr.CommonHiddenStreamToken tokenBefore;
+        boolean $z0;
+
+        aRoot := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        result = aRoot;
+
+        curNode = aRoot;
+
+        lastNode = aRoot;
+
+     label01:
+        if curNode == null goto label08;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.TreeWalker: boolean isPositionGreater(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.DetailAST)>(curNode, lastNode);
+
+        if $z0 == 0 goto label02;
+
+        lastNode = curNode;
+
+     label02:
+        tokenBefore = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: antlr.CommonHiddenStreamToken getHiddenBefore()>();
+
+        currentSibling = curNode;
+
+     label03:
+        if tokenBefore == null goto label05;
+
+        newCommentNode = staticinvoke <com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.DetailAST createCommentAstFromToken(antlr.Token)>(tokenBefore);
+
+        virtualinvoke currentSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: void addPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)>(newCommentNode);
+
+        if currentSibling != result goto label04;
+
+        result = newCommentNode;
+
+     label04:
+        currentSibling = newCommentNode;
+
+        tokenBefore = virtualinvoke tokenBefore.<antlr.CommonHiddenStreamToken: antlr.CommonHiddenStreamToken getHiddenBefore()>();
+
+        goto label03;
+
+     label05:
+        newCommentNode = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label06:
+        if curNode == null goto label07;
+
+        if newCommentNode != null goto label07;
+
+        newCommentNode = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if newCommentNode != null goto label06;
+
+        curNode = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label06;
+
+     label07:
+        curNode = newCommentNode;
+
+        goto label01;
+
+     label08:
+        if lastNode == null goto label10;
+
+        tokenBefore = virtualinvoke lastNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: antlr.CommonHiddenStreamToken getHiddenAfter()>();
+
+        currentSibling = lastNode;
+
+     label09:
+        if tokenBefore == null goto label10;
+
+        newCommentNode = staticinvoke <com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.DetailAST createCommentAstFromToken(antlr.Token)>(tokenBefore);
+
+        virtualinvoke currentSibling.<com.puppycrawl.tools.checkstyle.api.DetailAST: void addNextSibling(com.puppycrawl.tools.checkstyle.api.DetailAST)>(newCommentNode);
+
+        currentSibling = newCommentNode;
+
+        tokenBefore = virtualinvoke tokenBefore.<antlr.CommonHiddenStreamToken: antlr.CommonHiddenStreamToken getHiddenAfter()>();
+
+        goto label09;
+
+     label10:
+        return result;
+    }
+
+    private static boolean isPositionGreater(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST1, aAst2;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+
+        aAST1 := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAst2 := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke aAst2.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i0 <= $i1 goto label1;
+
+        return 1;
+
+     label1:
+        $i2 = virtualinvoke aAST1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke aAst2.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i2 >= $i3 goto label2;
+
+        return 0;
+
+     label2:
+        $i4 = virtualinvoke aAST1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i5 = virtualinvoke aAst2.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        if $i4 <= $i5 goto label3;
+
+        return 1;
+
+     label3:
+        return 0;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.api.DetailAST createCommentAstFromToken(antlr.Token)
+    {
+        antlr.Token aToken;
+        int $i0;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0, $r1;
+        java.lang.IllegalArgumentException $r2;
+
+        aToken := @parameter0: antlr.Token;
+
+        $i0 = virtualinvoke aToken.<antlr.Token: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 151: goto label1;
+            case 152: goto label2;
+            default: goto label3;
+        };
+
+     label1:
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.DetailAST createSlCommentNode(antlr.Token)>(aToken);
+
+        return $r1;
+
+     label2:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.DetailAST createBlockCommentNode(antlr.Token)>(aToken);
+
+        return $r0;
+
+     label3:
+        $r2 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Unknown comment type");
+
+        throw $r2;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.api.DetailAST createSlCommentNode(antlr.Token)
+    {
+        antlr.Token aToken;
+        com.puppycrawl.tools.checkstyle.api.DetailAST slComment, slCommentContent, $r0, $r1;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        java.lang.String $r2;
+
+        aToken := @parameter0: antlr.Token;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: void <init>()>();
+
+        slComment = $r0;
+
+        virtualinvoke slComment.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setType(int)>(151);
+
+        virtualinvoke slComment.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setText(java.lang.String)>("//");
+
+        $i0 = virtualinvoke aToken.<antlr.Token: int getColumn()>();
+
+        $i1 = $i0 - 1;
+
+        virtualinvoke slComment.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setColumnNo(int)>($i1);
+
+        $i2 = virtualinvoke aToken.<antlr.Token: int getLine()>();
+
+        virtualinvoke slComment.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setLineNo(int)>($i2);
+
+        $r1 = new com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: void <init>()>();
+
+        slCommentContent = $r1;
+
+        virtualinvoke slCommentContent.<com.puppycrawl.tools.checkstyle.api.DetailAST: void initialize(antlr.Token)>(aToken);
+
+        virtualinvoke slCommentContent.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setType(int)>(154);
+
+        $i3 = virtualinvoke aToken.<antlr.Token: int getColumn()>();
+
+        $i4 = $i3 - 1;
+
+        $i5 = $i4 + 2;
+
+        virtualinvoke slCommentContent.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setColumnNo(int)>($i5);
+
+        $i6 = virtualinvoke aToken.<antlr.Token: int getLine()>();
+
+        virtualinvoke slCommentContent.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setLineNo(int)>($i6);
+
+        $r2 = virtualinvoke aToken.<antlr.Token: java.lang.String getText()>();
+
+        virtualinvoke slCommentContent.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setText(java.lang.String)>($r2);
+
+        virtualinvoke slComment.<com.puppycrawl.tools.checkstyle.api.DetailAST: void addChild(antlr.collections.AST)>(slCommentContent);
+
+        return slComment;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.api.DetailAST createBlockCommentNode(antlr.Token)
+    {
+        antlr.Token aToken;
+        com.puppycrawl.tools.checkstyle.api.DetailAST blockComment, blockCommentContent, blockCommentClose, $r0, $r1, $r3;
+        java.util.Map$Entry linesColumns;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10;
+        java.lang.String $r2, $r4;
+        java.lang.Integer $r5, $r8;
+        java.lang.Object $r6, $r7;
+
+        aToken := @parameter0: antlr.Token;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: void <init>()>();
+
+        blockComment = $r0;
+
+        virtualinvoke blockComment.<com.puppycrawl.tools.checkstyle.api.DetailAST: void initialize(int,java.lang.String)>(152, "/*");
+
+        $i0 = virtualinvoke aToken.<antlr.Token: int getColumn()>();
+
+        $i1 = $i0 - 1;
+
+        virtualinvoke blockComment.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setColumnNo(int)>($i1);
+
+        $i2 = virtualinvoke aToken.<antlr.Token: int getLine()>();
+
+        virtualinvoke blockComment.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setLineNo(int)>($i2);
+
+        $r1 = new com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: void <init>()>();
+
+        blockCommentContent = $r1;
+
+        virtualinvoke blockCommentContent.<com.puppycrawl.tools.checkstyle.api.DetailAST: void initialize(antlr.Token)>(aToken);
+
+        virtualinvoke blockCommentContent.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setType(int)>(154);
+
+        $i3 = virtualinvoke aToken.<antlr.Token: int getColumn()>();
+
+        $i4 = $i3 - 1;
+
+        $i5 = $i4 + 2;
+
+        virtualinvoke blockCommentContent.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setColumnNo(int)>($i5);
+
+        $i6 = virtualinvoke aToken.<antlr.Token: int getLine()>();
+
+        virtualinvoke blockCommentContent.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setLineNo(int)>($i6);
+
+        $r2 = virtualinvoke aToken.<antlr.Token: java.lang.String getText()>();
+
+        virtualinvoke blockCommentContent.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setText(java.lang.String)>($r2);
+
+        $r3 = new com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.api.DetailAST: void <init>()>();
+
+        blockCommentClose = $r3;
+
+        virtualinvoke blockCommentClose.<com.puppycrawl.tools.checkstyle.api.DetailAST: void initialize(int,java.lang.String)>(153, "*/");
+
+        $r4 = virtualinvoke aToken.<antlr.Token: java.lang.String getText()>();
+
+        $i7 = virtualinvoke aToken.<antlr.Token: int getLine()>();
+
+        $i8 = virtualinvoke aToken.<antlr.Token: int getColumn()>();
+
+        linesColumns = staticinvoke <com.puppycrawl.tools.checkstyle.TreeWalker: java.util.Map$Entry countLinesColumns(java.lang.String,int,int)>($r4, $i7, $i8);
+
+        $r6 = interfaceinvoke linesColumns.<java.util.Map$Entry: java.lang.Object getKey()>();
+
+        $r5 = (java.lang.Integer) $r6;
+
+        $i9 = virtualinvoke $r5.<java.lang.Integer: int intValue()>();
+
+        virtualinvoke blockCommentClose.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setLineNo(int)>($i9);
+
+        $r7 = interfaceinvoke linesColumns.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        $r8 = (java.lang.Integer) $r7;
+
+        $i10 = virtualinvoke $r8.<java.lang.Integer: int intValue()>();
+
+        virtualinvoke blockCommentClose.<com.puppycrawl.tools.checkstyle.api.DetailAST: void setColumnNo(int)>($i10);
+
+        virtualinvoke blockComment.<com.puppycrawl.tools.checkstyle.api.DetailAST: void addChild(antlr.collections.AST)>(blockCommentContent);
+
+        virtualinvoke blockComment.<com.puppycrawl.tools.checkstyle.api.DetailAST: void addChild(antlr.collections.AST)>(blockCommentClose);
+
+        return blockComment;
+    }
+
+    private static java.util.Map$Entry countLinesColumns(java.lang.String, int, int)
+    {
+        java.lang.String aText;
+        int aInitialLinesCnt, aInitialColumnsCnt, lines, columns, len$, i$;
+        char[] arr$;
+        char c;
+        java.util.AbstractMap$SimpleEntry $r0;
+        java.lang.Integer $r1, $r2;
+
+        aText := @parameter0: java.lang.String;
+
+        aInitialLinesCnt := @parameter1: int;
+
+        aInitialColumnsCnt := @parameter2: int;
+
+        lines = aInitialLinesCnt;
+
+        columns = aInitialColumnsCnt;
+
+        arr$ = virtualinvoke aText.<java.lang.String: char[] toCharArray()>();
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label5;
+
+        c = arr$[i$];
+
+        lookupswitch(c)
+        {
+            case 10: goto label2;
+            default: goto label3;
+        };
+
+     label2:
+        lines = lines + 1;
+
+        columns = 0;
+
+        goto label4;
+
+     label3:
+        columns = columns + 1;
+
+     label4:
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label5:
+        $r0 = new java.util.AbstractMap$SimpleEntry;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(lines);
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(columns);
+
+        specialinvoke $r0.<java.util.AbstractMap$SimpleEntry: void <init>(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        org.apache.commons.logging.Log $r0;
+
+        <com.puppycrawl.tools.checkstyle.TreeWalker: int DEFAULT_TAB_WIDTH> = 8;
+
+        $r0 = staticinvoke <org.apache.commons.logging.LogFactory: org.apache.commons.logging.Log getLog(java.lang.String)>("com.puppycrawl.tools.checkstyle.TreeWalker");
+
+        <com.puppycrawl.tools.checkstyle.TreeWalker: org.apache.commons.logging.Log LOG> = $r0;
+
+        return;
+    }
+}

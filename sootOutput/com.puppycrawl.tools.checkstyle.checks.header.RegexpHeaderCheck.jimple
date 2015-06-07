@@ -1,0 +1,360 @@
+public class com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck extends com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck
+{
+    private static final int[] EMPTY_INT_ARRAY;
+    private final java.util.List mHeaderRegexps;
+    private int[] mMultiLines;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck this;
+        java.util.ArrayList $r0;
+        int[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: java.util.List mHeaderRegexps> = $r0;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: int[] EMPTY_INT_ARRAY>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: int[] mMultiLines> = $r1;
+
+        return;
+    }
+
+    public void setMultiLines(int[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck this;
+        int[] aList, $r0, $r1, $r2, $r3;
+        int $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck;
+
+        aList := @parameter0: int[];
+
+        if aList == null goto label1;
+
+        $i0 = lengthof aList;
+
+        if $i0 != 0 goto label2;
+
+     label1:
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: int[] EMPTY_INT_ARRAY>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: int[] mMultiLines> = $r0;
+
+        return;
+
+     label2:
+        $i1 = lengthof aList;
+
+        $r1 = newarray (int)[$i1];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: int[] mMultiLines> = $r1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: int[] mMultiLines>;
+
+        $i2 = lengthof aList;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(aList, 0, $r2, 0, $i2);
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: int[] mMultiLines>;
+
+        staticinvoke <java.util.Arrays: void sort(int[])>($r3);
+
+        return;
+    }
+
+    protected void processFiltered(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck this;
+        java.io.File aFile;
+        java.util.List aLines;
+        int headerSize, fileSize, headerLineNo, i, $i0, $i1, $i2;
+        java.lang.String line;
+        boolean isMatch, $z0, $z1, $z2, $z3, $z4;
+        com.google.common.collect.ImmutableList $r0, $r6;
+        int[] $r1;
+        java.lang.Object $r2, $r5;
+        java.lang.Object[] $r3, $r4, $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: com.google.common.collect.ImmutableList getHeaderLines()>();
+
+        headerSize = virtualinvoke $r0.<com.google.common.collect.ImmutableList: int size()>();
+
+        fileSize = interfaceinvoke aLines.<java.util.List: int size()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: int[] mMultiLines>;
+
+        $i0 = lengthof $r1;
+
+        $i1 = headerSize - $i0;
+
+        if $i1 <= fileSize goto label01;
+
+        $r7 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: void log(int,java.lang.String,java.lang.Object[])>(1, "header.missing", $r7);
+
+        goto label13;
+
+     label01:
+        headerLineNo = 0;
+
+        i = 0;
+
+     label02:
+        if headerLineNo >= headerSize goto label10;
+
+        if i >= fileSize goto label10;
+
+        $r2 = interfaceinvoke aLines.<java.util.List: java.lang.Object get(int)>(i);
+
+        line = (java.lang.String) $r2;
+
+        isMatch = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: boolean isMatch(java.lang.String,int)>(line, headerLineNo);
+
+     label03:
+        if isMatch != 0 goto label07;
+
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: boolean isMultiLine(int)>(headerLineNo);
+
+        if $z3 == 0 goto label07;
+
+        headerLineNo = headerLineNo + 1;
+
+        if headerLineNo == headerSize goto label04;
+
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: boolean isMatch(java.lang.String,int)>(line, headerLineNo);
+
+        if $z2 == 0 goto label05;
+
+     label04:
+        $z4 = 1;
+
+        goto label06;
+
+     label05:
+        $z4 = 0;
+
+     label06:
+        isMatch = $z4;
+
+        goto label03;
+
+     label07:
+        if isMatch != 0 goto label08;
+
+        $i2 = i + 1;
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r6 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: com.google.common.collect.ImmutableList getHeaderLines()>();
+
+        $r5 = virtualinvoke $r6.<com.google.common.collect.ImmutableList: java.lang.Object get(int)>(headerLineNo);
+
+        $r4[0] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: void log(int,java.lang.String,java.lang.Object[])>($i2, "header.mismatch", $r4);
+
+        goto label10;
+
+     label08:
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: boolean isMultiLine(int)>(headerLineNo);
+
+        if $z1 != 0 goto label09;
+
+        headerLineNo = headerLineNo + 1;
+
+     label09:
+        i = i + 1;
+
+        goto label02;
+
+     label10:
+        if i != fileSize goto label13;
+
+     label11:
+        if headerLineNo >= headerSize goto label13;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: boolean isMultiLine(int)>(headerLineNo);
+
+        if $z0 != 0 goto label12;
+
+        $r3 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: void log(int,java.lang.String,java.lang.Object[])>(1, "header.missing", $r3);
+
+        goto label13;
+
+     label12:
+        headerLineNo = headerLineNo + 1;
+
+        goto label11;
+
+     label13:
+        return;
+    }
+
+    private boolean isMatch(java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck this;
+        java.lang.String aLine;
+        int aHeaderLineNo;
+        java.util.List $r0;
+        java.lang.Object $r1;
+        java.util.regex.Pattern $r2;
+        java.util.regex.Matcher $r3;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck;
+
+        aLine := @parameter0: java.lang.String;
+
+        aHeaderLineNo := @parameter1: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: java.util.List mHeaderRegexps>;
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.lang.Object get(int)>(aHeaderLineNo);
+
+        $r2 = (java.util.regex.Pattern) $r1;
+
+        $r3 = virtualinvoke $r2.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aLine);
+
+        $z0 = virtualinvoke $r3.<java.util.regex.Matcher: boolean find()>();
+
+        return $z0;
+    }
+
+    private boolean isMultiLine(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck this;
+        int aLineNo, $i0, $i1;
+        int[] $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck;
+
+        aLineNo := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: int[] mMultiLines>;
+
+        $i0 = aLineNo + 1;
+
+        $i1 = staticinvoke <java.util.Arrays: int binarySearch(int[],int)>($r0, $i0);
+
+        if $i1 < 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    protected void postprocessHeaderLines()
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck this;
+        com.google.common.collect.ImmutableList headerLines;
+        java.util.Iterator i$;
+        java.lang.String line, $r11;
+        java.util.List $r0, $r2, $r7;
+        boolean $z0;
+        java.lang.Object $r1;
+        java.util.regex.Pattern $r3;
+        java.util.regex.PatternSyntaxException $r4;
+        org.apache.commons.beanutils.ConversionException $r5;
+        java.lang.StringBuilder $r6, $r8, $r9, $r10, $r12;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck;
+
+        headerLines = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: com.google.common.collect.ImmutableList getHeaderLines()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: java.util.List mHeaderRegexps>;
+
+        interfaceinvoke $r0.<java.util.List: void clear()>();
+
+        i$ = interfaceinvoke headerLines.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label6;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        line = (java.lang.String) $r1;
+
+     label2:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: java.util.List mHeaderRegexps>;
+
+        $r3 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(line);
+
+        interfaceinvoke $r2.<java.util.List: boolean add(java.lang.Object)>($r3);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r4 := @caughtexception;
+
+        $r5 = new org.apache.commons.beanutils.ConversionException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("line ");
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: java.util.List mHeaderRegexps>;
+
+        $i1 = interfaceinvoke $r7.<java.util.List: int size()>();
+
+        $i0 = $i1 + 1;
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r9 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in header specification");
+
+        $r12 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" is not a regular expression");
+
+        $r11 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String)>($r11);
+
+        throw $r5;
+
+     label5:
+        goto label1;
+
+     label6:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label2 to label3 with label4;
+    }
+
+    static void <clinit>()
+    {
+        int[] $r0;
+
+        $r0 = newarray (int)[0];
+
+        <com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck: int[] EMPTY_INT_ARRAY> = $r0;
+
+        return;
+    }
+}

@@ -1,0 +1,304 @@
+class com.puppycrawl.tools.checkstyle.gui.FileDrop extends java.lang.Object
+{
+    private transient javax.swing.border.Border normalBorder;
+    private final transient java.awt.dnd.DropTargetListener dropListener;
+    private static final java.awt.Color DEFAULT_BORDER_COLOR;
+
+    void <init>(java.awt.Component, com.puppycrawl.tools.checkstyle.gui.FileDrop$Listener) throws java.util.TooManyListenersException
+    {
+        com.puppycrawl.tools.checkstyle.gui.FileDrop this;
+        java.awt.Component c;
+        com.puppycrawl.tools.checkstyle.gui.FileDrop$Listener listener;
+        java.awt.Color $r0;
+        javax.swing.border.MatteBorder $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.FileDrop;
+
+        c := @parameter0: java.awt.Component;
+
+        listener := @parameter1: com.puppycrawl.tools.checkstyle.gui.FileDrop$Listener;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.gui.FileDrop: java.awt.Color DEFAULT_BORDER_COLOR>;
+
+        $r1 = staticinvoke <javax.swing.BorderFactory: javax.swing.border.MatteBorder createMatteBorder(int,int,int,int,java.awt.Color)>(2, 2, 2, 2, $r0);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.gui.FileDrop: void <init>(java.awt.Component,javax.swing.border.Border,boolean,com.puppycrawl.tools.checkstyle.gui.FileDrop$Listener)>(c, $r1, 1, listener);
+
+        return;
+    }
+
+    void <init>(java.awt.Component, javax.swing.border.Border, boolean, com.puppycrawl.tools.checkstyle.gui.FileDrop$Listener) throws java.util.TooManyListenersException
+    {
+        com.puppycrawl.tools.checkstyle.gui.FileDrop this;
+        java.awt.Component c;
+        javax.swing.border.Border dragBorder;
+        boolean recursive;
+        com.puppycrawl.tools.checkstyle.gui.FileDrop$Listener listener;
+        com.puppycrawl.tools.checkstyle.gui.FileDrop$FileDropTargetListener $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.FileDrop;
+
+        c := @parameter0: java.awt.Component;
+
+        dragBorder := @parameter1: javax.swing.border.Border;
+
+        recursive := @parameter2: boolean;
+
+        listener := @parameter3: com.puppycrawl.tools.checkstyle.gui.FileDrop$Listener;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = new com.puppycrawl.tools.checkstyle.gui.FileDrop$FileDropTargetListener;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.FileDrop$FileDropTargetListener: void <init>(com.puppycrawl.tools.checkstyle.gui.FileDrop,java.awt.Component,javax.swing.border.Border,com.puppycrawl.tools.checkstyle.gui.FileDrop$Listener)>(this, c, dragBorder, listener);
+
+        this.<com.puppycrawl.tools.checkstyle.gui.FileDrop: java.awt.dnd.DropTargetListener dropListener> = $r0;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.gui.FileDrop: void makeDropTarget(java.awt.Component,boolean)>(c, recursive);
+
+        return;
+    }
+
+    private void makeDropTarget(java.awt.Component, boolean) throws java.util.TooManyListenersException
+    {
+        com.puppycrawl.tools.checkstyle.gui.FileDrop this;
+        java.awt.Component c, element;
+        boolean recursive, $z0;
+        java.awt.dnd.DropTarget dt, $r0, $r5;
+        java.awt.Container cont, $r3;
+        java.awt.Component[] comps, arr$;
+        int len$, i$;
+        java.awt.dnd.DropTargetListener $r1, $r4;
+        com.puppycrawl.tools.checkstyle.gui.FileDrop$1 $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.FileDrop;
+
+        c := @parameter0: java.awt.Component;
+
+        recursive := @parameter1: boolean;
+
+        $r0 = new java.awt.dnd.DropTarget;
+
+        specialinvoke $r0.<java.awt.dnd.DropTarget: void <init>()>();
+
+        dt = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.FileDrop: java.awt.dnd.DropTargetListener dropListener>;
+
+        virtualinvoke dt.<java.awt.dnd.DropTarget: void addDropTargetListener(java.awt.dnd.DropTargetListener)>($r1);
+
+        $r2 = new com.puppycrawl.tools.checkstyle.gui.FileDrop$1;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.gui.FileDrop$1: void <init>(com.puppycrawl.tools.checkstyle.gui.FileDrop,java.awt.Component)>(this, c);
+
+        virtualinvoke c.<java.awt.Component: void addHierarchyListener(java.awt.event.HierarchyListener)>($r2);
+
+        $r3 = virtualinvoke c.<java.awt.Component: java.awt.Container getParent()>();
+
+        if $r3 == null goto label1;
+
+        $r5 = new java.awt.dnd.DropTarget;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.gui.FileDrop: java.awt.dnd.DropTargetListener dropListener>;
+
+        specialinvoke $r5.<java.awt.dnd.DropTarget: void <init>(java.awt.Component,java.awt.dnd.DropTargetListener)>(c, $r4);
+
+     label1:
+        if recursive == 0 goto label3;
+
+        $z0 = c instanceof java.awt.Container;
+
+        if $z0 == 0 goto label3;
+
+        cont = (java.awt.Container) c;
+
+        comps = virtualinvoke cont.<java.awt.Container: java.awt.Component[] getComponents()>();
+
+        arr$ = comps;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label2:
+        if i$ >= len$ goto label3;
+
+        element = arr$[i$];
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.gui.FileDrop: void makeDropTarget(java.awt.Component,boolean)>(element, recursive);
+
+        i$ = i$ + 1;
+
+        goto label2;
+
+     label3:
+        return;
+    }
+
+    private boolean isDragOk(java.awt.dnd.DropTargetDragEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.FileDrop this;
+        java.awt.dnd.DropTargetDragEvent evt;
+        boolean ok, $z0;
+        java.awt.datatransfer.DataFlavor[] flavors;
+        int i, $i0;
+        java.awt.datatransfer.DataFlavor $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.FileDrop;
+
+        evt := @parameter0: java.awt.dnd.DropTargetDragEvent;
+
+        ok = 0;
+
+        flavors = virtualinvoke evt.<java.awt.dnd.DropTargetDragEvent: java.awt.datatransfer.DataFlavor[] getCurrentDataFlavors()>();
+
+        i = 0;
+
+     label1:
+        if ok != 0 goto label3;
+
+        $i0 = lengthof flavors;
+
+        if i >= $i0 goto label3;
+
+        $r1 = flavors[i];
+
+        $r0 = <java.awt.datatransfer.DataFlavor: java.awt.datatransfer.DataFlavor javaFileListFlavor>;
+
+        $z0 = virtualinvoke $r1.<java.awt.datatransfer.DataFlavor: boolean equals(java.awt.datatransfer.DataFlavor)>($r0);
+
+        if $z0 == 0 goto label2;
+
+        ok = 1;
+
+     label2:
+        i = i + 1;
+
+        goto label1;
+
+     label3:
+        return ok;
+    }
+
+    static void remove(java.awt.Component)
+    {
+        java.awt.Component c;
+
+        c := @parameter0: java.awt.Component;
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.gui.FileDrop: void remove(java.awt.Component,boolean)>(c, 1);
+
+        return;
+    }
+
+    static void remove(java.awt.Component, boolean)
+    {
+        java.awt.Component c, element;
+        boolean recursive, $z0;
+        java.awt.Component[] comps, arr$;
+        int len$, i$;
+        java.awt.Container $r0;
+
+        c := @parameter0: java.awt.Component;
+
+        recursive := @parameter1: boolean;
+
+        virtualinvoke c.<java.awt.Component: void setDropTarget(java.awt.dnd.DropTarget)>(null);
+
+        if recursive == 0 goto label2;
+
+        $z0 = c instanceof java.awt.Container;
+
+        if $z0 == 0 goto label2;
+
+        $r0 = (java.awt.Container) c;
+
+        comps = virtualinvoke $r0.<java.awt.Container: java.awt.Component[] getComponents()>();
+
+        arr$ = comps;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label2;
+
+        element = arr$[i$];
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.gui.FileDrop: void remove(java.awt.Component,boolean)>(element, recursive);
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    static java.awt.dnd.DropTargetListener access$000(com.puppycrawl.tools.checkstyle.gui.FileDrop)
+    {
+        com.puppycrawl.tools.checkstyle.gui.FileDrop x0;
+        java.awt.dnd.DropTargetListener $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.gui.FileDrop;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.gui.FileDrop: java.awt.dnd.DropTargetListener dropListener>;
+
+        return $r0;
+    }
+
+    static boolean access$100(com.puppycrawl.tools.checkstyle.gui.FileDrop, java.awt.dnd.DropTargetDragEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.FileDrop x0;
+        java.awt.dnd.DropTargetDragEvent x1;
+        boolean $z0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.gui.FileDrop;
+
+        x1 := @parameter1: java.awt.dnd.DropTargetDragEvent;
+
+        $z0 = specialinvoke x0.<com.puppycrawl.tools.checkstyle.gui.FileDrop: boolean isDragOk(java.awt.dnd.DropTargetDragEvent)>(x1);
+
+        return $z0;
+    }
+
+    static javax.swing.border.Border access$202(com.puppycrawl.tools.checkstyle.gui.FileDrop, javax.swing.border.Border)
+    {
+        com.puppycrawl.tools.checkstyle.gui.FileDrop x0;
+        javax.swing.border.Border x1;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.gui.FileDrop;
+
+        x1 := @parameter1: javax.swing.border.Border;
+
+        x0.<com.puppycrawl.tools.checkstyle.gui.FileDrop: javax.swing.border.Border normalBorder> = x1;
+
+        return x1;
+    }
+
+    static javax.swing.border.Border access$200(com.puppycrawl.tools.checkstyle.gui.FileDrop)
+    {
+        com.puppycrawl.tools.checkstyle.gui.FileDrop x0;
+        javax.swing.border.Border $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.gui.FileDrop;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.gui.FileDrop: javax.swing.border.Border normalBorder>;
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        java.awt.Color $r0;
+
+        $r0 = new java.awt.Color;
+
+        specialinvoke $r0.<java.awt.Color: void <init>(float,float,float,float)>(0.0F, 0.0F, 1.0F, 0.25F);
+
+        <com.puppycrawl.tools.checkstyle.gui.FileDrop: java.awt.Color DEFAULT_BORDER_COLOR> = $r0;
+
+        return;
+    }
+}

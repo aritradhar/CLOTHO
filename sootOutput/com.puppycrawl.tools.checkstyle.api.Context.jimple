@@ -1,0 +1,7 @@
+public interface  com.puppycrawl.tools.checkstyle.api.Context extends java.lang.Object
+{
+
+    public abstract java.lang.Object get(java.lang.String);
+
+    public abstract com.google.common.collect.ImmutableCollection getAttributeNames();
+}

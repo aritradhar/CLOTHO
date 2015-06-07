@@ -1,0 +1,203 @@
+public class com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor extends java.lang.Object implements javax.swing.CellEditor
+{
+    private final javax.swing.event.EventListenerList mListenerList;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor this;
+        javax.swing.event.EventListenerList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = new javax.swing.event.EventListenerList;
+
+        specialinvoke $r0.<javax.swing.event.EventListenerList: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor: javax.swing.event.EventListenerList mListenerList> = $r0;
+
+        return;
+    }
+
+    public java.lang.Object getCellEditorValue()
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor;
+
+        return null;
+    }
+
+    public boolean isCellEditable(java.util.EventObject)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor this;
+        java.util.EventObject e;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor;
+
+        e := @parameter0: java.util.EventObject;
+
+        return 1;
+    }
+
+    public boolean shouldSelectCell(java.util.EventObject)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor this;
+        java.util.EventObject anEvent;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor;
+
+        anEvent := @parameter0: java.util.EventObject;
+
+        return 0;
+    }
+
+    public boolean stopCellEditing()
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor;
+
+        return 1;
+    }
+
+    public void cancelCellEditing()
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor;
+
+        return;
+    }
+
+    public void addCellEditorListener(javax.swing.event.CellEditorListener)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor this;
+        javax.swing.event.CellEditorListener l;
+        javax.swing.event.EventListenerList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor;
+
+        l := @parameter0: javax.swing.event.CellEditorListener;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor: javax.swing.event.EventListenerList mListenerList>;
+
+        virtualinvoke $r0.<javax.swing.event.EventListenerList: void add(java.lang.Class,java.util.EventListener)>(class "javax/swing/event/CellEditorListener", l);
+
+        return;
+    }
+
+    public void removeCellEditorListener(javax.swing.event.CellEditorListener)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor this;
+        javax.swing.event.CellEditorListener l;
+        javax.swing.event.EventListenerList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor;
+
+        l := @parameter0: javax.swing.event.CellEditorListener;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor: javax.swing.event.EventListenerList mListenerList>;
+
+        virtualinvoke $r0.<javax.swing.event.EventListenerList: void remove(java.lang.Class,java.util.EventListener)>(class "javax/swing/event/CellEditorListener", l);
+
+        return;
+    }
+
+    protected void fireEditingStopped()
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor this;
+        java.lang.Object[] listeners;
+        int i, $i0, $i1;
+        javax.swing.event.EventListenerList $r0;
+        java.lang.Object $r1, $r2;
+        javax.swing.event.ChangeEvent $r3;
+        javax.swing.event.CellEditorListener $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor: javax.swing.event.EventListenerList mListenerList>;
+
+        listeners = virtualinvoke $r0.<javax.swing.event.EventListenerList: java.lang.Object[] getListenerList()>();
+
+        $i0 = lengthof listeners;
+
+        i = $i0 - 2;
+
+     label1:
+        if i < 0 goto label3;
+
+        $r1 = listeners[i];
+
+        if $r1 != class "javax/swing/event/CellEditorListener" goto label2;
+
+        $i1 = i + 1;
+
+        $r2 = listeners[$i1];
+
+        $r4 = (javax.swing.event.CellEditorListener) $r2;
+
+        $r3 = new javax.swing.event.ChangeEvent;
+
+        specialinvoke $r3.<javax.swing.event.ChangeEvent: void <init>(java.lang.Object)>(this);
+
+        interfaceinvoke $r4.<javax.swing.event.CellEditorListener: void editingStopped(javax.swing.event.ChangeEvent)>($r3);
+
+     label2:
+        i = i + -2;
+
+        goto label1;
+
+     label3:
+        return;
+    }
+
+    protected void fireEditingCanceled()
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor this;
+        java.lang.Object[] listeners;
+        int i, $i0, $i1;
+        javax.swing.event.EventListenerList $r0;
+        java.lang.Object $r1, $r2;
+        javax.swing.event.ChangeEvent $r3;
+        javax.swing.event.CellEditorListener $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractCellEditor: javax.swing.event.EventListenerList mListenerList>;
+
+        listeners = virtualinvoke $r0.<javax.swing.event.EventListenerList: java.lang.Object[] getListenerList()>();
+
+        $i0 = lengthof listeners;
+
+        i = $i0 - 2;
+
+     label1:
+        if i < 0 goto label3;
+
+        $r1 = listeners[i];
+
+        if $r1 != class "javax/swing/event/CellEditorListener" goto label2;
+
+        $i1 = i + 1;
+
+        $r2 = listeners[$i1];
+
+        $r4 = (javax.swing.event.CellEditorListener) $r2;
+
+        $r3 = new javax.swing.event.ChangeEvent;
+
+        specialinvoke $r3.<javax.swing.event.ChangeEvent: void <init>(java.lang.Object)>(this);
+
+        interfaceinvoke $r4.<javax.swing.event.CellEditorListener: void editingCanceled(javax.swing.event.ChangeEvent)>($r3);
+
+     label2:
+        i = i + -2;
+
+        goto label1;
+
+     label3:
+        return;
+    }
+}

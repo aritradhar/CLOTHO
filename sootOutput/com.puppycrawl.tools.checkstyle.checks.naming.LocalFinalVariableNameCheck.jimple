@@ -1,0 +1,75 @@
+public class com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck extends com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck: void <init>(java.lang.String)>("^[a-z][a-zA-Z0-9]*$");
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 10;
+
+        $r0[1] = 21;
+
+        return $r0;
+    }
+
+    protected final boolean mustCheckName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiersAST;
+        boolean isFinal, $z0, $z1, $z2, $z3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiersAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        if modifiersAST == null goto label1;
+
+        $z2 = virtualinvoke modifiersAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z2 == 0 goto label1;
+
+        $z3 = 1;
+
+        goto label2;
+
+     label1:
+        $z3 = 0;
+
+     label2:
+        isFinal = $z3;
+
+        if isFinal == 0 goto label3;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean isLocalVariableDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label3;
+
+        $z1 = 1;
+
+        goto label4;
+
+     label3:
+        $z1 = 0;
+
+     label4:
+        return $z1;
+    }
+}

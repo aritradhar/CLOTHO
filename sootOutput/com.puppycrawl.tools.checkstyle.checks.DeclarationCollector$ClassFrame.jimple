@@ -1,0 +1,119 @@
+class com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame extends com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame
+{
+    private final java.util.Set mInstanceMembers;
+    private final java.util.Set mStaticMembers;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame this;
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame aParent;
+        java.util.HashSet $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame;
+
+        aParent := @parameter0: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: void <init>(com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame)>(aParent);
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: java.util.Set mInstanceMembers> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: java.util.Set mStaticMembers> = $r1;
+
+        return;
+    }
+
+    public void addStaticMember(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame this;
+        java.lang.String aName;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame;
+
+        aName := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: java.util.Set mStaticMembers>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(aName);
+
+        return;
+    }
+
+    public void addInstanceMember(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame this;
+        java.lang.String aName;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame;
+
+        aName := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: java.util.Set mInstanceMembers>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(aName);
+
+        return;
+    }
+
+    public boolean hasInstanceMember(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame this;
+        java.lang.String aName;
+        java.util.Set $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame;
+
+        aName := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: java.util.Set mInstanceMembers>;
+
+        $z0 = interfaceinvoke $r0.<java.util.Set: boolean contains(java.lang.Object)>(aName);
+
+        return $z0;
+    }
+
+    boolean contains(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame this;
+        java.lang.String aNameToFind;
+        boolean $z0, $z1, $z2, $z3;
+        java.util.Set $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame;
+
+        aNameToFind := @parameter0: java.lang.String;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: boolean contains(java.lang.String)>(aNameToFind);
+
+        if $z0 != 0 goto label1;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: java.util.Set mInstanceMembers>;
+
+        $z1 = interfaceinvoke $r0.<java.util.Set: boolean contains(java.lang.Object)>(aNameToFind);
+
+        if $z1 != 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$ClassFrame: java.util.Set mStaticMembers>;
+
+        $z2 = interfaceinvoke $r1.<java.util.Set: boolean contains(java.lang.Object)>(aNameToFind);
+
+        if $z2 == 0 goto label2;
+
+     label1:
+        $z3 = 1;
+
+        goto label3;
+
+     label2:
+        $z3 = 0;
+
+     label3:
+        return $z3;
+    }
+}

@@ -1,0 +1,85 @@
+public class com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck: int[] getRequiredTokens()>();
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 16;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck: int[] getRequiredTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        boolean containsAnnotation, inPackageInfo;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r0;
+        int $i0;
+        java.lang.Object[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        containsAnnotation = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: boolean containsAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        inPackageInfo = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileContents: boolean inPackageInfo()>();
+
+        if containsAnnotation == 0 goto label1;
+
+        if inPackageInfo != 0 goto label1;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLine()>();
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "annotation.package.location", $r1);
+
+     label1:
+        return;
+    }
+}

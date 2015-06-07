@@ -1,0 +1,9 @@
+public interface  com.puppycrawl.tools.checkstyle.api.MessageDispatcher extends java.lang.Object
+{
+
+    public abstract void fireFileStarted(java.lang.String);
+
+    public abstract void fireFileFinished(java.lang.String);
+
+    public abstract void fireErrors(java.lang.String, java.util.SortedSet);
+}

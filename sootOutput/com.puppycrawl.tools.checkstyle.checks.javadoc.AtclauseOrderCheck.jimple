@@ -1,0 +1,328 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck extends com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
+{
+    private static final java.lang.String[] DEFAULT_ORDER;
+    private java.util.List mTarget;
+    private java.util.List mTagOrder;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck this;
+        java.lang.Integer[] $r0;
+        java.lang.Integer $r1, $r2, $r3, $r4, $r5, $r6;
+        java.util.List $r7, $r9;
+        java.lang.String[] $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void <init>()>();
+
+        $r0 = newarray (java.lang.Integer)[6];
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(14);
+
+        $r0[0] = $r1;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(15);
+
+        $r0[1] = $r2;
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(158);
+
+        $r0[2] = $r3;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(9);
+
+        $r0[3] = $r4;
+
+        $r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(8);
+
+        $r0[4] = $r5;
+
+        $r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(10);
+
+        $r0[5] = $r6;
+
+        $r7 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r0);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: java.util.List mTarget> = $r7;
+
+        $r8 = <com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: java.lang.String[] DEFAULT_ORDER>;
+
+        $r9 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r8);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: java.util.List mTagOrder> = $r9;
+
+        return;
+    }
+
+    public void setTarget(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck this;
+        java.lang.String aTarget, type;
+        java.util.ArrayList customTarget, $r0;
+        java.lang.String[] arr$;
+        int len$, i$, $i0;
+        java.lang.Integer $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
+
+        aTarget := @parameter0: java.lang.String;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        customTarget = $r0;
+
+        arr$ = virtualinvoke aTarget.<java.lang.String: java.lang.String[] split(java.lang.String)>(", ");
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label2;
+
+        type = arr$[i$];
+
+        $i0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: int getTokenId(java.lang.String)>(type);
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        interfaceinvoke customTarget.<java.util.List: boolean add(java.lang.Object)>($r1);
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: java.util.List mTarget> = customTarget;
+
+        return;
+    }
+
+    public void setTagOrder(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck this;
+        java.lang.String aOrder, type;
+        java.util.ArrayList customOrder, $r0;
+        java.lang.String[] arr$;
+        int len$, i$;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
+
+        aOrder := @parameter0: java.lang.String;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        customOrder = $r0;
+
+        arr$ = virtualinvoke aOrder.<java.lang.String: java.lang.String[] split(java.lang.String)>(", ");
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label2;
+
+        type = arr$[i$];
+
+        interfaceinvoke customOrder.<java.util.List: boolean add(java.lang.Object)>(type);
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: java.util.List mTagOrder> = customOrder;
+
+        return;
+    }
+
+    public int[] getDefaultJavadocTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 10000;
+
+        return $r0;
+    }
+
+    public void visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aAst;
+        int parentType;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0;
+        java.util.List $r1;
+        java.lang.Integer $r2;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getBlockCommentAst()>();
+
+        parentType = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: int getParentType(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: java.util.List mTarget>;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(parentType);
+
+        $z0 = interfaceinvoke $r1.<java.util.List: boolean contains(java.lang.Object)>($r2);
+
+        if $z0 == 0 goto label1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: void checkOrderInTagSection(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aAst);
+
+     label1:
+        return;
+    }
+
+    private void checkOrderInTagSection(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aJavadoc, node, $r0;
+        int indexOrderOfPreviousTag, len$, i$, $i0, $i1, indexOrderOfCurrentTag;
+        com.puppycrawl.tools.checkstyle.api.DetailNode[] arr$;
+        java.lang.String tagText, $r5;
+        java.util.List $r1, $r2, $r3;
+        boolean $z0;
+        java.lang.Object[] $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
+
+        aJavadoc := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        indexOrderOfPreviousTag = 0;
+
+        arr$ = interfaceinvoke aJavadoc.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren()>();
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label4;
+
+        node = arr$[i$];
+
+        $i0 = interfaceinvoke node.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 != 10071 goto label3;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getFirstChild(com.puppycrawl.tools.checkstyle.api.DetailNode)>(node);
+
+        tagText = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailNode: java.lang.String getText()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: java.util.List mTagOrder>;
+
+        indexOrderOfCurrentTag = interfaceinvoke $r1.<java.util.List: int indexOf(java.lang.Object)>(tagText);
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: java.util.List mTagOrder>;
+
+        $z0 = interfaceinvoke $r2.<java.util.List: boolean contains(java.lang.Object)>(tagText);
+
+        if $z0 == 0 goto label2;
+
+        if indexOrderOfCurrentTag >= indexOrderOfPreviousTag goto label2;
+
+        $i1 = interfaceinvoke node.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getLineNumber()>();
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: java.util.List mTagOrder>;
+
+        $r5 = virtualinvoke $r3.<java.lang.Object: java.lang.String toString()>();
+
+        $r4[0] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: void log(int,java.lang.String,java.lang.Object[])>($i1, "at.clause.order", $r4);
+
+     label2:
+        indexOrderOfPreviousTag = indexOrderOfCurrentTag;
+
+     label3:
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    private int getParentType(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aCommentBlock, parentNode, $r0;
+        int type;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
+
+        aCommentBlock := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        type = 0;
+
+        parentNode = virtualinvoke aCommentBlock.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if parentNode == null goto label2;
+
+        type = virtualinvoke parentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 13 goto label1;
+
+        if type != 5 goto label2;
+
+     label1:
+        $r0 = virtualinvoke parentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        type = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+     label2:
+        return type;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        $r0 = newarray (java.lang.String)[12];
+
+        $r0[0] = "@author";
+
+        $r0[1] = "@version";
+
+        $r0[2] = "@param";
+
+        $r0[3] = "@return";
+
+        $r0[4] = "@throws";
+
+        $r0[5] = "@exception";
+
+        $r0[6] = "@see";
+
+        $r0[7] = "@since";
+
+        $r0[8] = "@serial";
+
+        $r0[9] = "@serialField";
+
+        $r0[10] = "@serialData";
+
+        $r0[11] = "@deprecated";
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck: java.lang.String[] DEFAULT_ORDER> = $r0;
+
+        return;
+    }
+}

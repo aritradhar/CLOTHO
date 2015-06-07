@@ -1,0 +1,202 @@
+public class com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mPublicTypeFound;
+    private java.util.TreeMap mLineNumberTypeMap;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck this;
+        java.util.TreeMap $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = new java.util.TreeMap;
+
+        specialinvoke $r0.<java.util.TreeMap: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: java.util.TreeMap mLineNumberTypeMap> = $r0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
+
+        $r0 = newarray (int)[0];
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST, currentNode, $r0;
+        java.lang.String typeName;
+        int $i0, $i1, $i2, $i3;
+        boolean $z0;
+        java.util.TreeMap $r1;
+        java.lang.Integer $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        currentNode = aRootAST;
+
+     label1:
+        if currentNode == null goto label5;
+
+        $i0 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 14 goto label2;
+
+        $i2 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 == 158 goto label2;
+
+        $i3 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 15 goto label4;
+
+     label2:
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: boolean isPublic(com.puppycrawl.tools.checkstyle.api.DetailAST)>(currentNode);
+
+        if $z0 == 0 goto label3;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: boolean mPublicTypeFound> = 1;
+
+        goto label4;
+
+     label3:
+        $r0 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        typeName = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: java.util.TreeMap mLineNumberTypeMap>;
+
+        $i1 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        virtualinvoke $r1.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r2, typeName);
+
+     label4:
+        currentNode = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label5:
+        return;
+    }
+
+    public void finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.Iterator i$;
+        java.util.Map$Entry entry;
+        boolean $z0, $z1, $z2;
+        java.util.TreeMap $r0, $r2, $r8, $r9, $r10;
+        java.util.Set $r1;
+        java.lang.Object $r3, $r4, $r7, $r12;
+        java.lang.Integer $r5;
+        int $i0;
+        java.lang.Object[] $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: boolean mPublicTypeFound>;
+
+        if $z0 != 0 goto label1;
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: java.util.TreeMap mLineNumberTypeMap>;
+
+        $z2 = virtualinvoke $r8.<java.util.TreeMap: boolean isEmpty()>();
+
+        if $z2 != 0 goto label1;
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: java.util.TreeMap mLineNumberTypeMap>;
+
+        $r10 = this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: java.util.TreeMap mLineNumberTypeMap>;
+
+        $r12 = virtualinvoke $r10.<java.util.TreeMap: java.lang.Object firstKey()>();
+
+        virtualinvoke $r9.<java.util.TreeMap: java.lang.Object remove(java.lang.Object)>($r12);
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: java.util.TreeMap mLineNumberTypeMap>;
+
+        $r1 = virtualinvoke $r0.<java.util.TreeMap: java.util.Set entrySet()>();
+
+        i$ = interfaceinvoke $r1.<java.util.Set: java.util.Iterator iterator()>();
+
+     label2:
+        $z1 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label3;
+
+        $r3 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        entry = (java.util.Map$Entry) $r3;
+
+        $r4 = interfaceinvoke entry.<java.util.Map$Entry: java.lang.Object getKey()>();
+
+        $r5 = (java.lang.Integer) $r4;
+
+        $i0 = virtualinvoke $r5.<java.lang.Integer: int intValue()>();
+
+        $r6 = newarray (java.lang.Object)[1];
+
+        $r7 = interfaceinvoke entry.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        $r6[0] = $r7;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "one.top.level.class", $r6);
+
+        goto label2;
+
+     label3:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: java.util.TreeMap mLineNumberTypeMap>;
+
+        virtualinvoke $r2.<java.util.TreeMap: void clear()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck: boolean mPublicTypeFound> = 0;
+
+        return;
+    }
+
+    private boolean isPublic(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aTypeDef, modifiers, $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
+
+        aTypeDef := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiers = virtualinvoke aTypeDef.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $r0 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(63);
+
+        if $r0 == null goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+}

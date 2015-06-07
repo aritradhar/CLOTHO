@@ -1,0 +1,229 @@
+public class com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck extends com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck
+{
+    private com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption mLineSeparator;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck this;
+        com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void <init>()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption SYSTEM>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption mLineSeparator> = $r0;
+
+        return;
+    }
+
+    protected void processFiltered(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck this;
+        java.io.File aFile;
+        java.util.List aLines;
+        java.io.RandomAccessFile randomAccessFile, $r0;
+        java.lang.Throwable l5, $r5;
+        boolean $z0;
+        java.lang.Object[] $r1, $r4;
+        java.lang.String $r2, $r6;
+        java.io.IOException $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        randomAccessFile = null;
+
+     label1:
+        $r0 = new java.io.RandomAccessFile;
+
+        specialinvoke $r0.<java.io.RandomAccessFile: void <init>(java.io.File,java.lang.String)>(aFile, "r");
+
+        randomAccessFile = $r0;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck: boolean endsWithNewline(java.io.RandomAccessFile)>(randomAccessFile);
+
+        if $z0 != 0 goto label2;
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r2 = virtualinvoke aFile.<java.io.File: java.lang.String getPath()>();
+
+        $r1[0] = $r2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck: void log(int,java.lang.String,java.lang.Object[])>(0, "noNewlineAtEOF", $r1);
+
+     label2:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(randomAccessFile);
+
+        goto label7;
+
+     label3:
+        $r3 := @caughtexception;
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r6 = virtualinvoke aFile.<java.io.File: java.lang.String getPath()>();
+
+        $r4[0] = $r6;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck: void log(int,java.lang.String,java.lang.Object[])>(0, "unable.open", $r4);
+
+     label4:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(randomAccessFile);
+
+        goto label7;
+
+     label5:
+        $r5 := @caughtexception;
+
+        l5 = $r5;
+
+     label6:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(randomAccessFile);
+
+        throw l5;
+
+     label7:
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+        catch java.lang.Throwable from label1 to label2 with label5;
+        catch java.lang.Throwable from label3 to label4 with label5;
+        catch java.lang.Throwable from label5 to label6 with label5;
+    }
+
+    public void setLineSeparator(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck this;
+        java.lang.String aLineSeparator, $r0, $r1, $r9;
+        java.lang.IllegalArgumentException iae, $r4;
+        java.lang.Enum $r2;
+        com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption $r3;
+        org.apache.commons.beanutils.ConversionException $r5;
+        java.lang.StringBuilder $r6, $r7, $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
+
+        aLineSeparator := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = virtualinvoke aLineSeparator.<java.lang.String: java.lang.String trim()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.String: java.lang.String toUpperCase()>();
+
+        $r2 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "com/puppycrawl/tools/checkstyle/checks/LineSeparatorOption", $r1);
+
+        $r3 = (com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption) $r2;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption mLineSeparator> = $r3;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r4 := @caughtexception;
+
+        iae = $r4;
+
+        $r5 = new org.apache.commons.beanutils.ConversionException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aLineSeparator);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r9, iae);
+
+        throw $r5;
+
+     label4:
+        return;
+
+        catch java.lang.IllegalArgumentException from label1 to label2 with label3;
+    }
+
+    private boolean endsWithNewline(java.io.RandomAccessFile) throws java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck this;
+        java.io.RandomAccessFile aRandomAccessFile;
+        int len, readBytes;
+        byte[] lastBytes;
+        com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption $r0, $r1;
+        long $l0, $l1, $l3, $l4, $l5;
+        byte $b2;
+        boolean $z0;
+        java.lang.StringBuilder $r2, $r4, $r5, $r6, $r7;
+        java.io.IOException $r3;
+        java.lang.String $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
+
+        aRandomAccessFile := @parameter0: java.io.RandomAccessFile;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption mLineSeparator>;
+
+        len = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: int length()>();
+
+        $l0 = virtualinvoke aRandomAccessFile.<java.io.RandomAccessFile: long length()>();
+
+        $l1 = (long) len;
+
+        $b2 = $l0 cmp $l1;
+
+        if $b2 >= 0 goto label1;
+
+        return 0;
+
+     label1:
+        $l3 = virtualinvoke aRandomAccessFile.<java.io.RandomAccessFile: long length()>();
+
+        $l4 = (long) len;
+
+        $l5 = $l3 - $l4;
+
+        virtualinvoke aRandomAccessFile.<java.io.RandomAccessFile: void seek(long)>($l5);
+
+        lastBytes = newarray (byte)[len];
+
+        readBytes = virtualinvoke aRandomAccessFile.<java.io.RandomAccessFile: int read(byte[])>(lastBytes);
+
+        if readBytes == len goto label2;
+
+        $r3 = new java.io.IOException;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to read ");
+
+        $r4 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(len);
+
+        $r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" bytes, got ");
+
+        $r6 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(readBytes);
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<java.io.IOException: void <init>(java.lang.String)>($r8);
+
+        throw $r3;
+
+     label2:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck: com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption mLineSeparator>;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption: boolean matches(byte[])>(lastBytes);
+
+        return $z0;
+    }
+}

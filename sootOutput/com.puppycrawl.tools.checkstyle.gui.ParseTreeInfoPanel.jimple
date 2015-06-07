@@ -1,0 +1,592 @@
+public class com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel extends javax.swing.JPanel
+{
+    private static final long serialVersionUID;
+    private final com.puppycrawl.tools.checkstyle.gui.JTreeTable mTreeTable;
+    private final com.puppycrawl.tools.checkstyle.gui.ParseTreeModel mParseTreeModel;
+    private final javax.swing.JTextArea mJTextArea;
+    private java.io.File mLastDirectory;
+    private java.io.File mCurrentFile;
+    private final javax.swing.Action reloadAction;
+    private final java.util.List lines2position;
+
+    public void openAst(com.puppycrawl.tools.checkstyle.api.DetailAST, java.awt.Component)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST parseTree;
+        java.awt.Component aParent;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel $r0;
+        javax.swing.Action $r1;
+        java.util.List $r2, $r3;
+        java.lang.Integer $r4;
+        javax.swing.JTextArea $r5, $r7, $r8, $r9;
+        java.lang.String $r6, $r10;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        parseTree := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aParent := @parameter1: java.awt.Component;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel mParseTreeModel>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.ParseTreeModel: void setParseTree(com.puppycrawl.tools.checkstyle.api.DetailAST)>(parseTree);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.Action reloadAction>;
+
+        interfaceinvoke $r1.<javax.swing.Action: void setEnabled(boolean)>(1);
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.util.List getLines2position()>();
+
+        interfaceinvoke $r2.<java.util.List: void clear()>();
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.util.List getLines2position()>();
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+
+        interfaceinvoke $r3.<java.util.List: boolean add(java.lang.Object)>($r4);
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        $r6 = virtualinvoke $r5.<javax.swing.JTextArea: java.lang.String getText()>();
+
+        $i0 = virtualinvoke $r6.<java.lang.String: int length()>();
+
+        if $i0 == 0 goto label1;
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        $r10 = virtualinvoke $r8.<javax.swing.JTextArea: java.lang.String getText()>();
+
+        $i1 = virtualinvoke $r10.<java.lang.String: int length()>();
+
+        virtualinvoke $r9.<javax.swing.JTextArea: void replaceRange(java.lang.String,int,int)>("", 0, $i1);
+
+     label1:
+        $r7 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        virtualinvoke $r7.<javax.swing.JTextArea: void moveCaretPosition(int)>(0);
+
+        return;
+    }
+
+    public void openFile(java.io.File, java.awt.Component)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this;
+        java.io.File aFile, $r6, $r9;
+        java.awt.Component aParent;
+        com.puppycrawl.tools.checkstyle.api.FileText text, $r7;
+        com.puppycrawl.tools.checkstyle.api.DetailAST parseTree;
+        java.lang.String[] sourceLines, arr$;
+        int len$, i$, $i0, $i1, $i2;
+        java.lang.String element, $r3, $r5, $r8, $r15, $r23, $r26, $r29, $r35, $r37, $r43, $r46, $r50;
+        java.lang.StringBuilder $r0, $r2, $r4, $r18, $r19, $r20, $r30, $r32, $r33, $r36, $r38, $r39, $r40, $r41, $r44, $r45, $r47, $r48, $r49;
+        javax.swing.JFrame $r1;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel $r10;
+        javax.swing.Action $r11;
+        java.util.List $r12, $r13, $r25;
+        java.lang.Integer $r14, $r27;
+        javax.swing.JTextArea $r16, $r17, $r21, $r22, $r24, $r28, $r31;
+        java.io.IOException $r34, text;
+        antlr.ANTLRException $r42, text;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        aFile := @parameter0: java.io.File;
+
+        aParent := @parameter1: java.awt.Component;
+
+        if aFile == null goto label10;
+
+     label01:
+        $r1 = <com.puppycrawl.tools.checkstyle.gui.Main: javax.swing.JFrame frame>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Checkstyle : ");
+
+        $r3 = virtualinvoke aFile.<java.io.File: java.lang.String getName()>();
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<javax.swing.JFrame: void setTitle(java.lang.String)>($r5);
+
+        $r7 = new com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r6 = virtualinvoke aFile.<java.io.File: java.io.File getAbsoluteFile()>();
+
+        $r8 = staticinvoke <com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.lang.String getEncoding()>();
+
+        specialinvoke $r7.<com.puppycrawl.tools.checkstyle.api.FileText: void <init>(java.io.File,java.lang.String)>($r6, $r8);
+
+        text = $r7;
+
+        parseTree = staticinvoke <com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: com.puppycrawl.tools.checkstyle.api.DetailAST parseFile(com.puppycrawl.tools.checkstyle.api.FileText)>(text);
+
+        $r10 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel mParseTreeModel>;
+
+        virtualinvoke $r10.<com.puppycrawl.tools.checkstyle.gui.ParseTreeModel: void setParseTree(com.puppycrawl.tools.checkstyle.api.DetailAST)>(parseTree);
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.io.File mCurrentFile> = aFile;
+
+        $r9 = virtualinvoke aFile.<java.io.File: java.io.File getParentFile()>();
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.io.File mLastDirectory> = $r9;
+
+        $r11 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.Action reloadAction>;
+
+        interfaceinvoke $r11.<javax.swing.Action: void setEnabled(boolean)>(1);
+
+        sourceLines = virtualinvoke text.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String[] toLinesArray()>();
+
+        $r13 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.util.List getLines2position()>();
+
+        interfaceinvoke $r13.<java.util.List: void clear()>();
+
+        $r12 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.util.List getLines2position()>();
+
+        $r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+
+        interfaceinvoke $r12.<java.util.List: boolean add(java.lang.Object)>($r14);
+
+        arr$ = sourceLines;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label02:
+        if i$ >= len$ goto label03;
+
+        element = arr$[i$];
+
+        $r25 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.util.List getLines2position()>();
+
+        $r28 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        $r29 = virtualinvoke $r28.<javax.swing.JTextArea: java.lang.String getText()>();
+
+        $i2 = virtualinvoke $r29.<java.lang.String: int length()>();
+
+        $r27 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+
+        interfaceinvoke $r25.<java.util.List: boolean add(java.lang.Object)>($r27);
+
+        $r31 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        $r32 = new java.lang.StringBuilder;
+
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>()>();
+
+        $r30 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(element);
+
+        $r36 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r35 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r31.<javax.swing.JTextArea: void append(java.lang.String)>($r35);
+
+        i$ = i$ + 1;
+
+        goto label02;
+
+     label03:
+        $r16 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        $r15 = virtualinvoke $r16.<javax.swing.JTextArea: java.lang.String getText()>();
+
+        $i0 = virtualinvoke $r15.<java.lang.String: int length()>();
+
+        if $i0 == 0 goto label04;
+
+        $r22 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        $r24 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        $r26 = virtualinvoke $r24.<javax.swing.JTextArea: java.lang.String getText()>();
+
+        $i1 = virtualinvoke $r26.<java.lang.String: int length()>();
+
+        virtualinvoke $r22.<javax.swing.JTextArea: void replaceRange(java.lang.String,int,int)>("", 0, $i1);
+
+     label04:
+        arr$ = sourceLines;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label05:
+        if i$ >= len$ goto label06;
+
+        element = arr$[i$];
+
+        $r21 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+
+        $r18 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(element);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r23 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r21.<javax.swing.JTextArea: void append(java.lang.String)>($r23);
+
+        i$ = i$ + 1;
+
+        goto label05;
+
+     label06:
+        $r17 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        virtualinvoke $r17.<javax.swing.JTextArea: void moveCaretPosition(int)>(0);
+
+     label07:
+        goto label10;
+
+     label08:
+        $r34 := @caughtexception;
+
+        text = $r34;
+
+        $r33 = new java.lang.StringBuilder;
+
+        specialinvoke $r33.<java.lang.StringBuilder: void <init>()>();
+
+        $r40 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Could not open ");
+
+        $r39 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aFile);
+
+        $r38 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": ");
+
+        $r37 = virtualinvoke text.<java.io.IOException: java.lang.String getMessage()>();
+
+        $r44 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r37);
+
+        $r43 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void showErrorDialog(java.awt.Component,java.lang.String)>(aParent, $r43);
+
+        goto label10;
+
+     label09:
+        $r42 := @caughtexception;
+
+        text = $r42;
+
+        $r41 = new java.lang.StringBuilder;
+
+        specialinvoke $r41.<java.lang.StringBuilder: void <init>()>();
+
+        $r47 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Could not parse ");
+
+        $r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aFile);
+
+        $r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": ");
+
+        $r50 = virtualinvoke text.<antlr.ANTLRException: java.lang.String getMessage()>();
+
+        $r45 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r50);
+
+        $r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void showErrorDialog(java.awt.Component,java.lang.String)>(aParent, $r46);
+
+     label10:
+        return;
+
+        catch java.io.IOException from label01 to label07 with label08;
+        catch antlr.ANTLRException from label01 to label07 with label09;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.DetailAST parseFile(java.lang.String) throws java.io.IOException, antlr.ANTLRException
+    {
+        java.lang.String aFileName, $r2;
+        com.puppycrawl.tools.checkstyle.api.FileText $r0;
+        java.io.File $r1;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r3;
+
+        aFileName := @parameter0: java.lang.String;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r1 = new java.io.File;
+
+        specialinvoke $r1.<java.io.File: void <init>(java.lang.String)>(aFileName);
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.lang.String getEncoding()>();
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileText: void <init>(java.io.File,java.lang.String)>($r1, $r2);
+
+        $r3 = staticinvoke <com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: com.puppycrawl.tools.checkstyle.api.DetailAST parseFile(com.puppycrawl.tools.checkstyle.api.FileText)>($r0);
+
+        return $r3;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.DetailAST parseFile(com.puppycrawl.tools.checkstyle.api.FileText) throws antlr.ANTLRException
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText aText;
+        com.puppycrawl.tools.checkstyle.api.FileContents contents, $r0;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r1;
+
+        aText := @parameter0: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileContents: void <init>(com.puppycrawl.tools.checkstyle.api.FileText)>(aText);
+
+        contents = $r0;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.TreeWalker: com.puppycrawl.tools.checkstyle.api.DetailAST parse(com.puppycrawl.tools.checkstyle.api.FileContents)>(contents);
+
+        return $r1;
+    }
+
+    private static java.lang.String getEncoding()
+    {
+        java.lang.String $r0;
+
+        $r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>("file.encoding", "UTF-8");
+
+        return $r0;
+    }
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this;
+        javax.swing.JScrollPane sp, sp2, $r5, $r18;
+        javax.swing.JButton fileSelectionButton, reloadButton, $r7, $r10;
+        javax.swing.JPanel p, $r20;
+        java.util.ArrayList $r0;
+        java.awt.BorderLayout $r1;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeModel $r2, $r4;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable $r3, $r6, $r17, $r19;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction $r8;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction $r9;
+        javax.swing.Action $r11, $r13;
+        javax.swing.JTextArea $r12, $r14, $r15, $r21;
+        java.util.List $r16;
+        java.awt.GridLayout $r22;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener $r23;
+        java.util.TooManyListenersException $r24;
+        com.puppycrawl.tools.checkstyle.gui.FileDrop $r25;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        specialinvoke this.<javax.swing.JPanel: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.io.File mLastDirectory> = null;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.io.File mCurrentFile> = null;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.util.List lines2position> = $r0;
+
+        $r1 = new java.awt.BorderLayout;
+
+        specialinvoke $r1.<java.awt.BorderLayout: void <init>()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void setLayout(java.awt.LayoutManager)>($r1);
+
+        $r2 = new com.puppycrawl.tools.checkstyle.gui.ParseTreeModel;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.gui.ParseTreeModel: void <init>(com.puppycrawl.tools.checkstyle.api.DetailAST)>(null);
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel mParseTreeModel> = $r2;
+
+        $r3 = new com.puppycrawl.tools.checkstyle.gui.JTreeTable;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: com.puppycrawl.tools.checkstyle.gui.ParseTreeModel mParseTreeModel>;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: void <init>(com.puppycrawl.tools.checkstyle.gui.TreeTableModel)>($r4);
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: com.puppycrawl.tools.checkstyle.gui.JTreeTable mTreeTable> = $r3;
+
+        $r5 = new javax.swing.JScrollPane;
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: com.puppycrawl.tools.checkstyle.gui.JTreeTable mTreeTable>;
+
+        specialinvoke $r5.<javax.swing.JScrollPane: void <init>(java.awt.Component)>($r6);
+
+        sp = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void add(java.awt.Component,java.lang.Object)>(sp, "North");
+
+        $r7 = new javax.swing.JButton;
+
+        $r9 = new com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction;
+
+        specialinvoke $r9.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileSelectionAction: void <init>(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel)>(this);
+
+        specialinvoke $r7.<javax.swing.JButton: void <init>(javax.swing.Action)>($r9);
+
+        fileSelectionButton = $r7;
+
+        $r8 = new com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction;
+
+        specialinvoke $r8.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$ReloadAction: void <init>(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel)>(this);
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.Action reloadAction> = $r8;
+
+        $r11 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.Action reloadAction>;
+
+        interfaceinvoke $r11.<javax.swing.Action: void setEnabled(boolean)>(0);
+
+        $r10 = new javax.swing.JButton;
+
+        $r13 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.Action reloadAction>;
+
+        specialinvoke $r10.<javax.swing.JButton: void <init>(javax.swing.Action)>($r13);
+
+        reloadButton = $r10;
+
+        $r12 = new javax.swing.JTextArea;
+
+        specialinvoke $r12.<javax.swing.JTextArea: void <init>(int,int)>(20, 15);
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea> = $r12;
+
+        $r15 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        virtualinvoke $r15.<javax.swing.JTextArea: void setEditable(boolean)>(0);
+
+        $r17 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: com.puppycrawl.tools.checkstyle.gui.JTreeTable mTreeTable>;
+
+        $r14 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        virtualinvoke $r17.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: void setEditor(javax.swing.JTextArea)>($r14);
+
+        $r19 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: com.puppycrawl.tools.checkstyle.gui.JTreeTable mTreeTable>;
+
+        $r16 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.util.List lines2position>;
+
+        virtualinvoke $r19.<com.puppycrawl.tools.checkstyle.gui.JTreeTable: void setLinePositionMap(java.util.List)>($r16);
+
+        $r18 = new javax.swing.JScrollPane;
+
+        $r21 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: javax.swing.JTextArea mJTextArea>;
+
+        specialinvoke $r18.<javax.swing.JScrollPane: void <init>(java.awt.Component)>($r21);
+
+        sp2 = $r18;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void add(java.awt.Component,java.lang.Object)>(sp2, "Center");
+
+        $r20 = new javax.swing.JPanel;
+
+        $r22 = new java.awt.GridLayout;
+
+        specialinvoke $r22.<java.awt.GridLayout: void <init>(int,int)>(1, 2);
+
+        specialinvoke $r20.<javax.swing.JPanel: void <init>(java.awt.LayoutManager)>($r22);
+
+        p = $r20;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void add(java.awt.Component,java.lang.Object)>(p, "South");
+
+        virtualinvoke p.<javax.swing.JPanel: java.awt.Component add(java.awt.Component)>(fileSelectionButton);
+
+        virtualinvoke p.<javax.swing.JPanel: java.awt.Component add(java.awt.Component)>(reloadButton);
+
+     label1:
+        $r25 = new com.puppycrawl.tools.checkstyle.gui.FileDrop;
+
+        $r23 = new com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener;
+
+        specialinvoke $r23.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener: void <init>(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel,javax.swing.JScrollPane)>(this, sp);
+
+        specialinvoke $r25.<com.puppycrawl.tools.checkstyle.gui.FileDrop: void <init>(java.awt.Component,com.puppycrawl.tools.checkstyle.gui.FileDrop$Listener)>(sp, $r23);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r24 := @caughtexception;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void showErrorDialog(java.awt.Component,java.lang.String)>(null, "Cannot initialize Drag and Drop support");
+
+     label4:
+        return;
+
+        catch java.util.TooManyListenersException from label1 to label2 with label3;
+    }
+
+    private void showErrorDialog(java.awt.Component, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this;
+        java.awt.Component parent;
+        java.lang.String msg;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1 showError, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        parent := @parameter0: java.awt.Component;
+
+        msg := @parameter1: java.lang.String;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$1: void <init>(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel,java.awt.Component,java.lang.String)>(this, parent, msg);
+
+        showError = $r0;
+
+        staticinvoke <javax.swing.SwingUtilities: void invokeLater(java.lang.Runnable)>(showError);
+
+        return;
+    }
+
+    public java.util.List getLines2position()
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.util.List lines2position>;
+
+        return $r0;
+    }
+
+    static java.io.File access$000(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel x0;
+        java.io.File $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.io.File mLastDirectory>;
+
+        return $r0;
+    }
+
+    static java.io.File access$200(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel x0;
+        java.io.File $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: java.io.File mCurrentFile>;
+
+        return $r0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: long serialVersionUID> = -4243405131202059043L;
+
+        return;
+    }
+}

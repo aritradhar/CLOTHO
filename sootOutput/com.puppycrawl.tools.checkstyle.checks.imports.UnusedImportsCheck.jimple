@@ -1,0 +1,615 @@
+public class com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final java.util.regex.Pattern CLASS_NAME;
+    private static final java.util.regex.Pattern FIRST_CLASS_NAME;
+    private static final java.util.regex.Pattern ARGUMENT_NAME;
+    private boolean mCollect;
+    private boolean mProcessJavadoc;
+    private final java.util.Set mImports;
+    private final java.util.Set mReferenced;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        java.util.HashSet $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set mImports> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set mReferenced> = $r1;
+
+        return;
+    }
+
+    public void setProcessJavadoc(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        boolean aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aValue := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: boolean mProcessJavadoc> = aValue;
+
+        return;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.Set $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: boolean mCollect> = 0;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set mImports>;
+
+        interfaceinvoke $r0.<java.util.Set: void clear()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set mReferenced>;
+
+        interfaceinvoke $r1.<java.util.Set: void clear()>();
+
+        return;
+    }
+
+    public void finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.FullIdent imp;
+        java.util.Set $r0, $r2;
+        boolean $z0, $z1;
+        java.lang.Object $r1;
+        java.lang.String $r3, $r4, $r6;
+        int $i0, $i1;
+        java.lang.Object[] $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set mImports>;
+
+        i$ = interfaceinvoke $r0.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        imp = (com.puppycrawl.tools.checkstyle.api.FullIdent) $r1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set mReferenced>;
+
+        $r3 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r4 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.lang.String baseClassname(java.lang.String)>($r3);
+
+        $z1 = interfaceinvoke $r2.<java.util.Set: boolean contains(java.lang.Object)>($r4);
+
+        if $z1 != 0 goto label2;
+
+        $i0 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getLineNo()>();
+
+        $i1 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getColumnNo()>();
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r6 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r5[0] = $r6;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "import.unused", $r5);
+
+     label2:
+        goto label1;
+
+     label3:
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        $r0 = newarray (int)[13];
+
+        $r0[0] = 59;
+
+        $r0[1] = 31;
+
+        $r0[2] = 156;
+
+        $r0[3] = 16;
+
+        $r0[4] = 161;
+
+        $r0[5] = 165;
+
+        $r0[6] = 158;
+
+        $r0[7] = 159;
+
+        $r0[8] = 14;
+
+        $r0[9] = 15;
+
+        $r0[10] = 9;
+
+        $r0[11] = 8;
+
+        $r0[12] = 10;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0, $i1, $i2;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 59 goto label1;
+
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: boolean mCollect>;
+
+        if $z1 == 0 goto label4;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: void processIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label4;
+
+     label1:
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 31 goto label2;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: void processImport(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label4;
+
+     label2:
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 156 goto label3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: void processStaticImport(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label4;
+
+     label3:
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: boolean mCollect> = 1;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: boolean mProcessJavadoc>;
+
+        if $z0 == 0 goto label4;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: void processJavadoc(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label4:
+        return;
+    }
+
+    private void processIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, $r0;
+        int parentType;
+        java.util.Set $r1;
+        java.lang.String $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        parentType = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if parentType == 60 goto label1;
+
+        if parentType != 9 goto label2;
+
+     label1:
+        if parentType != 60 goto label3;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if $r0 == null goto label3;
+
+     label2:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set mReferenced>;
+
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        interfaceinvoke $r1.<java.util.Set: boolean add(java.lang.Object)>($r2);
+
+     label3:
+        return;
+    }
+
+    private void processImport(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.FullIdent name;
+        java.lang.String $r0;
+        boolean $z0;
+        java.util.Set $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        name = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdentBelow(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if name == null goto label1;
+
+        $r0 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean endsWith(java.lang.String)>(".*");
+
+        if $z0 != 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set mImports>;
+
+        interfaceinvoke $r1.<java.util.Set: boolean add(java.lang.Object)>(name);
+
+     label1:
+        return;
+    }
+
+    private void processStaticImport(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0, $r1;
+        com.puppycrawl.tools.checkstyle.api.FullIdent name;
+        java.lang.String $r2;
+        boolean $z0;
+        java.util.Set $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        name = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r1);
+
+        if name == null goto label1;
+
+        $r2 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean endsWith(java.lang.String)>(".*");
+
+        if $z0 != 0 goto label1;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set mImports>;
+
+        interfaceinvoke $r3.<java.util.Set: boolean add(java.lang.Object)>(name);
+
+     label1:
+        return;
+    }
+
+    private void processJavadoc(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.FileContents contents;
+        int lineNo;
+        com.puppycrawl.tools.checkstyle.api.TextBlock cmt;
+        java.util.Set $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        contents = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        lineNo = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        cmt = virtualinvoke contents.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.TextBlock getJavadocBefore(int)>(lineNo);
+
+        if cmt == null goto label1;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set mReferenced>;
+
+        $r1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set processJavadoc(com.puppycrawl.tools.checkstyle.api.TextBlock)>(cmt);
+
+        interfaceinvoke $r0.<java.util.Set: boolean addAll(java.util.Collection)>($r1);
+
+     label1:
+        return;
+    }
+
+    private java.util.Set processJavadoc(com.puppycrawl.tools.checkstyle.api.TextBlock)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        com.puppycrawl.tools.checkstyle.api.TextBlock aCmt;
+        java.util.HashSet references, $r0;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag tag;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType $r1, $r3;
+        java.util.List $r2, $r4;
+        boolean $z0, $z1, $z2, $z4;
+        java.lang.Object $r5, $r9;
+        java.util.regex.Pattern $r6;
+        java.lang.String $r7;
+        java.util.Set $r8, $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aCmt := @parameter0: com.puppycrawl.tools.checkstyle.api.TextBlock;
+
+        $r0 = new java.util.HashSet;
+
+        specialinvoke $r0.<java.util.HashSet: void <init>()>();
+
+        references = $r0;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType INLINE>;
+
+        $r2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.List getValidTags(com.puppycrawl.tools.checkstyle.api.TextBlock,com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType)>(aCmt, $r1);
+
+        i$ = interfaceinvoke $r2.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r9 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        tag = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag) $r9;
+
+        $z4 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: boolean canReferenceImports()>();
+
+        if $z4 == 0 goto label2;
+
+        $r10 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set processJavadocTag(com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag)>(tag);
+
+        interfaceinvoke references.<java.util.Set: boolean addAll(java.util.Collection)>($r10);
+
+     label2:
+        goto label1;
+
+     label3:
+        $r3 = <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType BLOCK>;
+
+        $r4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.List getValidTags(com.puppycrawl.tools.checkstyle.api.TextBlock,com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType)>(aCmt, $r3);
+
+        i$ = interfaceinvoke $r4.<java.util.List: java.util.Iterator iterator()>();
+
+     label4:
+        $z1 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label6;
+
+        $r5 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        tag = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag) $r5;
+
+        $z2 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: boolean canReferenceImports()>();
+
+        if $z2 == 0 goto label5;
+
+        $r7 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.regex.Pattern FIRST_CLASS_NAME>;
+
+        $r8 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set matchPattern(java.lang.String,java.util.regex.Pattern)>($r7, $r6);
+
+        interfaceinvoke references.<java.util.Set: boolean addAll(java.util.Collection)>($r8);
+
+     label5:
+        goto label4;
+
+     label6:
+        return references;
+    }
+
+    private java.util.List getValidTags(com.puppycrawl.tools.checkstyle.api.TextBlock, com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        com.puppycrawl.tools.checkstyle.api.TextBlock aCmt;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType aTagType;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags $r0;
+        java.util.List $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aCmt := @parameter0: com.puppycrawl.tools.checkstyle.api.TextBlock;
+
+        aTagType := @parameter1: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags getJavadocTags(com.puppycrawl.tools.checkstyle.api.TextBlock,com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils$JavadocTagType)>(aCmt, aTagType);
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags: java.util.List getValidTags()>();
+
+        return $r1;
+    }
+
+    private java.util.Set processJavadocTag(com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag aTag;
+        java.util.HashSet references, $r0;
+        java.lang.String identifier, $r1;
+        java.util.regex.Pattern[] arr$, $r2;
+        int len$, i$;
+        java.util.regex.Pattern pattern, $r3, $r4;
+        java.util.Set $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aTag := @parameter0: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r0 = new java.util.HashSet;
+
+        specialinvoke $r0.<java.util.HashSet: void <init>()>();
+
+        references = $r0;
+
+        $r1 = virtualinvoke aTag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        identifier = virtualinvoke $r1.<java.lang.String: java.lang.String trim()>();
+
+        $r2 = newarray (java.util.regex.Pattern)[2];
+
+        $r3 = <com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.regex.Pattern FIRST_CLASS_NAME>;
+
+        $r2[0] = $r3;
+
+        $r4 = <com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.regex.Pattern ARGUMENT_NAME>;
+
+        $r2[1] = $r4;
+
+        arr$ = $r2;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label2;
+
+        pattern = arr$[i$];
+
+        $r5 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.Set matchPattern(java.lang.String,java.util.regex.Pattern)>(identifier, pattern);
+
+        interfaceinvoke references.<java.util.Set: boolean addAll(java.util.Collection)>($r5);
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label2:
+        return references;
+    }
+
+    private java.util.Set matchPattern(java.lang.String, java.util.regex.Pattern)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck this;
+        java.lang.String aIdentifier, $r1;
+        java.util.regex.Pattern aPattern;
+        java.util.HashSet references, $r0;
+        java.util.regex.Matcher matcher;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
+
+        aIdentifier := @parameter0: java.lang.String;
+
+        aPattern := @parameter1: java.util.regex.Pattern;
+
+        $r0 = new java.util.HashSet;
+
+        specialinvoke $r0.<java.util.HashSet: void <init>()>();
+
+        references = $r0;
+
+        matcher = virtualinvoke aPattern.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aIdentifier);
+
+     label1:
+        $z0 = virtualinvoke matcher.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 == 0 goto label2;
+
+        $r1 = virtualinvoke matcher.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        interfaceinvoke references.<java.util.Set: boolean add(java.lang.Object)>($r1);
+
+        goto label1;
+
+     label2:
+        return references;
+    }
+
+    static void <clinit>()
+    {
+        java.util.regex.Pattern $r0, $r3, $r6, $r9, $r13;
+        java.lang.StringBuilder $r1, $r2, $r4, $r7, $r8, $r11;
+        java.lang.String $r5, $r10, $r12;
+
+        $r0 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("((:?[\\p{L}_$][\\p{L}\\p{N}_$]*\\.)*[\\p{L}_$][\\p{L}\\p{N}_$]*)");
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.regex.Pattern CLASS_NAME> = $r0;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("^");
+
+        $r3 = <com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.regex.Pattern CLASS_NAME>;
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>($r5);
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.regex.Pattern FIRST_CLASS_NAME> = $r6;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[(,]\\s*");
+
+        $r9 = <com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.regex.Pattern CLASS_NAME>;
+
+        $r10 = virtualinvoke $r9.<java.util.regex.Pattern: java.lang.String pattern()>();
+
+        $r11 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r13 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>($r12);
+
+        <com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck: java.util.regex.Pattern ARGUMENT_NAME> = $r13;
+
+        return;
+    }
+}

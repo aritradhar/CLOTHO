@@ -1,0 +1,185 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 85;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, elseLiteral, condition, $r0;
+        antlr.collections.AST elseStatement, thenStatement, $r1;
+        boolean $z0, $z1;
+        int $i0, $i1;
+        java.lang.Object[] $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        elseLiteral = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(94);
+
+        if elseLiteral != null goto label1;
+
+        return;
+
+     label1:
+        elseStatement = interfaceinvoke elseLiteral.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        condition = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        $r1 = interfaceinvoke condition.<antlr.collections.AST: antlr.collections.AST getNextSibling()>();
+
+        thenStatement = interfaceinvoke $r1.<antlr.collections.AST: antlr.collections.AST getNextSibling()>();
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck: boolean returnsOnlyBooleanLiteral(antlr.collections.AST)>(thenStatement);
+
+        if $z0 == 0 goto label2;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck: boolean returnsOnlyBooleanLiteral(antlr.collections.AST)>(elseStatement);
+
+        if $z1 == 0 goto label2;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r2 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "simplify.boolreturn", $r2);
+
+     label2:
+        return;
+    }
+
+    private static boolean returnsOnlyBooleanLiteral(antlr.collections.AST)
+    {
+        antlr.collections.AST aAST, firstStmnt;
+        boolean $z0, $z1;
+
+        aAST := @parameter0: antlr.collections.AST;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck: boolean isBooleanLiteralReturnStatement(antlr.collections.AST)>(aAST);
+
+        if $z0 == 0 goto label1;
+
+        return 1;
+
+     label1:
+        firstStmnt = interfaceinvoke aAST.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck: boolean isBooleanLiteralReturnStatement(antlr.collections.AST)>(firstStmnt);
+
+        return $z1;
+    }
+
+    private static boolean isBooleanLiteralReturnStatement(antlr.collections.AST)
+    {
+        antlr.collections.AST aAST, expr, value;
+        int $i0, $i1, $i2;
+        boolean $z0;
+
+        aAST := @parameter0: antlr.collections.AST;
+
+        if aAST == null goto label1;
+
+        $i0 = interfaceinvoke aAST.<antlr.collections.AST: int getType()>();
+
+        if $i0 == 90 goto label2;
+
+     label1:
+        return 0;
+
+     label2:
+        expr = interfaceinvoke aAST.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        if expr == null goto label3;
+
+        $i1 = interfaceinvoke expr.<antlr.collections.AST: int getType()>();
+
+        if $i1 != 46 goto label4;
+
+     label3:
+        return 0;
+
+     label4:
+        value = interfaceinvoke expr.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        $i2 = interfaceinvoke value.<antlr.collections.AST: int getType()>();
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck: boolean isBooleanLiteralType(int)>($i2);
+
+        return $z0;
+    }
+
+    private static boolean isBooleanLiteralType(int)
+    {
+        int aTokenType;
+        boolean isTrue, isFalse, $z0, $z1, $z2;
+
+        aTokenType := @parameter0: int;
+
+        if aTokenType != 135 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        isTrue = $z2;
+
+        if aTokenType != 136 goto label3;
+
+        $z1 = 1;
+
+        goto label4;
+
+     label3:
+        $z1 = 0;
+
+     label4:
+        isFalse = $z1;
+
+        if isTrue != 0 goto label5;
+
+        if isFalse == 0 goto label6;
+
+     label5:
+        $z0 = 1;
+
+        goto label7;
+
+     label6:
+        $z0 = 0;
+
+     label7:
+        return $z0;
+    }
+}

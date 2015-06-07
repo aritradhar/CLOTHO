@@ -1,0 +1,118 @@
+public class com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mJavaStyle;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck: boolean mJavaStyle> = 1;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 17;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, typeAST, declAST, variableAST;
+        boolean isJavaStyle, $z0, $z1;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        typeAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i0 = virtualinvoke typeAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 13 goto label1;
+
+        return;
+
+     label1:
+        declAST = virtualinvoke typeAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke declAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 9 goto label2;
+
+        return;
+
+     label2:
+        variableAST = virtualinvoke typeAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if variableAST == null goto label6;
+
+        $i2 = virtualinvoke variableAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i2 > $i3 goto label3;
+
+        $i6 = virtualinvoke variableAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i7 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        if $i6 <= $i7 goto label4;
+
+     label3:
+        $z1 = 1;
+
+        goto label5;
+
+     label4:
+        $z1 = 0;
+
+     label5:
+        isJavaStyle = $z1;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck: boolean mJavaStyle>;
+
+        if isJavaStyle == $z0 goto label6;
+
+        $i4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i5 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i4, $i5, "array.type.style", $r0);
+
+     label6:
+        return;
+    }
+
+    public void setJavaStyle(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck this;
+        boolean aJavaStyle;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck;
+
+        aJavaStyle := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck: boolean mJavaStyle> = aJavaStyle;
+
+        return;
+    }
+}

@@ -1,0 +1,423 @@
+public final class com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet extends java.lang.Object
+{
+    private static final java.lang.String DEST_DIR_OPT;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static java.lang.String getDescription(com.sun.javadoc.ClassDoc)
+    {
+        com.sun.javadoc.ClassDoc aClassDoc;
+        com.sun.javadoc.Tag[] tags;
+        java.lang.StringBuffer buf, $r0;
+        int $i0;
+        java.lang.String $r1, $r3;
+        com.sun.javadoc.Tag $r2;
+
+        aClassDoc := @parameter0: com.sun.javadoc.ClassDoc;
+
+        tags = interfaceinvoke aClassDoc.<com.sun.javadoc.ClassDoc: com.sun.javadoc.Tag[] firstSentenceTags()>();
+
+        $r0 = new java.lang.StringBuffer;
+
+        specialinvoke $r0.<java.lang.StringBuffer: void <init>()>();
+
+        buf = $r0;
+
+        $i0 = lengthof tags;
+
+        if $i0 <= 0 goto label1;
+
+        $r2 = tags[0];
+
+        $r3 = interfaceinvoke $r2.<com.sun.javadoc.Tag: java.lang.String text()>();
+
+        virtualinvoke buf.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r3);
+
+     label1:
+        staticinvoke <com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet: void removeOpeningParagraphTag(java.lang.StringBuffer)>(buf);
+
+        $r1 = virtualinvoke buf.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r1;
+    }
+
+    private static void removeOpeningParagraphTag(java.lang.StringBuffer)
+    {
+        java.lang.StringBuffer aText;
+        int tagLen, $i0;
+        java.lang.String $r0, $r1;
+        boolean $z0;
+
+        aText := @parameter0: java.lang.StringBuffer;
+
+        $r0 = "<p>";
+
+        tagLen = virtualinvoke $r0.<java.lang.String: int length()>();
+
+        $i0 = virtualinvoke aText.<java.lang.StringBuffer: int length()>();
+
+        if $i0 <= tagLen goto label1;
+
+        $r1 = virtualinvoke aText.<java.lang.StringBuffer: java.lang.String substring(int,int)>(0, tagLen);
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("<p>");
+
+        if $z0 == 0 goto label1;
+
+        virtualinvoke aText.<java.lang.StringBuffer: java.lang.StringBuffer delete(int,int)>(0, tagLen);
+
+     label1:
+        return;
+    }
+
+    private static java.lang.String getCheckName(com.sun.javadoc.ClassDoc)
+    {
+        com.sun.javadoc.ClassDoc aClassDoc;
+        java.lang.String strippedClassName, checkName, $r0;
+        boolean $z0;
+        int $i0, $i1, $i2;
+
+        aClassDoc := @parameter0: com.sun.javadoc.ClassDoc;
+
+        strippedClassName = interfaceinvoke aClassDoc.<com.sun.javadoc.ClassDoc: java.lang.String typeName()>();
+
+        $z0 = virtualinvoke strippedClassName.<java.lang.String: boolean endsWith(java.lang.String)>("Check");
+
+        if $z0 == 0 goto label1;
+
+        $i0 = virtualinvoke strippedClassName.<java.lang.String: int length()>();
+
+        $r0 = "Check";
+
+        $i1 = virtualinvoke $r0.<java.lang.String: int length()>();
+
+        $i2 = $i0 - $i1;
+
+        checkName = virtualinvoke strippedClassName.<java.lang.String: java.lang.String substring(int,int)>(0, $i2);
+
+        goto label2;
+
+     label1:
+        checkName = strippedClassName;
+
+     label2:
+        return checkName;
+    }
+
+    private static void writeXdocsHeader(java.io.PrintWriter, java.lang.String)
+    {
+        java.io.PrintWriter aPrintWriter;
+        java.lang.String aTitle, $r4;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3;
+
+        aPrintWriter := @parameter0: java.io.PrintWriter;
+
+        aTitle := @parameter1: java.lang.String;
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void println(java.lang.String)>("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>");
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void println(java.lang.String)>("<document>");
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void println(java.lang.String)>("<properties>");
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("<title>");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aTitle);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("</title>");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void println(java.lang.String)>($r4);
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void println(java.lang.String)>("<author email=\"checkstyle-devel@lists.sourceforge.net\">Checkstyle Development Team</author>");
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void println(java.lang.String)>("</properties>");
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void println(java.lang.String)>("<body>");
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void flush()>();
+
+        return;
+    }
+
+    private static void writeXdocsFooter(java.io.PrintWriter)
+    {
+        java.io.PrintWriter aPrintWriter;
+
+        aPrintWriter := @parameter0: java.io.PrintWriter;
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void println(java.lang.String)>("</body>");
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void println(java.lang.String)>("</document>");
+
+        virtualinvoke aPrintWriter.<java.io.PrintWriter: void flush()>();
+
+        return;
+    }
+
+    public static boolean start(com.sun.javadoc.RootDoc) throws java.io.IOException
+    {
+        com.sun.javadoc.RootDoc aRoot;
+        com.sun.javadoc.ClassDoc[] classDocs, arr$;
+        java.io.File destDir, checksIndexFile, $r0, $r2;
+        java.io.PrintWriter fileWriter, $r5;
+        int len$, i$, $i0;
+        com.sun.javadoc.ClassDoc classDoc;
+        java.lang.String pageName, descr, checkName, $r3, $r6, $r16;
+        com.sun.javadoc.Tag[] docPageTags;
+        java.lang.String[][] $r1;
+        java.io.FileWriter $r4;
+        com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet$ClassDocByCheckNameComparator $r7;
+        boolean $z0, $z1;
+        java.lang.StringBuilder $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r17, $r18;
+        com.sun.javadoc.Tag $r19;
+
+        aRoot := @parameter0: com.sun.javadoc.RootDoc;
+
+        classDocs = interfaceinvoke aRoot.<com.sun.javadoc.RootDoc: com.sun.javadoc.ClassDoc[] classes()>();
+
+        $r0 = new java.io.File;
+
+        $r1 = interfaceinvoke aRoot.<com.sun.javadoc.RootDoc: java.lang.String[][] options()>();
+
+        $r3 = staticinvoke <com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet: java.lang.String getDestDir(java.lang.String[][])>($r1);
+
+        specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>($r3);
+
+        destDir = $r0;
+
+        $r2 = new java.io.File;
+
+        specialinvoke $r2.<java.io.File: void <init>(java.io.File,java.lang.String)>(destDir, "availablechecks.xml");
+
+        checksIndexFile = $r2;
+
+        $r5 = new java.io.PrintWriter;
+
+        $r4 = new java.io.FileWriter;
+
+        specialinvoke $r4.<java.io.FileWriter: void <init>(java.io.File)>(checksIndexFile);
+
+        specialinvoke $r5.<java.io.PrintWriter: void <init>(java.io.Writer)>($r4);
+
+        fileWriter = $r5;
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet: void writeXdocsHeader(java.io.PrintWriter,java.lang.String)>(fileWriter, "Available Checks");
+
+        virtualinvoke fileWriter.<java.io.PrintWriter: void println(java.lang.String)>("<p>Checkstyle provides many checks that you can apply to your source code. Below is an alphabetical reference, the site navigation menu provides a reference organized by functionality.</p>");
+
+        virtualinvoke fileWriter.<java.io.PrintWriter: void println(java.lang.String)>("<table>");
+
+        $r7 = new com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet$ClassDocByCheckNameComparator;
+
+        specialinvoke $r7.<com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet$ClassDocByCheckNameComparator: void <init>(com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet$1)>(null);
+
+        staticinvoke <java.util.Arrays: void sort(java.lang.Object[],java.util.Comparator)>(classDocs, $r7);
+
+        arr$ = classDocs;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label4;
+
+        classDoc = arr$[i$];
+
+        $r6 = interfaceinvoke classDoc.<com.sun.javadoc.ClassDoc: java.lang.String typeName()>();
+
+        $z1 = virtualinvoke $r6.<java.lang.String: boolean endsWith(java.lang.String)>("Check");
+
+        if $z1 == 0 goto label3;
+
+        $z0 = interfaceinvoke classDoc.<com.sun.javadoc.ClassDoc: boolean isAbstract()>();
+
+        if $z0 != 0 goto label3;
+
+        pageName = staticinvoke <com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet: java.lang.String getPageName(com.sun.javadoc.ClassDoc)>(classDoc);
+
+        docPageTags = interfaceinvoke classDoc.<com.sun.javadoc.ClassDoc: com.sun.javadoc.Tag[] tags(java.lang.String)>("checkstyle-docpage");
+
+        if docPageTags == null goto label2;
+
+        $i0 = lengthof docPageTags;
+
+        if $i0 <= 0 goto label2;
+
+        $r19 = docPageTags[0];
+
+        pageName = interfaceinvoke $r19.<com.sun.javadoc.Tag: java.lang.String text()>();
+
+     label2:
+        descr = staticinvoke <com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet: java.lang.String getDescription(com.sun.javadoc.ClassDoc)>(classDoc);
+
+        checkName = staticinvoke <com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet: java.lang.String getCheckName(com.sun.javadoc.ClassDoc)>(classDoc);
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("<tr><td><a href=\"config_");
+
+        $r11 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(pageName);
+
+        $r10 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".html#");
+
+        $r14 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(checkName);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\">");
+
+        $r12 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(checkName);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("</a></td><td>");
+
+        $r17 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(descr);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("</td></tr>");
+
+        $r16 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke fileWriter.<java.io.PrintWriter: void println(java.lang.String)>($r16);
+
+     label3:
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label4:
+        virtualinvoke fileWriter.<java.io.PrintWriter: void println(java.lang.String)>("</table>");
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet: void writeXdocsFooter(java.io.PrintWriter)>(fileWriter);
+
+        virtualinvoke fileWriter.<java.io.PrintWriter: void close()>();
+
+        return 1;
+    }
+
+    private static java.lang.String getPageName(com.sun.javadoc.ClassDoc)
+    {
+        com.sun.javadoc.ClassDoc aClassDoc;
+        java.lang.String packageName, pageName, $r1;
+        com.sun.javadoc.PackageDoc $r0;
+        int $i0, $i1;
+        boolean $z0;
+
+        aClassDoc := @parameter0: com.sun.javadoc.ClassDoc;
+
+        $r0 = interfaceinvoke aClassDoc.<com.sun.javadoc.ClassDoc: com.sun.javadoc.PackageDoc containingPackage()>();
+
+        packageName = interfaceinvoke $r0.<com.sun.javadoc.PackageDoc: java.lang.String name()>();
+
+        $i0 = virtualinvoke packageName.<java.lang.String: int lastIndexOf(int)>(46);
+
+        $i1 = $i0 + 1;
+
+        pageName = virtualinvoke packageName.<java.lang.String: java.lang.String substring(int)>($i1);
+
+        $r1 = "checks";
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(pageName);
+
+        if $z0 == 0 goto label1;
+
+        return "misc";
+
+     label1:
+        return pageName;
+    }
+
+    public static java.lang.String getDestDir(java.lang.String[][])
+    {
+        java.lang.String[][] aOptions, arr$;
+        int len$, i$;
+        java.lang.String[] opt;
+        java.lang.String $r0, $r1, $r2;
+        boolean $z0;
+
+        aOptions := @parameter0: java.lang.String[][];
+
+        arr$ = aOptions;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label3;
+
+        opt = arr$[i$];
+
+        $r1 = "-d";
+
+        $r0 = opt[0];
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>($r0);
+
+        if $z0 == 0 goto label2;
+
+        $r2 = opt[1];
+
+        return $r2;
+
+     label2:
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label3:
+        return null;
+    }
+
+    public static int optionLength(java.lang.String)
+    {
+        java.lang.String aOption, $r0;
+        boolean $z0;
+
+        aOption := @parameter0: java.lang.String;
+
+        $r0 = "-d";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(aOption);
+
+        if $z0 == 0 goto label1;
+
+        return 2;
+
+     label1:
+        return 0;
+    }
+
+    static java.lang.String access$000(com.sun.javadoc.ClassDoc)
+    {
+        com.sun.javadoc.ClassDoc x0;
+        java.lang.String $r0;
+
+        x0 := @parameter0: com.sun.javadoc.ClassDoc;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet: java.lang.String getCheckName(com.sun.javadoc.ClassDoc)>(x0);
+
+        return $r0;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet: java.lang.String DEST_DIR_OPT> = "-d";
+
+        return;
+    }
+}

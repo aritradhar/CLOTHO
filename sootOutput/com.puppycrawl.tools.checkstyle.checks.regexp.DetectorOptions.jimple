@@ -1,0 +1,240 @@
+class com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions extends java.lang.Object
+{
+    private final int mCompileFlags;
+    private final com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter mReporter;
+    private java.lang.String mFormat;
+    private java.lang.String mMessage;
+    private int mMinimum;
+    private int mMaximum;
+    private boolean mIgnoreCase;
+    private com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor mSuppressor;
+
+    public void <init>(int, com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        int aCompileFlags;
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter aReporter;
+        com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        aCompileFlags := @parameter0: int;
+
+        aReporter := @parameter1: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String mMessage> = "";
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress: com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor INSTANCE>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor mSuppressor> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: int mCompileFlags> = aCompileFlags;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter mReporter> = aReporter;
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setFormat(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        java.lang.String aFormat;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        aFormat := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String mFormat> = aFormat;
+
+        return this;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setMessage(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        java.lang.String aMessage;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        aMessage := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String mMessage> = aMessage;
+
+        return this;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setMinimum(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        int aMinimum;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        aMinimum := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: int mMinimum> = aMinimum;
+
+        return this;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setMaximum(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        int aMaximum;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        aMaximum := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: int mMaximum> = aMaximum;
+
+        return this;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setSuppressor(com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor aSup;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        aSup := @parameter0: com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor mSuppressor> = aSup;
+
+        return this;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setIgnoreCase(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        boolean aIgnore;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        aIgnore := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: boolean mIgnoreCase> = aIgnore;
+
+        return this;
+    }
+
+    public java.lang.String getFormat()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String mFormat>;
+
+        return $r0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter getReporter()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter mReporter>;
+
+        return $r0;
+    }
+
+    public java.lang.String getMessage()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String mMessage>;
+
+        return $r0;
+    }
+
+    public int getMinimum()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: int mMinimum>;
+
+        return $i0;
+    }
+
+    public int getMaximum()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: int mMaximum>;
+
+        return $i0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor getSuppressor()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor mSuppressor>;
+
+        return $r0;
+    }
+
+    public boolean isIgnoreCase()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: boolean mIgnoreCase>;
+
+        return $z0;
+    }
+
+    public java.util.regex.Pattern getPattern()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions this;
+        int options, $i0, $i1;
+        boolean $z0;
+        java.lang.String $r0;
+        java.util.regex.Pattern $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: boolean mIgnoreCase>;
+
+        if $z0 == 0 goto label1;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: int mCompileFlags>;
+
+        $i1 = $i0 | 2;
+
+        goto label2;
+
+     label1:
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: int mCompileFlags>;
+
+     label2:
+        options = $i1;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: java.lang.String mFormat>;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String,int)>($r0, options);
+
+        return $r1;
+    }
+}

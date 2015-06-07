@@ -1,0 +1,484 @@
+public final class com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes extends java.lang.Object
+{
+    private static final int mRuleTypesOffset;
+    public static final int JAVADOC;
+    public static final int JAVADOC_TAG;
+    public static final int JAVADOC_INLINE_TAG;
+    public static final int RETURN_LITERAL;
+    public static final int DEPRECATED_LITERAL;
+    public static final int SINCE_LITERAL;
+    public static final int SERIAL_DATA_LITERAL;
+    public static final int SERIAL_FIELD_LITERAL;
+    public static final int PARAM_LITERAL;
+    public static final int SEE_LITERAL;
+    public static final int SERIAL_LITERAL;
+    public static final int VERSION_LITERAL;
+    public static final int CUSTOM_NAME;
+    public static final int EXCEPTION_LITERAL;
+    public static final int THROWS_LITERAL;
+    public static final int AUTHOR_LITERAL;
+    public static final int JAVADOC_INLINE_TAG_START;
+    public static final int JAVADOC_INLINE_TAG_END;
+    public static final int CODE_LITERAL;
+    public static final int DOC_ROOT_LITERAL;
+    public static final int LINK_LITERAL;
+    public static final int INHERIT_DOC_LITERAL;
+    public static final int LINKPLAIN_LITERAL;
+    public static final int LITERAL_LITERAL;
+    public static final int VALUE_LITERAL;
+    public static final int REFERENCE;
+    public static final int PACKAGE;
+    public static final int CLASS;
+    public static final int DOT;
+    public static final int HASH;
+    public static final int MEMBER;
+    public static final int PARAMETERS;
+    public static final int LEFT_BRACE;
+    public static final int RIGHT_BRACE;
+    public static final int ARGUMENT;
+    public static final int COMMA;
+    public static final int STRING;
+    public static final int DESCRIPTION;
+    public static final int CLASS_NAME;
+    public static final int PARAMETER_NAME;
+    public static final int LITERAL_EXCLUDE;
+    public static final int LITERAL_INCLUDE;
+    public static final int FIELD_NAME;
+    public static final int FIELD_TYPE;
+    public static final int HTML_ELEMENT;
+    public static final int HTML_ELEMENT_OPEN;
+    public static final int HTML_ELEMENT_CLOSE;
+    public static final int HTML_TAG;
+    public static final int HTML_TAG_NAME;
+    public static final int ATTRIBUTE;
+    public static final int OPEN;
+    public static final int SLASH;
+    public static final int CLOSE;
+    public static final int SLASH_CLOSE;
+    public static final int EQUALS;
+    public static final int ATTR_VALUE;
+    public static final int PARAGRAPH;
+    public static final int P_TAG_OPEN;
+    public static final int P_TAG_CLOSE;
+    public static final int P_HTML_TAG_NAME;
+    public static final int LI;
+    public static final int LI_TAG_OPEN;
+    public static final int LI_TAG_CLOSE;
+    public static final int LI_HTML_TAG_NAME;
+    public static final int TR;
+    public static final int TR_TAG_OPEN;
+    public static final int TR_TAG_CLOSE;
+    public static final int TR_HTML_TAG_NAME;
+    public static final int TD;
+    public static final int TD_TAG_OPEN;
+    public static final int TD_TAG_CLOSE;
+    public static final int TD_HTML_TAG_NAME;
+    public static final int TH;
+    public static final int TH_TAG_OPEN;
+    public static final int TH_TAG_CLOSE;
+    public static final int TH_HTML_TAG_NAME;
+    public static final int BODY;
+    public static final int BODY_TAG_OPEN;
+    public static final int BODY_TAG_CLOSE;
+    public static final int BODY_HTML_TAG_NAME;
+    public static final int COLGROUP;
+    public static final int COLGROUP_TAG_OPEN;
+    public static final int COLGROUP_TAG_CLOSE;
+    public static final int COLGROUP_HTML_TAG_NAME;
+    public static final int DD;
+    public static final int DD_TAG_OPEN;
+    public static final int DD_TAG_CLOSE;
+    public static final int DD_HTML_TAG_NAME;
+    public static final int DT;
+    public static final int DT_TAG_OPEN;
+    public static final int DT_TAG_CLOSE;
+    public static final int DT_HTML_TAG_NAME;
+    public static final int HEAD;
+    public static final int HEAD_TAG_OPEN;
+    public static final int HEAD_TAG_CLOSE;
+    public static final int HEAD_HTML_TAG_NAME;
+    public static final int HTML;
+    public static final int HTML_TAG_OPEN;
+    public static final int HTML_TAG_CLOSE;
+    public static final int HTML_HTML_TAG_NAME;
+    public static final int OPTION;
+    public static final int OPTION_TAG_OPEN;
+    public static final int OPTION_TAG_CLOSE;
+    public static final int OPTION_HTML_TAG_NAME;
+    public static final int TBODY;
+    public static final int TBODY_TAG_OPEN;
+    public static final int TBODY_TAG_CLOSE;
+    public static final int TBODY_HTML_TAG_NAME;
+    public static final int TFOOT;
+    public static final int TFOOT_TAG_OPEN;
+    public static final int TFOOT_TAG_CLOSE;
+    public static final int TFOOT_HTML_TAG_NAME;
+    public static final int THEAD;
+    public static final int THEAD_TAG_OPEN;
+    public static final int THEAD_TAG_CLOSE;
+    public static final int THEAD_HTML_TAG_NAME;
+    public static final int SINGLETON_ELEMENT;
+    public static final int SINGLETON_TAG;
+    public static final int AREA_TAG;
+    public static final int AREA_HTML_TAG_NAME;
+    public static final int BASE_TAG;
+    public static final int BASE_HTML_TAG_NAME;
+    public static final int BASEFRONT_TAG;
+    public static final int BASEFRONT_HTML_TAG_NAME;
+    public static final int BR_TAG;
+    public static final int BR_HTML_TAG_NAME;
+    public static final int COL_TAG;
+    public static final int COL_HTML_TAG_NAME;
+    public static final int FRAME_TAG;
+    public static final int FRAME_HTML_TAG_NAME;
+    public static final int HR_TAG;
+    public static final int HR_HTML_TAG_NAME;
+    public static final int IMG_TAG;
+    public static final int IMG_HTML_TAG_NAME;
+    public static final int INPUT_TAG;
+    public static final int INPUT_HTML_TAG_NAME;
+    public static final int ISINDEX_TAG;
+    public static final int ISINDEX_HTML_TAG_NAME;
+    public static final int LINK_TAG;
+    public static final int LINK_HTML_TAG_NAME;
+    public static final int META_TAG;
+    public static final int META_HTML_TAG_NAME;
+    public static final int PARAM_TAG;
+    public static final int PARAM_HTML_TAG_NAME;
+    public static final int HTML_COMMENT;
+    public static final int HTML_COMMENT_START;
+    public static final int HTML_COMMENT_END;
+    public static final int CDATA;
+    public static final int LEADING_ASTERISK;
+    public static final int NEWLINE;
+    public static final int CHAR;
+    public static final int WS;
+    public static final int TEXT;
+    public static final int EOF;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int EOF> = -1;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TEXT> = 10074;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int WS> = 4;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int CHAR> = 24;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int NEWLINE> = 6;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LEADING_ASTERISK> = 1;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int CDATA> = 3;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_COMMENT_END> = 91;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_COMMENT_START> = 2;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_COMMENT> = 20073;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int PARAM_HTML_TAG_NAME> = 86;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int PARAM_TAG> = 10065;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int META_HTML_TAG_NAME> = 85;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int META_TAG> = 10064;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LINK_HTML_TAG_NAME> = 84;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LINK_TAG> = 10063;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int ISINDEX_HTML_TAG_NAME> = 83;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int ISINDEX_TAG> = 10062;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int INPUT_HTML_TAG_NAME> = 82;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int INPUT_TAG> = 10061;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int IMG_HTML_TAG_NAME> = 81;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int IMG_TAG> = 10060;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HR_HTML_TAG_NAME> = 80;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HR_TAG> = 10059;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int FRAME_HTML_TAG_NAME> = 79;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int FRAME_TAG> = 10058;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int COL_HTML_TAG_NAME> = 78;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int COL_TAG> = 10057;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int BR_HTML_TAG_NAME> = 77;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int BR_TAG> = 10056;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int BASEFRONT_HTML_TAG_NAME> = 76;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int BASEFRONT_TAG> = 10055;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int BASE_HTML_TAG_NAME> = 75;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int BASE_TAG> = 10054;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int AREA_HTML_TAG_NAME> = 74;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int AREA_TAG> = 10053;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int SINGLETON_TAG> = 10052;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int SINGLETON_ELEMENT> = 10051;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int THEAD_HTML_TAG_NAME> = 73;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int THEAD_TAG_CLOSE> = 10049;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int THEAD_TAG_OPEN> = 10048;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int THEAD> = 10050;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TFOOT_HTML_TAG_NAME> = 72;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TFOOT_TAG_CLOSE> = 10046;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TFOOT_TAG_OPEN> = 10045;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TFOOT> = 10047;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TBODY_HTML_TAG_NAME> = 71;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TBODY_TAG_CLOSE> = 10043;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TBODY_TAG_OPEN> = 10042;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TBODY> = 10044;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int OPTION_HTML_TAG_NAME> = 70;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int OPTION_TAG_CLOSE> = 10040;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int OPTION_TAG_OPEN> = 10039;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int OPTION> = 10041;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_HTML_TAG_NAME> = 69;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_TAG_CLOSE> = 10037;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_TAG_OPEN> = 10036;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML> = 10038;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HEAD_HTML_TAG_NAME> = 68;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HEAD_TAG_CLOSE> = 10034;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HEAD_TAG_OPEN> = 10033;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HEAD> = 10035;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DT_HTML_TAG_NAME> = 67;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DT_TAG_CLOSE> = 10031;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DT_TAG_OPEN> = 10030;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DT> = 10032;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DD_HTML_TAG_NAME> = 66;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DD_TAG_CLOSE> = 10028;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DD_TAG_OPEN> = 10027;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DD> = 10029;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int COLGROUP_HTML_TAG_NAME> = 65;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int COLGROUP_TAG_CLOSE> = 10025;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int COLGROUP_TAG_OPEN> = 10024;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int COLGROUP> = 10026;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int BODY_HTML_TAG_NAME> = 64;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int BODY_TAG_CLOSE> = 10022;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int BODY_TAG_OPEN> = 10021;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int BODY> = 10023;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TH_HTML_TAG_NAME> = 63;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TH_TAG_CLOSE> = 10019;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TH_TAG_OPEN> = 10018;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TH> = 10020;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TD_HTML_TAG_NAME> = 62;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TD_TAG_CLOSE> = 10016;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TD_TAG_OPEN> = 10015;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TD> = 10017;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TR_HTML_TAG_NAME> = 61;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TR_TAG_CLOSE> = 10013;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TR_TAG_OPEN> = 10012;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int TR> = 10014;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LI_HTML_TAG_NAME> = 60;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LI_TAG_CLOSE> = 10010;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LI_TAG_OPEN> = 10009;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LI> = 10011;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int P_HTML_TAG_NAME> = 59;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int P_TAG_CLOSE> = 10007;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int P_TAG_OPEN> = 10006;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int PARAGRAPH> = 10008;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int ATTR_VALUE> = 89;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int EQUALS> = 58;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int SLASH_CLOSE> = 56;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int CLOSE> = 55;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int SLASH> = 57;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int OPEN> = 5;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int ATTRIBUTE> = 20004;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_TAG_NAME> = 87;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_TAG> = 10005;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_ELEMENT_CLOSE> = 10003;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_ELEMENT_OPEN> = 20002;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HTML_ELEMENT> = 10001;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int FIELD_TYPE> = 41;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int FIELD_NAME> = 39;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LITERAL_INCLUDE> = 22;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LITERAL_EXCLUDE> = 23;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int PARAMETER_NAME> = 25;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int CLASS_NAME> = 43;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DESCRIPTION> = 10068;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int STRING> = 27;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int COMMA> = 37;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int ARGUMENT> = 36;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int RIGHT_BRACE> = 35;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LEFT_BRACE> = 34;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int PARAMETERS> = 10070;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int MEMBER> = 33;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int HASH> = 30;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DOT> = 29;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int CLASS> = 31;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int PACKAGE> = 28;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int REFERENCE> = 10069;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int VALUE_LITERAL> = 51;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LITERAL_LITERAL> = 50;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LINKPLAIN_LITERAL> = 49;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int INHERIT_DOC_LITERAL> = 47;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int LINK_LITERAL> = 48;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DOC_ROOT_LITERAL> = 46;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int CODE_LITERAL> = 45;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int JAVADOC_INLINE_TAG_END> = 20;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int JAVADOC_INLINE_TAG_START> = 19;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int AUTHOR_LITERAL> = 7;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int THROWS_LITERAL> = 17;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int EXCEPTION_LITERAL> = 9;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int CUSTOM_NAME> = 21;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int VERSION_LITERAL> = 18;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int SERIAL_LITERAL> = 13;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int SEE_LITERAL> = 12;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int PARAM_LITERAL> = 10;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int SERIAL_FIELD_LITERAL> = 14;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int SERIAL_DATA_LITERAL> = 15;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int SINCE_LITERAL> = 16;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int DEPRECATED_LITERAL> = 8;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int RETURN_LITERAL> = 11;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int JAVADOC_INLINE_TAG> = 10072;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int JAVADOC_TAG> = 10071;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int JAVADOC> = 10000;
+
+        <com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes: int mRuleTypesOffset> = 10000;
+
+        return;
+    }
+}

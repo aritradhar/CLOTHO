@@ -1,0 +1,140 @@
+public class com.puppycrawl.tools.checkstyle.gui.CodeSelector extends java.lang.Object
+{
+    private final com.puppycrawl.tools.checkstyle.api.DetailAST ast;
+    private final javax.swing.JTextArea editor;
+    private final java.util.List lines2position;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.api.DetailAST, javax.swing.JTextArea, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.gui.CodeSelector this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST ast;
+        javax.swing.JTextArea editor;
+        java.util.List lines2position;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.CodeSelector;
+
+        ast := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        editor := @parameter1: javax.swing.JTextArea;
+
+        lines2position := @parameter2: java.util.List;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: com.puppycrawl.tools.checkstyle.api.DetailAST ast> = ast;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: javax.swing.JTextArea editor> = editor;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: java.util.List lines2position> = lines2position;
+
+        return;
+    }
+
+    public void select()
+    {
+        com.puppycrawl.tools.checkstyle.gui.CodeSelector this;
+        int start, end, $i0, $i1, $i2;
+        com.puppycrawl.tools.checkstyle.api.DetailAST $r0, $r4, $r5;
+        java.util.List $r1;
+        java.lang.Object $r2;
+        java.lang.Integer $r3;
+        java.awt.Color $r6;
+        javax.swing.JTextArea $r7, $r8, $r9, $r10, $r11;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.CodeSelector;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: java.util.List lines2position>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: com.puppycrawl.tools.checkstyle.api.DetailAST ast>;
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.lang.Object get(int)>($i0);
+
+        $r3 = (java.lang.Integer) $r2;
+
+        $i1 = virtualinvoke $r3.<java.lang.Integer: int intValue()>();
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: com.puppycrawl.tools.checkstyle.api.DetailAST ast>;
+
+        $i2 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        start = $i1 + $i2;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: com.puppycrawl.tools.checkstyle.api.DetailAST ast>;
+
+        end = specialinvoke this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: int findLastPosition(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r5);
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: javax.swing.JTextArea editor>;
+
+        $r6 = <java.awt.Color: java.awt.Color blue>;
+
+        virtualinvoke $r7.<javax.swing.JTextArea: void setSelectedTextColor(java.awt.Color)>($r6);
+
+        $r8 = this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: javax.swing.JTextArea editor>;
+
+        virtualinvoke $r8.<javax.swing.JTextArea: boolean requestFocusInWindow()>();
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: javax.swing.JTextArea editor>;
+
+        virtualinvoke $r9.<javax.swing.JTextArea: void setSelectionStart(int)>(start);
+
+        $r11 = this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: javax.swing.JTextArea editor>;
+
+        virtualinvoke $r11.<javax.swing.JTextArea: void setSelectionEnd(int)>(end);
+
+        $r10 = this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: javax.swing.JTextArea editor>;
+
+        virtualinvoke $r10.<javax.swing.JTextArea: void transferFocusBackward()>();
+
+        return;
+    }
+
+    private int findLastPosition(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.gui.CodeSelector this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST ast, $r0;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.util.List $r1;
+        java.lang.Object $r2;
+        java.lang.Integer $r3;
+        java.lang.String $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.CodeSelector;
+
+        ast := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i0 != 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: java.util.List lines2position>;
+
+        $i2 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.lang.Object get(int)>($i2);
+
+        $r3 = (java.lang.Integer) $r2;
+
+        $i3 = virtualinvoke $r3.<java.lang.Integer: int intValue()>();
+
+        $i4 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i5 = $i3 + $i4;
+
+        $r4 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $i6 = virtualinvoke $r4.<java.lang.String: int length()>();
+
+        $i7 = $i5 + $i6;
+
+        return $i7;
+
+     label1:
+        $r0 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $i1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.gui.CodeSelector: int findLastPosition(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r0);
+
+        return $i1;
+    }
+}

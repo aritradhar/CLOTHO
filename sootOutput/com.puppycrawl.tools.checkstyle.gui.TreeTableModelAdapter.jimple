@@ -1,0 +1,220 @@
+public class com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter extends javax.swing.table.AbstractTableModel
+{
+    private static final long serialVersionUID;
+    private final javax.swing.JTree mTree;
+    private final com.puppycrawl.tools.checkstyle.gui.TreeTableModel mTreeTableModel;
+
+    public void <init>(com.puppycrawl.tools.checkstyle.gui.TreeTableModel, javax.swing.JTree)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModel aTreeTableModel;
+        javax.swing.JTree aTree;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1 $r0;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2 $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        aTreeTableModel := @parameter0: com.puppycrawl.tools.checkstyle.gui.TreeTableModel;
+
+        aTree := @parameter1: javax.swing.JTree;
+
+        specialinvoke this.<javax.swing.table.AbstractTableModel: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: javax.swing.JTree mTree> = aTree;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: com.puppycrawl.tools.checkstyle.gui.TreeTableModel mTreeTableModel> = aTreeTableModel;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$1: void <init>(com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter)>(this);
+
+        virtualinvoke aTree.<javax.swing.JTree: void addTreeExpansionListener(javax.swing.event.TreeExpansionListener)>($r0);
+
+        $r1 = new com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$2: void <init>(com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter)>(this);
+
+        interfaceinvoke aTreeTableModel.<com.puppycrawl.tools.checkstyle.gui.TreeTableModel: void addTreeModelListener(javax.swing.event.TreeModelListener)>($r1);
+
+        return;
+    }
+
+    public int getColumnCount()
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModel $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: com.puppycrawl.tools.checkstyle.gui.TreeTableModel mTreeTableModel>;
+
+        $i0 = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModel: int getColumnCount()>();
+
+        return $i0;
+    }
+
+    public java.lang.String getColumnName(int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this;
+        int column;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModel $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        column := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: com.puppycrawl.tools.checkstyle.gui.TreeTableModel mTreeTableModel>;
+
+        $r1 = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModel: java.lang.String getColumnName(int)>(column);
+
+        return $r1;
+    }
+
+    public java.lang.Class getColumnClass(int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this;
+        int column;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModel $r0;
+        java.lang.Class $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        column := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: com.puppycrawl.tools.checkstyle.gui.TreeTableModel mTreeTableModel>;
+
+        $r1 = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModel: java.lang.Class getColumnClass(int)>(column);
+
+        return $r1;
+    }
+
+    public int getRowCount()
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this;
+        javax.swing.JTree $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: javax.swing.JTree mTree>;
+
+        $i0 = virtualinvoke $r0.<javax.swing.JTree: int getRowCount()>();
+
+        return $i0;
+    }
+
+    protected java.lang.Object nodeForRow(int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this;
+        int row;
+        javax.swing.tree.TreePath treePath;
+        javax.swing.JTree $r0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        row := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: javax.swing.JTree mTree>;
+
+        treePath = virtualinvoke $r0.<javax.swing.JTree: javax.swing.tree.TreePath getPathForRow(int)>(row);
+
+        $r1 = virtualinvoke treePath.<javax.swing.tree.TreePath: java.lang.Object getLastPathComponent()>();
+
+        return $r1;
+    }
+
+    public java.lang.Object getValueAt(int, int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this;
+        int row, column;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModel $r0;
+        java.lang.Object $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        row := @parameter0: int;
+
+        column := @parameter1: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: com.puppycrawl.tools.checkstyle.gui.TreeTableModel mTreeTableModel>;
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: java.lang.Object nodeForRow(int)>(row);
+
+        $r2 = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModel: java.lang.Object getValueAt(java.lang.Object,int)>($r1, column);
+
+        return $r2;
+    }
+
+    public boolean isCellEditable(int, int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this;
+        int row, column;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModel $r0;
+        java.lang.Object $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        row := @parameter0: int;
+
+        column := @parameter1: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: com.puppycrawl.tools.checkstyle.gui.TreeTableModel mTreeTableModel>;
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: java.lang.Object nodeForRow(int)>(row);
+
+        $z0 = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModel: boolean isCellEditable(java.lang.Object,int)>($r1, column);
+
+        return $z0;
+    }
+
+    public void setValueAt(java.lang.Object, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this;
+        java.lang.Object value, $r1;
+        int row, column;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        value := @parameter0: java.lang.Object;
+
+        row := @parameter1: int;
+
+        column := @parameter2: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: com.puppycrawl.tools.checkstyle.gui.TreeTableModel mTreeTableModel>;
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: java.lang.Object nodeForRow(int)>(row);
+
+        interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModel: void setValueAt(java.lang.Object,java.lang.Object,int)>(value, $r1, column);
+
+        return;
+    }
+
+    protected void delayedFireTableDataChanged()
+    {
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter this;
+        com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$3 $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$3;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter$3: void <init>(com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter)>(this);
+
+        staticinvoke <javax.swing.SwingUtilities: void invokeLater(java.lang.Runnable)>($r0);
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter: long serialVersionUID> = 8269213416115369275L;
+
+        return;
+    }
+}

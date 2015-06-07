@@ -1,0 +1,5 @@
+public interface  com.puppycrawl.tools.checkstyle.PropertyResolver extends java.lang.Object
+{
+
+    public abstract java.lang.String resolve(java.lang.String) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+}

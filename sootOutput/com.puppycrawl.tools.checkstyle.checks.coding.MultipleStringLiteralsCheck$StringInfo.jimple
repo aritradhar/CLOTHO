@@ -1,0 +1,92 @@
+final class com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo extends java.lang.Object
+{
+    private final int mLine;
+    private final int mCol;
+
+    private void <init>(int, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo this;
+        int aLine, aCol;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo;
+
+        aLine := @parameter0: int;
+
+        aCol := @parameter1: int;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo: int mLine> = aLine;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo: int mCol> = aCol;
+
+        return;
+    }
+
+    private int getLine()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo: int mLine>;
+
+        return $i0;
+    }
+
+    private int getCol()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo: int mCol>;
+
+        return $i0;
+    }
+
+    void <init>(int, int, com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$1)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo this;
+        int x0, x1;
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$1 x2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo;
+
+        x0 := @parameter0: int;
+
+        x1 := @parameter1: int;
+
+        x2 := @parameter2: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo: void <init>(int,int)>(x0, x1);
+
+        return;
+    }
+
+    static int access$100(com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo x0;
+        int $i0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo;
+
+        $i0 = specialinvoke x0.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo: int getLine()>();
+
+        return $i0;
+    }
+
+    static int access$200(com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo x0;
+        int $i0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo;
+
+        $i0 = specialinvoke x0.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo: int getCol()>();
+
+        return $i0;
+    }
+}

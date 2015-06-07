@@ -1,0 +1,466 @@
+public abstract class com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel extends java.lang.Object implements com.puppycrawl.tools.checkstyle.gui.TreeTableModel
+{
+    private final java.lang.Object mRoot;
+    private final javax.swing.event.EventListenerList mListenerList;
+
+    public void <init>(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        java.lang.Object root;
+        javax.swing.event.EventListenerList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        root := @parameter0: java.lang.Object;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = new javax.swing.event.EventListenerList;
+
+        specialinvoke $r0.<javax.swing.event.EventListenerList: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: javax.swing.event.EventListenerList mListenerList> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: java.lang.Object mRoot> = root;
+
+        return;
+    }
+
+    public java.lang.Object getRoot()
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: java.lang.Object mRoot>;
+
+        return $r0;
+    }
+
+    public boolean isLeaf(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        java.lang.Object node;
+        int $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        node := @parameter0: java.lang.Object;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: int getChildCount(java.lang.Object)>(node);
+
+        if $i0 != 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public void valueForPathChanged(javax.swing.tree.TreePath, java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        javax.swing.tree.TreePath path;
+        java.lang.Object newValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        path := @parameter0: javax.swing.tree.TreePath;
+
+        newValue := @parameter1: java.lang.Object;
+
+        return;
+    }
+
+    public int getIndexOfChild(java.lang.Object, java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        java.lang.Object parent, child, $r0;
+        int i, $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        parent := @parameter0: java.lang.Object;
+
+        child := @parameter1: java.lang.Object;
+
+        i = 0;
+
+     label1:
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: int getChildCount(java.lang.Object)>(parent);
+
+        if i >= $i0 goto label3;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: java.lang.Object getChild(java.lang.Object,int)>(parent, i);
+
+        $z0 = virtualinvoke $r0.<java.lang.Object: boolean equals(java.lang.Object)>(child);
+
+        if $z0 == 0 goto label2;
+
+        return i;
+
+     label2:
+        i = i + 1;
+
+        goto label1;
+
+     label3:
+        return -1;
+    }
+
+    public void addTreeModelListener(javax.swing.event.TreeModelListener)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        javax.swing.event.TreeModelListener l;
+        javax.swing.event.EventListenerList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        l := @parameter0: javax.swing.event.TreeModelListener;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: javax.swing.event.EventListenerList mListenerList>;
+
+        virtualinvoke $r0.<javax.swing.event.EventListenerList: void add(java.lang.Class,java.util.EventListener)>(class "javax/swing/event/TreeModelListener", l);
+
+        return;
+    }
+
+    public void removeTreeModelListener(javax.swing.event.TreeModelListener)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        javax.swing.event.TreeModelListener l;
+        javax.swing.event.EventListenerList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        l := @parameter0: javax.swing.event.TreeModelListener;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: javax.swing.event.EventListenerList mListenerList>;
+
+        virtualinvoke $r0.<javax.swing.event.EventListenerList: void remove(java.lang.Class,java.util.EventListener)>(class "javax/swing/event/TreeModelListener", l);
+
+        return;
+    }
+
+    protected void fireTreeNodesChanged(java.lang.Object, java.lang.Object[], int[], java.lang.Object[])
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        java.lang.Object source, $r1, $r2;
+        java.lang.Object[] path, children, listeners;
+        int[] childIndices;
+        javax.swing.event.TreeModelEvent e, $r4;
+        int i, $i0, $i1;
+        javax.swing.event.EventListenerList $r0;
+        javax.swing.event.TreeModelListener $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        source := @parameter0: java.lang.Object;
+
+        path := @parameter1: java.lang.Object[];
+
+        childIndices := @parameter2: int[];
+
+        children := @parameter3: java.lang.Object[];
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: javax.swing.event.EventListenerList mListenerList>;
+
+        listeners = virtualinvoke $r0.<javax.swing.event.EventListenerList: java.lang.Object[] getListenerList()>();
+
+        e = null;
+
+        $i0 = lengthof listeners;
+
+        i = $i0 - 2;
+
+     label1:
+        if i < 0 goto label4;
+
+        $r1 = listeners[i];
+
+        if $r1 != class "javax/swing/event/TreeModelListener" goto label3;
+
+        if e != null goto label2;
+
+        $r4 = new javax.swing.event.TreeModelEvent;
+
+        specialinvoke $r4.<javax.swing.event.TreeModelEvent: void <init>(java.lang.Object,java.lang.Object[],int[],java.lang.Object[])>(source, path, childIndices, children);
+
+        e = $r4;
+
+     label2:
+        $i1 = i + 1;
+
+        $r2 = listeners[$i1];
+
+        $r3 = (javax.swing.event.TreeModelListener) $r2;
+
+        interfaceinvoke $r3.<javax.swing.event.TreeModelListener: void treeNodesChanged(javax.swing.event.TreeModelEvent)>(e);
+
+     label3:
+        i = i + -2;
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    protected void fireTreeNodesInserted(java.lang.Object, java.lang.Object[], int[], java.lang.Object[])
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        java.lang.Object source, $r1, $r2;
+        java.lang.Object[] path, children, listeners;
+        int[] childIndices;
+        javax.swing.event.TreeModelEvent e, $r4;
+        int i, $i0, $i1;
+        javax.swing.event.EventListenerList $r0;
+        javax.swing.event.TreeModelListener $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        source := @parameter0: java.lang.Object;
+
+        path := @parameter1: java.lang.Object[];
+
+        childIndices := @parameter2: int[];
+
+        children := @parameter3: java.lang.Object[];
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: javax.swing.event.EventListenerList mListenerList>;
+
+        listeners = virtualinvoke $r0.<javax.swing.event.EventListenerList: java.lang.Object[] getListenerList()>();
+
+        e = null;
+
+        $i0 = lengthof listeners;
+
+        i = $i0 - 2;
+
+     label1:
+        if i < 0 goto label4;
+
+        $r1 = listeners[i];
+
+        if $r1 != class "javax/swing/event/TreeModelListener" goto label3;
+
+        if e != null goto label2;
+
+        $r4 = new javax.swing.event.TreeModelEvent;
+
+        specialinvoke $r4.<javax.swing.event.TreeModelEvent: void <init>(java.lang.Object,java.lang.Object[],int[],java.lang.Object[])>(source, path, childIndices, children);
+
+        e = $r4;
+
+     label2:
+        $i1 = i + 1;
+
+        $r2 = listeners[$i1];
+
+        $r3 = (javax.swing.event.TreeModelListener) $r2;
+
+        interfaceinvoke $r3.<javax.swing.event.TreeModelListener: void treeNodesInserted(javax.swing.event.TreeModelEvent)>(e);
+
+     label3:
+        i = i + -2;
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    protected void fireTreeNodesRemoved(java.lang.Object, java.lang.Object[], int[], java.lang.Object[])
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        java.lang.Object source, $r1, $r2;
+        java.lang.Object[] path, children, listeners;
+        int[] childIndices;
+        javax.swing.event.TreeModelEvent e, $r4;
+        int i, $i0, $i1;
+        javax.swing.event.EventListenerList $r0;
+        javax.swing.event.TreeModelListener $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        source := @parameter0: java.lang.Object;
+
+        path := @parameter1: java.lang.Object[];
+
+        childIndices := @parameter2: int[];
+
+        children := @parameter3: java.lang.Object[];
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: javax.swing.event.EventListenerList mListenerList>;
+
+        listeners = virtualinvoke $r0.<javax.swing.event.EventListenerList: java.lang.Object[] getListenerList()>();
+
+        e = null;
+
+        $i0 = lengthof listeners;
+
+        i = $i0 - 2;
+
+     label1:
+        if i < 0 goto label4;
+
+        $r1 = listeners[i];
+
+        if $r1 != class "javax/swing/event/TreeModelListener" goto label3;
+
+        if e != null goto label2;
+
+        $r4 = new javax.swing.event.TreeModelEvent;
+
+        specialinvoke $r4.<javax.swing.event.TreeModelEvent: void <init>(java.lang.Object,java.lang.Object[],int[],java.lang.Object[])>(source, path, childIndices, children);
+
+        e = $r4;
+
+     label2:
+        $i1 = i + 1;
+
+        $r2 = listeners[$i1];
+
+        $r3 = (javax.swing.event.TreeModelListener) $r2;
+
+        interfaceinvoke $r3.<javax.swing.event.TreeModelListener: void treeNodesRemoved(javax.swing.event.TreeModelEvent)>(e);
+
+     label3:
+        i = i + -2;
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    protected void fireTreeStructureChanged(java.lang.Object, java.lang.Object[], int[], java.lang.Object[])
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        java.lang.Object source, $r1, $r2;
+        java.lang.Object[] path, children, listeners;
+        int[] childIndices;
+        javax.swing.event.TreeModelEvent e, $r4;
+        int i, $i0, $i1;
+        javax.swing.event.EventListenerList $r0;
+        javax.swing.event.TreeModelListener $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        source := @parameter0: java.lang.Object;
+
+        path := @parameter1: java.lang.Object[];
+
+        childIndices := @parameter2: int[];
+
+        children := @parameter3: java.lang.Object[];
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: javax.swing.event.EventListenerList mListenerList>;
+
+        listeners = virtualinvoke $r0.<javax.swing.event.EventListenerList: java.lang.Object[] getListenerList()>();
+
+        e = null;
+
+        $i0 = lengthof listeners;
+
+        i = $i0 - 2;
+
+     label1:
+        if i < 0 goto label4;
+
+        $r1 = listeners[i];
+
+        if $r1 != class "javax/swing/event/TreeModelListener" goto label3;
+
+        if e != null goto label2;
+
+        $r4 = new javax.swing.event.TreeModelEvent;
+
+        specialinvoke $r4.<javax.swing.event.TreeModelEvent: void <init>(java.lang.Object,java.lang.Object[],int[],java.lang.Object[])>(source, path, childIndices, children);
+
+        e = $r4;
+
+     label2:
+        $i1 = i + 1;
+
+        $r2 = listeners[$i1];
+
+        $r3 = (javax.swing.event.TreeModelListener) $r2;
+
+        interfaceinvoke $r3.<javax.swing.event.TreeModelListener: void treeStructureChanged(javax.swing.event.TreeModelEvent)>(e);
+
+     label3:
+        i = i + -2;
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    public java.lang.Class getColumnClass(int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        int column;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        column := @parameter0: int;
+
+        return class "java/lang/Object";
+    }
+
+    public boolean isCellEditable(java.lang.Object, int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        java.lang.Object node;
+        int column;
+        java.lang.Class $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        node := @parameter0: java.lang.Object;
+
+        column := @parameter1: int;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel: java.lang.Class getColumnClass(int)>(column);
+
+        if $r0 != class "com/puppycrawl/tools/checkstyle/gui/TreeTableModel" goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public void setValueAt(java.lang.Object, java.lang.Object, int)
+    {
+        com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel this;
+        java.lang.Object aValue, node;
+        int column;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.AbstractTreeTableModel;
+
+        aValue := @parameter0: java.lang.Object;
+
+        node := @parameter1: java.lang.Object;
+
+        column := @parameter2: int;
+
+        return;
+    }
+}

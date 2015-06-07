@@ -1,0 +1,300 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public final int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 10;
+
+        return $r0;
+    }
+
+    public final int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, assign, modifiers, type, ident, exprStart, $r0, $r1;
+        int primitiveType, $i0, $i1, $i2;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7;
+        java.lang.Object[] $r2, $r6, $r7, $r11;
+        java.lang.String $r3, $r4, $r5, $r8, $r9, $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean isLocalVariableDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        return;
+
+     label2:
+        assign = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(81);
+
+        if assign != null goto label3;
+
+        return;
+
+     label3:
+        modifiers = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        if modifiers == null goto label4;
+
+        $z7 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(40);
+
+        if $z7 == 0 goto label4;
+
+        return;
+
+     label4:
+        type = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        ident = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r0 = virtualinvoke assign.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        exprStart = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck: boolean isObjectType(com.puppycrawl.tools.checkstyle.api.DetailAST)>(type);
+
+        if $z2 == 0 goto label5;
+
+        $i2 = virtualinvoke exprStart.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 137 goto label5;
+
+        $r11 = newarray (java.lang.Object)[2];
+
+        $r10 = virtualinvoke ident.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r11[0] = $r10;
+
+        $r11[1] = "null";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(ident, "explicit.init", $r11);
+
+     label5:
+        $r1 = virtualinvoke type.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        primitiveType = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if primitiveType != 51 goto label6;
+
+        $i1 = virtualinvoke exprStart.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 136 goto label6;
+
+        $r7 = newarray (java.lang.Object)[2];
+
+        $r9 = virtualinvoke ident.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r7[0] = $r9;
+
+        $r7[1] = "false";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(ident, "explicit.init", $r7);
+
+     label6:
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck: boolean isNumericType(int)>(primitiveType);
+
+        if $z3 == 0 goto label7;
+
+        $z5 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck: boolean isZero(com.puppycrawl.tools.checkstyle.api.DetailAST)>(exprStart);
+
+        if $z5 == 0 goto label7;
+
+        $r6 = newarray (java.lang.Object)[2];
+
+        $r8 = virtualinvoke ident.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r6[0] = $r8;
+
+        $r6[1] = "0";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(ident, "explicit.init", $r6);
+
+     label7:
+        if primitiveType != 53 goto label9;
+
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck: boolean isZero(com.puppycrawl.tools.checkstyle.api.DetailAST)>(exprStart);
+
+        if $z4 != 0 goto label8;
+
+        $i0 = virtualinvoke exprStart.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 140 goto label9;
+
+        $r5 = "\'\\0\'";
+
+        $r4 = virtualinvoke exprStart.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z6 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r4);
+
+        if $z6 == 0 goto label9;
+
+     label8:
+        $r2 = newarray (java.lang.Object)[2];
+
+        $r3 = virtualinvoke ident.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r2[0] = $r3;
+
+        $r2[1] = "\\0";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(ident, "explicit.init", $r2);
+
+     label9:
+        return;
+    }
+
+    private boolean isObjectType(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aType, $r0;
+        int type;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck;
+
+        aType := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aType.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        type = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if type == 59 goto label1;
+
+        if type == 60 goto label1;
+
+        if type != 17 goto label2;
+
+     label1:
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+
+    private boolean isNumericType(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck this;
+        int aType;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck;
+
+        aType := @parameter0: int;
+
+        if aType == 52 goto label1;
+
+        if aType == 54 goto label1;
+
+        if aType == 55 goto label1;
+
+        if aType == 56 goto label1;
+
+        if aType == 57 goto label1;
+
+        if aType != 58 goto label2;
+
+     label1:
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+
+    private boolean isZero(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aExpr;
+        int type;
+        java.lang.String text;
+        double $d0;
+        byte $b0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck;
+
+        aExpr := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        type = virtualinvoke aExpr.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        tableswitch(type)
+        {
+            case 139: goto label1;
+            case 140: goto label4;
+            case 141: goto label4;
+            case 142: goto label1;
+            case 143: goto label1;
+            case 144: goto label1;
+            default: goto label4;
+        };
+
+     label1:
+        text = virtualinvoke aExpr.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $d0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: double parseFloat(java.lang.String,int)>(text, type);
+
+        $b0 = 0.0 cmpl $d0;
+
+        if $b0 != 0 goto label2;
+
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+
+     label4:
+        return 0;
+    }
+}

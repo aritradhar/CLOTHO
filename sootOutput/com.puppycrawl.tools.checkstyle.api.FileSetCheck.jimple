@@ -1,0 +1,15 @@
+public interface  com.puppycrawl.tools.checkstyle.api.FileSetCheck extends java.lang.Object implements com.puppycrawl.tools.checkstyle.api.Configurable, com.puppycrawl.tools.checkstyle.api.Contextualizable
+{
+
+    public abstract void setMessageDispatcher(com.puppycrawl.tools.checkstyle.api.MessageDispatcher);
+
+    public abstract void init();
+
+    public abstract void destroy();
+
+    public abstract void beginProcessing(java.lang.String);
+
+    public abstract java.util.TreeSet process(java.io.File, java.util.List);
+
+    public abstract void finishProcessing();
+}

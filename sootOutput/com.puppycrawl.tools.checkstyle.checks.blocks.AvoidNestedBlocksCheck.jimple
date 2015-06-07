@@ -1,0 +1,90 @@
+public class com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mAllowInSwitchCase;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 7;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, $r1;
+        int $i0, $i1, $i2, $i3, $i4;
+        boolean $z0;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i0 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 7 goto label2;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck: boolean mAllowInSwitchCase>;
+
+        if $z0 == 0 goto label1;
+
+        $r1 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i3 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 34 goto label1;
+
+        $i4 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getNumberOfChildren()>();
+
+        if $i4 != 1 goto label1;
+
+        return;
+
+     label1:
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i2, "block.nested", $r0);
+
+     label2:
+        return;
+    }
+
+    public void setAllowInSwitchCase(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck this;
+        boolean aAllowInSwitchCase;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck;
+
+        aAllowInSwitchCase := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck: boolean mAllowInSwitchCase> = aAllowInSwitchCase;
+
+        return;
+    }
+}

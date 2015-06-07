@@ -1,0 +1,418 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private int mDepth;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 176;
+
+        $r0[1] = 177;
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: int mDepth> = 0;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 176 goto label1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void processStart(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $i4 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: int mDepth>;
+
+        $i5 = $i4 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: int mDepth> = $i5;
+
+        goto label2;
+
+     label1:
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 177 goto label2;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void processEnd(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: int mDepth>;
+
+        $i3 = $i2 - 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: int mDepth> = $i3;
+
+     label2:
+        return;
+    }
+
+    private void processEnd(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r4, $r6, $r7, $r8, $r9, $r10;
+        java.lang.String line;
+        int before, after, $i0, $i1, $i2, $i3, $i4, $i5, $i8, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i19, $i20, charAfter;
+        char charAfter, $c6, $c7, $c9, $c18;
+        java.lang.String[] $r0;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        java.lang.Object[] $r1, $r2, $r3, $r5, $r11, $r12;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: java.lang.String[] getLines()>();
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = $i0 - 1;
+
+        line = $r0[$i1];
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        before = $i2 - 1;
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        after = $i3 + 1;
+
+        if 0 > before goto label1;
+
+        $c18 = virtualinvoke line.<java.lang.String: char charAt(int)>(before);
+
+        $z3 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c18);
+
+        if $z3 == 0 goto label1;
+
+        $z4 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: boolean whitespaceBefore(int,java.lang.String)>(before, line);
+
+        if $z4 != 0 goto label1;
+
+        $i20 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r12 = newarray (java.lang.Object)[1];
+
+        $r12[0] = ">";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i20, before, "ws.preceded", $r12);
+
+     label1:
+        $i4 = virtualinvoke line.<java.lang.String: int length()>();
+
+        if after >= $i4 goto label7;
+
+        $i5 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: int mDepth>;
+
+        if 1 != $i5 goto label4;
+
+        charAfter = virtualinvoke line.<java.lang.String: char charAt(int)>(after);
+
+        $r4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i14 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i14 != 167 goto label2;
+
+        $r7 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r8 = virtualinvoke $r7.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i16 = virtualinvoke $r8.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i16 != 60 goto label2;
+
+        $r6 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r9 = virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r10 = virtualinvoke $r9.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i17 = virtualinvoke $r10.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i17 != 27 goto label2;
+
+        $z2 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(charAfter);
+
+        if $z2 == 0 goto label3;
+
+        $i19 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r11 = newarray (java.lang.Object)[1];
+
+        $r11[0] = ">";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i19, after, "ws.followed", $r11);
+
+        goto label3;
+
+     label2:
+        $z1 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(charAfter);
+
+        if $z1 != 0 goto label3;
+
+        if 40 == charAfter goto label3;
+
+        if 41 == charAfter goto label3;
+
+        if 44 == charAfter goto label3;
+
+        if 91 == charAfter goto label3;
+
+        if 46 == charAfter goto label3;
+
+        $i15 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r5[0] = ">";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i15, after, "ws.illegalFollow", $r5);
+
+     label3:
+        goto label7;
+
+     label4:
+        charAfter = virtualinvoke line.<java.lang.String: int indexOf(int,int)>(38, after);
+
+        if charAfter == -1 goto label6;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: boolean whitespaceBetween(int,int,java.lang.String)>(after, charAfter, line);
+
+        if $z0 == 0 goto label6;
+
+        $i11 = charAfter - after;
+
+        if $i11 != 0 goto label5;
+
+        $i13 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r3[0] = "&";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i13, after, "ws.notPreceded", $r3);
+
+        goto label7;
+
+     label5:
+        $i10 = charAfter - after;
+
+        if $i10 == 1 goto label7;
+
+        $i12 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r2[0] = ">";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i12, after, "ws.followed", $r2);
+
+        goto label7;
+
+     label6:
+        $c6 = virtualinvoke line.<java.lang.String: char charAt(int)>(after);
+
+        if $c6 == 62 goto label7;
+
+        $c7 = virtualinvoke line.<java.lang.String: char charAt(int)>(after);
+
+        if $c7 == 44 goto label7;
+
+        $c9 = virtualinvoke line.<java.lang.String: char charAt(int)>(after);
+
+        if $c9 == 91 goto label7;
+
+        $i8 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r1[0] = ">";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i8, after, "ws.followed", $r1);
+
+     label7:
+        return;
+    }
+
+    private void processStart(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, grandparent;
+        java.lang.String line;
+        int before, after, $i0, $i1, $i2, $i3, $i4, $i6, $i8, $i9, $i10, $i12, $i13;
+        java.lang.String[] $r0;
+        char $c5, $c7, $c11;
+        boolean $z0, $z1, $z2, $z3;
+        java.lang.Object[] $r1, $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: java.lang.String[] getLines()>();
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = $i0 - 1;
+
+        line = $r0[$i1];
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        before = $i2 - 1;
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        after = $i3 + 1;
+
+        if 0 > before goto label3;
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        grandparent = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i8 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 169 != $i8 goto label2;
+
+        $i10 = virtualinvoke grandparent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 8 == $i10 goto label1;
+
+        $i13 = virtualinvoke grandparent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if 9 != $i13 goto label2;
+
+     label1:
+        $c11 = virtualinvoke line.<java.lang.String: char charAt(int)>(before);
+
+        $z3 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c11);
+
+        if $z3 != 0 goto label3;
+
+        $i12 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r3[0] = "<";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i12, before, "ws.notPreceded", $r3);
+
+        goto label3;
+
+     label2:
+        $c7 = virtualinvoke line.<java.lang.String: char charAt(int)>(before);
+
+        $z2 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c7);
+
+        if $z2 == 0 goto label3;
+
+        $z1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: boolean whitespaceBefore(int,java.lang.String)>(before, line);
+
+        if $z1 != 0 goto label3;
+
+        $i9 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r2[0] = "<";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i9, before, "ws.preceded", $r2);
+
+     label3:
+        $i4 = virtualinvoke line.<java.lang.String: int length()>();
+
+        if after >= $i4 goto label4;
+
+        $c5 = virtualinvoke line.<java.lang.String: char charAt(int)>(after);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c5);
+
+        if $z0 == 0 goto label4;
+
+        $i6 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r1[0] = "<";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i6, after, "ws.followed", $r1);
+
+     label4:
+        return;
+    }
+
+    private static boolean whitespaceBetween(int, int, java.lang.String)
+    {
+        int aFromIndex, aToIndex, i;
+        java.lang.String aLine;
+        char $c0;
+        boolean $z0;
+
+        aFromIndex := @parameter0: int;
+
+        aToIndex := @parameter1: int;
+
+        aLine := @parameter2: java.lang.String;
+
+        i = aFromIndex;
+
+     label1:
+        if i >= aToIndex goto label3;
+
+        $c0 = virtualinvoke aLine.<java.lang.String: char charAt(int)>(i);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c0);
+
+        if $z0 != 0 goto label2;
+
+        return 0;
+
+     label2:
+        i = i + 1;
+
+        goto label1;
+
+     label3:
+        return 1;
+    }
+}

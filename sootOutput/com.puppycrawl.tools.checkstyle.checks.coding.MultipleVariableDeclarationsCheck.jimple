@@ -1,0 +1,163 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 10;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nextNode, firstNode, lastNode, firstNextNode, $r0;
+        boolean isCommaSeparated, $z0;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        java.lang.Object[] $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        nextNode = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if nextNode == null goto label1;
+
+        $i5 = virtualinvoke nextNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i5 != 75 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        isCommaSeparated = $z0;
+
+        if nextNode != null goto label3;
+
+        return;
+
+     label3:
+        $i0 = virtualinvoke nextNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 75 goto label4;
+
+        $i6 = virtualinvoke nextNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i6 != 46 goto label5;
+
+     label4:
+        nextNode = virtualinvoke nextNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label5:
+        if nextNode == null goto label8;
+
+        $i1 = virtualinvoke nextNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 10 goto label8;
+
+        firstNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNode(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if isCommaSeparated == 0 goto label7;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i4 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i4 == 36 goto label6;
+
+        $r2 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(firstNode, "multiple.variable.declarations.comma", $r2);
+
+     label6:
+        return;
+
+     label7:
+        lastNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getLastNode(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        firstNextNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNode(com.puppycrawl.tools.checkstyle.api.DetailAST)>(nextNode);
+
+        $i2 = virtualinvoke firstNextNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke lastNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i2 != $i3 goto label8;
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(firstNode, "multiple.variable.declarations", $r1);
+
+     label8:
+        return;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.api.DetailAST getLastNode(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aNode, currentNode, child, newNode;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+
+        aNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        currentNode = aNode;
+
+        child = virtualinvoke aNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if child == null goto label4;
+
+        newNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck: com.puppycrawl.tools.checkstyle.api.DetailAST getLastNode(com.puppycrawl.tools.checkstyle.api.DetailAST)>(child);
+
+        $i0 = virtualinvoke newNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i0 > $i1 goto label2;
+
+        $i2 = virtualinvoke newNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if $i2 != $i3 goto label3;
+
+        $i4 = virtualinvoke newNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i5 = virtualinvoke currentNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        if $i4 <= $i5 goto label3;
+
+     label2:
+        currentNode = newNode;
+
+     label3:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label4:
+        return currentNode;
+    }
+}

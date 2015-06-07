@@ -1,0 +1,178 @@
+public class com.puppycrawl.tools.checkstyle.checks.indentation.LineSet extends java.lang.Object
+{
+    private final java.util.SortedMap mLines;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineSet this;
+        java.util.TreeMap $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineSet;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Maps: java.util.TreeMap newTreeMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineSet: java.util.SortedMap mLines> = $r0;
+
+        return;
+    }
+
+    public java.lang.Integer getStartColumn(java.lang.Integer)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineSet this;
+        java.lang.Integer aLineNum, $r2;
+        java.util.SortedMap $r0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineSet;
+
+        aLineNum := @parameter0: java.lang.Integer;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineSet: java.util.SortedMap mLines>;
+
+        $r1 = interfaceinvoke $r0.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(aLineNum);
+
+        $r2 = (java.lang.Integer) $r1;
+
+        return $r2;
+    }
+
+    public int firstLineCol()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineSet this;
+        java.lang.Object firstLineKey, $r2;
+        java.util.SortedMap $r0, $r1;
+        java.lang.Integer $r3;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineSet;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineSet: java.util.SortedMap mLines>;
+
+        firstLineKey = interfaceinvoke $r0.<java.util.SortedMap: java.lang.Object firstKey()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineSet: java.util.SortedMap mLines>;
+
+        $r2 = interfaceinvoke $r1.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(firstLineKey);
+
+        $r3 = (java.lang.Integer) $r2;
+
+        $i0 = virtualinvoke $r3.<java.lang.Integer: int intValue()>();
+
+        return $i0;
+    }
+
+    public int firstLine()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineSet this;
+        java.util.SortedMap $r0;
+        java.lang.Object $r1;
+        java.lang.Integer $r2;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineSet;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineSet: java.util.SortedMap mLines>;
+
+        $r1 = interfaceinvoke $r0.<java.util.SortedMap: java.lang.Object firstKey()>();
+
+        $r2 = (java.lang.Integer) $r1;
+
+        $i0 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        return $i0;
+    }
+
+    public int lastLine()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineSet this;
+        java.util.SortedMap $r0;
+        java.lang.Object $r1;
+        java.lang.Integer $r2;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineSet;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineSet: java.util.SortedMap mLines>;
+
+        $r1 = interfaceinvoke $r0.<java.util.SortedMap: java.lang.Object lastKey()>();
+
+        $r2 = (java.lang.Integer) $r1;
+
+        $i0 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        return $i0;
+    }
+
+    public void addLineAndCol(int, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineSet this;
+        int aLineNum, aCol;
+        java.util.SortedMap $r0;
+        java.lang.Integer $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineSet;
+
+        aLineNum := @parameter0: int;
+
+        aCol := @parameter1: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineSet: java.util.SortedMap mLines>;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aLineNum);
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(aCol);
+
+        interfaceinvoke $r0.<java.util.SortedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public boolean isEmpty()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineSet this;
+        java.util.SortedMap $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineSet;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineSet: java.util.SortedMap mLines>;
+
+        $z0 = interfaceinvoke $r0.<java.util.SortedMap: boolean isEmpty()>();
+
+        return $z0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.LineSet this;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3, $r4, $r5;
+        int $i0, $i1;
+        java.lang.String $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.LineSet;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("LineSet[ start=");
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineSet: int firstLine()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", last=");
+
+        $i1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineSet: int lastLine()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r6;
+    }
+}

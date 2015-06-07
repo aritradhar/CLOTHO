@@ -1,0 +1,303 @@
+public interface  com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener extends java.lang.Object implements org.antlr.v4.runtime.tree.ParseTreeListener
+{
+
+    public abstract void enterBody(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyContext);
+
+    public abstract void exitBody(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyContext);
+
+    public abstract void enterLiTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagOpenContext);
+
+    public abstract void exitLiTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagOpenContext);
+
+    public abstract void enterParagraph(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParagraphContext);
+
+    public abstract void exitParagraph(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParagraphContext);
+
+    public abstract void enterTr(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrContext);
+
+    public abstract void exitTr(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrContext);
+
+    public abstract void enterColgroup(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupContext);
+
+    public abstract void exitColgroup(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupContext);
+
+    public abstract void enterJavadoc(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocContext);
+
+    public abstract void exitJavadoc(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocContext);
+
+    public abstract void enterTfootTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagCloseContext);
+
+    public abstract void exitTfootTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagCloseContext);
+
+    public abstract void enterTd(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdContext);
+
+    public abstract void exitTd(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdContext);
+
+    public abstract void enterLinkTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LinkTagContext);
+
+    public abstract void exitLinkTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LinkTagContext);
+
+    public abstract void enterThTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagOpenContext);
+
+    public abstract void exitThTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagOpenContext);
+
+    public abstract void enterBasefrontTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BasefrontTagContext);
+
+    public abstract void exitBasefrontTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BasefrontTagContext);
+
+    public abstract void enterTh(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThContext);
+
+    public abstract void exitTh(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThContext);
+
+    public abstract void enterTdTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagCloseContext);
+
+    public abstract void exitTdTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagCloseContext);
+
+    public abstract void enterTbodyTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagCloseContext);
+
+    public abstract void exitTbodyTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagCloseContext);
+
+    public abstract void enterDescription(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DescriptionContext);
+
+    public abstract void exitDescription(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DescriptionContext);
+
+    public abstract void enterParameters(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParametersContext);
+
+    public abstract void exitParameters(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParametersContext);
+
+    public abstract void enterMetaTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$MetaTagContext);
+
+    public abstract void exitMetaTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$MetaTagContext);
+
+    public abstract void enterHead(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadContext);
+
+    public abstract void exitHead(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadContext);
+
+    public abstract void enterHtmlTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagOpenContext);
+
+    public abstract void exitHtmlTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagOpenContext);
+
+    public abstract void enterOption(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionContext);
+
+    public abstract void exitOption(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionContext);
+
+    public abstract void enterBodyTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagCloseContext);
+
+    public abstract void exitBodyTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagCloseContext);
+
+    public abstract void enterSingletonTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagContext);
+
+    public abstract void exitSingletonTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagContext);
+
+    public abstract void enterDdTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagCloseContext);
+
+    public abstract void exitDdTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagCloseContext);
+
+    public abstract void enterText(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TextContext);
+
+    public abstract void exitText(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TextContext);
+
+    public abstract void enterJavadocInlineTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocInlineTagContext);
+
+    public abstract void exitJavadocInlineTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocInlineTagContext);
+
+    public abstract void enterTrTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagOpenContext);
+
+    public abstract void exitTrTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagOpenContext);
+
+    public abstract void enterTfootTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagOpenContext);
+
+    public abstract void exitTfootTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootTagOpenContext);
+
+    public abstract void enterIsindexTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$IsindexTagContext);
+
+    public abstract void exitIsindexTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$IsindexTagContext);
+
+    public abstract void enterTheadTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagOpenContext);
+
+    public abstract void exitTheadTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagOpenContext);
+
+    public abstract void enterTdTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagOpenContext);
+
+    public abstract void exitTdTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TdTagOpenContext);
+
+    public abstract void enterPTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagCloseContext);
+
+    public abstract void exitPTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagCloseContext);
+
+    public abstract void enterOptionTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagOpenContext);
+
+    public abstract void exitOptionTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagOpenContext);
+
+    public abstract void enterTfoot(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootContext);
+
+    public abstract void exitTfoot(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TfootContext);
+
+    public abstract void enterLi(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiContext);
+
+    public abstract void exitLi(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiContext);
+
+    public abstract void enterHtmlElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext);
+
+    public abstract void exitHtmlElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext);
+
+    public abstract void enterHtmlComment(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlCommentContext);
+
+    public abstract void exitHtmlComment(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlCommentContext);
+
+    public abstract void enterDtTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagOpenContext);
+
+    public abstract void exitDtTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagOpenContext);
+
+    public abstract void enterLiTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagCloseContext);
+
+    public abstract void exitLiTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LiTagCloseContext);
+
+    public abstract void enterAreaTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AreaTagContext);
+
+    public abstract void exitAreaTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AreaTagContext);
+
+    public abstract void enterPTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagOpenContext);
+
+    public abstract void exitPTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$PTagOpenContext);
+
+    public abstract void enterInputTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$InputTagContext);
+
+    public abstract void exitInputTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$InputTagContext);
+
+    public abstract void enterTbodyTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagOpenContext);
+
+    public abstract void exitTbodyTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyTagOpenContext);
+
+    public abstract void enterJavadocTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext);
+
+    public abstract void exitJavadocTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext);
+
+    public abstract void enterHtmlTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagCloseContext);
+
+    public abstract void exitHtmlTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagCloseContext);
+
+    public abstract void enterDt(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtContext);
+
+    public abstract void exitDt(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtContext);
+
+    public abstract void enterHeadTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagOpenContext);
+
+    public abstract void exitHeadTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagOpenContext);
+
+    public abstract void enterHeadTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagCloseContext);
+
+    public abstract void exitHeadTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HeadTagCloseContext);
+
+    public abstract void enterThTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagCloseContext);
+
+    public abstract void exitThTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ThTagCloseContext);
+
+    public abstract void enterDdTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagOpenContext);
+
+    public abstract void exitDdTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdTagOpenContext);
+
+    public abstract void enterOptionTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagCloseContext);
+
+    public abstract void exitOptionTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$OptionTagCloseContext);
+
+    public abstract void enterAttribute(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AttributeContext);
+
+    public abstract void exitAttribute(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AttributeContext);
+
+    public abstract void enterDd(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdContext);
+
+    public abstract void exitDd(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DdContext);
+
+    public abstract void enterTrTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagCloseContext);
+
+    public abstract void exitTrTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TrTagCloseContext);
+
+    public abstract void enterSingletonTagName(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagNameContext);
+
+    public abstract void exitSingletonTagName(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagNameContext);
+
+    public abstract void enterDtTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagCloseContext);
+
+    public abstract void exitDtTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DtTagCloseContext);
+
+    public abstract void enterHtmlElementOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementOpenContext);
+
+    public abstract void exitHtmlElementOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementOpenContext);
+
+    public abstract void enterBrTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BrTagContext);
+
+    public abstract void exitBrTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BrTagContext);
+
+    public abstract void enterThead(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadContext);
+
+    public abstract void exitThead(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadContext);
+
+    public abstract void enterParamTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParamTagContext);
+
+    public abstract void exitParamTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParamTagContext);
+
+    public abstract void enterSingletonElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext);
+
+    public abstract void exitSingletonElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext);
+
+    public abstract void enterTheadTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagCloseContext);
+
+    public abstract void exitTheadTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TheadTagCloseContext);
+
+    public abstract void enterHtmlElementClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementCloseContext);
+
+    public abstract void exitHtmlElementClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementCloseContext);
+
+    public abstract void enterWrongSinletonTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$WrongSinletonTagContext);
+
+    public abstract void exitWrongSinletonTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$WrongSinletonTagContext);
+
+    public abstract void enterBodyTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagOpenContext);
+
+    public abstract void exitBodyTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BodyTagOpenContext);
+
+    public abstract void enterHtmlTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagContext);
+
+    public abstract void exitHtmlTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlTagContext);
+
+    public abstract void enterBaseTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BaseTagContext);
+
+    public abstract void exitBaseTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BaseTagContext);
+
+    public abstract void enterReference(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ReferenceContext);
+
+    public abstract void exitReference(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ReferenceContext);
+
+    public abstract void enterImgTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ImgTagContext);
+
+    public abstract void exitImgTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ImgTagContext);
+
+    public abstract void enterFrameTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$FrameTagContext);
+
+    public abstract void exitFrameTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$FrameTagContext);
+
+    public abstract void enterColgroupTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagCloseContext);
+
+    public abstract void exitColgroupTagClose(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagCloseContext);
+
+    public abstract void enterColgroupTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagOpenContext);
+
+    public abstract void exitColgroupTagOpen(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColgroupTagOpenContext);
+
+    public abstract void enterTbody(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyContext);
+
+    public abstract void exitTbody(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$TbodyContext);
+
+    public abstract void enterHtml(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlContext);
+
+    public abstract void exitHtml(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlContext);
+
+    public abstract void enterColTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColTagContext);
+
+    public abstract void exitColTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColTagContext);
+
+    public abstract void enterHrTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HrTagContext);
+
+    public abstract void exitHrTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HrTagContext);
+}

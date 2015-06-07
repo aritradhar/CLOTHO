@@ -1,0 +1,57 @@
+class com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener extends java.lang.Object implements com.puppycrawl.tools.checkstyle.gui.FileDrop$Listener
+{
+    private final javax.swing.JScrollPane mSp;
+    final com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0;
+
+    public void filesDropped(java.io.File[])
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener this;
+        java.io.File[] files;
+        java.io.File file;
+        int $i0;
+        javax.swing.JScrollPane $r0;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener;
+
+        files := @parameter0: java.io.File[];
+
+        if files == null goto label1;
+
+        $i0 = lengthof files;
+
+        if $i0 <= 0 goto label1;
+
+        file = files[0];
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener: javax.swing.JScrollPane mSp>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void openFile(java.io.File,java.awt.Component)>(file, $r0);
+
+     label1:
+        return;
+    }
+
+    public void <init>(com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel, javax.swing.JScrollPane)
+    {
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener this;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel l1;
+        javax.swing.JScrollPane aSp;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        aSp := @parameter1: javax.swing.JScrollPane;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener: com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel this$0> = l1;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel$FileDropListener: javax.swing.JScrollPane mSp> = aSp;
+
+        return;
+    }
+}

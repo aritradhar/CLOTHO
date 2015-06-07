@@ -1,0 +1,91 @@
+abstract class com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame extends java.lang.Object
+{
+    private final java.util.Set mVarNames;
+    private final com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame mParent;
+
+    protected void <init>(com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame this, aParent;
+        java.util.HashSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame;
+
+        aParent := @parameter0: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame mParent> = aParent;
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: java.util.Set mVarNames> = $r0;
+
+        return;
+    }
+
+    void addName(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame this;
+        java.lang.String aNameToAdd;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame;
+
+        aNameToAdd := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: java.util.Set mVarNames>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(aNameToAdd);
+
+        return;
+    }
+
+    boolean contains(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame this;
+        java.lang.String aNameToFind;
+        java.util.Set $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame;
+
+        aNameToFind := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: java.util.Set mVarNames>;
+
+        $z0 = interfaceinvoke $r0.<java.util.Set: boolean contains(java.lang.Object)>(aNameToFind);
+
+        return $z0;
+    }
+
+    com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame getIfContains(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame this, $r0, $r1, $r2;
+        java.lang.String aNameToFind;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame;
+
+        aNameToFind := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: boolean contains(java.lang.String)>(aNameToFind);
+
+        if $z0 == 0 goto label1;
+
+        return this;
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame mParent>;
+
+        if $r0 == null goto label2;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame mParent>;
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame: com.puppycrawl.tools.checkstyle.checks.DeclarationCollector$LexicalFrame getIfContains(java.lang.String)>(aNameToFind);
+
+        return $r2;
+
+     label2:
+        return null;
+    }
+}

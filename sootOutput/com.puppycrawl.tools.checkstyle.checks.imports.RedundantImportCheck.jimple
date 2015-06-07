@@ -1,0 +1,300 @@
+public class com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private java.lang.String mPkgName;
+    private final java.util.Set mImports;
+    private final java.util.Set mStaticImports;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck this;
+        java.util.HashSet $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.util.Set mImports> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.util.Set mStaticImports> = $r1;
+
+        return;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.Set $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.lang.String mPkgName> = null;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.util.Set mImports>;
+
+        interfaceinvoke $r0.<java.util.Set: void clear()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.util.Set mStaticImports>;
+
+        interfaceinvoke $r1.<java.util.Set: void clear()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 31;
+
+        $r0[1] = 156;
+
+        $r0[2] = 16;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0, $r1, $r25, $r26;
+        com.puppycrawl.tools.checkstyle.api.FullIdent imp, full, $r27;
+        java.util.Iterator i$;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11;
+        java.util.Set $r2, $r3, $r12, $r15;
+        boolean $z0, $z2, $z3, $z4, $z6, $z7;
+        java.lang.Object $r4, $r14;
+        java.lang.String $r5, $r6, $r9, $r10, $r11, $r13, $r16, $r17, $r19, $r22, $r23, $r28;
+        java.lang.Object[] $r7, $r18, $r21, $r24;
+        java.lang.Integer $r8, $r20;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 16 goto label01;
+
+        $r25 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $r26 = virtualinvoke $r25.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        $r27 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r26);
+
+        $r28 = virtualinvoke $r27.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.lang.String mPkgName> = $r28;
+
+        goto label11;
+
+     label01:
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 31 goto label07;
+
+        imp = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdentBelow(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $r10 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z3 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: boolean fromPackage(java.lang.String,java.lang.String)>($r10, "java.lang");
+
+        if $z3 == 0 goto label02;
+
+        $i11 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i10 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r24 = newarray (java.lang.Object)[1];
+
+        $r23 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r24[0] = $r23;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i11, $i10, "import.lang", $r24);
+
+        goto label03;
+
+     label02:
+        $r11 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r13 = this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.lang.String mPkgName>;
+
+        $z4 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: boolean fromPackage(java.lang.String,java.lang.String)>($r11, $r13);
+
+        if $z4 == 0 goto label03;
+
+        $i9 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i8 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r21 = newarray (java.lang.Object)[1];
+
+        $r22 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r21[0] = $r22;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i9, $i8, "import.same", $r21);
+
+     label03:
+        $r12 = this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.util.Set mImports>;
+
+        i$ = interfaceinvoke $r12.<java.util.Set: java.util.Iterator iterator()>();
+
+     label04:
+        $z6 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z6 == 0 goto label06;
+
+        $r14 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        full = (com.puppycrawl.tools.checkstyle.api.FullIdent) $r14;
+
+        $r16 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r17 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z7 = virtualinvoke $r16.<java.lang.String: boolean equals(java.lang.Object)>($r17);
+
+        if $z7 == 0 goto label05;
+
+        $i5 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i6 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r18 = newarray (java.lang.Object)[2];
+
+        $i7 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getLineNo()>();
+
+        $r20 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i7);
+
+        $r18[0] = $r20;
+
+        $r19 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r18[1] = $r19;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i5, $i6, "import.duplicate", $r18);
+
+     label05:
+        goto label04;
+
+     label06:
+        $r15 = this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.util.Set mImports>;
+
+        interfaceinvoke $r15.<java.util.Set: boolean add(java.lang.Object)>(imp);
+
+        goto label11;
+
+     label07:
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        imp = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r1);
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.util.Set mStaticImports>;
+
+        i$ = interfaceinvoke $r2.<java.util.Set: java.util.Iterator iterator()>();
+
+     label08:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label10;
+
+        $r4 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        full = (com.puppycrawl.tools.checkstyle.api.FullIdent) $r4;
+
+        $r6 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r5 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z2 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r5);
+
+        if $z2 == 0 goto label09;
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r7 = newarray (java.lang.Object)[2];
+
+        $i4 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getLineNo()>();
+
+        $r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+
+        $r7[0] = $r8;
+
+        $r9 = virtualinvoke imp.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r7[1] = $r9;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i2, $i3, "import.duplicate", $r7);
+
+     label09:
+        goto label08;
+
+     label10:
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck: java.util.Set mStaticImports>;
+
+        interfaceinvoke $r3.<java.util.Set: boolean add(java.lang.Object)>(imp);
+
+     label11:
+        return;
+    }
+
+    private static boolean fromPackage(java.lang.String, java.lang.String)
+    {
+        java.lang.String aImport, aPkg, front;
+        boolean retVal, $z0;
+        int index, $i0;
+
+        aImport := @parameter0: java.lang.String;
+
+        aPkg := @parameter1: java.lang.String;
+
+        retVal = 0;
+
+        if aPkg != null goto label3;
+
+        $i0 = virtualinvoke aImport.<java.lang.String: int indexOf(int)>(46);
+
+        if $i0 != -1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        retVal = $z0;
+
+        goto label4;
+
+     label3:
+        index = virtualinvoke aImport.<java.lang.String: int lastIndexOf(int)>(46);
+
+        if index == -1 goto label4;
+
+        front = virtualinvoke aImport.<java.lang.String: java.lang.String substring(int,int)>(0, index);
+
+        retVal = virtualinvoke front.<java.lang.String: boolean equals(java.lang.Object)>(aPkg);
+
+     label4:
+        return retVal;
+    }
+}

@@ -1,0 +1,472 @@
+public class com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext extends org.antlr.v4.runtime.ParserRuleContext
+{
+
+    public org.antlr.v4.runtime.tree.TerminalNode PARAMETER_NAME()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(25, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode SERIAL_DATA_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(15, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode CUSTOM_NAME()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(21, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode THROWS_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(17, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode STRING(int)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        int i;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        i := @parameter0: int;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(27, i);
+
+        return $r0;
+    }
+
+    public java.util.List WS()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: java.util.List getTokens(int)>(4);
+
+        return $r0;
+    }
+
+    public java.util.List htmlElement()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: java.util.List getRuleContexts(java.lang.Class)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$HtmlElementContext");
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode FIELD_NAME()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(39, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode WS(int)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        int i;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        i := @parameter0: int;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(4, i);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode SEE_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(12, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode VERSION_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(18, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode RETURN_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(11, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode EXCEPTION_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(9, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode NEWLINE(int)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        int i;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        i := @parameter0: int;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(6, i);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode PARAM_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(10, 0);
+
+        return $r0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DescriptionContext description()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DescriptionContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$DescriptionContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$DescriptionContext) $r0;
+
+        return $r1;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode SERIAL_FIELD_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(14, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode CLASS_NAME()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(43, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode DEPRECATED_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(8, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode AUTHOR_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(7, 0);
+
+        return $r0;
+    }
+
+    public java.util.List NEWLINE()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: java.util.List getTokens(int)>(6);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode LITERAL_EXCLUDE()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(23, 0);
+
+        return $r0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext htmlElement(int)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        int i;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        i := @parameter0: int;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$HtmlElementContext", i);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HtmlElementContext) $r0;
+
+        return $r1;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode LITERAL_INCLUDE()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(22, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode FIELD_TYPE()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(41, 0);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode SINCE_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(16, 0);
+
+        return $r0;
+    }
+
+    public java.util.List STRING()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: java.util.List getTokens(int)>(27);
+
+        return $r0;
+    }
+
+    public org.antlr.v4.runtime.tree.TerminalNode SERIAL_LITERAL()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.TerminalNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.tree.TerminalNode getToken(int,int)>(13, 0);
+
+        return $r0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ReferenceContext reference()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ReferenceContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ReferenceContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ReferenceContext) $r0;
+
+        return $r1;
+    }
+
+    public void <init>(org.antlr.v4.runtime.ParserRuleContext, int)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.ParserRuleContext parent;
+        int invokingState;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        parent := @parameter0: org.antlr.v4.runtime.ParserRuleContext;
+
+        invokingState := @parameter1: int;
+
+        specialinvoke this.<org.antlr.v4.runtime.ParserRuleContext: void <init>(org.antlr.v4.runtime.ParserRuleContext,int)>(parent, invokingState);
+
+        return;
+    }
+
+    public int getRuleIndex()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        return 71;
+    }
+
+    public void enterRule(org.antlr.v4.runtime.tree.ParseTreeListener)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.ParseTreeListener listener;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        listener := @parameter0: org.antlr.v4.runtime.tree.ParseTreeListener;
+
+        $z0 = listener instanceof com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener) listener;
+
+        interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener: void enterJavadocTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext)>(this);
+
+     label1:
+        return;
+    }
+
+    public void exitRule(org.antlr.v4.runtime.tree.ParseTreeListener)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.ParseTreeListener listener;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        listener := @parameter0: org.antlr.v4.runtime.tree.ParseTreeListener;
+
+        $z0 = listener instanceof com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener) listener;
+
+        interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener: void exitJavadocTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext)>(this);
+
+     label1:
+        return;
+    }
+
+    public java.lang.Object accept(org.antlr.v4.runtime.tree.ParseTreeVisitor)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext this;
+        org.antlr.v4.runtime.tree.ParseTreeVisitor visitor;
+        boolean $z0;
+        java.lang.Object $r0, $r2;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext;
+
+        visitor := @parameter0: org.antlr.v4.runtime.tree.ParseTreeVisitor;
+
+        $z0 = visitor instanceof com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor;
+
+        if $z0 == 0 goto label1;
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor) visitor;
+
+        $r2 = interfaceinvoke $r1.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor: java.lang.Object visitJavadocTag(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$JavadocTagContext)>(this);
+
+        return $r2;
+
+     label1:
+        $r0 = interfaceinvoke visitor.<org.antlr.v4.runtime.tree.ParseTreeVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(this);
+
+        return $r0;
+    }
+}

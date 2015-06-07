@@ -1,0 +1,820 @@
+public final class com.puppycrawl.tools.checkstyle.api.TokenTypes extends java.lang.Object
+{
+    public static final int EOF;
+    public static final int MODIFIERS;
+    public static final int OBJBLOCK;
+    public static final int SLIST;
+    public static final int CTOR_DEF;
+    public static final int METHOD_DEF;
+    public static final int VARIABLE_DEF;
+    public static final int INSTANCE_INIT;
+    public static final int STATIC_INIT;
+    public static final int TYPE;
+    public static final int CLASS_DEF;
+    public static final int INTERFACE_DEF;
+    public static final int PACKAGE_DEF;
+    public static final int ARRAY_DECLARATOR;
+    public static final int EXTENDS_CLAUSE;
+    public static final int IMPLEMENTS_CLAUSE;
+    public static final int PARAMETERS;
+    public static final int PARAMETER_DEF;
+    public static final int LABELED_STAT;
+    public static final int TYPECAST;
+    public static final int INDEX_OP;
+    public static final int POST_INC;
+    public static final int POST_DEC;
+    public static final int METHOD_CALL;
+    public static final int METHOD_REF;
+    public static final int EXPR;
+    public static final int ARRAY_INIT;
+    public static final int IMPORT;
+    public static final int UNARY_MINUS;
+    public static final int UNARY_PLUS;
+    public static final int CASE_GROUP;
+    public static final int ELIST;
+    public static final int FOR_INIT;
+    public static final int FOR_CONDITION;
+    public static final int FOR_ITERATOR;
+    public static final int EMPTY_STAT;
+    public static final int FINAL;
+    public static final int ABSTRACT;
+    public static final int STRICTFP;
+    public static final int SUPER_CTOR_CALL;
+    public static final int CTOR_CALL;
+    public static final int SEMI;
+    public static final int RBRACK;
+    public static final int LITERAL_VOID;
+    public static final int LITERAL_BOOLEAN;
+    public static final int LITERAL_BYTE;
+    public static final int LITERAL_CHAR;
+    public static final int LITERAL_SHORT;
+    public static final int LITERAL_INT;
+    public static final int LITERAL_FLOAT;
+    public static final int LITERAL_LONG;
+    public static final int LITERAL_DOUBLE;
+    public static final int IDENT;
+    public static final int DOT;
+    public static final int STAR;
+    public static final int LITERAL_PRIVATE;
+    public static final int LITERAL_PUBLIC;
+    public static final int LITERAL_PROTECTED;
+    public static final int LITERAL_STATIC;
+    public static final int LITERAL_TRANSIENT;
+    public static final int LITERAL_NATIVE;
+    public static final int LITERAL_SYNCHRONIZED;
+    public static final int LITERAL_VOLATILE;
+    public static final int LITERAL_CLASS;
+    public static final int LITERAL_INTERFACE;
+    public static final int LCURLY;
+    public static final int RCURLY;
+    public static final int COMMA;
+    public static final int LPAREN;
+    public static final int RPAREN;
+    public static final int LITERAL_THIS;
+    public static final int LITERAL_SUPER;
+    public static final int ASSIGN;
+    public static final int LITERAL_THROWS;
+    public static final int COLON;
+    public static final int DOUBLE_COLON;
+    public static final int LITERAL_IF;
+    public static final int LITERAL_FOR;
+    public static final int LITERAL_WHILE;
+    public static final int LITERAL_DO;
+    public static final int DO_WHILE;
+    public static final int LITERAL_BREAK;
+    public static final int LITERAL_CONTINUE;
+    public static final int LITERAL_RETURN;
+    public static final int LITERAL_SWITCH;
+    public static final int LITERAL_THROW;
+    public static final int LITERAL_ELSE;
+    public static final int LITERAL_CASE;
+    public static final int LITERAL_DEFAULT;
+    public static final int LITERAL_TRY;
+    public static final int RESOURCE_SPECIFICATION;
+    public static final int RESOURCES;
+    public static final int RESOURCE;
+    public static final int LITERAL_CATCH;
+    public static final int LITERAL_FINALLY;
+    public static final int PLUS_ASSIGN;
+    public static final int MINUS_ASSIGN;
+    public static final int STAR_ASSIGN;
+    public static final int DIV_ASSIGN;
+    public static final int MOD_ASSIGN;
+    public static final int SR_ASSIGN;
+    public static final int BSR_ASSIGN;
+    public static final int SL_ASSIGN;
+    public static final int BAND_ASSIGN;
+    public static final int BXOR_ASSIGN;
+    public static final int BOR_ASSIGN;
+    public static final int QUESTION;
+    public static final int LOR;
+    public static final int LAND;
+    public static final int BOR;
+    public static final int BXOR;
+    public static final int BAND;
+    public static final int NOT_EQUAL;
+    public static final int EQUAL;
+    public static final int LT;
+    public static final int GT;
+    public static final int LE;
+    public static final int GE;
+    public static final int LITERAL_INSTANCEOF;
+    public static final int SL;
+    public static final int SR;
+    public static final int BSR;
+    public static final int PLUS;
+    public static final int MINUS;
+    public static final int DIV;
+    public static final int MOD;
+    public static final int INC;
+    public static final int DEC;
+    public static final int BNOT;
+    public static final int LNOT;
+    public static final int LITERAL_TRUE;
+    public static final int LITERAL_FALSE;
+    public static final int LITERAL_NULL;
+    public static final int LITERAL_NEW;
+    public static final int NUM_INT;
+    public static final int CHAR_LITERAL;
+    public static final int STRING_LITERAL;
+    public static final int NUM_FLOAT;
+    public static final int NUM_LONG;
+    public static final int NUM_DOUBLE;
+    public static final int LITERAL_ASSERT;
+    public static final int STATIC_IMPORT;
+    public static final int ENUM_DEF;
+    public static final int ENUM;
+    public static final int ENUM_CONSTANT_DEF;
+    public static final int FOR_EACH_CLAUSE;
+    public static final int ANNOTATION_DEF;
+    public static final int ANNOTATION_FIELD_DEF;
+    public static final int ANNOTATIONS;
+    public static final int ANNOTATION;
+    public static final int ANNOTATION_MEMBER_VALUE_PAIR;
+    public static final int ANNOTATION_ARRAY_INIT;
+    public static final int TYPE_PARAMETERS;
+    public static final int TYPE_PARAMETER;
+    public static final int TYPE_ARGUMENTS;
+    public static final int TYPE_ARGUMENT;
+    public static final int WILDCARD_TYPE;
+    public static final int TYPE_UPPER_BOUNDS;
+    public static final int TYPE_LOWER_BOUNDS;
+    public static final int AT;
+    public static final int ELLIPSIS;
+    public static final int TYPE_EXTENSION_AND;
+    public static final int GENERIC_START;
+    public static final int GENERIC_END;
+    public static final int LAMBDA;
+    public static final int SINGLE_LINE_COMMENT;
+    public static final int BLOCK_COMMENT_BEGIN;
+    public static final int BLOCK_COMMENT_END;
+    public static final int COMMENT_CONTENT;
+    private static final com.google.common.collect.ImmutableMap TOKEN_NAME_TO_VALUE;
+    private static final java.lang.String[] TOKEN_VALUE_TO_NAME;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.TokenTypes this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.lang.String getTokenName(int)
+    {
+        int aID, $i0, $i1;
+        java.lang.String name, $r6, $r11;
+        java.lang.String[] $r0, $r1;
+        java.lang.IllegalArgumentException $r2, $r7;
+        java.lang.StringBuilder $r3, $r4, $r5, $r8, $r9, $r10;
+
+        aID := @parameter0: int;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String[] TOKEN_VALUE_TO_NAME>;
+
+        $i0 = lengthof $r0;
+
+        $i1 = $i0 - 1;
+
+        if aID <= $i1 goto label1;
+
+        $r7 = new java.lang.IllegalArgumentException;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("given id ");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(aID);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r7.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r11);
+
+        throw $r7;
+
+     label1:
+        $r1 = <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String[] TOKEN_VALUE_TO_NAME>;
+
+        name = $r1[aID];
+
+        if name != null goto label2;
+
+        $r2 = new java.lang.IllegalArgumentException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("given id ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(aID);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r6);
+
+        throw $r2;
+
+     label2:
+        return name;
+    }
+
+    public static int getTokenId(java.lang.String)
+    {
+        java.lang.String aName, $r6;
+        java.lang.Integer id;
+        com.google.common.collect.ImmutableMap $r0;
+        java.lang.Object $r1;
+        int $i0;
+        java.lang.IllegalArgumentException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        aName := @parameter0: java.lang.String;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.TokenTypes: com.google.common.collect.ImmutableMap TOKEN_NAME_TO_VALUE>;
+
+        $r1 = virtualinvoke $r0.<com.google.common.collect.ImmutableMap: java.lang.Object get(java.lang.Object)>(aName);
+
+        id = (java.lang.Integer) $r1;
+
+        if id != null goto label1;
+
+        $r2 = new java.lang.IllegalArgumentException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("given name ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aName);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r6);
+
+        throw $r2;
+
+     label1:
+        $i0 = virtualinvoke id.<java.lang.Integer: int intValue()>();
+
+        return $i0;
+    }
+
+    public static java.lang.String getShortDescription(java.lang.String)
+    {
+        java.lang.String aName, $r1, $r6;
+        java.util.ResourceBundle bundle;
+        com.google.common.collect.ImmutableMap $r0;
+        boolean $z0;
+        java.lang.IllegalArgumentException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        aName := @parameter0: java.lang.String;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.TokenTypes: com.google.common.collect.ImmutableMap TOKEN_NAME_TO_VALUE>;
+
+        $z0 = virtualinvoke $r0.<com.google.common.collect.ImmutableMap: boolean containsKey(java.lang.Object)>(aName);
+
+        if $z0 != 0 goto label1;
+
+        $r2 = new java.lang.IllegalArgumentException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("given name ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aName);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r6);
+
+        throw $r2;
+
+     label1:
+        bundle = staticinvoke <java.util.ResourceBundle: java.util.ResourceBundle getBundle(java.lang.String)>("com.puppycrawl.tools.checkstyle.api.tokentypes");
+
+        $r1 = virtualinvoke bundle.<java.util.ResourceBundle: java.lang.String getString(java.lang.String)>(aName);
+
+        return $r1;
+    }
+
+    public static boolean isCommentType(int)
+    {
+        int aType;
+        boolean $z0;
+
+        aType := @parameter0: int;
+
+        if aType == 151 goto label1;
+
+        if aType == 152 goto label1;
+
+        if aType == 153 goto label1;
+
+        if aType != 154 goto label2;
+
+     label1:
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        return $z0;
+    }
+
+    public static boolean isCommentType(java.lang.String)
+    {
+        java.lang.String aType;
+        int $i0;
+        boolean $z0;
+
+        aType := @parameter0: java.lang.String;
+
+        $i0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: int getTokenId(java.lang.String)>(aType);
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: boolean isCommentType(int)>($i0);
+
+        return $z0;
+    }
+
+    static void <clinit>()
+    {
+        com.google.common.collect.ImmutableMap$Builder builder;
+        java.lang.reflect.Field[] fields, arr$;
+        java.lang.String[] tempTokenValueToName, temp;
+        int len$, i$, tokenValue, $i0, $i1, $i2, $i3;
+        java.lang.reflect.Field f;
+        java.lang.String name;
+        java.lang.Class $r0, $r2, $r3;
+        com.google.common.collect.ImmutableMap $r1;
+        java.lang.Integer $r5;
+        java.lang.IllegalAccessException $r6, tokenValue;
+        java.lang.IllegalArgumentException $r7, tokenValue;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int COMMENT_CONTENT> = 154;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BLOCK_COMMENT_END> = 153;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BLOCK_COMMENT_BEGIN> = 152;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int SINGLE_LINE_COMMENT> = 151;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LAMBDA> = 183;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int GENERIC_END> = 177;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int GENERIC_START> = 176;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int TYPE_EXTENSION_AND> = 178;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ELLIPSIS> = 175;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int AT> = 174;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int TYPE_LOWER_BOUNDS> = 173;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int TYPE_UPPER_BOUNDS> = 172;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int WILDCARD_TYPE> = 171;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int TYPE_ARGUMENT> = 168;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int TYPE_ARGUMENTS> = 167;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int TYPE_PARAMETER> = 170;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int TYPE_PARAMETERS> = 169;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ANNOTATION_ARRAY_INIT> = 166;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ANNOTATION_MEMBER_VALUE_PAIR> = 164;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ANNOTATION> = 163;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ANNOTATIONS> = 162;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ANNOTATION_FIELD_DEF> = 165;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ANNOTATION_DEF> = 161;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int FOR_EACH_CLAUSE> = 160;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ENUM_CONSTANT_DEF> = 159;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ENUM> = 157;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ENUM_DEF> = 158;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int STATIC_IMPORT> = 156;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_ASSERT> = 155;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int NUM_DOUBLE> = 144;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int NUM_LONG> = 143;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int NUM_FLOAT> = 142;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int STRING_LITERAL> = 141;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int CHAR_LITERAL> = 140;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int NUM_INT> = 139;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_NEW> = 138;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_NULL> = 137;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_FALSE> = 136;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_TRUE> = 135;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LNOT> = 134;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BNOT> = 133;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int DEC> = 132;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int INC> = 131;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int MOD> = 130;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int DIV> = 129;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int MINUS> = 128;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int PLUS> = 127;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BSR> = 126;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int SR> = 125;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int SL> = 124;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_INSTANCEOF> = 123;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int GE> = 122;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LE> = 121;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int GT> = 120;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LT> = 119;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int EQUAL> = 118;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int NOT_EQUAL> = 117;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BAND> = 116;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BXOR> = 115;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BOR> = 114;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LAND> = 113;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LOR> = 112;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int QUESTION> = 111;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BOR_ASSIGN> = 110;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BXOR_ASSIGN> = 109;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BAND_ASSIGN> = 108;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int SL_ASSIGN> = 107;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int BSR_ASSIGN> = 106;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int SR_ASSIGN> = 105;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int MOD_ASSIGN> = 104;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int DIV_ASSIGN> = 103;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int STAR_ASSIGN> = 102;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int MINUS_ASSIGN> = 101;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int PLUS_ASSIGN> = 100;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_FINALLY> = 99;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_CATCH> = 98;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int RESOURCE> = 182;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int RESOURCES> = 181;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int RESOURCE_SPECIFICATION> = 180;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_TRY> = 97;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_DEFAULT> = 96;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_CASE> = 95;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_ELSE> = 94;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_THROW> = 92;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_SWITCH> = 91;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_RETURN> = 90;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_CONTINUE> = 89;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_BREAK> = 88;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int DO_WHILE> = 179;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_DO> = 87;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_WHILE> = 86;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_FOR> = 93;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_IF> = 85;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int DOUBLE_COLON> = 84;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int COLON> = 83;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_THROWS> = 82;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ASSIGN> = 81;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_SUPER> = 80;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_THIS> = 79;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int RPAREN> = 78;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LPAREN> = 77;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int COMMA> = 75;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int RCURLY> = 74;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LCURLY> = 73;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_INTERFACE> = 72;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_CLASS> = 70;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_VOLATILE> = 69;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_SYNCHRONIZED> = 68;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_NATIVE> = 67;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_TRANSIENT> = 66;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_STATIC> = 65;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_PROTECTED> = 64;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_PUBLIC> = 63;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_PRIVATE> = 62;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int STAR> = 61;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int DOT> = 60;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int IDENT> = 59;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_DOUBLE> = 58;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_LONG> = 57;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_FLOAT> = 56;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_INT> = 55;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_SHORT> = 54;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_CHAR> = 53;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_BYTE> = 52;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_BOOLEAN> = 51;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LITERAL_VOID> = 50;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int RBRACK> = 49;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int SEMI> = 46;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int CTOR_CALL> = 44;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int SUPER_CTOR_CALL> = 43;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int STRICTFP> = 42;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ABSTRACT> = 41;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int FINAL> = 40;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int EMPTY_STAT> = 39;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int FOR_ITERATOR> = 38;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int FOR_CONDITION> = 37;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int FOR_INIT> = 36;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ELIST> = 35;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int CASE_GROUP> = 34;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int UNARY_PLUS> = 33;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int UNARY_MINUS> = 32;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int IMPORT> = 31;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ARRAY_INIT> = 30;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int EXPR> = 29;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int METHOD_REF> = 28;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int METHOD_CALL> = 27;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int POST_DEC> = 26;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int POST_INC> = 25;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int INDEX_OP> = 24;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int TYPECAST> = 23;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int LABELED_STAT> = 22;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int PARAMETER_DEF> = 21;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int PARAMETERS> = 20;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int IMPLEMENTS_CLAUSE> = 19;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int EXTENDS_CLAUSE> = 18;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int ARRAY_DECLARATOR> = 17;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int PACKAGE_DEF> = 16;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int INTERFACE_DEF> = 15;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int CLASS_DEF> = 14;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int TYPE> = 13;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int STATIC_INIT> = 12;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int INSTANCE_INIT> = 11;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int VARIABLE_DEF> = 10;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int METHOD_DEF> = 9;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int CTOR_DEF> = 8;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int SLIST> = 7;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int OBJBLOCK> = 6;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int MODIFIERS> = 5;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: int EOF> = 1;
+
+        builder = staticinvoke <com.google.common.collect.ImmutableMap: com.google.common.collect.ImmutableMap$Builder builder()>();
+
+        $r0 = class "com/puppycrawl/tools/checkstyle/api/TokenTypes";
+
+        fields = virtualinvoke $r0.<java.lang.Class: java.lang.reflect.Field[] getDeclaredFields()>();
+
+        tempTokenValueToName = newarray (java.lang.String)[0];
+
+        arr$ = fields;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label9;
+
+        f = arr$[i$];
+
+        $r2 = virtualinvoke f.<java.lang.reflect.Field: java.lang.Class getType()>();
+
+        $r3 = <java.lang.Integer: java.lang.Class TYPE>;
+
+        if $r2 == $r3 goto label2;
+
+        goto label8;
+
+     label2:
+        name = virtualinvoke f.<java.lang.reflect.Field: java.lang.String getName()>();
+
+     label3:
+        tokenValue = virtualinvoke f.<java.lang.reflect.Field: int getInt(java.lang.Object)>(name);
+
+        $r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(tokenValue);
+
+        virtualinvoke builder.<com.google.common.collect.ImmutableMap$Builder: com.google.common.collect.ImmutableMap$Builder put(java.lang.Object,java.lang.Object)>(name, $r5);
+
+        $i1 = lengthof tempTokenValueToName;
+
+        $i0 = $i1 - 1;
+
+        if tokenValue <= $i0 goto label4;
+
+        $i3 = tokenValue + 1;
+
+        temp = newarray (java.lang.String)[$i3];
+
+        $i2 = lengthof tempTokenValueToName;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(tempTokenValueToName, 0, temp, 0, $i2);
+
+        tempTokenValueToName = temp;
+
+     label4:
+        tempTokenValueToName[tokenValue] = name;
+
+     label5:
+        goto label8;
+
+     label6:
+        $r7 := @caughtexception;
+
+        tokenValue = $r7;
+
+        virtualinvoke tokenValue.<java.lang.IllegalArgumentException: void printStackTrace()>();
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+        goto label8;
+
+     label7:
+        $r6 := @caughtexception;
+
+        tokenValue = $r6;
+
+        virtualinvoke tokenValue.<java.lang.IllegalAccessException: void printStackTrace()>();
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label8:
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label9:
+        $r1 = virtualinvoke builder.<com.google.common.collect.ImmutableMap$Builder: com.google.common.collect.ImmutableMap build()>();
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: com.google.common.collect.ImmutableMap TOKEN_NAME_TO_VALUE> = $r1;
+
+        <com.puppycrawl.tools.checkstyle.api.TokenTypes: java.lang.String[] TOKEN_VALUE_TO_NAME> = tempTokenValueToName;
+
+        return;
+
+        catch java.lang.IllegalArgumentException from label3 to label5 with label6;
+        catch java.lang.IllegalAccessException from label3 to label5 with label7;
+    }
+}

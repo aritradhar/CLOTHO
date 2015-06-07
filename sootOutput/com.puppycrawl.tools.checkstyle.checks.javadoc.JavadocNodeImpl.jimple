@@ -1,0 +1,241 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl extends java.lang.Object implements com.puppycrawl.tools.checkstyle.api.DetailNode
+{
+    private int mIndex;
+    private int mType;
+    private java.lang.String mText;
+    private int mLineNumber;
+    private int mColumnNumber;
+    private com.puppycrawl.tools.checkstyle.api.DetailNode[] mChildren;
+    private com.puppycrawl.tools.checkstyle.api.DetailNode mParent;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public int getType()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int mType>;
+
+        return $i0;
+    }
+
+    public java.lang.String getText()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: java.lang.String mText>;
+
+        return $r0;
+    }
+
+    public int getLineNumber()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int mLineNumber>;
+
+        return $i0;
+    }
+
+    public int getColumnNumber()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int mColumnNumber>;
+
+        return $i0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: com.puppycrawl.tools.checkstyle.api.DetailNode[] mChildren>;
+
+        return $r0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailNode getParent()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: com.puppycrawl.tools.checkstyle.api.DetailNode mParent>;
+
+        return $r0;
+    }
+
+    public int getIndex()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int mIndex>;
+
+        return $i0;
+    }
+
+    public void setType(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        int aType;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        aType := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int mType> = aType;
+
+        return;
+    }
+
+    public void setText(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        java.lang.String aText;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        aText := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: java.lang.String mText> = aText;
+
+        return;
+    }
+
+    public void setLineNumber(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        int aLineNumber;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        aLineNumber := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int mLineNumber> = aLineNumber;
+
+        return;
+    }
+
+    public void setColumnNumber(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        int aColumnNumber;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        aColumnNumber := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int mColumnNumber> = aColumnNumber;
+
+        return;
+    }
+
+    public void setChildren(com.puppycrawl.tools.checkstyle.api.DetailNode[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode[] aChildren;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        aChildren := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode[];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: com.puppycrawl.tools.checkstyle.api.DetailNode[] mChildren> = aChildren;
+
+        return;
+    }
+
+    public void setParent(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aParent;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        aParent := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: com.puppycrawl.tools.checkstyle.api.DetailNode mParent> = aParent;
+
+        return;
+    }
+
+    public void setIndex(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        int aIndex;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        aIndex := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int mIndex> = aIndex;
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl this;
+        java.lang.StringBuilder $r0, $r2, $r3, $r4, $r5, $r6, $r7;
+        int $i0, $i1, $i2;
+        java.lang.String $r1, $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int getType()>();
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: java.lang.String getTokenName(int)>($i0);
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[");
+
+        $i1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int getLineNumber()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("x");
+
+        $i2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl: int getColumnNumber()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r8;
+    }
+}

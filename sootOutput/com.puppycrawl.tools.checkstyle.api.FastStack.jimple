@@ -1,0 +1,234 @@
+public class com.puppycrawl.tools.checkstyle.api.FastStack extends java.lang.Object implements java.lang.Iterable
+{
+    private final java.util.List mEntries;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack this;
+        java.util.ArrayList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries> = $r0;
+
+        return;
+    }
+
+    public void push(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack this;
+        java.lang.Object aElement;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        aElement := @parameter0: java.lang.Object;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>(aElement);
+
+        return;
+    }
+
+    public boolean isEmpty()
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack this;
+        java.util.List $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $z0 = interfaceinvoke $r0.<java.util.List: boolean isEmpty()>();
+
+        return $z0;
+    }
+
+    public int size()
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack this;
+        java.util.List $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $i0 = interfaceinvoke $r0.<java.util.List: int size()>();
+
+        return $i0;
+    }
+
+    public java.lang.Object peek()
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack this;
+        java.util.List $r0, $r1, $r2;
+        boolean $z0;
+        int $i0, $i1;
+        java.lang.Object $r3;
+        java.lang.IllegalStateException $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $z0 = interfaceinvoke $r0.<java.util.List: boolean isEmpty()>();
+
+        if $z0 == 0 goto label1;
+
+        $r4 = new java.lang.IllegalStateException;
+
+        specialinvoke $r4.<java.lang.IllegalStateException: void <init>(java.lang.String)>("FastStack is empty");
+
+        throw $r4;
+
+     label1:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $i0 = interfaceinvoke $r1.<java.util.List: int size()>();
+
+        $i1 = $i0 - 1;
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>($i1);
+
+        return $r3;
+    }
+
+    public java.lang.Object pop()
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack this;
+        java.util.List $r0, $r1, $r2;
+        boolean $z0;
+        int $i0, $i1;
+        java.lang.Object $r3;
+        java.lang.IllegalStateException $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $z0 = interfaceinvoke $r0.<java.util.List: boolean isEmpty()>();
+
+        if $z0 == 0 goto label1;
+
+        $r4 = new java.lang.IllegalStateException;
+
+        specialinvoke $r4.<java.lang.IllegalStateException: void <init>(java.lang.String)>("FastStack is empty");
+
+        throw $r4;
+
+     label1:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $i0 = interfaceinvoke $r1.<java.util.List: int size()>();
+
+        $i1 = $i0 - 1;
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object remove(int)>($i1);
+
+        return $r3;
+    }
+
+    public java.lang.Object peek(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack this;
+        int aIndex, $i0;
+        java.lang.IllegalArgumentException $r0;
+        java.util.List $r1, $r2;
+        java.lang.Object $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        aIndex := @parameter0: int;
+
+        if aIndex < 0 goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $i0 = interfaceinvoke $r1.<java.util.List: int size()>();
+
+        if aIndex < $i0 goto label2;
+
+     label1:
+        $r0 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("index out of range.");
+
+        throw $r0;
+
+     label2:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(aIndex);
+
+        return $r3;
+    }
+
+    public boolean contains(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack this;
+        java.lang.Object aElement;
+        java.util.List $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        aElement := @parameter0: java.lang.Object;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $z0 = interfaceinvoke $r0.<java.util.List: boolean contains(java.lang.Object)>(aElement);
+
+        return $z0;
+    }
+
+    public void clear()
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack this;
+        java.util.List $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        interfaceinvoke $r0.<java.util.List: void clear()>();
+
+        return;
+    }
+
+    public java.util.Iterator iterator()
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack this;
+        java.util.List $r0;
+        java.util.Iterator $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FastStack: java.util.List mEntries>;
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+        return $r1;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.FastStack newInstance()
+    {
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.FastStack;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: void <init>()>();
+
+        return $r0;
+    }
+}

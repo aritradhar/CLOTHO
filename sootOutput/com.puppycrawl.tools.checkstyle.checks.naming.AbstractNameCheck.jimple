@@ -1,0 +1,88 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck
+{
+    public static final java.lang.String MSG_INVALID_PATTERN;
+
+    public void <init>(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck this;
+        java.lang.String aFormat;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
+
+        aFormat := @parameter0: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck: void <init>(java.lang.String)>(aFormat);
+
+        return;
+    }
+
+    protected boolean mustCheckName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        return 1;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nameAST;
+        boolean $z0, $z1;
+        java.util.regex.Pattern $r0;
+        java.lang.String $r1, $r4, $r5;
+        java.util.regex.Matcher $r2;
+        int $i0, $i1;
+        java.lang.Object[] $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck: boolean mustCheckName(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label1;
+
+        nameAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck: java.util.regex.Pattern getRegexp()>();
+
+        $r1 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r2 = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r1);
+
+        $z1 = virtualinvoke $r2.<java.util.regex.Matcher: boolean find()>();
+
+        if $z1 != 0 goto label1;
+
+        $i0 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r3 = newarray (java.lang.Object)[2];
+
+        $r4 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r3[0] = $r4;
+
+        $r5 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck: java.lang.String getFormat()>();
+
+        $r3[1] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "name.invalidPattern", $r3);
+
+     label1:
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck: java.lang.String MSG_INVALID_PATTERN> = "name.invalidPattern";
+
+        return;
+    }
+}

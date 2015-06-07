@@ -1,0 +1,472 @@
+public final class com.puppycrawl.tools.checkstyle.api.Utils extends java.lang.Object
+{
+    private static final java.util.concurrent.ConcurrentMap CREATED_RES;
+    private static final org.apache.commons.logging.Log EXCEPTION_LOG;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.Utils this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Utils;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static org.apache.commons.logging.Log getExceptionLogger()
+    {
+        org.apache.commons.logging.Log $r0;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.Utils: org.apache.commons.logging.Log EXCEPTION_LOG>;
+
+        return $r0;
+    }
+
+    public static boolean whitespaceBefore(int, java.lang.String)
+    {
+        int aIndex, i;
+        java.lang.String aLine;
+        char $c0;
+        boolean $z0;
+
+        aIndex := @parameter0: int;
+
+        aLine := @parameter1: java.lang.String;
+
+        i = 0;
+
+     label1:
+        if i >= aIndex goto label3;
+
+        $c0 = virtualinvoke aLine.<java.lang.String: char charAt(int)>(i);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c0);
+
+        if $z0 != 0 goto label2;
+
+        return 0;
+
+     label2:
+        i = i + 1;
+
+        goto label1;
+
+     label3:
+        return 1;
+    }
+
+    public static int lengthMinusTrailingWhitespace(java.lang.String)
+    {
+        java.lang.String aLine;
+        int len, i;
+        char $c0;
+        boolean $z0;
+
+        aLine := @parameter0: java.lang.String;
+
+        len = virtualinvoke aLine.<java.lang.String: int length()>();
+
+        i = len - 1;
+
+     label1:
+        if i < 0 goto label3;
+
+        $c0 = virtualinvoke aLine.<java.lang.String: char charAt(int)>(i);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c0);
+
+        if $z0 != 0 goto label2;
+
+        goto label3;
+
+     label2:
+        len = len + -1;
+
+        i = i + -1;
+
+        goto label1;
+
+     label3:
+        return len;
+    }
+
+    public static int lengthExpandedTabs(java.lang.String, int, int)
+    {
+        java.lang.String aString;
+        int aToIdx, aTabWidth, len, idx, $i1, $i2;
+        char[] chars;
+        char $c0;
+
+        aString := @parameter0: java.lang.String;
+
+        aToIdx := @parameter1: int;
+
+        aTabWidth := @parameter2: int;
+
+        len = 0;
+
+        chars = virtualinvoke aString.<java.lang.String: char[] toCharArray()>();
+
+        idx = 0;
+
+     label1:
+        if idx >= aToIdx goto label4;
+
+        $c0 = chars[idx];
+
+        if $c0 != 9 goto label2;
+
+        $i1 = len / aTabWidth;
+
+        $i2 = $i1 + 1;
+
+        len = $i2 * aTabWidth;
+
+        goto label3;
+
+     label2:
+        len = len + 1;
+
+     label3:
+        idx = idx + 1;
+
+        goto label1;
+
+     label4:
+        return len;
+    }
+
+    public static java.util.regex.Pattern getPattern(java.lang.String) throws java.util.regex.PatternSyntaxException
+    {
+        java.lang.String aPattern;
+        java.util.regex.Pattern $r0;
+
+        aPattern := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String,int)>(aPattern, 0);
+
+        return $r0;
+    }
+
+    public static java.util.regex.Pattern getPattern(java.lang.String, int) throws java.util.regex.PatternSyntaxException
+    {
+        java.lang.String aPattern, key;
+        int aCompileFlags;
+        java.util.regex.Pattern retVal;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3;
+        java.util.concurrent.ConcurrentMap $r4, $r6;
+        java.lang.Object $r5;
+
+        aPattern := @parameter0: java.lang.String;
+
+        aCompileFlags := @parameter1: int;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aPattern);
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":flags-");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(aCompileFlags);
+
+        key = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r4 = <com.puppycrawl.tools.checkstyle.api.Utils: java.util.concurrent.ConcurrentMap CREATED_RES>;
+
+        $r5 = interfaceinvoke $r4.<java.util.concurrent.ConcurrentMap: java.lang.Object get(java.lang.Object)>(key);
+
+        retVal = (java.util.regex.Pattern) $r5;
+
+        if retVal != null goto label1;
+
+        retVal = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String,int)>(aPattern, aCompileFlags);
+
+        $r6 = <com.puppycrawl.tools.checkstyle.api.Utils: java.util.concurrent.ConcurrentMap CREATED_RES>;
+
+        interfaceinvoke $r6.<java.util.concurrent.ConcurrentMap: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>(key, retVal);
+
+     label1:
+        return retVal;
+    }
+
+    public static java.lang.String[] getLines(java.lang.String) throws java.io.IOException
+    {
+        java.lang.String aFileName, $r0;
+        java.lang.String[] $r1;
+
+        aFileName := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>("file.encoding", "UTF-8");
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.lang.String[] getLines(java.lang.String,java.lang.String)>(aFileName, $r0);
+
+        return $r1;
+    }
+
+    public static java.lang.String[] getLines(java.lang.String, java.lang.String) throws java.io.IOException
+    {
+        java.lang.String aFileName, aCharsetName, message, $r8, ex;
+        java.util.ArrayList lines;
+        java.io.FileInputStream fr, $r0;
+        java.io.UnsupportedEncodingException ex, $r7, $r12;
+        java.lang.Throwable l7, $r11;
+        java.io.LineNumberReader $r1, lnr;
+        java.io.InputStreamReader $r2;
+        int $i0;
+        java.lang.String[] $r3, $r4;
+        java.lang.Object[] $r5;
+        java.lang.StringBuilder $r6, $r9, $r10;
+
+        aFileName := @parameter0: java.lang.String;
+
+        aCharsetName := @parameter1: java.lang.String;
+
+        lines = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        $r0 = new java.io.FileInputStream;
+
+        specialinvoke $r0.<java.io.FileInputStream: void <init>(java.lang.String)>(aFileName);
+
+        fr = $r0;
+
+     label1:
+        $r1 = new java.io.LineNumberReader;
+
+        $r2 = new java.io.InputStreamReader;
+
+        specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream,java.lang.String)>(fr, aCharsetName);
+
+        specialinvoke $r1.<java.io.LineNumberReader: void <init>(java.io.Reader)>($r2);
+
+        lnr = $r1;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r7 := @caughtexception;
+
+        ex = $r7;
+
+        virtualinvoke fr.<java.io.FileInputStream: void close()>();
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unsupported charset: ");
+
+        $r8 = virtualinvoke ex.<java.io.UnsupportedEncodingException: java.lang.String getMessage()>();
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        message = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r12 = new java.io.UnsupportedEncodingException;
+
+        specialinvoke $r12.<java.io.UnsupportedEncodingException: void <init>(java.lang.String)>(message);
+
+        throw $r12;
+
+     label4:
+        ex = virtualinvoke lnr.<java.io.LineNumberReader: java.lang.String readLine()>();
+
+        if ex != null goto label5;
+
+        goto label6;
+
+     label5:
+        interfaceinvoke lines.<java.util.List: boolean add(java.lang.Object)>(ex);
+
+        goto label4;
+
+     label6:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(lnr);
+
+        goto label9;
+
+     label7:
+        $r11 := @caughtexception;
+
+        l7 = $r11;
+
+     label8:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(lnr);
+
+        throw l7;
+
+     label9:
+        $i0 = interfaceinvoke lines.<java.util.List: int size()>();
+
+        $r3 = newarray (java.lang.String)[$i0];
+
+        $r5 = interfaceinvoke lines.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r3);
+
+        $r4 = (java.lang.String[]) $r5;
+
+        return $r4;
+
+        catch java.io.UnsupportedEncodingException from label1 to label2 with label3;
+        catch java.lang.Throwable from label4 to label6 with label7;
+        catch java.lang.Throwable from label7 to label8 with label7;
+    }
+
+    public static java.util.regex.Pattern createPattern(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        java.lang.String aPattern, $r5;
+        java.util.regex.PatternSyntaxException e, $r0;
+        org.apache.commons.beanutils.ConversionException $r1;
+        java.lang.StringBuilder $r2, $r3, $r4;
+        java.util.regex.Pattern retVal;
+
+        aPattern := @parameter0: java.lang.String;
+
+     label1:
+        retVal = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aPattern);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r0 := @caughtexception;
+
+        e = $r0;
+
+        $r1 = new org.apache.commons.beanutils.ConversionException;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Failed to initialise regexp expression ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aPattern);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r1.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r5, e);
+
+        throw $r1;
+
+     label4:
+        return retVal;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public static java.lang.String baseClassname(java.lang.String)
+    {
+        java.lang.String aType, $r0;
+        int i, $i0;
+
+        aType := @parameter0: java.lang.String;
+
+        i = virtualinvoke aType.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+
+        if i != -1 goto label1;
+
+        $r0 = aType;
+
+        goto label2;
+
+     label1:
+        $i0 = i + 1;
+
+        $r0 = virtualinvoke aType.<java.lang.String: java.lang.String substring(int)>($i0);
+
+     label2:
+        return $r0;
+    }
+
+    public static java.lang.String getStrippedFileName(java.lang.String, java.lang.String)
+    {
+        java.lang.String aBasedir, aFileName, stripped, $r0;
+        byte skipSep, $b2;
+        boolean $z0, $z1;
+        int $i0, $i1;
+
+        aBasedir := @parameter0: java.lang.String;
+
+        aFileName := @parameter1: java.lang.String;
+
+        if aBasedir == null goto label1;
+
+        $z0 = virtualinvoke aFileName.<java.lang.String: boolean startsWith(java.lang.String)>(aBasedir);
+
+        if $z0 != 0 goto label2;
+
+     label1:
+        stripped = aFileName;
+
+        goto label5;
+
+     label2:
+        $r0 = <java.io.File: java.lang.String separator>;
+
+        $z1 = virtualinvoke aBasedir.<java.lang.String: boolean endsWith(java.lang.String)>($r0);
+
+        if $z1 == 0 goto label3;
+
+        $b2 = 0;
+
+        goto label4;
+
+     label3:
+        $b2 = 1;
+
+     label4:
+        skipSep = $b2;
+
+        $i0 = virtualinvoke aBasedir.<java.lang.String: int length()>();
+
+        $i1 = $i0 + skipSep;
+
+        stripped = virtualinvoke aFileName.<java.lang.String: java.lang.String substring(int)>($i1);
+
+     label5:
+        return stripped;
+    }
+
+    public static void closeQuietly(java.io.Closeable)
+    {
+        java.io.Closeable aShutting;
+        java.io.IOException $r0;
+
+        aShutting := @parameter0: java.io.Closeable;
+
+        if null == aShutting goto label4;
+
+     label1:
+        interfaceinvoke aShutting.<java.io.Closeable: void close()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r0 := @caughtexception;
+
+     label4:
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    static void <clinit>()
+    {
+        java.util.concurrent.ConcurrentMap $r0;
+        org.apache.commons.logging.Log $r1;
+
+        $r0 = staticinvoke <com.google.common.collect.Maps: java.util.concurrent.ConcurrentMap newConcurrentMap()>();
+
+        <com.puppycrawl.tools.checkstyle.api.Utils: java.util.concurrent.ConcurrentMap CREATED_RES> = $r0;
+
+        $r1 = staticinvoke <org.apache.commons.logging.LogFactory: org.apache.commons.logging.Log getLog(java.lang.String)>("com.puppycrawl.tools.checkstyle.ExceptionLog");
+
+        <com.puppycrawl.tools.checkstyle.api.Utils: org.apache.commons.logging.Log EXCEPTION_LOG> = $r1;
+
+        return;
+    }
+}

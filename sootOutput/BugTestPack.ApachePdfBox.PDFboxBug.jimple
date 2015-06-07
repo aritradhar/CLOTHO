@@ -1,0 +1,130 @@
+public class BugTestPack.ApachePdfBox.PDFboxBug extends java.lang.Object
+{
+    private static final java.lang.String FDF_HEADER;
+    private static final java.lang.String PDF_HEADER;
+
+    public void <init>()
+    {
+        BugTestPack.ApachePdfBox.PDFboxBug this;
+
+        this := @this: BugTestPack.ApachePdfBox.PDFboxBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.io.IOException
+    {
+        java.lang.String[] args;
+        BugTestPack.ApachePdfBox.PDFboxBug $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new BugTestPack.ApachePdfBox.PDFboxBug;
+
+        specialinvoke $r0.<BugTestPack.ApachePdfBox.PDFboxBug: void <init>()>();
+
+        specialinvoke $r0.<BugTestPack.ApachePdfBox.PDFboxBug: void parseHeader()>();
+
+        return;
+    }
+
+    private void parseHeader() throws java.io.IOException
+    {
+        BugTestPack.ApachePdfBox.PDFboxBug this;
+        java.util.Scanner s, $r0;
+        java.lang.String header;
+        int headerStart, $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        java.io.InputStream $r1;
+        java.io.IOException $r2;
+        boolean $z0;
+        char $c7;
+
+        this := @this: BugTestPack.ApachePdfBox.PDFboxBug;
+
+        $r0 = new java.util.Scanner;
+
+        $r1 = <java.lang.System: java.io.InputStream in>;
+
+        specialinvoke $r0.<java.util.Scanner: void <init>(java.io.InputStream)>($r1);
+
+        s = $r0;
+
+        header = virtualinvoke s.<java.util.Scanner: java.lang.String next()>();
+
+        $i0 = virtualinvoke header.<java.lang.String: int indexOf(java.lang.String)>("%PDF-");
+
+        if $i0 != -1 goto label4;
+
+        $i4 = virtualinvoke header.<java.lang.String: int indexOf(java.lang.String)>("%FDF-");
+
+        if $i4 != -1 goto label4;
+
+        header = "";
+
+        goto label3;
+
+     label1:
+        $c7 = virtualinvoke header.<java.lang.String: char charAt(int)>(0);
+
+        $z0 = staticinvoke <java.lang.Character: boolean isDigit(char)>($c7);
+
+        if $z0 == 0 goto label2;
+
+        goto label4;
+
+     label2:
+        header = virtualinvoke s.<java.util.Scanner: java.lang.String next()>();
+
+     label3:
+        $i6 = virtualinvoke header.<java.lang.String: int indexOf(java.lang.String)>("%PDF-");
+
+        if $i6 != -1 goto label4;
+
+        $i5 = virtualinvoke header.<java.lang.String: int indexOf(java.lang.String)>("%FDF-");
+
+        if $i5 == -1 goto label1;
+
+     label4:
+        $i1 = virtualinvoke header.<java.lang.String: int indexOf(java.lang.String)>("%PDF-");
+
+        if $i1 != -1 goto label5;
+
+        $i3 = virtualinvoke header.<java.lang.String: int indexOf(java.lang.String)>("%FDF-");
+
+        if $i3 != -1 goto label5;
+
+        $r2 = new java.io.IOException;
+
+        specialinvoke $r2.<java.io.IOException: void <init>(java.lang.String)>("Error: Header doesn\'t contain versioninfo");
+
+        throw $r2;
+
+     label5:
+        headerStart = virtualinvoke header.<java.lang.String: int indexOf(java.lang.String)>("%PDF-");
+
+        if headerStart != -1 goto label6;
+
+        headerStart = virtualinvoke header.<java.lang.String: int indexOf(java.lang.String)>("%FDF-");
+
+     label6:
+        if headerStart <= 0 goto label7;
+
+        $i2 = virtualinvoke header.<java.lang.String: int length()>();
+
+        virtualinvoke header.<java.lang.String: java.lang.String substring(int,int)>(headerStart, $i2);
+
+     label7:
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <BugTestPack.ApachePdfBox.PDFboxBug: java.lang.String PDF_HEADER> = "%PDF-";
+
+        <BugTestPack.ApachePdfBox.PDFboxBug: java.lang.String FDF_HEADER> = "%FDF-";
+
+        return;
+    }
+}

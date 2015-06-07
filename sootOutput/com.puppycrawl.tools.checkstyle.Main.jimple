@@ -1,0 +1,700 @@
+public final class com.puppycrawl.tools.checkstyle.Main extends java.lang.Object
+{
+    private static final org.apache.commons.cli.Options OPTS;
+    static final boolean $assertionsDisabled;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.Main this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.Main;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] aArgs;
+        org.apache.commons.cli.PosixParser clp, $r0;
+        org.apache.commons.cli.CommandLine line;
+        org.apache.commons.cli.ParseException e, $r13;
+        com.puppycrawl.tools.checkstyle.api.Configuration config;
+        java.io.OutputStream out;
+        boolean closeOut, $z0, $z1, $z2, $z3;
+        java.lang.String fname, $r6, $r15;
+        com.puppycrawl.tools.checkstyle.Checker c;
+        int numErrs;
+        org.apache.commons.cli.Options $r1;
+        java.util.Properties $r2, e;
+        java.io.FileOutputStream $r3;
+        java.io.File $r4;
+        java.io.PrintStream $r5, $r12;
+        java.io.FileNotFoundException $r7;
+        java.lang.AssertionError $r8;
+        java.lang.StringBuilder $r9, $r10, $r11, $r14;
+        com.puppycrawl.tools.checkstyle.api.AuditListener fname;
+        java.util.List e;
+
+        aArgs := @parameter0: java.lang.String[];
+
+        $r0 = new org.apache.commons.cli.PosixParser;
+
+        specialinvoke $r0.<org.apache.commons.cli.PosixParser: void <init>()>();
+
+        clp = $r0;
+
+        line = null;
+
+     label01:
+        $r1 = <com.puppycrawl.tools.checkstyle.Main: org.apache.commons.cli.Options OPTS>;
+
+        line = interfaceinvoke clp.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>($r1, aArgs);
+
+     label02:
+        goto label04;
+
+     label03:
+        $r13 := @caughtexception;
+
+        e = $r13;
+
+        virtualinvoke e.<org.apache.commons.cli.ParseException: void printStackTrace()>();
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.Main: void usage()>();
+
+     label04:
+        $z0 = <com.puppycrawl.tools.checkstyle.Main: boolean $assertionsDisabled>;
+
+        if $z0 != 0 goto label05;
+
+        if line != null goto label05;
+
+        $r8 = new java.lang.AssertionError;
+
+        specialinvoke $r8.<java.lang.AssertionError: void <init>()>();
+
+        throw $r8;
+
+     label05:
+        $z1 = virtualinvoke line.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>("p");
+
+        if $z1 == 0 goto label06;
+
+        $r4 = new java.io.File;
+
+        $r6 = virtualinvoke line.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>("p");
+
+        specialinvoke $r4.<java.io.File: void <init>(java.lang.String)>($r6);
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.Main: java.util.Properties loadProperties(java.io.File)>($r4);
+
+        goto label07;
+
+     label06:
+        $r2 = staticinvoke <java.lang.System: java.util.Properties getProperties()>();
+
+     label07:
+        e = $r2;
+
+        $z2 = virtualinvoke line.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>("c");
+
+        if $z2 != 0 goto label08;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>("Must specify a config XML file.");
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.Main: void usage()>();
+
+     label08:
+        config = staticinvoke <com.puppycrawl.tools.checkstyle.Main: com.puppycrawl.tools.checkstyle.api.Configuration loadConfig(org.apache.commons.cli.CommandLine,java.util.Properties)>(line, e);
+
+        out = null;
+
+        closeOut = 0;
+
+        $z3 = virtualinvoke line.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>("o");
+
+        if $z3 == 0 goto label13;
+
+        fname = virtualinvoke line.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>("o");
+
+     label09:
+        $r3 = new java.io.FileOutputStream;
+
+        specialinvoke $r3.<java.io.FileOutputStream: void <init>(java.lang.String)>(fname);
+
+        out = $r3;
+
+        closeOut = 1;
+
+     label10:
+        goto label12;
+
+     label11:
+        $r7 := @caughtexception;
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>()>();
+
+        $r9 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Could not find file: \'");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(fname);
+
+        $r14 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r15);
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label12:
+        goto label14;
+
+     label13:
+        out = <java.lang.System: java.io.PrintStream out>;
+
+        closeOut = 0;
+
+     label14:
+        fname = staticinvoke <com.puppycrawl.tools.checkstyle.Main: com.puppycrawl.tools.checkstyle.api.AuditListener createListener(org.apache.commons.cli.CommandLine,java.io.OutputStream,boolean)>(line, out, closeOut);
+
+        e = staticinvoke <com.puppycrawl.tools.checkstyle.Main: java.util.List getFilesToProcess(org.apache.commons.cli.CommandLine)>(line);
+
+        c = staticinvoke <com.puppycrawl.tools.checkstyle.Main: com.puppycrawl.tools.checkstyle.Checker createChecker(com.puppycrawl.tools.checkstyle.api.Configuration,com.puppycrawl.tools.checkstyle.api.AuditListener)>(config, fname);
+
+        numErrs = virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: int process(java.util.List)>(e);
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: void destroy()>();
+
+        staticinvoke <java.lang.System: void exit(int)>(numErrs);
+
+        return;
+
+        catch org.apache.commons.cli.ParseException from label01 to label02 with label03;
+        catch java.io.FileNotFoundException from label09 to label10 with label11;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.Checker createChecker(com.puppycrawl.tools.checkstyle.api.Configuration, com.puppycrawl.tools.checkstyle.api.AuditListener)
+    {
+        com.puppycrawl.tools.checkstyle.api.Configuration aConfig;
+        com.puppycrawl.tools.checkstyle.api.AuditListener aNosy;
+        com.puppycrawl.tools.checkstyle.Checker c, $r0;
+        java.lang.ClassLoader moduleClassLoader;
+        java.lang.Class $r1;
+        java.lang.Exception $r2, moduleClassLoader;
+        java.lang.StringBuilder $r3, $r5, $r7;
+        java.io.PrintStream $r4, $r9;
+        java.lang.String $r6, $r8;
+
+        aConfig := @parameter0: com.puppycrawl.tools.checkstyle.api.Configuration;
+
+        aNosy := @parameter1: com.puppycrawl.tools.checkstyle.api.AuditListener;
+
+        c = null;
+
+     label1:
+        $r0 = new com.puppycrawl.tools.checkstyle.Checker;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.Checker: void <init>()>();
+
+        c = $r0;
+
+        $r1 = class "com/puppycrawl/tools/checkstyle/Checker";
+
+        moduleClassLoader = virtualinvoke $r1.<java.lang.Class: java.lang.ClassLoader getClassLoader()>();
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: void setModuleClassLoader(java.lang.ClassLoader)>(moduleClassLoader);
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: void configure(com.puppycrawl.tools.checkstyle.api.Configuration)>(aConfig);
+
+        virtualinvoke c.<com.puppycrawl.tools.checkstyle.Checker: void addListener(com.puppycrawl.tools.checkstyle.api.AuditListener)>(aNosy);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r2 := @caughtexception;
+
+        moduleClassLoader = $r2;
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to create Checker: ");
+
+        $r6 = virtualinvoke moduleClassLoader.<java.lang.Exception: java.lang.String getMessage()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke moduleClassLoader.<java.lang.Exception: void printStackTrace(java.io.PrintStream)>($r9);
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label4:
+        return c;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    private static java.util.List getFilesToProcess(org.apache.commons.cli.CommandLine)
+    {
+        org.apache.commons.cli.CommandLine aLine;
+        java.util.LinkedList files;
+        java.lang.String[] values, arr$;
+        int len$, i$;
+        java.lang.String element;
+        boolean $z0, $z1, $z2;
+        java.io.PrintStream $r0;
+        java.io.File $r1, $r2;
+
+        aLine := @parameter0: org.apache.commons.cli.CommandLine;
+
+        files = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>();
+
+        $z0 = virtualinvoke aLine.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>("r");
+
+        if $z0 == 0 goto label2;
+
+        values = virtualinvoke aLine.<org.apache.commons.cli.CommandLine: java.lang.String[] getOptionValues(java.lang.String)>("r");
+
+        arr$ = values;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label2;
+
+        element = arr$[i$];
+
+        $r2 = new java.io.File;
+
+        specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>(element);
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.Main: void traverse(java.io.File,java.util.List)>($r2, files);
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label2:
+        values = virtualinvoke aLine.<org.apache.commons.cli.CommandLine: java.lang.String[] getArgs()>();
+
+        arr$ = values;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label3:
+        if i$ >= len$ goto label4;
+
+        element = arr$[i$];
+
+        $r1 = new java.io.File;
+
+        specialinvoke $r1.<java.io.File: void <init>(java.lang.String)>(element);
+
+        interfaceinvoke files.<java.util.List: boolean add(java.lang.Object)>($r1);
+
+        i$ = i$ + 1;
+
+        goto label3;
+
+     label4:
+        $z1 = interfaceinvoke files.<java.util.List: boolean isEmpty()>();
+
+        if $z1 == 0 goto label5;
+
+        $z2 = virtualinvoke aLine.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>("r");
+
+        if $z2 != 0 goto label5;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Must specify files to process");
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.Main: void usage()>();
+
+     label5:
+        return files;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.api.AuditListener createListener(org.apache.commons.cli.CommandLine, java.io.OutputStream, boolean)
+    {
+        org.apache.commons.cli.CommandLine aLine;
+        java.io.OutputStream aOut;
+        boolean aCloseOut, $z0, $z1, $z2;
+        java.lang.String format, $r0, $r1, $r7, $r10;
+        com.puppycrawl.tools.checkstyle.api.AuditListener listener;
+        java.lang.StringBuilder $r2, $r4, $r5, $r6;
+        java.io.PrintStream $r3;
+        com.puppycrawl.tools.checkstyle.XMLLogger $r8;
+        com.puppycrawl.tools.checkstyle.DefaultLogger $r9;
+
+        aLine := @parameter0: org.apache.commons.cli.CommandLine;
+
+        aOut := @parameter1: java.io.OutputStream;
+
+        aCloseOut := @parameter2: boolean;
+
+        $z0 = virtualinvoke aLine.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>("f");
+
+        if $z0 == 0 goto label1;
+
+        $r10 = virtualinvoke aLine.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>("f");
+
+        goto label2;
+
+     label1:
+        $r10 = "plain";
+
+     label2:
+        format = $r10;
+
+        listener = null;
+
+        $r0 = "xml";
+
+        $z1 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(format);
+
+        if $z1 == 0 goto label3;
+
+        $r8 = new com.puppycrawl.tools.checkstyle.XMLLogger;
+
+        specialinvoke $r8.<com.puppycrawl.tools.checkstyle.XMLLogger: void <init>(java.io.OutputStream,boolean)>(aOut, aCloseOut);
+
+        listener = $r8;
+
+        goto label5;
+
+     label3:
+        $r1 = "plain";
+
+        $z2 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(format);
+
+        if $z2 == 0 goto label4;
+
+        $r9 = new com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+        specialinvoke $r9.<com.puppycrawl.tools.checkstyle.DefaultLogger: void <init>(java.io.OutputStream,boolean)>(aOut, aCloseOut);
+
+        listener = $r9;
+
+        goto label5;
+
+     label4:
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Invalid format: (");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(format);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("). Must be \'plain\' or \'xml\'.");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.Main: void usage()>();
+
+     label5:
+        return listener;
+    }
+
+    private static com.puppycrawl.tools.checkstyle.api.Configuration loadConfig(org.apache.commons.cli.CommandLine, java.util.Properties)
+    {
+        org.apache.commons.cli.CommandLine aLine;
+        java.util.Properties aProps;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException e, $r3;
+        java.lang.String $r0;
+        com.puppycrawl.tools.checkstyle.PropertiesExpander $r1;
+        com.puppycrawl.tools.checkstyle.api.Configuration $r2;
+        java.io.PrintStream $r4, $r5;
+
+        aLine := @parameter0: org.apache.commons.cli.CommandLine;
+
+        aProps := @parameter1: java.util.Properties;
+
+     label1:
+        $r0 = virtualinvoke aLine.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>("c");
+
+        $r1 = new com.puppycrawl.tools.checkstyle.PropertiesExpander;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.PropertiesExpander: void <init>(java.util.Properties)>(aProps);
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.ConfigurationLoader: com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration(java.lang.String,com.puppycrawl.tools.checkstyle.PropertyResolver)>($r0, $r1);
+
+     label2:
+        return $r2;
+
+     label3:
+        $r3 := @caughtexception;
+
+        e = $r3;
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>("Error loading configuration file");
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke e.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void printStackTrace(java.io.PrintStream)>($r5);
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+        return null;
+
+        catch com.puppycrawl.tools.checkstyle.api.CheckstyleException from label1 to label2 with label3;
+    }
+
+    private static void usage()
+    {
+        org.apache.commons.cli.HelpFormatter hf, $r0;
+        java.lang.StringBuilder $r1, $r2, $r5, $r6;
+        java.lang.Class $r3;
+        java.lang.String $r4, $r7;
+        org.apache.commons.cli.Options $r8;
+
+        $r0 = new org.apache.commons.cli.HelpFormatter;
+
+        specialinvoke $r0.<org.apache.commons.cli.HelpFormatter: void <init>()>();
+
+        hf = $r0;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("java ");
+
+        $r3 = class "com/puppycrawl/tools/checkstyle/Main";
+
+        $r4 = virtualinvoke $r3.<java.lang.Class: java.lang.String getName()>();
+
+        $r5 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" [options] -c <config.xml> file...");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r8 = <com.puppycrawl.tools.checkstyle.Main: org.apache.commons.cli.Options OPTS>;
+
+        virtualinvoke hf.<org.apache.commons.cli.HelpFormatter: void printHelp(java.lang.String,org.apache.commons.cli.Options)>($r7, $r8);
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+        return;
+    }
+
+    private static void traverse(java.io.File, java.util.List)
+    {
+        java.io.File aNode, element;
+        java.util.List aFiles;
+        java.io.File[] nodes, arr$;
+        int len$, i$;
+        boolean $z0, $z1, $z2;
+
+        aNode := @parameter0: java.io.File;
+
+        aFiles := @parameter1: java.util.List;
+
+        $z0 = virtualinvoke aNode.<java.io.File: boolean canRead()>();
+
+        if $z0 == 0 goto label4;
+
+        $z1 = virtualinvoke aNode.<java.io.File: boolean isDirectory()>();
+
+        if $z1 == 0 goto label3;
+
+        nodes = virtualinvoke aNode.<java.io.File: java.io.File[] listFiles()>();
+
+        arr$ = nodes;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label2;
+
+        element = arr$[i$];
+
+        staticinvoke <com.puppycrawl.tools.checkstyle.Main: void traverse(java.io.File,java.util.List)>(element, aFiles);
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label2:
+        goto label4;
+
+     label3:
+        $z2 = virtualinvoke aNode.<java.io.File: boolean isFile()>();
+
+        if $z2 == 0 goto label4;
+
+        interfaceinvoke aFiles.<java.util.List: boolean add(java.lang.Object)>(aNode);
+
+     label4:
+        return;
+    }
+
+    private static java.util.Properties loadProperties(java.io.File)
+    {
+        java.io.File aFile;
+        java.util.Properties properties, $r0;
+        java.io.FileInputStream fis, $r1;
+        java.io.IOException ex, $r3;
+        java.lang.Throwable l4, $r2;
+        java.lang.StringBuilder $r4, $r6, $r8;
+        java.io.PrintStream $r5, $r10;
+        java.lang.String $r7, $r9;
+
+        aFile := @parameter0: java.io.File;
+
+        $r0 = new java.util.Properties;
+
+        specialinvoke $r0.<java.util.Properties: void <init>()>();
+
+        properties = $r0;
+
+        fis = null;
+
+     label1:
+        $r1 = new java.io.FileInputStream;
+
+        specialinvoke $r1.<java.io.FileInputStream: void <init>(java.io.File)>(aFile);
+
+        fis = $r1;
+
+        virtualinvoke properties.<java.util.Properties: void load(java.io.InputStream)>(fis);
+
+     label2:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(fis);
+
+        goto label7;
+
+     label3:
+        $r3 := @caughtexception;
+
+        ex = $r3;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to load properties from file: ");
+
+        $r7 = virtualinvoke aFile.<java.io.File: java.lang.String getAbsolutePath()>();
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke ex.<java.io.IOException: void printStackTrace(java.io.PrintStream)>($r10);
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label4:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(fis);
+
+        goto label7;
+
+     label5:
+        $r2 := @caughtexception;
+
+        l4 = $r2;
+
+     label6:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(fis);
+
+        throw l4;
+
+     label7:
+        return properties;
+
+        catch java.io.IOException from label1 to label2 with label3;
+        catch java.lang.Throwable from label1 to label2 with label5;
+        catch java.lang.Throwable from label3 to label4 with label5;
+        catch java.lang.Throwable from label5 to label6 with label5;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Class $r0;
+        boolean $z0, $z1;
+        org.apache.commons.cli.Options $r1, $r2, $r4, $r6, $r8, $r10;
+
+        $r0 = class "com/puppycrawl/tools/checkstyle/Main";
+
+        $z0 = virtualinvoke $r0.<java.lang.Class: boolean desiredAssertionStatus()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        <com.puppycrawl.tools.checkstyle.Main: boolean $assertionsDisabled> = $z1;
+
+        $r1 = new org.apache.commons.cli.Options;
+
+        specialinvoke $r1.<org.apache.commons.cli.Options: void <init>()>();
+
+        <com.puppycrawl.tools.checkstyle.Main: org.apache.commons.cli.Options OPTS> = $r1;
+
+        $r2 = <com.puppycrawl.tools.checkstyle.Main: org.apache.commons.cli.Options OPTS>;
+
+        virtualinvoke $r2.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,boolean,java.lang.String)>("c", 1, "The check configuration file to use.");
+
+        $r4 = <com.puppycrawl.tools.checkstyle.Main: org.apache.commons.cli.Options OPTS>;
+
+        virtualinvoke $r4.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,boolean,java.lang.String)>("r", 1, "Traverse the directory for source files");
+
+        $r6 = <com.puppycrawl.tools.checkstyle.Main: org.apache.commons.cli.Options OPTS>;
+
+        virtualinvoke $r6.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,boolean,java.lang.String)>("o", 1, "Sets the output file. Defaults to stdout");
+
+        $r8 = <com.puppycrawl.tools.checkstyle.Main: org.apache.commons.cli.Options OPTS>;
+
+        virtualinvoke $r8.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,boolean,java.lang.String)>("p", 1, "Loads the properties file");
+
+        $r10 = <com.puppycrawl.tools.checkstyle.Main: org.apache.commons.cli.Options OPTS>;
+
+        virtualinvoke $r10.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,boolean,java.lang.String)>("f", 1, "Sets the output format. (plain|xml). Defaults to plain");
+
+        return;
+    }
+}

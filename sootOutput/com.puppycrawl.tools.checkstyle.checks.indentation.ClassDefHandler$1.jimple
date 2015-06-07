@@ -1,0 +1,40 @@
+class com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler$1 extends com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler
+{
+    final com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler this$0;
+
+    void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler, com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler$1 this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler l1;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck x0;
+        com.puppycrawl.tools.checkstyle.api.DetailAST x1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler$1;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler;
+
+        x0 := @parameter1: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        x1 := @parameter2: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler$1: com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler this$0> = l1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,com.puppycrawl.tools.checkstyle.api.DetailAST)>(x0, x1);
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST findLastNode(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler$1 this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aFirstNode, $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler$1;
+
+        aFirstNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aFirstNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        return $r0;
+    }
+}

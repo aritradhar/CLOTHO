@@ -1,0 +1,382 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck extends com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultJavadocTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 6;
+
+        $r0[1] = 10001;
+
+        return $r0;
+    }
+
+    public void visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aAst, $r0;
+        int $i0, $i1, $i2;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        $i0 = interfaceinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 != 6 goto label1;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: boolean isEmptyLine(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aAst);
+
+        if $z0 == 0 goto label1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: void checkEmptyLine(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aAst);
+
+        goto label2;
+
+     label1:
+        $i1 = interfaceinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i1 != 10001 goto label2;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getFirstChild(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aAst);
+
+        $i2 = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i2 != 10006 goto label2;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: void checkParagraphTag(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aAst);
+
+     label2:
+        return;
+    }
+
+    private void checkEmptyLine(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aNewline, nearestToken;
+        boolean $z0;
+        int $i0, $i1, $i2;
+        com.puppycrawl.tools.checkstyle.api.DetailNode[] $r0;
+        java.lang.Object[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+
+        aNewline := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        nearestToken = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: com.puppycrawl.tools.checkstyle.api.DetailNode getNearestNode(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aNewline);
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: boolean isLastEmptyLine(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aNewline);
+
+        if $z0 != 0 goto label1;
+
+        if nearestToken == null goto label1;
+
+        $i0 = interfaceinvoke nearestToken.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 != 10074 goto label1;
+
+        $r0 = interfaceinvoke nearestToken.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren()>();
+
+        $i1 = lengthof $r0;
+
+        if $i1 <= 1 goto label1;
+
+        $i2 = interfaceinvoke aNewline.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getLineNumber()>();
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: void log(int,java.lang.String,java.lang.Object[])>($i2, "javadoc.paragraph.tag.after", $r1);
+
+     label1:
+        return;
+    }
+
+    private void checkParagraphTag(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aTag, newLine;
+        boolean $z0;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.Object[] $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+
+        aTag := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        newLine = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: com.puppycrawl.tools.checkstyle.api.DetailNode getNearestEmptyLine(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aTag);
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: boolean isFirstParagraph(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aTag);
+
+        if $z0 == 0 goto label1;
+
+        $i4 = interfaceinvoke aTag.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getLineNumber()>();
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: void log(int,java.lang.String,java.lang.Object[])>($i4, "javadoc.paragraph.redundant.paragraph", $r1);
+
+        goto label3;
+
+     label1:
+        if newLine == null goto label2;
+
+        $i1 = interfaceinvoke aTag.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getLineNumber()>();
+
+        $i2 = interfaceinvoke newLine.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getLineNumber()>();
+
+        $i3 = $i1 - $i2;
+
+        if $i3 == 1 goto label3;
+
+     label2:
+        $i0 = interfaceinvoke aTag.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getLineNumber()>();
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "javadoc.paragraph.line.before", $r0);
+
+     label3:
+        return;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailNode getNearestNode(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aNode, tag;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+
+        aNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        tag = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aNode);
+
+     label1:
+        if tag == null goto label3;
+
+        $i0 = interfaceinvoke tag.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 == 1 goto label2;
+
+        $i1 = interfaceinvoke tag.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i1 != 6 goto label3;
+
+     label2:
+        tag = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(tag);
+
+        goto label1;
+
+     label3:
+        return tag;
+    }
+
+    private boolean isEmptyLine(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aNewLine, previousSibling, $r0;
+        int $i0, $i1, $i2, $i3;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.api.DetailNode[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+
+        aNewLine := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        previousSibling = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aNewLine);
+
+        if previousSibling == null goto label1;
+
+        $r0 = interfaceinvoke previousSibling.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode getParent()>();
+
+        $i0 = interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 == 10000 goto label2;
+
+     label1:
+        return 0;
+
+     label2:
+        $i1 = interfaceinvoke previousSibling.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i1 != 10074 goto label3;
+
+        $r1 = interfaceinvoke previousSibling.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren()>();
+
+        $i3 = lengthof $r1;
+
+        if $i3 != 1 goto label3;
+
+        previousSibling = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(previousSibling);
+
+     label3:
+        if previousSibling == null goto label4;
+
+        $i2 = interfaceinvoke previousSibling.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i2 != 1 goto label4;
+
+        $z0 = 1;
+
+        goto label5;
+
+     label4:
+        $z0 = 0;
+
+     label5:
+        return $z0;
+    }
+
+    private boolean isFirstParagraph(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aParagraphTag, previousNode;
+        int $i0, $i1, $i2, $i3, $i4;
+        com.puppycrawl.tools.checkstyle.api.DetailNode[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+
+        aParagraphTag := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        previousNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aParagraphTag);
+
+     label1:
+        if previousNode == null goto label5;
+
+        $i0 = interfaceinvoke previousNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 != 10074 goto label2;
+
+        $r0 = interfaceinvoke previousNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren()>();
+
+        $i4 = lengthof $r0;
+
+        if $i4 > 1 goto label3;
+
+     label2:
+        $i1 = interfaceinvoke previousNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i1 == 1 goto label4;
+
+        $i2 = interfaceinvoke previousNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i2 == 6 goto label4;
+
+        $i3 = interfaceinvoke previousNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i3 == 10074 goto label4;
+
+     label3:
+        return 0;
+
+     label4:
+        previousNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(previousNode);
+
+        goto label1;
+
+     label5:
+        return 1;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.DetailNode getNearestEmptyLine(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aNode, newLine, previousSibling;
+        int $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+
+        aNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        newLine = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aNode);
+
+     label1:
+        if newLine == null goto label3;
+
+        previousSibling = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getPreviousSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(newLine);
+
+        $i0 = interfaceinvoke newLine.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 != 6 goto label2;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck: boolean isEmptyLine(com.puppycrawl.tools.checkstyle.api.DetailNode)>(newLine);
+
+        if $z0 == 0 goto label2;
+
+        goto label3;
+
+     label2:
+        newLine = previousSibling;
+
+        goto label1;
+
+     label3:
+        return newLine;
+    }
+
+    private boolean isLastEmptyLine(com.puppycrawl.tools.checkstyle.api.DetailNode)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailNode aNewLine, nextNode;
+        int $i0, $i1, $i2, $i3;
+        com.puppycrawl.tools.checkstyle.api.DetailNode[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+
+        aNewLine := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailNode;
+
+        nextNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(aNewLine);
+
+     label1:
+        if nextNode == null goto label5;
+
+        $i0 = interfaceinvoke nextNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i0 == 10071 goto label5;
+
+        $i1 = interfaceinvoke nextNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i1 != 10074 goto label2;
+
+        $r0 = interfaceinvoke nextNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren()>();
+
+        $i3 = lengthof $r0;
+
+        if $i3 > 1 goto label3;
+
+     label2:
+        $i2 = interfaceinvoke nextNode.<com.puppycrawl.tools.checkstyle.api.DetailNode: int getType()>();
+
+        if $i2 != 10001 goto label4;
+
+     label3:
+        return 0;
+
+     label4:
+        nextNode = staticinvoke <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils: com.puppycrawl.tools.checkstyle.api.DetailNode getNextSibling(com.puppycrawl.tools.checkstyle.api.DetailNode)>(nextNode);
+
+        goto label1;
+
+     label5:
+        return 1;
+    }
+}

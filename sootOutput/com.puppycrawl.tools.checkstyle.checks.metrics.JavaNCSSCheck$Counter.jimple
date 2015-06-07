@@ -1,0 +1,57 @@
+class com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter extends java.lang.Object
+{
+    private int mIvCount;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void increment()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter this;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter: int mIvCount>;
+
+        $i1 = $i0 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter: int mIvCount> = $i1;
+
+        return;
+    }
+
+    public int getCount()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter: int mIvCount>;
+
+        return $i0;
+    }
+
+    void <init>(com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$1)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter this;
+        com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$1 x0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck$Counter: void <init>()>();
+
+        return;
+    }
+}

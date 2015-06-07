@@ -1,0 +1,671 @@
+public final class com.puppycrawl.tools.checkstyle.api.LocalizedMessage extends java.lang.Object implements java.lang.Comparable, java.io.Serializable
+{
+    private static final long serialVersionUID;
+    private static final int HASH_MULT;
+    private static java.util.Locale sLocale;
+    private static final java.util.Map BUNDLE_CACHE;
+    private final int mLineNo;
+    private final int mColNo;
+    private final com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel;
+    private final java.lang.String mModuleId;
+    private static final com.puppycrawl.tools.checkstyle.api.SeverityLevel DEFAULT_SEVERITY;
+    private final java.lang.String mKey;
+    private final java.lang.Object[] mArgs;
+    private final java.lang.String mBundle;
+    private final java.lang.Class mSourceClass;
+    private final java.lang.String mCustomMessage;
+
+    public boolean equals(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this, localizedMessage;
+        java.lang.Object aObject;
+        boolean $z0, $z1, $z2;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String $r0, $r1;
+        java.lang.Object[] $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        aObject := @parameter0: java.lang.Object;
+
+        if this != aObject goto label1;
+
+        return 1;
+
+     label1:
+        $z0 = aObject instanceof com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        if $z0 != 0 goto label2;
+
+        return 0;
+
+     label2:
+        localizedMessage = (com.puppycrawl.tools.checkstyle.api.LocalizedMessage) aObject;
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int mColNo>;
+
+        $i0 = localizedMessage.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int mColNo>;
+
+        if $i1 == $i0 goto label3;
+
+        return 0;
+
+     label3:
+        $i3 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int mLineNo>;
+
+        $i2 = localizedMessage.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int mLineNo>;
+
+        if $i3 == $i2 goto label4;
+
+        return 0;
+
+     label4:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mKey>;
+
+        $r0 = localizedMessage.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mKey>;
+
+        $z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r0);
+
+        if $z1 != 0 goto label5;
+
+        return 0;
+
+     label5:
+        $r3 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.Object[] mArgs>;
+
+        $r2 = localizedMessage.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.Object[] mArgs>;
+
+        $z2 = staticinvoke <java.util.Arrays: boolean equals(java.lang.Object[],java.lang.Object[])>($r3, $r2);
+
+        if $z2 != 0 goto label6;
+
+        return 0;
+
+     label6:
+        return 1;
+    }
+
+    public int hashCode()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        int result, len$, i$, $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.Object[] arr$;
+        java.lang.Object element;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        result = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int mLineNo>;
+
+        $i1 = 29 * result;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int mColNo>;
+
+        result = $i1 + $i0;
+
+        $i2 = 29 * result;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mKey>;
+
+        $i3 = virtualinvoke $r0.<java.lang.String: int hashCode()>();
+
+        result = $i2 + $i3;
+
+        arr$ = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.Object[] mArgs>;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label2;
+
+        element = arr$[i$];
+
+        $i4 = 29 * result;
+
+        $i5 = virtualinvoke element.<java.lang.Object: int hashCode()>();
+
+        result = $i4 + $i5;
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label2:
+        return result;
+    }
+
+    public void <init>(int, int, java.lang.String, java.lang.String, java.lang.Object[], com.puppycrawl.tools.checkstyle.api.SeverityLevel, java.lang.String, java.lang.Class, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        int aLineNo, aColNo;
+        java.lang.String aBundle, aKey, aModuleId, aCustomMessage;
+        java.lang.Object[] aArgs, $r1;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel aSeverityLevel;
+        java.lang.Class aSourceClass;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        aLineNo := @parameter0: int;
+
+        aColNo := @parameter1: int;
+
+        aBundle := @parameter2: java.lang.String;
+
+        aKey := @parameter3: java.lang.String;
+
+        aArgs := @parameter4: java.lang.Object[];
+
+        aSeverityLevel := @parameter5: com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+        aModuleId := @parameter6: java.lang.String;
+
+        aSourceClass := @parameter7: java.lang.Class;
+
+        aCustomMessage := @parameter8: java.lang.String;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int mLineNo> = aLineNo;
+
+        this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int mColNo> = aColNo;
+
+        this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mKey> = aKey;
+
+        if null != aArgs goto label1;
+
+        $r1 = null;
+
+        goto label2;
+
+     label1:
+        $r0 = virtualinvoke aArgs.<java.lang.Object: java.lang.Object clone()>();
+
+        $r1 = (java.lang.Object[]) $r0;
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.Object[] mArgs> = $r1;
+
+        this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mBundle> = aBundle;
+
+        this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel> = aSeverityLevel;
+
+        this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mModuleId> = aModuleId;
+
+        this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.Class mSourceClass> = aSourceClass;
+
+        this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mCustomMessage> = aCustomMessage;
+
+        return;
+    }
+
+    public void <init>(int, int, java.lang.String, java.lang.String, java.lang.Object[], java.lang.String, java.lang.Class, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        int aLineNo, aColNo;
+        java.lang.String aBundle, aKey, aModuleId, aCustomMessage;
+        java.lang.Object[] aArgs;
+        java.lang.Class aSourceClass;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        aLineNo := @parameter0: int;
+
+        aColNo := @parameter1: int;
+
+        aBundle := @parameter2: java.lang.String;
+
+        aKey := @parameter3: java.lang.String;
+
+        aArgs := @parameter4: java.lang.Object[];
+
+        aModuleId := @parameter5: java.lang.String;
+
+        aSourceClass := @parameter6: java.lang.Class;
+
+        aCustomMessage := @parameter7: java.lang.String;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: com.puppycrawl.tools.checkstyle.api.SeverityLevel DEFAULT_SEVERITY>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,int,java.lang.String,java.lang.String,java.lang.Object[],com.puppycrawl.tools.checkstyle.api.SeverityLevel,java.lang.String,java.lang.Class,java.lang.String)>(aLineNo, aColNo, aBundle, aKey, aArgs, $r0, aModuleId, aSourceClass, aCustomMessage);
+
+        return;
+    }
+
+    public void <init>(int, java.lang.String, java.lang.String, java.lang.Object[], com.puppycrawl.tools.checkstyle.api.SeverityLevel, java.lang.String, java.lang.Class, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        int aLineNo;
+        java.lang.String aBundle, aKey, aModuleId, aCustomMessage;
+        java.lang.Object[] aArgs;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel aSeverityLevel;
+        java.lang.Class aSourceClass;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        aLineNo := @parameter0: int;
+
+        aBundle := @parameter1: java.lang.String;
+
+        aKey := @parameter2: java.lang.String;
+
+        aArgs := @parameter3: java.lang.Object[];
+
+        aSeverityLevel := @parameter4: com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+        aModuleId := @parameter5: java.lang.String;
+
+        aSourceClass := @parameter6: java.lang.Class;
+
+        aCustomMessage := @parameter7: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,int,java.lang.String,java.lang.String,java.lang.Object[],com.puppycrawl.tools.checkstyle.api.SeverityLevel,java.lang.String,java.lang.Class,java.lang.String)>(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel, aModuleId, aSourceClass, aCustomMessage);
+
+        return;
+    }
+
+    public void <init>(int, java.lang.String, java.lang.String, java.lang.Object[], java.lang.String, java.lang.Class, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        int aLineNo;
+        java.lang.String aBundle, aKey, aModuleId, aCustomMessage;
+        java.lang.Object[] aArgs;
+        java.lang.Class aSourceClass;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        aLineNo := @parameter0: int;
+
+        aBundle := @parameter1: java.lang.String;
+
+        aKey := @parameter2: java.lang.String;
+
+        aArgs := @parameter3: java.lang.Object[];
+
+        aModuleId := @parameter4: java.lang.String;
+
+        aSourceClass := @parameter5: java.lang.Class;
+
+        aCustomMessage := @parameter6: java.lang.String;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: com.puppycrawl.tools.checkstyle.api.SeverityLevel DEFAULT_SEVERITY>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,int,java.lang.String,java.lang.String,java.lang.Object[],com.puppycrawl.tools.checkstyle.api.SeverityLevel,java.lang.String,java.lang.Class,java.lang.String)>(aLineNo, 0, aBundle, aKey, aArgs, $r0, aModuleId, aSourceClass, aCustomMessage);
+
+        return;
+    }
+
+    public static void clearCache()
+    {
+        java.util.Map l0, $r0, $r1;
+        java.lang.Throwable l1, $r2;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.Map BUNDLE_CACHE>;
+
+        l0 = $r0;
+
+        entermonitor $r0;
+
+     label1:
+        $r1 = <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.Map BUNDLE_CACHE>;
+
+        interfaceinvoke $r1.<java.util.Map: void clear()>();
+
+        exitmonitor l0;
+
+     label2:
+        goto label5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        l1 = $r2;
+
+        exitmonitor l0;
+
+     label4:
+        throw l1;
+
+     label5:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+        catch java.lang.Throwable from label3 to label4 with label3;
+    }
+
+    public java.lang.String getMessage()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        java.lang.String customMessage, pattern, $r0, $r1, $r3, $r6, $r7;
+        java.util.ResourceBundle bundle;
+        java.lang.Object[] $r2, $r5;
+        java.util.MissingResourceException $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        customMessage = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String getCustomMessage()>();
+
+        if customMessage == null goto label1;
+
+        return customMessage;
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mBundle>;
+
+        bundle = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.ResourceBundle getBundle(java.lang.String)>($r0);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mKey>;
+
+        pattern = virtualinvoke bundle.<java.util.ResourceBundle: java.lang.String getString(java.lang.String)>($r1);
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.Object[] mArgs>;
+
+        $r3 = staticinvoke <java.text.MessageFormat: java.lang.String format(java.lang.String,java.lang.Object[])>(pattern, $r2);
+
+     label2:
+        return $r3;
+
+     label3:
+        $r4 := @caughtexception;
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mKey>;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.Object[] mArgs>;
+
+        $r7 = staticinvoke <java.text.MessageFormat: java.lang.String format(java.lang.String,java.lang.Object[])>($r6, $r5);
+
+        return $r7;
+
+        catch java.util.MissingResourceException from label1 to label2 with label3;
+    }
+
+    private java.lang.String getCustomMessage()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        java.lang.String $r0, $r2, $r3;
+        java.lang.Object[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mCustomMessage>;
+
+        if $r0 != null goto label1;
+
+        return null;
+
+     label1:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mCustomMessage>;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.Object[] mArgs>;
+
+        $r3 = staticinvoke <java.text.MessageFormat: java.lang.String format(java.lang.String,java.lang.Object[])>($r2, $r1);
+
+        return $r3;
+    }
+
+    private java.util.ResourceBundle getBundle(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        java.lang.String aBundleName;
+        java.util.Map l2, $r0, $r1, $r6;
+        java.util.ResourceBundle bundle;
+        java.lang.Throwable l4, $r8;
+        java.lang.Object $r2;
+        java.lang.Class $r3;
+        java.util.Locale $r4;
+        java.lang.ClassLoader $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        aBundleName := @parameter0: java.lang.String;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.Map BUNDLE_CACHE>;
+
+        l2 = $r0;
+
+        entermonitor $r0;
+
+     label1:
+        $r1 = <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.Map BUNDLE_CACHE>;
+
+        $r2 = interfaceinvoke $r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(aBundleName);
+
+        bundle = (java.util.ResourceBundle) $r2;
+
+        if bundle != null goto label2;
+
+        $r4 = <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.Locale sLocale>;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.Class mSourceClass>;
+
+        $r5 = virtualinvoke $r3.<java.lang.Class: java.lang.ClassLoader getClassLoader()>();
+
+        bundle = staticinvoke <java.util.ResourceBundle: java.util.ResourceBundle getBundle(java.lang.String,java.util.Locale,java.lang.ClassLoader)>(aBundleName, $r4, $r5);
+
+        $r6 = <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.Map BUNDLE_CACHE>;
+
+        interfaceinvoke $r6.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(aBundleName, bundle);
+
+     label2:
+        exitmonitor l2;
+
+     label3:
+        return bundle;
+
+     label4:
+        $r8 := @caughtexception;
+
+        l4 = $r8;
+
+        exitmonitor l2;
+
+     label5:
+        throw l4;
+
+        catch java.lang.Throwable from label1 to label3 with label4;
+        catch java.lang.Throwable from label4 to label5 with label4;
+    }
+
+    public int getLineNo()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int mLineNo>;
+
+        return $i0;
+    }
+
+    public int getColumnNo()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int mColNo>;
+
+        return $i0;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: com.puppycrawl.tools.checkstyle.api.SeverityLevel mSeverityLevel>;
+
+        return $r0;
+    }
+
+    public java.lang.String getModuleId()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mModuleId>;
+
+        return $r0;
+    }
+
+    public java.lang.String getKey()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String mKey>;
+
+        return $r0;
+    }
+
+    public java.lang.String getSourceName()
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this;
+        java.lang.Class $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.Class mSourceClass>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Class: java.lang.String getName()>();
+
+        return $r1;
+    }
+
+    public static void setLocale(java.util.Locale)
+    {
+        java.util.Locale aLocale;
+
+        aLocale := @parameter0: java.util.Locale;
+
+        <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.Locale sLocale> = aLocale;
+
+        return;
+    }
+
+    public int compareTo(com.puppycrawl.tools.checkstyle.api.LocalizedMessage)
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this, aOther;
+        int $i0, $i1, $i2, $i3, $i5, $i6, $i7, $i8, $i10;
+        byte $b4, $b9;
+        java.lang.String $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        aOther := @parameter0: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getLineNo()>();
+
+        $i1 = virtualinvoke aOther.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getLineNo()>();
+
+        if $i0 != $i1 goto label4;
+
+        $i5 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getColumnNo()>();
+
+        $i6 = virtualinvoke aOther.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getColumnNo()>();
+
+        if $i5 != $i6 goto label1;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String getMessage()>();
+
+        $r1 = virtualinvoke aOther.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String getMessage()>();
+
+        $i10 = virtualinvoke $r0.<java.lang.String: int compareTo(java.lang.String)>($r1);
+
+        return $i10;
+
+     label1:
+        $i7 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getColumnNo()>();
+
+        $i8 = virtualinvoke aOther.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getColumnNo()>();
+
+        if $i7 >= $i8 goto label2;
+
+        $b9 = -1;
+
+        goto label3;
+
+     label2:
+        $b9 = 1;
+
+     label3:
+        return $b9;
+
+     label4:
+        $i2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getLineNo()>();
+
+        $i3 = virtualinvoke aOther.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int getLineNo()>();
+
+        if $i2 >= $i3 goto label5;
+
+        $b4 = -1;
+
+        goto label6;
+
+     label5:
+        $b4 = 1;
+
+     label6:
+        return $b4;
+    }
+
+    public volatile int compareTo(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage this, $r0;
+        java.lang.Object x0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        x0 := @parameter0: java.lang.Object;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.api.LocalizedMessage) x0;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int compareTo(com.puppycrawl.tools.checkstyle.api.LocalizedMessage)>($r0);
+
+        return $i0;
+    }
+
+    static void <clinit>()
+    {
+        java.util.Locale $r0;
+        java.util.HashMap $r1;
+        java.util.Map $r2;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r3;
+
+        <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: int HASH_MULT> = 29;
+
+        <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: long serialVersionUID> = 5675176836184862150L;
+
+        $r0 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+
+        <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.Locale sLocale> = $r0;
+
+        $r1 = new java.util.HashMap;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+
+        $r2 = staticinvoke <java.util.Collections: java.util.Map synchronizedMap(java.util.Map)>($r1);
+
+        <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.util.Map BUNDLE_CACHE> = $r2;
+
+        $r3 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel ERROR>;
+
+        <com.puppycrawl.tools.checkstyle.api.LocalizedMessage: com.puppycrawl.tools.checkstyle.api.SeverityLevel DEFAULT_SEVERITY> = $r3;
+
+        return;
+    }
+}

@@ -1,0 +1,49 @@
+final class com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point extends java.lang.Object
+{
+    private final int mLine;
+    private final int mColumn;
+
+    public void <init>(int, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point this;
+        int aLineNo, aColumnNo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        aLineNo := @parameter0: int;
+
+        aColumnNo := @parameter1: int;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int mLine> = aLineNo;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int mColumn> = aColumnNo;
+
+        return;
+    }
+
+    public int getLineNo()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int mLine>;
+
+        return $i0;
+    }
+
+    public int getColumnNo()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser$Point: int mColumn>;
+
+        return $i0;
+    }
+}

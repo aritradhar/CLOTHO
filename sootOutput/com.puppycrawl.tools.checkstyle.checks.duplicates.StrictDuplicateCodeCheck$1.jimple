@@ -1,0 +1,3 @@
+class com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$1 extends java.lang.Object
+{
+}

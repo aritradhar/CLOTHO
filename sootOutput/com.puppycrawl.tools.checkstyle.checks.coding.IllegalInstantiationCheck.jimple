@@ -1,0 +1,619 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final java.util.Set mIllegalClasses;
+    private java.lang.String mPkgName;
+    private final java.util.Set mImports;
+    private final java.util.Set mClassNames;
+    private final java.util.Set mInstantiations;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        java.util.HashSet $r0, $r1, $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mIllegalClasses> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mImports> = $r1;
+
+        $r2 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mClassNames> = $r2;
+
+        $r3 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mInstantiations> = $r3;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        $r0 = newarray (int)[4];
+
+        $r0[0] = 31;
+
+        $r0[1] = 138;
+
+        $r0[2] = 16;
+
+        $r0[3] = 14;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        $r0 = newarray (int)[0];
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 31;
+
+        $r0[1] = 138;
+
+        $r0[2] = 16;
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.Set $r0, $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aRootAST);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.lang.String mPkgName> = null;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mImports>;
+
+        interfaceinvoke $r0.<java.util.Set: void clear()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mInstantiations>;
+
+        interfaceinvoke $r1.<java.util.Set: void clear()>();
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mClassNames>;
+
+        interfaceinvoke $r2.<java.util.Set: void clear()>();
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        java.lang.IllegalArgumentException $r0;
+        java.lang.StringBuilder $r1, $r2, $r3;
+        java.lang.String $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 14: goto label4;
+            case 16: goto label2;
+            case 31: goto label3;
+            case 138: goto label1;
+            default: goto label5;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: void processLiteralNew(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label6;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: void processPackageDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label6;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: void processImport(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label6;
+
+     label4:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: void processClassDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label6;
+
+     label5:
+        $r0 = new java.lang.IllegalArgumentException;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unknown type ");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aAST);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r4);
+
+        throw $r0;
+
+     label6:
+        return;
+    }
+
+    public void finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST, literalNewAST;
+        java.util.Iterator i$;
+        java.util.Set $r0;
+        boolean $z0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mInstantiations>;
+
+        i$ = interfaceinvoke $r0.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        literalNewAST = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: void postprocessLiteralNew(com.puppycrawl.tools.checkstyle.api.DetailAST)>(literalNewAST);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    private void processClassDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, identToken;
+        java.lang.String className;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        identToken = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        className = virtualinvoke identToken.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mClassNames>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(className);
+
+        return;
+    }
+
+    private void processImport(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.FullIdent name;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        name = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdentBelow(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if name == null goto label1;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mImports>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(name);
+
+     label1:
+        return;
+    }
+
+    private void processPackageDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, packageNameAST, $r0;
+        com.puppycrawl.tools.checkstyle.api.FullIdent packageIdent;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        packageNameAST = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        packageIdent = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(packageNameAST);
+
+        $r1 = virtualinvoke packageIdent.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.lang.String mPkgName> = $r1;
+
+        return;
+    }
+
+    private void processLiteralNew(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+        int $i0;
+        java.util.Set $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 28 goto label1;
+
+        return;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mInstantiations>;
+
+        interfaceinvoke $r1.<java.util.Set: boolean add(java.lang.Object)>(aAST);
+
+        return;
+    }
+
+    private void postprocessLiteralNew(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, typeNameAST, nameSibling;
+        com.puppycrawl.tools.checkstyle.api.FullIdent typeIdent;
+        java.lang.String typeName, fqClassName;
+        int lineNo, colNo, $i0;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        typeNameAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        nameSibling = virtualinvoke typeNameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if nameSibling == null goto label1;
+
+        $i0 = interfaceinvoke nameSibling.<antlr.collections.AST: int getType()>();
+
+        if $i0 != 17 goto label1;
+
+        return;
+
+     label1:
+        typeIdent = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(typeNameAST);
+
+        typeName = virtualinvoke typeIdent.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        lineNo = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        colNo = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        fqClassName = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.lang.String getIllegalInstantiation(java.lang.String)>(typeName);
+
+        if fqClassName == null goto label2;
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r0[0] = fqClassName;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: void log(int,int,java.lang.String,java.lang.Object[])>(lineNo, colNo, "instantiation.avoid", $r0);
+
+     label2:
+        return;
+    }
+
+    private java.lang.String getIllegalInstantiation(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        java.lang.String aClassName, illegal, fqName, $r1, $r2, $r5, $r7, $r10, $r14, $r16, $r18, classLoader;
+        int clsNameLen, pkgNameLen, illegalLen, $i0, $i1, $i2, $i3, $i4, $i5, $i7;
+        java.util.Iterator i$, isSameFile;
+        boolean isSameFile, isSamePackage, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9, $z10;
+        java.lang.ClassLoader classLoader;
+        java.util.Set $r0, $r3, $r6, $r9, $r15, $r17;
+        java.lang.Object $r4, $r8;
+        java.lang.StringBuilder $r11, $r12, $r13, $r19, $r20, $r21, $r22;
+        char $c6;
+        java.lang.ClassNotFoundException $r24;
+        com.puppycrawl.tools.checkstyle.api.FullIdent isSamePackage;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        aClassName := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mIllegalClasses>;
+
+        $z0 = interfaceinvoke $r0.<java.util.Set: boolean contains(java.lang.Object)>(aClassName);
+
+        if $z0 == 0 goto label01;
+
+        return aClassName;
+
+     label01:
+        clsNameLen = virtualinvoke aClassName.<java.lang.String: int length()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.lang.String mPkgName>;
+
+        if $r1 != null goto label02;
+
+        $i0 = 0;
+
+        goto label03;
+
+     label02:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.lang.String mPkgName>;
+
+        $i0 = virtualinvoke $r2.<java.lang.String: int length()>();
+
+     label03:
+        pkgNameLen = $i0;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mIllegalClasses>;
+
+        i$ = interfaceinvoke $r3.<java.util.Set: java.util.Iterator iterator()>();
+
+     label04:
+        $z1 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label16;
+
+        $r4 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        illegal = (java.lang.String) $r4;
+
+        illegalLen = virtualinvoke illegal.<java.lang.String: int length()>();
+
+        $r5 = "java.lang.";
+
+        $i2 = virtualinvoke $r5.<java.lang.String: int length()>();
+
+        $i1 = illegalLen - $i2;
+
+        if $i1 != clsNameLen goto label09;
+
+        $z9 = virtualinvoke illegal.<java.lang.String: boolean endsWith(java.lang.String)>(aClassName);
+
+        if $z9 == 0 goto label09;
+
+        $z8 = virtualinvoke illegal.<java.lang.String: boolean startsWith(java.lang.String)>("java.lang.");
+
+        if $z8 == 0 goto label09;
+
+        $r17 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mClassNames>;
+
+        isSameFile = interfaceinvoke $r17.<java.util.Set: boolean contains(java.lang.Object)>(aClassName);
+
+        isSamePackage = 0;
+
+     label05:
+        classLoader = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.lang.ClassLoader getClassLoader()>();
+
+        if classLoader == null goto label06;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>()>();
+
+        $r18 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.lang.String mPkgName>;
+
+        $r22 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r18);
+
+        $r21 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r20 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aClassName);
+
+        fqName = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke classLoader.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>(fqName);
+
+        isSamePackage = 1;
+
+     label06:
+        goto label08;
+
+     label07:
+        $r24 := @caughtexception;
+
+        isSamePackage = 0;
+
+     label08:
+        if isSameFile != 0 goto label09;
+
+        if isSamePackage != 0 goto label09;
+
+        return illegal;
+
+     label09:
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.lang.String mPkgName>;
+
+        if $r7 == null goto label10;
+
+        $i5 = illegalLen - pkgNameLen;
+
+        $i7 = $i5 - 1;
+
+        if clsNameLen != $i7 goto label10;
+
+        $c6 = virtualinvoke illegal.<java.lang.String: char charAt(int)>(pkgNameLen);
+
+        if $c6 != 46 goto label10;
+
+        $z7 = virtualinvoke illegal.<java.lang.String: boolean endsWith(java.lang.String)>(aClassName);
+
+        if $z7 == 0 goto label10;
+
+        $r16 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.lang.String mPkgName>;
+
+        $z10 = virtualinvoke illegal.<java.lang.String: boolean startsWith(java.lang.String)>($r16);
+
+        if $z10 == 0 goto label10;
+
+        return illegal;
+
+     label10:
+        $r6 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mImports>;
+
+        isSameFile = interfaceinvoke $r6.<java.util.Set: java.util.Iterator iterator()>();
+
+     label11:
+        $z2 = interfaceinvoke isSameFile.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label15;
+
+        $r8 = interfaceinvoke isSameFile.<java.util.Iterator: java.lang.Object next()>();
+
+        isSamePackage = (com.puppycrawl.tools.checkstyle.api.FullIdent) $r8;
+
+        classLoader = virtualinvoke isSamePackage.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z4 = virtualinvoke classLoader.<java.lang.String: boolean endsWith(java.lang.String)>(".*");
+
+        if $z4 == 0 goto label13;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>()>();
+
+        $i3 = virtualinvoke classLoader.<java.lang.String: int length()>();
+
+        $i4 = $i3 - 1;
+
+        $r14 = virtualinvoke classLoader.<java.lang.String: java.lang.String substring(int,int)>(0, $i4);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aClassName);
+
+        fqName = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r15 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mIllegalClasses>;
+
+        $z6 = interfaceinvoke $r15.<java.util.Set: boolean contains(java.lang.Object)>(fqName);
+
+        if $z6 == 0 goto label12;
+
+        return fqName;
+
+     label12:
+        goto label14;
+
+     label13:
+        $r10 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.lang.String baseClassname(java.lang.String)>(classLoader);
+
+        $z3 = virtualinvoke $r10.<java.lang.String: boolean equals(java.lang.Object)>(aClassName);
+
+        if $z3 == 0 goto label14;
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mIllegalClasses>;
+
+        $z5 = interfaceinvoke $r9.<java.util.Set: boolean contains(java.lang.Object)>(classLoader);
+
+        if $z5 == 0 goto label14;
+
+        return classLoader;
+
+     label14:
+        goto label11;
+
+     label15:
+        goto label04;
+
+     label16:
+        return null;
+
+        catch java.lang.ClassNotFoundException from label05 to label06 with label07;
+    }
+
+    public void setClasses(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck this;
+        java.lang.String aClassNames, $r3;
+        java.util.StringTokenizer tok, $r1;
+        java.util.Set $r0, $r2;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
+
+        aClassNames := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mIllegalClasses>;
+
+        interfaceinvoke $r0.<java.util.Set: void clear()>();
+
+        $r1 = new java.util.StringTokenizer;
+
+        specialinvoke $r1.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(aClassNames, ",");
+
+        tok = $r1;
+
+     label1:
+        $z0 = virtualinvoke tok.<java.util.StringTokenizer: boolean hasMoreTokens()>();
+
+        if $z0 == 0 goto label2;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck: java.util.Set mIllegalClasses>;
+
+        $r3 = virtualinvoke tok.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        interfaceinvoke $r2.<java.util.Set: boolean add(java.lang.Object)>($r3);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+}

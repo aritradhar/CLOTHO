@@ -1,0 +1,180 @@
+public class com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mSeenFirstToken;
+    private java.lang.String mFileName;
+    private boolean mHasPublic;
+    private boolean mValidFirst;
+    private com.puppycrawl.tools.checkstyle.api.DetailAST mWrongType;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
+
+        $r0 = newarray (int)[4];
+
+        $r0[0] = 14;
+
+        $r0[1] = 15;
+
+        $r0[2] = 158;
+
+        $r0[3] = 161;
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: java.lang.String getFileName()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: java.lang.String mFileName> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: boolean mSeenFirstToken> = 0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: boolean mValidFirst> = 0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: boolean mHasPublic> = 0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mWrongType> = null;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, modifiers, $r0, $r1, $r2;
+        java.lang.String outerTypeName, $r3;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        outerTypeName = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: boolean mSeenFirstToken>;
+
+        if $z0 != 0 goto label2;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: java.lang.String mFileName>;
+
+        $z1 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>(outerTypeName);
+
+        if $z1 == 0 goto label1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: boolean mValidFirst> = 1;
+
+        goto label3;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mWrongType> = aAST;
+
+        goto label3;
+
+     label2:
+        modifiers = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $r1 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(63);
+
+        if $r1 == null goto label3;
+
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if $r2 != null goto label3;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: boolean mHasPublic> = 1;
+
+     label3:
+        this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: boolean mSeenFirstToken> = 1;
+
+        return;
+    }
+
+    public void finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST, $r0, $r1;
+        boolean $z0, $z1;
+        int $i0;
+        java.lang.Object[] $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: boolean mValidFirst>;
+
+        if $z0 != 0 goto label1;
+
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: boolean mHasPublic>;
+
+        if $z1 != 0 goto label1;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mWrongType>;
+
+        if $r0 == null goto label1;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mWrongType>;
+
+        $i0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "type.file.mismatch", $r2);
+
+     label1:
+        return;
+    }
+
+    private java.lang.String getFileName()
+    {
+        com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck this;
+        java.lang.String fname;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r0;
+        char $c0;
+        int $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        fname = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String getFilename()>();
+
+        $c0 = <java.io.File: char separatorChar>;
+
+        $i1 = virtualinvoke fname.<java.lang.String: int lastIndexOf(int)>($c0);
+
+        $i2 = $i1 + 1;
+
+        fname = virtualinvoke fname.<java.lang.String: java.lang.String substring(int)>($i2);
+
+        fname = virtualinvoke fname.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("\\.[^\\.]*$", "");
+
+        return fname;
+    }
+}

@@ -1,0 +1,49 @@
+public class BugTestPack.ApacheCommonFileFtpBug.Ftpbug extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugTestPack.ApacheCommonFileFtpBug.Ftpbug this;
+
+        this := @this: BugTestPack.ApacheCommonFileFtpBug.Ftpbug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.lang.String __parsePathname(java.lang.String)
+    {
+        java.lang.String reply, $r0;
+        int begin, end, $i0;
+
+        reply := @parameter0: java.lang.String;
+
+        $i0 = virtualinvoke reply.<java.lang.String: int indexOf(int)>(34);
+
+        begin = $i0 + 1;
+
+        end = virtualinvoke reply.<java.lang.String: int indexOf(int,int)>(34, begin);
+
+        $r0 = virtualinvoke reply.<java.lang.String: java.lang.String substring(int,int)>(begin, end);
+
+        return $r0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        java.lang.String s;
+        java.io.PrintStream $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        s = staticinvoke <BugTestPack.ApacheCommonFileFtpBug.Ftpbug: java.lang.String __parsePathname(java.lang.String)>("|257");
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(s);
+
+        return;
+    }
+}

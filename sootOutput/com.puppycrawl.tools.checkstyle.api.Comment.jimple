@@ -1,0 +1,245 @@
+public class com.puppycrawl.tools.checkstyle.api.Comment extends java.lang.Object implements com.puppycrawl.tools.checkstyle.api.TextBlock
+{
+    private final java.lang.String[] mText;
+    private final int mFirstLine;
+    private final int mLastLine;
+    private final int mFirstCol;
+    private final int mLastCol;
+
+    public void <init>(java.lang.String[], int, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.Comment this;
+        java.lang.String[] aText, $r0, $r1, $r2, $r3;
+        int aFirstCol, aLastLine, aLastCol, $i0, $i1, $i2, $i3, $i4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Comment;
+
+        aText := @parameter0: java.lang.String[];
+
+        aFirstCol := @parameter1: int;
+
+        aLastLine := @parameter2: int;
+
+        aLastCol := @parameter3: int;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $i0 = lengthof aText;
+
+        $r0 = newarray (java.lang.String)[$i0];
+
+        this.<com.puppycrawl.tools.checkstyle.api.Comment: java.lang.String[] mText> = $r0;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.Comment: java.lang.String[] mText>;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.Comment: java.lang.String[] mText>;
+
+        $i1 = lengthof $r1;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(aText, 0, $r2, 0, $i1);
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.api.Comment: java.lang.String[] mText>;
+
+        $i2 = lengthof $r3;
+
+        $i3 = aLastLine - $i2;
+
+        $i4 = $i3 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.api.Comment: int mFirstLine> = $i4;
+
+        this.<com.puppycrawl.tools.checkstyle.api.Comment: int mLastLine> = aLastLine;
+
+        this.<com.puppycrawl.tools.checkstyle.api.Comment: int mFirstCol> = aFirstCol;
+
+        this.<com.puppycrawl.tools.checkstyle.api.Comment: int mLastCol> = aLastCol;
+
+        return;
+    }
+
+    public final java.lang.String[] getText()
+    {
+        com.puppycrawl.tools.checkstyle.api.Comment this;
+        java.lang.String[] $r0, $r2;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Comment;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.Comment: java.lang.String[] mText>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (java.lang.String[]) $r1;
+
+        return $r2;
+    }
+
+    public final int getStartLineNo()
+    {
+        com.puppycrawl.tools.checkstyle.api.Comment this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Comment;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mFirstLine>;
+
+        return $i0;
+    }
+
+    public final int getEndLineNo()
+    {
+        com.puppycrawl.tools.checkstyle.api.Comment this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Comment;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mLastLine>;
+
+        return $i0;
+    }
+
+    public int getStartColNo()
+    {
+        com.puppycrawl.tools.checkstyle.api.Comment this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Comment;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mFirstCol>;
+
+        return $i0;
+    }
+
+    public int getEndColNo()
+    {
+        com.puppycrawl.tools.checkstyle.api.Comment this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Comment;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mLastCol>;
+
+        return $i0;
+    }
+
+    public boolean intersects(int, int, int, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.Comment this;
+        int aStartLineNo, aStartColNo, aEndLineNo, aEndColNo, $i0, $i1, $i6, $i8;
+        long thisStart, thisEnd, inStart, inEnd, $l2, $l3, $l4, $l5, $l7, $l9, $l10, $l11, $l12, $l13, $l14, $l16;
+        byte $b15, $b17;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Comment;
+
+        aStartLineNo := @parameter0: int;
+
+        aStartColNo := @parameter1: int;
+
+        aEndLineNo := @parameter2: int;
+
+        aEndColNo := @parameter3: int;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mFirstLine>;
+
+        $l2 = (long) $i0;
+
+        $l3 = $l2 * 2147483647L;
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mFirstCol>;
+
+        $l4 = (long) $i1;
+
+        thisStart = $l3 + $l4;
+
+        $i6 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mLastLine>;
+
+        $l5 = (long) $i6;
+
+        $l10 = $l5 * 2147483647L;
+
+        $i8 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mLastCol>;
+
+        $l7 = (long) $i8;
+
+        thisEnd = $l10 + $l7;
+
+        $l9 = (long) aStartLineNo;
+
+        $l11 = $l9 * 2147483647L;
+
+        $l12 = (long) aStartColNo;
+
+        inStart = $l11 + $l12;
+
+        $l14 = (long) aEndLineNo;
+
+        $l16 = $l14 * 2147483647L;
+
+        $l13 = (long) aEndColNo;
+
+        inEnd = $l16 + $l13;
+
+        $b15 = thisEnd cmp inStart;
+
+        if $b15 < 0 goto label1;
+
+        $b17 = inEnd cmp thisStart;
+
+        if $b17 < 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.api.Comment this;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.Comment;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Comment[");
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mFirstLine>;
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mFirstCol>;
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("-");
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mLastLine>;
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+
+        $i3 = this.<com.puppycrawl.tools.checkstyle.api.Comment: int mLastCol>;
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r10;
+    }
+}

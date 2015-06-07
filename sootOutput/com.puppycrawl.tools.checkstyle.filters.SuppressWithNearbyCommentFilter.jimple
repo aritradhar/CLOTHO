@@ -1,0 +1,632 @@
+public class com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter extends com.puppycrawl.tools.checkstyle.api.AutomaticBean implements com.puppycrawl.tools.checkstyle.api.Filter
+{
+    private static final java.lang.String DEFAULT_COMMENT_FORMAT;
+    private static final java.lang.String DEFAULT_CHECK_FORMAT;
+    private static final java.lang.String DEFAULT_MESSAGE_FORMAT;
+    private static final java.lang.String DEFAULT_INFLUENCE_FORMAT;
+    private boolean mCheckC;
+    private boolean mCheckCPP;
+    private java.util.regex.Pattern mCommentRegexp;
+    private java.lang.String mCheckFormat;
+    private java.util.regex.Pattern mCheckRegexp;
+    private java.lang.String mMessageFormat;
+    private java.lang.String mInfluenceFormat;
+    private final java.util.List mTags;
+    private java.lang.ref.WeakReference mFileContentsReference;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        java.util.ArrayList $r0;
+        java.lang.ref.WeakReference $r1;
+        java.lang.String $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: boolean mCheckC> = 1;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: boolean mCheckCPP> = 1;
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.util.List mTags> = $r0;
+
+        $r1 = new java.lang.ref.WeakReference;
+
+        specialinvoke $r1.<java.lang.ref.WeakReference: void <init>(java.lang.Object)>(null);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.ref.WeakReference mFileContentsReference> = $r1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void setCommentFormat(java.lang.String)>("SUPPRESS CHECKSTYLE (\\w+)");
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void setCheckFormat(java.lang.String)>(".*");
+
+        $r2 = <com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String DEFAULT_MESSAGE_FORMAT>;
+
+        if $r2 == null goto label1;
+
+        $r3 = <com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String DEFAULT_MESSAGE_FORMAT>;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void setMessageFormat(java.lang.String)>($r3);
+
+     label1:
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void setInfluenceFormat(java.lang.String)>("0");
+
+        return;
+    }
+
+    public void setCommentFormat(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        java.lang.String aFormat, $r6;
+        java.util.regex.PatternSyntaxException e, $r1;
+        java.util.regex.Pattern $r0;
+        org.apache.commons.beanutils.ConversionException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aFormat := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aFormat);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.util.regex.Pattern mCommentRegexp> = $r0;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new org.apache.commons.beanutils.ConversionException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aFormat);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r6, e);
+
+        throw $r2;
+
+     label4:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        java.lang.ref.WeakReference $r0;
+        java.lang.Object $r1;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.ref.WeakReference mFileContentsReference>;
+
+        $r1 = virtualinvoke $r0.<java.lang.ref.WeakReference: java.lang.Object get()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.api.FileContents) $r1;
+
+        return $r2;
+    }
+
+    public void setFileContents(com.puppycrawl.tools.checkstyle.api.FileContents)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        com.puppycrawl.tools.checkstyle.api.FileContents aFileContents;
+        java.lang.ref.WeakReference $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aFileContents := @parameter0: com.puppycrawl.tools.checkstyle.api.FileContents;
+
+        $r0 = new java.lang.ref.WeakReference;
+
+        specialinvoke $r0.<java.lang.ref.WeakReference: void <init>(java.lang.Object)>(aFileContents);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.ref.WeakReference mFileContentsReference> = $r0;
+
+        return;
+    }
+
+    public void setCheckFormat(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        java.lang.String aFormat, $r6;
+        java.util.regex.PatternSyntaxException e, $r1;
+        java.util.regex.Pattern $r0;
+        org.apache.commons.beanutils.ConversionException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aFormat := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aFormat);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.util.regex.Pattern mCheckRegexp> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String mCheckFormat> = aFormat;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new org.apache.commons.beanutils.ConversionException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aFormat);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r6, e);
+
+        throw $r2;
+
+     label4:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public void setMessageFormat(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        java.lang.String aFormat, $r6;
+        java.util.regex.PatternSyntaxException e, $r1;
+        org.apache.commons.beanutils.ConversionException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aFormat := @parameter0: java.lang.String;
+
+     label1:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aFormat);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new org.apache.commons.beanutils.ConversionException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aFormat);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r6, e);
+
+        throw $r2;
+
+     label4:
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String mMessageFormat> = aFormat;
+
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public void setInfluenceFormat(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        java.lang.String aFormat, $r6;
+        java.util.regex.PatternSyntaxException e, $r1;
+        org.apache.commons.beanutils.ConversionException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aFormat := @parameter0: java.lang.String;
+
+     label1:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aFormat);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new org.apache.commons.beanutils.ConversionException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aFormat);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r6, e);
+
+        throw $r2;
+
+     label4:
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String mInfluenceFormat> = aFormat;
+
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public void setCheckCPP(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        boolean aCheckCPP;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aCheckCPP := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: boolean mCheckCPP> = aCheckCPP;
+
+        return;
+    }
+
+    public void setCheckC(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        boolean aCheckC;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aCheckC := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: boolean mCheckC> = aCheckC;
+
+        return;
+    }
+
+    public boolean accept(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvent;
+        com.puppycrawl.tools.checkstyle.api.FileContents currentContents, $r1;
+        java.util.Iterator iter;
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter$Tag tag;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage $r0;
+        java.util.List $r2;
+        boolean $z0, $z1;
+        java.lang.Object $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aEvent := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = virtualinvoke aEvent.<com.puppycrawl.tools.checkstyle.api.AuditEvent: com.puppycrawl.tools.checkstyle.api.LocalizedMessage getLocalizedMessage()>();
+
+        if $r0 != null goto label1;
+
+        return 1;
+
+     label1:
+        currentContents = staticinvoke <com.puppycrawl.tools.checkstyle.checks.FileContentsHolder: com.puppycrawl.tools.checkstyle.api.FileContents getContents()>();
+
+        if currentContents != null goto label2;
+
+        return 1;
+
+     label2:
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        if $r1 == currentContents goto label3;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void setFileContents(com.puppycrawl.tools.checkstyle.api.FileContents)>(currentContents);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void tagSuppressions()>();
+
+     label3:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.util.List mTags>;
+
+        iter = interfaceinvoke $r2.<java.util.List: java.util.Iterator iterator()>();
+
+     label4:
+        $z0 = interfaceinvoke iter.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label6;
+
+        $r3 = interfaceinvoke iter.<java.util.Iterator: java.lang.Object next()>();
+
+        tag = (com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter$Tag) $r3;
+
+        $z1 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter$Tag: boolean isMatch(com.puppycrawl.tools.checkstyle.api.AuditEvent)>(aEvent);
+
+        if $z1 == 0 goto label5;
+
+        return 0;
+
+     label5:
+        goto label4;
+
+     label6:
+        return 1;
+    }
+
+    private void tagSuppressions()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        com.puppycrawl.tools.checkstyle.api.FileContents contents;
+        com.google.common.collect.ImmutableCollection cComments, $r5;
+        java.util.Iterator i$;
+        java.util.List element, $r0, $r1;
+        boolean $z0, $z1, $z2;
+        com.google.common.collect.ImmutableMap $r2, $r4;
+        java.lang.Object $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.util.List mTags>;
+
+        interfaceinvoke $r0.<java.util.List: void clear()>();
+
+        contents = virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: boolean mCheckCPP>;
+
+        if $z0 == 0 goto label1;
+
+        $r4 = virtualinvoke contents.<com.puppycrawl.tools.checkstyle.api.FileContents: com.google.common.collect.ImmutableMap getCppComments()>();
+
+        $r5 = virtualinvoke $r4.<com.google.common.collect.ImmutableMap: com.google.common.collect.ImmutableCollection values()>();
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void tagSuppressions(java.util.Collection)>($r5);
+
+     label1:
+        $z1 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: boolean mCheckC>;
+
+        if $z1 == 0 goto label3;
+
+        $r2 = virtualinvoke contents.<com.puppycrawl.tools.checkstyle.api.FileContents: com.google.common.collect.ImmutableMap getCComments()>();
+
+        cComments = virtualinvoke $r2.<com.google.common.collect.ImmutableMap: com.google.common.collect.ImmutableCollection values()>();
+
+        i$ = interfaceinvoke cComments.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label2:
+        $z2 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label3;
+
+        $r3 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        element = (java.util.List) $r3;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void tagSuppressions(java.util.Collection)>(element);
+
+        goto label2;
+
+     label3:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.util.List mTags>;
+
+        staticinvoke <java.util.Collections: void sort(java.util.List)>($r1);
+
+        return;
+    }
+
+    private void tagSuppressions(java.util.Collection)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        java.util.Collection aComments;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.api.TextBlock comment;
+        int startLineNo, i, $i0, $i1;
+        java.lang.String[] text;
+        boolean $z0;
+        java.lang.Object $r0;
+        java.lang.String $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aComments := @parameter0: java.util.Collection;
+
+        i$ = interfaceinvoke aComments.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r0 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        comment = (com.puppycrawl.tools.checkstyle.api.TextBlock) $r0;
+
+        startLineNo = interfaceinvoke comment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartLineNo()>();
+
+        text = interfaceinvoke comment.<com.puppycrawl.tools.checkstyle.api.TextBlock: java.lang.String[] getText()>();
+
+        $r1 = text[0];
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void tagCommentLine(java.lang.String,int)>($r1, startLineNo);
+
+        i = 1;
+
+     label2:
+        $i0 = lengthof text;
+
+        if i >= $i0 goto label3;
+
+        $r2 = text[i];
+
+        $i1 = startLineNo + i;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void tagCommentLine(java.lang.String,int)>($r2, $i1);
+
+        i = i + 1;
+
+        goto label2;
+
+     label3:
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    private void tagCommentLine(java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        java.lang.String aText, $r1;
+        int aLine;
+        java.util.regex.Matcher matcher;
+        java.util.regex.Pattern $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aText := @parameter0: java.lang.String;
+
+        aLine := @parameter1: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.util.regex.Pattern mCommentRegexp>;
+
+        matcher = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(aText);
+
+        $z0 = virtualinvoke matcher.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 == 0 goto label1;
+
+        $r1 = virtualinvoke matcher.<java.util.regex.Matcher: java.lang.String group(int)>(0);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: void addTag(java.lang.String,int)>($r1, aLine);
+
+     label1:
+        return;
+    }
+
+    private void addTag(java.lang.String, int)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter this;
+        java.lang.String aText;
+        int aLine;
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter$Tag tag, $r0;
+        java.util.List $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        aText := @parameter0: java.lang.String;
+
+        aLine := @parameter1: int;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter$Tag;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter$Tag: void <init>(com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter,java.lang.String,int)>(this, aText, aLine);
+
+        tag = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.util.List mTags>;
+
+        interfaceinvoke $r1.<java.util.List: boolean add(java.lang.Object)>(tag);
+
+        return;
+    }
+
+    static java.util.regex.Pattern access$000(com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter x0;
+        java.util.regex.Pattern $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.util.regex.Pattern mCheckRegexp>;
+
+        return $r0;
+    }
+
+    static java.lang.String access$100(com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter x0;
+        java.lang.String $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String mCheckFormat>;
+
+        return $r0;
+    }
+
+    static java.util.regex.Pattern access$200(com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter x0;
+        java.util.regex.Pattern $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.util.regex.Pattern mCommentRegexp>;
+
+        return $r0;
+    }
+
+    static java.lang.String access$300(com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter x0;
+        java.lang.String $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String mMessageFormat>;
+
+        return $r0;
+    }
+
+    static java.lang.String access$400(com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter x0;
+        java.lang.String $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String mInfluenceFormat>;
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String DEFAULT_INFLUENCE_FORMAT> = "0";
+
+        <com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String DEFAULT_CHECK_FORMAT> = ".*";
+
+        <com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String DEFAULT_COMMENT_FORMAT> = "SUPPRESS CHECKSTYLE (\\w+)";
+
+        <com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter: java.lang.String DEFAULT_MESSAGE_FORMAT> = null;
+
+        return;
+    }
+}

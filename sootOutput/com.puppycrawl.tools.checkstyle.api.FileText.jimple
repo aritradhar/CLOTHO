@@ -1,0 +1,632 @@
+public final class com.puppycrawl.tools.checkstyle.api.FileText extends java.util.AbstractList
+{
+    private static final int READ_BUFFER_SIZE;
+    private static final java.util.regex.Pattern LINE_TERMINATOR;
+    private final java.io.File mFile;
+    private final java.nio.charset.Charset mCharset;
+    private final java.lang.String mFullText;
+    private final java.lang.String[] mLines;
+    private int[] mLineBreaks;
+
+    public void <init>(java.io.File, java.lang.String) throws java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        java.io.File aFile;
+        java.lang.String aCharsetName, message, l, $r9, $r13;
+        java.nio.charset.CharsetDecoder decoder;
+        java.nio.charset.UnsupportedCharsetException ex, $r16;
+        java.io.UnsupportedEncodingException ex2, $r20;
+        java.io.InputStreamReader reader, $r8;
+        int len, $i0;
+        java.lang.Throwable br, $r24;
+        java.nio.charset.Charset $r0, $r1;
+        java.nio.charset.CodingErrorAction $r2, $r5;
+        java.io.FileInputStream $r6, ex2;
+        java.lang.StringBuilder $r7, $r17, $r21, $r22, message;
+        java.io.BufferedReader $r11, br;
+        java.util.ArrayList $r12, len;
+        java.io.StringReader $r14;
+        java.lang.String[] $r15, $r19;
+        java.lang.Object[] $r18;
+        char[] ex;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        aFile := @parameter0: java.io.File;
+
+        aCharsetName := @parameter1: java.lang.String;
+
+        specialinvoke this.<java.util.AbstractList: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileText: java.io.File mFile> = aFile;
+
+     label01:
+        $r0 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(aCharsetName);
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileText: java.nio.charset.Charset mCharset> = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.nio.charset.Charset mCharset>;
+
+        decoder = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.charset.CharsetDecoder newDecoder()>();
+
+        $r2 = <java.nio.charset.CodingErrorAction: java.nio.charset.CodingErrorAction REPLACE>;
+
+        virtualinvoke decoder.<java.nio.charset.CharsetDecoder: java.nio.charset.CharsetDecoder onMalformedInput(java.nio.charset.CodingErrorAction)>($r2);
+
+        $r5 = <java.nio.charset.CodingErrorAction: java.nio.charset.CodingErrorAction REPLACE>;
+
+        virtualinvoke decoder.<java.nio.charset.CharsetDecoder: java.nio.charset.CharsetDecoder onUnmappableCharacter(java.nio.charset.CodingErrorAction)>($r5);
+
+     label02:
+        goto label04;
+
+     label03:
+        $r16 := @caughtexception;
+
+        ex = $r16;
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>()>();
+
+        $r21 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unsupported charset: ");
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aCharsetName);
+
+        message = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r20 = new java.io.UnsupportedEncodingException;
+
+        specialinvoke $r20.<java.io.UnsupportedEncodingException: void <init>(java.lang.String)>(message);
+
+        ex2 = $r20;
+
+        virtualinvoke ex2.<java.io.UnsupportedEncodingException: java.lang.Throwable initCause(java.lang.Throwable)>(ex);
+
+        throw ex2;
+
+     label04:
+        ex = newarray (char)[1024];
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        message = $r7;
+
+        $r6 = new java.io.FileInputStream;
+
+        specialinvoke $r6.<java.io.FileInputStream: void <init>(java.io.File)>(aFile);
+
+        ex2 = $r6;
+
+        $r8 = new java.io.InputStreamReader;
+
+        specialinvoke $r8.<java.io.InputStreamReader: void <init>(java.io.InputStream,java.nio.charset.CharsetDecoder)>(ex2, decoder);
+
+        reader = $r8;
+
+     label05:
+        len = virtualinvoke reader.<java.io.Reader: int read(char[])>(ex);
+
+        if len >= 0 goto label06;
+
+        goto label07;
+
+     label06:
+        virtualinvoke message.<java.lang.StringBuilder: java.lang.StringBuilder append(char[],int,int)>(ex, 0, len);
+
+        goto label05;
+
+     label07:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(reader);
+
+        goto label10;
+
+     label08:
+        $r24 := @caughtexception;
+
+        br = $r24;
+
+     label09:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(reader);
+
+        throw br;
+
+     label10:
+        $r9 = virtualinvoke message.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String mFullText> = $r9;
+
+        $r12 = new java.util.ArrayList;
+
+        specialinvoke $r12.<java.util.ArrayList: void <init>()>();
+
+        len = $r12;
+
+        $r11 = new java.io.BufferedReader;
+
+        $r14 = new java.io.StringReader;
+
+        $r13 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String mFullText>;
+
+        specialinvoke $r14.<java.io.StringReader: void <init>(java.lang.String)>($r13);
+
+        specialinvoke $r11.<java.io.BufferedReader: void <init>(java.io.Reader)>($r14);
+
+        br = $r11;
+
+     label11:
+        l = virtualinvoke br.<java.io.BufferedReader: java.lang.String readLine()>();
+
+        if null != l goto label12;
+
+        goto label13;
+
+     label12:
+        virtualinvoke len.<java.util.ArrayList: boolean add(java.lang.Object)>(l);
+
+        goto label11;
+
+     label13:
+        $i0 = virtualinvoke len.<java.util.ArrayList: int size()>();
+
+        $r15 = newarray (java.lang.String)[$i0];
+
+        $r18 = virtualinvoke len.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r15);
+
+        $r19 = (java.lang.String[]) $r18;
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String[] mLines> = $r19;
+
+        return;
+
+        catch java.nio.charset.UnsupportedCharsetException from label01 to label02 with label03;
+        catch java.lang.Throwable from label05 to label07 with label08;
+        catch java.lang.Throwable from label08 to label09 with label08;
+    }
+
+    private void <init>(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        java.io.File aFile;
+        java.util.List aLines;
+        java.lang.StringBuilder buf, $r0, $r6;
+        java.util.Iterator i$;
+        java.lang.String line, $r1;
+        boolean $z0;
+        int $i0;
+        java.lang.String[] $r2, $r4;
+        java.lang.Object[] $r3;
+        java.lang.Object $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        specialinvoke this.<java.util.AbstractList: void <init>()>();
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        buf = $r0;
+
+        i$ = interfaceinvoke aLines.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r5 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        line = (java.lang.String) $r5;
+
+        $r6 = virtualinvoke buf.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(line);
+
+        virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(10);
+
+        goto label1;
+
+     label2:
+        virtualinvoke buf.<java.lang.StringBuilder: void trimToSize()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileText: java.io.File mFile> = aFile;
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileText: java.nio.charset.Charset mCharset> = null;
+
+        $r1 = virtualinvoke buf.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String mFullText> = $r1;
+
+        $i0 = interfaceinvoke aLines.<java.util.List: int size()>();
+
+        $r2 = newarray (java.lang.String)[$i0];
+
+        $r3 = interfaceinvoke aLines.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r2);
+
+        $r4 = (java.lang.String[]) $r3;
+
+        this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String[] mLines> = $r4;
+
+        return;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.FileText fromLines(java.io.File, java.util.List)
+    {
+        java.io.File aFile;
+        java.util.List aLines;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.api.FileText $r0;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        $z0 = aLines instanceof com.puppycrawl.tools.checkstyle.api.FileText;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.api.FileText) aLines;
+
+        goto label2;
+
+     label1:
+        $r0 = new com.puppycrawl.tools.checkstyle.api.FileText;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileText: void <init>(java.io.File,java.util.List)>(aFile, aLines);
+
+     label2:
+        return $r0;
+    }
+
+    public java.io.File getFile()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        java.io.File $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.io.File mFile>;
+
+        return $r0;
+    }
+
+    public java.nio.charset.Charset getCharset()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        java.nio.charset.Charset $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.nio.charset.Charset mCharset>;
+
+        return $r0;
+    }
+
+    public java.nio.ByteBuffer getBytes() throws java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        byte[] bytes, newBytes;
+        java.io.FileInputStream stream, $r3;
+        int fill, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, newBytes;
+        java.lang.Throwable l5, $r7;
+        java.io.File $r0, $r1, $r2, $r4;
+        long $l0, $l2;
+        byte $b1;
+        java.nio.ByteBuffer $r5, newBytes;
+        java.io.IOException $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.io.File mFile>;
+
+        if $r0 != null goto label01;
+
+        return null;
+
+     label01:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.io.File mFile>;
+
+        $l0 = virtualinvoke $r1.<java.io.File: long length()>();
+
+        $b1 = $l0 cmp 2147483647L;
+
+        if $b1 <= 0 goto label02;
+
+        $r6 = new java.io.IOException;
+
+        specialinvoke $r6.<java.io.IOException: void <init>(java.lang.String)>("File too large.");
+
+        throw $r6;
+
+     label02:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.io.File mFile>;
+
+        $l2 = virtualinvoke $r2.<java.io.File: long length()>();
+
+        $i3 = (int) $l2;
+
+        $i4 = $i3 + 1;
+
+        bytes = newarray (byte)[$i4];
+
+        $r3 = new java.io.FileInputStream;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.io.File mFile>;
+
+        specialinvoke $r3.<java.io.FileInputStream: void <init>(java.io.File)>($r4);
+
+        stream = $r3;
+
+     label03:
+        fill = 0;
+
+     label04:
+        $i6 = lengthof bytes;
+
+        if fill < $i6 goto label05;
+
+        $i9 = lengthof bytes;
+
+        $i8 = $i9 * 2;
+
+        $i10 = $i8 + 1;
+
+        newBytes = newarray (byte)[$i10];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(bytes, 0, newBytes, 0, fill);
+
+        bytes = newBytes;
+
+     label05:
+        $i5 = lengthof bytes;
+
+        $i7 = $i5 - fill;
+
+        newBytes = virtualinvoke stream.<java.io.FileInputStream: int read(byte[],int,int)>(bytes, fill, $i7);
+
+        if newBytes != -1 goto label06;
+
+        goto label07;
+
+     label06:
+        fill = fill + newBytes;
+
+        goto label04;
+
+     label07:
+        $r5 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[],int,int)>(bytes, 0, fill);
+
+        newBytes = virtualinvoke $r5.<java.nio.ByteBuffer: java.nio.ByteBuffer asReadOnlyBuffer()>();
+
+     label08:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(stream);
+
+        return newBytes;
+
+     label09:
+        $r7 := @caughtexception;
+
+        l5 = $r7;
+
+     label10:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(stream);
+
+        throw l5;
+
+        catch java.lang.Throwable from label03 to label08 with label09;
+        catch java.lang.Throwable from label09 to label10 with label09;
+    }
+
+    public java.lang.CharSequence getFullText()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String mFullText>;
+
+        return $r0;
+    }
+
+    public java.lang.String[] toLinesArray()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        java.lang.String[] $r0, $r2;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String[] mLines>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (java.lang.String[]) $r1;
+
+        return $r2;
+    }
+
+    private int[] lineBreaks()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        int[] lineBreaks, $r0, $r1;
+        int lineNo, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.util.regex.Matcher matcher;
+        java.lang.String $r2, $r5;
+        java.util.regex.Pattern $r3;
+        boolean $z0;
+        java.util.ConcurrentModificationException $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileText: int[] mLineBreaks>;
+
+        if $r0 != null goto label5;
+
+        $i0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.FileText: int size()>();
+
+        $i1 = $i0 + 1;
+
+        lineBreaks = newarray (int)[$i1];
+
+        lineBreaks[0] = 0;
+
+        lineNo = 1;
+
+        $r3 = <com.puppycrawl.tools.checkstyle.api.FileText: java.util.regex.Pattern LINE_TERMINATOR>;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String mFullText>;
+
+        matcher = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r2);
+
+     label1:
+        $z0 = virtualinvoke matcher.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 == 0 goto label2;
+
+        $i7 = lineNo;
+
+        lineNo = lineNo + 1;
+
+        $i6 = virtualinvoke matcher.<java.util.regex.Matcher: int end()>();
+
+        lineBreaks[$i7] = $i6;
+
+        goto label1;
+
+     label2:
+        $i2 = lengthof lineBreaks;
+
+        if lineNo >= $i2 goto label3;
+
+        $i4 = lineNo;
+
+        lineNo = lineNo + 1;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String mFullText>;
+
+        $i5 = virtualinvoke $r5.<java.lang.String: int length()>();
+
+        lineBreaks[$i4] = $i5;
+
+     label3:
+        $i3 = lengthof lineBreaks;
+
+        if lineNo == $i3 goto label4;
+
+        $r4 = new java.util.ConcurrentModificationException;
+
+        specialinvoke $r4.<java.util.ConcurrentModificationException: void <init>(java.lang.String)>("Text changed.");
+
+        throw $r4;
+
+     label4:
+        this.<com.puppycrawl.tools.checkstyle.api.FileText: int[] mLineBreaks> = lineBreaks;
+
+     label5:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.api.FileText: int[] mLineBreaks>;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.LineColumn lineColumn(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        int aPos, lineNo, startOfLine, columnNo, $i0, $i1;
+        int[] lineBreaks;
+        com.puppycrawl.tools.checkstyle.api.LineColumn $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        aPos := @parameter0: int;
+
+        lineBreaks = specialinvoke this.<com.puppycrawl.tools.checkstyle.api.FileText: int[] lineBreaks()>();
+
+        lineNo = staticinvoke <java.util.Arrays: int binarySearch(int[],int)>(lineBreaks, aPos);
+
+        if lineNo >= 0 goto label1;
+
+        $i1 = neg lineNo;
+
+        lineNo = $i1 - 2;
+
+     label1:
+        startOfLine = lineBreaks[lineNo];
+
+        columnNo = aPos - startOfLine;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.LineColumn;
+
+        $i0 = lineNo + 1;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LineColumn: void <init>(int,int)>($i0, columnNo);
+
+        return $r0;
+    }
+
+    public java.lang.String get(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        int aLineNo;
+        java.lang.String[] $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        aLineNo := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String[] mLines>;
+
+        $r1 = $r0[aLineNo];
+
+        return $r1;
+    }
+
+    public int size()
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        java.lang.String[] $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String[] mLines>;
+
+        $i0 = lengthof $r0;
+
+        return $i0;
+    }
+
+    public volatile java.lang.Object get(int)
+    {
+        com.puppycrawl.tools.checkstyle.api.FileText this;
+        int x0;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.FileText;
+
+        x0 := @parameter0: int;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.FileText: java.lang.String get(int)>(x0);
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        java.util.regex.Pattern $r0;
+
+        <com.puppycrawl.tools.checkstyle.api.FileText: int READ_BUFFER_SIZE> = 1024;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>("\\n|\\r\\n?");
+
+        <com.puppycrawl.tools.checkstyle.api.FileText: java.util.regex.Pattern LINE_TERMINATOR> = $r0;
+
+        return;
+    }
+}

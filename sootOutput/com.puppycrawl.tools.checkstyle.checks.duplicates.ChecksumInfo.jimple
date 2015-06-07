@@ -1,0 +1,309 @@
+final class com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo extends java.lang.Object
+{
+    private static final int[] NO_LINES;
+    private int[] mSortedChecksums;
+    private int[] mOrigIdx;
+
+    void <init>(int[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo this;
+        int[] aBlockChecksums, relevant, reverse, $r0, $r1, $r2, $r3;
+        int csLen, count, j, checksum, $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo;
+
+        aBlockChecksums := @parameter0: int[];
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        csLen = lengthof aBlockChecksums;
+
+        relevant = newarray (int)[csLen];
+
+        reverse = newarray (int)[csLen];
+
+        count = 0;
+
+        j = 0;
+
+     label1:
+        if j >= csLen goto label3;
+
+        checksum = aBlockChecksums[j];
+
+        if checksum == -2147483648 goto label2;
+
+        reverse[count] = j;
+
+        $i0 = count;
+
+        count = count + 1;
+
+        relevant[$i0] = checksum;
+
+     label2:
+        j = j + 1;
+
+        goto label1;
+
+     label3:
+        $r0 = newarray (int)[count];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums> = $r0;
+
+        $r1 = newarray (int)[count];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mOrigIdx> = $r1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(relevant, 0, $r2, 0, count);
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mOrigIdx>;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(reverse, 0, $r3, 0, count);
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: void sort()>();
+
+        return;
+    }
+
+    private void sort()
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo this;
+        int[] arr, $r0, $r1, $r2, $r3;
+        int len, i, j, k, v, z, $i0, $i1, $i2, $i3, $i4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo;
+
+        arr = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums>;
+
+        len = lengthof arr;
+
+        i = 0;
+
+     label1:
+        if i >= len goto label4;
+
+        j = i;
+
+     label2:
+        if j <= 0 goto label3;
+
+        $i2 = arr[j];
+
+        $i0 = j - 1;
+
+        $i1 = arr[$i0];
+
+        if $i2 >= $i1 goto label3;
+
+        k = j - 1;
+
+        v = arr[j];
+
+        $i3 = arr[k];
+
+        arr[j] = $i3;
+
+        arr[k] = v;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mOrigIdx>;
+
+        z = $r0[j];
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mOrigIdx>;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mOrigIdx>;
+
+        $i4 = $r1[k];
+
+        $r2[j] = $i4;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mOrigIdx>;
+
+        $r3[k] = z;
+
+        j = j + -1;
+
+        goto label2;
+
+     label3:
+        i = i + 1;
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    boolean hasChecksumOverlapsWith(com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo this, aChecksumInfo;
+        int[] jSortedrelevantChecksums, $r0, $r1;
+        int iLen, jLen, jdx, idx, $i0, $i1;
+        long iSum, jSum;
+        byte $b2, $b3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo;
+
+        aChecksumInfo := @parameter0: com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo;
+
+        jSortedrelevantChecksums = aChecksumInfo.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums>;
+
+        iLen = lengthof $r0;
+
+        jLen = lengthof jSortedrelevantChecksums;
+
+        jdx = 0;
+
+        idx = 0;
+
+     label1:
+        if jdx >= jLen goto label5;
+
+        if idx >= iLen goto label5;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums>;
+
+        $i0 = $r1[idx];
+
+        iSum = (long) $i0;
+
+        $i1 = jSortedrelevantChecksums[jdx];
+
+        jSum = (long) $i1;
+
+        $b2 = iSum cmp jSum;
+
+        if $b2 >= 0 goto label2;
+
+        idx = idx + 1;
+
+        goto label4;
+
+     label2:
+        $b3 = iSum cmp jSum;
+
+        if $b3 <= 0 goto label3;
+
+        jdx = jdx + 1;
+
+        goto label4;
+
+     label3:
+        return 1;
+
+     label4:
+        goto label1;
+
+     label5:
+        return 0;
+    }
+
+    int[] findLinesWithChecksum(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo this;
+        int aSum, idx, start, end, i, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9;
+        int[] 'ret', $r0, $r1, $r2, $r3, $r4, $r5, $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo;
+
+        aSum := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums>;
+
+        idx = staticinvoke <java.util.Arrays: int binarySearch(int[],int)>($r0, aSum);
+
+        if idx >= 0 goto label1;
+
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] NO_LINES>;
+
+        return $r6;
+
+     label1:
+        if idx <= 0 goto label2;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums>;
+
+        $i7 = idx - 1;
+
+        $i9 = $r5[$i7];
+
+        if $i9 != aSum goto label2;
+
+        idx = idx + -1;
+
+        goto label1;
+
+     label2:
+        start = idx;
+
+        end = start + 1;
+
+     label3:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums>;
+
+        $i0 = lengthof $r1;
+
+        if end >= $i0 goto label4;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums>;
+
+        $i8 = $r3[end];
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mSortedChecksums>;
+
+        $i5 = end - 1;
+
+        $i6 = $r4[$i5];
+
+        if $i8 != $i6 goto label4;
+
+        end = end + 1;
+
+        goto label3;
+
+     label4:
+        $i1 = end - start;
+
+        'ret' = newarray (int)[$i1];
+
+        i = 0;
+
+     label5:
+        $i2 = lengthof 'ret';
+
+        if i >= $i2 goto label6;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] mOrigIdx>;
+
+        $i3 = start + i;
+
+        $i4 = $r2[$i3];
+
+        'ret'[i] = $i4;
+
+        i = i + 1;
+
+        goto label5;
+
+     label6:
+        staticinvoke <java.util.Arrays: void sort(int[])>('ret');
+
+        return 'ret';
+    }
+
+    static void <clinit>()
+    {
+        int[] $r0;
+
+        $r0 = newarray (int)[0];
+
+        <com.puppycrawl.tools.checkstyle.checks.duplicates.ChecksumInfo: int[] NO_LINES> = $r0;
+
+        return;
+    }
+}

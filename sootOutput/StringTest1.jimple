@@ -1,0 +1,42 @@
+public class StringTest1 extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        StringTest1 r0;
+
+        r0 := @this: StringTest1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.io.IOException
+    {
+        java.lang.String[] r0;
+        java.lang.String r1;
+        int $i0, $i1;
+        char $c2;
+        java.io.PrintStream $r2;
+
+        r0 := @parameter0: java.lang.String[];
+
+        r1 = "aritra";
+
+        $i0 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        $i1 = $i0 - 1;
+
+        $c2 = virtualinvoke r1.<java.lang.String: char charAt(int)>($i1);
+
+        if $c2 == 47 goto label1;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("aritra");
+
+     label1:
+        return;
+    }
+}

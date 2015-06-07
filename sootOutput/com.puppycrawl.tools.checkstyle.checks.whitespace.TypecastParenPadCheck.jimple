@@ -1,0 +1,83 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck extends com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck: void <init>()>();
+
+        return;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 78;
+
+        $r0[1] = 23;
+
+        return $r0;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck: int[] getRequiredTokens()>();
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0, $r1, $r2, $r3;
+        int $i0, $i1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 23 goto label1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck: void processLeft(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label2;
+
+     label1:
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if $r0 == null goto label2;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i1 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 23 goto label2;
+
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r3 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(78);
+
+        if $r3 != aAST goto label2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck: void processRight(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label2:
+        return;
+    }
+}

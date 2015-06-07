@@ -1,0 +1,1990 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck extends com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck
+{
+    private static final java.util.regex.Pattern MATCH_JAVADOC_ARG;
+    private static final java.util.regex.Pattern MATCH_JAVADOC_ARG_MULTILINE_START;
+    private static final java.util.regex.Pattern MATCH_JAVADOC_MULTILINE_CONT;
+    private static final java.lang.String END_JAVADOC;
+    private static final java.lang.String NEXT_TAG;
+    private static final java.util.regex.Pattern MATCH_JAVADOC_NOARG;
+    private static final java.util.regex.Pattern MATCH_JAVADOC_NOARG_MULTILINE_START;
+    private static final java.util.regex.Pattern MATCH_JAVADOC_NOARG_CURLY;
+    private static final int MAX_CHILDREN;
+    private static final int BODY_SIZE;
+    private static final int DEFAULT_MIN_LINE_COUNT;
+    private com.puppycrawl.tools.checkstyle.api.Scope mScope;
+    private com.puppycrawl.tools.checkstyle.api.Scope mExcludeScope;
+    private int mMinLineCount;
+    private boolean mAllowUndeclaredRTE;
+    private boolean mValidateThrows;
+    private boolean mAllowThrowsTagsForSubclasses;
+    private boolean mAllowMissingParamTags;
+    private boolean mAllowMissingThrowsTags;
+    private boolean mAllowMissingReturnTag;
+    private boolean mAllowMissingJavadoc;
+    private boolean mAllowMissingPropertyJavadoc;
+    private java.util.List mAllowedAnnotations;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.Scope $r0;
+        java.lang.String[] $r1;
+        java.util.List $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void <init>()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PRIVATE>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.api.Scope mScope> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: int mMinLineCount> = -1;
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "Override";
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r1);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.List mAllowedAnnotations> = $r2;
+
+        return;
+    }
+
+    public void setMinLineCount(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        int aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aValue := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: int mMinLineCount> = aValue;
+
+        return;
+    }
+
+    public void setValidateThrows(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        boolean aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aValue := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mValidateThrows> = aValue;
+
+        return;
+    }
+
+    public void setAllowedAnnotations(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        java.lang.String aAnnotations, 'annotation';
+        java.util.ArrayList annotations, $r0;
+        java.lang.String[] arr$;
+        int len$, i$;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAnnotations := @parameter0: java.lang.String;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        annotations = $r0;
+
+        arr$ = virtualinvoke aAnnotations.<java.lang.String: java.lang.String[] split(java.lang.String)>(", ");
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label2;
+
+        'annotation' = arr$[i$];
+
+        interfaceinvoke annotations.<java.util.List: boolean add(java.lang.Object)>('annotation');
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.List mAllowedAnnotations> = annotations;
+
+        return;
+    }
+
+    public void setScope(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        java.lang.String aFrom;
+        com.puppycrawl.tools.checkstyle.api.Scope $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aFrom := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope getInstance(java.lang.String)>(aFrom);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.api.Scope mScope> = $r0;
+
+        return;
+    }
+
+    public void setExcludeScope(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        java.lang.String aScope;
+        com.puppycrawl.tools.checkstyle.api.Scope $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aScope := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope getInstance(java.lang.String)>(aScope);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.api.Scope mExcludeScope> = $r0;
+
+        return;
+    }
+
+    public void setAllowUndeclaredRTE(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        boolean aFlag;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aFlag := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowUndeclaredRTE> = aFlag;
+
+        return;
+    }
+
+    public void setAllowThrowsTagsForSubclasses(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        boolean aFlag;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aFlag := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowThrowsTagsForSubclasses> = aFlag;
+
+        return;
+    }
+
+    public void setAllowMissingParamTags(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        boolean aFlag;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aFlag := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowMissingParamTags> = aFlag;
+
+        return;
+    }
+
+    public void setAllowMissingThrowsTags(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        boolean aFlag;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aFlag := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowMissingThrowsTags> = aFlag;
+
+        return;
+    }
+
+    public void setAllowMissingReturnTag(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        boolean aFlag;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aFlag := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowMissingReturnTag> = aFlag;
+
+        return;
+    }
+
+    public void setAllowMissingJavadoc(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        boolean aFlag;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aFlag := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowMissingJavadoc> = aFlag;
+
+        return;
+    }
+
+    public void setAllowMissingPropertyJavadoc(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        boolean aFlag;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aFlag := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowMissingPropertyJavadoc> = aFlag;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        $r0 = newarray (int)[8];
+
+        $r0[0] = 16;
+
+        $r0[1] = 31;
+
+        $r0[2] = 14;
+
+        $r0[3] = 158;
+
+        $r0[4] = 15;
+
+        $r0[5] = 9;
+
+        $r0[6] = 8;
+
+        $r0[7] = 165;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 9;
+
+        $r0[1] = 8;
+
+        $r0[2] = 165;
+
+        return $r0;
+    }
+
+    public boolean isCommentNodesRequired()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        return 1;
+    }
+
+    protected final void processAST(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.Scope theScope;
+        com.puppycrawl.tools.checkstyle.api.FileContents contents;
+        com.puppycrawl.tools.checkstyle.api.TextBlock cmt;
+        int $i0, $i1, $i2, $i3, $i4;
+        boolean $z0, $z1, $z2;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 9 goto label1;
+
+        $i4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i4 != 8 goto label2;
+
+     label1:
+        $i1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: int getMethodsNumberOfLine(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: int mMinLineCount>;
+
+        if $i1 <= $i2 goto label3;
+
+     label2:
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean hasAllowedAnnotations(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label4;
+
+     label3:
+        return;
+
+     label4:
+        theScope = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.api.Scope calculateScope(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean shouldCheck(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.Scope)>(aAST, theScope);
+
+        if $z1 == 0 goto label6;
+
+        contents = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        cmt = virtualinvoke contents.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.TextBlock getJavadocBefore(int)>($i3);
+
+        if cmt != null goto label5;
+
+        $z2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean isMissingJavadocAllowed(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z2 != 0 goto label6;
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "javadoc.missing", $r0);
+
+        goto label6;
+
+     label5:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void checkComment(com.puppycrawl.tools.checkstyle.api.DetailAST,com.puppycrawl.tools.checkstyle.api.TextBlock)>(aAST, cmt);
+
+     label6:
+        return;
+    }
+
+    private boolean hasAllowedAnnotations(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethodDef, modifiersNode, annotationNode, identNode, $r2;
+        int $i0;
+        java.util.List $r0;
+        java.lang.String $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aMethodDef := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiersNode = virtualinvoke aMethodDef.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        annotationNode = virtualinvoke modifiersNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(163);
+
+     label1:
+        if annotationNode == null goto label4;
+
+        $i0 = virtualinvoke annotationNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 163 goto label4;
+
+        identNode = virtualinvoke annotationNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        if identNode != null goto label2;
+
+        $r2 = virtualinvoke annotationNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(60);
+
+        identNode = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+     label2:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.List mAllowedAnnotations>;
+
+        $r1 = virtualinvoke identNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = interfaceinvoke $r0.<java.util.List: boolean contains(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label3;
+
+        return 1;
+
+     label3:
+        annotationNode = virtualinvoke annotationNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label4:
+        return 0;
+    }
+
+    private int getMethodsNumberOfLine(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethodDef, lcurly, rcurly, $r0;
+        int numberOfLines, $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aMethodDef := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        lcurly = virtualinvoke aMethodDef.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        rcurly = virtualinvoke lcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $r0 = virtualinvoke lcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        if $r0 != rcurly goto label1;
+
+        numberOfLines = 1;
+
+        goto label2;
+
+     label1:
+        $i0 = virtualinvoke rcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke lcurly.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = $i0 - $i1;
+
+        numberOfLines = $i2 - 1;
+
+     label2:
+        return numberOfLines;
+    }
+
+    protected final void logLoadError(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token aIdent;
+        int $i0, $i1;
+        java.lang.Object[] $r0;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r1;
+        java.lang.String $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aIdent := @parameter0: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        $i0 = virtualinvoke aIdent.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int getLineNo()>();
+
+        $i1 = virtualinvoke aIdent.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo THROWS>;
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getText()>();
+
+        $r0[0] = $r2;
+
+        $r3 = virtualinvoke aIdent.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String getText()>();
+
+        $r0[1] = $r3;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void logLoadErrorImpl(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "javadoc.classInfo", $r0);
+
+        return;
+    }
+
+    protected boolean isMissingJavadocAllowed(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        boolean $z0, $z1, $z2, $z3, $z4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowMissingJavadoc>;
+
+        if $z0 != 0 goto label1;
+
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowMissingPropertyJavadoc>;
+
+        if $z1 == 0 goto label2;
+
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean isSetterMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z3 != 0 goto label1;
+
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean isGetterMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z4 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    private boolean shouldCheck(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.Scope)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.Scope aScope, surroundingScope, $r0, $r1, $r2, $r3, $r4;
+        boolean $z0, $z1, $z2, $z3, $z4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aScope := @parameter1: com.puppycrawl.tools.checkstyle.api.Scope;
+
+        surroundingScope = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: com.puppycrawl.tools.checkstyle.api.Scope getSurroundingScope(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.api.Scope mScope>;
+
+        $z0 = virtualinvoke aScope.<com.puppycrawl.tools.checkstyle.api.Scope: boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)>($r0);
+
+        if $z0 == 0 goto label2;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.api.Scope mScope>;
+
+        $z1 = virtualinvoke surroundingScope.<com.puppycrawl.tools.checkstyle.api.Scope: boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)>($r1);
+
+        if $z1 == 0 goto label2;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.api.Scope mExcludeScope>;
+
+        if $r2 == null goto label1;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.api.Scope mExcludeScope>;
+
+        $z3 = virtualinvoke aScope.<com.puppycrawl.tools.checkstyle.api.Scope: boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)>($r3);
+
+        if $z3 == 0 goto label1;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.api.Scope mExcludeScope>;
+
+        $z4 = virtualinvoke surroundingScope.<com.puppycrawl.tools.checkstyle.api.Scope: boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)>($r4);
+
+        if $z4 != 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    private void checkComment(com.puppycrawl.tools.checkstyle.api.DetailAST, com.puppycrawl.tools.checkstyle.api.TextBlock)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.TextBlock aComment;
+        java.util.List tags, $r2;
+        java.util.Iterator it;
+        boolean hasInheritDocTag, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8;
+        int $i0, $i1, $i2;
+        java.lang.Object $r0, $r3;
+        java.lang.Object[] $r1;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag $r4, hasInheritDocTag;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aComment := @parameter1: com.puppycrawl.tools.checkstyle.api.TextBlock;
+
+        tags = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.List getMethodTags(com.puppycrawl.tools.checkstyle.api.TextBlock)>(aComment);
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean hasShortCircuitTag(com.puppycrawl.tools.checkstyle.api.DetailAST,java.util.List)>(aAST, tags);
+
+        if $z0 == 0 goto label01;
+
+        return;
+
+     label01:
+        it = interfaceinvoke tags.<java.util.List: java.util.Iterator iterator()>();
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 165 goto label10;
+
+        hasInheritDocTag = 0;
+
+     label02:
+        $z3 = interfaceinvoke it.<java.util.Iterator: boolean hasNext()>();
+
+        if $z3 == 0 goto label03;
+
+        if hasInheritDocTag != 0 goto label03;
+
+        $r3 = interfaceinvoke it.<java.util.Iterator: java.lang.Object next()>();
+
+        $r4 = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag) $r3;
+
+        $z8 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: boolean isInheritDocTag()>();
+
+        hasInheritDocTag = hasInheritDocTag | $z8;
+
+        goto label02;
+
+     label03:
+        if hasInheritDocTag != 0 goto label04;
+
+        $z7 = 1;
+
+        goto label05;
+
+     label04:
+        $z7 = 0;
+
+     label05:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void checkParamTags(java.util.List,com.puppycrawl.tools.checkstyle.api.DetailAST,boolean)>(tags, aAST, $z7);
+
+        $r2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.List getThrows(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if hasInheritDocTag != 0 goto label06;
+
+        $z5 = 1;
+
+        goto label07;
+
+     label06:
+        $z5 = 0;
+
+     label07:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void checkThrowsTags(java.util.List,java.util.List,boolean)>(tags, $r2, $z5);
+
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean isFunction(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z4 == 0 goto label10;
+
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        if hasInheritDocTag != 0 goto label08;
+
+        $z6 = 1;
+
+        goto label09;
+
+     label08:
+        $z6 = 0;
+
+     label09:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void checkReturnTag(java.util.List,int,boolean)>(tags, $i2, $z6);
+
+     label10:
+        it = interfaceinvoke tags.<java.util.List: java.util.Iterator iterator()>();
+
+     label11:
+        $z1 = interfaceinvoke it.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label13;
+
+        $r0 = interfaceinvoke it.<java.util.Iterator: java.lang.Object next()>();
+
+        hasInheritDocTag = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag) $r0;
+
+        $z2 = virtualinvoke hasInheritDocTag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: boolean isSeeOrInheritDocTag()>();
+
+        if $z2 != 0 goto label12;
+
+        $i1 = virtualinvoke hasInheritDocTag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int getLineNo()>();
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void log(int,java.lang.String,java.lang.Object[])>($i1, "javadoc.unusedTagGeneral", $r1);
+
+     label12:
+        goto label11;
+
+     label13:
+        return;
+    }
+
+    private boolean hasShortCircuitTag(com.puppycrawl.tools.checkstyle.api.DetailAST, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.util.List aTags;
+        int $i0;
+        java.lang.Object $r0;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag $r1;
+        boolean $z0, $z1;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r2;
+        java.lang.Object[] $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aTags := @parameter1: java.util.List;
+
+        $i0 = interfaceinvoke aTags.<java.util.List: int size()>();
+
+        if $i0 != 1 goto label1;
+
+        $r0 = interfaceinvoke aTags.<java.util.List: java.lang.Object get(int)>(0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag) $r0;
+
+        $z0 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: boolean isInheritDocTag()>();
+
+        if $z0 != 0 goto label2;
+
+     label1:
+        return 0;
+
+     label2:
+        $r2 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo INHERIT_DOC>;
+
+        $z1 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: boolean isValidOn(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 != 0 goto label3;
+
+        $r3 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "javadoc.invalidInheritDoc", $r3);
+
+     label3:
+        return 1;
+    }
+
+    private com.puppycrawl.tools.checkstyle.api.Scope calculateScope(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, mods;
+        com.puppycrawl.tools.checkstyle.api.Scope declaredScope, $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        mods = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        declaredScope = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: com.puppycrawl.tools.checkstyle.api.Scope getScopeFromMods(com.puppycrawl.tools.checkstyle.api.DetailAST)>(mods);
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label1;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PUBLIC>;
+
+        goto label2;
+
+     label1:
+        $r0 = declaredScope;
+
+     label2:
+        return $r0;
+    }
+
+    private java.util.List getMethodTags(com.puppycrawl.tools.checkstyle.api.TextBlock)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.TextBlock aComment;
+        java.lang.String[] lines;
+        java.util.ArrayList tags;
+        int currentLine, i, col, remIndex, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, p2;
+        java.util.regex.Matcher javadocArgMatcher, javadocNoargMatcher, noargCurlyMatcher, argMultilineStart, noargMultilineStart, multilineCont, remIndex;
+        java.lang.String p2, lFin, $r0, $r3, $r4, $r7, $r9, $r10, $r14, $r16, $r20, $r21, $r22, col, multilineCont;
+        java.util.regex.Pattern $r1, $r2, $r5, $r6, $r8, $r11, $r13;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z9, $z10, $z12;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag $r12, $r15, $r17, $r18, $r19;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aComment := @parameter0: com.puppycrawl.tools.checkstyle.api.TextBlock;
+
+        lines = interfaceinvoke aComment.<com.puppycrawl.tools.checkstyle.api.TextBlock: java.lang.String[] getText()>();
+
+        tags = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        $i0 = interfaceinvoke aComment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartLineNo()>();
+
+        currentLine = $i0 - 1;
+
+        i = 0;
+
+     label01:
+        $i1 = lengthof lines;
+
+        if i >= $i1 goto label17;
+
+        currentLine = currentLine + 1;
+
+        $r1 = <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_ARG>;
+
+        $r0 = lines[i];
+
+        javadocArgMatcher = virtualinvoke $r1.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r0);
+
+        $r2 = <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_NOARG>;
+
+        $r3 = lines[i];
+
+        javadocNoargMatcher = virtualinvoke $r2.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r3);
+
+        $r5 = <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_NOARG_CURLY>;
+
+        $r4 = lines[i];
+
+        noargCurlyMatcher = virtualinvoke $r5.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r4);
+
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_ARG_MULTILINE_START>;
+
+        $r7 = lines[i];
+
+        argMultilineStart = virtualinvoke $r6.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r7);
+
+        $r8 = <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_NOARG_MULTILINE_START>;
+
+        $r9 = lines[i];
+
+        noargMultilineStart = virtualinvoke $r8.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r9);
+
+        $z2 = virtualinvoke javadocArgMatcher.<java.util.regex.Matcher: boolean find()>();
+
+        if $z2 == 0 goto label03;
+
+        $i10 = virtualinvoke javadocArgMatcher.<java.util.regex.Matcher: int start(int)>(1);
+
+        col = $i10 - 1;
+
+        if i != 0 goto label02;
+
+        $i13 = interfaceinvoke aComment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartColNo()>();
+
+        col = col + $i13;
+
+     label02:
+        $r18 = new com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r22 = virtualinvoke javadocArgMatcher.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        $r21 = virtualinvoke javadocArgMatcher.<java.util.regex.Matcher: java.lang.String group(int)>(2);
+
+        specialinvoke $r18.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: void <init>(int,int,java.lang.String,java.lang.String)>(currentLine, col, $r22, $r21);
+
+        interfaceinvoke tags.<java.util.List: boolean add(java.lang.Object)>($r18);
+
+        goto label16;
+
+     label03:
+        $z3 = virtualinvoke javadocNoargMatcher.<java.util.regex.Matcher: boolean find()>();
+
+        if $z3 == 0 goto label05;
+
+        $i12 = virtualinvoke javadocNoargMatcher.<java.util.regex.Matcher: int start(int)>(1);
+
+        col = $i12 - 1;
+
+        if i != 0 goto label04;
+
+        $i9 = interfaceinvoke aComment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartColNo()>();
+
+        col = col + $i9;
+
+     label04:
+        $r19 = new com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r20 = virtualinvoke javadocNoargMatcher.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        specialinvoke $r19.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: void <init>(int,int,java.lang.String)>(currentLine, col, $r20);
+
+        interfaceinvoke tags.<java.util.List: boolean add(java.lang.Object)>($r19);
+
+        goto label16;
+
+     label05:
+        $z0 = virtualinvoke noargCurlyMatcher.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 == 0 goto label07;
+
+        $i7 = virtualinvoke noargCurlyMatcher.<java.util.regex.Matcher: int start(int)>(1);
+
+        col = $i7 - 1;
+
+        if i != 0 goto label06;
+
+        $i11 = interfaceinvoke aComment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartColNo()>();
+
+        col = col + $i11;
+
+     label06:
+        $r15 = new com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        $r16 = virtualinvoke noargCurlyMatcher.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        specialinvoke $r15.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: void <init>(int,int,java.lang.String)>(currentLine, col, $r16);
+
+        interfaceinvoke tags.<java.util.List: boolean add(java.lang.Object)>($r15);
+
+        goto label16;
+
+     label07:
+        $z1 = virtualinvoke argMultilineStart.<java.util.regex.Matcher: boolean find()>();
+
+        if $z1 == 0 goto label12;
+
+        col = virtualinvoke argMultilineStart.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        p2 = virtualinvoke argMultilineStart.<java.util.regex.Matcher: java.lang.String group(int)>(2);
+
+        $i6 = virtualinvoke argMultilineStart.<java.util.regex.Matcher: int start(int)>(1);
+
+        col = $i6 - 1;
+
+        if i != 0 goto label08;
+
+        $i8 = interfaceinvoke aComment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartColNo()>();
+
+        col = col + $i8;
+
+     label08:
+        remIndex = i + 1;
+
+     label09:
+        $i5 = lengthof lines;
+
+        if remIndex >= $i5 goto label11;
+
+        $r13 = <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_MULTILINE_CONT>;
+
+        $r14 = lines[remIndex];
+
+        multilineCont = virtualinvoke $r13.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r14);
+
+        $z10 = virtualinvoke multilineCont.<java.util.regex.Matcher: boolean find()>();
+
+        if $z10 == 0 goto label10;
+
+        remIndex = lengthof lines;
+
+        lFin = virtualinvoke multilineCont.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        $z9 = virtualinvoke lFin.<java.lang.String: boolean equals(java.lang.Object)>("@");
+
+        if $z9 != 0 goto label10;
+
+        $z12 = virtualinvoke lFin.<java.lang.String: boolean equals(java.lang.Object)>("*/");
+
+        if $z12 != 0 goto label10;
+
+        $r17 = new com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        specialinvoke $r17.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: void <init>(int,int,java.lang.String,java.lang.String)>(currentLine, col, col, p2);
+
+        interfaceinvoke tags.<java.util.List: boolean add(java.lang.Object)>($r17);
+
+     label10:
+        remIndex = remIndex + 1;
+
+        goto label09;
+
+     label11:
+        goto label16;
+
+     label12:
+        $z4 = virtualinvoke noargMultilineStart.<java.util.regex.Matcher: boolean find()>();
+
+        if $z4 == 0 goto label16;
+
+        col = virtualinvoke noargMultilineStart.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        $i2 = virtualinvoke noargMultilineStart.<java.util.regex.Matcher: int start(int)>(1);
+
+        p2 = $i2 - 1;
+
+        if i != 0 goto label13;
+
+        $i4 = interfaceinvoke aComment.<com.puppycrawl.tools.checkstyle.api.TextBlock: int getStartColNo()>();
+
+        p2 = p2 + $i4;
+
+     label13:
+        col = i + 1;
+
+     label14:
+        $i3 = lengthof lines;
+
+        if col >= $i3 goto label16;
+
+        $r11 = <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_MULTILINE_CONT>;
+
+        $r10 = lines[col];
+
+        remIndex = virtualinvoke $r11.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r10);
+
+        $z5 = virtualinvoke remIndex.<java.util.regex.Matcher: boolean find()>();
+
+        if $z5 == 0 goto label15;
+
+        col = lengthof lines;
+
+        multilineCont = virtualinvoke remIndex.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        $z7 = virtualinvoke multilineCont.<java.lang.String: boolean equals(java.lang.Object)>("@");
+
+        if $z7 != 0 goto label15;
+
+        $z6 = virtualinvoke multilineCont.<java.lang.String: boolean equals(java.lang.Object)>("*/");
+
+        if $z6 != 0 goto label15;
+
+        $r12 = new com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+
+        specialinvoke $r12.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: void <init>(int,int,java.lang.String)>(currentLine, p2, col);
+
+        interfaceinvoke tags.<java.util.List: boolean add(java.lang.Object)>($r12);
+
+     label15:
+        col = col + 1;
+
+        goto label14;
+
+     label16:
+        i = i + 1;
+
+        goto label01;
+
+     label17:
+        return tags;
+    }
+
+    private java.util.List getParameters(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, params, child, ident;
+        java.util.ArrayList retVal;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        params = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        retVal = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        child = virtualinvoke params.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if child == null goto label3;
+
+        $i0 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 21 goto label2;
+
+        ident = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        interfaceinvoke retVal.<java.util.List: boolean add(java.lang.Object)>(ident);
+
+     label2:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label3:
+        return retVal;
+    }
+
+    private java.util.List getThrows(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, throwsAST, child;
+        java.util.ArrayList retVal;
+        com.puppycrawl.tools.checkstyle.api.FullIdent fi;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo ei, $r0;
+        int $i0, $i1;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token $r1;
+        java.lang.String $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        throwsAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(82);
+
+        if throwsAST == null goto label4;
+
+        child = virtualinvoke throwsAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label1:
+        if child == null goto label4;
+
+        $i0 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 59 goto label2;
+
+        $i1 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 60 goto label3;
+
+     label2:
+        fi = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(child);
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: void <init>(com.puppycrawl.tools.checkstyle.api.FullIdent)>(fi);
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.lang.String getCurrentClassName()>();
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: void <init>(com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck,com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token,java.lang.String)>(this, $r1, $r2);
+
+        ei = $r0;
+
+        interfaceinvoke retVal.<java.util.List: boolean add(java.lang.Object)>(ei);
+
+     label3:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label1;
+
+     label4:
+        return retVal;
+    }
+
+    private void checkParamTags(java.util.List, com.puppycrawl.tools.checkstyle.api.DetailAST, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        java.util.List aTags, params, typeParams;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aParent, param, typeParam, $r7, $r24, found;
+        boolean aReportExpectedTags, found, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9, $z10;
+        java.util.ListIterator tagIt;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag tag;
+        java.util.Iterator paramIt, param, tag;
+        java.lang.Object $r0, $r9, $r15, $r21, $r25;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r1, $r13;
+        java.lang.Object[] $r2, $r12, $r18;
+        java.lang.StringBuilder $r3, $r5, $r10, $r11;
+        java.lang.String $r4, $r6, $r8, $r14, $r16, $r17, $r19, $r20, $r22, $r23, $r26, $r27, $r28, $r29;
+        int $i0, $i1, $i2, $i3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aTags := @parameter0: java.util.List;
+
+        aParent := @parameter1: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aReportExpectedTags := @parameter2: boolean;
+
+        params = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.List getParameters(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aParent);
+
+        typeParams = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: java.util.List getTypeParameters(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aParent);
+
+        tagIt = interfaceinvoke aTags.<java.util.List: java.util.ListIterator listIterator()>();
+
+     label01:
+        $z0 = interfaceinvoke tagIt.<java.util.ListIterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label10;
+
+        $r15 = interfaceinvoke tagIt.<java.util.ListIterator: java.lang.Object next()>();
+
+        tag = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag) $r15;
+
+        $z5 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: boolean isParamTag()>();
+
+        if $z5 != 0 goto label02;
+
+        goto label01;
+
+     label02:
+        interfaceinvoke tagIt.<java.util.ListIterator: void remove()>();
+
+        found = 0;
+
+        paramIt = interfaceinvoke params.<java.util.List: java.util.Iterator iterator()>();
+
+     label03:
+        $z4 = interfaceinvoke paramIt.<java.util.Iterator: boolean hasNext()>();
+
+        if $z4 == 0 goto label05;
+
+        $r25 = interfaceinvoke paramIt.<java.util.Iterator: java.lang.Object next()>();
+
+        param = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r25;
+
+        $r26 = virtualinvoke param.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r27 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $z10 = virtualinvoke $r26.<java.lang.String: boolean equals(java.lang.Object)>($r27);
+
+        if $z10 == 0 goto label04;
+
+        found = 1;
+
+        interfaceinvoke paramIt.<java.util.Iterator: void remove()>();
+
+        goto label05;
+
+     label04:
+        goto label03;
+
+     label05:
+        $r17 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $z6 = virtualinvoke $r17.<java.lang.String: boolean startsWith(java.lang.String)>("<");
+
+        if $z6 == 0 goto label08;
+
+        $r19 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $z8 = virtualinvoke $r19.<java.lang.String: boolean endsWith(java.lang.String)>(">");
+
+        if $z8 == 0 goto label08;
+
+        param = interfaceinvoke typeParams.<java.util.List: java.util.Iterator iterator()>();
+
+     label06:
+        $z7 = interfaceinvoke param.<java.util.Iterator: boolean hasNext()>();
+
+        if $z7 == 0 goto label08;
+
+        $r21 = interfaceinvoke param.<java.util.Iterator: java.lang.Object next()>();
+
+        typeParam = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r21;
+
+        $r24 = virtualinvoke typeParam.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r23 = virtualinvoke $r24.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r22 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $r28 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $i2 = virtualinvoke $r28.<java.lang.String: int length()>();
+
+        $i3 = $i2 - 1;
+
+        $r29 = virtualinvoke $r22.<java.lang.String: java.lang.String substring(int,int)>(1, $i3);
+
+        $z9 = virtualinvoke $r23.<java.lang.String: boolean equals(java.lang.Object)>($r29);
+
+        if $z9 == 0 goto label07;
+
+        found = 1;
+
+        interfaceinvoke param.<java.util.Iterator: void remove()>();
+
+        goto label08;
+
+     label07:
+        goto label06;
+
+     label08:
+        if found != 0 goto label09;
+
+        $i1 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int getLineNo()>();
+
+        $i0 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int getColumnNo()>();
+
+        $r18 = newarray (java.lang.Object)[2];
+
+        $r18[0] = "@param";
+
+        $r20 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $r18[1] = $r20;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i0, "javadoc.unusedTag", $r18);
+
+     label09:
+        goto label01;
+
+     label10:
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowMissingParamTags>;
+
+        if $z1 != 0 goto label14;
+
+        if aReportExpectedTags == 0 goto label14;
+
+        tag = interfaceinvoke params.<java.util.List: java.util.Iterator iterator()>();
+
+     label11:
+        $z2 = interfaceinvoke tag.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label12;
+
+        $r9 = interfaceinvoke tag.<java.util.Iterator: java.lang.Object next()>();
+
+        found = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r9;
+
+        $r12 = newarray (java.lang.Object)[2];
+
+        $r13 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo PARAM>;
+
+        $r16 = virtualinvoke $r13.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getText()>();
+
+        $r12[0] = $r16;
+
+        $r14 = virtualinvoke found.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r12[1] = $r14;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(found, "javadoc.expectedTag", $r12);
+
+        goto label11;
+
+     label12:
+        tag = interfaceinvoke typeParams.<java.util.List: java.util.Iterator iterator()>();
+
+     label13:
+        $z3 = interfaceinvoke tag.<java.util.Iterator: boolean hasNext()>();
+
+        if $z3 == 0 goto label14;
+
+        $r0 = interfaceinvoke tag.<java.util.Iterator: java.lang.Object next()>();
+
+        found = (com.puppycrawl.tools.checkstyle.api.DetailAST) $r0;
+
+        $r2 = newarray (java.lang.Object)[2];
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo PARAM>;
+
+        $r4 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getText()>();
+
+        $r2[0] = $r4;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("<");
+
+        $r7 = virtualinvoke found.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r6 = virtualinvoke $r7.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r10 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(">");
+
+        $r8 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r2[1] = $r8;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(found, "javadoc.expectedTag", $r2);
+
+        goto label13;
+
+     label14:
+        return;
+    }
+
+    private boolean isFunction(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, typeAST, $r0;
+        boolean retVal;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        retVal = 0;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 9 goto label1;
+
+        typeAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        if typeAST == null goto label1;
+
+        $r0 = virtualinvoke typeAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(50);
+
+        if $r0 != null goto label1;
+
+        retVal = 1;
+
+     label1:
+        return retVal;
+    }
+
+    private void checkReturnTag(java.util.List, int, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        java.util.List aTags;
+        int aLineNo, $i0, $i1;
+        boolean aReportExpectedTags, found, $z0, $z1, $z2;
+        java.util.ListIterator it;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag jt;
+        java.lang.Object[] $r0, $r2;
+        java.lang.Object $r1;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r3;
+        java.lang.String $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aTags := @parameter0: java.util.List;
+
+        aLineNo := @parameter1: int;
+
+        aReportExpectedTags := @parameter2: boolean;
+
+        found = 0;
+
+        it = interfaceinvoke aTags.<java.util.List: java.util.ListIterator listIterator()>();
+
+     label1:
+        $z0 = interfaceinvoke it.<java.util.ListIterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r1 = interfaceinvoke it.<java.util.ListIterator: java.lang.Object next()>();
+
+        jt = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag) $r1;
+
+        $z2 = virtualinvoke jt.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: boolean isReturnTag()>();
+
+        if $z2 == 0 goto label3;
+
+        if found == 0 goto label2;
+
+        $i0 = virtualinvoke jt.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int getLineNo()>();
+
+        $i1 = virtualinvoke jt.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int getColumnNo()>();
+
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r3 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo RETURN>;
+
+        $r4 = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getText()>();
+
+        $r2[0] = $r4;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "javadoc.duplicateTag", $r2);
+
+     label2:
+        found = 1;
+
+        interfaceinvoke it.<java.util.ListIterator: void remove()>();
+
+     label3:
+        goto label1;
+
+     label4:
+        if found != 0 goto label5;
+
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowMissingReturnTag>;
+
+        if $z1 != 0 goto label5;
+
+        if aReportExpectedTags == 0 goto label5;
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void log(int,java.lang.String,java.lang.Object[])>(aLineNo, "javadoc.return.expected", $r0);
+
+     label5:
+        return;
+    }
+
+    private void checkThrowsTags(java.util.List, java.util.List, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        java.util.List aTags, aThrows;
+        boolean aReportExpectedTags, found, $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9, $z10, $z12, $z13, ei;
+        java.util.HashSet foundThrows;
+        java.util.ListIterator tagIt, throwIt;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag tag;
+        java.lang.String documentedEx, $r3, $r5, $r7, $r8, $r10, $r13, $r20, $r22;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token token, $r6, $r19, $r21;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo documentedCI;
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo ei, documentedEx;
+        java.lang.Object $r0, $r4, $r15, $r23;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo $r1, $r11;
+        java.lang.Object[] $r2, $r9;
+        java.lang.Class $r12, $r14, $r16, $r17, $r18;
+        java.util.Iterator tag;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aTags := @parameter0: java.util.List;
+
+        aThrows := @parameter1: java.util.List;
+
+        aReportExpectedTags := @parameter2: boolean;
+
+        foundThrows = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        tagIt = interfaceinvoke aTags.<java.util.List: java.util.ListIterator listIterator()>();
+
+     label01:
+        $z0 = interfaceinvoke tagIt.<java.util.ListIterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label14;
+
+        $r4 = interfaceinvoke tagIt.<java.util.ListIterator: java.lang.Object next()>();
+
+        tag = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag) $r4;
+
+        $z4 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: boolean isThrowsTag()>();
+
+        if $z4 != 0 goto label02;
+
+        goto label01;
+
+     label02:
+        interfaceinvoke tagIt.<java.util.ListIterator: void remove()>();
+
+        documentedEx = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $r6 = new com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        $r7 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $i2 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int getLineNo()>();
+
+        $i3 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int getColumnNo()>();
+
+        specialinvoke $r6.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: void <init>(java.lang.String,int,int)>($r7, $i2, $i3);
+
+        token = $r6;
+
+        $r8 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.lang.String getCurrentClassName()>();
+
+        documentedCI = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo createClassInfo(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token,java.lang.String)>(token, $r8);
+
+        found = interfaceinvoke foundThrows.<java.util.Set: boolean contains(java.lang.Object)>(documentedEx);
+
+        throwIt = interfaceinvoke aThrows.<java.util.List: java.util.ListIterator listIterator()>();
+
+     label03:
+        if found != 0 goto label05;
+
+        $z12 = interfaceinvoke throwIt.<java.util.ListIterator: boolean hasNext()>();
+
+        if $z12 == 0 goto label05;
+
+        $r23 = interfaceinvoke throwIt.<java.util.ListIterator: java.lang.Object next()>();
+
+        ei = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo) $r23;
+
+        $r19 = virtualinvoke ei.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token getName()>();
+
+        $r20 = virtualinvoke $r19.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String getText()>();
+
+        $r21 = virtualinvoke documentedCI.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token getName()>();
+
+        $r22 = virtualinvoke $r21.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String getText()>();
+
+        $z13 = virtualinvoke $r20.<java.lang.String: boolean equals(java.lang.Object)>($r22);
+
+        if $z13 == 0 goto label04;
+
+        found = 1;
+
+        virtualinvoke ei.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: void setFound()>();
+
+        interfaceinvoke foundThrows.<java.util.Set: boolean add(java.lang.Object)>(documentedEx);
+
+     label04:
+        goto label03;
+
+     label05:
+        throwIt = interfaceinvoke aThrows.<java.util.List: java.util.ListIterator listIterator()>();
+
+     label06:
+        if found != 0 goto label09;
+
+        $z8 = interfaceinvoke throwIt.<java.util.ListIterator: boolean hasNext()>();
+
+        if $z8 == 0 goto label09;
+
+        $r15 = interfaceinvoke throwIt.<java.util.ListIterator: java.lang.Object next()>();
+
+        ei = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo) $r15;
+
+        $r14 = virtualinvoke documentedCI.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        $r18 = virtualinvoke ei.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: java.lang.Class getClazz()>();
+
+        if $r14 != $r18 goto label07;
+
+        found = 1;
+
+        virtualinvoke ei.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: void setFound()>();
+
+        interfaceinvoke foundThrows.<java.util.Set: boolean add(java.lang.Object)>(documentedEx);
+
+        goto label08;
+
+     label07:
+        $z10 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowThrowsTagsForSubclasses>;
+
+        if $z10 == 0 goto label08;
+
+        $r17 = virtualinvoke documentedCI.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        $r16 = virtualinvoke ei.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: java.lang.Class getClazz()>();
+
+        found = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean isSubclass(java.lang.Class,java.lang.Class)>($r17, $r16);
+
+     label08:
+        goto label06;
+
+     label09:
+        if found != 0 goto label13;
+
+        ei = 1;
+
+        $z5 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowUndeclaredRTE>;
+
+        if $z5 == 0 goto label12;
+
+        $r12 = virtualinvoke documentedCI.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: java.lang.Class getClazz()>();
+
+        $z7 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean isUnchecked(java.lang.Class)>($r12);
+
+        if $z7 != 0 goto label10;
+
+        $z9 = 1;
+
+        goto label11;
+
+     label10:
+        $z9 = 0;
+
+     label11:
+        ei = $z9;
+
+     label12:
+        if ei == 0 goto label13;
+
+        $z6 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mValidateThrows>;
+
+        if $z6 == 0 goto label13;
+
+        $i5 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int getLineNo()>();
+
+        $i4 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: int getColumnNo()>();
+
+        $r9 = newarray (java.lang.Object)[2];
+
+        $r11 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo THROWS>;
+
+        $r10 = virtualinvoke $r11.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getText()>();
+
+        $r9[0] = $r10;
+
+        $r13 = virtualinvoke tag.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag: java.lang.String getArg1()>();
+
+        $r9[1] = $r13;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i5, $i4, "javadoc.unusedTag", $r9);
+
+     label13:
+        goto label01;
+
+     label14:
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: boolean mAllowMissingThrowsTags>;
+
+        if $z1 != 0 goto label17;
+
+        if aReportExpectedTags == 0 goto label17;
+
+        tag = interfaceinvoke aThrows.<java.util.List: java.util.Iterator iterator()>();
+
+     label15:
+        $z2 = interfaceinvoke tag.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 == 0 goto label17;
+
+        $r0 = interfaceinvoke tag.<java.util.Iterator: java.lang.Object next()>();
+
+        documentedEx = (com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo) $r0;
+
+        $z3 = virtualinvoke documentedEx.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: boolean isFound()>();
+
+        if $z3 != 0 goto label16;
+
+        token = virtualinvoke documentedEx.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ExceptionInfo: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token getName()>();
+
+        $i1 = virtualinvoke token.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int getLineNo()>();
+
+        $i0 = virtualinvoke token.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: int getColumnNo()>();
+
+        $r2 = newarray (java.lang.Object)[2];
+
+        $r1 = <com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo THROWS>;
+
+        $r3 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: java.lang.String getText()>();
+
+        $r2[0] = $r3;
+
+        $r5 = virtualinvoke token.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String getText()>();
+
+        $r2[1] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i1, $i0, "javadoc.expectedTag", $r2);
+
+     label16:
+        goto label15;
+
+     label17:
+        return;
+    }
+
+    private boolean isSetterMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, type, params, slist, expr, $r0;
+        java.lang.String name;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        boolean $z0;
+        antlr.collections.AST $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 9 goto label01;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i1 == 7 goto label02;
+
+     label01:
+        return 0;
+
+     label02:
+        type = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        $r0 = virtualinvoke type.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        name = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = virtualinvoke name.<java.lang.String: boolean matches(java.lang.String)>("^set[A-Z].*");
+
+        if $z0 != 0 goto label03;
+
+        return 0;
+
+     label03:
+        $i2 = virtualinvoke type.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount(int)>(50);
+
+        if $i2 != 0 goto label04;
+
+        return 0;
+
+     label04:
+        params = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        if params == null goto label05;
+
+        $i3 = virtualinvoke params.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount(int)>(21);
+
+        if $i3 == 1 goto label06;
+
+     label05:
+        return 0;
+
+     label06:
+        slist = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        if slist == null goto label07;
+
+        $i4 = virtualinvoke slist.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i4 == 3 goto label08;
+
+     label07:
+        return 0;
+
+     label08:
+        expr = virtualinvoke slist.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i5 = interfaceinvoke expr.<antlr.collections.AST: int getType()>();
+
+        if $i5 != 29 goto label09;
+
+        $r1 = interfaceinvoke expr.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        $i6 = interfaceinvoke $r1.<antlr.collections.AST: int getType()>();
+
+        if $i6 == 81 goto label10;
+
+     label09:
+        return 0;
+
+     label10:
+        return 1;
+    }
+
+    private boolean isGetterMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, type, params, slist, expr, $r0;
+        java.lang.String name;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        boolean $z0;
+        antlr.collections.AST $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 9 goto label01;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i1 == 7 goto label02;
+
+     label01:
+        return 0;
+
+     label02:
+        type = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        $r0 = virtualinvoke type.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        name = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = virtualinvoke name.<java.lang.String: boolean matches(java.lang.String)>("^(is|get)[A-Z].*");
+
+        if $z0 != 0 goto label03;
+
+        return 0;
+
+     label03:
+        $i2 = virtualinvoke type.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount(int)>(50);
+
+        if $i2 <= 0 goto label04;
+
+        return 0;
+
+     label04:
+        params = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        if params == null goto label05;
+
+        $i3 = virtualinvoke params.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount(int)>(21);
+
+        if $i3 <= 0 goto label06;
+
+     label05:
+        return 0;
+
+     label06:
+        slist = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(7);
+
+        if slist == null goto label07;
+
+        $i4 = virtualinvoke slist.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i4 == 2 goto label08;
+
+     label07:
+        return 0;
+
+     label08:
+        expr = virtualinvoke slist.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i5 = interfaceinvoke expr.<antlr.collections.AST: int getType()>();
+
+        if $i5 != 90 goto label09;
+
+        $r1 = interfaceinvoke expr.<antlr.collections.AST: antlr.collections.AST getFirstChild()>();
+
+        $i6 = interfaceinvoke $r1.<antlr.collections.AST: int getType()>();
+
+        if $i6 == 29 goto label10;
+
+     label09:
+        return 0;
+
+     label10:
+        return 1;
+    }
+
+    static com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo access$000(com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck, com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck x0;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token x1;
+        java.lang.String x2;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+
+        x1 := @parameter1: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        x2 := @parameter2: java.lang.String;
+
+        $r0 = virtualinvoke x0.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo createClassInfo(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token,java.lang.String)>(x1, x2);
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        java.util.regex.Pattern $r0, $r1, $r2, $r3, $r4, $r5;
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: int DEFAULT_MIN_LINE_COUNT> = -1;
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: int BODY_SIZE> = 3;
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: int MAX_CHILDREN> = 7;
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.lang.String NEXT_TAG> = "@";
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.lang.String END_JAVADOC> = "*/";
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>("@(throws|exception|param)\\s+(\\S+)\\s+\\S*");
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_ARG> = $r0;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>("@(throws|exception|param)\\s+(\\S+)\\s*$");
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_ARG_MULTILINE_START> = $r1;
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>("(\\*/|@|[^\\s\\*])");
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_MULTILINE_CONT> = $r2;
+
+        $r3 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>("@(return|see)\\s+\\S");
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_NOARG> = $r3;
+
+        $r4 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>("@(return|see)\\s*$");
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_NOARG_MULTILINE_START> = $r4;
+
+        $r5 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>("\\{\\s*@(inheritDoc)\\s*\\}");
+
+        <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck: java.util.regex.Pattern MATCH_JAVADOC_NOARG_CURLY> = $r5;
+
+        return;
+    }
+}

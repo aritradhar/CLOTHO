@@ -1,0 +1,314 @@
+public class com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mRoot;
+    private java.lang.String mInPkg;
+    private com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mCurrentLeaf;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 16;
+
+        $r0[1] = 31;
+
+        $r0[2] = 156;
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mCurrentLeaf> = null;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nameAST, $r1, $r2, $r9;
+        com.puppycrawl.tools.checkstyle.api.FullIdent full, nameAST;
+        int $i0, $i1;
+        com.puppycrawl.tools.checkstyle.checks.imports.PkgControl $r0, $r3, $r11, $r12, $r14, $r15;
+        java.lang.String $r4, $r5, $r8, $r10, $r13;
+        com.puppycrawl.tools.checkstyle.checks.imports.AccessResult $r6, full;
+        boolean $z0;
+        java.lang.Object[] $r7, $r16, $r17;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 16 goto label3;
+
+        $r9 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        nameAST = virtualinvoke $r9.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        full = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(nameAST);
+
+        $r11 = this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mRoot>;
+
+        if $r11 != null goto label1;
+
+        $r16 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(nameAST, "import.control.missing.file", $r16);
+
+        goto label2;
+
+     label1:
+        $r10 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: java.lang.String mInPkg> = $r10;
+
+        $r12 = this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mRoot>;
+
+        $r13 = this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: java.lang.String mInPkg>;
+
+        $r15 = virtualinvoke $r12.<com.puppycrawl.tools.checkstyle.checks.imports.PkgControl: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl locateFinest(java.lang.String)>($r13);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mCurrentLeaf> = $r15;
+
+        $r14 = this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mCurrentLeaf>;
+
+        if $r14 != null goto label2;
+
+        $r17 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(nameAST, "import.control.unknown.pkg", $r17);
+
+     label2:
+        goto label6;
+
+     label3:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mCurrentLeaf>;
+
+        if $r0 == null goto label6;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 31 goto label4;
+
+        nameAST = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdentBelow(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label5;
+
+     label4:
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        nameAST = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r2);
+
+     label5:
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mCurrentLeaf>;
+
+        $r4 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: java.lang.String mInPkg>;
+
+        full = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.checks.imports.PkgControl: com.puppycrawl.tools.checkstyle.checks.imports.AccessResult checkAccess(java.lang.String,java.lang.String)>($r4, $r5);
+
+        $r6 = <com.puppycrawl.tools.checkstyle.checks.imports.AccessResult: com.puppycrawl.tools.checkstyle.checks.imports.AccessResult ALLOWED>;
+
+        $z0 = virtualinvoke $r6.<com.puppycrawl.tools.checkstyle.checks.imports.AccessResult: boolean equals(java.lang.Object)>(full);
+
+        if $z0 != 0 goto label6;
+
+        $r7 = newarray (java.lang.Object)[1];
+
+        $r8 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r7[0] = $r8;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "import.control.disallowed", $r7);
+
+     label6:
+        return;
+    }
+
+    public void setUrl(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck this;
+        java.lang.String aUrl, $r0, $r7, $r12;
+        java.net.URI uri;
+        java.lang.IllegalArgumentException ex, $r8;
+        int $i0;
+        com.puppycrawl.tools.checkstyle.checks.imports.PkgControl $r1;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r2, ex;
+        org.apache.commons.beanutils.ConversionException $r3, $r9;
+        java.lang.StringBuilder $r4, $r5, $r6, $r10, $r11, $r13;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
+
+        aUrl := @parameter0: java.lang.String;
+
+        if aUrl == null goto label1;
+
+        $r0 = virtualinvoke aUrl.<java.lang.String: java.lang.String trim()>();
+
+        $i0 = virtualinvoke $r0.<java.lang.String: int length()>();
+
+        if $i0 != 0 goto label2;
+
+     label1:
+        return;
+
+     label2:
+        uri = staticinvoke <java.net.URI: java.net.URI create(java.lang.String)>(aUrl);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r8 := @caughtexception;
+
+        ex = $r8;
+
+        $r9 = new org.apache.commons.beanutils.ConversionException;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("syntax error in url ");
+
+        $r13 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aUrl);
+
+        $r12 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r9.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r12, ex);
+
+        throw $r9;
+
+     label5:
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl load(java.net.URI)>(uri);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mRoot> = $r1;
+
+     label6:
+        goto label8;
+
+     label7:
+        $r2 := @caughtexception;
+
+        ex = $r2;
+
+        $r3 = new org.apache.commons.beanutils.ConversionException;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to load ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aUrl);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r7, ex);
+
+        throw $r3;
+
+     label8:
+        return;
+
+        catch java.lang.IllegalArgumentException from label2 to label3 with label4;
+        catch com.puppycrawl.tools.checkstyle.api.CheckstyleException from label5 to label6 with label7;
+    }
+
+    public void setFile(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck this;
+        java.lang.String aName, $r0, $r9;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException ex, $r4;
+        int $i0;
+        java.io.File $r1;
+        java.net.URI $r2;
+        com.puppycrawl.tools.checkstyle.checks.imports.PkgControl $r3;
+        org.apache.commons.beanutils.ConversionException $r5;
+        java.lang.StringBuilder $r6, $r7, $r8;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
+
+        aName := @parameter0: java.lang.String;
+
+        if aName == null goto label1;
+
+        $r0 = virtualinvoke aName.<java.lang.String: java.lang.String trim()>();
+
+        $i0 = virtualinvoke $r0.<java.lang.String: int length()>();
+
+        if $i0 != 0 goto label2;
+
+     label1:
+        return;
+
+     label2:
+        $r1 = new java.io.File;
+
+        specialinvoke $r1.<java.io.File: void <init>(java.lang.String)>(aName);
+
+        $r2 = virtualinvoke $r1.<java.io.File: java.net.URI toURI()>();
+
+        $r3 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl load(java.net.URI)>($r2);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck: com.puppycrawl.tools.checkstyle.checks.imports.PkgControl mRoot> = $r3;
+
+     label3:
+        goto label5;
+
+     label4:
+        $r4 := @caughtexception;
+
+        ex = $r4;
+
+        $r5 = new org.apache.commons.beanutils.ConversionException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unable to load ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aName);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r9, ex);
+
+        throw $r5;
+
+     label5:
+        return;
+
+        catch com.puppycrawl.tools.checkstyle.api.CheckstyleException from label2 to label3 with label4;
+    }
+}

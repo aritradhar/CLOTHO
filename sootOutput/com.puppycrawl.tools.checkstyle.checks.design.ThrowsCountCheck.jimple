@@ -1,0 +1,159 @@
+public final class com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int DEFAULT_MAX;
+    private int mMax;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck: void setMax(int)>(1);
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 82;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public int getMax()
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck: int mMax>;
+
+        return $i0;
+    }
+
+    public void setMax(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck this;
+        int aMax;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
+
+        aMax := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck: int mMax> = aMax;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        java.lang.IllegalStateException $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 82: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck: void visitLiteralThrows(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label3;
+
+     label2:
+        $r0 = new java.lang.IllegalStateException;
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r1);
+
+        throw $r0;
+
+     label3:
+        return;
+    }
+
+    private void visitLiteralThrows(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int count, $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.Object[] $r0;
+        java.lang.Integer $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        $i1 = $i0 + 1;
+
+        count = $i1 / 2;
+
+        $i2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck: int getMax()>();
+
+        if count <= $i2 goto label1;
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(count);
+
+        $r0[0] = $r1;
+
+        $i5 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck: int getMax()>();
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+
+        $r0[1] = $r2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i3, $i4, "throws.count", $r0);
+
+     label1:
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck: int DEFAULT_MAX> = 1;
+
+        return;
+    }
+}

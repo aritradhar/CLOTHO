@@ -1,0 +1,325 @@
+public final class com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int DEFAULT_MAX;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mContextStack;
+    private int mMax;
+    private com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.api.FastStack mContextStack> = $r0;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: void setMax(int)>(3);
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        $r0 = newarray (int)[8];
+
+        $r0[0] = 8;
+
+        $r0[1] = 9;
+
+        $r0[2] = 29;
+
+        $r0[3] = 113;
+
+        $r0[4] = 116;
+
+        $r0[5] = 112;
+
+        $r0[6] = 114;
+
+        $r0[7] = 115;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 8;
+
+        $r0[1] = 9;
+
+        $r0[2] = 29;
+
+        return $r0;
+    }
+
+    public int getMax()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: int mMax>;
+
+        return $i0;
+    }
+
+    public void setMax(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        int aMax;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        aMax := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: int mMax> = aMax;
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context $r0;
+        java.lang.IllegalStateException $r1;
+        java.lang.String $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 8: goto label1;
+            case 9: goto label1;
+            case 29: goto label2;
+            case 112: goto label3;
+            case 113: goto label3;
+            case 114: goto label3;
+            case 115: goto label3;
+            case 116: goto label3;
+            default: goto label4;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: void visitMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label5;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: void visitExpr()>();
+
+        goto label5;
+
+     label3:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context: void visitBooleanOperator()>();
+
+        goto label5;
+
+     label4:
+        $r1 = new java.lang.IllegalStateException;
+
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r1.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r2);
+
+        throw $r1;
+
+     label5:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 8: goto label1;
+            case 9: goto label1;
+            case 29: goto label2;
+            default: goto label3;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: void leaveMethodDef()>();
+
+        goto label3;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: void leaveExpr(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label3;
+
+     label3:
+        return;
+    }
+
+    private void visitMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context $r0, $r2;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.api.FastStack mContextStack>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r0);
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.CheckUtils: boolean isEqualsMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context: void <init>(com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck,boolean)>(this, $z1);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext> = $r2;
+
+        return;
+    }
+
+    private void leaveMethodDef()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        java.lang.Object $r1;
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.api.FastStack mContextStack>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        $r2 = (com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context) $r1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext> = $r2;
+
+        return;
+    }
+
+    private void visitExpr()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context $r0, $r2, $r3, $r4;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.api.FastStack mContextStack>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>($r0);
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext>;
+
+        if $r3 == null goto label1;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext>;
+
+        $z0 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context: boolean isChecking()>();
+
+        if $z0 == 0 goto label2;
+
+     label1:
+        $z1 = 1;
+
+        goto label3;
+
+     label2:
+        $z1 = 0;
+
+     label3:
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context: void <init>(com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck,boolean)>(this, $z1);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext> = $r2;
+
+        return;
+    }
+
+    private void leaveExpr(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context $r0, $r3;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+        java.lang.Object $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context: void checkCount(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.api.FastStack mContextStack>;
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        $r3 = (com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context) $r2;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck$Context mContext> = $r3;
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck: int DEFAULT_MAX> = 3;
+
+        return;
+    }
+}

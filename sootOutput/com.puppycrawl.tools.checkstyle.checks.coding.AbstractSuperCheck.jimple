@@ -1,0 +1,317 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final java.util.LinkedList mMethodStack;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck this;
+        java.util.LinkedList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: java.util.LinkedList mMethodStack> = $r0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 9;
+
+        $r0[1] = 80;
+
+        return $r0;
+    }
+
+    protected abstract java.lang.String getMethodName();
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.LinkedList $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: java.util.LinkedList mMethodStack>;
+
+        virtualinvoke $r0.<java.util.LinkedList: void clear()>();
+
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode methodNode, $r2;
+        boolean $z0, $z1;
+        java.util.LinkedList $r0, $r3;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: boolean isOverridingMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label1;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: java.util.LinkedList mMethodStack>;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode: void <init>(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        virtualinvoke $r3.<java.util.LinkedList: boolean add(java.lang.Object)>($r2);
+
+        goto label2;
+
+     label1:
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: boolean isSuperCall(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 == 0 goto label2;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: java.util.LinkedList mMethodStack>;
+
+        $r1 = virtualinvoke $r0.<java.util.LinkedList: java.lang.Object getLast()>();
+
+        methodNode = (com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode) $r1;
+
+        virtualinvoke methodNode.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode: void setCallsSuper()>();
+
+     label2:
+        return;
+    }
+
+    private boolean isSuperCall(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, args;
+        antlr.collections.AST sibling;
+        java.lang.String name, $r0;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 80 goto label01;
+
+        return 0;
+
+     label01:
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if parent == null goto label02;
+
+        $i1 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 60 goto label03;
+
+     label02:
+        return 0;
+
+     label03:
+        sibling = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if sibling == null goto label04;
+
+        $i8 = interfaceinvoke sibling.<antlr.collections.AST: int getType()>();
+
+        if $i8 != 167 goto label04;
+
+        sibling = interfaceinvoke sibling.<antlr.collections.AST: antlr.collections.AST getNextSibling()>();
+
+     label04:
+        if sibling == null goto label05;
+
+        $i2 = interfaceinvoke sibling.<antlr.collections.AST: int getType()>();
+
+        if $i2 == 59 goto label06;
+
+     label05:
+        return 0;
+
+     label06:
+        name = interfaceinvoke sibling.<antlr.collections.AST: java.lang.String getText()>();
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: java.lang.String getMethodName()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(name);
+
+        if $z0 != 0 goto label07;
+
+        return 0;
+
+     label07:
+        args = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if args == null goto label08;
+
+        $i3 = virtualinvoke args.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 == 35 goto label09;
+
+     label08:
+        return 0;
+
+     label09:
+        $i5 = virtualinvoke args.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i5 == 0 goto label10;
+
+        return 0;
+
+     label10:
+        if parent == null goto label14;
+
+        $i4 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i4 != 9 goto label11;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: boolean isOverridingMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(parent);
+
+        return $z1;
+
+     label11:
+        $i7 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i7 == 8 goto label12;
+
+        $i6 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i6 != 11 goto label13;
+
+     label12:
+        return 0;
+
+     label13:
+        parent = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label10;
+
+     label14:
+        return 0;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, methodAST, nameAST;
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode methodNode;
+        boolean $z0, $z1;
+        java.util.LinkedList $r0;
+        java.lang.Object $r1;
+        int $i0, $i1;
+        java.lang.Object[] $r2;
+        java.lang.String $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: boolean isOverridingMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label1;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: java.util.LinkedList mMethodStack>;
+
+        $r1 = virtualinvoke $r0.<java.util.LinkedList: java.lang.Object removeLast()>();
+
+        methodNode = (com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode) $r1;
+
+        $z1 = virtualinvoke methodNode.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode: boolean getCallsSuper()>();
+
+        if $z1 != 0 goto label1;
+
+        methodAST = virtualinvoke methodNode.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode: com.puppycrawl.tools.checkstyle.api.DetailAST getMethod()>();
+
+        nameAST = virtualinvoke methodAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $i0 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r3 = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r2[0] = $r3;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "missing.super.call", $r2);
+
+     label1:
+        return;
+    }
+
+    private boolean isOverridingMethod(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nameAST, params;
+        java.lang.String name, $r0;
+        int $i0, $i1;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 9 goto label1;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label2;
+
+     label1:
+        return 0;
+
+     label2:
+        nameAST = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        name = virtualinvoke nameAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck: java.lang.String getMethodName()>();
+
+        $z1 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(name);
+
+        if $z1 != 0 goto label3;
+
+        return 0;
+
+     label3:
+        params = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        $i1 = virtualinvoke params.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i1 != 0 goto label4;
+
+        $z2 = 1;
+
+        goto label5;
+
+     label4:
+        $z2 = 0;
+
+     label5:
+        return $z2;
+    }
+}

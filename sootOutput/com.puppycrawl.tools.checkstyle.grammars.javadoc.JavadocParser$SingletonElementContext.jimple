@@ -1,0 +1,328 @@
+public class com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext extends org.antlr.v4.runtime.ParserRuleContext
+{
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$InputTagContext inputTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$InputTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$InputTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$InputTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ImgTagContext imgTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ImgTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ImgTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ImgTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AreaTagContext areaTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AreaTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$AreaTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$AreaTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$IsindexTagContext isindexTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$IsindexTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$IsindexTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$IsindexTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagContext singletonTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$SingletonTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LinkTagContext linkTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LinkTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$LinkTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$LinkTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColTagContext colTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ColTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ColTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BasefrontTagContext basefrontTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BasefrontTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$BasefrontTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BasefrontTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParamTagContext paramTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParamTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$ParamTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$ParamTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HrTagContext hrTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HrTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$HrTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$HrTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$MetaTagContext metaTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$MetaTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$MetaTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$MetaTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BaseTagContext baseTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BaseTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$BaseTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BaseTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$FrameTagContext frameTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$FrameTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$FrameTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$FrameTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$WrongSinletonTagContext wrongSinletonTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$WrongSinletonTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$WrongSinletonTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$WrongSinletonTagContext) $r0;
+
+        return $r1;
+    }
+
+    public com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BrTagContext brTag()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext $r0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BrTagContext $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext: org.antlr.v4.runtime.ParserRuleContext getRuleContext(java.lang.Class,int)>(class "com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$BrTagContext", 0);
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$BrTagContext) $r0;
+
+        return $r1;
+    }
+
+    public void <init>(org.antlr.v4.runtime.ParserRuleContext, int)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.ParserRuleContext parent;
+        int invokingState;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        parent := @parameter0: org.antlr.v4.runtime.ParserRuleContext;
+
+        invokingState := @parameter1: int;
+
+        specialinvoke this.<org.antlr.v4.runtime.ParserRuleContext: void <init>(org.antlr.v4.runtime.ParserRuleContext,int)>(parent, invokingState);
+
+        return;
+    }
+
+    public int getRuleIndex()
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        return 51;
+    }
+
+    public void enterRule(org.antlr.v4.runtime.tree.ParseTreeListener)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.tree.ParseTreeListener listener;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        listener := @parameter0: org.antlr.v4.runtime.tree.ParseTreeListener;
+
+        $z0 = listener instanceof com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener) listener;
+
+        interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener: void enterSingletonElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext)>(this);
+
+     label1:
+        return;
+    }
+
+    public void exitRule(org.antlr.v4.runtime.tree.ParseTreeListener)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.tree.ParseTreeListener listener;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        listener := @parameter0: org.antlr.v4.runtime.tree.ParseTreeListener;
+
+        $z0 = listener instanceof com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener;
+
+        if $z0 == 0 goto label1;
+
+        $r0 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener) listener;
+
+        interfaceinvoke $r0.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserListener: void exitSingletonElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext)>(this);
+
+     label1:
+        return;
+    }
+
+    public java.lang.Object accept(org.antlr.v4.runtime.tree.ParseTreeVisitor)
+    {
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext this;
+        org.antlr.v4.runtime.tree.ParseTreeVisitor visitor;
+        boolean $z0;
+        java.lang.Object $r0, $r2;
+        com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext;
+
+        visitor := @parameter0: org.antlr.v4.runtime.tree.ParseTreeVisitor;
+
+        $z0 = visitor instanceof com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor;
+
+        if $z0 == 0 goto label1;
+
+        $r1 = (com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor) visitor;
+
+        $r2 = interfaceinvoke $r1.<com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParserVisitor: java.lang.Object visitSingletonElement(com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser$SingletonElementContext)>(this);
+
+        return $r2;
+
+     label1:
+        $r0 = interfaceinvoke visitor.<org.antlr.v4.runtime.tree.ParseTreeVisitor: java.lang.Object visitChildren(org.antlr.v4.runtime.tree.RuleNode)>(this);
+
+        return $r0;
+    }
+}

@@ -1,0 +1,100 @@
+final enum class com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$14 extends com.puppycrawl.tools.checkstyle.api.JavadocTagInfo
+{
+
+    void <init>(java.lang.String, int, java.lang.String, java.lang.String, com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type, boolean, boolean)
+    {
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$14 this;
+        java.lang.String l1, x0, x1;
+        int l2;
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type x2;
+        boolean x3, x4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$14;
+
+        l1 := @parameter0: java.lang.String;
+
+        l2 := @parameter1: int;
+
+        x0 := @parameter2: java.lang.String;
+
+        x1 := @parameter3: java.lang.String;
+
+        x2 := @parameter4: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type;
+
+        x3 := @parameter5: boolean;
+
+        x4 := @parameter6: boolean;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.JavadocTagInfo: void <init>(java.lang.String,int,java.lang.String,java.lang.String,com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$Type,boolean,boolean,com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$1)>(l1, l2, x0, x1, x2, x3, x4, null);
+
+        return;
+    }
+
+    public boolean isValidOn(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$14 this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst, methodNameAst;
+        int type;
+        java.lang.String methodName, $r0, $r1, $r2, $r3, $r4, $r5;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.JavadocTagInfo$14;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        type = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        methodNameAst = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        methodName = virtualinvoke methodNameAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        if type != 9 goto label2;
+
+        $r0 = "writeObject";
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(methodName);
+
+        if $z0 != 0 goto label1;
+
+        $r1 = "readObject";
+
+        $z2 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(methodName);
+
+        if $z2 != 0 goto label1;
+
+        $r2 = "writeExternal";
+
+        $z3 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>(methodName);
+
+        if $z3 != 0 goto label1;
+
+        $r3 = "readExternal";
+
+        $z4 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>(methodName);
+
+        if $z4 != 0 goto label1;
+
+        $r4 = "writeReplace";
+
+        $z5 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(methodName);
+
+        if $z5 != 0 goto label1;
+
+        $r5 = "readResolve";
+
+        $z6 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>(methodName);
+
+        if $z6 == 0 goto label2;
+
+     label1:
+        $z1 = 1;
+
+        goto label3;
+
+     label2:
+        $z1 = 0;
+
+     label3:
+        return $z1;
+    }
+}

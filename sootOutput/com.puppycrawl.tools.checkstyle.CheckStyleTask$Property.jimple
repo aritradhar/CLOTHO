@@ -1,0 +1,85 @@
+public class com.puppycrawl.tools.checkstyle.CheckStyleTask$Property extends java.lang.Object
+{
+    private java.lang.String mKey;
+    private java.lang.String mValue;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Property this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Property;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.String getKey()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Property this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Property;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Property: java.lang.String mKey>;
+
+        return $r0;
+    }
+
+    public void setKey(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Property this;
+        java.lang.String aKey;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Property;
+
+        aKey := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Property: java.lang.String mKey> = aKey;
+
+        return;
+    }
+
+    public java.lang.String getValue()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Property this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Property;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Property: java.lang.String mValue>;
+
+        return $r0;
+    }
+
+    public void setValue(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Property this;
+        java.lang.String aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Property;
+
+        aValue := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Property: java.lang.String mValue> = aValue;
+
+        return;
+    }
+
+    public void setFile(java.io.File)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Property this;
+        java.io.File aValue;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Property;
+
+        aValue := @parameter0: java.io.File;
+
+        $r0 = virtualinvoke aValue.<java.io.File: java.lang.String getAbsolutePath()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Property: void setValue(java.lang.String)>($r0);
+
+        return;
+    }
+}

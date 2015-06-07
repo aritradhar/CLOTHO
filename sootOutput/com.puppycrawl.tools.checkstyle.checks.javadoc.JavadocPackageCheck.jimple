@@ -1,0 +1,135 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck extends com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck
+{
+    private boolean mAllowLegacy;
+    private final java.util.Set mDirectoriesChecked;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck this;
+        java.util.HashSet $r0;
+        java.lang.String[] $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck: java.util.Set mDirectoriesChecked> = $r0;
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "java";
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck: void setFileExtensions(java.lang.String[])>($r1);
+
+        return;
+    }
+
+    public void beginProcessing(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck this;
+        java.lang.String aCharset;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
+
+        aCharset := @parameter0: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void beginProcessing(java.lang.String)>(aCharset);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck: java.util.Set mDirectoriesChecked>;
+
+        interfaceinvoke $r0.<java.util.Set: void clear()>();
+
+        return;
+    }
+
+    protected void processFiltered(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck this;
+        java.io.File aFile, dir, packageInfo, packageHtml, $r2, $r3;
+        java.util.List aLines;
+        java.util.Set $r0, $r1;
+        boolean $z0, $z2, $z3, $z4, $z5;
+        java.lang.Object[] $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        dir = virtualinvoke aFile.<java.io.File: java.io.File getParentFile()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck: java.util.Set mDirectoriesChecked>;
+
+        $z0 = interfaceinvoke $r0.<java.util.Set: boolean contains(java.lang.Object)>(dir);
+
+        if $z0 == 0 goto label1;
+
+        return;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck: java.util.Set mDirectoriesChecked>;
+
+        interfaceinvoke $r1.<java.util.Set: boolean add(java.lang.Object)>(dir);
+
+        $r2 = new java.io.File;
+
+        specialinvoke $r2.<java.io.File: void <init>(java.io.File,java.lang.String)>(dir, "package-info.java");
+
+        packageInfo = $r2;
+
+        $r3 = new java.io.File;
+
+        specialinvoke $r3.<java.io.File: void <init>(java.io.File,java.lang.String)>(dir, "package.html");
+
+        packageHtml = $r3;
+
+        $z2 = virtualinvoke packageInfo.<java.io.File: boolean exists()>();
+
+        if $z2 == 0 goto label2;
+
+        $z4 = virtualinvoke packageHtml.<java.io.File: boolean exists()>();
+
+        if $z4 == 0 goto label4;
+
+        $r5 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck: void log(int,java.lang.String,java.lang.Object[])>(0, "javadoc.legacyPackageHtml", $r5);
+
+        goto label4;
+
+     label2:
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck: boolean mAllowLegacy>;
+
+        if $z3 == 0 goto label3;
+
+        $z5 = virtualinvoke packageHtml.<java.io.File: boolean exists()>();
+
+        if $z5 != 0 goto label4;
+
+     label3:
+        $r4 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck: void log(int,java.lang.String,java.lang.Object[])>(0, "javadoc.packageInfo", $r4);
+
+     label4:
+        return;
+    }
+
+    public void setAllowLegacy(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck this;
+        boolean aAllowLegacy;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
+
+        aAllowLegacy := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck: boolean mAllowLegacy> = aAllowLegacy;
+
+        return;
+    }
+}

@@ -1,0 +1,85 @@
+class com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1 extends com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler
+{
+    final com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler this$0;
+
+    void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler, com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck, com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1 this;
+        com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler l1;
+        com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck x0;
+        com.puppycrawl.tools.checkstyle.api.DetailAST x1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler;
+
+        x0 := @parameter1: com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
+
+        x1 := @parameter2: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1: com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler this$0> = l1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler: void <init>(com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck,com.puppycrawl.tools.checkstyle.api.DetailAST)>(x0, x1);
+
+        return;
+    }
+
+    public com.puppycrawl.tools.checkstyle.api.DetailAST findLastNode(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1 this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aFirstNode, lastNode, $r0, $r1, $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1;
+
+        aFirstNode := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNode()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if $r1 != null goto label1;
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNode()>();
+
+        lastNode = virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        goto label2;
+
+     label1:
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNode()>();
+
+        lastNode = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+     label2:
+        return lastNode;
+    }
+
+    public int getCurrentIndentation()
+    {
+        com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1 this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST curNode;
+        int $i0, $i1, $i2, $i3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1;
+
+        curNode = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstNode()>();
+
+     label1:
+        $i0 = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 59 goto label2;
+
+        curNode = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        goto label1;
+
+     label2:
+        $i1 = virtualinvoke curNode.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $i2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler$1: int getIndentLevel()>();
+
+        $i3 = $i1 + $i2;
+
+        return $i3;
+    }
+}

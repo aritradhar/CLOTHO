@@ -1,0 +1,261 @@
+public final class com.puppycrawl.tools.checkstyle.api.AnnotationUtility extends java.lang.Object
+{
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.AnnotationUtility this;
+        java.lang.UnsupportedOperationException $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AnnotationUtility;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r0.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("do not instantiate.");
+
+        throw $r0;
+    }
+
+    public static boolean containsAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+        java.lang.String aAnnotation;
+        boolean $z0;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAnnotation := @parameter1: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: com.puppycrawl.tools.checkstyle.api.DetailAST getAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String)>(aAST, aAnnotation);
+
+        if $r0 == null goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public static boolean containsAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, holder;
+        boolean $z0, $z1;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        holder = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: com.puppycrawl.tools.checkstyle.api.DetailAST getAnnotationHolder(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if holder == null goto label1;
+
+        $z0 = virtualinvoke holder.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(163);
+
+        if $z0 == 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.DetailAST getAnnotationHolder(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, annotationHolder;
+        int $i0, $i1;
+        java.lang.NullPointerException $r0;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        if aAST != null goto label1;
+
+        $r0 = new java.lang.NullPointerException;
+
+        specialinvoke $r0.<java.lang.NullPointerException: void <init>(java.lang.String)>("the aAST is null");
+
+        throw $r0;
+
+     label1:
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 159 goto label2;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 16 goto label3;
+
+     label2:
+        annotationHolder = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(162);
+
+        goto label4;
+
+     label3:
+        annotationHolder = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+     label4:
+        return annotationHolder;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.DetailAST getAnnotation(com.puppycrawl.tools.checkstyle.api.DetailAST, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, holder, child, at, $r1;
+        java.lang.String aAnnotation, aName, $r0;
+        int $i0, $i1;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r2;
+        java.lang.IllegalArgumentException $r3;
+        boolean $z0;
+        java.lang.NullPointerException $r4, $r5;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aAnnotation := @parameter1: java.lang.String;
+
+        if aAST != null goto label1;
+
+        $r4 = new java.lang.NullPointerException;
+
+        specialinvoke $r4.<java.lang.NullPointerException: void <init>(java.lang.String)>("the aAST is null");
+
+        throw $r4;
+
+     label1:
+        if aAnnotation != null goto label2;
+
+        $r5 = new java.lang.NullPointerException;
+
+        specialinvoke $r5.<java.lang.NullPointerException: void <init>(java.lang.String)>("the aAnnotation is null");
+
+        throw $r5;
+
+     label2:
+        $r0 = virtualinvoke aAnnotation.<java.lang.String: java.lang.String trim()>();
+
+        $i0 = virtualinvoke $r0.<java.lang.String: int length()>();
+
+        if $i0 != 0 goto label3;
+
+        $r3 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r3.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("the aAnnotationis empty or spaces");
+
+        throw $r3;
+
+     label3:
+        holder = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: com.puppycrawl.tools.checkstyle.api.DetailAST getAnnotationHolder(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        child = virtualinvoke holder.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label4:
+        if child == null goto label6;
+
+        $i1 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 163 goto label5;
+
+        at = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $r1 = virtualinvoke at.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r1);
+
+        aName = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z0 = virtualinvoke aAnnotation.<java.lang.String: boolean equals(java.lang.Object)>(aName);
+
+        if $z0 == 0 goto label5;
+
+        return child;
+
+     label5:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label4;
+
+     label6:
+        return null;
+    }
+
+    public static com.puppycrawl.tools.checkstyle.api.DetailAST annotatingWhat(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0, $r1;
+        int $i0;
+        java.lang.IllegalArgumentException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+        java.lang.String $r6;
+        java.lang.NullPointerException $r7;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        if aAST != null goto label1;
+
+        $r7 = new java.lang.NullPointerException;
+
+        specialinvoke $r7.<java.lang.NullPointerException: void <init>(java.lang.String)>("the aAST is null");
+
+        throw $r7;
+
+     label1:
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 163 goto label2;
+
+        $r2 = new java.lang.IllegalArgumentException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("The aAST is not an annotation. AST: ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(aAST);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r6);
+
+        throw $r2;
+
+     label2:
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        return $r1;
+    }
+
+    public static boolean isAnnotatingType(com.puppycrawl.tools.checkstyle.api.DetailAST, int)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, ast;
+        int aTokenType, $i0;
+        boolean $z0;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        aTokenType := @parameter1: int;
+
+        ast = staticinvoke <com.puppycrawl.tools.checkstyle.api.AnnotationUtility: com.puppycrawl.tools.checkstyle.api.DetailAST annotatingWhat(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $i0 = virtualinvoke ast.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != aTokenType goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+}

@@ -1,0 +1,193 @@
+public class com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mAllowLineBreaks;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck: boolean mAllowLineBreaks> = 1;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
+
+        $r0 = newarray (int)[8];
+
+        $r0[0] = 30;
+
+        $r0[1] = 131;
+
+        $r0[2] = 132;
+
+        $r0[3] = 32;
+
+        $r0[4] = 33;
+
+        $r0[5] = 133;
+
+        $r0[6] = 134;
+
+        $r0[7] = 60;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
+
+        $r0 = newarray (int)[9];
+
+        $r0[0] = 30;
+
+        $r0[1] = 131;
+
+        $r0[2] = 132;
+
+        $r0[3] = 32;
+
+        $r0[4] = 33;
+
+        $r0[5] = 133;
+
+        $r0[6] = 134;
+
+        $r0[7] = 60;
+
+        $r0[8] = 23;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, targetAST;
+        java.lang.String line, $r1, $r3;
+        int after, i, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        boolean flag, $z0, $z1, $z2, $z3;
+        java.lang.String[] $r0;
+        java.lang.Object[] $r2;
+        char $c8, $c9;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        targetAST = aAST;
+
+        $i0 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 23 goto label1;
+
+        targetAST = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(78);
+
+     label1:
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck: java.lang.String[] getLines()>();
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i2 = $i1 - 1;
+
+        line = $r0[$i2];
+
+        $i3 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r1 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $i4 = virtualinvoke $r1.<java.lang.String: int length()>();
+
+        after = $i3 + $i4;
+
+        $i5 = virtualinvoke line.<java.lang.String: int length()>();
+
+        if after >= $i5 goto label2;
+
+        $c9 = virtualinvoke line.<java.lang.String: char charAt(int)>(after);
+
+        $z3 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c9);
+
+        if $z3 == 0 goto label8;
+
+     label2:
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck: boolean mAllowLineBreaks>;
+
+        if $z0 != 0 goto label3;
+
+        $z2 = 1;
+
+        goto label4;
+
+     label3:
+        $z2 = 0;
+
+     label4:
+        flag = $z2;
+
+        i = after + 1;
+
+     label5:
+        if flag != 0 goto label7;
+
+        $i7 = virtualinvoke line.<java.lang.String: int length()>();
+
+        if i >= $i7 goto label7;
+
+        $c8 = virtualinvoke line.<java.lang.String: char charAt(int)>(i);
+
+        $z1 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c8);
+
+        if $z1 != 0 goto label6;
+
+        flag = 1;
+
+     label6:
+        i = i + 1;
+
+        goto label5;
+
+     label7:
+        if flag == 0 goto label8;
+
+        $i6 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r2 = newarray (java.lang.Object)[1];
+
+        $r3 = virtualinvoke targetAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r2[0] = $r3;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i6, after, "ws.followed", $r2);
+
+     label8:
+        return;
+    }
+
+    public void setAllowLineBreaks(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck this;
+        boolean aAllowLineBreaks;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
+
+        aAllowLineBreaks := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck: boolean mAllowLineBreaks> = aAllowLineBreaks;
+
+        return;
+    }
+}

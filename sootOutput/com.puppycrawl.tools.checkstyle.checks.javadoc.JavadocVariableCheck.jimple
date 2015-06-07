@@ -1,0 +1,285 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private com.puppycrawl.tools.checkstyle.api.Scope mScope;
+    private com.puppycrawl.tools.checkstyle.api.Scope mExcludeScope;
+    private java.lang.String mIgnoreNameRegexp;
+    private java.util.regex.Pattern mIgnoreNamePattern;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.Scope $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PRIVATE>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: com.puppycrawl.tools.checkstyle.api.Scope mScope> = $r0;
+
+        return;
+    }
+
+    public void setScope(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck this;
+        java.lang.String aFrom;
+        com.puppycrawl.tools.checkstyle.api.Scope $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+
+        aFrom := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope getInstance(java.lang.String)>(aFrom);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: com.puppycrawl.tools.checkstyle.api.Scope mScope> = $r0;
+
+        return;
+    }
+
+    public void setExcludeScope(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck this;
+        java.lang.String aScope;
+        com.puppycrawl.tools.checkstyle.api.Scope $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+
+        aScope := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope getInstance(java.lang.String)>(aScope);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: com.puppycrawl.tools.checkstyle.api.Scope mExcludeScope> = $r0;
+
+        return;
+    }
+
+    public void setIgnoreNamePattern(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck this;
+        java.lang.String aRegexp;
+        int $i0;
+        java.util.regex.Pattern $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+
+        aRegexp := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: java.lang.String mIgnoreNameRegexp> = aRegexp;
+
+        if aRegexp == null goto label1;
+
+        $i0 = virtualinvoke aRegexp.<java.lang.String: int length()>();
+
+        if $i0 == 0 goto label1;
+
+        $r0 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(aRegexp);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: java.util.regex.Pattern mIgnoreNamePattern> = $r0;
+
+        goto label2;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: java.util.regex.Pattern mIgnoreNamePattern> = null;
+
+     label2:
+        return;
+    }
+
+    public java.lang.String getIgnoreNamePattern()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: java.lang.String mIgnoreNameRegexp>;
+
+        return $r0;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+
+        $r0 = newarray (int)[2];
+
+        $r0[0] = 10;
+
+        $r0[1] = 159;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.FileContents contents;
+        com.puppycrawl.tools.checkstyle.api.TextBlock cmt;
+        boolean $z0;
+        int $i0;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: boolean shouldCheck(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label1;
+
+        contents = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        cmt = virtualinvoke contents.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.TextBlock getJavadocBefore(int)>($i0);
+
+        if cmt != null goto label1;
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "javadoc.missing", $r0);
+
+     label1:
+        return;
+    }
+
+    private boolean isIgnored(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, $r0;
+        java.lang.String name;
+        java.util.regex.Pattern $r1, $r2;
+        java.util.regex.Matcher $r3;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        name = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: java.util.regex.Pattern mIgnoreNamePattern>;
+
+        if $r1 == null goto label1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: java.util.regex.Pattern mIgnoreNamePattern>;
+
+        $r3 = virtualinvoke $r2.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(name);
+
+        $z0 = virtualinvoke $r3.<java.util.regex.Matcher: boolean matches()>();
+
+        if $z0 == 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+
+    private boolean shouldCheck(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, mods;
+        com.puppycrawl.tools.checkstyle.api.Scope scope, declaredScope, $r0, $r1, $r2, $r3, $r4, $r5, mods;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inCodeBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: boolean isIgnored(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        return 0;
+
+     label2:
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 159 goto label3;
+
+        scope = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PUBLIC>;
+
+        goto label6;
+
+     label3:
+        mods = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        declaredScope = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: com.puppycrawl.tools.checkstyle.api.Scope getScopeFromMods(com.puppycrawl.tools.checkstyle.api.DetailAST)>(mods);
+
+        $z2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: boolean inInterfaceOrAnnotationBlock(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z2 == 0 goto label4;
+
+        $r5 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PUBLIC>;
+
+        goto label5;
+
+     label4:
+        $r5 = declaredScope;
+
+     label5:
+        scope = $r5;
+
+     label6:
+        mods = staticinvoke <com.puppycrawl.tools.checkstyle.api.ScopeUtils: com.puppycrawl.tools.checkstyle.api.Scope getSurroundingScope(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: com.puppycrawl.tools.checkstyle.api.Scope mScope>;
+
+        $z3 = virtualinvoke scope.<com.puppycrawl.tools.checkstyle.api.Scope: boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)>($r0);
+
+        if $z3 == 0 goto label8;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: com.puppycrawl.tools.checkstyle.api.Scope mScope>;
+
+        $z4 = virtualinvoke mods.<com.puppycrawl.tools.checkstyle.api.Scope: boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)>($r1);
+
+        if $z4 == 0 goto label8;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: com.puppycrawl.tools.checkstyle.api.Scope mExcludeScope>;
+
+        if $r2 == null goto label7;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: com.puppycrawl.tools.checkstyle.api.Scope mExcludeScope>;
+
+        $z6 = virtualinvoke scope.<com.puppycrawl.tools.checkstyle.api.Scope: boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)>($r3);
+
+        if $z6 == 0 goto label7;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck: com.puppycrawl.tools.checkstyle.api.Scope mExcludeScope>;
+
+        $z7 = virtualinvoke mods.<com.puppycrawl.tools.checkstyle.api.Scope: boolean isIn(com.puppycrawl.tools.checkstyle.api.Scope)>($r4);
+
+        if $z7 != 0 goto label8;
+
+     label7:
+        $z5 = 1;
+
+        goto label9;
+
+     label8:
+        $z5 = 0;
+
+     label9:
+        return $z5;
+    }
+}

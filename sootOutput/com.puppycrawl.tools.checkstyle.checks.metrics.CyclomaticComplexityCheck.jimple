@@ -1,0 +1,86 @@
+public class com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck extends com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck
+{
+    private static final int DEFAULT_VALUE;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void <init>(int)>(10);
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck;
+
+        $r0 = newarray (int)[13];
+
+        $r0[0] = 8;
+
+        $r0[1] = 9;
+
+        $r0[2] = 11;
+
+        $r0[3] = 12;
+
+        $r0[4] = 86;
+
+        $r0[5] = 87;
+
+        $r0[6] = 93;
+
+        $r0[7] = 85;
+
+        $r0[8] = 95;
+
+        $r0[9] = 98;
+
+        $r0[10] = 111;
+
+        $r0[11] = 113;
+
+        $r0[12] = 112;
+
+        return $r0;
+    }
+
+    protected final void visitTokenHook(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.math.BigInteger $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = <java.math.BigInteger: java.math.BigInteger ONE>;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck: void incrementCurrentValue(java.math.BigInteger)>($r0);
+
+        return;
+    }
+
+    protected final java.lang.String getMessageID()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck;
+
+        return "cyclomaticComplexity";
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck: int DEFAULT_VALUE> = 10;
+
+        return;
+    }
+}

@@ -1,0 +1,37 @@
+class com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper$ListSelectionHandler extends java.lang.Object implements javax.swing.event.ListSelectionListener
+{
+    final com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper this$1;
+
+    void <init>(com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper$ListSelectionHandler this;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper l1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper$ListSelectionHandler;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper;
+
+        this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper$ListSelectionHandler: com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper this$1> = l1;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void valueChanged(javax.swing.event.ListSelectionEvent)
+    {
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper$ListSelectionHandler this;
+        javax.swing.event.ListSelectionEvent e;
+        com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper$ListSelectionHandler;
+
+        e := @parameter0: javax.swing.event.ListSelectionEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper$ListSelectionHandler: com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper this$1>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.gui.JTreeTable$ListToTreeSelectionModelWrapper: void updateSelectedPathsFromSelectedRows()>();
+
+        return;
+    }
+}

@@ -1,0 +1,44 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo extends java.lang.Object
+{
+    private final com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token mName;
+
+    public final com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token getName()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo this;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token mName>;
+
+        return $r0;
+    }
+
+    public abstract java.lang.Class getClazz();
+
+    protected void <init>(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo this;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token aName;
+        java.lang.NullPointerException $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo;
+
+        aName := @parameter0: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        if aName != null goto label1;
+
+        $r0 = new java.lang.NullPointerException;
+
+        specialinvoke $r0.<java.lang.NullPointerException: void <init>(java.lang.String)>("ClassInfo\'s name should be non-null");
+
+        throw $r0;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token mName> = aName;
+
+        return;
+    }
+}

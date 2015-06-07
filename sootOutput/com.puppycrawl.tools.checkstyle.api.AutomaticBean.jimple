@@ -1,0 +1,745 @@
+public class com.puppycrawl.tools.checkstyle.api.AutomaticBean extends java.lang.Object implements com.puppycrawl.tools.checkstyle.api.Configurable, com.puppycrawl.tools.checkstyle.api.Contextualizable
+{
+    private com.puppycrawl.tools.checkstyle.api.Configuration mConfiguration;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static org.apache.commons.beanutils.BeanUtilsBean createBeanUtilsBean()
+    {
+        org.apache.commons.beanutils.ConvertUtilsBean cub, $r0;
+        org.apache.commons.beanutils.converters.BooleanConverter $r1, $r3, $r5;
+        java.lang.Class $r2, $r7, $r12, $r16, $r21, $r29, $r31, $r39;
+        org.apache.commons.beanutils.converters.ArrayConverter $r4, $r9, $r13, $r18, $r23, $r27, $r35, $r37;
+        org.apache.commons.beanutils.converters.ByteConverter $r6, $r8, $r10;
+        org.apache.commons.beanutils.converters.CharacterConverter $r11, $r14, $r15;
+        org.apache.commons.beanutils.converters.DoubleConverter $r17, $r19, $r20;
+        org.apache.commons.beanutils.converters.FloatConverter $r22, $r24, $r25;
+        org.apache.commons.beanutils.converters.IntegerConverter $r26, $r28, $r32;
+        org.apache.commons.beanutils.converters.LongConverter $r30, $r33, $r34;
+        org.apache.commons.beanutils.converters.ShortConverter $r36, $r38, $r42;
+        org.apache.commons.beanutils.BeanUtilsBean $r40;
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter $r41;
+        org.apache.commons.beanutils.PropertyUtilsBean $r43;
+
+        $r0 = new org.apache.commons.beanutils.ConvertUtilsBean;
+
+        specialinvoke $r0.<org.apache.commons.beanutils.ConvertUtilsBean: void <init>()>();
+
+        cub = $r0;
+
+        $r1 = new org.apache.commons.beanutils.converters.BooleanConverter;
+
+        specialinvoke $r1.<org.apache.commons.beanutils.converters.BooleanConverter: void <init>()>();
+
+        $r2 = <java.lang.Boolean: java.lang.Class TYPE>;
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r1, $r2);
+
+        $r3 = new org.apache.commons.beanutils.converters.BooleanConverter;
+
+        specialinvoke $r3.<org.apache.commons.beanutils.converters.BooleanConverter: void <init>()>();
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r3, class "java/lang/Boolean");
+
+        $r4 = new org.apache.commons.beanutils.converters.ArrayConverter;
+
+        $r5 = new org.apache.commons.beanutils.converters.BooleanConverter;
+
+        specialinvoke $r5.<org.apache.commons.beanutils.converters.BooleanConverter: void <init>()>();
+
+        specialinvoke $r4.<org.apache.commons.beanutils.converters.ArrayConverter: void <init>(java.lang.Class,org.apache.commons.beanutils.Converter)>(class "[Z", $r5);
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r4, class "[Z");
+
+        $r6 = new org.apache.commons.beanutils.converters.ByteConverter;
+
+        specialinvoke $r6.<org.apache.commons.beanutils.converters.ByteConverter: void <init>()>();
+
+        $r7 = <java.lang.Byte: java.lang.Class TYPE>;
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r6, $r7);
+
+        $r8 = new org.apache.commons.beanutils.converters.ByteConverter;
+
+        specialinvoke $r8.<org.apache.commons.beanutils.converters.ByteConverter: void <init>()>();
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r8, class "java/lang/Byte");
+
+        $r9 = new org.apache.commons.beanutils.converters.ArrayConverter;
+
+        $r10 = new org.apache.commons.beanutils.converters.ByteConverter;
+
+        specialinvoke $r10.<org.apache.commons.beanutils.converters.ByteConverter: void <init>()>();
+
+        specialinvoke $r9.<org.apache.commons.beanutils.converters.ArrayConverter: void <init>(java.lang.Class,org.apache.commons.beanutils.Converter)>(class "[B", $r10);
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r9, class "[B");
+
+        $r11 = new org.apache.commons.beanutils.converters.CharacterConverter;
+
+        specialinvoke $r11.<org.apache.commons.beanutils.converters.CharacterConverter: void <init>()>();
+
+        $r12 = <java.lang.Character: java.lang.Class TYPE>;
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r11, $r12);
+
+        $r14 = new org.apache.commons.beanutils.converters.CharacterConverter;
+
+        specialinvoke $r14.<org.apache.commons.beanutils.converters.CharacterConverter: void <init>()>();
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r14, class "java/lang/Character");
+
+        $r13 = new org.apache.commons.beanutils.converters.ArrayConverter;
+
+        $r15 = new org.apache.commons.beanutils.converters.CharacterConverter;
+
+        specialinvoke $r15.<org.apache.commons.beanutils.converters.CharacterConverter: void <init>()>();
+
+        specialinvoke $r13.<org.apache.commons.beanutils.converters.ArrayConverter: void <init>(java.lang.Class,org.apache.commons.beanutils.Converter)>(class "[C", $r15);
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r13, class "[C");
+
+        $r17 = new org.apache.commons.beanutils.converters.DoubleConverter;
+
+        specialinvoke $r17.<org.apache.commons.beanutils.converters.DoubleConverter: void <init>()>();
+
+        $r16 = <java.lang.Double: java.lang.Class TYPE>;
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r17, $r16);
+
+        $r19 = new org.apache.commons.beanutils.converters.DoubleConverter;
+
+        specialinvoke $r19.<org.apache.commons.beanutils.converters.DoubleConverter: void <init>()>();
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r19, class "java/lang/Double");
+
+        $r18 = new org.apache.commons.beanutils.converters.ArrayConverter;
+
+        $r20 = new org.apache.commons.beanutils.converters.DoubleConverter;
+
+        specialinvoke $r20.<org.apache.commons.beanutils.converters.DoubleConverter: void <init>()>();
+
+        specialinvoke $r18.<org.apache.commons.beanutils.converters.ArrayConverter: void <init>(java.lang.Class,org.apache.commons.beanutils.Converter)>(class "[D", $r20);
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r18, class "[D");
+
+        $r22 = new org.apache.commons.beanutils.converters.FloatConverter;
+
+        specialinvoke $r22.<org.apache.commons.beanutils.converters.FloatConverter: void <init>()>();
+
+        $r21 = <java.lang.Float: java.lang.Class TYPE>;
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r22, $r21);
+
+        $r24 = new org.apache.commons.beanutils.converters.FloatConverter;
+
+        specialinvoke $r24.<org.apache.commons.beanutils.converters.FloatConverter: void <init>()>();
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r24, class "java/lang/Float");
+
+        $r23 = new org.apache.commons.beanutils.converters.ArrayConverter;
+
+        $r25 = new org.apache.commons.beanutils.converters.FloatConverter;
+
+        specialinvoke $r25.<org.apache.commons.beanutils.converters.FloatConverter: void <init>()>();
+
+        specialinvoke $r23.<org.apache.commons.beanutils.converters.ArrayConverter: void <init>(java.lang.Class,org.apache.commons.beanutils.Converter)>(class "[F", $r25);
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r23, class "[F");
+
+        $r28 = new org.apache.commons.beanutils.converters.IntegerConverter;
+
+        specialinvoke $r28.<org.apache.commons.beanutils.converters.IntegerConverter: void <init>()>();
+
+        $r29 = <java.lang.Integer: java.lang.Class TYPE>;
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r28, $r29);
+
+        $r26 = new org.apache.commons.beanutils.converters.IntegerConverter;
+
+        specialinvoke $r26.<org.apache.commons.beanutils.converters.IntegerConverter: void <init>()>();
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r26, class "java/lang/Integer");
+
+        $r27 = new org.apache.commons.beanutils.converters.ArrayConverter;
+
+        $r32 = new org.apache.commons.beanutils.converters.IntegerConverter;
+
+        specialinvoke $r32.<org.apache.commons.beanutils.converters.IntegerConverter: void <init>()>();
+
+        specialinvoke $r27.<org.apache.commons.beanutils.converters.ArrayConverter: void <init>(java.lang.Class,org.apache.commons.beanutils.Converter)>(class "[I", $r32);
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r27, class "[I");
+
+        $r30 = new org.apache.commons.beanutils.converters.LongConverter;
+
+        specialinvoke $r30.<org.apache.commons.beanutils.converters.LongConverter: void <init>()>();
+
+        $r31 = <java.lang.Long: java.lang.Class TYPE>;
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r30, $r31);
+
+        $r34 = new org.apache.commons.beanutils.converters.LongConverter;
+
+        specialinvoke $r34.<org.apache.commons.beanutils.converters.LongConverter: void <init>()>();
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r34, class "java/lang/Long");
+
+        $r35 = new org.apache.commons.beanutils.converters.ArrayConverter;
+
+        $r33 = new org.apache.commons.beanutils.converters.LongConverter;
+
+        specialinvoke $r33.<org.apache.commons.beanutils.converters.LongConverter: void <init>()>();
+
+        specialinvoke $r35.<org.apache.commons.beanutils.converters.ArrayConverter: void <init>(java.lang.Class,org.apache.commons.beanutils.Converter)>(class "[J", $r33);
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r35, class "[J");
+
+        $r38 = new org.apache.commons.beanutils.converters.ShortConverter;
+
+        specialinvoke $r38.<org.apache.commons.beanutils.converters.ShortConverter: void <init>()>();
+
+        $r39 = <java.lang.Short: java.lang.Class TYPE>;
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r38, $r39);
+
+        $r36 = new org.apache.commons.beanutils.converters.ShortConverter;
+
+        specialinvoke $r36.<org.apache.commons.beanutils.converters.ShortConverter: void <init>()>();
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r36, class "java/lang/Short");
+
+        $r37 = new org.apache.commons.beanutils.converters.ArrayConverter;
+
+        $r42 = new org.apache.commons.beanutils.converters.ShortConverter;
+
+        specialinvoke $r42.<org.apache.commons.beanutils.converters.ShortConverter: void <init>()>();
+
+        specialinvoke $r37.<org.apache.commons.beanutils.converters.ArrayConverter: void <init>(java.lang.Class,org.apache.commons.beanutils.Converter)>(class "[S", $r42);
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r37, class "[S");
+
+        $r41 = new com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter;
+
+        specialinvoke $r41.<com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter: void <init>(com.puppycrawl.tools.checkstyle.api.AutomaticBean$1)>(null);
+
+        virtualinvoke cub.<org.apache.commons.beanutils.ConvertUtilsBean: void register(org.apache.commons.beanutils.Converter,java.lang.Class)>($r41, class "[Ljava/lang/String;");
+
+        $r40 = new org.apache.commons.beanutils.BeanUtilsBean;
+
+        $r43 = new org.apache.commons.beanutils.PropertyUtilsBean;
+
+        specialinvoke $r43.<org.apache.commons.beanutils.PropertyUtilsBean: void <init>()>();
+
+        specialinvoke $r40.<org.apache.commons.beanutils.BeanUtilsBean: void <init>(org.apache.commons.beanutils.ConvertUtilsBean,org.apache.commons.beanutils.PropertyUtilsBean)>(cub, $r43);
+
+        return $r40;
+    }
+
+    public final void configure(com.puppycrawl.tools.checkstyle.api.Configuration) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean this;
+        com.puppycrawl.tools.checkstyle.api.Configuration aConfiguration, value;
+        org.apache.commons.beanutils.BeanUtilsBean beanUtils;
+        java.lang.String[] attributes, arr$;
+        int len$, i$, key;
+        java.lang.String key, value, $r6, $r7, $r15, $r22, $r24, $r30, $r35, $r42, $r48, $r50, $r52, $r60, $r65;
+        java.beans.PropertyDescriptor pd;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r0, $r12, $r28, $r33, $r46, $r62;
+        java.lang.StringBuilder $r1, $r2, $r3, $r4, $r5, $r8, $r11, $r13, $r14, $r16, $r17, $r18, $r19, $r20, $r21, $r25, $r26, $r31, $r32, $r36, $r37, $r38, $r39, $r40, $r41, $r43, $r44, $r45, $r49, $r51, $r53, $r54, $r55, $r56, $r57, $r58, $r63, $r64, $r66;
+        java.lang.reflect.InvocationTargetException $r9, pd;
+        java.lang.reflect.Method $r10;
+        java.lang.Throwable $r23;
+        java.lang.IllegalAccessException $r27, pd;
+        java.lang.Class $r29, $r59;
+        java.lang.IllegalArgumentException $r34, pd;
+        org.apache.commons.beanutils.ConversionException $r47, pd;
+        java.lang.NoSuchMethodException $r61, pd;
+        com.puppycrawl.tools.checkstyle.api.Configuration[] arr$, len$;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+
+        aConfiguration := @parameter0: com.puppycrawl.tools.checkstyle.api.Configuration;
+
+        this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: com.puppycrawl.tools.checkstyle.api.Configuration mConfiguration> = aConfiguration;
+
+        beanUtils = staticinvoke <com.puppycrawl.tools.checkstyle.api.AutomaticBean: org.apache.commons.beanutils.BeanUtilsBean createBeanUtilsBean()>();
+
+        attributes = interfaceinvoke aConfiguration.<com.puppycrawl.tools.checkstyle.api.Configuration: java.lang.String[] getAttributeNames()>();
+
+        arr$ = attributes;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label01:
+        if i$ >= len$ goto label12;
+
+        key = arr$[i$];
+
+        value = interfaceinvoke aConfiguration.<com.puppycrawl.tools.checkstyle.api.Configuration: java.lang.String getAttribute(java.lang.String)>(key);
+
+     label02:
+        pd = staticinvoke <org.apache.commons.beanutils.PropertyUtils: java.beans.PropertyDescriptor getPropertyDescriptor(java.lang.Object,java.lang.String)>(this, key);
+
+        if pd == null goto label03;
+
+        $r10 = virtualinvoke pd.<java.beans.PropertyDescriptor: java.lang.reflect.Method getWriteMethod()>();
+
+        if $r10 != null goto label04;
+
+     label03:
+        $r0 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Property \'");
+
+        $r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(key);
+
+        $r3 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' in module ");
+
+        $r6 = interfaceinvoke aConfiguration.<com.puppycrawl.tools.checkstyle.api.Configuration: java.lang.String getName()>();
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" does not exist, please check the documentation");
+
+        $r7 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String)>($r7);
+
+        throw $r0;
+
+     label04:
+        virtualinvoke beanUtils.<org.apache.commons.beanutils.BeanUtilsBean: void copyProperty(java.lang.Object,java.lang.String,java.lang.Object)>(this, key, value);
+
+     label05:
+        goto label11;
+
+     label06:
+        $r9 := @caughtexception;
+
+        pd = $r9;
+
+        $r12 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>()>();
+
+        $r14 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Cannot set property \'");
+
+        $r13 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(key);
+
+        $r16 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' in module ");
+
+        $r15 = interfaceinvoke aConfiguration.<com.puppycrawl.tools.checkstyle.api.Configuration: java.lang.String getName()>();
+
+        $r19 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" to \'");
+
+        $r17 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(value);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\': ");
+
+        $r23 = virtualinvoke pd.<java.lang.reflect.InvocationTargetException: java.lang.Throwable getTargetException()>();
+
+        $r24 = virtualinvoke $r23.<java.lang.Throwable: java.lang.String getMessage()>();
+
+        $r21 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r12.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r22, pd);
+
+        throw $r12;
+
+     label07:
+        $r27 := @caughtexception;
+
+        pd = $r27;
+
+        $r28 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r25 = new java.lang.StringBuilder;
+
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("cannot access ");
+
+        $r31 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(key);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in ");
+
+        $r29 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r30 = virtualinvoke $r29.<java.lang.Class: java.lang.String getName()>();
+
+        $r36 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30);
+
+        $r35 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r28.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r35, pd);
+
+        throw $r28;
+
+     label08:
+        $r61 := @caughtexception;
+
+        pd = $r61;
+
+        $r62 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r63 = new java.lang.StringBuilder;
+
+        specialinvoke $r63.<java.lang.StringBuilder: void <init>()>();
+
+        $r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("cannot access ");
+
+        $r57 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(key);
+
+        $r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in ");
+
+        $r59 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r60 = virtualinvoke $r59.<java.lang.Class: java.lang.String getName()>();
+
+        $r66 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r60);
+
+        $r65 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r62.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r65, pd);
+
+        throw $r62;
+
+     label09:
+        $r34 := @caughtexception;
+
+        pd = $r34;
+
+        $r33 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r40 = new java.lang.StringBuilder;
+
+        specialinvoke $r40.<java.lang.StringBuilder: void <init>()>();
+
+        $r39 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("illegal value \'");
+
+        $r38 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(value);
+
+        $r37 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' for property \'");
+
+        $r44 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(key);
+
+        $r43 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' of module ");
+
+        $r42 = interfaceinvoke aConfiguration.<com.puppycrawl.tools.checkstyle.api.Configuration: java.lang.String getName()>();
+
+        $r41 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42);
+
+        $r48 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r33.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r48, pd);
+
+        throw $r33;
+
+     label10:
+        $r47 := @caughtexception;
+
+        pd = $r47;
+
+        $r46 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r45 = new java.lang.StringBuilder;
+
+        specialinvoke $r45.<java.lang.StringBuilder: void <init>()>();
+
+        $r53 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("illegal value \'");
+
+        $r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(value);
+
+        $r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' for property \'");
+
+        $r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(key);
+
+        $r49 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' of module ");
+
+        $r50 = interfaceinvoke aConfiguration.<com.puppycrawl.tools.checkstyle.api.Configuration: java.lang.String getName()>();
+
+        $r51 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r50);
+
+        $r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r46.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r52, pd);
+
+        throw $r46;
+
+     label11:
+        i$ = i$ + 1;
+
+        goto label01;
+
+     label12:
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void finishLocalSetup()>();
+
+        arr$ = interfaceinvoke aConfiguration.<com.puppycrawl.tools.checkstyle.api.Configuration: com.puppycrawl.tools.checkstyle.api.Configuration[] getChildren()>();
+
+        len$ = arr$;
+
+        i$ = lengthof len$;
+
+        key = 0;
+
+     label13:
+        if key >= i$ goto label14;
+
+        value = len$[key];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void setupChild(com.puppycrawl.tools.checkstyle.api.Configuration)>(value);
+
+        key = key + 1;
+
+        goto label13;
+
+     label14:
+        return;
+
+        catch java.lang.reflect.InvocationTargetException from label02 to label05 with label06;
+        catch java.lang.IllegalAccessException from label02 to label05 with label07;
+        catch java.lang.NoSuchMethodException from label02 to label05 with label08;
+        catch java.lang.IllegalArgumentException from label02 to label05 with label09;
+        catch org.apache.commons.beanutils.ConversionException from label02 to label05 with label10;
+    }
+
+    public final void contextualize(com.puppycrawl.tools.checkstyle.api.Context) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean this;
+        com.puppycrawl.tools.checkstyle.api.Context aContext;
+        org.apache.commons.beanutils.BeanUtilsBean beanUtils;
+        com.google.common.collect.ImmutableCollection attributes;
+        java.util.Iterator i$;
+        java.lang.String key, $r7, $r9, $r20, $r22, $r32, $r34, $r43, $r45;
+        java.lang.Object value, $r0;
+        java.lang.reflect.InvocationTargetException e, $r12;
+        boolean $z0;
+        java.lang.IllegalAccessException $r1, e;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r2, $r11, $r26, $r37;
+        java.lang.StringBuilder $r3, $r4, $r5, $r6, $r10, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r23, $r24, $r27, $r28, $r29, $r30, $r31, $r35, $r36, $r39, $r40, $r41, $r42, $r44;
+        java.lang.Class $r8, $r21, $r33, $r46;
+        org.apache.commons.beanutils.ConversionException $r25, e;
+        java.lang.IllegalArgumentException $r38, e;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+
+        aContext := @parameter0: com.puppycrawl.tools.checkstyle.api.Context;
+
+        beanUtils = staticinvoke <com.puppycrawl.tools.checkstyle.api.AutomaticBean: org.apache.commons.beanutils.BeanUtilsBean createBeanUtilsBean()>();
+
+        attributes = interfaceinvoke aContext.<com.puppycrawl.tools.checkstyle.api.Context: com.google.common.collect.ImmutableCollection getAttributeNames()>();
+
+        i$ = interfaceinvoke attributes.<java.util.Collection: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label9;
+
+        $r0 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        key = (java.lang.String) $r0;
+
+        value = interfaceinvoke aContext.<com.puppycrawl.tools.checkstyle.api.Context: java.lang.Object get(java.lang.String)>(key);
+
+     label2:
+        virtualinvoke beanUtils.<org.apache.commons.beanutils.BeanUtilsBean: void copyProperty(java.lang.Object,java.lang.String,java.lang.Object)>(this, key, value);
+
+     label3:
+        goto label8;
+
+     label4:
+        $r12 := @caughtexception;
+
+        e = $r12;
+
+        $r11 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+
+        $r13 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("cannot set property ");
+
+        $r16 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(key);
+
+        $r15 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" to value ");
+
+        $r18 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(value);
+
+        $r17 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in bean ");
+
+        $r21 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r22 = virtualinvoke $r21.<java.lang.Class: java.lang.String getName()>();
+
+        $r19 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r11.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r20, e);
+
+        throw $r11;
+
+     label5:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("cannot access ");
+
+        $r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(key);
+
+        $r5 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in ");
+
+        $r8 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r7 = virtualinvoke $r8.<java.lang.Class: java.lang.String getName()>();
+
+        $r10 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r9, e);
+
+        throw $r2;
+
+     label6:
+        $r38 := @caughtexception;
+
+        e = $r38;
+
+        $r37 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r36 = new java.lang.StringBuilder;
+
+        specialinvoke $r36.<java.lang.StringBuilder: void <init>()>();
+
+        $r35 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("illegal value \'");
+
+        $r42 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(value);
+
+        $r41 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' for property \'");
+
+        $r40 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(key);
+
+        $r39 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' of bean ");
+
+        $r46 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r45 = virtualinvoke $r46.<java.lang.Class: java.lang.String getName()>();
+
+        $r44 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45);
+
+        $r43 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r37.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r43, e);
+
+        throw $r37;
+
+     label7:
+        $r25 := @caughtexception;
+
+        e = $r25;
+
+        $r26 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r23 = new java.lang.StringBuilder;
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>()>();
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("illegal value \'");
+
+        $r29 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(value);
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' for property \'");
+
+        $r27 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(key);
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' of bean ");
+
+        $r33 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r34 = virtualinvoke $r33.<java.lang.Class: java.lang.String getName()>();
+
+        $r31 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r34);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r26.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r32, e);
+
+        throw $r26;
+
+     label8:
+        goto label1;
+
+     label9:
+        return;
+
+        catch java.lang.reflect.InvocationTargetException from label2 to label3 with label4;
+        catch java.lang.IllegalAccessException from label2 to label3 with label5;
+        catch java.lang.IllegalArgumentException from label2 to label3 with label6;
+        catch org.apache.commons.beanutils.ConversionException from label2 to label3 with label7;
+    }
+
+    protected final com.puppycrawl.tools.checkstyle.api.Configuration getConfiguration()
+    {
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean this;
+        com.puppycrawl.tools.checkstyle.api.Configuration $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: com.puppycrawl.tools.checkstyle.api.Configuration mConfiguration>;
+
+        return $r0;
+    }
+
+    protected void finishLocalSetup() throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+
+        return;
+    }
+
+    protected void setupChild(com.puppycrawl.tools.checkstyle.api.Configuration) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.api.AutomaticBean this;
+        com.puppycrawl.tools.checkstyle.api.Configuration aChildConf;
+
+        this := @this: com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+
+        aChildConf := @parameter0: com.puppycrawl.tools.checkstyle.api.Configuration;
+
+        return;
+    }
+}

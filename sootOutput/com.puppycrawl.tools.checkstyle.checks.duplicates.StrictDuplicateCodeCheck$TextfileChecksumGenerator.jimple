@@ -1,0 +1,189 @@
+class com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator extends java.lang.Object implements com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$ChecksumGenerator
+{
+    final com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this$0;
+
+    private void <init>(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator this;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck l1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator;
+
+        l1 := @parameter0: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this$0> = l1;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public int[] convertLines(java.lang.String[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator this;
+        java.lang.String[] aOriginalLines;
+        int lineCount, i, blockChecksum, j, $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i8, $i9, $i10, $i15, i;
+        long[] checkSums;
+        java.lang.String line, $r2;
+        boolean onlyEmptyLines;
+        long checksum, $l11, $l12, $l13, $l14, $l16;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck $r0, $r1;
+        byte $b7;
+        int[] line;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator;
+
+        aOriginalLines := @parameter0: java.lang.String[];
+
+        lineCount = lengthof aOriginalLines;
+
+        checkSums = newarray (long)[lineCount];
+
+        i = 0;
+
+     label01:
+        if i >= lineCount goto label02;
+
+        line = aOriginalLines[i];
+
+        $i15 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator: int calcChecksum(java.lang.String)>(line);
+
+        $l16 = (long) $i15;
+
+        checkSums[i] = $l16;
+
+        i = i + 1;
+
+        goto label01;
+
+     label02:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this$0>;
+
+        $i0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int access$000(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck)>($r0);
+
+        $i1 = lineCount - $i0;
+
+        $i2 = $i1 + 1;
+
+        i = staticinvoke <java.lang.Math: int max(int,int)>(0, $i2);
+
+        line = newarray (int)[i];
+
+        i = 0;
+
+     label03:
+        if i >= i goto label10;
+
+        blockChecksum = 0;
+
+        onlyEmptyLines = 1;
+
+        j = 0;
+
+     label04:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck this$0>;
+
+        $i3 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck: int access$000(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck)>($r1);
+
+        if j >= $i3 goto label07;
+
+        $i4 = i + j;
+
+        $r2 = aOriginalLines[$i4];
+
+        $i6 = virtualinvoke $r2.<java.lang.String: int length()>();
+
+        if $i6 <= 0 goto label05;
+
+        onlyEmptyLines = 0;
+
+     label05:
+        $i8 = i + j;
+
+        checksum = checkSums[$i8];
+
+        $b7 = checksum cmp -2147483648L;
+
+        if $b7 != 0 goto label06;
+
+        blockChecksum = -2147483648;
+
+        goto label07;
+
+     label06:
+        $l14 = (long) blockChecksum;
+
+        $i10 = j + 1;
+
+        $i9 = $i10 * 317;
+
+        $l12 = (long) $i9;
+
+        $l11 = $l12 * checksum;
+
+        $l13 = $l14 + $l11;
+
+        blockChecksum = (int) $l13;
+
+        j = j + 1;
+
+        goto label04;
+
+     label07:
+        if onlyEmptyLines == 0 goto label08;
+
+        $i5 = -2147483648;
+
+        goto label09;
+
+     label08:
+        $i5 = blockChecksum;
+
+     label09:
+        line[i] = $i5;
+
+        i = i + 1;
+
+        goto label03;
+
+     label10:
+        return line;
+    }
+
+    protected int calcChecksum(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator this;
+        java.lang.String aLine;
+        int hashCode;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator;
+
+        aLine := @parameter0: java.lang.String;
+
+        hashCode = virtualinvoke aLine.<java.lang.String: int hashCode()>();
+
+        if hashCode != -2147483648 goto label1;
+
+        return 1073741823;
+
+     label1:
+        return hashCode;
+    }
+
+    void <init>(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck, com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$1)
+    {
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator this;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck x0;
+        com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$1 x1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck;
+
+        x1 := @parameter1: com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck$TextfileChecksumGenerator: void <init>(com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck)>(x0);
+
+        return;
+    }
+}

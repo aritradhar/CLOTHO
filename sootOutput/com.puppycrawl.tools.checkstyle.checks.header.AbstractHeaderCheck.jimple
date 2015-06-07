@@ -1,0 +1,496 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck extends com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck
+{
+    private java.lang.String mFilename;
+    private java.lang.String mCharset;
+    private final java.util.List mHeaderLines;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+        java.lang.String $r0;
+        java.util.ArrayList $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck: void <init>()>();
+
+        $r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>("file.encoding", "UTF-8");
+
+        this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mCharset> = $r0;
+
+        $r1 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.util.List mHeaderLines> = $r1;
+
+        return;
+    }
+
+    protected com.google.common.collect.ImmutableList getHeaderLines()
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+        java.util.List $r0;
+        com.google.common.collect.ImmutableList $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.util.List mHeaderLines>;
+
+        $r1 = staticinvoke <com.google.common.collect.ImmutableList: com.google.common.collect.ImmutableList copyOf(java.util.Collection)>($r0);
+
+        return $r1;
+    }
+
+    public void setCharset(java.lang.String) throws java.io.UnsupportedEncodingException
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+        java.lang.String aCharset, message;
+        boolean $z0;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3;
+        java.io.UnsupportedEncodingException $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+        aCharset := @parameter0: java.lang.String;
+
+        $z0 = staticinvoke <java.nio.charset.Charset: boolean isSupported(java.lang.String)>(aCharset);
+
+        if $z0 != 0 goto label1;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unsupported charset: \'");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aCharset);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'");
+
+        message = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r4 = new java.io.UnsupportedEncodingException;
+
+        specialinvoke $r4.<java.io.UnsupportedEncodingException: void <init>(java.lang.String)>(message);
+
+        throw $r4;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mCharset> = aCharset;
+
+        return;
+    }
+
+    public void setHeaderFile(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+        java.lang.String aFileName, $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+        aFileName := @parameter0: java.lang.String;
+
+        if aFileName == null goto label1;
+
+        $r0 = virtualinvoke aFileName.<java.lang.String: java.lang.String trim()>();
+
+        $i0 = virtualinvoke $r0.<java.lang.String: int length()>();
+
+        if $i0 != 0 goto label2;
+
+     label1:
+        return;
+
+     label2:
+        this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mFilename> = aFileName;
+
+        return;
+    }
+
+    private void loadHeaderFile() throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+        java.io.InputStreamReader headerReader, $r0;
+        java.net.URI uri;
+        java.lang.Throwable l3, $r11;
+        java.io.BufferedInputStream $r1;
+        java.net.URL $r2;
+        java.io.InputStream $r3;
+        java.lang.String $r4, $r9, $r12;
+        java.io.IOException $r5, uri;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r6;
+        java.lang.StringBuilder $r7, $r8, $r10;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: void checkHeaderNotInitialized()>();
+
+        headerReader = null;
+
+     label1:
+        uri = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.net.URI resolveHeaderFile()>();
+
+        $r0 = new java.io.InputStreamReader;
+
+        $r1 = new java.io.BufferedInputStream;
+
+        $r2 = virtualinvoke uri.<java.net.URI: java.net.URL toURL()>();
+
+        $r3 = virtualinvoke $r2.<java.net.URL: java.io.InputStream openStream()>();
+
+        specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>($r3);
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mCharset>;
+
+        specialinvoke $r0.<java.io.InputStreamReader: void <init>(java.io.InputStream,java.lang.String)>($r1, $r4);
+
+        headerReader = $r0;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: void loadHeader(java.io.Reader)>(headerReader);
+
+     label2:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(headerReader);
+
+        goto label6;
+
+     label3:
+        $r5 := @caughtexception;
+
+        uri = $r5;
+
+        $r6 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to load header file ");
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mFilename>;
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r6.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String,java.lang.Throwable)>($r12, uri);
+
+        throw $r6;
+
+     label4:
+        $r11 := @caughtexception;
+
+        l3 = $r11;
+
+     label5:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(headerReader);
+
+        throw l3;
+
+     label6:
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+        catch java.lang.Throwable from label1 to label2 with label4;
+        catch java.lang.Throwable from label3 to label5 with label4;
+    }
+
+    private java.net.URI resolveHeaderFile() throws java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+        java.net.URI uri;
+        java.net.URL url, configUrl, $r0;
+        java.lang.String $r1, $r3, $r4, $r7, $r9;
+        java.io.File $r2, url;
+        boolean $z0;
+        java.lang.Class $r5;
+        java.io.FileNotFoundException $r6, $r10;
+        java.net.URISyntaxException $r8, $r11;
+        java.net.MalformedURLException $r12;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+     label01:
+        $r0 = new java.net.URL;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mFilename>;
+
+        specialinvoke $r0.<java.net.URL: void <init>(java.lang.String)>($r1);
+
+        url = $r0;
+
+        uri = virtualinvoke url.<java.net.URL: java.net.URI toURI()>();
+
+     label02:
+        goto label05;
+
+     label03:
+        $r12 := @caughtexception;
+
+        uri = null;
+
+        goto label05;
+
+     label04:
+        $r11 := @caughtexception;
+
+        uri = null;
+
+     label05:
+        if uri != null goto label10;
+
+        $r2 = new java.io.File;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mFilename>;
+
+        specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>($r3);
+
+        url = $r2;
+
+        $z0 = virtualinvoke url.<java.io.File: boolean exists()>();
+
+        if $z0 == 0 goto label06;
+
+        uri = virtualinvoke url.<java.io.File: java.net.URI toURI()>();
+
+        goto label10;
+
+     label06:
+        $r5 = class "com/puppycrawl/tools/checkstyle/checks/header/AbstractHeaderCheck";
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mFilename>;
+
+        configUrl = virtualinvoke $r5.<java.lang.Class: java.net.URL getResource(java.lang.String)>($r4);
+
+        if configUrl != null goto label07;
+
+        $r6 = new java.io.FileNotFoundException;
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mFilename>;
+
+        specialinvoke $r6.<java.io.FileNotFoundException: void <init>(java.lang.String)>($r7);
+
+        throw $r6;
+
+     label07:
+        uri = virtualinvoke configUrl.<java.net.URL: java.net.URI toURI()>();
+
+     label08:
+        goto label10;
+
+     label09:
+        $r8 := @caughtexception;
+
+        $r10 = new java.io.FileNotFoundException;
+
+        $r9 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mFilename>;
+
+        specialinvoke $r10.<java.io.FileNotFoundException: void <init>(java.lang.String)>($r9);
+
+        throw $r10;
+
+     label10:
+        return uri;
+
+        catch java.net.MalformedURLException from label01 to label02 with label03;
+        catch java.net.URISyntaxException from label01 to label02 with label04;
+        catch java.net.URISyntaxException from label06 to label08 with label09;
+    }
+
+    private void checkHeaderNotInitialized()
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+        java.util.List $r0;
+        boolean $z0;
+        org.apache.commons.beanutils.ConversionException $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.util.List mHeaderLines>;
+
+        $z0 = interfaceinvoke $r0.<java.util.List: boolean isEmpty()>();
+
+        if $z0 != 0 goto label1;
+
+        $r1 = new org.apache.commons.beanutils.ConversionException;
+
+        specialinvoke $r1.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String)>("header has already been set - set either header or headerFile, not both");
+
+        throw $r1;
+
+     label1:
+        return;
+    }
+
+    public void setHeader(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+        java.lang.String aHeader, headerExpandedNewLines, $r0;
+        java.io.StringReader headerReader, $r1;
+        java.io.IOException ex, $r3;
+        java.lang.Throwable l5, $r2;
+        int $i0;
+        org.apache.commons.beanutils.ConversionException $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+        aHeader := @parameter0: java.lang.String;
+
+        if aHeader == null goto label1;
+
+        $r0 = virtualinvoke aHeader.<java.lang.String: java.lang.String trim()>();
+
+        $i0 = virtualinvoke $r0.<java.lang.String: int length()>();
+
+        if $i0 != 0 goto label2;
+
+     label1:
+        return;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: void checkHeaderNotInitialized()>();
+
+        headerExpandedNewLines = virtualinvoke aHeader.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("\\\\n", "\n");
+
+        $r1 = new java.io.StringReader;
+
+        specialinvoke $r1.<java.io.StringReader: void <init>(java.lang.String)>(headerExpandedNewLines);
+
+        headerReader = $r1;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: void loadHeader(java.io.Reader)>(headerReader);
+
+     label4:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(headerReader);
+
+        goto label8;
+
+     label5:
+        $r3 := @caughtexception;
+
+        ex = $r3;
+
+        $r4 = new org.apache.commons.beanutils.ConversionException;
+
+        specialinvoke $r4.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>("unable to load header", ex);
+
+        throw $r4;
+
+     label6:
+        $r2 := @caughtexception;
+
+        l5 = $r2;
+
+     label7:
+        staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: void closeQuietly(java.io.Closeable)>(headerReader);
+
+        throw l5;
+
+     label8:
+        return;
+
+        catch java.io.IOException from label3 to label4 with label5;
+        catch java.lang.Throwable from label3 to label4 with label6;
+        catch java.lang.Throwable from label5 to label7 with label6;
+    }
+
+    private void loadHeader(java.io.Reader) throws java.io.IOException
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+        java.io.Reader aHeaderReader;
+        java.io.LineNumberReader lnr, $r0;
+        java.lang.String l;
+        java.util.List $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+        aHeaderReader := @parameter0: java.io.Reader;
+
+        $r0 = new java.io.LineNumberReader;
+
+        specialinvoke $r0.<java.io.LineNumberReader: void <init>(java.io.Reader)>(aHeaderReader);
+
+        lnr = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.util.List mHeaderLines>;
+
+        interfaceinvoke $r1.<java.util.List: void clear()>();
+
+     label1:
+        l = virtualinvoke lnr.<java.io.LineNumberReader: java.lang.String readLine()>();
+
+        if l != null goto label2;
+
+        goto label3;
+
+     label2:
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.util.List mHeaderLines>;
+
+        interfaceinvoke $r2.<java.util.List: boolean add(java.lang.Object)>(l);
+
+        goto label1;
+
+     label3:
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: void postprocessHeaderLines()>();
+
+        return;
+    }
+
+    protected void postprocessHeaderLines()
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+        return;
+    }
+
+    protected final void finishLocalSetup() throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck this;
+        java.lang.String $r0, $r6, $r8;
+        java.util.List $r1;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.api.CheckstyleException $r2;
+        java.lang.StringBuilder $r3, $r4, $r7;
+        com.puppycrawl.tools.checkstyle.api.Configuration $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.lang.String mFilename>;
+
+        if $r0 == null goto label1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: void loadHeaderFile()>();
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: java.util.List mHeaderLines>;
+
+        $z0 = interfaceinvoke $r1.<java.util.List: boolean isEmpty()>();
+
+        if $z0 == 0 goto label2;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("property \'headerFile\' is missing or invalid in module ");
+
+        $r5 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: com.puppycrawl.tools.checkstyle.api.Configuration getConfiguration()>();
+
+        $r6 = interfaceinvoke $r5.<com.puppycrawl.tools.checkstyle.api.Configuration: java.lang.String getName()>();
+
+        $r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.api.CheckstyleException: void <init>(java.lang.String)>($r8);
+
+        throw $r2;
+
+     label2:
+        return;
+    }
+}

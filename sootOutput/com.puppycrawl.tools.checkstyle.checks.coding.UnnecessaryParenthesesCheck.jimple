@@ -1,0 +1,508 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private static final int MIN_CHILDREN_FOR_MATCH;
+    private static final int MAX_QUOTED_LENGTH;
+    private static final int[] LITERALS;
+    private static final int[] ASSIGNMENTS;
+    private com.puppycrawl.tools.checkstyle.api.DetailAST mParentToSkip;
+    private int mAssignDepth;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck;
+
+        $r0 = newarray (int)[22];
+
+        $r0[0] = 29;
+
+        $r0[1] = 59;
+
+        $r0[2] = 144;
+
+        $r0[3] = 142;
+
+        $r0[4] = 139;
+
+        $r0[5] = 143;
+
+        $r0[6] = 141;
+
+        $r0[7] = 137;
+
+        $r0[8] = 136;
+
+        $r0[9] = 135;
+
+        $r0[10] = 81;
+
+        $r0[11] = 108;
+
+        $r0[12] = 110;
+
+        $r0[13] = 106;
+
+        $r0[14] = 109;
+
+        $r0[15] = 103;
+
+        $r0[16] = 101;
+
+        $r0[17] = 104;
+
+        $r0[18] = 100;
+
+        $r0[19] = 107;
+
+        $r0[20] = 105;
+
+        $r0[21] = 102;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, last, $r4, $r10;
+        int type, $i0, $i1, $i2, $i3;
+        boolean surrounded, $z0, $z1;
+        int[] $r0, $r2;
+        java.lang.Object[] $r1, $r3, $r5, $r9;
+        java.lang.String $r6, $r7, $r8, $r11;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        type = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        surrounded = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: boolean isSurrounded(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if type != 81 goto label1;
+
+        $i3 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 164 goto label1;
+
+        return;
+
+     label1:
+        if surrounded == 0 goto label2;
+
+        if type != 59 goto label2;
+
+        $r10 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mParentToSkip> = $r10;
+
+        $r9 = newarray (java.lang.Object)[1];
+
+        $r11 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r9[0] = $r11;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "unnecessary.paren.ident", $r9);
+
+        return;
+
+     label2:
+        if surrounded == 0 goto label5;
+
+        $r2 = <com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int[] LITERALS>;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: boolean inTokenList(int,int[])>(type, $r2);
+
+        if $z1 == 0 goto label5;
+
+        $r4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mParentToSkip> = $r4;
+
+        if type != 141 goto label3;
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r8 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r7 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: java.lang.String chopString(java.lang.String)>($r8);
+
+        $r5[0] = $r7;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "unnecessary.paren.string", $r5);
+
+        goto label4;
+
+     label3:
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r6 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r3[0] = $r6;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "unnecessary.paren.literal", $r3);
+
+     label4:
+        return;
+
+     label5:
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int[] ASSIGNMENTS>;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: boolean inTokenList(int,int[])>(type, $r0);
+
+        if $z0 == 0 goto label6;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int mAssignDepth>;
+
+        $i1 = $i0 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int mAssignDepth> = $i1;
+
+        last = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $i2 = virtualinvoke last.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 78 goto label6;
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "unnecessary.paren.assign", $r1);
+
+     label6:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, parent, $r1, $r2;
+        int type, $i0, $i1, $i2, $i3, $i4;
+        int[] $r0;
+        boolean $z0, $z1;
+        java.lang.Object[] $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        type = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        parent = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if type != 81 goto label1;
+
+        $i4 = virtualinvoke parent.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i4 != 164 goto label1;
+
+        return;
+
+     label1:
+        if type != 29 goto label5;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mParentToSkip>;
+
+        if $r1 == aAST goto label4;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: boolean exprSurrounded(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z1 == 0 goto label4;
+
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int mAssignDepth>;
+
+        if $i2 < 1 goto label2;
+
+        $r4 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "unnecessary.paren.assign", $r4);
+
+        goto label4;
+
+     label2:
+        $r2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        $i3 = virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 != 90 goto label3;
+
+        $r5 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "unnecessary.paren.return", $r5);
+
+        goto label4;
+
+     label3:
+        $r3 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: void log(com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String,java.lang.Object[])>(aAST, "unnecessary.paren.expr", $r3);
+
+     label4:
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: com.puppycrawl.tools.checkstyle.api.DetailAST mParentToSkip> = null;
+
+        goto label6;
+
+     label5:
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int[] ASSIGNMENTS>;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: boolean inTokenList(int,int[])>(type, $r0);
+
+        if $z0 == 0 goto label6;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int mAssignDepth>;
+
+        $i1 = $i0 - 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int mAssignDepth> = $i1;
+
+     label6:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        return;
+    }
+
+    private boolean isSurrounded(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, prev, next;
+        int $i0, $i1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        prev = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        next = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        if prev == null goto label1;
+
+        $i0 = virtualinvoke prev.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 77 goto label1;
+
+        if next == null goto label1;
+
+        $i1 = virtualinvoke next.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 78 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private boolean exprSurrounded(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, n1, nn;
+        boolean surrounded, $z0;
+        int $i0, $i1, $i2, $i3;
+        java.lang.IllegalArgumentException $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 29 goto label1;
+
+        $r0 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Not an expression node.");
+
+        throw $r0;
+
+     label1:
+        surrounded = 0;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i1 < 3 goto label4;
+
+        n1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        nn = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $i2 = interfaceinvoke n1.<antlr.collections.AST: int getType()>();
+
+        if $i2 != 77 goto label2;
+
+        $i3 = interfaceinvoke nn.<antlr.collections.AST: int getType()>();
+
+        if $i3 != 78 goto label2;
+
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        surrounded = $z0;
+
+     label4:
+        return surrounded;
+    }
+
+    private boolean inTokenList(int, int[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck this;
+        int aType, i, $i0, $i1;
+        int[] aTokens;
+        boolean found, $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck;
+
+        aType := @parameter0: int;
+
+        aTokens := @parameter1: int[];
+
+        found = 0;
+
+        i = 0;
+
+     label1:
+        $i0 = lengthof aTokens;
+
+        if i >= $i0 goto label4;
+
+        if found != 0 goto label4;
+
+        $i1 = aTokens[i];
+
+        if $i1 != aType goto label2;
+
+        $z0 = 1;
+
+        goto label3;
+
+     label2:
+        $z0 = 0;
+
+     label3:
+        found = $z0;
+
+        i = i + 1;
+
+        goto label1;
+
+     label4:
+        return found;
+    }
+
+    private java.lang.String chopString(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck this;
+        java.lang.String aString, $r1, $r4;
+        int $i0;
+        java.lang.StringBuilder $r0, $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck;
+
+        aString := @parameter0: java.lang.String;
+
+        $i0 = virtualinvoke aString.<java.lang.String: int length()>();
+
+        if $i0 <= 25 goto label1;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke aString.<java.lang.String: java.lang.String substring(int,int)>(0, 25);
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("...\"");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r4;
+
+     label1:
+        return aString;
+    }
+
+    static void <clinit>()
+    {
+        int[] $r0, $r1;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int MAX_QUOTED_LENGTH> = 25;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int MIN_CHILDREN_FOR_MATCH> = 3;
+
+        $r0 = newarray (int)[8];
+
+        $r0[0] = 144;
+
+        $r0[1] = 142;
+
+        $r0[2] = 139;
+
+        $r0[3] = 143;
+
+        $r0[4] = 141;
+
+        $r0[5] = 137;
+
+        $r0[6] = 136;
+
+        $r0[7] = 135;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int[] LITERALS> = $r0;
+
+        $r1 = newarray (int)[12];
+
+        $r1[0] = 81;
+
+        $r1[1] = 108;
+
+        $r1[2] = 110;
+
+        $r1[3] = 106;
+
+        $r1[4] = 109;
+
+        $r1[5] = 103;
+
+        $r1[6] = 101;
+
+        $r1[7] = 104;
+
+        $r1[8] = 100;
+
+        $r1[9] = 107;
+
+        $r1[10] = 105;
+
+        $r1[11] = 102;
+
+        <com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck: int[] ASSIGNMENTS> = $r1;
+
+        return;
+    }
+}

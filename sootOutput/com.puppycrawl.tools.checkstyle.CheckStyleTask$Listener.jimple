@@ -1,0 +1,41 @@
+public class com.puppycrawl.tools.checkstyle.CheckStyleTask$Listener extends java.lang.Object
+{
+    private java.lang.String mClassname;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Listener this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Listener;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.String getClassname()
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Listener this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Listener;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Listener: java.lang.String mClassname>;
+
+        return $r0;
+    }
+
+    public void setClassname(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.CheckStyleTask$Listener this;
+        java.lang.String aClassname;
+
+        this := @this: com.puppycrawl.tools.checkstyle.CheckStyleTask$Listener;
+
+        aClassname := @parameter0: java.lang.String;
+
+        this.<com.puppycrawl.tools.checkstyle.CheckStyleTask$Listener: java.lang.String mClassname> = aClassname;
+
+        return;
+    }
+}

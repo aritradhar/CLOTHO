@@ -1,0 +1,226 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck extends com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck
+{
+    private boolean mApplyToPublic;
+    private boolean mApplyToProtected;
+    private boolean mApplyToPackage;
+    private boolean mApplyToPrivate;
+
+    public void <init>(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        java.lang.String aFormat;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        aFormat := @parameter0: java.lang.String;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck: void <init>(java.lang.String)>(aFormat);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPublic> = 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToProtected> = 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPackage> = 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPrivate> = 1;
+
+        return;
+    }
+
+    protected boolean mustCheckName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean shouldCheckInScope(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        return $z0;
+    }
+
+    protected boolean shouldCheckInScope(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aModifiers;
+        boolean isPublic, isProtected, isPrivate, isPackage, $z0, $z1, $z2, $z3, $z4, $z5, $z6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        aModifiers := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        if aModifiers != null goto label1;
+
+        $z6 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPackage>;
+
+        return $z6;
+
+     label1:
+        isPublic = virtualinvoke aModifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(63);
+
+        isProtected = virtualinvoke aModifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(64);
+
+        isPrivate = virtualinvoke aModifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(62);
+
+        if isPublic != 0 goto label2;
+
+        if isProtected != 0 goto label2;
+
+        if isPrivate != 0 goto label2;
+
+        $z5 = 1;
+
+        goto label3;
+
+     label2:
+        $z5 = 0;
+
+     label3:
+        isPackage = $z5;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPublic>;
+
+        if $z0 == 0 goto label4;
+
+        if isPublic != 0 goto label7;
+
+     label4:
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToProtected>;
+
+        if $z1 == 0 goto label5;
+
+        if isProtected != 0 goto label7;
+
+     label5:
+        $z2 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPackage>;
+
+        if $z2 == 0 goto label6;
+
+        if isPackage != 0 goto label7;
+
+     label6:
+        $z3 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPrivate>;
+
+        if $z3 == 0 goto label8;
+
+        if isPrivate == 0 goto label8;
+
+     label7:
+        $z4 = 1;
+
+        goto label9;
+
+     label8:
+        $z4 = 0;
+
+     label9:
+        return $z4;
+    }
+
+    public void setApplyToPublic(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        boolean aApplyTo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        aApplyTo := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPublic> = aApplyTo;
+
+        return;
+    }
+
+    public boolean getApplyToPublic()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPublic>;
+
+        return $z0;
+    }
+
+    public void setApplyToProtected(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        boolean aApplyTo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        aApplyTo := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToProtected> = aApplyTo;
+
+        return;
+    }
+
+    public boolean getApplyToProtected()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToProtected>;
+
+        return $z0;
+    }
+
+    public void setApplyToPackage(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        boolean aApplyTo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        aApplyTo := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPackage> = aApplyTo;
+
+        return;
+    }
+
+    public boolean getApplyToPackage()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPackage>;
+
+        return $z0;
+    }
+
+    public void setApplyToPrivate(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        boolean aApplyTo;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        aApplyTo := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPrivate> = aApplyTo;
+
+        return;
+    }
+
+    public boolean getApplyToPrivate()
+    {
+        com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck this;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck: boolean mApplyToPrivate>;
+
+        return $z0;
+    }
+}

@@ -1,0 +1,116 @@
+public class com.puppycrawl.tools.checkstyle.filters.SuppressionFilter extends com.puppycrawl.tools.checkstyle.api.AutomaticBean implements com.puppycrawl.tools.checkstyle.api.Filter
+{
+    private com.puppycrawl.tools.checkstyle.api.FilterSet mFilters;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionFilter this;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void <init>()>();
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.FilterSet;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FilterSet: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionFilter: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters> = $r0;
+
+        return;
+    }
+
+    public void setFile(java.lang.String) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionFilter this;
+        java.lang.String aFileName;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
+
+        aFileName := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader: com.puppycrawl.tools.checkstyle.api.FilterSet loadSuppressions(java.lang.String)>(aFileName);
+
+        this.<com.puppycrawl.tools.checkstyle.filters.SuppressionFilter: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters> = $r0;
+
+        return;
+    }
+
+    public boolean accept(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionFilter this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvent;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
+
+        aEvent := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionFilter: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters>;
+
+        $z0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FilterSet: boolean accept(com.puppycrawl.tools.checkstyle.api.AuditEvent)>(aEvent);
+
+        return $z0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionFilter this;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionFilter: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FilterSet: java.lang.String toString()>();
+
+        return $r1;
+    }
+
+    public int hashCode()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionFilter this;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionFilter: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters>;
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FilterSet: int hashCode()>();
+
+        return $i0;
+    }
+
+    public boolean equals(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressionFilter this, other;
+        java.lang.Object aObject;
+        boolean $z0, $z1;
+        com.puppycrawl.tools.checkstyle.api.FilterSet $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
+
+        aObject := @parameter0: java.lang.Object;
+
+        $z0 = aObject instanceof com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
+
+        if $z0 == 0 goto label1;
+
+        other = (com.puppycrawl.tools.checkstyle.filters.SuppressionFilter) aObject;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.filters.SuppressionFilter: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters>;
+
+        $r0 = other.<com.puppycrawl.tools.checkstyle.filters.SuppressionFilter: com.puppycrawl.tools.checkstyle.api.FilterSet mFilters>;
+
+        $z1 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FilterSet: boolean equals(java.lang.Object)>($r0);
+
+        return $z1;
+
+     label1:
+        return 0;
+    }
+}

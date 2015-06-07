@@ -1,0 +1,391 @@
+public class com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private java.util.regex.Pattern mTagRE;
+    private java.util.regex.Pattern mTagFormatRE;
+    private java.lang.String mTag;
+    private java.lang.String mTagFormat;
+    private com.puppycrawl.tools.checkstyle.api.SeverityLevel mTagSeverityLevel;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck this;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel INFO>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: com.puppycrawl.tools.checkstyle.api.SeverityLevel mTagSeverityLevel> = $r0;
+
+        return;
+    }
+
+    public void setTag(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck this;
+        java.lang.String aTag, $r3, $r10;
+        java.util.regex.PatternSyntaxException e, $r5;
+        java.lang.StringBuilder $r0, $r1, $r2, $r7, $r8, $r9;
+        java.util.regex.Pattern $r4;
+        org.apache.commons.beanutils.ConversionException $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
+
+        aTag := @parameter0: java.lang.String;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: java.lang.String mTag> = aTag;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aTag);
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\s*(.*$)");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r4 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>($r3);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: java.util.regex.Pattern mTagRE> = $r4;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r5 := @caughtexception;
+
+        e = $r5;
+
+        $r6 = new org.apache.commons.beanutils.ConversionException;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aTag);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r6.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r10, e);
+
+        throw $r6;
+
+     label4:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public void setTagFormat(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck this;
+        java.lang.String aFormat, $r6;
+        java.util.regex.PatternSyntaxException e, $r1;
+        java.util.regex.Pattern $r0;
+        org.apache.commons.beanutils.ConversionException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
+
+        aFormat := @parameter0: java.lang.String;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: java.lang.String mTagFormat> = aFormat;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aFormat);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: java.util.regex.Pattern mTagFormatRE> = $r0;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        e = $r1;
+
+        $r2 = new org.apache.commons.beanutils.ConversionException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(aFormat);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r6, e);
+
+        throw $r2;
+
+     label4:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public final void setTagSeverity(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck this;
+        java.lang.String aSeverity;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
+
+        aSeverity := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.SeverityLevel: com.puppycrawl.tools.checkstyle.api.SeverityLevel getInstance(java.lang.String)>(aSeverity);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: com.puppycrawl.tools.checkstyle.api.SeverityLevel mTagSeverityLevel> = $r0;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
+
+        $r0 = newarray (int)[4];
+
+        $r0[0] = 15;
+
+        $r0[1] = 14;
+
+        $r0[2] = 158;
+
+        $r0[3] = 161;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
+
+        $r0 = newarray (int)[8];
+
+        $r0[0] = 15;
+
+        $r0[1] = 14;
+
+        $r0[2] = 158;
+
+        $r0[3] = 161;
+
+        $r0[4] = 9;
+
+        $r0[5] = 8;
+
+        $r0[6] = 159;
+
+        $r0[7] = 165;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.FileContents contents;
+        int lineNo;
+        com.puppycrawl.tools.checkstyle.api.TextBlock cmt;
+        java.lang.String[] $r0;
+        java.lang.String $r1, $r4, $r6;
+        java.util.regex.Pattern $r2, $r3;
+        java.lang.Object[] $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        contents = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        lineNo = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        cmt = virtualinvoke contents.<com.puppycrawl.tools.checkstyle.api.FileContents: com.puppycrawl.tools.checkstyle.api.TextBlock getJavadocBefore(int)>(lineNo);
+
+        if cmt != null goto label1;
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: java.lang.String mTag>;
+
+        $r5[0] = $r6;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: void log(int,java.lang.String,java.lang.Object[])>(lineNo, "type.missingTag", $r5);
+
+        goto label2;
+
+     label1:
+        $r0 = interfaceinvoke cmt.<com.puppycrawl.tools.checkstyle.api.TextBlock: java.lang.String[] getText()>();
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: java.lang.String mTag>;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: java.util.regex.Pattern mTagRE>;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: java.util.regex.Pattern mTagFormatRE>;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: java.lang.String mTagFormat>;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: void checkTag(int,java.lang.String[],java.lang.String,java.util.regex.Pattern,java.util.regex.Pattern,java.lang.String)>(lineNo, $r0, $r4, $r3, $r2, $r1);
+
+     label2:
+        return;
+    }
+
+    private void checkTag(int, java.lang.String[], java.lang.String, java.util.regex.Pattern, java.util.regex.Pattern, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck this;
+        int aLineNo, tagCount, i, contentStart, $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        java.lang.String[] aComment;
+        java.lang.String aTag, aFormat, s, content;
+        java.util.regex.Pattern aTagRE, aFormatRE;
+        java.util.regex.Matcher matcher, $r1;
+        java.lang.Object[] $r0, $r2;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
+
+        aLineNo := @parameter0: int;
+
+        aComment := @parameter1: java.lang.String[];
+
+        aTag := @parameter2: java.lang.String;
+
+        aTagRE := @parameter3: java.util.regex.Pattern;
+
+        aFormatRE := @parameter4: java.util.regex.Pattern;
+
+        aFormat := @parameter5: java.lang.String;
+
+        if aTagRE != null goto label1;
+
+        return;
+
+     label1:
+        tagCount = 0;
+
+        i = 0;
+
+     label2:
+        $i0 = lengthof aComment;
+
+        if i >= $i0 goto label5;
+
+        s = aComment[i];
+
+        matcher = virtualinvoke aTagRE.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(s);
+
+        $z0 = virtualinvoke matcher.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 == 0 goto label4;
+
+        tagCount = tagCount + 1;
+
+        contentStart = virtualinvoke matcher.<java.util.regex.Matcher: int start(int)>(1);
+
+        content = virtualinvoke s.<java.lang.String: java.lang.String substring(int)>(contentStart);
+
+        if aFormatRE == null goto label3;
+
+        $r1 = virtualinvoke aFormatRE.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(content);
+
+        $z1 = virtualinvoke $r1.<java.util.regex.Matcher: boolean find()>();
+
+        if $z1 != 0 goto label3;
+
+        $i4 = aLineNo + i;
+
+        $i5 = lengthof aComment;
+
+        $i6 = $i4 - $i5;
+
+        $r2 = newarray (java.lang.Object)[2];
+
+        $r2[0] = aTag;
+
+        $r2[1] = aFormat;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: void log(int,java.lang.String,java.lang.Object[])>($i6, "type.tagFormat", $r2);
+
+        goto label4;
+
+     label3:
+        $i3 = aLineNo + i;
+
+        $i1 = lengthof aComment;
+
+        $i2 = $i3 - $i1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: void logTag(int,java.lang.String,java.lang.String)>($i2, aTag, content);
+
+     label4:
+        i = i + 1;
+
+        goto label2;
+
+     label5:
+        if tagCount != 0 goto label6;
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r0[0] = aTag;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: void log(int,java.lang.String,java.lang.Object[])>(aLineNo, "type.missingTag", $r0);
+
+     label6:
+        return;
+    }
+
+    protected final void logTag(int, java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck this;
+        int aLine;
+        java.lang.String aTag, aTagValue, originalSeverity, $r1;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r0;
+        java.lang.Object[] $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
+
+        aLine := @parameter0: int;
+
+        aTag := @parameter1: java.lang.String;
+
+        aTagValue := @parameter2: java.lang.String;
+
+        originalSeverity = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: java.lang.String getSeverity()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: com.puppycrawl.tools.checkstyle.api.SeverityLevel mTagSeverityLevel>;
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.SeverityLevel: java.lang.String getName()>();
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: void setSeverity(java.lang.String)>($r1);
+
+        $r2 = newarray (java.lang.Object)[2];
+
+        $r2[0] = aTag;
+
+        $r2[1] = aTagValue;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: void log(int,java.lang.String,java.lang.Object[])>(aLine, "javadoc.writeTag", $r2);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck: void setSeverity(java.lang.String)>(originalSeverity);
+
+        return;
+    }
+}

@@ -1,0 +1,47 @@
+public class com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter extends com.puppycrawl.tools.checkstyle.api.AutomaticBean implements com.puppycrawl.tools.checkstyle.api.Filter
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.AutomaticBean: void <init>()>();
+
+        return;
+    }
+
+    public boolean accept(com.puppycrawl.tools.checkstyle.api.AuditEvent)
+    {
+        com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter this;
+        com.puppycrawl.tools.checkstyle.api.AuditEvent aEvent;
+        java.lang.String $r0;
+        int $i0, $i1;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter;
+
+        aEvent := @parameter0: com.puppycrawl.tools.checkstyle.api.AuditEvent;
+
+        $r0 = virtualinvoke aEvent.<com.puppycrawl.tools.checkstyle.api.AuditEvent: java.lang.String getSourceName()>();
+
+        $i0 = virtualinvoke aEvent.<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getLine()>();
+
+        $i1 = virtualinvoke aEvent.<com.puppycrawl.tools.checkstyle.api.AuditEvent: int getColumn()>();
+
+        $z0 = staticinvoke <com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder: boolean isSuppressed(java.lang.String,int,int)>($r0, $i0, $i1);
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+}

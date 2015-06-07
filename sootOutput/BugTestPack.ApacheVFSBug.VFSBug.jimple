@@ -1,0 +1,103 @@
+public class BugTestPack.ApacheVFSBug.VFSBug extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        BugTestPack.ApacheVFSBug.VFSBug this;
+
+        this := @this: BugTestPack.ApacheVFSBug.VFSBug;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private java.lang.String extractWindowsRootPrefix(java.lang.String, java.lang.String) throws java.nio.file.FileSystemException
+    {
+        BugTestPack.ApacheVFSBug.VFSBug this;
+        java.lang.String uri, name, driveName, $r0;
+        int startPos, maxlen, $i0, $i1, $i2;
+        java.nio.file.FileSystemException $r1, $r2;
+        char $c3, $c4;
+
+        this := @this: BugTestPack.ApacheVFSBug.VFSBug;
+
+        uri := @parameter0: java.lang.String;
+
+        name := @parameter1: java.lang.String;
+
+        startPos = 0;
+
+        $i0 = virtualinvoke name.<java.lang.String: int length()>();
+
+        maxlen = staticinvoke <java.lang.Math: int min(int,int)>(4, $i0);
+
+        goto label2;
+
+     label1:
+        startPos = startPos + 1;
+
+     label2:
+        if startPos >= maxlen goto label3;
+
+        $c4 = virtualinvoke name.<java.lang.String: char charAt(int)>(startPos);
+
+        if $c4 == 47 goto label1;
+
+     label3:
+        if startPos != maxlen goto label4;
+
+        $i1 = virtualinvoke name.<java.lang.String: int length()>();
+
+        if $i1 <= startPos goto label4;
+
+        $i2 = startPos + 1;
+
+        $c3 = virtualinvoke name.<java.lang.String: char charAt(int)>($i2);
+
+        if $c3 != 47 goto label4;
+
+        $r2 = new java.nio.file.FileSystemException;
+
+        specialinvoke $r2.<java.nio.file.FileSystemException: void <init>(java.lang.String)>("vfs.provider.local/not-absolute-file-name.error");
+
+        throw $r2;
+
+     label4:
+        $r0 = " ";
+
+        driveName = virtualinvoke $r0.<java.lang.String: java.lang.String concat(java.lang.String)>(" ");
+
+        if driveName == null goto label5;
+
+        return driveName;
+
+     label5:
+        if startPos >= 2 goto label6;
+
+        $r1 = new java.nio.file.FileSystemException;
+
+        specialinvoke $r1.<java.nio.file.FileSystemException: void <init>(java.lang.String)>("vfs.provider.local/not-absolute-file-name.error");
+
+        throw $r1;
+
+     label6:
+        return "//";
+    }
+
+    public static void main(java.lang.String[]) throws java.nio.file.FileSystemException
+    {
+        java.lang.String[] args;
+        BugTestPack.ApacheVFSBug.VFSBug $r0;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new BugTestPack.ApacheVFSBug.VFSBug;
+
+        specialinvoke $r0.<BugTestPack.ApacheVFSBug.VFSBug: void <init>()>();
+
+        specialinvoke $r0.<BugTestPack.ApacheVFSBug.VFSBug: java.lang.String extractWindowsRootPrefix(java.lang.String,java.lang.String)>("", "/////");
+
+        return;
+    }
+}

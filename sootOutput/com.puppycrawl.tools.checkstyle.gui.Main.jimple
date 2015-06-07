@@ -1,0 +1,113 @@
+public class com.puppycrawl.tools.checkstyle.gui.Main extends java.lang.Object
+{
+    static javax.swing.JFrame frame;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.gui.Main this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.gui.Main;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel panel, $r1;
+        java.io.File f, $r8;
+        javax.swing.JFrame $r0, $r2, $r5, $r6, $r7, $r10;
+        java.awt.Container $r3;
+        int $i0;
+        java.lang.String $r9;
+
+        args := @parameter0: java.lang.String[];
+
+        $r0 = new javax.swing.JFrame;
+
+        specialinvoke $r0.<javax.swing.JFrame: void <init>(java.lang.String)>("CheckStyle");
+
+        <com.puppycrawl.tools.checkstyle.gui.Main: javax.swing.JFrame frame> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void <init>()>();
+
+        panel = $r1;
+
+        $r2 = <com.puppycrawl.tools.checkstyle.gui.Main: javax.swing.JFrame frame>;
+
+        $r3 = virtualinvoke $r2.<javax.swing.JFrame: java.awt.Container getContentPane()>();
+
+        virtualinvoke $r3.<java.awt.Container: java.awt.Component add(java.awt.Component)>(panel);
+
+        $i0 = lengthof args;
+
+        if $i0 < 1 goto label1;
+
+        $r8 = new java.io.File;
+
+        $r9 = args[0];
+
+        specialinvoke $r8.<java.io.File: void <init>(java.lang.String)>($r9);
+
+        f = $r8;
+
+        $r10 = <com.puppycrawl.tools.checkstyle.gui.Main: javax.swing.JFrame frame>;
+
+        virtualinvoke panel.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void openFile(java.io.File,java.awt.Component)>(f, $r10);
+
+     label1:
+        $r5 = <com.puppycrawl.tools.checkstyle.gui.Main: javax.swing.JFrame frame>;
+
+        virtualinvoke $r5.<javax.swing.JFrame: void pack()>();
+
+        $r6 = <com.puppycrawl.tools.checkstyle.gui.Main: javax.swing.JFrame frame>;
+
+        virtualinvoke $r6.<javax.swing.JFrame: void setDefaultCloseOperation(int)>(3);
+
+        $r7 = <com.puppycrawl.tools.checkstyle.gui.Main: javax.swing.JFrame frame>;
+
+        virtualinvoke $r7.<javax.swing.JFrame: void setVisible(boolean)>(1);
+
+        return;
+    }
+
+    public static void displayAst(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.api.DetailAST ast;
+        javax.swing.JFrame frame, $r0;
+        com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel panel, $r1;
+        java.awt.Container $r2;
+
+        ast := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = new javax.swing.JFrame;
+
+        specialinvoke $r0.<javax.swing.JFrame: void <init>(java.lang.String)>("CheckStyle");
+
+        frame = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void <init>()>();
+
+        panel = $r1;
+
+        $r2 = virtualinvoke frame.<javax.swing.JFrame: java.awt.Container getContentPane()>();
+
+        virtualinvoke $r2.<java.awt.Container: java.awt.Component add(java.awt.Component)>(panel);
+
+        virtualinvoke panel.<com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel: void openAst(com.puppycrawl.tools.checkstyle.api.DetailAST,java.awt.Component)>(ast, frame);
+
+        virtualinvoke frame.<javax.swing.JFrame: void setSize(int,int)>(1500, 800);
+
+        virtualinvoke frame.<javax.swing.JFrame: void setDefaultCloseOperation(int)>(3);
+
+        virtualinvoke frame.<javax.swing.JFrame: void setVisible(boolean)>(1);
+
+        return;
+    }
+}

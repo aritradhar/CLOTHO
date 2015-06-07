@@ -1,0 +1,161 @@
+public final class com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private boolean mDefined;
+    private boolean mIgnoreDirectoryName;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public void setIgnoreDirectoryName(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck this;
+        boolean aValue;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck;
+
+        aValue := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck: boolean mIgnoreDirectoryName> = aValue;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 16;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck: boolean mDefined> = 0;
+
+        return;
+    }
+
+    public void finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        boolean $z0;
+        int $i0;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck: boolean mDefined>;
+
+        if $z0 != 0 goto label1;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck: void log(int,java.lang.String,java.lang.Object[])>($i0, "missing.package.declaration", $r0);
+
+     label1:
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nameAST, $r1;
+        java.lang.String fname, dirname, expected, $r2;
+        int lastPos, $i2, $i3;
+        com.puppycrawl.tools.checkstyle.api.FullIdent full;
+        boolean $z0, $z1;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r0;
+        char $c0, $c1;
+        java.lang.Object[] $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck: boolean mDefined> = 1;
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck: boolean mIgnoreDirectoryName>;
+
+        if $z0 == 0 goto label1;
+
+        return;
+
+     label1:
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        fname = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FileContents: java.lang.String getFilename()>();
+
+        $c0 = <java.io.File: char separatorChar>;
+
+        lastPos = virtualinvoke fname.<java.lang.String: int lastIndexOf(int)>($c0);
+
+        dirname = virtualinvoke fname.<java.lang.String: java.lang.String substring(int,int)>(0, lastPos);
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        nameAST = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        full = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(nameAST);
+
+        $r2 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $c1 = <java.io.File: char separatorChar>;
+
+        expected = virtualinvoke $r2.<java.lang.String: java.lang.String replace(char,char)>(46, $c1);
+
+        $z1 = virtualinvoke dirname.<java.lang.String: boolean endsWith(java.lang.String)>(expected);
+
+        if $z1 != 0 goto label2;
+
+        $i2 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getLineNo()>();
+
+        $i3 = virtualinvoke full.<com.puppycrawl.tools.checkstyle.api.FullIdent: int getColumnNo()>();
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r3[0] = expected;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i2, $i3, "package.dir.mismatch", $r3);
+
+     label2:
+        return;
+    }
+}

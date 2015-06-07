@@ -1,0 +1,745 @@
+public abstract class com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final java.util.Set mImports;
+    private com.puppycrawl.tools.checkstyle.api.FullIdent mPackageFullIdent;
+    private java.lang.String mCurrentClass;
+    private com.puppycrawl.tools.checkstyle.checks.ClassResolver mClassResolver;
+    private final com.puppycrawl.tools.checkstyle.api.FastStack mTypeParams;
+    private boolean mLogLoadErrors;
+    private boolean mSuppressLoadErrors;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        java.util.HashSet $r0;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.util.Set mImports> = $r0;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FastStack: com.puppycrawl.tools.checkstyle.api.FastStack newInstance()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.FastStack mTypeParams> = $r1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: boolean mLogLoadErrors> = 1;
+
+        return;
+    }
+
+    public final void setLogLoadErrors(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        boolean aLogLoadErrors;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aLogLoadErrors := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: boolean mLogLoadErrors> = aLogLoadErrors;
+
+        return;
+    }
+
+    public final void setSuppressLoadErrors(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        boolean aSuppressLoadErrors;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aSuppressLoadErrors := @parameter0: boolean;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: boolean mSuppressLoadErrors> = aSuppressLoadErrors;
+
+        return;
+    }
+
+    protected abstract void processAST(com.puppycrawl.tools.checkstyle.api.DetailAST);
+
+    public final int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        $r0 = newarray (int)[5];
+
+        $r0[0] = 16;
+
+        $r0[1] = 31;
+
+        $r0[2] = 14;
+
+        $r0[3] = 15;
+
+        $r0[4] = 158;
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r0;
+        java.util.Set $r1, $r2;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(null);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.FullIdent mPackageFullIdent> = $r0;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.util.Set mImports>;
+
+        interfaceinvoke $r1.<java.util.Set: void clear()>();
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.util.Set mImports>;
+
+        interfaceinvoke $r2.<java.util.Set: boolean add(java.lang.Object)>("java.lang.*");
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.checks.ClassResolver mClassResolver> = null;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String mCurrentClass> = "";
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.FastStack mTypeParams>;
+
+        virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.FastStack: void clear()>();
+
+        return;
+    }
+
+    public final void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 16 goto label1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void processPackage(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label6;
+
+     label1:
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 31 goto label2;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void processImport(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label6;
+
+     label2:
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 == 14 goto label3;
+
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 == 15 goto label3;
+
+        $i4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i4 != 158 goto label4;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void processClass(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        goto label6;
+
+     label4:
+        $i5 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i5 != 9 goto label5;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void processTypeParams(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label5:
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void processAST(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label6:
+        return;
+    }
+
+    public final void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int dotIdx, $i0, $i1, $i2, $i3, $i4;
+        java.lang.String $r0, $r1, $r2, $r5;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r3, $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 == 14 goto label1;
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 != 158 goto label5;
+
+     label1:
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String mCurrentClass>;
+
+        dotIdx = virtualinvoke $r0.<java.lang.String: int lastIndexOf(java.lang.String)>("$");
+
+        if dotIdx != -1 goto label2;
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String mCurrentClass>;
+
+        dotIdx = virtualinvoke $r5.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+
+     label2:
+        if dotIdx != -1 goto label3;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String mCurrentClass> = "";
+
+        goto label4;
+
+     label3:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String mCurrentClass>;
+
+        $r2 = virtualinvoke $r1.<java.lang.String: java.lang.String substring(int,int)>(0, dotIdx);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String mCurrentClass> = $r2;
+
+     label4:
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.FastStack mTypeParams>;
+
+        virtualinvoke $r3.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        goto label7;
+
+     label5:
+        $i2 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 9 goto label6;
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.FastStack mTypeParams>;
+
+        virtualinvoke $r7.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object pop()>();
+
+        goto label7;
+
+     label6:
+        $i3 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i3 == 16 goto label7;
+
+        $i4 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i4 == 31 goto label7;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void leaveAST(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label7:
+        return;
+    }
+
+    protected void leaveAST(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        return;
+    }
+
+    protected boolean isUnchecked(java.lang.Class)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        java.lang.Class aException;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aException := @parameter0: java.lang.Class;
+
+        $z0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: boolean isSubclass(java.lang.Class,java.lang.Class)>(aException, class "java/lang/RuntimeException");
+
+        if $z0 != 0 goto label1;
+
+        $z1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: boolean isSubclass(java.lang.Class,java.lang.Class)>(aException, class "java/lang/Error");
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    protected boolean isSubclass(java.lang.Class, java.lang.Class)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        java.lang.Class aChild, aParent;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aChild := @parameter0: java.lang.Class;
+
+        aParent := @parameter1: java.lang.Class;
+
+        if aParent == null goto label1;
+
+        if aChild == null goto label1;
+
+        $z0 = virtualinvoke aParent.<java.lang.Class: boolean isAssignableFrom(java.lang.Class)>(aChild);
+
+        if $z0 == 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+
+    private com.puppycrawl.tools.checkstyle.checks.ClassResolver getClassResolver()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.checks.ClassResolver $r0, $r1, $r2;
+        java.lang.ClassLoader $r3;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r4;
+        java.lang.String $r5;
+        java.util.Set $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.checks.ClassResolver mClassResolver>;
+
+        if $r0 != null goto label1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.ClassResolver;
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.ClassLoader getClassLoader()>();
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.FullIdent mPackageFullIdent>;
+
+        $r5 = virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.util.Set mImports>;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.ClassResolver: void <init>(java.lang.ClassLoader,java.lang.String,java.util.Set)>($r3, $r5, $r6);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.checks.ClassResolver mClassResolver> = $r2;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.checks.ClassResolver mClassResolver>;
+
+        return $r1;
+    }
+
+    protected final java.lang.Class resolveClass(java.lang.String, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        java.lang.String aClassName, aCurrentClass;
+        com.puppycrawl.tools.checkstyle.checks.ClassResolver $r0;
+        java.lang.Class $r1;
+        java.lang.ClassNotFoundException $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aClassName := @parameter0: java.lang.String;
+
+        aCurrentClass := @parameter1: java.lang.String;
+
+     label1:
+        $r0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.checks.ClassResolver getClassResolver()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.ClassResolver: java.lang.Class resolve(java.lang.String,java.lang.String)>(aClassName, aCurrentClass);
+
+     label2:
+        return $r1;
+
+     label3:
+        $r2 := @caughtexception;
+
+        return null;
+
+        catch java.lang.ClassNotFoundException from label1 to label2 with label3;
+    }
+
+    protected final java.lang.Class tryLoadClass(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token aIdent;
+        java.lang.String aCurrentClass, $r0;
+        java.lang.Class clazz;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aIdent := @parameter0: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        aCurrentClass := @parameter1: java.lang.String;
+
+        $r0 = virtualinvoke aIdent.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String getText()>();
+
+        clazz = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.Class resolveClass(java.lang.String,java.lang.String)>($r0, aCurrentClass);
+
+        if clazz != null goto label1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void logLoadError(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token)>(aIdent);
+
+     label1:
+        return clazz;
+    }
+
+    protected abstract void logLoadError(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token);
+
+    protected final transient void logLoadErrorImpl(int, int, java.lang.String, java.lang.Object[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        int aLineNo, aColumnNo;
+        java.lang.String aMsgKey, $r1, $r3, $r6;
+        java.lang.Object[] aValues;
+        com.puppycrawl.tools.checkstyle.api.LocalizedMessage msg, $r0;
+        boolean $z0, $z1;
+        com.puppycrawl.tools.checkstyle.api.SeverityLevel $r2;
+        java.lang.Class $r4;
+        java.lang.RuntimeException $r5;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aLineNo := @parameter0: int;
+
+        aColumnNo := @parameter1: int;
+
+        aMsgKey := @parameter2: java.lang.String;
+
+        aValues := @parameter3: java.lang.Object[];
+
+        $z0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: boolean mLogLoadErrors>;
+
+        if $z0 != 0 goto label1;
+
+        $r0 = new com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String getMessageBundle()>();
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.SeverityLevel getSeverityLevel()>();
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String getId()>();
+
+        $r4 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>();
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: void <init>(int,int,java.lang.String,java.lang.String,java.lang.Object[],com.puppycrawl.tools.checkstyle.api.SeverityLevel,java.lang.String,java.lang.Class,java.lang.String)>(aLineNo, aColumnNo, $r1, aMsgKey, aValues, $r2, $r3, $r4, null);
+
+        msg = $r0;
+
+        $r5 = new java.lang.RuntimeException;
+
+        $r6 = virtualinvoke msg.<com.puppycrawl.tools.checkstyle.api.LocalizedMessage: java.lang.String getMessage()>();
+
+        specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>($r6);
+
+        throw $r5;
+
+     label1:
+        $z1 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: boolean mSuppressLoadErrors>;
+
+        if $z1 != 0 goto label2;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void log(int,int,java.lang.String,java.lang.Object[])>(aLineNo, aColumnNo, aMsgKey, aValues);
+
+     label2:
+        return;
+    }
+
+    private void processPackage(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, nameAST, $r0;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        nameAST = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(nameAST);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.FullIdent mPackageFullIdent> = $r1;
+
+        return;
+    }
+
+    private void processImport(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        com.puppycrawl.tools.checkstyle.api.FullIdent name;
+        java.util.Set $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        name = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdentBelow(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if name == null goto label1;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.util.Set mImports>;
+
+        $r1 = virtualinvoke name.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>($r1);
+
+     label1:
+        return;
+    }
+
+    private void processTypeParams(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, typeParams, child, param, bounds, $r1;
+        java.util.HashMap paramsMap;
+        java.lang.String alias, $r2;
+        com.puppycrawl.tools.checkstyle.api.FullIdent name;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo ci;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0;
+        int $i0;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        typeParams = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(169);
+
+        paramsMap = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.FastStack mTypeParams>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: void push(java.lang.Object)>(paramsMap);
+
+        if typeParams != null goto label1;
+
+        return;
+
+     label1:
+        child = virtualinvoke typeParams.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+     label2:
+        if child == null goto label4;
+
+        $i0 = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 170 goto label3;
+
+        param = child;
+
+        $r1 = virtualinvoke param.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        alias = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        bounds = virtualinvoke param.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(172);
+
+        if bounds == null goto label3;
+
+        name = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdentBelow(com.puppycrawl.tools.checkstyle.api.DetailAST)>(bounds);
+
+        $r3 = new com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: void <init>(com.puppycrawl.tools.checkstyle.api.FullIdent)>(name);
+
+        $r2 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String getCurrentClassName()>();
+
+        ci = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo createClassInfo(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token,java.lang.String)>($r3, $r2);
+
+        interfaceinvoke paramsMap.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(alias, ci);
+
+     label3:
+        child = virtualinvoke child.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getNextSibling()>();
+
+        goto label2;
+
+     label4:
+        return;
+    }
+
+    private void processClass(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, ident;
+        java.lang.StringBuilder $r0, $r2, $r5, $r7;
+        java.lang.String $r1, $r3, $r4, $r6, $r8, $r9;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        ident = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String mCurrentClass>;
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r4 = "";
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String mCurrentClass>;
+
+        $z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label1;
+
+        $r9 = "";
+
+        goto label2;
+
+     label1:
+        $r9 = "$";
+
+     label2:
+        $r5 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r6 = virtualinvoke ident.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String mCurrentClass> = $r8;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: void processTypeParams(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        return;
+    }
+
+    protected final java.lang.String getCurrentClassName()
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        java.lang.String $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: java.lang.String mCurrentClass>;
+
+        return $r0;
+    }
+
+    protected final com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo createClassInfo(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token aName;
+        java.lang.String aSurroundingClass, $r0;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo ci;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass $r1;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassAlias $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aName := @parameter0: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token;
+
+        aSurroundingClass := @parameter1: java.lang.String;
+
+        $r0 = virtualinvoke aName.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token: java.lang.String getText()>();
+
+        ci = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo findClassAlias(java.lang.String)>($r0);
+
+        if ci == null goto label1;
+
+        $r2 = new com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassAlias;
+
+        specialinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassAlias: void <init>(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token,com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo)>(aName, ci);
+
+        return $r2;
+
+     label1:
+        $r1 = new com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass: void <init>(com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token,java.lang.String,com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck,com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$1)>(aName, aSurroundingClass, this, null);
+
+        return $r1;
+    }
+
+    protected final com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo findClassAlias(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck this;
+        java.lang.String aName;
+        com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo ci;
+        int i, $i0;
+        java.util.Map paramMap;
+        com.puppycrawl.tools.checkstyle.api.FastStack $r0, $r1;
+        java.lang.Object $r2, $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+
+        aName := @parameter0: java.lang.String;
+
+        ci = null;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.FastStack mTypeParams>;
+
+        $i0 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.FastStack: int size()>();
+
+        i = $i0 - 1;
+
+     label1:
+        if i < 0 goto label3;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck: com.puppycrawl.tools.checkstyle.api.FastStack mTypeParams>;
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FastStack: java.lang.Object peek(int)>(i);
+
+        paramMap = (java.util.Map) $r2;
+
+        $r3 = interfaceinvoke paramMap.<java.util.Map: java.lang.Object get(java.lang.Object)>(aName);
+
+        ci = (com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassInfo) $r3;
+
+        if ci == null goto label2;
+
+        goto label3;
+
+     label2:
+        i = i + -1;
+
+        goto label1;
+
+     label3:
+        return ci;
+    }
+}

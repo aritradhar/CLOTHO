@@ -1,0 +1,117 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 91;
+
+        $r0[1] = 25;
+
+        $r0[2] = 26;
+
+        return $r0;
+    }
+
+    public int[] getAcceptableTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck this;
+        int[] tokensToCopy, i;
+        java.util.Set tokenNames;
+        int i, $i0, $i1, $i2, $i3;
+        java.util.Iterator i$;
+        java.lang.String name;
+        boolean $z0, $z1;
+        java.lang.Object $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck;
+
+        tokensToCopy = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck: int[] getDefaultTokens()>();
+
+        tokenNames = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck: java.util.Set getTokenNames()>();
+
+        $z0 = interfaceinvoke tokenNames.<java.util.Set: boolean isEmpty()>();
+
+        if $z0 != 0 goto label2;
+
+        $i2 = interfaceinvoke tokenNames.<java.util.Set: int size()>();
+
+        tokensToCopy = newarray (int)[$i2];
+
+        i = 0;
+
+        i$ = interfaceinvoke tokenNames.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z1 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label2;
+
+        $r0 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        name = (java.lang.String) $r0;
+
+        $i3 = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: int getTokenId(java.lang.String)>(name);
+
+        tokensToCopy[i] = $i3;
+
+        i = i + 1;
+
+        goto label1;
+
+     label2:
+        $i0 = lengthof tokensToCopy;
+
+        i = newarray (int)[$i0];
+
+        $i1 = lengthof tokensToCopy;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(tokensToCopy, 0, i, 0, $i1);
+
+        return i;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0, $i1;
+        java.lang.Object[] $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $i1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r0 = newarray (java.lang.Object)[1];
+
+        $r1 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r0[0] = $r1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck: void log(int,int,java.lang.String,java.lang.Object[])>($i0, $i1, "illegal.token", $r0);
+
+        return;
+    }
+}

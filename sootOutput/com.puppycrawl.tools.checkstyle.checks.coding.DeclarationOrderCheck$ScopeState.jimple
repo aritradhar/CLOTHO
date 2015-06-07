@@ -1,0 +1,89 @@
+class com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState extends java.lang.Object
+{
+    private int mScopeState;
+    private com.puppycrawl.tools.checkstyle.api.Scope mDeclarationAccess;
+
+    private void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState this;
+        com.puppycrawl.tools.checkstyle.api.Scope $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int mScopeState> = 1;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.api.Scope: com.puppycrawl.tools.checkstyle.api.Scope PUBLIC>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: com.puppycrawl.tools.checkstyle.api.Scope mDeclarationAccess> = $r0;
+
+        return;
+    }
+
+    void <init>(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$1)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState this;
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$1 x0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$1;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: void <init>()>();
+
+        return;
+    }
+
+    static int access$100(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState x0;
+        int $i0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState;
+
+        $i0 = x0.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int mScopeState>;
+
+        return $i0;
+    }
+
+    static int access$102(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState, int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState x0;
+        int x1;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState;
+
+        x1 := @parameter1: int;
+
+        x0.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: int mScopeState> = x1;
+
+        return x1;
+    }
+
+    static com.puppycrawl.tools.checkstyle.api.Scope access$202(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState, com.puppycrawl.tools.checkstyle.api.Scope)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState x0;
+        com.puppycrawl.tools.checkstyle.api.Scope x1;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState;
+
+        x1 := @parameter1: com.puppycrawl.tools.checkstyle.api.Scope;
+
+        x0.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: com.puppycrawl.tools.checkstyle.api.Scope mDeclarationAccess> = x1;
+
+        return x1;
+    }
+
+    static com.puppycrawl.tools.checkstyle.api.Scope access$200(com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState x0;
+        com.puppycrawl.tools.checkstyle.api.Scope $r0;
+
+        x0 := @parameter0: com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState;
+
+        $r0 = x0.<com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState: com.puppycrawl.tools.checkstyle.api.Scope mDeclarationAccess>;
+
+        return $r0;
+    }
+}

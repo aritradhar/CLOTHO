@@ -1,0 +1,525 @@
+public class com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private java.lang.String mExcludedClasses;
+    private java.util.regex.Pattern mExcludedClassesPattern;
+    private java.lang.String mCurrentClass;
+    private com.puppycrawl.tools.checkstyle.api.FullIdent mPackage;
+    private int mClassDepth;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        java.lang.String $r0;
+        java.util.regex.Pattern $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.lang.String mExcludedClasses> = "^$";
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.lang.String mExcludedClasses>;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern createPattern(java.lang.String)>($r0);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.util.regex.Pattern mExcludedClassesPattern> = $r1;
+
+        return;
+    }
+
+    public void setExcludedClasses(java.lang.String) throws org.apache.commons.beanutils.ConversionException
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        java.lang.String aExcludedClasses, $r0, $r6, $r8;
+        java.util.regex.PatternSyntaxException e, $r2;
+        java.util.regex.Pattern $r1;
+        org.apache.commons.beanutils.ConversionException $r3;
+        java.lang.StringBuilder $r4, $r5, $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aExcludedClasses := @parameter0: java.lang.String;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.lang.String mExcludedClasses> = aExcludedClasses;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.lang.String mExcludedClasses>;
+
+        $r1 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>($r0);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.util.regex.Pattern mExcludedClassesPattern> = $r1;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r2 := @caughtexception;
+
+        e = $r2;
+
+        $r3 = new org.apache.commons.beanutils.ConversionException;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unable to parse ");
+
+        $r6 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.lang.String mExcludedClasses>;
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<org.apache.commons.beanutils.ConversionException: void <init>(java.lang.String,java.lang.Throwable)>($r8, e);
+
+        throw $r3;
+
+     label4:
+        return;
+
+        catch java.util.regex.PatternSyntaxException from label1 to label2 with label3;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        $r0 = newarray (int)[3];
+
+        $r0[0] = 9;
+
+        $r0[1] = 14;
+
+        $r0[2] = 16;
+
+        return $r0;
+    }
+
+    public int[] getRequiredTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: int[] getDefaultTokens()>();
+
+        return $r0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(null);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: com.puppycrawl.tools.checkstyle.api.FullIdent mPackage> = $r0;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.lang.String mCurrentClass> = null;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: int mClassDepth> = 0;
+
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        int $i0, $i1, $i2, $i3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 14 goto label2;
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: int mClassDepth>;
+
+        if $i1 != 1 goto label1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.lang.String mCurrentClass> = null;
+
+     label1:
+        $i2 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: int mClassDepth>;
+
+        $i3 = $i2 - 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: int mClassDepth> = $i3;
+
+     label2:
+        return;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAst;
+        int $i0;
+        java.lang.IllegalStateException $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aAst := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        lookupswitch($i0)
+        {
+            case 9: goto label3;
+            case 14: goto label2;
+            case 16: goto label1;
+            default: goto label4;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: void visitPackageDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAst);
+
+        goto label5;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: void visitClassDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAst);
+
+        goto label5;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: void visitMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAst);
+
+        goto label5;
+
+     label4:
+        $r0 = new java.lang.IllegalStateException;
+
+        $r1 = virtualinvoke aAst.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r1);
+
+        throw $r0;
+
+     label5:
+        return;
+    }
+
+    private void visitPackageDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aPackage, $r0, $r1;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aPackage := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aPackage.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getLastChild()>();
+
+        $r1 = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getPreviousSibling()>();
+
+        $r2 = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>($r1);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: com.puppycrawl.tools.checkstyle.api.FullIdent mPackage> = $r2;
+
+        return;
+    }
+
+    private void visitClassDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aClass, ident;
+        int $i0, $i1, $i2;
+        java.lang.StringBuilder $r0, $r3, $r4, $r6;
+        com.puppycrawl.tools.checkstyle.api.FullIdent $r1;
+        java.lang.String $r2, $r5, $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aClass := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: int mClassDepth>;
+
+        if $i0 != 0 goto label1;
+
+        ident = virtualinvoke aClass.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: com.puppycrawl.tools.checkstyle.api.FullIdent mPackage>;
+
+        $r2 = virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r5 = virtualinvoke ident.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.lang.String mCurrentClass> = $r7;
+
+        $i1 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: int mClassDepth>;
+
+        $i2 = $i1 + 1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: int mClassDepth> = $i2;
+
+     label1:
+        return;
+    }
+
+    private void visitMethodDef(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethod;
+        int $i0, $i1;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        java.lang.Object[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aMethod := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: int mClassDepth>;
+
+        if $i0 == 1 goto label1;
+
+        return;
+
+     label1:
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: boolean checkClassName()>();
+
+        if $z0 == 0 goto label2;
+
+        $z1 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: boolean checkName(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aMethod);
+
+        if $z1 == 0 goto label2;
+
+        $z2 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: boolean checkModifiers(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aMethod);
+
+        if $z2 == 0 goto label2;
+
+        $z3 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: boolean checkType(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aMethod);
+
+        if $z3 == 0 goto label2;
+
+        $z4 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: boolean checkParams(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aMethod);
+
+        if $z4 == 0 goto label2;
+
+        $i1 = virtualinvoke aMethod.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        $r0 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: void log(int,java.lang.String,java.lang.Object[])>($i1, "uncommented.main", $r0);
+
+     label2:
+        return;
+    }
+
+    private boolean checkClassName()
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        java.lang.String $r0;
+        java.util.regex.Pattern $r1;
+        java.util.regex.Matcher $r2;
+        boolean $z0, $z1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.util.regex.Pattern mExcludedClassesPattern>;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck: java.lang.String mCurrentClass>;
+
+        $r2 = virtualinvoke $r1.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r0);
+
+        $z0 = virtualinvoke $r2.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        return $z1;
+    }
+
+    private boolean checkName(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethod, ident;
+        java.lang.String $r0, $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aMethod := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        ident = virtualinvoke aMethod.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(59);
+
+        $r0 = "main";
+
+        $r1 = virtualinvoke ident.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        return $z0;
+    }
+
+    private boolean checkModifiers(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethod, modifiers;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aMethod := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        modifiers = virtualinvoke aMethod.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(5);
+
+        $z0 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(63);
+
+        if $z0 == 0 goto label1;
+
+        $z1 = virtualinvoke modifiers.<com.puppycrawl.tools.checkstyle.api.DetailAST: boolean branchContains(int)>(65);
+
+        if $z1 == 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+
+    private boolean checkType(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethod, type, $r0;
+        int $i0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aMethod := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = virtualinvoke aMethod.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        type = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i0 = virtualinvoke type.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i0 != 50 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private boolean checkParams(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aMethod, params, paramType, arrayDecl, arrayType, $r0;
+        com.puppycrawl.tools.checkstyle.api.FullIdent type;
+        int $i0, $i1, $i2;
+        java.lang.String $r1, $r2, $r3, $r4;
+        boolean $z0, $z1, $z2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
+
+        aMethod := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        params = virtualinvoke aMethod.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(20);
+
+        $i0 = virtualinvoke params.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getChildCount()>();
+
+        if $i0 == 1 goto label1;
+
+        return 0;
+
+     label1:
+        $r0 = virtualinvoke params.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        paramType = virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(13);
+
+        arrayDecl = virtualinvoke paramType.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST findFirstToken(int)>(17);
+
+        if arrayDecl != null goto label2;
+
+        return 0;
+
+     label2:
+        arrayType = virtualinvoke arrayDecl.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getFirstChild()>();
+
+        $i1 = virtualinvoke arrayType.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i1 == 59 goto label3;
+
+        $i2 = virtualinvoke arrayType.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        if $i2 != 60 goto label7;
+
+     label3:
+        type = staticinvoke <com.puppycrawl.tools.checkstyle.api.FullIdent: com.puppycrawl.tools.checkstyle.api.FullIdent createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)>(arrayType);
+
+        $r1 = "String";
+
+        $r2 = virtualinvoke type.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+
+        if $z0 != 0 goto label4;
+
+        $r4 = "java.lang.String";
+
+        $r3 = virtualinvoke type.<com.puppycrawl.tools.checkstyle.api.FullIdent: java.lang.String getText()>();
+
+        $z2 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z2 == 0 goto label5;
+
+     label4:
+        $z1 = 1;
+
+        goto label6;
+
+     label5:
+        $z1 = 0;
+
+     label6:
+        return $z1;
+
+     label7:
+        return 0;
+    }
+}

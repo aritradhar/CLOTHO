@@ -1,0 +1,206 @@
+class com.puppycrawl.tools.checkstyle.filters.CSVFilter extends java.lang.Object implements com.puppycrawl.tools.checkstyle.filters.IntFilter
+{
+    private final java.util.Set mFilters;
+
+    public void addFilter(com.puppycrawl.tools.checkstyle.filters.IntFilter)
+    {
+        com.puppycrawl.tools.checkstyle.filters.CSVFilter this;
+        com.puppycrawl.tools.checkstyle.filters.IntFilter aFilter;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.CSVFilter;
+
+        aFilter := @parameter0: com.puppycrawl.tools.checkstyle.filters.IntFilter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.CSVFilter: java.util.Set mFilters>;
+
+        interfaceinvoke $r0.<java.util.Set: boolean add(java.lang.Object)>(aFilter);
+
+        return;
+    }
+
+    protected java.util.Set getFilters()
+    {
+        com.puppycrawl.tools.checkstyle.filters.CSVFilter this;
+        java.util.Set $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.CSVFilter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.CSVFilter: java.util.Set mFilters>;
+
+        return $r0;
+    }
+
+    public void <init>(java.lang.String) throws java.lang.NumberFormatException
+    {
+        com.puppycrawl.tools.checkstyle.filters.CSVFilter this;
+        java.lang.String aPattern, token, $r2, $r3, $r4;
+        java.util.StringTokenizer tokenizer, $r1;
+        int index, matchValue, upperBound, $i0;
+        java.util.HashSet $r0;
+        boolean $z0;
+        com.puppycrawl.tools.checkstyle.filters.IntRangeFilter $r5;
+        com.puppycrawl.tools.checkstyle.filters.IntMatchFilter $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.CSVFilter;
+
+        aPattern := @parameter0: java.lang.String;
+
+        specialinvoke this.<java.lang.Object: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Sets: java.util.HashSet newHashSet()>();
+
+        this.<com.puppycrawl.tools.checkstyle.filters.CSVFilter: java.util.Set mFilters> = $r0;
+
+        $r1 = new java.util.StringTokenizer;
+
+        specialinvoke $r1.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(aPattern, ",");
+
+        tokenizer = $r1;
+
+     label1:
+        $z0 = virtualinvoke tokenizer.<java.util.StringTokenizer: boolean hasMoreTokens()>();
+
+        if $z0 == 0 goto label4;
+
+        $r2 = virtualinvoke tokenizer.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        token = virtualinvoke $r2.<java.lang.String: java.lang.String trim()>();
+
+        index = virtualinvoke token.<java.lang.String: int indexOf(java.lang.String)>("-");
+
+        if index != -1 goto label2;
+
+        matchValue = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(token);
+
+        $r6 = new com.puppycrawl.tools.checkstyle.filters.IntMatchFilter;
+
+        specialinvoke $r6.<com.puppycrawl.tools.checkstyle.filters.IntMatchFilter: void <init>(int)>(matchValue);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.CSVFilter: void addFilter(com.puppycrawl.tools.checkstyle.filters.IntFilter)>($r6);
+
+        goto label3;
+
+     label2:
+        $r3 = virtualinvoke token.<java.lang.String: java.lang.String substring(int,int)>(0, index);
+
+        matchValue = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        $i0 = index + 1;
+
+        $r4 = virtualinvoke token.<java.lang.String: java.lang.String substring(int)>($i0);
+
+        upperBound = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r4);
+
+        $r5 = new com.puppycrawl.tools.checkstyle.filters.IntRangeFilter;
+
+        specialinvoke $r5.<com.puppycrawl.tools.checkstyle.filters.IntRangeFilter: void <init>(int,int)>(matchValue, upperBound);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.CSVFilter: void addFilter(com.puppycrawl.tools.checkstyle.filters.IntFilter)>($r5);
+
+     label3:
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    public boolean accept(int)
+    {
+        com.puppycrawl.tools.checkstyle.filters.CSVFilter this;
+        int aInt;
+        java.util.Iterator i$;
+        com.puppycrawl.tools.checkstyle.filters.IntFilter filter;
+        java.util.Set $r0;
+        boolean $z0, $z1;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.CSVFilter;
+
+        aInt := @parameter0: int;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.filters.CSVFilter: java.util.Set getFilters()>();
+
+        i$ = interfaceinvoke $r0.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        filter = (com.puppycrawl.tools.checkstyle.filters.IntFilter) $r1;
+
+        $z1 = interfaceinvoke filter.<com.puppycrawl.tools.checkstyle.filters.IntFilter: boolean accept(int)>(aInt);
+
+        if $z1 == 0 goto label2;
+
+        return 1;
+
+     label2:
+        goto label1;
+
+     label3:
+        return 0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.puppycrawl.tools.checkstyle.filters.CSVFilter this;
+        java.util.Set $r0;
+        java.lang.String $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.CSVFilter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.CSVFilter: java.util.Set mFilters>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.String toString()>();
+
+        return $r1;
+    }
+
+    public int hashCode()
+    {
+        com.puppycrawl.tools.checkstyle.filters.CSVFilter this;
+        java.util.Set $r0;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.CSVFilter;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.filters.CSVFilter: java.util.Set mFilters>;
+
+        $i0 = interfaceinvoke $r0.<java.util.Set: int hashCode()>();
+
+        return $i0;
+    }
+
+    public boolean equals(java.lang.Object)
+    {
+        com.puppycrawl.tools.checkstyle.filters.CSVFilter this, other;
+        java.lang.Object aObject;
+        boolean $z0, $z1;
+        java.util.Set $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.filters.CSVFilter;
+
+        aObject := @parameter0: java.lang.Object;
+
+        $z0 = aObject instanceof com.puppycrawl.tools.checkstyle.filters.CSVFilter;
+
+        if $z0 == 0 goto label1;
+
+        other = (com.puppycrawl.tools.checkstyle.filters.CSVFilter) aObject;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.filters.CSVFilter: java.util.Set mFilters>;
+
+        $r0 = other.<com.puppycrawl.tools.checkstyle.filters.CSVFilter: java.util.Set mFilters>;
+
+        $z1 = interfaceinvoke $r1.<java.util.Set: boolean equals(java.lang.Object)>($r0);
+
+        return $z1;
+
+     label1:
+        return 0;
+    }
+}

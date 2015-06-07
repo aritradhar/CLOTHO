@@ -1,0 +1,5 @@
+public interface  com.puppycrawl.tools.checkstyle.api.Configurable extends java.lang.Object
+{
+
+    public abstract void configure(com.puppycrawl.tools.checkstyle.api.Configuration) throws com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+}

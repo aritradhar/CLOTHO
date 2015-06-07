@@ -1,0 +1,17 @@
+public interface  com.puppycrawl.tools.checkstyle.api.DetailNode extends java.lang.Object
+{
+
+    public abstract int getType();
+
+    public abstract java.lang.String getText();
+
+    public abstract int getLineNumber();
+
+    public abstract int getColumnNumber();
+
+    public abstract com.puppycrawl.tools.checkstyle.api.DetailNode[] getChildren();
+
+    public abstract com.puppycrawl.tools.checkstyle.api.DetailNode getParent();
+
+    public abstract int getIndex();
+}

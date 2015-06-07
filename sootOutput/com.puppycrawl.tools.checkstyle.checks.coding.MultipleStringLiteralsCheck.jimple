@@ -1,0 +1,337 @@
+public class com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private final java.util.Map mStringMap;
+    private final java.util.BitSet mIgnoreOccurrenceContext;
+    private int mAllowedDuplicates;
+    private java.util.regex.Pattern mPattern;
+
+    public void setAllowedDuplicates(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck this;
+        int aAllowedDuplicates;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck;
+
+        aAllowedDuplicates := @parameter0: int;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: int mAllowedDuplicates> = aAllowedDuplicates;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck this;
+        java.util.HashMap $r0;
+        java.util.BitSet $r1, $r2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.Map mStringMap> = $r0;
+
+        $r1 = new java.util.BitSet;
+
+        specialinvoke $r1.<java.util.BitSet: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.BitSet mIgnoreOccurrenceContext> = $r1;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: int mAllowedDuplicates> = 1;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: void setIgnoreStringsRegexp(java.lang.String)>("^\"\"$");
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.BitSet mIgnoreOccurrenceContext>;
+
+        virtualinvoke $r2.<java.util.BitSet: void set(int)>(163);
+
+        return;
+    }
+
+    public void setIgnoreStringsRegexp(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck this;
+        java.lang.String aIgnoreStringsRegexp;
+        int $i0;
+        java.util.regex.Pattern $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck;
+
+        aIgnoreStringsRegexp := @parameter0: java.lang.String;
+
+        if aIgnoreStringsRegexp == null goto label1;
+
+        $i0 = virtualinvoke aIgnoreStringsRegexp.<java.lang.String: int length()>();
+
+        if $i0 <= 0 goto label1;
+
+        $r0 = staticinvoke <com.puppycrawl.tools.checkstyle.api.Utils: java.util.regex.Pattern getPattern(java.lang.String)>(aIgnoreStringsRegexp);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.regex.Pattern mPattern> = $r0;
+
+        goto label2;
+
+     label1:
+        this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.regex.Pattern mPattern> = null;
+
+     label2:
+        return;
+    }
+
+    public final void setIgnoreOccurrenceContext(java.lang.String[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck this;
+        java.lang.String[] aStrRep, arr$;
+        int len$, i$, type;
+        java.lang.String s;
+        java.util.BitSet $r0, $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck;
+
+        aStrRep := @parameter0: java.lang.String[];
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.BitSet mIgnoreOccurrenceContext>;
+
+        virtualinvoke $r0.<java.util.BitSet: void clear()>();
+
+        arr$ = aStrRep;
+
+        len$ = lengthof arr$;
+
+        i$ = 0;
+
+     label1:
+        if i$ >= len$ goto label2;
+
+        s = arr$[i$];
+
+        type = staticinvoke <com.puppycrawl.tools.checkstyle.api.TokenTypes: int getTokenId(java.lang.String)>(s);
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.BitSet mIgnoreOccurrenceContext>;
+
+        virtualinvoke $r1.<java.util.BitSet: void set(int)>(type);
+
+        i$ = i$ + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck;
+
+        $r0 = newarray (int)[1];
+
+        $r0[0] = 141;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        java.lang.String currentString;
+        java.util.List hitList;
+        int line, col;
+        boolean $z0, $z2;
+        java.util.regex.Pattern $r0, $r7;
+        java.util.Map $r1, $r5;
+        java.lang.Object $r2;
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo $r3;
+        java.util.regex.Matcher $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: boolean isInIgnoreOccurrenceContext(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+        if $z0 == 0 goto label1;
+
+        return;
+
+     label1:
+        currentString = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: java.lang.String getText()>();
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.regex.Pattern mPattern>;
+
+        if $r0 == null goto label2;
+
+        $r7 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.regex.Pattern mPattern>;
+
+        $r6 = virtualinvoke $r7.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(currentString);
+
+        $z2 = virtualinvoke $r6.<java.util.regex.Matcher: boolean find()>();
+
+        if $z2 != 0 goto label4;
+
+     label2:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.Map mStringMap>;
+
+        $r2 = interfaceinvoke $r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(currentString);
+
+        hitList = (java.util.List) $r2;
+
+        if hitList != null goto label3;
+
+        hitList = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList()>();
+
+        $r5 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.Map mStringMap>;
+
+        interfaceinvoke $r5.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(currentString, hitList);
+
+     label3:
+        line = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getLineNo()>();
+
+        col = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getColumnNo()>();
+
+        $r3 = new com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo;
+
+        specialinvoke $r3.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo: void <init>(int,int,com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$1)>(line, col, null);
+
+        interfaceinvoke hitList.<java.util.List: boolean add(java.lang.Object)>($r3);
+
+     label4:
+        return;
+    }
+
+    private boolean isInIgnoreOccurrenceContext(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST, token, $r0;
+        int type;
+        java.util.BitSet $r1;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        token = aAST;
+
+     label1:
+        $r0 = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        if $r0 == null goto label3;
+
+        type = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.BitSet mIgnoreOccurrenceContext>;
+
+        $z0 = virtualinvoke $r1.<java.util.BitSet: boolean get(int)>(type);
+
+        if $z0 == 0 goto label2;
+
+        return 1;
+
+     label2:
+        token = virtualinvoke token.<com.puppycrawl.tools.checkstyle.api.DetailAST: com.puppycrawl.tools.checkstyle.api.DetailAST getParent()>();
+
+        goto label1;
+
+     label3:
+        return 0;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.Map $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aRootAST);
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.Map mStringMap>;
+
+        interfaceinvoke $r0.<java.util.Map: void clear()>();
+
+        return;
+    }
+
+    public void finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        java.util.Set keys;
+        java.util.Iterator i$;
+        java.lang.String key;
+        java.util.List hits;
+        com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo firstFinding;
+        int line, col, $i0, $i1, $i2;
+        java.util.Map $r0, $r2;
+        boolean $z0;
+        java.lang.Object $r1, $r3, $r4;
+        java.lang.Object[] $r5;
+        java.lang.Integer $r6;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.Map mStringMap>;
+
+        keys = interfaceinvoke $r0.<java.util.Map: java.util.Set keySet()>();
+
+        i$ = interfaceinvoke keys.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke i$.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r1 = interfaceinvoke i$.<java.util.Iterator: java.lang.Object next()>();
+
+        key = (java.lang.String) $r1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: java.util.Map mStringMap>;
+
+        $r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>(key);
+
+        hits = (java.util.List) $r3;
+
+        $i1 = interfaceinvoke hits.<java.util.List: int size()>();
+
+        $i0 = this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: int mAllowedDuplicates>;
+
+        if $i1 <= $i0 goto label2;
+
+        $r4 = interfaceinvoke hits.<java.util.List: java.lang.Object get(int)>(0);
+
+        firstFinding = (com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo) $r4;
+
+        line = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo: int access$100(com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo)>(firstFinding);
+
+        col = staticinvoke <com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo: int access$200(com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck$StringInfo)>(firstFinding);
+
+        $r5 = newarray (java.lang.Object)[2];
+
+        $r5[0] = key;
+
+        $i2 = interfaceinvoke hits.<java.util.List: int size()>();
+
+        $r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+
+        $r5[1] = $r6;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck: void log(int,int,java.lang.String,java.lang.Object[])>(line, col, "multiple.string.literal", $r5);
+
+     label2:
+        goto label1;
+
+     label3:
+        return;
+    }
+}

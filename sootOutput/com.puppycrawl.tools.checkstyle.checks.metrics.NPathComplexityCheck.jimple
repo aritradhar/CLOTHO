@@ -1,0 +1,259 @@
+public final class com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck extends com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck
+{
+    private static final int DEFAULT_MAX;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void <init>(int)>(200);
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
+
+        $r0 = newarray (int)[14];
+
+        $r0[0] = 8;
+
+        $r0[1] = 9;
+
+        $r0[2] = 12;
+
+        $r0[3] = 11;
+
+        $r0[4] = 86;
+
+        $r0[5] = 87;
+
+        $r0[6] = 93;
+
+        $r0[7] = 85;
+
+        $r0[8] = 94;
+
+        $r0[9] = 91;
+
+        $r0[10] = 95;
+
+        $r0[11] = 97;
+
+        $r0[12] = 98;
+
+        $r0[13] = 111;
+
+        return $r0;
+    }
+
+    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        tableswitch($i0)
+        {
+            case 85: goto label1;
+            case 86: goto label1;
+            case 87: goto label1;
+            case 88: goto label3;
+            case 89: goto label3;
+            case 90: goto label3;
+            case 91: goto label1;
+            case 92: goto label3;
+            case 93: goto label1;
+            case 94: goto label2;
+            case 95: goto label2;
+            case 96: goto label3;
+            case 97: goto label1;
+            case 98: goto label2;
+            case 99: goto label3;
+            case 100: goto label3;
+            case 101: goto label3;
+            case 102: goto label3;
+            case 103: goto label3;
+            case 104: goto label3;
+            case 105: goto label3;
+            case 106: goto label3;
+            case 107: goto label3;
+            case 108: goto label3;
+            case 109: goto label3;
+            case 110: goto label3;
+            case 111: goto label1;
+            default: goto label3;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: void visitMultiplyingConditional()>();
+
+        goto label4;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: void visitAddingConditional()>();
+
+        goto label4;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label4:
+        return;
+    }
+
+    public void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aAST;
+        int $i0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
+
+        aAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $i0 = virtualinvoke aAST.<com.puppycrawl.tools.checkstyle.api.DetailAST: int getType()>();
+
+        tableswitch($i0)
+        {
+            case 85: goto label1;
+            case 86: goto label1;
+            case 87: goto label1;
+            case 88: goto label3;
+            case 89: goto label3;
+            case 90: goto label3;
+            case 91: goto label1;
+            case 92: goto label3;
+            case 93: goto label1;
+            case 94: goto label2;
+            case 95: goto label2;
+            case 96: goto label3;
+            case 97: goto label1;
+            case 98: goto label2;
+            case 99: goto label3;
+            case 100: goto label3;
+            case 101: goto label3;
+            case 102: goto label3;
+            case 103: goto label3;
+            case 104: goto label3;
+            case 105: goto label3;
+            case 106: goto label3;
+            case 107: goto label3;
+            case 108: goto label3;
+            case 109: goto label3;
+            case 110: goto label3;
+            case 111: goto label1;
+            default: goto label3;
+        };
+
+     label1:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: void leaveMultiplyingConditional()>();
+
+        goto label4;
+
+     label2:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: void leaveAddingConditional()>();
+
+        goto label4;
+
+     label3:
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.AbstractComplexityCheck: void leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)>(aAST);
+
+     label4:
+        return;
+    }
+
+    protected java.lang.String getMessageID()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
+
+        return "npathComplexity";
+    }
+
+    private void visitAddingConditional()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: void pushValue()>();
+
+        return;
+    }
+
+    private void leaveAddingConditional()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck this;
+        java.math.BigInteger $r0, $r1, $r2, $r3, $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: java.math.BigInteger getCurrentValue()>();
+
+        $r1 = <java.math.BigInteger: java.math.BigInteger ONE>;
+
+        $r2 = virtualinvoke $r0.<java.math.BigInteger: java.math.BigInteger subtract(java.math.BigInteger)>($r1);
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: java.math.BigInteger popValue()>();
+
+        $r4 = virtualinvoke $r2.<java.math.BigInteger: java.math.BigInteger add(java.math.BigInteger)>($r3);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: void setCurrentValue(java.math.BigInteger)>($r4);
+
+        return;
+    }
+
+    private void visitMultiplyingConditional()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck this;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: void pushValue()>();
+
+        return;
+    }
+
+    private void leaveMultiplyingConditional()
+    {
+        com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck this;
+        java.math.BigInteger $r0, $r1, $r2, $r3, $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: java.math.BigInteger getCurrentValue()>();
+
+        $r1 = <java.math.BigInteger: java.math.BigInteger ONE>;
+
+        $r2 = virtualinvoke $r0.<java.math.BigInteger: java.math.BigInteger add(java.math.BigInteger)>($r1);
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: java.math.BigInteger popValue()>();
+
+        $r4 = virtualinvoke $r2.<java.math.BigInteger: java.math.BigInteger multiply(java.math.BigInteger)>($r3);
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: void setCurrentValue(java.math.BigInteger)>($r4);
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck: int DEFAULT_MAX> = 200;
+
+        return;
+    }
+}

@@ -1,0 +1,219 @@
+public class com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck extends com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck
+{
+    private static final int[] EMPTY_INT_ARRAY;
+    private int[] mIgnoreLines;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck: void <init>()>();
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: int[] EMPTY_INT_ARRAY>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: int[] mIgnoreLines> = $r0;
+
+        return;
+    }
+
+    private boolean isIgnoreLine(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck this;
+        int aLineNo, $i0;
+        int[] $r0;
+        boolean $z0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck;
+
+        aLineNo := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: int[] mIgnoreLines>;
+
+        $i0 = staticinvoke <java.util.Arrays: int binarySearch(int[],int)>($r0, aLineNo);
+
+        if $i0 < 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    protected boolean isMatch(int, java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck this;
+        int aLineNumber, $i0;
+        java.lang.String aLine, $r2;
+        boolean $z0, $z1, $z2;
+        com.google.common.collect.ImmutableList $r0;
+        java.lang.Object $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck;
+
+        aLineNumber := @parameter0: int;
+
+        aLine := @parameter1: java.lang.String;
+
+        $i0 = aLineNumber + 1;
+
+        $z0 = specialinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: boolean isIgnoreLine(int)>($i0);
+
+        if $z0 != 0 goto label1;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: com.google.common.collect.ImmutableList getHeaderLines()>();
+
+        $r1 = virtualinvoke $r0.<com.google.common.collect.ImmutableList: java.lang.Object get(int)>(aLineNumber);
+
+        $r2 = (java.lang.String) $r1;
+
+        $z1 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>(aLine);
+
+        if $z1 == 0 goto label2;
+
+     label1:
+        $z2 = 1;
+
+        goto label3;
+
+     label2:
+        $z2 = 0;
+
+     label3:
+        return $z2;
+    }
+
+    public void setIgnoreLines(int[])
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck this;
+        int[] aList, $r0, $r1, $r2, $r3;
+        int $i0, $i1, $i2;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck;
+
+        aList := @parameter0: int[];
+
+        if aList == null goto label1;
+
+        $i0 = lengthof aList;
+
+        if $i0 != 0 goto label2;
+
+     label1:
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: int[] EMPTY_INT_ARRAY>;
+
+        this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: int[] mIgnoreLines> = $r0;
+
+        return;
+
+     label2:
+        $i1 = lengthof aList;
+
+        $r1 = newarray (int)[$i1];
+
+        this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: int[] mIgnoreLines> = $r1;
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: int[] mIgnoreLines>;
+
+        $i2 = lengthof aList;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(aList, 0, $r2, 0, $i2);
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: int[] mIgnoreLines>;
+
+        staticinvoke <java.util.Arrays: void sort(int[])>($r3);
+
+        return;
+    }
+
+    protected void processFiltered(java.io.File, java.util.List)
+    {
+        com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck this;
+        java.io.File aFile;
+        java.util.List aLines;
+        int i, $i0, $i1, $i2, $i3;
+        com.google.common.collect.ImmutableList $r0, $r1, $r6;
+        java.lang.Object $r2, $r5;
+        java.lang.String $r3;
+        boolean $z0;
+        java.lang.Object[] $r4, $r7;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck;
+
+        aFile := @parameter0: java.io.File;
+
+        aLines := @parameter1: java.util.List;
+
+        $r0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: com.google.common.collect.ImmutableList getHeaderLines()>();
+
+        $i0 = virtualinvoke $r0.<com.google.common.collect.ImmutableList: int size()>();
+
+        $i1 = interfaceinvoke aLines.<java.util.List: int size()>();
+
+        if $i0 <= $i1 goto label1;
+
+        $r7 = newarray (java.lang.Object)[0];
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: void log(int,java.lang.String,java.lang.Object[])>(1, "header.missing", $r7);
+
+        goto label4;
+
+     label1:
+        i = 0;
+
+     label2:
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: com.google.common.collect.ImmutableList getHeaderLines()>();
+
+        $i2 = virtualinvoke $r1.<com.google.common.collect.ImmutableList: int size()>();
+
+        if i >= $i2 goto label4;
+
+        $r2 = interfaceinvoke aLines.<java.util.List: java.lang.Object get(int)>(i);
+
+        $r3 = (java.lang.String) $r2;
+
+        $z0 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: boolean isMatch(int,java.lang.String)>(i, $r3);
+
+        if $z0 != 0 goto label3;
+
+        $i3 = i + 1;
+
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r6 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: com.google.common.collect.ImmutableList getHeaderLines()>();
+
+        $r5 = virtualinvoke $r6.<com.google.common.collect.ImmutableList: java.lang.Object get(int)>(i);
+
+        $r4[0] = $r5;
+
+        virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: void log(int,java.lang.String,java.lang.Object[])>($i3, "header.mismatch", $r4);
+
+        goto label4;
+
+     label3:
+        i = i + 1;
+
+        goto label2;
+
+     label4:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        int[] $r0;
+
+        $r0 = newarray (int)[0];
+
+        <com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck: int[] EMPTY_INT_ARRAY> = $r0;
+
+        return;
+    }
+}

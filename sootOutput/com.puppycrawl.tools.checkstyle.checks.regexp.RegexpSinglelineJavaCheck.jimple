@@ -1,0 +1,213 @@
+public class com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck extends com.puppycrawl.tools.checkstyle.api.Check
+{
+    private com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions;
+    private com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector mDetector;
+    private final com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor mSuppressor;
+
+    public void <init>()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck this;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r0;
+        com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void <init>()>();
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: void <init>(int,com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter)>(0, this);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions> = $r0;
+
+        $r1 = new com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor;
+
+        specialinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor: void <init>()>();
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor mSuppressor> = $r1;
+
+        return;
+    }
+
+    public int[] getDefaultTokens()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck this;
+        int[] $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+
+        $r0 = newarray (int)[0];
+
+        return $r0;
+    }
+
+    public void init()
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck this;
+        com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector $r0;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r1;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+
+        specialinvoke this.<com.puppycrawl.tools.checkstyle.api.Check: void init()>();
+
+        $r0 = new com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector;
+
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        specialinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: void <init>(com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions)>($r1);
+
+        this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector mDetector> = $r0;
+
+        return;
+    }
+
+    public void beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck this;
+        com.puppycrawl.tools.checkstyle.api.DetailAST aRootAST;
+        com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor $r0;
+        com.puppycrawl.tools.checkstyle.api.FileContents $r1;
+        com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector $r2;
+        java.lang.String[] $r3;
+        java.util.List $r4;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+
+        aRootAST := @parameter0: com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor mSuppressor>;
+
+        $r1 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.api.FileContents getFileContents()>();
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor: void setCurrentContents(com.puppycrawl.tools.checkstyle.api.FileContents)>($r1);
+
+        $r2 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector mDetector>;
+
+        $r3 = virtualinvoke this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: java.lang.String[] getLines()>();
+
+        $r4 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r3);
+
+        virtualinvoke $r2.<com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector: void processLines(java.util.List)>($r4);
+
+        return;
+    }
+
+    public void setFormat(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck this;
+        java.lang.String aFormat;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+
+        aFormat := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setFormat(java.lang.String)>(aFormat);
+
+        return;
+    }
+
+    public void setMessage(java.lang.String)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck this;
+        java.lang.String aMessage;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+
+        aMessage := @parameter0: java.lang.String;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setMessage(java.lang.String)>(aMessage);
+
+        return;
+    }
+
+    public void setMinimum(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck this;
+        int aMinimum;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+
+        aMinimum := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setMinimum(int)>(aMinimum);
+
+        return;
+    }
+
+    public void setMaximum(int)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck this;
+        int aMaximum;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+
+        aMaximum := @parameter0: int;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setMaximum(int)>(aMaximum);
+
+        return;
+    }
+
+    public void setIgnoreCase(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck this;
+        boolean aIgnore;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r0;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+
+        aIgnore := @parameter0: boolean;
+
+        $r0 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        virtualinvoke $r0.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setIgnoreCase(boolean)>(aIgnore);
+
+        return;
+    }
+
+    public void setIgnoreComments(boolean)
+    {
+        com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck this;
+        boolean aIgnore;
+        com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor $r0;
+        com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions $r1, $r4;
+        com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor $r3;
+
+        this := @this: com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+
+        aIgnore := @parameter0: boolean;
+
+        if aIgnore == 0 goto label1;
+
+        $r4 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r3 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor mSuppressor>;
+
+        virtualinvoke $r4.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setSuppressor(com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor)>($r3);
+
+        goto label2;
+
+     label1:
+        $r1 = this.<com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions mOptions>;
+
+        $r0 = <com.puppycrawl.tools.checkstyle.checks.regexp.NeverSuppress: com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor INSTANCE>;
+
+        virtualinvoke $r1.<com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions: com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions setSuppressor(com.puppycrawl.tools.checkstyle.checks.regexp.MatchSuppressor)>($r0);
+
+     label2:
+        return;
+    }
+}
